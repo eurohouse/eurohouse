@@ -1,0 +1,243 @@
+@font-face {
+  font-family: "Classic";
+  src: url("classic.otf");
+}
+@font-face {
+  font-family: "Modern";
+  src: url("modern.otf");
+}
+body {
+   background-color: #E4E4E4;
+   color: #000000;
+   font-family: "Classic";
+   font-size: 18pt;
+}
+font, a, p, b, i, strong, em, li, input, button, table, td, tr, th, select, textarea {
+   color: #000000;
+   font-family: "Classic";
+   font-size: 18pt;
+}
+h1 {
+   color: #000000;
+   font-family: "Classic";
+   font-weight: normal;
+   font-size: 30pt;
+}
+.time {
+   color: #000000;
+   font-family: "Modern";
+   font-size: 40pt;
+}
+.title {
+   color: #000000;
+   font-family: "Classic";
+   font-size: 26pt;
+}
+.author {
+   color: #000000;
+   font-family: "Classic";
+   font-size: 22pt;
+}
+.subtitle {
+   color: #000000;
+   font-family: "Classic";
+   font-size: 18pt;
+}
+.credits {
+   color: #000000;
+   font-family: "Classic";
+   font-size: 18pt;
+}
+.modern {
+   color: #000000;
+   font-family: "Modern";
+   font-size: 18pt;
+}
+.hover {
+   opacity: 1;
+}
+.hover:hover {
+   opacity: 0.5;
+}
+.east {
+   background-color: #009F4B;
+   color: #FFFFFF;
+   border: none;
+   text-align: center;
+   position: relative;
+   font-family: "Base Font";
+   font-size: 20pt;
+   opacity: 1;
+}
+.south {
+   background-color: #D83D48;
+   color: #FFFFFF;
+   border: none;
+   text-align: center;
+   position: relative;
+   font-family: "Base Font";
+   font-size: 20pt;
+   opacity: 1;
+}
+.west {
+   background-color: #DDAB00;
+   color: #FFFFFF;
+   border: none;
+   text-align: center;
+   position: relative;
+   font-family: "Base Font";
+   font-size: 20pt;
+   opacity: 1;
+}
+.north {
+   background-color: #2264C8;
+   color: #FFFFFF;
+   border: none;
+   text-align: center;
+   position: relative;
+   font-family: "Base Font";
+   font-size: 20pt;
+   opacity: 1;
+}
+.center {
+   background-color: #5F677A;
+   color: #FFFFFF;
+   border: none;
+   text-align: center;
+   position: relative;
+   font-family: "Base Font";
+   font-size: 20pt;
+   opacity: 1;
+}
+.light {
+   background-color: #939393;
+   color: #FFFFFF;
+   border: none;
+   text-align: center;
+   position: relative;
+   font-family: "Base Font";
+   font-size: 20pt;
+   opacity: 1;
+}
+.dark {
+   background-color: #404552;
+   color: #FFFFFF;
+   border: none;
+   text-align: center;
+   position: relative;
+   font-family: "Base Font";
+   font-size: 20pt;
+   opacity: 1;
+}
+.east:hover {
+   background-color: #009F4B;
+   color: #FFFFFF;
+   border: none;
+   text-align: center;
+   position: relative;
+   font-family: "Base Font";
+   font-size: 20pt;
+   opacity: 0.5;
+}
+.south:hover {
+   background-color: #D83D48;
+   color: #FFFFFF;
+   border: none;
+   text-align: center;
+   position: relative;
+   font-family: "Base Font";
+   font-size: 20pt;
+   opacity: 0.5;
+}
+.west:hover {
+   background-color: #DDAB00;
+   color: #FFFFFF;
+   border: none;
+   text-align: center;
+   position: relative;
+   font-family: "Base Font";
+   font-size: 20pt;
+   opacity: 0.5;
+}
+.north:hover {
+   background-color: #2264C8;
+   color: #FFFFFF;
+   border: none;
+   text-align: center;
+   position: relative;
+   font-family: "Base Font";
+   font-size: 20pt;
+   opacity: 0.5;
+}
+.center:hover {
+   background-color: #5F677A;
+   color: #FFFFFF;
+   border: none;
+   text-align: center;
+   position: relative;
+   font-family: "Base Font";
+   font-size: 20pt;
+   opacity: 0.5;
+}
+.light:hover {
+   background-color: #939393;
+   color: #FFFFFF;
+   border: none;
+   text-align: center;
+   position: relative;
+   font-family: "Base Font";
+   font-size: 20pt;
+   opacity: 0.5;
+}
+.dark:hover {
+   background-color: #404552;
+   color: #FFFFFF;
+   border: none;
+   text-align: center;
+   position: relative;
+   font-family: "Base Font";
+   font-size: 20pt;
+   opacity: 0.5;
+}
+.desk {
+   background-color: inherit;
+   border-radius: 5px;
+   opacity: 0.6;
+   position: absolute;
+   overflow-y: scroll;
+   width: 90%;
+   height: 80%;
+   left: 5%;
+   top: 5%;
+}
+.desk:hover, .desk:focus, .desk:active {
+   background-color: inherit;
+   border-radius: 5px;
+   opacity: 0.8;
+   position: absolute;
+   overflow-y: scroll;
+   width: 90%;
+   height: 80%;
+   left: 5%;
+   top: 5%;
+}
+.dock {
+   background-color: inherit;
+   border-radius: 5px;
+   opacity: 0.6;
+   position: absolute;
+   width: 90%;
+   height: 13%;
+   left: 5%;
+   top: 85%;
+}
+.dock:hover, .dock:focus, .dock:active {
+   background-color: inherit;
+   border-radius: 5px;
+   opacity: 0.8;
+   position: absolute;
+   width: 90%;
+   height: 13%;
+   left: 5%;
+   top: 85%;
+}
