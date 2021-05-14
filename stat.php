@@ -129,21 +129,21 @@ $itemSystem = file_get_contents($value.'/system');
 if ($itemSystem == 'Metric' && $system == 'Metric') {
     $filename = $value.'/worth.eur';
     $content = file_get_contents($filename);
-    $result = round($content, 0);
+    $result = round($content, 2);
 } elseif ($itemSystem == 'Imperial' && $system == 'Imperial') {
     $filename = $value.'/worth.usd';
     $content = file_get_contents($filename);
-    $result = round($content, 0);
+    $result = round($content, 2);
 } elseif ($itemSystem == 'Metric' && $system == 'Imperial') {
     $filename = $value.'/worth.eur';
     $content = file_get_contents($filename);
     $formula = $content * 1.146;
-    $result = round($formula, 0);
+    $result = round($formula, 2);
 } elseif ($itemSystem == 'Imperial' && $system == 'Metric') {
     $filename = $value.'/worth.usd';
     $content = file_get_contents($filename);
     $formula = $content / 1.146;
-    $result = round($formula, 0);
+    $result = round($formula, 2);
 }
 echo $result;
 ?>
