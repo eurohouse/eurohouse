@@ -26,3 +26,4 @@ $z = file_get_contents('x.'.$spaceExt);
 $reach = file_get_contents('reach.'.$spaceExt);
 $stepMin = file_get_contents('stmin.'.$spaceExt);
 $stepMax = file_get_contents('stmax.'.$spaceExt);
+$step = rand($stepMin, $stepMax);

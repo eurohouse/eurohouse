@@ -28,3 +28,4 @@ $objAmmoSpare = file_get_contents($object.'/ammo.spare');
 $objHealSpare = file_get_contents($object.'/heal.spare');
 $objSupsSpare = file_get_contents($object.'/sups.spare');
 $objSpecSpare = file_get_contents($object.'/spec.spare');
+$objStep = rand($objStepMin, $objStepMax);

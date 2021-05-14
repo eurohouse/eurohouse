@@ -28,3 +28,4 @@ $subAmmoSpare = file_get_contents($subject.'/ammo.spare');
 $subHealSpare = file_get_contents($subject.'/heal.spare');
 $subSupsSpare = file_get_contents($subject.'/sups.spare');
 $subSpecSpare = file_get_contents($subject.'/spec.spare');
+$subStep = rand($subStepMin, $subStepMax);
