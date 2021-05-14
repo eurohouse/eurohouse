@@ -41,6 +41,8 @@ foreach ($list as $key=>$name) { ?>
     chmod($name.'/y.'.$spaceExt, 0777);
     file_put_contents($name.'/z.'.$spaceExt, '0');
     chmod($name.'/z.'.$spaceExt, 0777);
+    file_put_contents($name.'/reach.'.$spaceExt, '1');
+    chmod($name.'/reach.'.$spaceExt, 0777);
     file_put_contents($name.'/ammo.spare', '0');
     chmod($name.'/ammo.spare', 0777);
     file_put_contents($name.'/heal.spare', '0');
