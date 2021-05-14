@@ -1,5 +1,6 @@
 <?php
 $subRating = file_get_contents($subject.'/rating');
+$subEnergy = file_get_contents($subject.'/energy');
 $subMode = file_get_contents($subject.'/mode');
 $subSystem = file_get_contents($subject.'/system');
 $subGender = file_get_contents($subject.'/gender');
@@ -12,8 +13,6 @@ if ($subSystem == 'Metric') {
     $subY = file_get_contents($subject.'/y.m');
     $subZ = file_get_contents($subject.'/z.m');
     $subReach = file_get_contents($subject.'/reach.m');
-    $subStepMin = file_get_contents($subject.'/stmin.m');
-    $subStepMax = file_get_contents($subject.'/stmax.m');
 } elseif ($subSystem == 'Imperial') {
     $subWorth = file_get_contents($subject.'/worth.usd');
     $subWorthSign = '$';
@@ -21,11 +20,4 @@ if ($subSystem == 'Metric') {
     $subY = file_get_contents($subject.'/y.ft');
     $subZ = file_get_contents($subject.'/z.ft');
     $subReach = file_get_contents($subject.'/reach.ft');
-    $subStepMin = file_get_contents($subject.'/stmin.ft');
-    $subStepMax = file_get_contents($subject.'/stmax.ft');
 }
-$subAmmoSpare = file_get_contents($subject.'/ammo.spare');
-$subHealSpare = file_get_contents($subject.'/heal.spare');
-$subSupsSpare = file_get_contents($subject.'/sups.spare');
-$subSpecSpare = file_get_contents($subject.'/spec.spare');
-$subStep = rand($subStepMin, $subStepMax);

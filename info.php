@@ -75,6 +75,14 @@ foreach($parts as $key=>$part) {
             $z = file_get_contents('z.ft');
         }
         $value = '{'.$x.';'.$y.';'.$z.'}';
+    } elseif ($mode == 'space') {
+        if ($system == 'Metric') {
+            $spaceExt = 'm';
+        } elseif ($system == 'Imperial') {
+            $spaceExt = 'ft';
+        }
+        $space = file_get_contents($prop.'.'.$spaceExt);
+        $value = $space.' '.$spaceExt;
     } else {
         $value = file_get_contents($prop);
     }

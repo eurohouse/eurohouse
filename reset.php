@@ -33,6 +33,8 @@ foreach ($list as $key=>$name) { ?>
     }
     file_put_contents($name.'/rating', '0');
     chmod($name.'/rating', 0777);
+    file_put_contents($name.'/energy', '100');
+    chmod($name.'/energy', 0777);
     file_put_contents($name.'/worth.'.$moneyExt, '0');
     chmod($name.'/worth.'.$moneyExt, 0777);
     file_put_contents($name.'/x.'.$spaceExt, '0');
@@ -41,16 +43,8 @@ foreach ($list as $key=>$name) { ?>
     chmod($name.'/y.'.$spaceExt, 0777);
     file_put_contents($name.'/z.'.$spaceExt, '0');
     chmod($name.'/z.'.$spaceExt, 0777);
-    file_put_contents($name.'/reach.'.$spaceExt, '1');
+    file_put_contents($name.'/reach.'.$spaceExt, '0');
     chmod($name.'/reach.'.$spaceExt, 0777);
-    file_put_contents($name.'/ammo.spare', '0');
-    chmod($name.'/ammo.spare', 0777);
-    file_put_contents($name.'/heal.spare', '0');
-    chmod($name.'/heal.spare', 0777);
-    file_put_contents($name.'/sups.spare', '0');
-    chmod($name.'/sups.spare', 0777);
-    file_put_contents($name.'/spec.spare', '0');
-    chmod($name.'/spec.spare', 0777);
     echo 'All necessary values of entities have been reset';
     ?>
     <br>

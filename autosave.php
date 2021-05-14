@@ -2,6 +2,8 @@
 // SUBJECT_DATA
 file_put_contents($subject.'/rating', $subRating);
 chmod($subject.'/rating', 0777);
+file_put_contents($subject.'/energy', $subEnergy);
+chmod($subject.'/energy', 0777);
 file_put_contents($subject.'/mode', $subMode);
 chmod($subject.'/mode', 0777);
 file_put_contents($subject.'/system', $subSystem);
@@ -23,10 +25,6 @@ if ($subSystem == 'Metric') {
     chmod($subject.'/z.m', 0777);
     file_put_contents($subject.'/reach.m', $subReach);
     chmod($subject.'/reach.m', 0777);
-    file_put_contents($subject.'/stmin.m', $subStepMin);
-    chmod($subject.'/stmin.m', 0777);
-    file_put_contents($subject.'/stmax.m', $subStepMax);
-    chmod($subject.'/stmax.m', 0777);
 } elseif ($subSystem == 'Imperial') {
     file_put_contents($subject.'/worth.usd', $subWorth);
     chmod($subject.'/worth.usd', 0777);
@@ -38,22 +36,12 @@ if ($subSystem == 'Metric') {
     chmod($subject.'/z.ft', 0777);
     file_put_contents($subject.'/reach.ft', $subReach);
     chmod($subject.'/reach.ft', 0777);
-    file_put_contents($subject.'/stmin.ft', $subStepMin);
-    chmod($subject.'/stmin.ft', 0777);
-    file_put_contents($subject.'/stmax.ft', $subStepMax);
-    chmod($subject.'/stmax.ft', 0777);
 }
-file_put_contents($subject.'/ammo.spare', $subAmmoSpare);
-chmod($subject.'/ammo.spare', 0777);
-file_put_contents($subject.'/heal.spare', $subHealSpare);
-chmod($subject.'/heal.spare', 0777);
-file_put_contents($subject.'/sups.spare', $subSupsSpare);
-chmod($subject.'/sups.spare', 0777);
-file_put_contents($subject.'/spec.spare', $subSpecSpare);
-chmod($subject.'/spec.spare', 0777);
 // OBJECT_DATA
 file_put_contents($object.'/rating', $objRating);
 chmod($object.'/rating', 0777);
+file_put_contents($object.'/energy', $objEnergy);
+chmod($object.'/energy', 0777);
 file_put_contents($object.'/mode', $objMode);
 chmod($object.'/mode', 0777);
 file_put_contents($object.'/system', $objSystem);
@@ -75,10 +63,6 @@ if ($objSystem == 'Metric') {
     chmod($object.'/z.m', 0777);
     file_put_contents($object.'/reach.m', $objReach);
     chmod($object.'/reach.m', 0777);
-    file_put_contents($object.'/stmin.m', $objStepMin);
-    chmod($object.'/stmin.m', 0777);
-    file_put_contents($object.'/stmax.m', $objStepMax);
-    chmod($object.'/stmax.m', 0777);
 } elseif ($objSystem == 'Imperial') {
     file_put_contents($object.'/worth.usd', $objWorth);
     chmod($object.'/worth.usd', 0777);
@@ -90,16 +74,4 @@ if ($objSystem == 'Metric') {
     chmod($object.'/z.ft', 0777);
     file_put_contents($object.'/reach.ft', $objReach);
     chmod($object.'/reach.ft', 0777);
-    file_put_contents($object.'/stmin.ft', $objStepMin);
-    chmod($object.'/stmin.ft', 0777);
-    file_put_contents($object.'/stmax.ft', $objStepMax);
-    chmod($object.'/stmax.ft', 0777);
 }
-file_put_contents($object.'/ammo.spare', $objAmmoSpare);
-chmod($object.'/ammo.spare', 0777);
-file_put_contents($object.'/heal.spare', $objHealSpare);
-chmod($object.'/heal.spare', 0777);
-file_put_contents($object.'/sups.spare', $objSupsSpare);
-chmod($object.'/sups.spare', 0777);
-file_put_contents($object.'/spec.spare', $objSpecSpare);
-chmod($object.'/spec.spare', 0777);
