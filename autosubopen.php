@@ -11,12 +11,14 @@ if ($subSystem == 'Metric') {
     $subX = file_get_contents($subject.'/x.m');
     $subY = file_get_contents($subject.'/y.m');
     $subZ = file_get_contents($subject.'/z.m');
+    $subReach = file_get_contents($subject.'/reach.m');
 } elseif ($subSystem == 'Imperial') {
     $subWorth = file_get_contents($subject.'/worth.usd');
     $subWorthSign = '$';
     $subX = file_get_contents($subject.'/x.ft');
     $subY = file_get_contents($subject.'/y.ft');
     $subZ = file_get_contents($subject.'/z.ft');
+    $subReach = file_get_contents($subject.'/reach.ft');
 }
 $subAmmoSpare = file_get_contents($subject.'/ammo.spare');
 $subHealSpare = file_get_contents($subject.'/heal.spare');

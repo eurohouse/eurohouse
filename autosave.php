@@ -21,6 +21,8 @@ if ($subSystem == 'Metric') {
     chmod($subject.'/y.m', 0777);
     file_put_contents($subject.'/z.m', $subZ);
     chmod($subject.'/z.m', 0777);
+    file_put_contents($subject.'/reach.m', $subReach);
+    chmod($subject.'/reach.m', 0777);
 } elseif ($subSystem == 'Imperial') {
     file_put_contents($subject.'/worth.usd', $subWorth);
     chmod($subject.'/worth.usd', 0777);
@@ -30,6 +32,8 @@ if ($subSystem == 'Metric') {
     chmod($subject.'/y.ft', 0777);
     file_put_contents($subject.'/z.ft', $subZ);
     chmod($subject.'/z.ft', 0777);
+    file_put_contents($subject.'/reach.ft', $subReach);
+    chmod($subject.'/reach.ft', 0777);
 }
 file_put_contents($subject.'/ammo.spare', $subAmmoSpare);
 chmod($subject.'/ammo.spare', 0777);
@@ -61,6 +65,8 @@ if ($objSystem == 'Metric') {
     chmod($object.'/y.m', 0777);
     file_put_contents($object.'/z.m', $objZ);
     chmod($object.'/z.m', 0777);
+    file_put_contents($object.'/reach.m', $objReach);
+    chmod($object.'/reach.m', 0777);
 } elseif ($objSystem == 'Imperial') {
     file_put_contents($object.'/worth.usd', $objWorth);
     chmod($object.'/worth.usd', 0777);
@@ -70,6 +76,8 @@ if ($objSystem == 'Metric') {
     chmod($object.'/y.ft', 0777);
     file_put_contents($object.'/z.ft', $objZ);
     chmod($object.'/z.ft', 0777);
+    file_put_contents($object.'/reach.ft', $objReach);
+    chmod($object.'/reach.ft', 0777);
 }
 file_put_contents($object.'/ammo.spare', $objAmmoSpare);
 chmod($object.'/ammo.spare', 0777);

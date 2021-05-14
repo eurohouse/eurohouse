@@ -23,3 +23,4 @@ $worth = file_get_contents('worth.'.$worthExt);
 $x = file_get_contents('x.'.$spaceExt);
 $y = file_get_contents('x.'.$spaceExt);
 $z = file_get_contents('x.'.$spaceExt);
+$reach = file_get_contents('reach.'.$spaceExt);

@@ -11,12 +11,14 @@ if ($objSystem == 'Metric') {
     $objX = file_get_contents($object.'/x.m');
     $objY = file_get_contents($object.'/y.m');
     $objZ = file_get_contents($object.'/z.m');
+    $objReach = file_get_contents($object.'/reach.m');
 } elseif ($objSystem == 'Imperial') {
     $objWorth = file_get_contents($object.'/worth.usd');
     $objWorthSign = '$';
     $objX = file_get_contents($object.'/x.ft');
     $objY = file_get_contents($object.'/y.ft');
     $objZ = file_get_contents($object.'/z.ft');
+    $objReach = file_get_contents($object.'/reach.ft');
 }
 $objAmmoSpare = file_get_contents($object.'/ammo.spare');
 $objHealSpare = file_get_contents($object.'/heal.spare');
