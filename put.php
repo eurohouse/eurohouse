@@ -9,3 +9,5 @@ file_put_contents('x.'.$spaceExt, $x);
 file_put_contents('y.'.$spaceExt, $y);
 file_put_contents('z.'.$spaceExt, $z);
 file_put_contents('reach.'.$spaceExt, $reach);
+file_put_contents('stmin.'.$spaceExt, $stepMin);
+file_put_contents('stmax.'.$spaceExt, $stepMax);

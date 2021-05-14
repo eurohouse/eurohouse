@@ -23,6 +23,10 @@ if ($subSystem == 'Metric') {
     chmod($subject.'/z.m', 0777);
     file_put_contents($subject.'/reach.m', $subReach);
     chmod($subject.'/reach.m', 0777);
+    file_put_contents($subject.'/stmin.m', $subStepMin);
+    chmod($subject.'/stmin.m', 0777);
+    file_put_contents($subject.'/stmax.m', $subStepMax);
+    chmod($subject.'/stmax.m', 0777);
 } elseif ($subSystem == 'Imperial') {
     file_put_contents($subject.'/worth.usd', $subWorth);
     chmod($subject.'/worth.usd', 0777);
@@ -34,6 +38,10 @@ if ($subSystem == 'Metric') {
     chmod($subject.'/z.ft', 0777);
     file_put_contents($subject.'/reach.ft', $subReach);
     chmod($subject.'/reach.ft', 0777);
+    file_put_contents($subject.'/stmin.ft', $subStepMin);
+    chmod($subject.'/stmin.ft', 0777);
+    file_put_contents($subject.'/stmax.ft', $subStepMax);
+    chmod($subject.'/stmax.ft', 0777);
 }
 file_put_contents($subject.'/ammo.spare', $subAmmoSpare);
 chmod($subject.'/ammo.spare', 0777);
@@ -67,6 +75,10 @@ if ($objSystem == 'Metric') {
     chmod($object.'/z.m', 0777);
     file_put_contents($object.'/reach.m', $objReach);
     chmod($object.'/reach.m', 0777);
+    file_put_contents($object.'/stmin.m', $objStepMin);
+    chmod($object.'/stmin.m', 0777);
+    file_put_contents($object.'/stmax.m', $objStepMax);
+    chmod($object.'/stmax.m', 0777);
 } elseif ($objSystem == 'Imperial') {
     file_put_contents($object.'/worth.usd', $objWorth);
     chmod($object.'/worth.usd', 0777);
@@ -78,6 +90,10 @@ if ($objSystem == 'Metric') {
     chmod($object.'/z.ft', 0777);
     file_put_contents($object.'/reach.ft', $objReach);
     chmod($object.'/reach.ft', 0777);
+    file_put_contents($object.'/stmin.ft', $objStepMin);
+    chmod($object.'/stmin.ft', 0777);
+    file_put_contents($object.'/stmax.ft', $objStepMax);
+    chmod($object.'/stmax.ft', 0777);
 }
 file_put_contents($object.'/ammo.spare', $objAmmoSpare);
 chmod($object.'/ammo.spare', 0777);
