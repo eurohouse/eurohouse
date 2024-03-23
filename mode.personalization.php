@@ -36,7 +36,7 @@
     handleInput(this.value);
 }" oninput="handleInput(this.value, true);">
 <?=$session['description'];?></textarea><br>
-<label><a href="https://www.php.net/manual/en/datetime.format.php">ISO-8601</a> <?=term('&', $settings['vocabulary'], $session['units']);?> <a href="https://www.iso.org/obp/ui/#iso:pub:PUB500001:en">ISO-3166</a></label><br>
+<label><a href="https://www.php.net/manual/en/datetime.format.php">ISO 8601</a> <?=term('&', $settings['vocabulary'], $session['units']);?> <a href="https://www.iso.org/obp/ui/#iso:pub:PUB500001:en">ISO 3166</a></label><br>
 <input type="text" id="setDateFormat" style="width:25%;" value="<?=$session['date_format'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('date_format', setDateFormat.value);
 } else if (event.keyCode == 27) {
