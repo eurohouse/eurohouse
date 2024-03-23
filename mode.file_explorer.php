@@ -74,17 +74,6 @@ foreach ($index as $key=>$value) {
         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'false');" src="<?=$prefix.'database.png'.$suffix;?>">
         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'true');" src="<?=$prefix.'info.png'.$suffix;?>">
     <?php } ?>
-<?php } elseif ($mediaFileExtension == 'poll') { ?>
-    <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" src="<?=$prefix.'dice.png'.$suffix;?>">
-    <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFileTitle;?>" style="width:<?=$line1Size;?>%;" onmouseover="soundButton();" onclick="omniRead('online_poll', this.name, 'true');">
-    <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFileSizeStr;?>" style="width:<?=$line2Size;?>%;" onmouseover="soundButton();">
-    <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFilePerms;?>" style="width:<?=$line3Size;?>px;" onmouseover="soundButton();">
-    <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'false');" src="<?=$prefix.'database.png'.$suffix;?>">
-    <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
-        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="del(this.name);" src="<?=$prefix.'delete.png'.$suffix;?>">
-    <?php } else { ?>
-        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'true');" src="<?=$prefix.'info.png'.$suffix;?>">
-    <?php } ?>
 <?php } elseif ($mediaFileExtension == 'pkg') {
     $mediaPkgInfo = eurarr($mediaFileBasename.'.pkg');
     $mediaPkgHost = $mediaPkgInfo['host'];

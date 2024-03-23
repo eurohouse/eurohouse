@@ -119,21 +119,6 @@ $iconSize = 50; include 'file_manager.php'; ?>
     <?php } ?>
     </p>
     </td>
-    <?php } elseif ($mediaFileExtension == 'poll') {
-    $pollFileOpen = arropen($mediaFilename);
-    $mediaFileFavicon = $themePrefix.'dice.png'; ?>
-    <td>
-    <a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon.$suffix;?>" onmouseover="soundButton();"></a></td><td><a style="<?=$preStyle;?>" href="javascript:omniRead('online_poll', %22<?=$mediaFilename;?>%22, 'true');"><?=$mediaFileTitle;?></a></td><td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
-    <td>
-    <p align='center' class='block'>
-    <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'false');" src="<?=$prefix.'database.png'.$suffix;?>">
-    <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
-        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="del(this.name);" src="<?=$prefix.'delete.png'.$suffix;?>">
-    <?php } else { ?>
-        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'true');" src="<?=$prefix.'info.png'.$suffix;?>">
-    <?php } ?>
-    </p>
-    </td>
     <?php } elseif ($mediaFileExtension == 'pkg') {
     $mediaPkgInfo = eurarr($mediaFileBasename.'.pkg');
     $mediaPkgHost = $mediaPkgInfo['host'];
