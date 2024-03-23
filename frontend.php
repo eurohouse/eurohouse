@@ -486,7 +486,7 @@ function wallpaper_engine() {
             if (varsNum > 1) {
                 if ((varsID % 4) == 1) {
                     $('#buttonAugment').attr('src', sysDefPrefix.value+'diamond.png'+sysDefSuffix.value);
-                } else if ((varsNum % 4) == 2) {
+                } else if ((varsID % 4) == 2) {
                     $('#buttonAugment').attr('src', sysDefPrefix.value+'club.png'+sysDefSuffix.value);
                 } else {
                     $('#buttonAugment').attr('src', sysDefPrefix.value+'heart.png'+sysDefSuffix.value);
