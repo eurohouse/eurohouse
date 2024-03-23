@@ -480,13 +480,17 @@ function wallpaper_engine() {
                 playAudio(sufferPlayer, sysDefSufferSound.value);
             } sysDefPostSubP.value = sysDefSubP.value;
             var valBind = ''; var valBond = ''; var valPwrTh = 0; var valPwrBal = '';
-            $('body').css('background-image', 'url('+pager(data, 1)+')'); var varsNum = sysDefVarsArr.value.split(';').indexOf(sysDefEntry.value);
-            if ((varsNum % 4) == 1) {
-                $('#buttonAugment').attr('src', sysDefPrefix.value+'heart.png'+sysDefSuffix.value);
-            } else if ((varsNum % 4) == 2) {
-                $('#buttonAugment').attr('src', sysDefPrefix.value+'diamond.png'+sysDefSuffix.value);
-            } else if ((varsNum % 4) == 3) {
-                $('#buttonAugment').attr('src', sysDefPrefix.value+'club.png'+sysDefSuffix.value);
+            $('body').css('background-image', 'url('+pager(data, 1)+')');
+            var varsNum = sysDefVarsArr.value.split(';').length;
+            var varsID = sysDefVarsArr.value.split(';').indexOf(sysDefEntry.value);
+            if (varsNum > 1) {
+                if ((varsID % 4) == 1) {
+                    $('#buttonAugment').attr('src', sysDefPrefix.value+'diamond.png'+sysDefSuffix.value);
+                } else if ((varsNum % 4) == 2) {
+                    $('#buttonAugment').attr('src', sysDefPrefix.value+'club.png'+sysDefSuffix.value);
+                } else {
+                    $('#buttonAugment').attr('src', sysDefPrefix.value+'heart.png'+sysDefSuffix.value);
+                }
             } else {
                 $('#buttonAugment').attr('src', sysDefPrefix.value+'spade.png'+sysDefSuffix.value);
             } document.title = pager(data, 0)+' (@'+sysDefSessionID.value+') · Eurohouse UX/UI'; document.querySelector(':root').style.setProperty('--position', pager(data, 4)); $('#userAvatarBadge').attr('src', pager(data, 2)+sysDefSuffix.value); var valPwrMy = (isInt(decodePowers[sysDefSessionID.value])) ? parseInt(decodePowers[sysDefSessionID.value]) : 0; $('#buttonReticle').attr('src', sysDefReticlePrefix.value+sysDefReticle.value+'.png'+sysDefSuffix.value);
