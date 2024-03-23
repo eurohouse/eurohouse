@@ -556,9 +556,9 @@ function executeMacros(input, index = 0, length = 1) {
     } else if ((index == (length - 1)) && (input.includes("\\"))) {
         var namePart = input.replace("\\", '');
         var museArr = sysDefMusicBox.value;
-        var museLint = museArr.split(' |[=]| ');
+        var museLint = museArr.split('//');
         for (i = 0; i < museLint.length; i++) {
-            if (museLint[i].includes(namePart)) {
+            if (museLint[i].toLowerCase().includes(namePart.toLowerCase())) {
                 omniListen(museLint[i], true); break;
             } omniPause();
         }

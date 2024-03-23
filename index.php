@@ -34,7 +34,7 @@ foreach ($request as $key=>$value) { ?>
 <input type='hidden' id="sysDefVarsArr" value="">
 <input type='hidden' id="sysDefMsgCounter" value="0">
 <input type='hidden' id="sysDefBindData" value="<?=valstr($bindData,';',':');?>"><input type='hidden' id="sysDefPowersData" value="<?=valstr($powersData,';',':');?>">
-<input type='hidden' id="sysDefMsgData" value="<?=fileopen('messages.log', '');?>"><input type='hidden' id="sysDefMusicBox" value="<?=implode(' |[=]| ', $musicBox);?>">
+<input type='hidden' id="sysDefMsgData" value="<?=fileopen('messages.log', '');?>"><input type='hidden' id="sysDefMusicBox" value="<?=implode('//', $musicBox);?>">
 <input type='hidden' id="sysDefSubP" value="<?=$powersData[$sessionID];?>"><input type='hidden' id="sysDefPostBindData" value="<?=valstr($bindData,';',':');?>"><input type='hidden' id="sysDefPostPowersData" value="<?=valstr($powersData,';',':');?>"><input type='hidden' id="sysDefPostMsgData" value="<?=fileopen('messages.log', '');?>"><input type='hidden' id="sysDefPostSubP" value="<?=$powersData[$sessionID];?>">
 <input type='hidden' id='sysDefAvatarIcons' value="<?=implode(';', $kaiser);?>"><p align='center' class='block'><input hidden type="image" onmouseover="soundButton();" class="power" id="powerButton" onclick="setdata('observe', flip(sysDefObserve.value));" src="<?=$prefix.'power.png'.$suffix;?>"></p>
 <div class='topbar'><?php if (file_exists('mode.'.$request['mode'].'.php')) {
