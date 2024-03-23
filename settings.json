@@ -1,0 +1,226 @@
+{
+    "lifetime":
+    {
+        "cookie_default": 0,
+        "cookie_lengthen": 86400,
+        "garbage_collector": 604800
+    },
+    "collections":
+    {
+        "music": ".mp3,.aac,.ogg,.flac",
+        "audio": ".wav,.snd,.au,.ac3,.wma,.mka",
+        "video": ".mp4,.mkv,.webm",
+        "movie": ".mov,.qt,.wmv,.3gp,.avi",
+        "midi": ".mid,.midi,.rmi",
+        "image": ".bmp,.dib,.gif,.ico,.cur,.ani,.jpg,.jpeg,.psd,.svg,.webp,.png,.tif,.tiff"
+    },
+    "locale":
+    {
+        "size":
+        {
+            "B": { "RU": { "sign": "Б" } },
+            "KB": { "RU": { "sign": "КБ", "value": 1024 }, "US": { "sign": "kB", "value": 1000 }, "GB": { "sign": "KiB", "value": 1024 } },
+            "MB": { "RU": { "sign": "МБ", "value": 1048576 }, "US": { "sign": "mB", "value": 1000000 }, "GB": { "sign": "MiB", "value": 1048576 } },
+            "GB": { "RU": { "sign": "ГБ", "value": 1073741824 }, "US": { "sign": "gB", "value": 1000000000 }, "GB": { "sign": "GiB", "value": 1073741824 } },
+            "TB": { "RU": { "sign": "ТБ", "value": 1099511627776 }, "US": { "sign": "tB", "value": 1000000000000 }, "GB": { "sign": "TiB", "value": 1099511627776 } },
+            "PB": { "RU": { "sign": "ПБ", "value": 1125899906842624 }, "US": { "sign": "pB", "value": 1000000000000000 }, "GB": { "sign": "PiB", "value": 1125899906842624 } },
+            "EB": { "RU": { "sign": "ЕБ", "value": 1152921504606847000 }, "US": { "sign": "eB", "value": 1000000000000000000 }, "GB": { "sign": "EiB", "value": 1152921504606847000 } },
+            "ZB": { "RU": { "sign": "ЗБ", "value": 1.1805916207174113e+21 }, "US": { "sign": "zB", "value": 1e+21 }, "GB": { "sign": "ZiB", "value": 1.1805916207174113e+21 } },
+            "YB": { "RU": { "sign": "ЙБ", "value": 1.2089258196146292e+24 }, "US": { "sign": "yB", "value": 1e+24 }, "GB": { "sign": "YiB", "value": 1.2089258196146292e+24 } }
+        },
+        "length":
+        {
+            "default": { "sign": "m", "coefficient": 1 },
+            "RU": { "sign": "м", "coefficient": 1 },
+            "CN": { "sign": "米", "coefficient": 1 },
+            "TW": { "sign": "米", "coefficient": 1 },
+            "JP": { "sign": "米", "coefficient": 1 },
+            "US": { "sign": "ft", "inch": "true", "coefficient": 0.393701 },
+            "LR": { "sign": "ft", "inch": "true", "coefficient": 0.393701 },
+            "MM": { "sign": "ft", "inch": "true", "coefficient": 0.393701 }
+        },
+        "mass":
+        {
+            "default": { "sign": "kg", "coefficient": 1 },
+            "RU": { "sign": "кг", "coefficient": 1 },
+            "CN": { "sign": "公斤", "coefficient": 1 },
+            "TW": { "sign": "公斤", "coefficient": 1 },
+            "JP": { "sign": "公斤", "coefficient": 1 },
+            "US": { "sign": "lb", "coefficient": 2.20462 },
+            "LR": { "sign": "lb", "coefficient": 2.20462 },
+            "MM": { "sign": "lb", "coefficient": 2.20462 }
+        },
+        "shoe_size": {
+            "default": 30,
+            "US": 0,
+            "GB": -2.5,
+            "JP": 16,
+            "CN": 31
+        },
+        "angle":
+        {
+            "default": {
+                "sign": { "pre": "", "post": "°" }, "coefficient": 1
+            },
+            "GB": {
+                "sign": { "pre": "", "post": "%" }, "coefficient": 0.2777777777777778
+            },
+            "FR": {
+                "sign": { "pre": "", "post": "%" }, "coefficient": 0.2777777777777778
+            },
+            "US": {
+                "sign": { "pre": "", "post": "" }, "coefficient": 0.01746031746031746
+            },
+            "LR": {
+                "sign": { "pre": "", "post": "" }, "coefficient": 0.01746031746031746
+            },
+            "MM": {
+                "sign": { "pre": "", "post": "" }, "coefficient": 0.01746031746031746
+            }
+        },
+        "french":
+        {
+            "default": [ "Vendémiaire", "Brumaire", "Frimaire", "Nivôse", "Pluviôse", "Ventôse", "Germinal", "Floréal", "Prairial", "Messidor", "Thermidor", "Fructidor" ],
+            "RU": [ "вандемьера", "брюмера", "фримера", "нивоза", "плювиоза", "вантоза", "жерминаля", "флореаля", "прериаля", "мессидора", "термидора", "фрюктидора" ]
+        },
+        "quarter":
+        {
+            "default": [ "Winter", "Winter", "Spring", "Spring", "Spring", "Summer", "Summer", "Summer", "Fall", "Fall", "Fall", "Winter" ],
+            "RU": [ "Зима", "Зима", "Весна", "Весна", "Весна", "Лето", "Лето", "Лето", "Осень", "Осень", "Осень", "Зима" ],
+            "AE": [ "شتاء", "شتاء", "ربيع", "ربيع", "ربيع", "صيف", "صيف", "صيف", "خريف", "خريف", "خريف", "شتاء" ]
+        },
+        "semester":
+        {
+            "default": [ "Fall/Winter", "Fall/Winter", "Spring/Summer", "Spring/Summer", "Spring/Summer", "Spring/Summer", "Spring/Summer", "Spring/Summer", "Fall/Winter", "Fall/Winter", "Fall/Winter", "Fall/Winter" ],
+            "RU": [ "Осень/Зима", "Осень/Зима", "Весна/Лето", "Весна/Лето", "Весна/Лето", "Весна/Лето", "Весна/Лето", "Весна/Лето", "Осень/Зима", "Осень/Зима", "Осень/Зима", "Осень/Зима" ],
+            "AE": [ "شتاء", "شتاء", "ربيع", "ربيع", "ربيع", "صيف", "صيف", "صيف", "خريف", "خريف", "خريف", "شتاء" ]
+        }
+    },
+    "angles": [ 0, 90, 180, 270 ],
+    "payload":
+    {
+        "backward":
+        [
+            "https://github.com/infofintech/system",
+            "https://github.com/eurohouse/eurohouse"
+        ],
+        "forward":
+        [
+            "https://github.com/infofintech/system",
+            "https://github.com/infofintech/bootfont",
+            "https://github.com/infofintech/avatar",
+            "https://github.com/infofintech/iso3166",
+            "https://github.com/infofintech/media",
+            "https://github.com/infofintech/supermouse",
+            "https://github.com/eurohouse/eurohouse"
+        ]
+    },
+    "defaults":
+    {
+        "timezone": 0,
+        "units": "EU",
+        "units_list": "EU,US",
+        "melody": "",
+        "current": 0,
+        "playing": 0,
+        "autoplay": 0,
+        "force": 1,
+        "hour": 12,
+        "entry": "",
+        "bardot": 0,
+        "faceoff": 0,
+        "timedisp": 0,
+        "benchmark": 0,
+        "lock": 0,
+        "icons": 0,
+        "mute": 0,
+        "gloss": 0,
+        "personal": 0,
+        "observe": 0,
+        "spectate": 0,
+        "vintage": 0,
+        "magnitude": 7,
+        "title": "Eurohouse",
+        "description": "",
+        "avatar": "eurohouse",
+        "reticle": "reticle",
+        "reticle_choice_1": "reticle",
+        "reticle_choice_2": "musket",
+        "reticle_choice_3": "zhong",
+        "reticle_choice_4": "sniper",
+        "reticle_choice_5": "german",
+        "radius": 7,
+        "box_shadow": 0,
+        "gradient_deg": 180,
+        "back_size": 14,
+        "fore_size": 14,
+        "input_size": 14,
+        "head1_size": 17,
+        "head2_size": 16,
+        "head3_size": 15,
+        "disp_size": 18,
+        "priv1_size": 14,
+        "priv2_size": 14,
+        "priv3_size": 14,
+        "opacity": 64,
+        "blur": 0,
+        "brightness": 100,
+        "saturation": 100,
+        "contrast": 100,
+        "sepia": 0,
+        "grayscale": 0,
+        "hue": 0,
+        "gender": 0,
+        "specimen": "Q F S H Æ Ø Ð Ñ ʒ ʊ ʎ ɸ Σ Φ Ω Θ Г З Х Б ظ ض ؤ ل 인 방 학 적 中 京 日 木 𐎁 𐎛 𐎍 𐎄 🍷 ☕️ 🍾 🍫",
+        "font_ascii": "flexo.ttf",
+        "font_latin": "flexo.ttf",
+        "font_phone": "arialuni.ttf",
+        "font_greek": "ubuntu.ttf",
+        "font_cyril": "ubuntu.ttf",
+        "font_arabi": "arialuni.ttf",
+        "font_korea": "arialuni.ttf",
+        "font_china": "arialuni.ttf",
+        "font_other": "arialuni.ttf",
+        "font_emoji": "twemoji.ttf",
+        "back_color": "C0BFC0",
+        "fore_color": "605F60",
+        "input_color": "E5E5E5",
+        "back_text_color": "FFFFFF",
+        "fore_text_color": "FFFFFF",
+        "input_text_color": "000000",
+        "blank_color": "FFFFFF",
+        "blank_text_color": "000000",
+        "arc_fore_color": "403F40",
+        "arc_input_color": "D5D5D5",
+        "background": "osx.2017.00.png",
+        "menu": "file_finder,preferences",
+        "theme": "iso",
+        "memo": "",
+        "position": "50% 25%",
+        "alarm_sound": "iphone_tune.wav",
+        "ticking_sound": "timer.wav",
+        "background_sound": "vinyl.wav",
+        "focus_sound": "macos_mouse.wav",
+        "type_sound": "macos_keyboard.wav",
+        "error_sound": "macos_ding.wav",
+        "notify_sound": "macos_notify.wav",
+        "bind_sound": "macos_infobar.wav",
+        "hit_sound": "macos_infobar.wav",
+        "suffer_sound": "macos_popup.wav",
+        "date_format": "Y-m-d",
+        "time_format": "H:i:s"
+    },
+    "initialize":
+    {
+        "mode": "",
+        "sort": "",
+        "group": "",
+        "angle": 0,
+        "input": ".",
+        "output": ";",
+        "args": "",
+        "lock": "true",
+        "ref": "menu",
+        "path": "."
+    }
+}
