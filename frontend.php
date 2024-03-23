@@ -537,7 +537,8 @@ function wallpaper_engine() {
 }
 function executeMacros(input, index = 0, length = 1) {
     var output = input; var rep, r1, r2, r3, r4;
-    if ((input.includes('>>')) && (input.indexOf('>>') == 0)) {
+    if ((input.includes('## ')) && (input.indexOf('## ') == 0)) {
+    } else if ((input.includes('>>')) && (input.indexOf('>>') == 0)) {
         if (sysDefSessionID.value == 'root') {
             compose(input.replace('>>', ''), true, index);
         }
