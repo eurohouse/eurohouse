@@ -20,19 +20,33 @@
         {
             "default": "Male",
             "RU": "Мужчина",
-            "CN": "男"
+            "CN": "男", "KR": "男", "JP": "男",
+            "FR": "Homme",
+            "IT": "Uomo",
+            "DE": "Mann",
+            "ES": "Hombre",
+            "AE": "رجل",
+            "IN": "आदमी"
         },
         "female":
         {
             "default": "Female",
             "RU": "Женщина",
-            "CN": "女"
+            "CN": "女", "KR": "女", "JP": "女",
+            "FR": "Femme",
+            "IT": "Donna",
+            "DE": "Frau",
+            "ES": "Mujer",
+            "AE": "امرأة",
+            "IN": "महिला"
         },
         "asexual":
         {
-            "default": "Asexual",
+            "default": "Non-Binary",
             "RU": "Безполый",
-            "CN": "無"
+            "CN": "無", "KR": "無", "JP": "無",
+            "AE": "غير ثنائي",
+            "IN": "नॉन बाइनरी"
         }
     },
     "locale":
@@ -54,7 +68,7 @@
             "default": { "sign": "m", "coefficient": 1 },
             "RU": { "sign": "м", "coefficient": 1 },
             "CN": { "sign": "米", "coefficient": 1 },
-            "TW": { "sign": "米", "coefficient": 1 },
+            "KR": { "sign": "米", "coefficient": 1 },
             "JP": { "sign": "米", "coefficient": 1 },
             "US": { "sign": "ft", "inch": "true", "coefficient": 0.393701 },
             "LR": { "sign": "ft", "inch": "true", "coefficient": 0.393701 },
@@ -65,7 +79,7 @@
             "default": { "sign": "kg", "coefficient": 1 },
             "RU": { "sign": "кг", "coefficient": 1 },
             "CN": { "sign": "公斤", "coefficient": 1 },
-            "TW": { "sign": "公斤", "coefficient": 1 },
+            "KR": { "sign": "公斤", "coefficient": 1 },
             "JP": { "sign": "公斤", "coefficient": 1 },
             "US": { "sign": "lb", "coefficient": 2.20462 },
             "LR": { "sign": "lb", "coefficient": 2.20462 },
@@ -268,6 +282,75 @@
             "Set a password for your account...": "Новый пароль для вашего аккаунта...",
             "Restore Defaults": "Сброс Настроек", "Apply": "Применить",
             "Reset": "Сброс", "Update Password": "Обновить пароль"
+        },
+        "CN":
+        {
+            "Name/Position:": "名称及显示位置:",
+            "Description:": "描述您的个人资料:", "&": "и",
+            "What's on your mind...": "你的想法是什么...",
+            "Menu Items List:": "菜单项列表:",
+            "Your Reticles:": "十字线的选择:", "Icon": "图标",
+            "Name": "姓名", "Size": "尺寸", "Mode": "特权",
+            "Actions": "行动", "Image": "图像",
+            "Flag": "旗帜", "Specimen Text:": "显示文本示例:",
+            "Font Configuration:": "字体配置:",
+            "Sound Effects:": "声音方案:",
+            "User Interface:": "用户界面设置:",
+            "Color Scheme:": "配色方案:",
+            "Update Password:": "修改密码:",
+            "Opacity": "不透明度", "Blur": "模糊",
+            "Bright": "亮度", "Saturate": "饱和",
+            "Contrast": "对比", "Sepia": "棕褐色",
+            "Grayscale": "灰度", "Hue": "色调",
+            "Set a password for your account...": "您帐户的新密码...",
+            "Restore Defaults": "恢复默认值", "Apply": "申请",
+            "Reset": "复位", "Update Password": "修改密码"
+        },
+        "KR":
+        {
+            "Name/Position:": "名称及显示位置:",
+            "Description:": "描述您的个人资料:", "&": "и",
+            "What's on your mind...": "你的想法是什么...",
+            "Menu Items List:": "菜单项列表:",
+            "Your Reticles:": "十字线的选择:", "Icon": "图标",
+            "Name": "姓名", "Size": "尺寸", "Mode": "特权",
+            "Actions": "行动", "Image": "图像",
+            "Flag": "旗帜", "Specimen Text:": "显示文本示例:",
+            "Font Configuration:": "字体配置:",
+            "Sound Effects:": "声音方案:",
+            "User Interface:": "用户界面设置:",
+            "Color Scheme:": "配色方案:",
+            "Update Password:": "修改密码:",
+            "Opacity": "不透明度", "Blur": "模糊",
+            "Bright": "亮度", "Saturate": "饱和",
+            "Contrast": "对比", "Sepia": "棕褐色",
+            "Grayscale": "灰度", "Hue": "色调",
+            "Set a password for your account...": "您帐户的新密码...",
+            "Restore Defaults": "恢复默认值", "Apply": "申请",
+            "Reset": "复位", "Update Password": "修改密码"
+        },
+        "JP":
+        {
+            "Name/Position:": "名称及显示位置:",
+            "Description:": "描述您的个人资料:", "&": "и",
+            "What's on your mind...": "你的想法是什么...",
+            "Menu Items List:": "菜单项列表:",
+            "Your Reticles:": "十字线的选择:", "Icon": "图标",
+            "Name": "姓名", "Size": "尺寸", "Mode": "特权",
+            "Actions": "行动", "Image": "图像",
+            "Flag": "旗帜", "Specimen Text:": "显示文本示例:",
+            "Font Configuration:": "字体配置:",
+            "Sound Effects:": "声音方案:",
+            "User Interface:": "用户界面设置:",
+            "Color Scheme:": "配色方案:",
+            "Update Password:": "修改密码:",
+            "Opacity": "不透明度", "Blur": "模糊",
+            "Bright": "亮度", "Saturate": "饱和",
+            "Contrast": "对比", "Sepia": "棕褐色",
+            "Grayscale": "灰度", "Hue": "色调",
+            "Set a password for your account...": "您帐户的新密码...",
+            "Restore Defaults": "恢复默认值", "Apply": "申请",
+            "Reset": "复位", "Update Password": "修改密码"
         }
     }
 }

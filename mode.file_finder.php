@@ -1,5 +1,5 @@
 <!-- files -->
-<!-- RU: Файловый менеджер; CN: 文件查找器; TW:  文件查找器; JP: 文件查找器; AE: باحث الملفات -->
+<!-- RU: Файловый менеджер; CN: 文件查找器; KR:  文件查找器; JP: 文件查找器; AE: باحث الملفات -->
 <?php $preStyle = "white-space:pre-wrap;word-wrap:break-word;";
 $iconSize = 50; include 'file_manager.php'; ?>
 <table style="width:100%;" id="table">

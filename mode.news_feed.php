@@ -1,5 +1,5 @@
 <!-- news -->
-<!-- RU: Мгновенные сообщения; CN: 即时通讯聊天; TW: 即时通讯聊天; JP: 即时通讯聊天; AE: رسالة فورية -->
+<!-- RU: Мгновенные сообщения; CN: 即时通讯聊天; KR: 即时通讯聊天; JP: 即时通讯聊天; AE: رسالة فورية -->
 <?php if (isset($_SESSION['user'])) { ?>
 <div class='customPanel'>
 <p align='center' class='block'>

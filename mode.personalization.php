@@ -1,5 +1,5 @@
 <!-- database -->
-<!-- RU: Персонализация; CN: 个性化和元数据; TW: 个性化和元数据; JP: 个性化和元数据; AE: إضفاء الطابع الشخصي -->
+<!-- RU: Персонализация; CN: 个性化和元数据; KR: 个性化和元数据; JP: 个性化和元数据; AE: إضفاء الطابع الشخصي -->
 <p align='center'>
 <img style="height:11%;position:relative;" id="chooseReticle1" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_1'].'.png'.$suffix;?>" onclick="setdata('reticle', chooseReticle1.src.split('.')[1]);">
 <img style="height:11%;position:relative;" id="chooseReticle2" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_2'].'.png'.$suffix;?>" onclick="setdata('reticle', chooseReticle2.src.split('.')[1]);">

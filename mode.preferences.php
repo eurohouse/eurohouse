@@ -1,5 +1,5 @@
 <!-- settings -->
-<!-- RU: Настройки приложения; CN: 应用程序偏好设置; TW: 应用程序偏好设置; JP: 应用程序偏好设置; AE: تفضيلات التطبيق -->
+<!-- RU: Настройки приложения; CN: 应用程序偏好设置; KR: 应用程序偏好设置; JP: 应用程序偏好设置; AE: تفضيلات التطبيق -->
 <p align='center'>
 <input type="button" onmouseover="soundButton();" onclick="applyTheme(setSizeSequence.value, setColorSequence.value); setdata('specimen', encodeURIComponent(setSpecimen.value));" value="<?=term('Apply', $settings['vocabulary'], $session['units']);?>">
 <input type="button" onmouseover="soundButton();" onclick="setSizeSequence.value = '7 0 180 14 14 14 17 16 15 18 14 14 14'; setColorSequence.value = 'C0BFC0|605F60|E5E5E5|FFFFFF|FFFFFF|000000|FFFFFF|000000|403F40|D5D5D5'; applyTheme(setSizeSequence.value, setColorSequence.value); setSpecimen.value = 'Q F S H Æ Ø Ð Ñ ʒ ʊ ʎ ɸ Σ Φ Ω Θ Г З Х Б ظ ض ؤ ل 인 방 학 적 中 京 日 木 𐎁 𐎛 𐎍 𐎄 🍷 ☕️ 🍾 🍫'; setdata('specimen', setSpecimen.value);" value="<?=term('Reset', $settings['vocabulary'], $session['units']);?>"><br>

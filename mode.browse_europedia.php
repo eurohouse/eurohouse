@@ -1,5 +1,5 @@
 <!-- world -->
-<!-- RU: Просмотр Европедии; CN: 浏览元素 Europedia; TW: 浏览元素 Europedia; JP: 浏览元素 Europedia; AE: تصفح عناصر Europedia -->
+<!-- RU: Просмотр Европедии; CN: 浏览元素 Europedia; KR: 浏览元素 Europedia; JP: 浏览元素 Europedia; AE: تصفح عناصر Europedia -->
 <?php $imgWSize = 20;
 $exemplarArr = exemplar(str_replace('./','',(glob('./*.models.json'))));
 $contentsArr = exemplar(str_replace('./','',(glob('./*.contents.json')))); if ($request['group'] != '') {

@@ -1,5 +1,5 @@
 <!-- directory -->
-<!-- RU: Файловый проводник; CN: 文件管理器; TW: 文件管理器; JP: 文件管理器; AE: مستكشف الملفات -->
+<!-- RU: Файловый проводник; CN: 文件管理器; KR: 文件管理器; JP: 文件管理器; AE: مستكشف الملفات -->
 <?php
 $line1Size = 35; $line2Size = 15;
 $line3Size = 54; include 'file_manager.php';

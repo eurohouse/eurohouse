@@ -1,5 +1,5 @@
 <!-- user -->
-<!-- RU: Учётные записи пользователей; CN: 用户账户经理; TW: 用户账户经理; JP: 用户账户经理; AE: حسابات المستخدمين -->
+<!-- RU: Учётные записи пользователей; CN: 用户账户经理; KR: 用户账户经理; JP: 用户账户经理; AE: حسابات المستخدمين -->
 <?php $preStyle = "white-space:pre-wrap;word-wrap:break-word;";
 $iconSize = 50; $relBind = str_replace('_session.json', '', $allUsers); ?>
 <table style="width:100%;" id="table">

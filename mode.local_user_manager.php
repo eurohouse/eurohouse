@@ -1,5 +1,5 @@
 <!-- access -->
-<!-- RU: Локальные пользователи и группы; CN: 本地用户和组; TW: 本地用户和组; JP: 本地用户和组; AE: المستخدمون المحليون -->
+<!-- RU: Локальные пользователи и группы; CN: 本地用户和组; KR: 本地用户和组; JP: 本地用户和组; AE: المستخدمون المحليون -->
 <?php $line1Size = 70;
 $relBind = str_replace('_session.json', '', $allUsers);
 foreach ($relBind as $key=>$value) {
