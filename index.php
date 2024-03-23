@@ -165,12 +165,12 @@ foreach ($request as $key=>$value) { ?>
     <input type="image" id="buttonSpectate" onmouseover="soundButton();" class="power" onclick="setdata('spectate', flip(sysDefSpectate.value));" src="<?=$prefix.'power.png'.$suffix;?>">
 </p></div>
 <div class='topBarItem'><p align='center' class='block'>
-    <select id="setUnits" style="width:14%;position:relative;" onchange="setdata('units', setUnits.options[setUnits.selectedIndex].id);window.location.reload();">
+    <select id="setUnits" style="width:20%;position:relative;" onchange="setdata('units', setUnits.options[setUnits.selectedIndex].id);window.location.reload();">
     <?php foreach (explode(',', $session['units_list']) as $selID) { ?>
     <option id="<?=$selID;?>" <?php if ($session['units'] == $selID) { ?> selected <?php } ?>><?=$selID;?></option>
     <?php } ?>
     </select>
-    <select id="setTheme" style="width:14%;position:relative;" onchange="setdata('theme', setTheme.options[setTheme.selectedIndex].id);window.location.reload();">
+    <select id="setTheme" style="width:20%;position:relative;" onchange="setdata('theme', setTheme.options[setTheme.selectedIndex].id);window.location.reload();">
     <?php foreach ($thematic as $key=>$value) { ?>
         <option id="<?=explode('.', $value)[0];?>" <?php if ($session['theme'] == explode('.', $value)[0]) { ?> selected <?php } ?>><?=explode('.', $value)[0];?></option>
     <?php } ?></select>
@@ -185,7 +185,7 @@ foreach ($request as $key=>$value) { ?>
         echo $prefix.'menu.png'.$suffix;
     } else {
         echo $prefix.'list.png'.$suffix;
-    } ?>"><input type='button' id="showUsInfoSong" style="width:11%;position:relative;" value="-1">
+    } ?>">
     <input type="image" onmouseover="soundButton();" id="buttonUpdate" class="power" onclick="systemUpdate(sysDefBackload.value);window.location.reload();" src="<?=$prefix.'world.png'.$suffix;?>">
     <input type="image" onmouseover="soundButton();" id="buttonUserStatus" class="power" onclick="omniAuthRequest('signout','','');" src="<?php if (isset($_SESSION['user'])) {
         echo $prefix.'user.png'.$suffix;
