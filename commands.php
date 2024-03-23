@@ -15,6 +15,8 @@ function omniEnter() {
         document.getElementById('omniBox').value = macrosSequence(input, 'set ');
     } else if (input.includes('SET ')) {
         document.getElementById('omniBox').value = macrosSequence(input, 'SET ');
+    } else if (input.includes('> ')) {
+        document.getElementById('omniBox').value = macrosSequence(input, '> ');
     } else if (input.includes('get ')) {
         getPkgSequence(input, 'get ', 0);
     } else if (input.includes('git ')) {
