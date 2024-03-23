@@ -1,5 +1,5 @@
 <?php
-include 'functions.php'; $cookie = (isset($_COOKIE['user'])) ? $_COOKIE['user'] : 'root'; $userSettings = fileopen('settings.json'); $userData = arropen($cookie.'_session.json', json_encode($userSettings['defaults'])); $bindingData = arropen('binding.json', "{\"root\":\"root\"}"); $poweredData = arropen('dominion.json', "{\"root\":0}"); $timezone = dec_tz($userData['timezone']); date_default_timezone_set($timezone); $dateTimePanel = $userData['observe'].$userData['spectate'].$userData['vintage'].$userData['icons'];
+include 'functions.php'; $cookie = (isset($_COOKIE['user'])) ? $_COOKIE['user'] : 'root'; $userSettings = fileopen('settings.json'); $userData = arropen($cookie.'_session.json', json_encode($userSettings['defaults']), true); $bindingData = arropen('binding.json', "{\"root\":\"root\"}"); $poweredData = arropen('dominion.json', "{\"root\":0}"); $timezone = dec_tz($userData['timezone']); date_default_timezone_set($timezone); $dateTimePanel = $userData['observe'].$userData['spectate'].$userData['vintage'].$userData['icons'];
 if ($userData['memo'] != '') {
     $valueTime = $userData['memo']; if (time() >= $valueTime) {
         $ongoingSignature = 1; $incomingSignature = 0; $alarmInTime = 0;

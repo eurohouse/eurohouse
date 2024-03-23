@@ -13,7 +13,7 @@ ini_set("session.cookie_lifetime", $settings['lifetime']['cookie_default']);
 session_start(); wasAuth();
 $sessionID = (isset($_SESSION['user'])) ? $_SESSION['user'] : 'root';
 setcookie('user', $sessionID, time() + $settings['lifetime']['cookie_lengthen']);
-$session = arropen($sessionID.'_session.json', json_encode($settings['defaults']));
+$session = arropen($sessionID.'_session.json', json_encode($settings['defaults']), true);
 $bindData = arropen('binding.json', "{\"root\":\"root\"}");
 $handledID = (isset($bindData[$sessionID]) && ($bindData[$sessionID] != $sessionID)) ? $bindData[$sessionID] : $sessionID; $powersData = arropen('dominion.json', "{\"root\":0}");
 $timezone = dec_tz($session['timezone']); date_default_timezone_set($timezone);

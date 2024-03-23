@@ -177,7 +177,7 @@ function fileopen($name, $default = '') {
     $fileOpen = (file_exists($name)) ? file_get_contents($name) : $default;
     return (@unserialize($fileOpen) !== false) ? unserialize($fileOpen) : ((@json_decode($fileOpen, true) != null) ? json_decode($fileOpen, true) : ((@eurarr($name) !== null) ? eurarr($name) : ((@paging($name) !== null) ? paging($name) : $fileOpen)));
 }
-function arropen($name, $default = '{}') {
+function arropen($name, $default = '{}', bool $resort = false) {
     if (!file_exists($name)) {
         file_put_contents($name, $default); chmod($name, 0777);
     } $test = file_get_contents($name);
@@ -185,8 +185,8 @@ function arropen($name, $default = '{}') {
         file_put_contents($name.'.bak', $test); chmod($name.'.bak', 0777);
     } else {
         rename($name.'.bak', $name); chmod($name, 0777);
-    } $tryit = json_decode(file_get_contents($name), true);
-    file_put_contents($name, json_encode(eqarr(json_decode($default, true), $tryit))); chmod($name, 0777);
+    } if ($resort != false) { $tryit = json_decode(file_get_contents($name), true);
+    file_put_contents($name, json_encode(eqarr(json_decode($default, true), $tryit))); chmod($name, 0777); }
     $res = json_decode(file_get_contents($name), true); return $res;
 }
 function eqarr(array $src, array $des) {
