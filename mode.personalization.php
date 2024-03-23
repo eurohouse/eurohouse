@@ -9,7 +9,7 @@
 <input type="button" onmouseover="soundButton();" onclick="setdata('date_format', setDateFormat.value); setdata('time_format', setTimeFormat.value); setdata('position', setImagePosition.value); setdata('title', encodeURIComponent(setTitle.value)); setdata('description', encodeURIComponent(setDescription.value));" value="<?=term('Apply', $settings['vocabulary'], $session['units']);?>">
 <input type="button" onmouseover="soundButton();" onclick="setdata('units_list', setLanguages.value); setdata('menu', setMenuItems.value); window.location.reload();" value="<?=term('Update', $settings['vocabulary'], $session['units']);?>">
 <input type="button" onmouseover="soundButton();" onclick="setDateFormat.value = 'Y-m-d'; setdata('date_format', setDateFormat.value); setTimeFormat.value = 'H:i:s'; setdata('time_format', setTimeFormat.value); setImagePosition.value = '50% 25%'; setdata('position', setImagePosition.value);" value="<?=term('Reset', $settings['vocabulary'], $session['units']);?>">
-<input type="button" onmouseover="soundButton();" onclick="setLanguages.value = 'EU,US,RU,CN'; setdata('units_list', setLanguages.value); setMenuItems.value = 'file_finder,browse_europedia,preferences,personalization,news_feed,user_accounts'; setdata('menu', setMenuItems.value); window.location.reload();" value="<?=term('Clear', $settings['vocabulary'], $session['units']);?>"><br>
+<input type="button" onmouseover="soundButton();" onclick="setLanguages.value = 'EU,US,RU,CN'; setdata('units_list', setLanguages.value); setMenuItems.value = 'file_finder,browse_europedia,preferences,personalization,news_feed,user_accounts,visual_effects,text_editor'; setdata('menu', setMenuItems.value); window.location.reload();" value="<?=term('Clear', $settings['vocabulary'], $session['units']);?>"><br>
 <label><?=term('Name/Position:', $settings['vocabulary'], $session['units']);?></label><br>
 <input type="text" id="setTitle" style="width:46%;" value="<?=$session['title'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('title', encodeURIComponent(this.value));
@@ -72,7 +72,7 @@
 <input type="text" id="setMenuItems" style="width:46%;" value="<?=$session['menu'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('menu', setMenuItems.value); window.location.reload();
 } else if (event.keyCode == 27) {
-    this.value = 'file_finder,browse_europedia,preferences,personalization,news_feed,user_accounts';
+    this.value = 'file_finder,browse_europedia,preferences,personalization,news_feed,user_accounts,visual_effects,text_editor';
     setdata('menu', this.value);
     window.location.reload();
 } else if (event.keyCode == 8) {

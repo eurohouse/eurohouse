@@ -228,7 +228,7 @@
         "arc_fore_color": "403F40",
         "arc_input_color": "D5D5D5",
         "background": "osx.2017.00.png",
-        "menu": "file_finder,browse_europedia,preferences,personalization,news_feed,user_accounts",
+        "menu": "file_finder,browse_europedia,preferences,personalization,news_feed,user_accounts,visual_effects,text_editor",
         "theme": "iso",
         "memo": "",
         "position": "50% 25%",
