@@ -4,17 +4,17 @@
 $iconSize = 50; include 'file_manager.php'; ?>
 <table style="width:100%;" id="table">
 <thead><tr>
-<th style="width:7%;">Icon</th>
+<th style="width:7%;"><?=term('Icon', $settings['vocabulary'], $session['units']);?></th>
 <th style="width:20%;<?=$preStyle;?>">
-    <a href="javascript:SortTable(1, 'T');">Name</a>
+    <a href="javascript:SortTable(1, 'T');"><?=term('Name', $settings['vocabulary'], $session['units']);?></a>
 </th>
 <th style="width:8%;">
-    <a href="javascript:SortTable(2, 'T');">Size</a>
+    <a href="javascript:SortTable(2, 'T');"><?=term('Size', $settings['vocabulary'], $session['units']);?></a>
 </th>
 <th style="width:6%;">
-    <a href="javascript:SortTable(3, 'N');">Mode</a>
+    <a href="javascript:SortTable(3, 'N');"><?=term('Mode', $settings['vocabulary'], $session['units']);?></a>
 </th>
-<th style="width:10%;">Actions</th>
+<th style="width:10%;"><?=term('Actions', $settings['vocabulary'], $session['units']);?></th>
 </tr></thead>
 <tbody>
 <?php foreach ($index as $key=>$value) {

@@ -16,13 +16,13 @@ foreach ($exemplarArr as $key=>$value) {
     if (!isModel($value)) { unset($exemplarArr[$key]); }
 } ?><table style="width:90%;" id="table">
 <thead><tr>
-    <th style="width:7%;">Image</th>
-    <th style="width:5%;">Country</th>
-    <th style="width:5%;<?=$preStyle;?>"><a href="javascript:SortTable(2, 'T');">Name</a></th>
-    <th style="width:5%;<?=$preStyle;?>"><a href="javascript:SortTable(3, 'T');">Height</a></th>
-    <th style="width:5%;<?=$preStyle;?>"><a href="javascript:SortTable(4, 'T');">Weight</a></th>
-    <th style="width:5%;<?=$preStyle;?>"><a href="javascript:SortTable(5, 'T');">Sizes</a></th>
-    <th style="width:5%;<?=$preStyle;?>"><a href="javascript:SortTable(6, 'T');">Shoe Size</a></th>
+    <th style="width:7%;"><?=term('Image', $settings['vocabulary'], $session['units']);?></th>
+    <th style="width:5%;">Cou<?=term('Flag', $settings['vocabulary'], $session['units']);?></th>
+    <th style="width:5%;<?=$preStyle;?>"><a href="javascript:SortTable(2, 'T');"><?=term('Name', $settings['vocabulary'], $session['units']);?></a></th>
+    <th style="width:5%;<?=$preStyle;?>"><a href="javascript:SortTable(3, 'T');"><?=term('Height', $settings['vocabulary'], $session['units']);?></a></th>
+    <th style="width:5%;<?=$preStyle;?>"><a href="javascript:SortTable(4, 'T');"><?=term('Weight', $settings['vocabulary'], $session['units']);?></a></th>
+    <th style="width:5%;<?=$preStyle;?>"><a href="javascript:SortTable(5, 'T');"><?=term('Sizes', $settings['vocabulary'], $session['units']);?></a></th>
+    <th style="width:5%;<?=$preStyle;?>"><a href="javascript:SortTable(6, 'T');"><?=term('Shoe Size', $settings['vocabulary'], $session['units']);?></a></th>
 </tr></thead>
 <tbody><?php foreach ($exemplarArr as $key=>$value) {
     $modelCountryCode = $value['country'];

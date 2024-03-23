@@ -5,7 +5,7 @@
 <input type="image" onmouseover="soundButton();" class="power" onclick="rename_user(sysDefSessionID.value, setPassword.value); window.location.reload();" src="<?=$prefix.'book.png'.$suffix;?>">
 <input type="image" onmouseover="soundButton();" class="power" onclick="setSizeSequence.value = '7 0 180 14 14 14 17 16 15 18 14 14 14'; setColorSequence.value = 'C0BFC0|605F60|E5E5E5|FFFFFF|FFFFFF|000000|FFFFFF|000000|403F40|D5D5D5'; applyTheme(setSizeSequence.value, setColorSequence.value); setSpecimen.value = 'Q F S H Æ Ø Ð Ñ ʒ ʊ ʎ ɸ Σ Φ Ω Θ Г З Х Б ظ ض ؤ ل 인 방 학 적 中 京 日 木 𐎁 𐎛 𐎍 𐎄 🍷 ☕️ 🍾 🍫'; setdata('specimen', setSpecimen.value);" src="<?=$prefix.'backspace.png'.$suffix;?>">
 <input type="image" onmouseover="soundButton();" class="power" onclick="setdata('specimen', setSpecimen.value); setdata('font_ascii', 'flexo.ttf'); setdata('font_latin', 'flexo.ttf'); setdata('font_phone', 'arialuni.ttf'); setdata('font_greek', 'ubuntu.ttf'); setdata('font_cyril', 'ubuntu.ttf'); setdata('font_arabi', 'arialuni.ttf'); setdata('font_korea', 'arialuni.ttf'); setdata('font_china', 'arialuni.ttf'); setdata('font_other', 'arialuni.ttf'); setdata('font_emoji', 'twemoji.ttf'); window.location.reload();" src="<?=$prefix.'delete.png'.$suffix;?>"></p><p align='center'>
-<label>Specimen:</label><br>
+<label><?=term('Specimen Text:', $settings['vocabulary'], $session['units']);?></label><br>
 <input type="text" id="setSpecimen" style="width:78%;" value="<?=$session['specimen'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('specimen', encodeURIComponent(this.value));
 } else if (event.keyCode == 27) {
@@ -15,8 +15,7 @@
 } else if (event.keyCode == 46) {
     handleInput(this.value);
 }" oninput="handleInput(this.value, true);">
-<br>
-<label>Fonts for Unicode Blocks:</label><br>
+<br><label><?=term('Font Configuration:', $settings['vocabulary'], $session['units']);?></label><br>
 <select id="setUTF0" style="width:15%;position:relative;" onchange="setdata('font_ascii', setUTF0.options[setUTF0.selectedIndex].id); window.location.reload();">
 <?php foreach ($homer as $key=>$value) { ?>
 <option id="<?=$value.$suffix;?>" <?php if (withReq($session['font_ascii']) == $value) { ?> selected <?php } ?>>
@@ -89,7 +88,7 @@
 <?php } ?>
 </select>
 <br>
-<label>Sound Effects (SFX):</label><br>
+<label><?=term('Sound Effects:', $settings['vocabulary'], $session['units']);?></label><br>
 <select id="setAlarmSound" style="width:15%;position:relative;" onchange="setdata('alarm_sound', setAlarmSound.options[setAlarmSound.selectedIndex].id); window.location.reload();">
 <?php foreach ($orpheus as $key=>$value) { ?>
 <option id="<?=$value.$suffix;?>" <?php if (withReq($session['alarm_sound']) == $value) { ?> selected <?php } ?>>
@@ -108,8 +107,7 @@
 <select id="setTypeSound" style="width:15%;position:relative;" onchange="setdata('type_sound', setTypeSound.options[setTypeSound.selectedIndex].id);">
 <?php foreach ($orpheus as $key=>$value) { ?>
 <option id="<?=$value.$suffix;?>" <?php if (withReq($session['type_sound']) == $value) { ?> selected <?php } ?>>
-<?=$value;?></option><?php } ?></select>
-<br>
+<?=$value;?></option><?php } ?></select><br>
 <select id="setErrorSound" style="width:15%;position:relative;" onchange="setdata('error_sound', setErrorSound.options[setErrorSound.selectedIndex].id);">
 <?php foreach ($orpheus as $key=>$value) { ?>
 <option id="<?=$value.$suffix;?>" <?php if (withReq($session['error_sound']) == $value) { ?> selected <?php } ?>>
@@ -130,8 +128,7 @@
 <?php foreach ($orpheus as $key=>$value) { ?>
 <option id="<?=$value.$suffix;?>" <?php if (withReq($session['suffer_sound']) == $value) { ?> selected <?php } ?>>
 <?=$value;?></option><?php } ?></select>
-<br>
-<label>Radius/Shadow/Degree/Sizes:</label><br>
+<br><label><?=term('User Interface:', $settings['vocabulary'], $session['units']);?></label><br>
 <input type="text" id="setSizeSequence" style="width:80%;" value="<?=$session['radius'].' '.$session['box_shadow'].' '.$session['gradient_deg'].' '.$session['back_size'].' '.$session['fore_size'].' '.$session['input_size'].' '.$session['head1_size'].' '.$session['head2_size'].' '.$session['head3_size'].' '.$session['disp_size'].' '.$session['priv1_size'].' '.$session['priv2_size'].' '.$session['priv3_size'];?>" onkeydown="if (event.keyCode == 13) {
     applyTheme(setSizeSequence.value, setColorSequence.value);
 } else if (event.keyCode == 27) {
@@ -141,7 +138,7 @@
 } else if (event.keyCode == 46) {
     handleInput(this.value);
 }" oninput="handleInput(this.value, true);"><br>
-<label>Color Scheme:</label><br>
+<label><?=term('Color Scheme:', $settings['vocabulary'], $session['units']);?></label><br>
 <input type="text" id="setColorSequence" style="width:80%;" value="<?=$session['back_color'].'|'.$session['fore_color'].'|'.$session['input_color'].'|'.$session['back_text_color'].'|'.$session['fore_text_color'].'|'.$session['input_text_color'].'|'.$session['blank_color'].'|'.$session['blank_text_color'].'|'.$session['arc_fore_color'].'|'.$session['arc_input_color'];?>" onkeydown="
 if (event.keyCode == 13) {
     applyTheme(setSizeSequence.value, setColorSequence.value);
@@ -152,8 +149,8 @@ if (event.keyCode == 13) {
 } else if (event.keyCode == 46) {
     handleInput(this.value);
 }" oninput="handleInput(this.value, true);"><br>
-<label>Change Password:</label><br>
-<input type="password" placeholder="Set a password for your account..." id="setPassword" style="width:80%;" value="" onkeydown="if (event.keyCode == 13) {
+<label><?=term('Update Password:', $settings['vocabulary'], $session['units']);?></label><br>
+<input type="password" placeholder="<?=term('Set a password for your account...', $settings['vocabulary'], $session['units']);?>" id="setPassword" style="width:80%;" value="" onkeydown="if (event.keyCode == 13) {
     rename_user(sysDefSessionID.value, setPassword.value);
     window.location.reload();
 } else if (event.keyCode == 27) {

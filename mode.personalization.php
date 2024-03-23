@@ -6,22 +6,11 @@
 <img style="height:11%;position:relative;" id="chooseReticle3" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_3'].'.png'.$suffix;?>" onclick="setdata('reticle', chooseReticle3.src.split('.')[1]);">
 <img style="height:11%;position:relative;" id="chooseReticle4" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_4'].'.png'.$suffix;?>" onclick="setdata('reticle', chooseReticle4.src.split('.')[1]);">
 <img style="height:11%;position:relative;" id="chooseReticle5" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_5'].'.png'.$suffix;?>" onclick="setdata('reticle', chooseReticle5.src.split('.')[1]);"><br>
-<input type="image" onmouseover="soundButton();" class="power" onclick="setdata('date_format', setDateFormat.value);
-setdata('time_format', setTimeFormat.value);
-setdata('position', setImagePosition.value);
-setdata('gender', setGender.value);
-setdata('title', encodeURIComponent(setTitle.value));
-setdata('description', encodeURIComponent(setDescription.value));" src="<?=$prefix.'return.png'.$suffix;?>">
-<input type="image" onmouseover="soundButton();" class="power" onclick="setDateFormat.value = 'Y-m-d';
-setdata('date_format', setDateFormat.value);
-setTimeFormat.value = 'H:i:s';
-setdata('time_format', setTimeFormat.value);
-setImagePosition.value = '50% 25%';
-setdata('position', setImagePosition.value);
-setGender.value = 0; setdata('gender', setGender.value);" src="<?=$prefix.'backspace.png'.$suffix;?>">
+<input type="image" onmouseover="soundButton();" class="power" onclick="setdata('date_format', setDateFormat.value); setdata('time_format', setTimeFormat.value); setdata('position', setImagePosition.value); setdata('title', encodeURIComponent(setTitle.value)); setdata('description', encodeURIComponent(setDescription.value));" src="<?=$prefix.'return.png'.$suffix;?>">
+<input type="image" onmouseover="soundButton();" class="power" onclick="setDateFormat.value = 'Y-m-d'; setdata('date_format', setDateFormat.value); setTimeFormat.value = 'H:i:s'; setdata('time_format', setTimeFormat.value); setImagePosition.value = '50% 25%'; setdata('position', setImagePosition.value);" src="<?=$prefix.'backspace.png'.$suffix;?>">
 <input type="image" onmouseover="soundButton();" class="power" onclick="window.location.href='https://www.php.net/manual/en/datetime.format.php';" src="<?=$prefix.'php.png'.$suffix;?>">
 <input type="image" onmouseover="soundButton();" class="power" onclick="window.location.href='https://www.iso.org/obp/ui/#iso:pub:PUB500001:en';" src="<?=$prefix.'standard.png'.$suffix;?>"></p><p align='center'>
-<label>Name/Position:</label><br>
+<label><?=term('Name/Position:', $settings['vocabulary'], $session['units']);?></label><br>
 <input type="text" id="setTitle" style="width:46%;" value="<?=$session['title'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('title', encodeURIComponent(this.value));
 } else if (event.keyCode == 27) {
@@ -40,8 +29,8 @@ setGender.value = 0; setdata('gender', setGender.value);" src="<?=$prefix.'backs
 } else if (event.keyCode == 46) {
     handleInput(this.value);
 }" oninput="soundButton(true);">
-<br><label>Description:</label><br>
-<textarea id="setDescription" style="width:78%;height:25%;" placeholder="What's on your mind..." onkeydown="if (event.keyCode == 27) {
+<br><label><?=term('Description:', $settings['vocabulary'], $session['units']);?></label><br>
+<textarea id="setDescription" style="width:78%;height:25%;" placeholder="<?=term('What\'s on your mind...', $settings['vocabulary'], $session['units']);?>" onkeydown="if (event.keyCode == 27) {
     setDescription.value = ''; setdata('description', '');
 } else if (event.keyCode == 8) {
     handleInput(this.value);
@@ -49,7 +38,7 @@ setGender.value = 0; setdata('gender', setGender.value);" src="<?=$prefix.'backs
     handleInput(this.value);
 }" oninput="handleInput(this.value, true);">
 <?=$session['description'];?></textarea><br>
-<label>Date and Time Formats:</label><br>
+<label><?=term('Date and Time Formats:', $settings['vocabulary'], $session['units']);?></label><br>
 <input type="text" id="setDateFormat" style="width:25%;" value="<?=$session['date_format'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('date_format', setDateFormat.value);
 } else if (event.keyCode == 27) {
@@ -79,7 +68,7 @@ setGender.value = 0; setdata('gender', setGender.value);" src="<?=$prefix.'backs
 } else if (event.keyCode == 46) {
     handleInput(this.value);
 }" oninput="handleInput(this.value, true);"><br>
-<label>Languages and Menu Items:</label><br>
+<label><?=term('Menu Items List:', $settings['vocabulary'], $session['units']);?></label><br>
 <input type="text" id="setMenuItems" style="width:46%;" value="<?=$session['menu'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('menu', setMenuItems.value); window.location.reload();
 } else if (event.keyCode == 27) {
@@ -91,16 +80,11 @@ setGender.value = 0; setdata('gender', setGender.value);" src="<?=$prefix.'backs
 } else if (event.keyCode == 46) {
     handleInput(this.value);
 }" oninput="handleInput(this.value, true);">
-<input type="text" id="setGender" style="width:30%;" value="<?=$session['gender'];?>" onkeydown="if (event.keyCode == 13) {
-    setdata('gender', this.value);
-} else if (event.keyCode == 27) {
-    this.value = 0; setdata('gender', this.value);
-} else if (event.keyCode == 8) {
-    handleInput(this.value);
-} else if (event.keyCode == 46) {
-    handleInput(this.value);
-}" oninput="soundButton(true);"><br>
-<label>Reticle Choice:</label><br>
+<select id="setGender" style="width:30%;position:relative;" onchange="setdata('gender', setGender.options[setGender.selectedIndex].id); window.location.reload();">
+<?php foreach ($settings['genders'] as $key=>$value) { ?>
+<option id="<?=$key;?>" <?php if ($session['gender'] == $key) { ?> selected <?php } ?>>
+<?=(isset($value[$session['units']])) ? $value[$session['units']] : $value['default'];?></option><?php } ?></select><br>
+<label><?=term('Your Reticles:', $settings['vocabulary'], $session['units']);?></label><br>
 <select id="setReticle1" style="width:15%;position:relative;" onchange="setdata('reticle_choice_1', setReticle1.options[setReticle1.selectedIndex].id);">
 <?php foreach ($amour as $key=>$value) { ?>
 <option id="<?=explode('.', $value)[1];?>" <?php if ($session['reticle_choice_1'] == explode('.', $value)[1]) { ?> selected <?php } ?>>

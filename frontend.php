@@ -20,11 +20,6 @@ function omniListen(input, scratch = false) {
     audioPlayer.currentTime = (scratch) ? 0 : currentPos;
     setdata('melody', bin2hex(input));
     var searchValue = (input.split('?')[0]).replace(requestPath.value+'/', '');
-    $('#showUsInfoSong').val(recordNo(sysDefMusicBox.value, searchValue));
-}
-function recordNo(list, item) {
-    var arr = list.toString('').split(' |[=]| ');
-    return arr.indexOf(item);
 }
 function omniPause() {
     pauseAudio(audioPlayer);
@@ -554,8 +549,8 @@ function executeMacros(input, index = 0, length = 1) {
         omniBack(sysDefParent.value);
     } else if ((index == (length - 1)) && (input == '~~')) {
         delete_user(sysDefSessionID.value); omniAuthRequest('signout','','');
-    } else if ((index == (length - 1)) && (input.includes('?'))) {
-        var namePart = input.replace('?', '');
+    } else if ((index == (length - 1)) && (input.includes("'"))) {
+        var namePart = input.replaceAll("'", '');
         var museArr = sysDefMusicBox.value;
         var museLint = museArr.split(' |[=]| ');
         for (i = 0; i < museLint.length; i++) {
@@ -582,8 +577,8 @@ function executeMacros(input, index = 0, length = 1) {
         } else {
             omniPathDir(input.replace('$', ''), requestMode.value);
         }
-    } else if ((index == (length - 1)) && (input.includes('./')) && (input.indexOf('./') == 0)) {
-        omniRead(requestMode.value, input, requestLock.value);
+    } else if ((index == (length - 1)) && (input.includes('"'))) {
+        omniRead(requestMode.value, input.replaceAll('"', ''), requestLock.value);
     } else if ((index == (length - 1)) && (input.includes('*'))) {
         omniDisp(requestMode.value, input.replace('*', ''), requestLock.value);
     } else if ((index == (length - 1)) && (input.includes('@'))) {

@@ -351,3 +351,6 @@ function titler($name, array $voc, $title, $units = 'EU') {
     $collection = fileopen($domain.'.collection.json', '{}');
     return (isset($collection[$volume]['language'][$units])) ? wordfx($collection[$volume]['language'][$units], $volume, $voc, $title, $units) : ((isset($collection[$volume]['title'])) ? wordfx($collection[$volume]['title'], $volume, $voc, $title, $units) : $name);
 }
+function term($word, array $voc, $units = 'EU') {
+    return (isset($voc[$units][$word])) ? $voc[$units][$word] : $word;
+}

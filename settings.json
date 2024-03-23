@@ -14,6 +14,27 @@
         "midi": ".mid,.midi,.rmi",
         "image": ".bmp,.dib,.gif,.ico,.cur,.ani,.jpg,.jpeg,.psd,.svg,.webp,.png,.tif,.tiff"
     },
+    "genders":
+    {
+        "male":
+        {
+            "default": "Male",
+            "RU": "Мужчина",
+            "CN": "男"
+        },
+        "female":
+        {
+            "default": "Female",
+            "RU": "Женщина",
+            "CN": "女"
+        },
+        "asexual":
+        {
+            "default": "Asexual",
+            "RU": "Безполый",
+            "CN": "無"
+        }
+    },
     "locale":
     {
         "size":
@@ -222,5 +243,30 @@
         "lock": "true",
         "ref": "menu",
         "path": "."
+    },
+    "vocabulary":
+    {
+        "RU":
+        {
+            "Name/Position:": "Имя/Позиция дисплея:",
+            "Description:": "Описание:",
+            "What's on your mind...": "Напишите пожалуйста о себе...",
+            "Date and Time Formats:": "Форматы даты и времени:",
+            "Menu Items List:": "Список элементов меню:",
+            "Your Reticles:": "Выбор прицела:", "Icon": "Значок",
+            "Name": "Имя", "Size": "Размер", "Mode": "Права",
+            "Actions": "Действия", "Image": "Фото",
+            "Flag": "Флаг", "Specimen Text:": "Образец текста:",
+            "Font Configuration:": "Настройка шрифтов:",
+            "Sound Effects:": "Звуковая схема:",
+            "User Interface:": "Настройки интерфейса:",
+            "Color Scheme:": "Используемые цвета:",
+            "Update Password:": "Смена пароля:",
+            "Opacity": "Заливка", "Blur": "Размытие",
+            "Bright": "Яркость", "Saturate": "Насыщение",
+            "Contrast": "Контраст", "Sepia": "Сепия",
+            "Grayscale": "Чёрно-белый", "Hue": "Оттенок",
+            "Set a password for your account...": "Новый пароль для вашего аккаунта..."
+        }
     }
 }

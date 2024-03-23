@@ -15,7 +15,7 @@
 <?php } else { 
     if ($session['faceoff'] == 0) {
 ?><div class='customPanel'><p align="center">
-    <img onmouseover="soundButton();" id="showingAvatarNow" name="<?php if ($request['mode'] != '') { echo ''; } else { echo 'main_menu'; } ?>" style="height:24%;position:relative;" onclick="omniGo(this.name);" src="<?=$avaPrefix.$session['avatar'].'.png'.$suffix;?>">
+    <img onmouseover="soundButton();" id="showingAvatarNow" name="" style="height:24%;position:relative;" onclick="omniGo(this.name);" src="<?=$avaPrefix.$session['avatar'].'.png'.$suffix;?>">
     <h1 id="projectTitle" align='center' style="cursor:pointer;" onclick="navigator.clipboard.writeText(this.innerText);"></h1>
 </p></div>
 <div class='customPanel' style="width:100%;height:60%;left:0px;top:0px;overflow-y:scroll;">

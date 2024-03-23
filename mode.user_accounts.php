@@ -4,10 +4,10 @@
 $iconSize = 50; $relBind = str_replace('_session.json', '', $allUsers); ?>
 <table style="width:100%;" id="table">
 <thead><tr>
-    <th style="width:7%;">Icon</th>
-    <th style="width:16%;<?=$preStyle;?>"><a href="javascript:SortTable(1, 'T');">Name</a></th>
-    <th style="width:12%;<?=$preStyle;?>"><a href="javascript:SortTable(2, 'T');">Username</a></th>
-    <th style="width:5%;">Actions</th>
+    <th style="width:7%;"><?=term('Icon', $settings['vocabulary'], $session['units']);?></th>
+    <th style="width:16%;<?=$preStyle;?>"><a href="javascript:SortTable(1, 'T');"><?=term('Name', $settings['vocabulary'], $session['units']);?></a></th>
+    <th style="width:12%;<?=$preStyle;?>"><a href="javascript:SortTable(2, 'T');"><?=term('Username', $settings['vocabulary'], $session['units']);?></a></th>
+    <th style="width:5%;"><?=term('Actions', $settings['vocabulary'], $session['units']);?></th>
 </tr></thead>
 <tbody><?php foreach ($relBind as $key=>$value) {
     $cookieLeft = (@json_decode(file_get_contents($value.'_session.json'), true) != null) ? json_decode(file_get_contents($value.'_session.json'), true) : $defaultUserData;

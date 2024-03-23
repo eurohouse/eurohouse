@@ -3,7 +3,7 @@
 <?php if (isset($_SESSION['user'])) { ?>
 <div class='customPanel'>
 <p align='center' class='block'>
-<input type="text" id="composeMessage" style="width:54%;position:relative;" placeholder="What's on your mind..." value="" onkeydown="if (event.keyCode == 13) {
+<input type="text" id="composeMessage" style="width:54%;position:relative;" placeholder="<?=term('What\'s on your mind...', $settings['vocabulary'], $session['units']);?>" value="" onkeydown="if (event.keyCode == 13) {
     compose(encodeURIComponent(composeMessage.value));
 }">
 <input type="image" class="power" onmouseover="soundButton();" src="<?=$prefix.'return.png'.$suffix;?>" onclick="compose(encodeURIComponent(composeMessage.value), false);">
