@@ -19,4 +19,4 @@ if ($userData['vintage'] != 0) {
     $vintageBackdropFilter = "none"; $overlayBeforeBackground = "none";
     $overlayBeforeAnimation = "none"; $overlayAfterBackground = "none";
     $overlayAfterAnimation = "none";
-} echo $dateTimeStr."\r\n\r\n".$dateTimeCode.":".$dateTimePanel."\r\n\r\n".$cookie."\r\n\r\n".bin2hex($newsFeed)."\r\n\r\n".bin2hex(valstr($bindingData,';',':'))."\r\n\r\n".bin2hex(valstr($poweredData,';',':'))."\r\n\r\n".$vintageBackdropFilter.";".$overlayBeforeBackground.";".$overlayBeforeAnimation.";".$overlayAfterBackground.";".$overlayAfterAnimation."\r\n\r\n".hHmMsS($alarmInTime)."\r\n\r\n".bin2hex($musicBoxStr);
+} echo $dateTimeStr."\r\n\r\n".$dateTimeCode.":".$dateTimePanel."\r\n\r\n".hHmMsS($alarmInTime)."\r\n\r\n".$cookie."\r\n\r\n".valstr($bindingData,';',':')."\r\n\r\n".valstr($poweredData,';',':')."\r\n\r\n".$vintageBackdropFilter.";".$overlayBeforeBackground.";".$overlayBeforeAnimation.";".$overlayAfterBackground.";".$overlayAfterAnimation."\r\n\r\n".$newsFeed."\r\n\r\n".$musicBoxStr;

@@ -319,13 +319,13 @@ function world_clock() {
     $.ajax({
         url: 'world_clock.php',
         success: function(data) {
-            $('#alarmTime').val(pager(data, 7));
+            $('#alarmTime').val(pager(data, 2));
             $('#currentTime').val(pager(data, 0));
-            $('#sysDefSessionID').val(pager(data, 2));
-            $('#sysDefBindData').val(hex2bin(pager(data, 4)));
-            $('#sysDefPowersData').val(hex2bin(pager(data, 5)));
-            $('#sysDefMsgData').val(hex2bin(pager(data, 3)));
-            $('#sysDefMusicBox').val(hex2bin(pager(data, 8)));
+            $('#sysDefSessionID').val(pager(data, 3));
+            $('#sysDefBindData').val(pager(data, 4));
+            $('#sysDefPowersData').val(pager(data, 5));
+            $('#sysDefMsgData').val(pager(data, 7));
+            $('#sysDefMusicBox').val(pager(data, 8));
             var tickCode = pager(data, 1).split(':')[0];
             var tickPanel = pager(data, 1).split(':')[1];
             if (sysDefBindData.value != sysDefPostBindData.value) {
@@ -538,25 +538,21 @@ function wallpaper_engine() {
 }
 function executeMacros(input, index = 0, length = 1) {
     var output = input; var rep, r1, r2, r3, r4;
-    if ((input.includes('##')) && (input.indexOf('##') == 0)) {
-        output = input.replace('##', '');
-    } else if ((input.includes('>>')) && (input.indexOf('>>') == 0)) {
+    if ((input.includes('>>')) && (input.indexOf('>>') == 0)) {
         if (sysDefSessionID.value == 'root') {
             compose(input.replace('>>', ''), true, index);
-        } else {
-            output = input.replace('>>', '');
         }
     } else if ((input.includes('>')) && (input.indexOf('>') == 0)) {
         compose(input.replace('>', ''), false, index);
     } else if ((index == (length - 1)) && (input == '&&')) {
         bind(sysDefSessionID.value);
-    } else if ((index == (length - 1)) && ((input == 'reload') || (input == 'refresh'))) {
+    } else if ((index == (length - 1)) && (input == '/')) {
         window.location.reload();
-    } else if ((index == (length - 1)) && ((input == 'signout') || (input == 'logout'))) {
+    } else if ((index == (length - 1)) && (input == ':@')) {
         omniAuthRequest('signout','','');
-    } else if ((index == (length - 1)) && ((input == 'back') || (input == 'parent'))) {
+    } else if ((index == (length - 1)) && (input == '..')) {
         omniBack(sysDefParent.value);
-    } else if ((index == (length - 1)) && ((input == 'close') || (input == 'kill') || (input == 'terminate') || (input == 'good riddance'))) {
+    } else if ((index == (length - 1)) && (input == '~~')) {
         delete_user(sysDefSessionID.value); omniAuthRequest('signout','','');
     } else if ((index == (length - 1)) && (input.includes('?'))) {
         var namePart = input.replace('?', '');
@@ -572,16 +568,13 @@ function executeMacros(input, index = 0, length = 1) {
             if (input.includes('=')) {
                 rep = input.split('='); r1 = rep[0].replace('$','');
                 if (r1.includes(',')) {
-                    r2 = r1.split(',');
-                    output = (r2.length > 2) ? dominate(r2[0],r2[1],r2[2]) : ((r2.length > 1) ? dominate(r2[0],r2[1]) : dominate(r2[0]));
+                    r2 = r1.split(','); output = (r2.length > 2) ? dominate(r2[0],r2[1],r2[2]) : ((r2.length > 1) ? dominate(r2[0],r2[1]) : dominate(r2[0]));
                 } else {
                     output = dominate(r1);
                 }
             } else {
-                rep = input.replace('$','');
-                if (rep.includes(',')) {
-                    r1 = rep.split(',');
-                    output = (r1.length > 2) ? dominate(r1[0],r1[1],r1[2]) : ((r1.length > 1) ? dominate(r1[0],r1[1]) : dominate(r1[0]));
+                rep = input.replace('$',''); if (rep.includes(',')) {
+                    r1 = rep.split(','); output = (r1.length > 2) ? dominate(r1[0],r1[1],r1[2]) : ((r1.length > 1) ? dominate(r1[0],r1[1]) : dominate(r1[0]));
                 } else {
                     output = dominate(rep);
                 }
@@ -589,29 +582,12 @@ function executeMacros(input, index = 0, length = 1) {
         } else {
             omniPathDir(input.replace('$', ''), requestMode.value);
         }
-    } else if ((index == (length - 1)) && (input.includes('#'))) {
-        if (input.indexOf('#') == 0) {
-            var namePart = input.replace('#', '');
-            var museArr = sysDefMusicBox.value;
-            var museSel = museArr.split(' |[=]| ')[namePart];
-            omniListen(museSel, true);
-        } else {
-            if (sysDefSessionID.value == 'root') {
-                omniPathDir(input.replace('#', ''), requestMode.value);
-            } else {
-                var namePart = input.replace('#', '');
-                var museArr = sysDefMusicBox.value;
-                var museSel = museArr.split(' |[=]| ')[namePart];
-                omniListen(museSel, true);
-            }
-        }
     } else if ((index == (length - 1)) && (input.includes('./')) && (input.indexOf('./') == 0)) {
         omniRead(requestMode.value, input, requestLock.value);
     } else if ((index == (length - 1)) && (input.includes('*'))) {
         omniDisp(requestMode.value, input.replace('*', ''), requestLock.value);
     } else if ((index == (length - 1)) && (input.includes('@'))) {
-        var atr = input.split('@'); var tyx;
-        if (atr[0].includes(':')) {
+        var atr = input.split('@'); var tyx; if (atr[0].includes(':')) {
             tyx = atr[0].split(':'); if (atr[1].includes('signin')) {
                 omniAuthRequest('signin', tyx[0], tyx[1]);
             } else if (atr[1].includes('signup')) {
@@ -624,7 +600,13 @@ function executeMacros(input, index = 0, length = 1) {
     } else if ((index == (length - 1)) && (input.includes('&')) && (input.indexOf('&') == 0)) {
         bind(input.replace('&', ''));
     } else if ((index == (length - 1)) && (input.includes('~')) && (input.indexOf('~') == 0)) {
-        audioPosition(input.replace('~', ''));
+        if (sysDefSessionID.value == 'root') {
+            delete_user(input.replace('~', ''));
+        } else {
+            if (input.replace('~', '') == sysDefSessionID.value) {
+                delete_user(input.replace('~', ''));
+            }
+        }
     } else if (input.includes(': ')) {
         rep = input.split(': '); if (rep[0] == 'memo') {
             if (rep[1].includes('+')) {
@@ -643,6 +625,10 @@ function executeMacros(input, index = 0, length = 1) {
         }
     } else if ((index == (length - 1)) && (input.includes('_')) && (input.indexOf('_') == 0)) {
         omniGo(input.replace('_', ''));
+    } else if ((index == (length - 1)) && (input.includes('+')) && (input.indexOf('+') == 0)) {
+        audioPosition(input.replace('+', ''));
+    } else if ((index == (length - 1)) && (isInt(input))) {
+        audioPosition(input);
     } else {
         output = input + ': ' + userdata()[input];
     } return output;
