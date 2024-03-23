@@ -249,9 +249,8 @@
         "RU":
         {
             "Name/Position:": "Имя/Позиция дисплея:",
-            "Description:": "Описание:",
+            "Description:": "Описание:", "&": "и",
             "What's on your mind...": "Напишите пожалуйста о себе...",
-            "Date and Time Formats:": "Форматы даты и времени:",
             "Menu Items List:": "Список элементов меню:",
             "Your Reticles:": "Выбор прицела:", "Icon": "Значок",
             "Name": "Имя", "Size": "Размер", "Mode": "Права",
@@ -266,7 +265,9 @@
             "Bright": "Яркость", "Saturate": "Насыщение",
             "Contrast": "Контраст", "Sepia": "Сепия",
             "Grayscale": "Чёрно-белый", "Hue": "Оттенок",
-            "Set a password for your account...": "Новый пароль для вашего аккаунта..."
+            "Set a password for your account...": "Новый пароль для вашего аккаунта...",
+            "Restore Defaults": "Сброс Настроек", "Apply": "Применить",
+            "Reset": "Сброс", "Update Password": "Обновить пароль"
         }
     }
 }

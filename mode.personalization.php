@@ -1,15 +1,13 @@
 <!-- database -->
 <!-- RU: Персонализация; CN: 个性化和元数据; TW: 个性化和元数据; JP: 个性化和元数据; AE: إضفاء الطابع الشخصي -->
-<p align='center' class='block'>
+<p align='center'>
 <img style="height:11%;position:relative;" id="chooseReticle1" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_1'].'.png'.$suffix;?>" onclick="setdata('reticle', chooseReticle1.src.split('.')[1]);">
 <img style="height:11%;position:relative;" id="chooseReticle2" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_2'].'.png'.$suffix;?>" onclick="setdata('reticle', chooseReticle2.src.split('.')[1]);">
 <img style="height:11%;position:relative;" id="chooseReticle3" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_3'].'.png'.$suffix;?>" onclick="setdata('reticle', chooseReticle3.src.split('.')[1]);">
 <img style="height:11%;position:relative;" id="chooseReticle4" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_4'].'.png'.$suffix;?>" onclick="setdata('reticle', chooseReticle4.src.split('.')[1]);">
 <img style="height:11%;position:relative;" id="chooseReticle5" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_5'].'.png'.$suffix;?>" onclick="setdata('reticle', chooseReticle5.src.split('.')[1]);"><br>
-<input type="image" onmouseover="soundButton();" class="power" onclick="setdata('date_format', setDateFormat.value); setdata('time_format', setTimeFormat.value); setdata('position', setImagePosition.value); setdata('title', encodeURIComponent(setTitle.value)); setdata('description', encodeURIComponent(setDescription.value));" src="<?=$prefix.'return.png'.$suffix;?>">
-<input type="image" onmouseover="soundButton();" class="power" onclick="setDateFormat.value = 'Y-m-d'; setdata('date_format', setDateFormat.value); setTimeFormat.value = 'H:i:s'; setdata('time_format', setTimeFormat.value); setImagePosition.value = '50% 25%'; setdata('position', setImagePosition.value);" src="<?=$prefix.'backspace.png'.$suffix;?>">
-<input type="image" onmouseover="soundButton();" class="power" onclick="window.location.href='https://www.php.net/manual/en/datetime.format.php';" src="<?=$prefix.'php.png'.$suffix;?>">
-<input type="image" onmouseover="soundButton();" class="power" onclick="window.location.href='https://www.iso.org/obp/ui/#iso:pub:PUB500001:en';" src="<?=$prefix.'standard.png'.$suffix;?>"></p><p align='center'>
+<input type="button" onmouseover="soundButton();" onclick="setdata('date_format', setDateFormat.value); setdata('time_format', setTimeFormat.value); setdata('position', setImagePosition.value); setdata('title', encodeURIComponent(setTitle.value)); setdata('description', encodeURIComponent(setDescription.value));" value="<?=term('Apply', $settings['vocabulary'], $session['units']);?>">
+<input type="button" onmouseover="soundButton();" onclick="setDateFormat.value = 'Y-m-d'; setdata('date_format', setDateFormat.value); setTimeFormat.value = 'H:i:s'; setdata('time_format', setTimeFormat.value); setImagePosition.value = '50% 25%'; setdata('position', setImagePosition.value);" value="<?=term('Reset', $settings['vocabulary'], $session['units']);?>"><br>
 <label><?=term('Name/Position:', $settings['vocabulary'], $session['units']);?></label><br>
 <input type="text" id="setTitle" style="width:46%;" value="<?=$session['title'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('title', encodeURIComponent(this.value));
@@ -38,7 +36,7 @@
     handleInput(this.value);
 }" oninput="handleInput(this.value, true);">
 <?=$session['description'];?></textarea><br>
-<label><?=term('Date and Time Formats:', $settings['vocabulary'], $session['units']);?></label><br>
+<label><a href="https://www.php.net/manual/en/datetime.format.php">ISO-8601</a> <?=term('&', $settings['vocabulary'], $session['units']);?> <a href="https://www.iso.org/obp/ui/#iso:pub:PUB500001:en">ISO-3166</a></label><br>
 <input type="text" id="setDateFormat" style="width:25%;" value="<?=$session['date_format'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('date_format', setDateFormat.value);
 } else if (event.keyCode == 27) {
