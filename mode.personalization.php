@@ -7,7 +7,9 @@
 <img style="height:11%;position:relative;" id="chooseReticle4" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_4'].'.png'.$suffix;?>" onclick="setdata('reticle', chooseReticle4.src.split('.')[1]);">
 <img style="height:11%;position:relative;" id="chooseReticle5" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_5'].'.png'.$suffix;?>" onclick="setdata('reticle', chooseReticle5.src.split('.')[1]);"><br>
 <input type="button" onmouseover="soundButton();" onclick="setdata('date_format', setDateFormat.value); setdata('time_format', setTimeFormat.value); setdata('position', setImagePosition.value); setdata('title', encodeURIComponent(setTitle.value)); setdata('description', encodeURIComponent(setDescription.value));" value="<?=term('Apply', $settings['vocabulary'], $session['units']);?>">
-<input type="button" onmouseover="soundButton();" onclick="setDateFormat.value = 'Y-m-d'; setdata('date_format', setDateFormat.value); setTimeFormat.value = 'H:i:s'; setdata('time_format', setTimeFormat.value); setImagePosition.value = '50% 25%'; setdata('position', setImagePosition.value);" value="<?=term('Reset', $settings['vocabulary'], $session['units']);?>"><br>
+<input type="button" onmouseover="soundButton();" onclick="setdata('units_list', setLanguages.value); setdata('menu', setMenuItems.value); window.location.reload();" value="<?=term('Update', $settings['vocabulary'], $session['units']);?>">
+<input type="button" onmouseover="soundButton();" onclick="setDateFormat.value = 'Y-m-d'; setdata('date_format', setDateFormat.value); setTimeFormat.value = 'H:i:s'; setdata('time_format', setTimeFormat.value); setImagePosition.value = '50% 25%'; setdata('position', setImagePosition.value);" value="<?=term('Reset', $settings['vocabulary'], $session['units']);?>">
+<input type="button" onmouseover="soundButton();" onclick="setLanguages.value = 'EU,US,RU,CN'; setdata('units_list', setLanguages.value); setMenuItems.value = 'file_finder,browse_europedia,preferences,personalization,news_feed,user_accounts'; setdata('menu', setMenuItems.value); window.location.reload();" value="<?=term('Clear', $settings['vocabulary'], $session['units']);?>"><br>
 <label><?=term('Name/Position:', $settings['vocabulary'], $session['units']);?></label><br>
 <input type="text" id="setTitle" style="width:46%;" value="<?=$session['title'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('title', encodeURIComponent(this.value));
@@ -58,7 +60,7 @@
 <input type="text" id="setLanguages" style="width:25%;" value="<?=$session['units_list'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('units_list', setLanguages.value); window.location.reload();
 } else if (event.keyCode == 27) {
-    this.value = 'EU,US';
+    this.value = 'EU,US,RU,CN';
     setdata('units_list', this.value);
     window.location.reload();
 } else if (event.keyCode == 8) {
@@ -70,7 +72,7 @@
 <input type="text" id="setMenuItems" style="width:46%;" value="<?=$session['menu'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('menu', setMenuItems.value); window.location.reload();
 } else if (event.keyCode == 27) {
-    this.value = 'file_finder,preferences';
+    this.value = 'file_finder,browse_europedia,preferences,personalization,news_feed,user_accounts';
     setdata('menu', this.value);
     window.location.reload();
 } else if (event.keyCode == 8) {

@@ -154,7 +154,7 @@
     {
         "timezone": 0,
         "units": "EU",
-        "units_list": "EU,US",
+        "units_list": "EU,US,RU,CN",
         "melody": "",
         "current": 0,
         "playing": 0,
@@ -228,7 +228,7 @@
         "arc_fore_color": "403F40",
         "arc_input_color": "D5D5D5",
         "background": "osx.2017.00.png",
-        "menu": "file_finder,preferences",
+        "menu": "file_finder,browse_europedia,preferences,personalization,news_feed,user_accounts",
         "theme": "iso",
         "memo": "",
         "position": "50% 25%",
@@ -271,17 +271,16 @@
             "Actions": "Действия", "Image": "Фото",
             "Flag": "Флаг", "Specimen Text:": "Образец текста:",
             "Font Configuration:": "Настройка шрифтов:",
-            "Sound Effects:": "Звуковая схема:",
+            "Sound Effects:": "Звуковая схема:", "Update": "Обновить",
             "User Interface:": "Настройки интерфейса:",
-            "Color Scheme:": "Используемые цвета:",
+            "Color Scheme:": "Используемые цвета:", "Clear": "Очистить",
             "Update Password:": "Смена пароля:",
             "Opacity": "Заливка", "Blur": "Размытие",
             "Bright": "Яркость", "Saturate": "Насыщение",
             "Contrast": "Контраст", "Sepia": "Сепия",
             "Grayscale": "Чёрно-белый", "Hue": "Оттенок",
             "Set a password for your account...": "Новый пароль для вашего аккаунта...",
-            "Restore Defaults": "Сброс Настроек", "Apply": "Применить",
-            "Reset": "Сброс", "Update Password": "Обновить пароль"
+            "Apply": "Применить", "Reset": "Сброс"
         },
         "CN":
         {
@@ -294,17 +293,16 @@
             "Actions": "行动", "Image": "图像",
             "Flag": "旗帜", "Specimen Text:": "显示文本示例:",
             "Font Configuration:": "字体配置:",
-            "Sound Effects:": "声音方案:",
+            "Sound Effects:": "声音方案:", "Update": "更新",
             "User Interface:": "用户界面设置:",
-            "Color Scheme:": "配色方案:",
+            "Color Scheme:": "配色方案:", "Clear": "清除",
             "Update Password:": "修改密码:",
             "Opacity": "不透明度", "Blur": "模糊",
             "Bright": "亮度", "Saturate": "饱和",
             "Contrast": "对比", "Sepia": "棕褐色",
             "Grayscale": "灰度", "Hue": "色调",
             "Set a password for your account...": "您帐户的新密码...",
-            "Restore Defaults": "恢复默认值", "Apply": "申请",
-            "Reset": "复位", "Update Password": "修改密码"
+            "Apply": "申请", "Reset": "复位"
         },
         "KR":
         {
@@ -317,17 +315,16 @@
             "Actions": "行动", "Image": "图像",
             "Flag": "旗帜", "Specimen Text:": "显示文本示例:",
             "Font Configuration:": "字体配置:",
-            "Sound Effects:": "声音方案:",
+            "Sound Effects:": "声音方案:", "Update": "更新",
             "User Interface:": "用户界面设置:",
-            "Color Scheme:": "配色方案:",
+            "Color Scheme:": "配色方案:", "Clear": "清除",
             "Update Password:": "修改密码:",
             "Opacity": "不透明度", "Blur": "模糊",
             "Bright": "亮度", "Saturate": "饱和",
             "Contrast": "对比", "Sepia": "棕褐色",
             "Grayscale": "灰度", "Hue": "色调",
             "Set a password for your account...": "您帐户的新密码...",
-            "Restore Defaults": "恢复默认值", "Apply": "申请",
-            "Reset": "复位", "Update Password": "修改密码"
+            "Apply": "申请", "Reset": "复位"
         },
         "JP":
         {
@@ -340,17 +337,16 @@
             "Actions": "行动", "Image": "图像",
             "Flag": "旗帜", "Specimen Text:": "显示文本示例:",
             "Font Configuration:": "字体配置:",
-            "Sound Effects:": "声音方案:",
+            "Sound Effects:": "声音方案:", "Update": "更新",
             "User Interface:": "用户界面设置:",
-            "Color Scheme:": "配色方案:",
+            "Color Scheme:": "配色方案:", "Clear": "清除",
             "Update Password:": "修改密码:",
             "Opacity": "不透明度", "Blur": "模糊",
             "Bright": "亮度", "Saturate": "饱和",
             "Contrast": "对比", "Sepia": "棕褐色",
             "Grayscale": "灰度", "Hue": "色调",
             "Set a password for your account...": "您帐户的新密码...",
-            "Restore Defaults": "恢复默认值", "Apply": "申请",
-            "Reset": "复位", "Update Password": "修改密码"
+            "Apply": "申请", "Reset": "复位"
         }
     }
 }
