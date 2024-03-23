@@ -177,7 +177,7 @@ function fileopen($name, $default = '') {
     $fileOpen = (file_exists($name)) ? file_get_contents($name) : $default;
     return (@unserialize($fileOpen) !== false) ? unserialize($fileOpen) : ((@json_decode($fileOpen, true) != null) ? json_decode($fileOpen, true) : ((@eurarr($name) !== null) ? eurarr($name) : ((@paging($name) !== null) ? paging($name) : $fileOpen)));
 }
-function arropen($name, $default = '') {
+function arropen($name, $default = '{}') {
     if (!file_exists($name)) {
         file_put_contents($name, $default); chmod($name, 0777);
     } $test = file_get_contents($name);

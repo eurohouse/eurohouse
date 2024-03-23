@@ -15,11 +15,8 @@ $sessionID = (isset($_SESSION['user'])) ? $_SESSION['user'] : 'root';
 setcookie('user', $sessionID, time() + $settings['lifetime']['cookie_lengthen']);
 $session = arropen($sessionID.'_session.json', json_encode($settings['defaults']));
 $bindData = arropen('binding.json', "{\"root\":\"root\"}");
-$handledID = (isset($bindData[$sessionID]) && ($bindData[$sessionID] != $sessionID)) ? $bindData[$sessionID] : $sessionID;
-$powersData = arropen('dominion.json', "{\"root\":0}");
-$userForce = $session['force'];
-$timezone = dec_tz($session['timezone']);
-date_default_timezone_set($timezone);
+$handledID = (isset($bindData[$sessionID]) && ($bindData[$sessionID] != $sessionID)) ? $bindData[$sessionID] : $sessionID; $powersData = arropen('dominion.json', "{\"root\":0}");
+$timezone = dec_tz($session['timezone']); date_default_timezone_set($timezone);
 $requestInitData = $settings['initialize']; $prefix = 'iso.';
 $request = []; foreach ($requestInitData as $requestID=>$requestValue) {
     $request[$requestID] = ($_REQUEST[$requestID]) ? $_REQUEST[$requestID] : $requestValue;
