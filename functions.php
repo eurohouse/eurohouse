@@ -185,7 +185,20 @@ function arropen($name, $default = '{}') {
         file_put_contents($name.'.bak', $test); chmod($name.'.bak', 0777);
     } else {
         rename($name.'.bak', $name); chmod($name, 0777);
-    } $res = json_decode(file_get_contents($name), true); return $res;
+    } $tryit = json_decode(file_get_contents($name), true);
+    file_put_contents($name, json_encode(eqarr(json_decode($default, true), $tryit))); chmod($name, 0777);
+    $res = json_decode(file_get_contents($name), true); return $res;
+}
+function eqarr(array $src, array $des) {
+    foreach ($src as $key=>$val) {
+        if (!isset($des[$key])) {
+            $des[$key] = $val;
+        }
+    } foreach ($des as $key=>$val) {
+        if (!isset($src[$key])) {
+            unset($des[$key]);
+        }
+    } return $des;
 }
 function incher($num, $koeff = 3.28084, $denom = 12) {
     $modul = round(($num * $koeff), 1);
