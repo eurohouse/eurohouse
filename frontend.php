@@ -485,8 +485,7 @@ function wallpaper_engine() {
                 playAudio(sufferPlayer, sysDefSufferSound.value);
             } sysDefPostSubP.value = sysDefSubP.value;
             var valBind = ''; var valBond = ''; var valPwrTh = 0; var valPwrBal = '';
-            $('body').css('background-image', 'url('+pager(data, 1)+')'); var varsArr = sysDefVarsArr.split(';');
-            var varsNum = varsArr.indexOf(sysDefEntry.value);
+            $('body').css('background-image', 'url('+pager(data, 1)+')'); var varsNum = sysDefVarsArr.value.split(';').indexOf(sysDefEntry.value);
             if ((varsNum % 4) == 1) {
                 $('#buttonAugment').attr('src', sysDefPrefix.value+'heart.png'+sysDefSuffix.value);
             } else if ((varsNum % 4) == 2) {
