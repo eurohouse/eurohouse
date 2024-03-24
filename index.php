@@ -180,7 +180,11 @@ foreach ($request as $key=>$value) { ?>
         omniLock('true');
     }" src="<?=($request['lock'] == 'true') ? $prefix.'collapse.png'.$suffix : $prefix.'expand.png'.$suffix;?>">
     <input type="image" onmouseover="soundButton();" id="buttonFaceoff" class="power" onclick="setdata('faceoff', flip(sysDefFaceoff.value)); window.location.reload();
-    " src="<?=$prefix.'image.png'.$suffix;?>">
+    " src="<?php if ($session['faceoff'] == 1) {
+        echo $prefix.'maximize.png'.$suffix;
+    } else {
+        echo $prefix.'restore.png'.$suffix;
+    } ?>">
     <input type="image" onmouseover="soundButton();" id="buttonIconsList" class="power" onclick="setdata('icons', flip(sysDefIcons.value));window.location.reload();" src="<?php if ($session['icons'] == 1) {
         echo $prefix.'menu.png'.$suffix;
     } else {

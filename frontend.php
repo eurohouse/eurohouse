@@ -366,7 +366,11 @@ function world_clock() {
                 $('#buttonReqLock').attr('src', sysDefPrefix.value+'expand.png'+sysDefSuffix.value);
             } else {
                 $('#buttonReqLock').attr('src', sysDefPrefix.value+'collapse.png'+sysDefSuffix.value);
-            } $('#buttonFaceoff').attr('src', sysDefPrefix.value+'image.png'+sysDefSuffix.value); if (tickPanel.split('')[3] == 1) {
+            } if (sysDefFaceoff.value != 0) {
+                $('#buttonFaceoff').attr('src', sysDefPrefix.value+'maximize.png'+sysDefSuffix.value);
+            } else {
+                $('#buttonFaceoff').attr('src', sysDefPrefix.value+'restore.png'+sysDefSuffix.value);
+            } if (tickPanel.split('')[3] == 1) {
                 $('#buttonIconsList').attr('src', sysDefPrefix.value+'menu.png'+sysDefSuffix.value);
             } else {
                 $('#buttonIconsList').attr('src', sysDefPrefix.value+'list.png'+sysDefSuffix.value);
