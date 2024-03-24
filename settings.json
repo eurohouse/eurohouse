@@ -8,7 +8,7 @@
     "collections":
     {
         "music": ".mp3,.aac,.ogg,.flac,.wma,.mka",
-        "audio": ".wav,.snd,.au,.ac3",
+        "audio": ".wav,.snd,.au,.ac3,.m4a",
         "video": ".mp4,.mkv,.webm",
         "movie": ".mov,.qt,.wmv,.3gp,.avi",
         "midi": ".mid,.midi,.rmi",
