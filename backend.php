@@ -6,7 +6,7 @@ $forloadString = implode(',', $settings['payload']['forward']);
 if (!file_exists('get.php')) {
     express(explode(',', $forloadString));
     header("Location: index.php");
-} initiate('tmp'); $zifferMinute = fileopen('ziffer.json');
+} initiate('tmp,log'); $zifferMinute = fileopen('ziffer.json');
 $timezoneDatabase = fileopen('timezone.json');
 ini_set("session.gc_maxlifetime", $settings['lifetime']['garbage_collector']);
 ini_set("session.cookie_lifetime", $settings['lifetime']['cookie_default']);

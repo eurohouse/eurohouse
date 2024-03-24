@@ -8,7 +8,7 @@ if ($userData['memo'] != '') {
     }
 } else {
     $ongoingSignature = 0; $incomingSignature = 0; $alarmInTime = 0;
-} $dateTimeCode = $ongoingSignature.$incomingSignature.date('w'); $dateTimeStr = ($userData['timedisp'] != 0) ? date($userData['date_format']) : date($userData['time_format']); $musicBoxArr = str_replace('./','',(glob('./*.{mp3,aac,flac,ogg}', GLOB_BRACE))); natcasesort($musicBoxArr); array_unique($musicBoxArr); $musicBoxStr = implode('//', $musicBoxArr); $newsFeed = file_get_contents('messages.log');
+} $dateTimeCode = $ongoingSignature.$incomingSignature.date('w'); $dateTimeStr = ($userData['timedisp'] != 0) ? date($userData['date_format']) : date($userData['time_format']); $musicBoxArr = str_replace('./','',(glob('./*.{mp3,aac,flac,ogg}', GLOB_BRACE))); natcasesort($musicBoxArr); array_unique($musicBoxArr); $musicBoxStr = implode('//', $musicBoxArr); $newsFeed = file_get_contents('./.log/msgbox.log');
 if ($userData['vintage'] != 0) {
     $vintageBackdropFilter = "blur(0.".round($userData['magnitude']/1.5)."px)";
     $overlayBeforeBackground = "repeating-linear-gradient(90deg, #000".$userData['magnitude']." 0 ".round($userData['magnitude']/2.5)."px, transparent ".round($userData['magnitude']/3.5)."px 35vmin)";

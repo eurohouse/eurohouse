@@ -241,18 +241,18 @@ function compose(msg, clear = false, fx = 0) {
     var tH = t.getUTCHours(); var tMin = t.getUTCMinutes();
     var tS = t.getUTCSeconds(); if (clear !== false) {
         sysDefMsgData.value = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+tY+'-'+pad(tM, 2)+'-'+pad(tD, 2)+' '+pad(tH, 2)+':'+pad(tMin, 2)+':'+pad(tS, 2)+' UTC :::: '+msg;
-        set('messages.log', sysDefMsgData.value, true);
+        set('./.log/msgbox.log', sysDefMsgData.value, true);
     } else {
         if (sysDefMsgData.value.includes(' ;;;; ') !== false) {
             sysDefMsgData.value = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+tY+'-'+pad(tM, 2)+'-'+pad(tD, 2)+' '+pad(tH, 2)+':'+pad(tMin, 2)+':'+pad(tS, 2)+' UTC :::: '+msg+' ;;;; '+sysDefMsgData.value;
-            set('messages.log', sysDefMsgData.value, true);
+            set('./.log/msgbox.log', sysDefMsgData.value, true);
         } else {
             if (sysDefMsgData.value != '') {
                 sysDefMsgData.value = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+tY+'-'+pad(tM, 2)+'-'+pad(tD, 2)+' '+pad(tH, 2)+':'+pad(tMin, 2)+':'+pad(tS, 2)+' UTC :::: '+msg+' ;;;; '+sysDefMsgData.value;
-                set('messages.log', sysDefMsgData.value, true);
+                set('./.log/msgbox.log', sysDefMsgData.value, true);
             } else {
                 sysDefMsgData.value = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+tY+'-'+pad(tM, 2)+'-'+pad(tD, 2)+' '+pad(tH, 2)+':'+pad(tMin, 2)+':'+pad(tS, 2)+' UTC :::: '+msg;
-                set('messages.log', sysDefMsgData.value, true);
+                set('./.log/msgbox.log', sysDefMsgData.value, true);
             }
         }
     }
