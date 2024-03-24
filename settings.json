@@ -7,11 +7,14 @@
     },
     "collections":
     {
-        "music": ".mp3,.aac,.ogg,.flac",
-        "audio": ".wav,.snd,.au,.ac3,.wma,.mka",
+        "music": ".mp3,.aac,.ogg,.flac,.wma,.mka",
+        "audio": ".wav,.snd,.au,.ac3",
         "video": ".mp4,.mkv,.webm",
         "movie": ".mov,.qt,.wmv,.3gp,.avi",
         "midi": ".mid,.midi,.rmi",
+        "data": ".json,.xml,.yaml,.yml",
+        "font": ".ttf,.ttc,.otf,.woff2,.fon",
+        "script": ".js,.css,.ts,.csv,.htm,.html,.php,.cs,.ps1,.c,.cpp,.h,.sh",
         "image": ".bmp,.dib,.gif,.ico,.cur,.ani,.jpg,.jpeg,.psd,.svg,.webp,.png,.tif,.tiff"
     },
     "genders":

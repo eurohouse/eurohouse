@@ -24,14 +24,14 @@ foreach ($index as $key=>$value) {
         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'true');" src="<?=$prefix.'info.png'.$suffix;?>">
     <?php } ?>
 <?php } else {
-    if ($mediaFileExtension == 'mp3' || $mediaFileExtension == 'aac' || $mediaFileExtension == 'flac' || $mediaFileExtension == 'ogg' || $mediaFileExtension == 'wav' || $mediaFileExtension == 'snd' || $mediaFileExtension == 'au' || $mediaFileExtension == 'ac3' || $mediaFileExtension == 'oga' || $mediaFileExtension == 'wma' || $mediaFileExtension == 'mka') { ?>
+    if ((in_array($mediaFileExtension, duplex($settings['collections']['music']))) || (in_array($mediaFileExtension, duplex($settings['collections']['audio'])))) { ?>
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" src="<?=$prefix.'music.png'.$suffix;?>">
     <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFileTitle;?>" style="width:<?=$line1Size;?>%;" onmouseover="soundButton();" onclick="omniListen(this.name, true);">
     <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFileSizeStr;?>" style="width:<?=$line2Size;?>%;" onmouseover="soundButton();">
     <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFilePerms;?>" style="width:<?=$line3Size;?>px;" onmouseover="soundButton();">
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniListen(this.name);" src="<?=$prefix.'play.png'.$suffix;?>">
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPause();" src="<?=$prefix.'pause.png'.$suffix;?>">
-<?php } elseif ($mediaFileExtension == 'mp4' || $mediaFileExtension == 'mkv' || $mediaFileExtension == 'mov' || $mediaFileExtension == 'webm' || $mediaFileExtension == 'qt' || $mediaFileExtension == 'wmv' || $mediaFileExtension == '3gp' || $mediaFileExtension == 'avi') { ?>
+<?php } elseif ((in_array($mediaFileExtension, duplex($settings['collections']['movie']))) || (in_array($mediaFileExtension, duplex($settings['collections']['video'])))) { ?>
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" src="<?=$prefix.'film.png'.$suffix;?>">
     <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFileTitle;?>" style="width:<?=$line1Size;?>%;" onmouseover="soundButton();" onclick="omniRead('media_player', this.name, 'true');">
     <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFileSizeStr;?>" style="width:<?=$line2Size;?>%;" onmouseover="soundButton();">
@@ -43,14 +43,14 @@ foreach ($index as $key=>$value) {
         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'false');" src="<?=$prefix.'database.png'.$suffix;?>">
         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'true');" src="<?=$prefix.'info.png'.$suffix;?>">
     <?php } ?>
-<?php } elseif ($mediaFileExtension == 'mid' || $mediaFileExtension == 'midi' || $mediaFileExtension == 'rmi') { ?>
+<?php } elseif (in_array($mediaFileExtension, duplex($settings['collections']['midi']))) { ?>
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" src="<?=$prefix.'midi.png'.$suffix;?>">
     <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFileTitle;?>" style="width:<?=$line1Size;?>%;" onmouseover="soundButton();" onclick="playMIDI(this.name);">
     <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFileSizeStr;?>" style="width:<?=$line2Size;?>%;" onmouseover="soundButton();">
     <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFilePerms;?>" style="width:<?=$line3Size;?>px;" onmouseover="soundButton();">
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="playMIDI(this.name);" src="<?=$prefix.'play.png'.$suffix;?>">
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="pauseMIDI(this.name);" src="<?=$prefix.'pause.png'.$suffix;?>">
-<?php } elseif ($mediaFileExtension == 'ttf' || $mediaFileExtension == 'otf' || $mediaFileExtension == 'ttc' || $mediaFileExtension == 'fon') { ?>
+<?php } elseif (in_array($mediaFileExtension, duplex($settings['collections']['font']))) { ?>
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" src="<?=$prefix.'font.png'.$suffix;?>">
     <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFileTitle;?>" style="width:<?=$line1Size;?>%;" onmouseover="soundButton();" onclick="omniRead('font_book', this.name, 'true');">
     <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFileSizeStr;?>" style="width:<?=$line2Size;?>%;" onmouseover="soundButton();">
@@ -62,7 +62,7 @@ foreach ($index as $key=>$value) {
         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'false');" src="<?=$prefix.'database.png'.$suffix;?>">
         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'true');" src="<?=$prefix.'info.png'.$suffix;?>">
     <?php } ?>
-<?php } elseif ($mediaFileExtension == 'json' || $mediaFileExtension == 'yaml' || $mediaFileExtension == 'yml' || $mediaFileExtension == 'xml') { ?>
+<?php } elseif ((in_array($mediaFileExtension, duplex($settings['collections']['data']))) || (in_array($mediaFileExtension, duplex($settings['collections']['script'])))) { ?>
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" src="<?=$prefix.'database.png'.$suffix;?>">
     <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFileTitle;?>" style="width:<?=$line1Size;?>%;" onmouseover="soundButton();" onclick="omniPath(this.name, '', 'false');">
     <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFileSizeStr;?>" style="width:<?=$line2Size;?>%;" onmouseover="soundButton();">
@@ -91,7 +91,7 @@ foreach ($index as $key=>$value) {
         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'false');" src="<?=$prefix.'database.png'.$suffix;?>">
         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'true');" src="<?=$prefix.'info.png'.$suffix;?>">
     <?php } ?>
-<?php } elseif ($mediaFileExtension == 'bmp' || $mediaFileExtension == 'dib' || $mediaFileExtension == 'gif' || $mediaFileExtension == 'ico' || $mediaFileExtension == 'cur' || $mediaFileExtension == 'ani' || $mediaFileExtension == 'jpg' || $mediaFileExtension == 'jpeg' || $mediaFileExtension == 'psd' || $mediaFileExtension == 'svg' || $mediaFileExtension == 'webp' || $mediaFileExtension == 'png' || $mediaFileExtension == 'tif' || $mediaFileExtension == 'tiff') { ?>
+<?php } elseif (in_array($mediaFileExtension, duplex($settings['collections']['image']))) { ?>
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" src="<?=$prefix.'image.png'.$suffix;?>">
     <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFileTitle;?>" style="width:<?=$line1Size;?>%;" onmouseover="soundButton();" onclick="window.location.href=this.name;">
     <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFileSizeStr;?>" style="width:<?=$line2Size;?>%;" onmouseover="soundButton();">

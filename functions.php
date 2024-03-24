@@ -11,6 +11,10 @@ function hHmMsS(int $num): string {
 function isModel(array $ent): bool {
     return (intval(isset($ent['height']))+intval(isset($ent['weight']))+intval(isset($ent['sizes']))+intval(isset($ent['shoe_size']))+intval(isset($ent['nsfw']))>0);
 }
+function duplex($list) {
+    $text = str_replace('.', '', $list);
+    return explode(',', $text);
+}
 function zodiacSign($d) {
     if (($d > 355) || ($d < 19)) {
         $r = "♑️";
