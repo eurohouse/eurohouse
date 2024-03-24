@@ -366,7 +366,7 @@ function titler($name, array $voc, $title, $units = 'EU') {
 function titled($name, $units = 'EU') {
     $domain = explode('.', $name)[0]; $domFile = eurarr($domain.'.pkg');
     if (isset($domFile['language'])) {
-        $lang = valarr($domFile['language'], ';;;;', '::::');
+        $lang = valarr($domFile['language'], '; ', ': ');
         $res = (isset($lang[$units])) ? $lang[$units] : $domFile['title'];
     } else {
         $res = $domFile['title'];
