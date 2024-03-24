@@ -16,13 +16,12 @@ foreach ($exemplarArr as $key=>$value) {
     if (!isModel($value)) { unset($exemplarArr[$key]); }
 } ?><table style="width:90%;" id="table">
 <thead><tr>
-    <th style="width:7%;"><?=term('Image', $settings['vocabulary'], $session['units']);?></th>
-    <th style="width:5%;">Cou<?=term('Flag', $settings['vocabulary'], $session['units']);?></th>
-    <th style="width:5%;<?=$preStyle;?>"><a href="javascript:SortTable(2, 'T');"><?=term('Name', $settings['vocabulary'], $session['units']);?></a></th>
-    <th style="width:5%;<?=$preStyle;?>"><a href="javascript:SortTable(3, 'T');"><?=term('Height', $settings['vocabulary'], $session['units']);?></a></th>
-    <th style="width:5%;<?=$preStyle;?>"><a href="javascript:SortTable(4, 'T');"><?=term('Weight', $settings['vocabulary'], $session['units']);?></a></th>
-    <th style="width:5%;<?=$preStyle;?>"><a href="javascript:SortTable(5, 'T');"><?=term('Sizes', $settings['vocabulary'], $session['units']);?></a></th>
-    <th style="width:5%;<?=$preStyle;?>"><a href="javascript:SortTable(6, 'T');"><?=term('Shoe Size', $settings['vocabulary'], $session['units']);?></a></th>
+    <th style="width:16%;"><?=term('Image', $settings['vocabulary'], $session['units']);?></th>
+    <th style="width:7%;"><?=term('Flag', $settings['vocabulary'], $session['units']);?></th>
+    <th style="width:12%;<?=$preStyle;?>"><a href="javascript:SortTable(2, 'T');"><?=term('Name', $settings['vocabulary'], $session['units']);?></a></th>
+    <th style="width:5%;<?=$preStyle;?>"><a href="javascript:SortTable(3, 'N');"><?=term('Height', $settings['vocabulary'], $session['units']);?></a></th>
+    <th style="width:5%;<?=$preStyle;?>"><a href="javascript:SortTable(4, 'N');"><?=term('Weight', $settings['vocabulary'], $session['units']);?></a></th>
+    <th style="width:5%;<?=$preStyle;?>"><a href="javascript:SortTable(5, 'N');"><?=term('Shoe Size', $settings['vocabulary'], $session['units']);?></a></th>
 </tr></thead>
 <tbody><?php foreach ($exemplarArr as $key=>$value) {
     $modelCountryCode = $value['country'];
@@ -32,8 +31,7 @@ foreach ($exemplarArr as $key=>$value) {
     <tr><td><a href="<?=$modelAva;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$modelAva.$suffix;?>" onmouseover="soundButton();"></a></td>
     <td><a href="<?=$countryAva;?>"><img style="width:<?=$preAvaSize;?>%;" src="<?=$countryAva.$suffix;?>" onmouseover="soundButton();"></a></td>
     <td><a href="javascript:omniSwitch(%22<?=$key;?>%22);"><?=$key;?></a></td>
-    <td><?=(isset($showLocale['length'][$session['units']])) ? ((isset($showLocale['length'][$session['units']]['inch'])) ? incher($value['height']) : (round(($value['height'] * $showLocale['length'][$session['units']]['coefficient']), 2).' '.$showLocale['length'][$session['units']]['sign'])) : (round(($value['height'] * $showLocale['length']['default']['coefficient']), 2).' '.$showLocale['length']['default']['sign']);?></td>
-    <td><?=(isset($showLocale['mass'][$session['units']])) ? (round($value['weight'] * $showLocale['mass'][$session['units']]['coefficient']).' '.$showLocale['mass'][$session['units']]['sign']) : (round($value['weight'] * $showLocale['mass']['default']['coefficient']).' '.$showLocale['mass']['default']['sign']);?></td>
-    <td><?=(isset($showLocale['length'][$session['units']]['inch'])) ? (round(explode('-', $value['sizes'])[0] * 0.393701).'-'.round(explode('-', $value['sizes'])[1] * 0.393701).'-'.round(explode('-', $value['sizes'])[2] * 0.393701)) : (explode('-', $value['sizes'])[0].'-'.explode('-', $value['sizes'])[1].'-'.explode('-', $value['sizes'])[2]);?></td>
-    <td><?=(isset($showLocale['shoe_size'][$session['units']])) ? (($value['shoe_size'] + $showLocale['shoe_size'][$session['units']]).' '.$session['units']) : (($value['shoe_size'] + $showLocale['shoe_size']['default']).' '.$session['units']);?></td></tr>
+    <td><?=(isset($showLocale['length'][$session['units']])) ? ((isset($showLocale['length'][$session['units']]['inch'])) ? incher($value['height']) : (round(($value['height'] * $showLocale['length'][$session['units']]['coefficient']), 2))) : (round(($value['height'] * $showLocale['length']['default']['coefficient']), 2));?></td>
+    <td><?=(isset($showLocale['mass'][$session['units']])) ? (round($value['weight'] * $showLocale['mass'][$session['units']]['coefficient'])) : (round($value['weight'] * $showLocale['mass']['default']['coefficient']));?></td>
+    <td><?=(isset($showLocale['shoe_size'][$session['units']])) ? ($value['shoe_size'] + $showLocale['shoe_size'][$session['units']]) : ($value['shoe_size'] + $showLocale['shoe_size']['default']);?></td></tr>
 <?php } ?></tbody></table><?php } ?>
