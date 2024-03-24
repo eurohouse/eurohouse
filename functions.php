@@ -87,8 +87,18 @@ function valarr(string $str, $y, $x): array {
 }
 function exemplar(array $arr): array {
     $new = []; foreach ($arr as $exem) {
-        $ober = (@json_decode(file_get_contents($exem), true) != null) ? json_decode(file_get_contents($exem), true) : []; foreach ($ober as $key=>$val) { $new[$key] = $val; }
+        $ober = (@json_decode(file_get_contents($exem), true) != null) ? json_decode(file_get_contents($exem), true) : []; foreach ($ober as $key=>$val) {
+            $new[$key] = $val;
+        }
     } return $new;
+}
+function categories(array $arr): array {
+    $new = []; foreach ($arr as $exem) {
+        $new[explode('.', $exem)[0]] = $exem;
+    } return $new;
+}
+function categoryList($cat): array {
+    return str_replace('./','',(glob('./'.$cat.'.*.00.png')));
 }
 function sizestr(string $val, array $voc, $units = 'EU') {
     $unitB = (isset($voc['B'][$units]['sign'])) ? $voc['B'][$units]['sign'] : 'B';
@@ -164,10 +174,13 @@ function horizontal($a, $circle = 6.285714285714286) {
 }
 function paging($name, $opt = [0, 2]): array {
     $arr = preg_split("/\r\n|\n|\r/", (file_get_contents($name)));
-    $obj = []; foreach ($opt as $n) { $obj[$n] = $arr[$n]; } return $obj;
+    $obj = []; foreach ($opt as $n) {
+        $obj[$n] = $arr[$n];
+    } return $obj;
 }
 function pages($name): array {
-    $arr = preg_split("/\r\n|\n|\r/", (file_get_contents($name))); return $arr;
+    $arr = preg_split("/\r\n|\n|\r/", (file_get_contents($name)));
+    return $arr;
 }
 function textopen($name, $default = '') {
     $fileOpen = (file_exists($name)) ? file_get_contents($name) : $default;
@@ -186,10 +199,10 @@ function arropen($name, $default = '{}', bool $resort = false) {
     } else {
         rename($name.'.bak', $name); chmod($name, 0777);
     } if ($resort != false) { $tryit = json_decode(file_get_contents($name), true);
-    file_put_contents($name, json_encode(eqarr(json_decode($default, true), $tryit))); chmod($name, 0777); }
+    file_put_contents($name, json_encode(equarr(json_decode($default, true), $tryit))); chmod($name, 0777); }
     $res = json_decode(file_get_contents($name), true); return $res;
 }
-function eqarr(array $src, array $des) {
+function equarr(array $src, array $des) {
     foreach ($src as $key=>$val) {
         if (!isset($des[$key])) {
             $des[$key] = $val;
@@ -216,8 +229,7 @@ function lux($hex): bool {
     return (($r + $g + $b) > 382);
 }
 function themed(string $theme, string $assets = 'head'): bool {
-    $arr = explode(',', $assets);
-    $basket = true;
+    $arr = explode(',', $assets); $basket = true;
     foreach ($arr as $val) {
         $basket = $basket && file_exists($theme.$val.'.png');
     } return $basket;
@@ -350,6 +362,15 @@ function titler($name, array $voc, $title, $units = 'EU') {
     $domain = explode('.', $name)[0]; $volume = explode('.', $name)[1];
     $collection = fileopen($domain.'.collection.json', '{}');
     return (isset($collection[$volume]['language'][$units])) ? wordfx($collection[$volume]['language'][$units], $volume, $voc, $title, $units) : ((isset($collection[$volume]['title'])) ? wordfx($collection[$volume]['title'], $volume, $voc, $title, $units) : $name);
+}
+function titled($name, $units = 'EU') {
+    $domain = explode('.', $name)[0]; $domFile = eurarr($domain.'.pkg');
+    if (isset($domFile['language'])) {
+        $lang = valarr($domFile['language'], ';;;;', '::::');
+        $res = (isset($lang[$units])) ? $lang[$units] : $domFile['title'];
+    } else {
+        $res = $domFile['title'];
+    } return $res;
 }
 function term($word, array $voc, $units = 'EU') {
     return (isset($voc[$units][$word])) ? $voc[$units][$word] : $word;

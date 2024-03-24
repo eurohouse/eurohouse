@@ -48,11 +48,11 @@ foreach ($request as $key=>$value) { ?>
 } ?><input type='hidden' id='sysDefParent' value="<?=$parent;?>"><input type='hidden' id='sysDefIsRef' value="<?=$isRef;?>">
 <div class='topBarItem'><p align='center' class='block'>
     <select id="ErotoOlympus" style="width:50%;position:relative;" onchange="setdata('background', ErotoOlympus.options[ErotoOlympus.selectedIndex].id);">
-    <?php foreach ($olympus as $value) { ?>
-    <option id="<?=$value.$suffix;?>" <?php if ((explode('.', $value)[0] == explode('.', $background)[0]) && (explode('.', $value)[1] == explode('.', $background)[1])) { ?> selected="selected" <?php } ?>>
-    <?=titler($value, $settings, $session['title'], $session['units']);?>
-    </option>
-    <?php } ?>
+    <?php foreach (categories($olympus) as $key=>$val) { ?>
+    <option disabled><?=titled($val, $session['units']);?></option>
+    <?php foreach (categoryList($key) as $value) { ?>
+    <option id="<?=$value.$suffix;?>" <?php if ((explode('.', $value)[0] == explode('.', $background)[0]) && (explode('.', $value)[1] == explode('.', $background)[1])) { ?> selected="selected" <?php } ?>><?=titler($value, $settings, $session['title'], $session['units']);?></option>
+    <?php }} ?>
     </select>
     <select id="TimeZoneChoose" style="width:26%;position:relative;" onchange="setdata('timezone', TimeZoneChoose.options[TimeZoneChoose.selectedIndex].id);">
     <?php foreach ($timezoneDatabase as $key=>$value) { ?>
