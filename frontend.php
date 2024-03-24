@@ -488,15 +488,17 @@ function wallpaper_engine() {
             var varsNum = sysDefVarsArr.value.split(';').length;
             var varsID = sysDefVarsArr.value.split(';').indexOf(sysDefEntry.value);
             if (varsNum > 1) {
-                if ((varsID % 4) == 1) {
+                if (sysDefEntry.value != '') {
                     $('#buttonAugment').attr('src', sysDefPrefix.value+'diamond.png'+sysDefSuffix.value);
-                } else if ((varsID % 4) == 2) {
-                    $('#buttonAugment').attr('src', sysDefPrefix.value+'club.png'+sysDefSuffix.value);
                 } else {
                     $('#buttonAugment').attr('src', sysDefPrefix.value+'heart.png'+sysDefSuffix.value);
                 }
             } else {
-                $('#buttonAugment').attr('src', sysDefPrefix.value+'spade.png'+sysDefSuffix.value);
+                if (sysDefEntry.value != '') {
+                    $('#buttonAugment').attr('src', sysDefPrefix.value+'club.png'+sysDefSuffix.value);
+                } else {
+                    $('#buttonAugment').attr('src', sysDefPrefix.value+'spade.png'+sysDefSuffix.value);
+                }
             } document.title = pager(data, 0)+' (@'+sysDefSessionID.value+') · Eurohouse UX/UI'; document.querySelector(':root').style.setProperty('--position', pager(data, 4)); $('#userAvatarBadge').attr('src', pager(data, 2)+sysDefSuffix.value); var valPwrMy = (isInt(decodePowers[sysDefSessionID.value])) ? parseInt(decodePowers[sysDefSessionID.value]) : 0; $('#buttonReticle').attr('src', sysDefReticlePrefix.value+sysDefReticle.value+'.png'+sysDefSuffix.value);
             $('#chooseReticle1').attr('src', sysDefReticlePrefix.value+sysDefReticleChoice1.value+'.png'+sysDefSuffix.value);
             $('#chooseReticle2').attr('src', sysDefReticlePrefix.value+sysDefReticleChoice2.value+'.png'+sysDefSuffix.value);
