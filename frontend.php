@@ -341,9 +341,9 @@ function world_clock() {
             } else {
                 $('#buttonLock').attr('src', sysDefPrefix.value+'lock.png'+sysDefSuffix.value);
             } if (sysDefAutomator.value != 0) {
-                $('#buttonAutomator').attr('src', sysDefPrefix.value+'steer.png'+sysDefSuffix.value);
-            } else {
                 $('#buttonAutomator').attr('src', sysDefPrefix.value+'wheel.png'+sysDefSuffix.value);
+            } else {
+                $('#buttonAutomator').attr('src', sysDefPrefix.value+'steer.png'+sysDefSuffix.value);
             } $('#buttonObserve').attr('src', sysDefPrefix.value+'power.png'+sysDefSuffix.value); $('#buttonSpectate').attr('src', sysDefPrefix.value+'power.png'+sysDefSuffix.value); $('#buttonEnter').attr('src', sysDefPrefix.value+'return.png'+sysDefSuffix.value); $('#buttonKeyboard').attr('src', sysDefPrefix.value+'keyboard.png'+sysDefSuffix.value); $('#buttonBackspace').attr('src', sysDefPrefix.value+'backspace.png'+sysDefSuffix.value); $('#buttonLogin').attr('src', sysDefPrefix.value+'user.png'+sysDefSuffix.value); $('#buttonRegister').attr('src', sysDefPrefix.value+'book.png'+sysDefSuffix.value); $('#buttonCancelSignin').attr('src', sysDefPrefix.value+'backspace.png'+sysDefSuffix.value); $('#buttonOnend').attr('src', sysDefPrefix.value+'ff.png'+sysDefSuffix.value);
             if (sysDefBenchmark.value == 2) {
                 $('#buttonTime').attr('src', sysDefPrefix.value+'double.png'+sysDefSuffix.value);
