@@ -94,6 +94,7 @@ function userdata() {
         'grayscale': sysDefGrayscale.value,
         'hue': sysDefHue.value,
         'gender': sysDefGender.value,
+        'automator': sysDefAutomator.value,
         'specimen': sysDefSpecimen.value,
         'font_ascii': sysDefFontAscii.value,
         'font_latin': sysDefFontLatin.value,
@@ -227,6 +228,7 @@ function setdata(ent, val) {
     sysDefGrayscale.value = obj['grayscale'];
     sysDefHue.value = obj['hue'];
     sysDefGender.value = obj['gender'];
+    sysDefAutomator.value = obj['automator'];
 }
 function bind(id) {
     var usr = sysDefSessionID.value;
@@ -511,6 +513,9 @@ function wallpaper_engine() {
                     valBind = bindFunc; valBond = '+@'+sysDefSessionID.value+'+';
                     valPwrTh = (isInt(decodePowers[valBind])) ? parseInt(decodePowers[valBind]) : 0; valPwrBal = valPwrMy+':'+valPwrTh;
                     $('#buttonBroke').attr('src', sysDefPrefix.value+'broke.png'+sysDefSuffix.value);
+                    if (sysDefAutomator.value == 1) {
+                        dominate(1, 1, 0);
+                    }
                 } else {
                     valBind = bindFunc; valBond = '+@'+sysDefSessionID.value;
                     valPwrTh = (isInt(decodePowers[valBind])) ? parseInt(decodePowers[valBind]) : 0; valPwrBal = valPwrMy+':'+valPwrTh;
@@ -523,6 +528,9 @@ function wallpaper_engine() {
                     valPwrTh = ((isInt(decodePowers[valBind])) ? parseInt(decodePowers[valBind]) : 0);
                     valPwrBal = valPwrMy+':'+valPwrTh;
                     $('#buttonBroke').attr('src', sysDefPrefix.value+'broke.png'+sysDefSuffix.value);
+                    if (sysDefAutomator.value == 1) {
+                        dominate(1, 1, 0);
+                    }
                 } else {
                     valBond = '@'+sysDefSessionID.value; valPwrBal = valPwrMy;
                     $('#buttonBroke').attr('src', sysDefPrefix.value+'chain.png'+sysDefSuffix.value);
