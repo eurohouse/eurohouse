@@ -165,12 +165,13 @@ foreach ($request as $key=>$value) { ?>
     <input type="image" id="buttonSpectate" onmouseover="soundButton();" class="power" onclick="setdata('spectate', flip(sysDefSpectate.value));" src="<?=$prefix.'power.png'.$suffix;?>">
 </p></div>
 <div class='topBarItem'><p align='center' class='block'>
-    <select id="setUnits" style="width:20%;position:relative;" onchange="setdata('units', setUnits.options[setUnits.selectedIndex].id);window.location.reload();">
+    <input type="image" onmouseover="soundButton();" id="buttonAutomator" class="power" onclick="setdata('automator', flip(sysDefAutomator.value));" src="<?=($session['automator'] != 0) ? $prefix.'steer.png'.$suffix : $prefix.'wheel.png'.$suffix;?>">
+    <select id="setUnits" style="width:14%;position:relative;" onchange="setdata('units', setUnits.options[setUnits.selectedIndex].id);window.location.reload();">
     <?php foreach (explode(',', $session['units_list']) as $selID) { ?>
     <option id="<?=$selID;?>" <?php if ($session['units'] == $selID) { ?> selected <?php } ?>><?=$selID;?></option>
     <?php } ?>
     </select>
-    <select id="setTheme" style="width:20%;position:relative;" onchange="setdata('theme', setTheme.options[setTheme.selectedIndex].id);window.location.reload();">
+    <select id="setTheme" style="width:17%;position:relative;" onchange="setdata('theme', setTheme.options[setTheme.selectedIndex].id);window.location.reload();">
     <?php foreach ($thematic as $key=>$value) { ?>
         <option id="<?=explode('.', $value)[0];?>" <?php if ($session['theme'] == explode('.', $value)[0]) { ?> selected <?php } ?>><?=explode('.', $value)[0];?></option>
     <?php } ?></select>
