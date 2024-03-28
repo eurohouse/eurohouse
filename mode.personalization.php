@@ -72,7 +72,7 @@
 <input type="text" id="setMenuItems" style="width:46%;" value="<?=$session['menu'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('menu', setMenuItems.value); window.location.reload();
 } else if (event.keyCode == 27) {
-    this.value = 'file_finder,preferences,personalization';
+    this.value = 'file_finder,preferences';
     setdata('menu', this.value);
     window.location.reload();
 } else if (event.keyCode == 8) {

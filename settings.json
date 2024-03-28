@@ -232,7 +232,7 @@
         "arc_fore_color": "403F40",
         "arc_input_color": "D5D5D5",
         "background": "baron.000.00.png",
-        "menu": "file_finder,preferences,personalization",
+        "menu": "file_finder,preferences",
         "theme": "iso",
         "memo": "",
         "position": "50% 25%",
