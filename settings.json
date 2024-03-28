@@ -157,7 +157,7 @@
     {
         "timezone": 0,
         "units": "EU",
-        "units_list": "EU,US,RU,CN",
+        "units_list": "EU,US",
         "melody": "",
         "current": 0,
         "playing": 0,
@@ -232,7 +232,7 @@
         "arc_fore_color": "403F40",
         "arc_input_color": "D5D5D5",
         "background": "baron.000.00.png",
-        "menu": "file_finder,browse_europedia,preferences,personalization,news_feed,user_accounts,visual_effects,text_editor",
+        "menu": "file_finder,preferences,personalization",
         "theme": "iso",
         "memo": "",
         "position": "50% 25%",
