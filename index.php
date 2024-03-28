@@ -113,7 +113,7 @@ foreach ($request as $key=>$value) { ?>
 </p></div>
 <div class='topBarItem'><p align='center' class='block'>
     <input type='button' id="currentTime" style="width:33%;position:relative;" onclick="setdata('timedisp', flip(sysDefTimedisp.value));" value="00:00:00">
-    <input type="image" onmouseover="soundButton();" id="buttonTime" class="power" onclick="setdata('benchmark', nextImage('0;2;4', sysDefBenchmark.value));" src="<?=$prefix.'time.png'.$suffix;?>">
+    <input type="image" onmouseover="soundButton();" id="buttonTime" class="power" onclick="setdata('benchmark', flip(sysDefBenchmark.value));" src="<?=$prefix.'time.png'.$suffix;?>">
     <input type="image" onmouseover="soundButton();" id="buttonAutoplay" class="power" onclick="setdata('autoplay', flip(sysDefAutoplay.value));" src="<?=$prefix.'autoplay.png'.$suffix;?>">
     <input type="image" onmouseover="soundButton();" id="buttonVintage" class="power" onclick="if ((sysDefSepia.value > 0) && (sysDefGrayscale.value > 0)) { setdata('vintage', 0); setdata('sepia', 0); setdata('grayscale', 0); } else { setdata('vintage', 1); setdata('sepia', 50); setdata('grayscale', 50); }" src="<?=$prefix.'diamante.png'.$suffix;?>">
     <input type="image" onmouseover="soundButton();" id="buttonGloss" class="power" onclick="setdata('gloss', flip(sysDefGloss.value));" src="<?=$prefix.'parfum.png'.$suffix;?>">

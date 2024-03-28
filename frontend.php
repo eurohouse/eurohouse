@@ -345,10 +345,8 @@ function world_clock() {
             } else {
                 $('#buttonAutomator').attr('src', sysDefPrefix.value+'steer.png'+sysDefSuffix.value);
             } $('#buttonObserve').attr('src', sysDefPrefix.value+'power.png'+sysDefSuffix.value); $('#buttonSpectate').attr('src', sysDefPrefix.value+'power.png'+sysDefSuffix.value); $('#buttonEnter').attr('src', sysDefPrefix.value+'return.png'+sysDefSuffix.value); $('#buttonKeyboard').attr('src', sysDefPrefix.value+'keyboard.png'+sysDefSuffix.value); $('#buttonBackspace').attr('src', sysDefPrefix.value+'backspace.png'+sysDefSuffix.value); $('#buttonLogin').attr('src', sysDefPrefix.value+'user.png'+sysDefSuffix.value); $('#buttonRegister').attr('src', sysDefPrefix.value+'book.png'+sysDefSuffix.value); $('#buttonCancelSignin').attr('src', sysDefPrefix.value+'backspace.png'+sysDefSuffix.value); $('#buttonOnend').attr('src', sysDefPrefix.value+'ff.png'+sysDefSuffix.value);
-            if (sysDefBenchmark.value == 2) {
-                $('#buttonTime').attr('src', sysDefPrefix.value+'double.png'+sysDefSuffix.value);
-            } else if (sysDefBenchmark.value == 4) {
-                $('#buttonTime').attr('src', sysDefPrefix.value+'quadro.png'+sysDefSuffix.value);
+            if (sysDefBenchmark.value != 0) {
+                $('#buttonTime').attr('src', sysDefPrefix.value+'speed.png'+sysDefSuffix.value);
             } else {
                 $('#buttonTime').attr('src', sysDefPrefix.value+'time.png'+sysDefSuffix.value);
             } if (sysDefAutoplay.value != 0) {

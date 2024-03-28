@@ -217,6 +217,9 @@ function equarr(array $src, array $des) {
         }
     } return $des;
 }
+function hourize($sec, $min, $mod) {
+    return ((($sec / (60 / (12 / $mod))) % (24 / (2 ** $mod))) + ((24 / (2 ** $mod)) * ($min % (2 ** $mod))));
+}
 function incher($num, $koeff = 3.28084, $denom = 12) {
     $modul = round(($num * $koeff), 1);
     $nat = explode('.', $modul)[0];
