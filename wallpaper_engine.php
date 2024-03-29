@@ -36,7 +36,8 @@ if (isset($cont[$showFilename])) {
         $assignAvatar2 = $brightAvaBack.$userSettings['defaults']['avatar'].'.png';
     }
 } else {
-    $showHead = $userData['title']; $showBody = "";
+    $showHead = $userSettings['defaults']['title'];
+    $showBody = "";
     $assignAvatar1 = $brightAvaFore.$userSettings['defaults']['avatar'].'.png';
     $assignAvatar2 = $brightAvaBack.$userSettings['defaults']['avatar'].'.png';
 }
