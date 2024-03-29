@@ -29,13 +29,17 @@ if (isset($cont[$showFilename])) {
         $showBody = (isset($ent['language'][$uni]['memoir'])) ? $ent['language'][$uni]['memoir'] : ((isset($ent['memoir'])) ? $ent['memoir'] : "");
     }
     if (isset($ent['insignia'])) {
-        $assignAvatar1 = $brightAvaFore.$ent['insignia'].'.png'; $assignAvatar2 = $brightAvaBack.$ent['insignia'].'.png';
+        $assignAvatar1 = $brightAvaFore.$ent['insignia'].'.png';
+        $assignAvatar2 = $brightAvaBack.$ent['insignia'].'.png';
     } else {
-        $assignAvatar1 = $brightAvaFore.$userData['avatar'].'.png'; $assignAvatar2 = $brightAvaBack.$userData['avatar'].'.png';
+        $assignAvatar1 = $brightAvaFore.$userSettings['defaults']['avatar'].'.png';
+        $assignAvatar2 = $brightAvaBack.$userSettings['defaults']['avatar'].'.png';
     }
 } else {
     $showHead = $userData['title']; $showBody = "";
-    $assignAvatar1 = $brightAvaFore.$userData['avatar'].'.png';
-    $assignAvatar2 = $brightAvaBack.$userData['avatar'].'.png';
+    $assignAvatar1 = $brightAvaFore.$userSettings['defaults']['avatar'].'.png';
+    $assignAvatar2 = $brightAvaBack.$userSettings['defaults']['avatar'].'.png';
 }
-echo $userData['title']."\r\n\r\n".$showFilename."\r\n\r\n".$assignAvatar1."\r\n\r\n".$assignAvatar2."\r\n\r\n".$userData['position']."\r\n\r\n".$variations."\r\n\r\n".$brightSysIcon.";".$brightRetIcon."\r\n\r\n".$showHead."\r\n\r\n".$showBody;
+$personAvatar1 = $brightAvaFore.$userData['avatar'].'.png';
+$personAvatar2 = $brightAvaBack.$userData['avatar'].'.png';
+echo $userData['title']."\r\n\r\n".$showFilename."\r\n\r\n".$assignAvatar1."\r\n\r\n".$assignAvatar2."\r\n\r\n".$userData['position']."\r\n\r\n".$variations."\r\n\r\n".$brightSysIcon.";".$brightRetIcon."\r\n\r\n".$showHead."\r\n\r\n".$showBody."\r\n\r\n".$personAvatar1."\r\n\r\n".$personAvatar2;

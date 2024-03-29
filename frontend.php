@@ -501,7 +501,7 @@ function wallpaper_engine() {
                 } else {
                     $('#buttonAugment').attr('src', sysDefPrefix.value+'spade.png'+sysDefSuffix.value);
                 }
-            } document.title = pager(data, 0)+' (@'+sysDefSessionID.value+') · Eurohouse UX/UI'; document.querySelector(':root').style.setProperty('--position', pager(data, 4)); $('#userAvatarBadge').attr('src', pager(data, 2)+sysDefSuffix.value); var valPwrMy = (isInt(decodePowers[sysDefSessionID.value])) ? parseInt(decodePowers[sysDefSessionID.value]) : 0; $('#buttonReticle').attr('src', sysDefReticlePrefix.value+sysDefReticle.value+'.png'+sysDefSuffix.value);
+            } document.title = pager(data, 0)+' (@'+sysDefSessionID.value+') · Eurohouse UX/UI'; document.querySelector(':root').style.setProperty('--position', pager(data, 4)); $('#userAvatarBadge').attr('src', pager(data, 9)+sysDefSuffix.value); var valPwrMy = (isInt(decodePowers[sysDefSessionID.value])) ? parseInt(decodePowers[sysDefSessionID.value]) : 0; $('#buttonReticle').attr('src', sysDefReticlePrefix.value+sysDefReticle.value+'.png'+sysDefSuffix.value);
             $('#chooseReticle1').attr('src', sysDefReticlePrefix.value+sysDefReticleChoice1.value+'.png'+sysDefSuffix.value);
             $('#chooseReticle2').attr('src', sysDefReticlePrefix.value+sysDefReticleChoice2.value+'.png'+sysDefSuffix.value);
             $('#chooseReticle3').attr('src', sysDefReticlePrefix.value+sysDefReticleChoice3.value+'.png'+sysDefSuffix.value);
@@ -544,8 +544,8 @@ function wallpaper_engine() {
             $('#showUsInfoBond').val(valBond);
             <?php if (file_exists('mode.'.$request['mode'].'.php')) {
                 if ($request['mode'] == 'main_menu') { ?>
-                    $('#projectTitle').text(pager(data, 7).toUpperCase());
-                    $('#showingAvatarNow').attr('src', pager(data, 3));
+                    $('#projectTitle').text(pager(data, 0).toUpperCase());
+                    $('#showingAvatarNow').attr('src', pager(data, 10));
                 <?php } ?>
             $('#showUsText').text(pager(data, 8));
             <?php } else { ?>
