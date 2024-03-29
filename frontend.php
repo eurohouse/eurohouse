@@ -547,7 +547,7 @@ function wallpaper_engine() {
                     $('#projectTitle').text(pager(data, 7).toUpperCase());
                     $('#showingAvatarNow').attr('src', pager(data, 3));
                 <?php } ?>
-                $('#showUsText').text(pager(data, 8));
+            $('#showUsText').text(pager(data, 8));
             <?php } else { ?>
                 $('#articleHead').text(pager(data, 7).toUpperCase());
                 $('#articleBody').text(pager(data, 8));
