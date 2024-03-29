@@ -8,4 +8,5 @@
     <img onmouseover="soundButton();" id="showingAvatarNow" name="main_menu" style="height:24%;position:relative;" onclick="omniGo(this.name);" src="<?=$avaPrefix.$session['avatar'].'.png'.$suffix;?>">
 </p>
 <h1 id="articleHead" align='center' style="cursor:pointer;" onclick="navigator.clipboard.writeText(this.innerText);"></h1>
+<p align="articleBody" align="center" style="cursot:pointer;" onclick="navigator.clipboard.writeText(this.innerText);"></p>
 <?php } ?>

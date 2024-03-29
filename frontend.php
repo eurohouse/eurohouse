@@ -58,7 +58,6 @@ function userdata() {
         'icons': sysDefIcons.value,
         'mute': sysDefMute.value,
         'gloss': sysDefGloss.value,
-        'personal': sysDefPersonal.value,
         'observe': sysDefObserve.value,
         'spectate': sysDefSpectate.value,
         'vintage': sysDefVintage.value,
@@ -189,7 +188,6 @@ function setdata(ent, val) {
     sysDefLock.value = obj['lock'];
     sysDefMute.value = obj['mute'];
     sysDefGloss.value = obj['gloss'];
-    sysDefPersonal.value = obj['personal'];
     sysDefObserve.value = obj['observe'];
     sysDefSpectate.value = obj['spectate'];
     sysDefVintage.value = obj['vintage'];
@@ -512,15 +510,19 @@ function wallpaper_engine() {
             var bindFunc = arraySearch(sysDefSessionID.value, decodeBind);
             if (bindFunc != false) {
                 if (decodeBind[sysDefSessionID.value] != sysDefSessionID.value) {
-                    valBind = bindFunc; valBond = '+@'+sysDefSessionID.value+'+';
-                    valPwrTh = (isInt(decodePowers[valBind])) ? parseInt(decodePowers[valBind]) : 0; valPwrBal = valPwrMy+':'+valPwrTh;
+                    valBind = bindFunc;
+                    valBond = '+@'+sysDefSessionID.value+'+';
+                    valPwrTh = (isInt(decodePowers[valBind])) ? parseInt(decodePowers[valBind]) : 0;
+                    valPwrBal = valPwrMy+':'+valPwrTh;
                     $('#buttonBroke').attr('src', sysDefPrefix.value+'broke.png'+sysDefSuffix.value);
                     if (sysDefAutomator.value == 1) {
                         dominate(1, 1, 0);
                     }
                 } else {
-                    valBind = bindFunc; valBond = '+@'+sysDefSessionID.value;
-                    valPwrTh = (isInt(decodePowers[valBind])) ? parseInt(decodePowers[valBind]) : 0; valPwrBal = valPwrMy+':'+valPwrTh;
+                    valBind = bindFunc;
+                    valBond = '+@'+sysDefSessionID.value;
+                    valPwrTh = (isInt(decodePowers[valBind])) ? parseInt(decodePowers[valBind]) : 0;
+                    valPwrBal = valPwrMy+':'+valPwrTh;
                     $('#buttonBroke').attr('src', sysDefPrefix.value+'broke.png'+sysDefSuffix.value);
                 }
             } else {
@@ -537,15 +539,18 @@ function wallpaper_engine() {
                     valBond = '@'+sysDefSessionID.value; valPwrBal = valPwrMy;
                     $('#buttonBroke').attr('src', sysDefPrefix.value+'chain.png'+sysDefSuffix.value);
                 }
-            } $('#showUsInfoPower').val(valPwrBal); $('#showUsInfoBond').val(valBond);
-            $('#showUsText').text(pager(data, 8));
+            }
+            $('#showUsInfoPower').val(valPwrBal);
+            $('#showUsInfoBond').val(valBond);
             <?php if (file_exists('mode.'.$request['mode'].'.php')) {
                 if ($request['mode'] == 'main_menu') { ?>
                     $('#projectTitle').text(pager(data, 7).toUpperCase());
                     $('#showingAvatarNow').attr('src', pager(data, 3));
-                <?php }
-            } else { ?>
+                <?php } ?>
+                $('#showUsText').text(pager(data, 8));
+            <?php } else { ?>
                 $('#articleHead').text(pager(data, 7).toUpperCase());
+                $('#articleBody').text(pager(data, 8));
                 $('#showingAvatarNow').attr('src', pager(data, 3));
             <?php } ?>
         },

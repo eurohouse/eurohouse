@@ -157,7 +157,7 @@ foreach ($request as $key=>$value) { ?>
     <input type="image" id="buttonMute" onmouseover="soundButton();" class="power" onclick="setdata('mute', flip(sysDefMute.value));" src="<?=$prefix.'music.png'.$suffix;?>">
 </p></div>
 <div class='topBarItem'><p align='center' class='block'>
-    <input type="image" id="userAvatarBadge" onmouseover="soundButton();" class="power" src="<?=$abcPrefix.$session['avatar'].'.png'.$suffix;?>" onclick="setdata('personal', flip(sysDefPersonal.value));">
+    <input type="image" id="userAvatarBadge" onmouseover="soundButton();" class="power" src="<?=$abcPrefix.$session['avatar'].'.png'.$suffix;?>">
     <input type='button' id="showUsInfoPower" style="width:28%;position:relative;" value="<?=intval($powersData[$sessionID]);?>">
     <input type="image" onmouseover="soundButton();" id="buttonBroke" class="power" onclick="bind(sysDefSessionID.value);" src="<?=$prefix.'chain.png'.$suffix;?>">
     <input type="image" onmouseover="soundButton();" id="buttonReticle" class="power" onclick="dominate(1, 1, 0);" src="<?=$reticlePrefix.$session['reticle'].'.png'.$suffix;?>">
