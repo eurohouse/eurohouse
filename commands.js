@@ -85,7 +85,7 @@ function executeMacros(input, index = 0, length = 1) {
             }
         }
     } else if ((index == (length - 1)) && (input.includes('#')) && (input.indexOf('#') == 0)) {
-        setdata('find', input.replace('#', ''));
+        setdata('find', input);
     } else if ((index == (length - 1)) && (input.includes('&')) && (input.indexOf('&') == 0)) {
         bind(input.replace('&', ''));
     } else if ((index == (length - 1)) && (input.includes('~')) && (input.indexOf('~') == 0)) {
