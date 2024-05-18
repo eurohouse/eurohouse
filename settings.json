@@ -297,7 +297,7 @@
         "menu": "file_finder,preferences,personalization,user_accounts",
         "theme": "iso",
         "memo": "",
-        "find": "",
+        "find": "#",
         "position": "50% 25%",
         "pixel_ratio": 1,
         "audio_volume": 1,

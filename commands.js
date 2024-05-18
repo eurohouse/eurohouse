@@ -3,7 +3,7 @@ function executeMacros(input, index = 0, length = 1) {
     if ((index == (length - 1)) && (input == '=')) {
         window.location.reload();
     } else if ((index == (length - 1)) && (input == '&')) {
-        bind(sysDefSessionID.value);
+        unbind(sysDefSessionID.value);
     } else if ((index == (length - 1)) && (input == '@')) {
         omniAuthRequest('signout', '', '');
     } else if ((index == (length - 1)) && (input == '_')) {
@@ -87,7 +87,7 @@ function executeMacros(input, index = 0, length = 1) {
     } else if ((index == (length - 1)) && (input.includes('#')) && (input.indexOf('#') == 0)) {
         setdata('find', input);
     } else if ((index == (length - 1)) && (input.includes('&')) && (input.indexOf('&') == 0)) {
-        bind(input.replace('&', ''));
+        bind(sysDefSessionID.value, input.replace('&', ''));
     } else if ((index == (length - 1)) && (input.includes('~')) && (input.indexOf('~') == 0)) {
         if (sysDefSessionID.value == 'root') {
             delete_user(input.replace('~', ''));

@@ -125,42 +125,48 @@ function compose(msg, clear = false, fx = 0) {
     var tS = t.getUTCSeconds();
     var addr = msg.match(/(@\w*)/g);
     var userID; var msgbox = '';
-    if (addr !== null) {
-        for (i = 0; i < addr.length; i++) {
-            userID = addr[i].replace('@','');
-            if (sysDefSessionID.value == 'root') {
-                if (clear !== false) {
-                    msgbox = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+tY+'-'+pad(tM, 2)+'-'+pad(tD, 2)+' '+pad(tH, 2)+':'+pad(tMin, 2)+':'+pad(tS, 2)+' UTC | '+msg;
+    var ratTab = arrjob(sysDefPowersData.value, ';', ':');
+    if (ratTab[sysDefSessionID.value] >= 0) {
+        if (addr !== null) {
+            for (i = 0; i < addr.length; i++) {
+                userID = addr[i].replace('@', '');
+                if (sysDefSessionID.value == 'root') {
+                    if (clear !== false) {
+                        msgbox = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+tY+'-'+pad(tM, 2)+'-'+pad(tD, 2)+' '+pad(tH, 2)+':'+pad(tMin, 2)+':'+pad(tS, 2)+' UTC | '+msg;
+                    } else {
+                        msgbox = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+tY+'-'+pad(tM, 2)+'-'+pad(tD, 2)+' '+pad(tH, 2)+':'+pad(tMin, 2)+':'+pad(tS, 2)+' UTC | '+msg+'\r\n'+openMsgBox(userID);
+                    }
                 } else {
                     msgbox = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+tY+'-'+pad(tM, 2)+'-'+pad(tD, 2)+' '+pad(tH, 2)+':'+pad(tMin, 2)+':'+pad(tS, 2)+' UTC | '+msg+'\r\n'+openMsgBox(userID);
                 }
-            } else {
-                msgbox = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+tY+'-'+pad(tM, 2)+'-'+pad(tD, 2)+' '+pad(tH, 2)+':'+pad(tMin, 2)+':'+pad(tS, 2)+' UTC | '+msg+'\r\n'+openMsgBox(userID);
-            } set('./.log/'+userID+'_msgbox.log', encodeURIComponent(msgbox), true);
-        }
-    } else {
-        if (sysDefSessionID.value == 'root') {
-            if (clear !== false) {
-                msgbox = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+tY+'-'+pad(tM, 2)+'-'+pad(tD, 2)+' '+pad(tH, 2)+':'+pad(tMin, 2)+':'+pad(tS, 2)+' UTC | '+msg;
-            } else {
-                msgbox = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+tY+'-'+pad(tM, 2)+'-'+pad(tD, 2)+' '+pad(tH, 2)+':'+pad(tMin, 2)+':'+pad(tS, 2)+' UTC | '+msg+'\r\n'+sysDefMsgData.value;
+                set('./.log/'+userID+'_msgbox.log', encodeURIComponent(msgbox), true);
             }
         } else {
-            if (clear !== false) {
-                if (sysDefPrivate.value != 0) {
+            if (sysDefSessionID.value == 'root') {
+                if (clear !== false) {
                     msgbox = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+tY+'-'+pad(tM, 2)+'-'+pad(tD, 2)+' '+pad(tH, 2)+':'+pad(tMin, 2)+':'+pad(tS, 2)+' UTC | '+msg;
                 } else {
                     msgbox = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+tY+'-'+pad(tM, 2)+'-'+pad(tD, 2)+' '+pad(tH, 2)+':'+pad(tMin, 2)+':'+pad(tS, 2)+' UTC | '+msg+'\r\n'+sysDefMsgData.value;
                 }
             } else {
-                msgbox = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+tY+'-'+pad(tM, 2)+'-'+pad(tD, 2)+' '+pad(tH, 2)+':'+pad(tMin, 2)+':'+pad(tS, 2)+' UTC | '+msg+'\r\n'+sysDefMsgData.value;
+                if (clear !== false) {
+                    if (sysDefPrivate.value != 0) {
+                        msgbox = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+tY+'-'+pad(tM, 2)+'-'+pad(tD, 2)+' '+pad(tH, 2)+':'+pad(tMin, 2)+':'+pad(tS, 2)+' UTC | '+msg;
+                    } else {
+                        msgbox = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+tY+'-'+pad(tM, 2)+'-'+pad(tD, 2)+' '+pad(tH, 2)+':'+pad(tMin, 2)+':'+pad(tS, 2)+' UTC | '+msg+'\r\n'+sysDefMsgData.value;
+                    }
+                } else {
+                    msgbox = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+tY+'-'+pad(tM, 2)+'-'+pad(tD, 2)+' '+pad(tH, 2)+':'+pad(tMin, 2)+':'+pad(tS, 2)+' UTC | '+msg+'\r\n'+sysDefMsgData.value;
+                }
+            }
+            if (sysDefPrivate.value != 0) {
+                set('./.log/'+sysDefSessionID.value+'_msgbox.log', encodeURIComponent(msgbox), true);
+            } else {
+                set('./.log/msgbox.log', encodeURIComponent(msgbox), true);
             }
         }
-        if (sysDefPrivate.value != 0) {
-            set('./.log/'+sysDefSessionID.value+'_msgbox.log', encodeURIComponent(msgbox), true);
-        } else {
-            set('./.log/msgbox.log', encodeURIComponent(msgbox), true);
-        }
+        set('dominion.json', JSON.stringify(ratTab), true);
+        sysDefPowersData.value = arrpack(ratTab, ';', ':');
     }
 }
 function make_gift(user, sum = 0) {
@@ -196,7 +202,9 @@ function accept_gift(user) {
                     suf += sum; obf -= sum;
                     obj[sysDefSessionID.value] = suf;
                     obj[user] = obf;
-                    set('dominion.json', JSON.stringify(obj), true); sysDefPowersData.value = arrpack(obj,';',':'); del(user+'_gift_'+sysDefSessionID.value, true);
+                    set('dominion.json', JSON.stringify(obj), true);
+                    sysDefPowersData.value = arrpack(obj,';',':');
+                    del(user+'_gift_'+sysDefSessionID.value, true);
                 }
             });
             return false;
