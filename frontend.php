@@ -119,16 +119,19 @@ function openMsgBox(id) {
 }
 function clearMessage(date) {
     var msgbox = msgread(sysDefMsgData.value);
-    var msgkeys = Object.keys(msgbox);
-    for (i = 0; i < msgkeys.length; i++) {
-        if (msgkeys[i].includes(date)) {
-            delete msgbox[msgkeys[i]];
+    var msgarr = [];
+    if (sysDefSessionID.value == 'root') {
+        msgarr = msgclear(msgbox, date);
+        if (sysDefPrivate.value != 0) {
+            set('./.log/'+sysDefSessionID.value+'_msgbox.log', encodeURIComponent(msgcompile(msgarr)), true);
+        } else {
+            set('./.log/msgbox.log', encodeURIComponent(msgcompile(msgarr)), true);
         }
-    }
-    if (sysDefPrivate.value != 0) {
-        set('./.log/'+sysDefSessionID.value+'_msgbox.log', encodeURIComponent(msgcompile(msgbox)), true);
     } else {
-        set('./.log/msgbox.log', encodeURIComponent(msgcompile(msgbox)), true);
+        if (sysDefPrivate.value != 0) {
+            msgarr = msgclear(msgbox, date);
+            set('./.log/'+sysDefSessionID.value+'_msgbox.log', encodeURIComponent(msgcompile(msgarr)), true);
+        }
     }
 }
 function compose(msg, clear = false, fx = 0) {
