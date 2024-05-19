@@ -54,12 +54,7 @@ function world_clock() {
                 playAudio(bindPlayer, sysDefBindSound.value);
             }
             sysDefPostBindData.value = sysDefBindData.value;
-            if (sysDefMsgCounter.value == 0) {
-                sysDefMsgCounter.value = parseInt(Object.keys(msgfilter(sysDefMsgData.value, sysDefFind.value)).length - 1);
-            } else {
-                sysDefMsgCounter.value = parseInt(sysDefMsgCounter.value - 1);
-            }
-            $('#showUsUrgent').text(Object.values(msgfilter(sysDefMsgData.value, sysDefFind.value))[sysDefMsgCounter.value]);
+            $('#showUsUrgent').text(Object.values(msgfilter(sysDefMsgData.value, sysDefFind.value))[0]);
             if (sysDefMsgData.value != sysDefPostMsgData.value) {
                 playAudio(notifyPlayer, sysDefNotifySound.value);
             }

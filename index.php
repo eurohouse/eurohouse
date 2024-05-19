@@ -31,7 +31,6 @@
 <input type='hidden' id="sysDefVarsArr" value="">
 <input type='hidden' id="sysDefUsersList" value="">
 <input type='hidden' id="sysDefMailingList" value="">
-<input type='hidden' id="sysDefMsgCounter" value="0">
 <input type='hidden' id="sysDefBindData" value="<?=valstr($bindData,';',':');?>">
 <input type='hidden' id="sysDefPowersData" value="<?=valstr($powersData,';',':');?>">
 <input type='hidden' id="sysDefAutoData" value="<?=valstr($automateData,';',':');?>">
