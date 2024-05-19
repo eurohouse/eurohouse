@@ -22,7 +22,8 @@
 <div class='topBarItem'>
     <p align='center' class='block'>
     <?php if (isset($_SESSION['user'])) { ?>
-        <input type='text' id="omniBox" style="width:67%;position:relative;" placeholder="<?=term('Type expression and press ENTER', $settings['vocabulary'], $session['units']);?>" value="" onkeydown="
+        <input type="image" onmouseover="soundButton();" id="buttonChat" class="power" onclick="setdata('chat', flip(sysDefChat.value)); omniBox.focus();" src="<?=($session['chat'] != 0) ? $prefix.'book.png'.$suffix : $prefix.'bash.png'.$suffix;?>">
+        <input type='text' id="omniBox" style="width:58%;position:relative;" placeholder="<?=term('Type expression and press ENTER', $settings['vocabulary'], $session['units']);?>" value="" onkeydown="
         if (event.keyCode == 13) {
             omniEnter();
         } else if (event.keyCode == 27) {

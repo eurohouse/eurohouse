@@ -231,6 +231,7 @@
         "timedisp": 0,
         "benchmark": 0,
         "pitch_lock": 0,
+        "chat": 0,
         "lock": 0,
         "icons": 0,
         "mute": 0,

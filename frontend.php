@@ -117,6 +117,20 @@ function openMsgBox(id) {
     var userNum = arraySearch(id, userArr);
     return pager(mail, userNum);
 }
+function clearMessage(date) {
+    var msgbox = msgread(sysDefMsgData.value);
+    var msgkeys = Object.keys(msgbox);
+    for (i = 0; i < msgkeys.length; i++) {
+        if (msgkeys[i].includes(date)) {
+            delete msgbox[msgkeys[i]];
+        }
+    }
+    if (sysDefPrivate.value != 0) {
+        set('./.log/'+sysDefSessionID.value+'_msgbox.log', encodeURIComponent(msgcompile(msgbox)), true);
+    } else {
+        set('./.log/msgbox.log', encodeURIComponent(msgcompile(msgbox)), true);
+    }
+}
 function compose(msg, clear = false, fx = 0) {
     nt = Date.now(); it = nt + fx * 1000;
     var t = new Date(it); var tY = t.getUTCFullYear();

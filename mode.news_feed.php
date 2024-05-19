@@ -13,7 +13,6 @@
     handleInput(this.value);
 }" oninput="handleInput(this.value, true);">
 <input type="image" class="power" onmouseover="soundButton();" src="<?=$prefix.'return.png'.$suffix;?>" onclick="compose(composeMessage.value);">
-<input type="image" class="power" onmouseover="soundButton();" src="<?=$prefix.'bash.png'.$suffix;?>" onclick="compose(composeMessage.value, true);">
 <input type="image" class="power" onmouseover="soundButton();" src="<?=$prefix.'keyboard.png'.$suffix;?>" onclick="document.getElementById('composeMessage').focus();">
 <input type="image" class="power" onmouseover="soundButton();" src="<?=$prefix.'backspace.png'.$suffix;?>" onclick="document.getElementById('composeMessage').value = ''; document.getElementById('composeMessage').focus();">
 </p>

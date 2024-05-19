@@ -83,6 +83,11 @@ function world_clock() {
             $('#buttonObserve').attr('src', sysDefPrefix.value+'power.png'+sysDefSuffix.value);
             $('#buttonSpectate').attr('src', sysDefPrefix.value+'power.png'+sysDefSuffix.value);
             $('#buttonEnter').attr('src', sysDefPrefix.value+'return.png'+sysDefSuffix.value);
+            if (sysDefChat.value != 0) {
+                $('#buttonChat').attr('src', sysDefPrefix.value+'book.png'+sysDefSuffix.value);
+            } else {
+                $('#buttonChat').attr('src', sysDefPrefix.value+'bash.png'+sysDefSuffix.value);
+            }
             $('#buttonKeyboard').attr('src', sysDefPrefix.value+'keyboard.png'+sysDefSuffix.value);
             $('#buttonBackspace').attr('src', sysDefPrefix.value+'backspace.png'+sysDefSuffix.value);
             $('#buttonLogin').attr('src', sysDefPrefix.value+'user.png'+sysDefSuffix.value);
