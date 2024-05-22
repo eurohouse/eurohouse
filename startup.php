@@ -45,9 +45,9 @@ function world_clock() {
             if (requestMode.value == 'statistics') {
                 if (sysDefStats.value == 'bind') {
                     userStats.innerText = bindTable(sysDefBindData.value);
-                } else if (sysDefStats.value == 'score') {
-                    userStats.innerText = friendsList(sysDefFriendData.value);
                 } else if (sysDefStats.value == 'friend') {
+                    userStats.innerText = friendsList(sysDefFriendData.value);
+                } else {
                     userStats.innerText = highScores(sysDefPowersData.value);
                 }
             }
