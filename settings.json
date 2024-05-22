@@ -299,6 +299,7 @@
         "theme": "iso",
         "memo": "",
         "find": "#",
+        "stats": "score",
         "position": "50% 25%",
         "pixel_ratio": 1,
         "audio_volume": 1,
@@ -359,8 +360,6 @@
             "Video Volume": "Громкость видео",
             "Video Speed": "Скорость видео",
             "Video Balance": "Баланс аудио",
-            "User Handle Tab:": "Реестр имений:",
-            "User Friend Tab:": "Список друзей:",
             "User Score Tab:": "Символ статуса:",
             "User Operation:": "Текущая операция:"
         },
@@ -389,8 +388,6 @@
             "Audio Volume": "声音大小", "Audio Speed": "音频速度",
             "Audio Balance": "声音平衡", "Video Volume": "视频音量",
             "Video Speed": "视频速度", "Video Balance": "视频平衡",
-            "User Handle Tab:": "用户句柄选项卡：",
-            "User Friend Tab:": "用户好友选项卡：",
             "User Score Tab:": "用户评分选项卡：",
             "User Operation:": "当前用户操作："
         },
@@ -419,8 +416,6 @@
             "Audio Volume": "사운드 볼륨", "Audio Speed": "오디오 속도",
             "Audio Balance": "사운드 밸런스", "Video Volume": "비디오 볼륨",
             "Video Speed": "비디오 속도", "Video Balance": "비디오 밸런스",
-            "User Handle Tab:": "사용자 핸들 탭:",
-            "User Friend Tab:": "사용자 친구 탭:",
             "User Score Tab:": "사용자 평가 탭:",
             "User Operation:": "현재 사용자 작업:"
         },
@@ -449,8 +444,6 @@
             "Audio Volume": "音量", "Audio Speed": "音声速度",
             "Audio Balance": "サウンドバランス", "Video Volume": "ビデオの音量",
             "Video Speed": "ビデオ速度", "Video Balance": "ビデオバランス",
-            "User Handle Tab:": "ユーザーハンドルタブ:",
-            "User Friend Tab:": "ユーザーの友達タブ:",
             "User Score Tab:": "ユーザー評価タブ:",
             "User Operation:": "現在のユーザー操作:"
         }

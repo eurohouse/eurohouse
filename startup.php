@@ -43,9 +43,13 @@ function world_clock() {
                 videoBalInd.value = mixers[5];
             }
             if (requestMode.value == 'statistics') {
-                userStatsBind.innerText = bindTable(sysDefBindData.value);
-                userStatsFrnd.innerText = friendsList(sysDefFriendData.value);
-                userStatsPowers.innerText = highScores(sysDefPowersData.value);
+                if (sysDefStats.value == 'bind') {
+                    userStats.innerText = bindTable(sysDefBindData.value);
+                } else if (sysDefStats.value == 'score') {
+                    userStats.innerText = friendsList(sysDefFriendData.value);
+                } else if (sysDefStats.value == 'friend') {
+                    userStats.innerText = highScores(sysDefPowersData.value);
+                }
             }
             var tickCode = pager(data, 1).split(':')[1];
             var tickPanel = pager(data, 1).split(':')[2];
