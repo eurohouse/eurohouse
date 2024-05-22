@@ -1,5 +1,5 @@
 <!-- settings -->
-<!-- RU: Настройки; US: Settings; CN: 应用程序偏好设置; KR: 프로그램 설정; JP: 番組設定; AE: تفضيلات التطبيق -->
+<!-- RU: Настройки; CN: 应用程序偏好设置; KR: 프로그램 설정; JP: 番組設定; AE: تفضيلات التطبيق -->
 <p align='center'>
 <input type="button" onmouseover="soundButton();" onclick="applyTheme(setSizeSequence.value, setColorSequence.value); setdata('specimen', encodeURIComponent(setSpecimen.value));" value="<?=term('Apply', $settings['vocabulary'], $session['units']);?>">
 <input type="button" onmouseover="soundButton();" onclick="rename_user(setUsername.value, setPassword.value); omniAuthRequest('signin', setUsername.value, setPassword.value);" value="<?=term('Update', $settings['vocabulary'], $session['units']);?>">

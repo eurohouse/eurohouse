@@ -1,5 +1,5 @@
 <!-- locale -->
-<!-- RU: Золотой миллиард; CN: 黄金十亿国家; KR: 황금십억나라; JP: 黄金十億の国; AE: المليار الذهبي -->
+<!-- RU: Локализация; CN: 黄金十亿国家; KR: 황금십억나라; JP: 黄金十億の国; AE: المليار الذهبي -->
 <p align="center">
 <?php $arr = fileopen('HDI.json'); $dev = $arr;
 foreach ($arr as $key=>$value) {
