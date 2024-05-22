@@ -308,8 +308,9 @@ function daily($name, $add, $hour): string {
     return $back;
 }
 function wasAuth() {
-    if (isset($_REQUEST['auth']) && isset($_REQUEST['login']) && isset($_REQUEST['password'])) {
-        $auth = $_REQUEST['auth']; $login = $_REQUEST['login']; $pass = $_REQUEST['password']; $logpass = textopen($login.'_password', '');
+    if (isset($_POST['auth']) && isset($_POST['login']) && isset($_POST['password'])) {
+        $auth = $_POST['auth']; $login = $_POST['login']; $pass = $_POST['password'];
+        $logpass = textopen($login.'_password', '');
         if ($auth == 'signup') {
             if (!file_exists($login.'_password')) {
                 file_put_contents($login.'_password', $pass);
@@ -323,6 +324,12 @@ function wasAuth() {
             unset($_SESSION['user']);
         }
     }
+}
+function isAuth() {
+    return (isset($_SESSION['user']));
+}
+function whichSess() {
+    return (isset($_SESSION['user'])) ? $_SESSION['user'] : 'root';
 }
 function express(array $for) {
     foreach ($for as $key=>$pkg) {

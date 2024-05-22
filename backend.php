@@ -19,26 +19,27 @@ if (!file_exists('get.php')) {
 initiate('tmp,log');
 ini_set("session.gc_maxlifetime", $settings['lifetime']['garbage_collector']);
 ini_set("session.cookie_lifetime", $settings['lifetime']['cookie_default']);
-session_start(); wasAuth();
-$sessionID = (isset($_SESSION['user'])) ? $_SESSION['user'] : 'root'; setcookie('user', $sessionID, time() + $settings['lifetime']['cookie_lengthen']);
+session_start(); wasAuth(); $sessionID = whichSess();
+setcookie('user', $sessionID, time() + $settings['lifetime']['cookie_lengthen']);
 $session = arropen($sessionID.'_session.json', json_encode($settings['defaults']), true);
 $bindData = arropen('binding.json', "{\"root\":\"root\"}");
 $powersData = arropen('dominion.json', "{\"root\":0}");
 $automateData = arropen('automator.json', "{\"root\":\"manual\"}");
 $friendData = arropen('friendship.json', "{\"root\":\"\"}");
 $timezone = dec_tz($session['timezone']); date_default_timezone_set($timezone);
-$requestInitData = $settings['initialize']; $prefix = 'iso.';
-$request = [];
-foreach ($requestInitData as $requestID=>$requestValue) {
-    $request[$requestID] = ($_REQUEST[$requestID]) ? $_REQUEST[$requestID] : $requestValue;
+$prefix = 'iso.'; $request = []; $postRequest = [];
+foreach ($settings['initialize'] as $requestID=>$requestValue) {
+    $request[$requestID] = ($_GET[$requestID]) ? $_GET[$requestID] : $requestValue;
+}
+foreach ($settings['post_request'] as $requestID=>$requestValue) {
+    $postRequest[$requestID] = ($_POST[$requestID]) ? $_POST[$requestID] : $requestValue;
 }
 $avaPrefix = (lux($session['back_text_color'])) ? 'ava.' : 'abc.';
 $abcPrefix = (lux($session['fore_text_color'])) ? 'ava.' : 'abc.';
 $prefix = (lux($session['fore_text_color'])) ? 'iso.' : 'iec.';
 $reticlePrefix = (lux($session['fore_text_color'])) ? 'rtd.' : 'rtc.';
 $themePrefix = (file_exists($session['theme'].'.pkg')) ? $session['theme'].'.' : $prefix;
-$portfolioPrefix = (($themePrefix == 'iec') || ($themePrefix == 'iso')) ? 'org.' : ((themed($themePrefix, 'head,left0,left90,left180,left270,right0,right90,right180,right270')) ? $themePrefix : 'org.');
-$suffix = '?rev='.time();
+$portfolioPrefix = (($themePrefix == 'iec') || ($themePrefix == 'iso')) ? 'org.' : ((themed($themePrefix, 'head,left0,left90,left180,left270,right0,right90,right180,right270')) ? $themePrefix : 'org.'); $suffix = '?rev='.time();
 $degKoeff = (isset($settings['locale']['angle'][$units]['coefficient'])) ? $settings['locale']['angle'][$units]['coefficient'] : $settings['locale']['angle']['default']['coefficient'];
 $degPreSign = (isset($settings['locale']['angle'][$units]['sign']['pre'])) ? $settings['locale']['angle'][$units]['sign']['pre'] : $settings['locale']['angle']['default']['sign']['pre'];
 $degSign = (isset($settings['locale']['angle'][$units]['sign']['post'])) ? $settings['locale']['angle'][$units]['sign']['post'] : $settings['locale']['angle']['default']['sign']['post'];

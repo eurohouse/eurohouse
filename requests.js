@@ -1,9 +1,27 @@
 function omniRequest(mode, sort, group, angle, input, output, args, lock, ref, path) {
     window.location.href = 'index.php?mode='+mode+'&sort='+sort+'&group='+group+'&angle='+angle+'&input='+input+'&output='+output+'&args='+args+'&lock='+lock+'&ref='+ref+'&path='+path;
 }
-function omniAuthRequest(auth, login, password) {
-    var cryptedPassword = CryptoJS.MD5(password).toString();
-    window.location.href = 'index.php?mode='+requestMode.value+'&sort='+requestSort.value+'&group='+requestGroup.value+'&angle='+requestAngle.value+'&input='+requestInput.value+'&output='+requestOutput.value+'&args='+requestArgs.value+'&lock='+requestLock.value+'&ref='+requestRef.value+'&path='+requestPath.value+'&auth='+auth+'&login='+login+'&password='+cryptedPassword;
+function omniAuthRequest(auth, login, pass) {
+    var cryptPass = CryptoJS.MD5(pass).toString();
+    var form = document.createElement('form');
+    form.method = 'POST'; form.action = window.location.href;
+    var hiddenField = document.createElement('input');
+    hiddenField.type = 'hidden';
+    hiddenField.name = 'auth';
+    hiddenField.value = auth;
+    form.appendChild(hiddenField);
+    var hiddenField = document.createElement('input');
+    hiddenField.type = 'hidden';
+    hiddenField.name = 'login';
+    hiddenField.value = login;
+    form.appendChild(hiddenField);
+    var hiddenField = document.createElement('input');
+    hiddenField.type = 'hidden';
+    hiddenField.name = 'password';
+    hiddenField.value = cryptPass;
+    form.appendChild(hiddenField);
+    document.body.appendChild(form);
+    form.submit();
 }
 function omniGo(mode) {
     omniRequest(mode, requestSort.value, requestGroup.value, requestAngle.value, requestInput.value, requestOutput.value, requestArgs.value, requestLock.value, omniRef(), requestPath.value);

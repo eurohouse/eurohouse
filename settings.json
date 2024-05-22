@@ -327,6 +327,9 @@
         "args": "", "lock": "true",
         "ref": "menu", "path": "."
     },
+    "post_request": {
+        "auth": "", "login": "", "password": ""
+    },
     "vocabulary": {
         "RU": {
             "Name/Position:": "Имя/Позиция дисплея:",

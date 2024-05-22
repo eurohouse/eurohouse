@@ -21,7 +21,7 @@
 </div>
 <div class='topBarItem'>
     <p align='center' class='block'>
-    <?php if (isset($_SESSION['user'])) { ?>
+    <?php if (isAuth()) { ?>
         <input type="image" onmouseover="soundButton();" id="buttonChat" class="power" onclick="setdata('chat', flip(sysDefChat.value)); omniBox.focus();" src="<?=($session['chat'] != 0) ? $prefix.'book.png'.$suffix : $prefix.'bash.png'.$suffix;?>">
         <input type='text' id="omniBox" style="width:58%;position:relative;" placeholder="<?=term('Type expression and press ENTER', $settings['vocabulary'], $session['units']);?>" value="" onkeydown="
         if (event.keyCode == 13) {
@@ -150,7 +150,7 @@
         echo $prefix.'list.png'.$suffix;
     } ?>">
     <input type="image" onmouseover="soundButton();" id="buttonUpdate" class="power" onclick="systemUpdate(sysDefBackload.value);window.location.reload();" src="<?=$prefix.'update.png'.$suffix;?>">
-    <input type="image" onmouseover="soundButton();" id="buttonUserStatus" class="power" onclick="omniAuthRequest('signout','','');" src="<?php if (isset($_SESSION['user'])) {
+    <input type="image" onmouseover="soundButton();" id="buttonUserStatus" class="power" onclick="omniAuthRequest('signout','','');" src="<?php if (isAuth()) {
         echo $prefix.'user.png'.$suffix;
     } else {
         echo $prefix.'anonym.png'.$suffix;

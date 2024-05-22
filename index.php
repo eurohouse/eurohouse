@@ -13,6 +13,8 @@
 <body>
 <div class='overlay'><?php foreach ($request as $key=>$value) { ?>
     <input type='hidden' id="<?='request'.ucfirst($key);?>" value="<?=$value;?>">
+<?php } foreach ($postRequest as $key=>$value) { ?>
+    <input type='hidden' id="<?='postRequest'.camel($key);?>" value="<?=$value;?>">
 <?php } foreach ($session as $key=>$value) { ?>
     <input type='hidden' id="<?='sysDef'.camel($key);?>" value="<?=$value;?>">
 <?php } foreach ($locks as $key=>$value) { ?>
@@ -24,7 +26,7 @@
 <input type='hidden' id='sysDefPrefix' value="<?=$prefix;?>">
 <input type='hidden' id='sysDefReticlePrefix' value="<?=$reticlePrefix;?>">
 <input type='hidden' id='sysDefSuffix' value="<?=$suffix;?>">
-<input type='hidden' id="sysDefIsSession" value="<?=(isset($_SESSION['user']));?>">
+<input type='hidden' id="sysDefIsSession" value="<?=(isAuth());?>">
 <input type='hidden' id="sysDefSessionID" value="<?=$sessionID;?>">
 <input type='hidden' id="sysDefPostBackEff" value="0">
 <input type='hidden' id="sysDefPostTickEff" value="0">

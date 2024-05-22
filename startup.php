@@ -1,6 +1,6 @@
 <script>
 window.onload = function() {
-    <?php if (isset($_SESSION['user'])) { ?>
+    <?php if (isAuth()) { ?>
         document.getElementById('omniBox').focus();
     <?php } else { ?>
         document.getElementById('omniBoxAuthLogin').focus();
@@ -278,7 +278,7 @@ function wallpaper_engine() {
             var valPwrTh = 0; var valPwrBal = '';
             if (sysDefPower.value <= -666) {
                 delete_user(sysDefSessionID.value);
-                omniAuthRequest('signout','','');
+                omniAuthRequest('signout', '', '');
             }
             $('body').css('background-image', 'url('+pager(data, 1)+')');
             var varsNum = sysDefVarsArr.value.split(';').length;
