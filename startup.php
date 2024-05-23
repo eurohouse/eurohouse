@@ -104,12 +104,12 @@ function world_clock() {
                 $('#buttonAutoplay').attr('src', sysDefPrefix.value+'autoplay.png'+sysDefSuffix.value);
             }
             $('#buttonVintage').attr('src', sysDefPrefix.value+'diamante.png'+sysDefSuffix.value);
+            $('#buttonVintageFilm').attr('src', sysDefPrefix.value+'movie.png'+sysDefSuffix.value);
             if (sysDefGloss.value != 0) {
                 $('#buttonGloss').attr('src', sysDefPrefix.value+'parfum.png'+sysDefSuffix.value);
             } else {
                 $('#buttonGloss').attr('src', sysDefPrefix.value+'idea.png'+sysDefSuffix.value);
             }
-            $('#buttonPlus').attr('src', sysDefPrefix.value+'plus.png'+sysDefSuffix.value);
             if (audioPlayer.paused != true) {
                 $('#buttonPlay').attr('src', sysDefPrefix.value+'pause.png'+sysDefSuffix.value);
             } else {

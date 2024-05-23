@@ -71,12 +71,19 @@
 </div>
 <div class='topBarItem'>
     <p align='center' class='block'>
-    <input type='button' id="currentTime" style="width:33%;position:relative;" onclick="setdata('timedisp', flip(sysDefTimedisp.value));" value="00:00:00">
     <input type="image" onmouseover="soundButton();" id="buttonTime" class="power" onclick="setdata('benchmark', flip(sysDefBenchmark.value));" src="<?=$prefix.'time.png'.$suffix;?>">
-    <input type="image" onmouseover="soundButton();" id="buttonAutoplay" class="power" onclick="setdata('autoplay', flip(sysDefAutoplay.value));" src="<?=$prefix.'autoplay.png'.$suffix;?>">
+    <input type='button' id="currentTime" style="width:32%;position:relative;" onclick="setdata('timedisp', flip(sysDefTimedisp.value));" value="00:00:00">
+    <input type="image" onmouseover="soundButton();" id="buttonVintageFilm" class="power" onclick="if ((sysDefSepia.value == 0) && (sysDefGrayscale.value == 0)) {
+        setdata('sepia', 50);
+        setdata('grayscale', 50);
+    } else {
+        setdata('sepia', 0);
+        setdata('grayscale', 0);
+    }" src="<?=$prefix.'movie.png'.$suffix;?>">
     <input type="image" onmouseover="soundButton();" id="buttonVintage" class="power" onclick="setdata('vintage', flip(sysDefVintage.value));" src="<?=$prefix.'diamante.png'.$suffix;?>">
     <input type="image" onmouseover="soundButton();" id="buttonGloss" class="power" onclick="setdata('gloss', flip(sysDefGloss.value));" src="<?=($session['gloss'] != 0) ? $prefix.'parfum.png'.$suffix : $prefix.'idea.png'.$suffix;?>">
-    <input type="number" min='0' max='23' step='1' id="setTimeHour" style="width:16%;" value="<?=$session['hour'];?>" oninput="setdata('hour', pad(setTimeHour.value, 2)); handleInput(this.value, true);" onkeydown="if (event.keyCode == 27) {
+    <input type="number" min='0' max='23' step='1' id="setTimeHour" style="width:16%;" value="<?=$session['hour'];?>" oninput="setdata('hour', pad(setTimeHour.value, 2));
+    handleInput(this.value, true);" onkeydown="if (event.keyCode == 27) {
         setTimeHour.value = 12; setdata('hour', setTimeHour.value);
     } else if (event.keyCode == 8) {
         handleInput(this.value);
@@ -88,7 +95,8 @@
 </div>
 <div class='topBarItem'>
     <p align='center' class='block'>
-    <input type='button' id="alarmTime" style="width:42%;position:relative;" onclick="setdata('memo', ''); pauseAudio(alarmPlayer);" value="00:00:00">
+    <input type="image" onmouseover="soundButton();" id="buttonAutoplay" class="power" onclick="setdata('autoplay', flip(sysDefAutoplay.value));" src="<?=$prefix.'autoplay.png'.$suffix;?>">
+    <input type='button' id="alarmTime" style="width:32%;position:relative;" onclick="setdata('memo', ''); pauseAudio(alarmPlayer);" value="00:00:00">
     <input type="image" id="buttonPlay" onmouseover="soundButton();" class="power" onclick="if (sysDefPlaying.value == 1) {
         omniPause();
     } else {
