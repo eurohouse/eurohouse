@@ -7,7 +7,7 @@
     "intervals": {
         "world_clock": 1000,
         "mailing_list": 1000,
-        "automator": 300,
+        "automator": 250,
         "visual_effects": 300,
         "wallpaper_engine": 1000
     },
