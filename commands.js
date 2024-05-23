@@ -84,26 +84,20 @@ function executeMacros(input, index = 0, length = 1) {
             }
         }
     } else if (input.includes(': ')) {
-        rep = input.split(': ');
+        rep = input.split(': '); var sansPlus = '';
         if (rep[0] == 'memo') {
-            if ((rep[1].includes('+')) && (rep[1].startsWith('+'))) {
-                var sansPlus = parseInt(rep[1].replace('+', ''));
-                var sansMin = '';
-                if ((sansPlus.endsWith('h'))) {
-                    sansMin = parseInt(sansPlus.replace('h', '')) * 3600;
-                    setdata(rep[0], (Math.round(Date.now() / 1000) + parseInt(sansMin)));
-                } else if ((sansPlus.endsWith('min'))) {
-                    sansMin = parseInt(sansPlus.replace('min', '')) * 60;
-                    setdata(rep[0], (Math.round(Date.now() / 1000) + parseInt(sansMin)));
-                } else if (sansPlus == 0) {
-                    setdata('memo', '');
-                    pauseAudio(alarmPlayer);
-                } else if (isInt(sansPlus)) {
-                    setdata(rep[0], (Math.round(Date.now() / 1000) + parseInt(sansPlus)));
-                } else {
-                    setdata('memo', '');
-                    pauseAudio(alarmPlayer);
-                }
+            if ((rep[1].includes('h')) && (rep[1].startsWith('+'))) {
+                sansPlus = parseInt(rep[1].replace('+', '').replace('h', '')) * 3600;
+                setdata(rep[0], (Math.round(Date.now() / 1000) + parseInt(sansPlus)));
+            } else if ((rep[1].includes('min')) && (rep[1].startsWith('+'))) {
+                sansPlus = parseInt(rep[1].replace('+', '').replace('min', '')) * 60;
+                setdata(rep[0], (Math.round(Date.now() / 1000) + parseInt(sansPlus)));
+            } else if ((rep[1].includes('s')) && (rep[1].startsWith('+'))) {
+                sansPlus = parseInt(rep[1].replace('+', '').replace('s', ''));
+                setdata(rep[0], (Math.round(Date.now() / 1000) + parseInt(sansPlus)));
+            } else if (isInt(rep[1].replace('+', '')) && (rep[1].startsWith('+'))) {
+                sansPlus = parseInt(rep[1].replace('+', ''));
+                setdata(rep[0], (Math.round(Date.now() / 1000) + parseInt(sansPlus)));
             } else if ((rep[1] == '') || (rep[1] == 0)) {
                 setdata('memo', '');
                 pauseAudio(alarmPlayer);

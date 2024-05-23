@@ -88,8 +88,7 @@
 </div>
 <div class='topBarItem'>
     <p align='center' class='block'>
-    <input type='button' id="alarmTime" style="width:33%;position:relative;" onclick="setdata('memo', ''); pauseAudio(alarmPlayer);" value="00:00:00">
-    <input type="image" onmouseover="soundButton();" id="buttonPlus" class="power" onclick="setdata('memo', (Math.round(Date.now() / 1000) + 10));" src="<?=$prefix.'plus.png'.$suffix;?>">
+    <input type='button' id="alarmTime" style="width:42%;position:relative;" onclick="setdata('memo', ''); pauseAudio(alarmPlayer);" value="00:00:00">
     <input type="image" id="buttonPlay" onmouseover="soundButton();" class="power" onclick="if (sysDefPlaying.value == 1) {
         omniPause();
     } else {
