@@ -90,10 +90,10 @@ function executeMacros(input, index = 0, length = 1) {
                 var sansPlus = parseInt(rep[1].replace('+', ''));
                 var sansMin = '';
                 if ((sansPlus.endsWith('h'))) {
-                    sansMin = parseInt(sansPlus) * 3600;
+                    sansMin = parseInt(sansPlus.replace('h', '')) * 3600;
                     setdata(rep[0], (Math.round(Date.now() / 1000) + parseInt(sansMin)));
                 } else if ((sansPlus.endsWith('min'))) {
-                    sansMin = parseInt(sansPlus) * 60;
+                    sansMin = parseInt(sansPlus.replace('min', '')) * 60;
                     setdata(rep[0], (Math.round(Date.now() / 1000) + parseInt(sansMin)));
                 } else if (sansPlus == 0) {
                     setdata('memo', '');
