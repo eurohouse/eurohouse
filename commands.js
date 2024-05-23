@@ -88,11 +88,21 @@ function executeMacros(input, index = 0, length = 1) {
         if (rep[0] == 'memo') {
             if ((rep[1].includes('+')) && (rep[1].startsWith('+'))) {
                 var sansPlus = parseInt(rep[1].replace('+', ''));
-                if (sansPlus == 0) {
+                var sansMin = '';
+                if ((sansPlus.endsWith('h'))) {
+                    sansMin = parseInt(sansPlus) * 3600;
+                    setdata(rep[0], (Math.round(Date.now() / 1000) + parseInt(sansMin)));
+                } else if ((sansPlus.endsWith('min'))) {
+                    sansMin = parseInt(sansPlus) * 60;
+                    setdata(rep[0], (Math.round(Date.now() / 1000) + parseInt(sansMin)));
+                } else if (sansPlus == 0) {
                     setdata('memo', '');
                     pauseAudio(alarmPlayer);
+                } else if (isInt(sansPlus)) {
+                    setdata(rep[0], (Math.round(Date.now() / 1000) + parseInt(sansPlus)));
                 } else {
-                    setdata(rep[0], (Math.round(Date.now() / 1000) + sansPlus));
+                    setdata('memo', '');
+                    pauseAudio(alarmPlayer);
                 }
             } else if ((rep[1] == '') || (rep[1] == 0)) {
                 setdata('memo', '');
