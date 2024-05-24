@@ -66,11 +66,13 @@ function world_clock() {
             } else {
                 $('#buttonLock').attr('src', sysDefPrefix.value+'lock.png'+sysDefSuffix.value);
             }
-            if (Object.values(msgfilter(sysDefMsgData.value, sysDefFind.value))[0] != '') {
-                $('#showUsUrgent').text(Object.values(msgfilter(sysDefMsgData.value, sysDefFind.value))[0]);
+            var msgcnt = Object.keys(msgfilter(sysDefMsgData.value, sysDefFind.value)).length - 1;
+            if (sysDefMsgCounter.value <= 0) {
+                sysDefMsgCounter.value = msgcnt;
             } else {
-                $('#showUsUrgent').text('');
+                sysDefMsgCounter.value = sysDefMsgCounter.value - 1;
             }
+            $('#showUsUrgent').text(Object.values(msgfilter(sysDefMsgData.value, sysDefFind.value))[sysDefMsgCounter.value]);
             if (tickPanel.split('')[4] != 0) {
                 $('#buttonPrivate').attr('src', sysDefPrefix.value+'home.png'+sysDefSuffix.value);
             } else {

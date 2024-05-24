@@ -39,6 +39,7 @@
 <input type='hidden' id="sysDefAutoState" value="<?=$automateData[$sessionID];?>">
 <input type='hidden' id="sysDefFriendData" value="<?=valstr($friendData,';',':');?>">
 <input type='hidden' id="sysDefMsgData" value="">
+<input type='hidden' id="sysDefMsgCounter" value="0">
 <input type='hidden' id="sysDefMusicBox" value="<?=implode('//', $musicBox);?>">
 <input type='hidden' id="sysDefCodexBox" value="<?=implode('//', $codexBox);?>">
 <input type='hidden' id="sysDefPower" value="<?=$powersData[$sessionID];?>">
