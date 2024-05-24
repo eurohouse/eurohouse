@@ -25,9 +25,9 @@ if (($sub == $obj) || ($poweredData[$sub] < 0) || (frndOf($frndData, $sub, $obj)
     $handle = $autoObjects[rand(0, (count($autoObjects)-1))];
     $status = 200;
 } else {
-    $subUser = $sub;
-    $objUser = $obj;
-    $handle = $han;
+    $subUser = "";
+    $objUser = "";
+    $handle = "";
     $status = 500;
 }
 echo $subUser."\r\n".$objUser."\r\n".$handle."\r\n".$status;
