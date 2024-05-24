@@ -384,16 +384,14 @@ function automator() {
             var subName = miniPager(data, 0);
             var objName = miniPager(data, 1);
             var handle = miniPager(data, 2);
-            var status = miniPager(data, 3);
             var subFrnd = friendsOf(frndPower, subName);
             if (requestMode.value == 'statistics') {
-                if (status == 200) {
-                    userStatsAuto.innerText = status+' OK @'+subName+' @'+handle;
+                if (subName == 'root') {
+                    userStatsAuto.innerText = '@'+subName+'#'+objName+'&'+handle;
                 } else {
-                    userStatsAuto.innerText = status+' ERROR';
+                    userStatsAuto.innerText = '@'+subName+'$'+objName+'&'+handle;
                 }
             }
-            if (status == 200) {
                 bind(subName, handle);
                 if (objName == handle) {
                     dominate(subName, objName, 1, 1, 0);

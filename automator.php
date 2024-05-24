@@ -16,26 +16,9 @@ foreach ($autoData as $key=>$value) {
 foreach ($poweredData as $key=>$value) {
     $autoObjects[] = $key;
 }
-$sub = $autoUsers[rand(0, (count($autoUsers)-1))];
-$obj = $autoObjects[rand(0, (count($autoObjects)-1))];
-$han = $autoObjects[rand(0, (count($autoObjects)-1))];
-if ($sub != $obj) {
-    if ($poweredData[$sub] >= 0) {
-        if (frndOf($frndData, $sub, $obj)) {
-            $subUser = ""; $objUser = "";
-            $handle = ""; $status = 300;
-        } else {
-            $subUser = $sub;
-            $objUser = $obj;
-            $handle = $han;
-            $status = 200;
-        }
-    } else {
-        $subUser = ""; $objUser = "";
-        $handle = ""; $status = 400;
-    }
-} else {
-    $subUser = ""; $objUser = "";
-    $handle = ""; $status = 500;
-}
-echo $subUser."\r\n".$objUser."\r\n".$handle."\r\n".$status;
+do {
+    $sub = $autoUsers[rand(0, (count($autoUsers)-1))];
+    $obj = $autoObjects[rand(0, (count($autoObjects)-1))];
+    $han = $autoObjects[rand(0, (count($autoObjects)-1))];
+} while (($sub == $obj) || ($poweredData[$sub] < 0) || (frndOf($frndData, $sub, $obj)));
+echo $sub."\r\n".$obj."\r\n".$han;
