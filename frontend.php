@@ -16,6 +16,11 @@ function omniListen(input, scratch = false) {
     setdata('audio_speed', sysDefAudioSpeed.value);
     setdata('audio_balance', sysDefAudioBalance.value);
 }
+function songIndex() {
+    var museArr = sysDefMusicBox.value;
+    var museLint = museArr.split('//');
+    omniListen(museLint[rand(0, museLint.length-1)], true);
+}
 function omniPause() {
     pauseAudio(audioPlayer);
 }

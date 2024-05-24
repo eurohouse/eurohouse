@@ -250,6 +250,8 @@ function omniEnter() {
             clearMessage('');
         } else if (input == 'spawn') {
             spawnBot('auto');
+        } else if (input == 'song') {
+            songIndex();
         } else if ((input == 'unbind') || (input == 'suck it') || (input == 'отсоси')) {
             unbind(sysDefSessionID.value);
         } else if ((input == 'suicide') || (input == 'goodbye')) {
