@@ -19,7 +19,7 @@ foreach ($poweredData as $key=>$value) {
 $subUser = $autoUsers[rand(0, (count($autoUsers)-1))];
 $objUser = $autoObjects[rand(0, (count($autoObjects)-1))];
 $handle = $autoObjects[rand(0, (count($autoObjects)-1))];
-while (($subUser == $objUser) || ($poweredData[$subUser] < 0) || (frndOf($frndData, $subUser, $objUser)) || (frndOf($frndData, $subUser, $handle))) {
+if (($subUser == $objUser) || ($poweredData[$subUser] < 0) || (frndOf($frndData, $subUser, $objUser)) || (frndOf($frndData, $subUser, $handle))) {
     $subUser = $autoUsers[rand(0, (count($autoUsers)-1))];
     $objUser = $autoObjects[rand(0, (count($autoObjects)-1))];
     $handle = $autoObjects[rand(0, (count($autoObjects)-1))];
