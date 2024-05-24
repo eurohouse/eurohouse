@@ -98,6 +98,11 @@ function french(array $voc, $units = 'EU'): string {
         $showM = $voc['locale']['french']['default'][ceil($curD / 30) - 1];
     } return $showD.' '.$showM;
 }
+function frndOf($arr, $id, $it) {
+    $ind = $arr[$id];
+    $ls = explode(',', $ind);
+    return (in_array($it, $ls));
+}
 function valstr(array $arr, $y, $x): string {
     $lines = ''; foreach ($arr as $key=>$val) {
         $lines .= $key.$x.$val.$y;

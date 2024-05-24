@@ -440,27 +440,6 @@ function highScores(arr) {
     }
     return res;
 }
-function opcode(sub, obj, han) {
-    var res = '';
-    if (sub != '') {
-        if (obj != '') {
-            if (sub != obj) {
-                if (obj == han) {
-                    res = '@'+sub+' -> @'+obj;
-                } else {
-                    res = '@'+sub+' :: @'+han;
-                }
-            } else {
-                res = '@'+sub+' :: SELF';
-            }
-        } else {
-            res = '@'+sub+' :: NULL';
-        }
-    } else {
-        res = '';
-    }
-    return res;
-}
 function systemUpdate(query) {
     var parts = query.toString('').split(' ');
     for (i = 0; i < parts.length; i++) {

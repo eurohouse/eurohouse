@@ -379,7 +379,15 @@ function automator() {
             var handle = miniPager(data, 2);
             var subFrnd = friendsOf(frndPower, subName);
             if (requestMode.value == 'statistics') {
-                userStatsAuto.innerText = opcode(subName, objName, handle);
+                if ((subName != '') && (objName != '') && (subName != objName)) {
+                    if (objName == handle) {
+                        userStatsAuto.innerText = subName+' :: '+objName;
+                    } else {
+                        userStatsAuto.innerText = subName+' ['+handle+']';
+                    }
+                } else {
+                    userStatsAuto.innerText = "";
+                }
             }
             if ((subName in autoPower) && (autoPower[subName] == 'auto') && (subName != '') && (objName in tabPower) && (!(subFrnd.includes(objName))) && (objName != '')) {
                 bind(subName, handle);
