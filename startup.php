@@ -387,14 +387,14 @@ function automator() {
             var status = miniPager(data, 3);
             var subFrnd = friendsOf(frndPower, subName);
             if (requestMode.value == 'statistics') {
-                if ((subName != '') && (objName != '') && (subName != objName)) {
+                if ((subName != '') || (objName != '') || (subName != objName) || (status == 200)) {
                     if (objName == handle) {
-                        userStatsAuto.innerText = subName+' :: '+objName;
+                        userStatsAuto.innerText = status+' OK '+subName+'*'+objName;
                     } else {
-                        userStatsAuto.innerText = subName+' ['+handle+']';
+                        userStatsAuto.innerText = status+' OK '+subName+'+'+handle;
                     }
                 } else {
-                    userStatsAuto.innerText = "";
+                    userStatsAuto.innerText = status+' ERROR';
                 }
             }
             if ((subName in autoPower) && (autoPower[subName] == 'auto') && (subName != '') && (objName in tabPower) && (!(subFrnd.includes(objName))) && (objName != '') && (status == 200)) {
