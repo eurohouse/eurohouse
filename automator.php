@@ -20,7 +20,7 @@ for ($i = 0; $i < 10; $i++) {
     $sub = $autoUsers[rand(0, (count($autoUsers)-1))];
     $obj = $autoObjects[rand(0, (count($autoObjects)-1))];
     $han = $autoObjects[rand(0, (count($autoObjects)-1))];
-    if (($sub != $obj) || ($poweredData[$sub] >= 0) || (!frndOf($frndData, $sub, $obj))) {
+    if ((($sub != $obj) || ($poweredData[$sub] >= 0)) && (!frndOf($frndData, $sub, $obj))) {
         $subUser = $sub; $objUser = $obj;
         $handle = $han; $status = 200;
         break;
