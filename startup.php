@@ -107,6 +107,11 @@ function world_clock() {
             } else {
                 $('#buttonAutoplay').attr('src', sysDefPrefix.value+'autoplay.png'+sysDefSuffix.value);
             }
+            if (sysDefShuffle.value != 0) {
+                $('#buttonShuffle').attr('src', sysDefPrefix.value+'dice.png'+sysDefSuffix.value);
+            } else {
+                $('#buttonShuffle').attr('src', sysDefPrefix.value+'code.png'+sysDefSuffix.value);
+            }
             $('#buttonVintage').attr('src', sysDefPrefix.value+'diamante.png'+sysDefSuffix.value);
             $('#buttonVintageFilm').attr('src', sysDefPrefix.value+'movie.png'+sysDefSuffix.value);
             if (sysDefGloss.value != 0) {

@@ -1,6 +1,6 @@
 <div class='topBarItem'>
     <p align='center' class='block'>
-    <select id="ErotoOlympus" style="width:50%;position:relative;" onchange="setdata('background', ErotoOlympus.options[ErotoOlympus.selectedIndex].id);">
+    <select id="ErotoOlympus" style="width:51%;position:relative;" onchange="setdata('background', ErotoOlympus.options[ErotoOlympus.selectedIndex].id);">
     <?php foreach (categories($olympus, $locks['background']) as $key=>$val) { ?>
     <option disabled><?=titled($val, $session['units']);?></option>
     <?php foreach (categoryList($key) as $value) { ?>
@@ -23,7 +23,7 @@
     <p align='center' class='block'>
     <?php if (isAuth()) { ?>
         <input type="image" onmouseover="soundButton();" id="buttonChat" class="power" onclick="setdata('chat', flip(sysDefChat.value)); omniBox.focus();" src="<?=($session['chat'] != 0) ? $prefix.'book.png'.$suffix : $prefix.'bash.png'.$suffix;?>">
-        <input type='text' id="omniBox" style="width:58%;position:relative;" placeholder="<?=term('Type expression and press ENTER', $settings['vocabulary'], $session['units']);?>" value="" onkeydown="
+        <input type='text' id="omniBox" style="width:59%;position:relative;" placeholder="<?=term('Type expression and press ENTER', $settings['vocabulary'], $session['units']);?>" value="" onkeydown="
         if (event.keyCode == 13) {
             omniEnter();
         } else if (event.keyCode == 27) {
@@ -80,9 +80,10 @@
         setdata('sepia', 0);
         setdata('grayscale', 0);
     }" src="<?=$prefix.'movie.png'.$suffix;?>">
+    <input type="image" onmouseover="soundButton();" id="buttonShuffle" class="power" onclick="setdata('shuffle', flip(sysDefShuffle.value));" src="<?=($session['shuffle'] != 0) ? $prefix.'dice.png'.$suffix : $prefix.'code.png'.$suffix;?>">
     <input type="image" onmouseover="soundButton();" id="buttonVintage" class="power" onclick="setdata('vintage', flip(sysDefVintage.value));" src="<?=$prefix.'diamante.png'.$suffix;?>">
     <input type="image" onmouseover="soundButton();" id="buttonGloss" class="power" onclick="setdata('gloss', flip(sysDefGloss.value));" src="<?=($session['gloss'] != 0) ? $prefix.'parfum.png'.$suffix : $prefix.'idea.png'.$suffix;?>">
-    <input type="number" min='0' max='23' step='1' id="setTimeHour" style="width:16%;" value="<?=$session['hour'];?>" oninput="setdata('hour', pad(setTimeHour.value, 2));
+    <input type="number" min='0' max='23' step='1' id="setTimeHour" style="width:9%;" value="<?=$session['hour'];?>" oninput="setdata('hour', pad(setTimeHour.value, 2));
     handleInput(this.value, true);" onkeydown="if (event.keyCode == 27) {
         setTimeHour.value = 12; setdata('hour', setTimeHour.value);
     } else if (event.keyCode == 8) {
@@ -103,7 +104,7 @@
         omniListen(hex2bin(sysDefMelody.value));
     }" src="<?=$prefix.'play.png'.$suffix;?>">
     <input type="image" onmouseover="soundButton();" id="buttonPitched" class="power" onclick="setdata('pitch_lock', flip(sysDefPitchLock.value));" src="<?=($session['pitch_lock']) ? $prefix.'microphone.png'.$suffix : $prefix.'volume.png'.$suffix;?>">
-    <select id="avatarPicker" style="width:16%;position:relative;" onchange="setdata('avatar', avatarPicker.options[avatarPicker.selectedIndex].id);">
+    <select id="avatarPicker" style="width:18%;position:relative;" onchange="setdata('avatar', avatarPicker.options[avatarPicker.selectedIndex].id);">
     <?php foreach (excpkg($kaiser, $locks['avatar']) as $key=>$value) { ?>
     <option id="<?=explode('.', $value)[1];?>" <?php if ($session['avatar'] == explode('.', $value)[1]) { ?> selected <?php } ?>>
         <?=explode('.', $value)[1];?>
@@ -121,7 +122,7 @@
 <div class='topBarItem'>
     <p align='center' class='block'>
     <input type="image" onmouseover="soundButton();" id="buttonAutomator" class="power" onclick="automate();" src="<?=($automateData[$sessionID] == 'auto') ? $prefix.'wheel.png'.$suffix : $prefix.'steer.png'.$suffix;?>">
-    <input type='button' id="showUsInfoPower" style="width:28%;position:relative;" value="<?=intval($powersData[$sessionID]);?>">
+    <input type='button' id="showUsInfoPower" style="width:29%;position:relative;" value="<?=intval($powersData[$sessionID]);?>">
     <input type="image" onmouseover="soundButton();" id="buttonBroke" class="power" onclick="unbind(sysDefSessionID.value);" src="<?=$prefix.'chain.png'.$suffix;?>">
     <input type="image" onmouseover="soundButton();" id="buttonReticle" class="power" onclick="dominate(sysDefSessionID.value, arrjob(sysDefBindData.value,';',':')[sysDefSessionID.value], 1, 1, 0); playAudio(hitPlayer, sysDefHitSound.value);" src="<?=$reticlePrefix.$session['reticle'].'.png'.$suffix;?>">
     <input type='button' id="showUsInfoBond" style="width:30%;position:relative;" value="<?='@'.$sessionID;?>">
@@ -136,7 +137,7 @@
     <option id="<?=$selID;?>" <?php if ($session['units'] == $selID) { ?> selected <?php } ?>><?=$selID;?></option>
     <?php } ?>
     </select>
-    <select id="setTheme" style="width:17%;position:relative;" onchange="setdata('theme', setTheme.options[setTheme.selectedIndex].id);window.location.reload();">
+    <select id="setTheme" style="width:18%;position:relative;" onchange="setdata('theme', setTheme.options[setTheme.selectedIndex].id);window.location.reload();">
     <?php foreach ($thematic as $key=>$value) { ?>
         <option id="<?=explode('.', $value)[0];?>" <?php if ($session['theme'] == explode('.', $value)[0]) { ?> selected <?php } ?>><?=explode('.', $value)[0];?></option>
     <?php } ?></select>
