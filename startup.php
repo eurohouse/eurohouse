@@ -66,11 +66,14 @@ function world_clock() {
             } else {
                 $('#buttonLock').attr('src', sysDefPrefix.value+'lock.png'+sysDefSuffix.value);
             }
-            if (tickPanel.split('')[4] != 0) {
+            if (Object.values(msgfilter(sysDefMsgData.value, sysDefFind.value))[0] != '') {
                 $('#showUsUrgent').text(Object.values(msgfilter(sysDefMsgData.value, sysDefFind.value))[0]);
+            } else {
+                $('#showUsUrgent').text('');
+            }
+            if (tickPanel.split('')[4] != 0) {
                 $('#buttonPrivate').attr('src', sysDefPrefix.value+'home.png'+sysDefSuffix.value);
             } else {
-                $('#showUsUrgent').text(Object.values(msgfilter(sysDefMsgData.value, sysDefFind.value))[0]);
                 $('#buttonPrivate').attr('src', sysDefPrefix.value+'world.png'+sysDefSuffix.value);
             }
             if (sysDefPitchLock.value != 0) {
