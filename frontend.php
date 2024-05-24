@@ -404,30 +404,62 @@ function scores(sta) {
     var obj = arrjob(arr, ';', ':');
     var keys = Object.keys(obj);
     var vals = Object.values(obj);
-    var names = finarr(vals).reverse();
-    var res = '';
-    for (i = 0; i < vals.length; i++) {
-        if (sta == 'bind') {
-            if ((keys[i] !== undefined) && (keys[i] != '')) {
-                if (names[i] != obj[names[i]]) {
-                    res += '@'+names[i]+' :: @'+obj[names[i]]+'\n';
+    var res = ''; var sortable = {}; var ordered = {};
+    if (sta == 'bind') {
+        ordered = Object.keys(obj).sort().reduce(
+            (obd, key) => { 
+                obd[key] = obj[key]; 
+                return obd;
+            }, {}
+        );
+        for (ind in ordered) {
+            if ((ordered[ind] !== undefined) || (ind != '')) {
+                if (ordered[ind] != ind) {
+                    res += '@'+ind+' :: @'+ordered[ind]+'\n';
                 } else {
-                    res += '@'+names[i]+' :: SELF\n';
+                    res += '@'+ind+' :: SELF\n';
                 }
             }
-        } else if (sta == 'auto') {
-
-        } else if (sta == 'friend') {
-            if ((keys[i] !== undefined) && (keys[i] != '')) {
-                if (obj[names[i]] != '') {
-                    res += '@'+names[i]+' ['+obj[names[i]]+']\n';
+        }
+    } else if (sta == 'auto') {
+        ordered = Object.keys(obj).sort().reduce(
+            (obd, key) => { 
+                obd[key] = obj[key]; 
+                return obd;
+            }, {}
+        );
+        for (ind in ordered) {
+            if ((ordered[ind] !== undefined) || (ind != '')) {
+                if (ordered[ind] == 'auto') {
+                    res += '@'+ind+' AUTO\n';
                 } else {
-                    res += '@'+names[i]+' [NULL]\n';
+                    res += '@'+ind+' MANUAL\n';
                 }
             }
-        } else {
-            if ((names[i] !== undefined) && (keys[i] != '')) {
-                res += '@'+arraySearch(names[i], obj)+' ('+names[i]+')\n';
+        }
+    } else if (sta == 'friend') {
+        ordered = Object.keys(obj).sort().reduce(
+            (obd, key) => { 
+                obd[key] = obj[key]; 
+                return obd;
+            }, {}
+        );
+        for (ind in ordered) {
+            if ((ordered[ind] !== undefined) || (ind != '')) {
+                if (ordered[ind] != '') {
+                    res += '@'+ind+' ['+ordered[ind]+']\n';
+                } else {
+                    res += '@'+ind+' [NULL]\n';
+                }
+            }
+        }
+    } else {
+        sortable = Object.fromEntries(
+            Object.entries(obj).sort(([,a],[,b]) => b - a)
+        );
+        for (ind in sortable) {
+            if ((sortable[ind] !== undefined) || (ind != '')) {
+                res += '@'+ind+' ('+sortable[ind]+')\n';
             }
         }
     }

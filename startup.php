@@ -42,9 +42,6 @@ function world_clock() {
                 videoRatInd.value = mixers[4];
                 videoBalInd.value = mixers[5];
             }
-            if (requestMode.value == 'statistics') {
-                userStats.innerText = scores(sysDefStats.value);
-            }
             var tickCode = pager(data, 1).split(':')[1];
             var tickPanel = pager(data, 1).split(':')[2];
             window.devicePixelRatio = pager(data, 1).split(':')[0];
@@ -381,6 +378,7 @@ function automator() {
             var status = miniPager(data, 3);
             var subFrnd = friendsOf(frndPower, subName);
             if (requestMode.value == 'statistics') {
+                userStats.innerText = scores(sysDefStats.value);
                 if (subName == 'root') {
                     userStatsAuto.innerText = status+':@'+subName+'#'+objName+'&'+handle;
                 } else {
