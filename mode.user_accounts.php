@@ -19,16 +19,20 @@ $iconSize = 50; $relBind = str_replace('_session.json', '', $allUsers); ?>
     <td><?=$cookieLeft['title'];?></td>
     <td><?=$value;?></td><td>
     <p align='center' class='block'>
-    <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="bind(this.name);" src="<?=$prefix.'chain.png'.$suffix;?>">
+    <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="bind(sysDefSessionID.value, this.name);" src="<?=$prefix.'chain.png'.$suffix;?>">
+    <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="addFriend(this.name);" src="<?=$prefix.'user.png'.$suffix;?>">
+    <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="dropFriend(this.name);" src="<?=$prefix.'anonym.png'.$suffix;?>">
     <?php if (isset($_SESSION['user'])) {
         if ($sessionID == 'root') { ?>
             <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="delete_user(this.name);window.location.reload();" src="<?=$prefix.'delete.png'.$suffix;?>">
         <?php } else {
             if ($value == $sessionID) { ?>
-            <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="delete_user(this.name);omniAuthRequest('signout','','');" src="<?=$prefix.'delete.png'.$suffix;?>">
-        <?php } else { ?>
-            <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name+'_session.json', '', 'false');" src="<?=$prefix.'info.png'.$suffix;?>">
-    <?php }}} else { ?>
+                <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="delete_user(this.name);omniAuthRequest('signout','','');" src="<?=$prefix.'delete.png'.$suffix;?>">
+            <?php } else { ?>
+                <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name+'_session.json', '', 'false');" src="<?=$prefix.'info.png'.$suffix;?>">
+            <?php }
+        }
+    } else { ?>
         <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name+'_session.json', '', 'false');" src="<?=$prefix.'info.png'.$suffix;?>">
     <?php } ?>
     </p>

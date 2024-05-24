@@ -563,7 +563,7 @@ function arrangeMenu(list, item) {
     } else {
         arr.push(item);
     }
-    return arr.join(',');
+    return finarr(arr).join(',');
 }
 function isInMenu(list, item) {
     var arr = list.toString('').split(',');

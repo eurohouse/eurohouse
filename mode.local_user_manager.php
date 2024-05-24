@@ -9,7 +9,9 @@ foreach ($relBind as $key=>$value) {
     $powersInd = (is_numeric($powersData[$value])) ? $powersData[$value] : 0; ?>
     <p align='center' class='block'>
     <input type="image" onmouseover="soundButton();" class="power" src="<?=$cookieLeftAva.$suffix;?>"><input type="button" value="<?=($value == 'root') ? $value.'@'.$websiteID.':'.$request['path'].'#' : $value.'@'.$websiteID.':'.$request['path'].'$';?>" style="width:<?=$line1Size;?>%;" onmouseover="soundButton();">
-    <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="bind(this.name);" src="<?=$prefix.'chain.png'.$suffix;?>">
+    <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="bind(sysDefSessionID.value, this.name);" src="<?=$prefix.'chain.png'.$suffix;?>">
+    <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="addFriend(this.name);" src="<?=$prefix.'user.png'.$suffix;?>">
+    <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="dropFriend(this.name);" src="<?=$prefix.'anonym.png'.$suffix;?>">
     <?php if (isset($_SESSION['user'])) {
         if ($sessionID == 'root') { ?>
             <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="delete_user(this.name);window.location.reload();" src="<?=$prefix.'delete.png'.$suffix;?>">
