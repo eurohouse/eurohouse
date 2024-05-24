@@ -43,13 +43,7 @@ function world_clock() {
                 videoBalInd.value = mixers[5];
             }
             if (requestMode.value == 'statistics') {
-                if (sysDefStats.value == 'bind') {
-                    userStats.innerText = bindTable(sysDefBindData.value);
-                } else if (sysDefStats.value == 'friend') {
-                    userStats.innerText = friendsList(sysDefFriendData.value);
-                } else {
-                    userStats.innerText = highScores(sysDefPowersData.value);
-                }
+                userStats.innerText = scores(sysDefStats.value);
             }
             var tickCode = pager(data, 1).split(':')[1];
             var tickPanel = pager(data, 1).split(':')[2];

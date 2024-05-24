@@ -398,49 +398,36 @@ function dropFriend(id) {
         sysDefFriendData.value = arrpack(fr,';',':');
     }
 }
-function bindTable(arr) {
+function scores(sta) {
+    var arr = document.getElementById('sysDef'+ucfirst(sta)+'Data').value;
     var obj = arrjob(arr, ';', ':');
     var keys = Object.keys(obj);
     var vals = Object.values(obj);
-    var names = finarr(keys).reverse();
+    var names = finarr(vals).reverse();
     var res = '';
     for (i = 0; i < vals.length; i++) {
-        if ((keys[i] !== undefined) && (keys[i] != '')) {
-            if (names[i] != obj[names[i]]) {
-                res += '@'+names[i]+' :: @'+obj[names[i]]+'\n';
-            } else {
-                res += '@'+names[i]+' :: SELF\n';
+        if (sta == 'bind') {
+            if ((keys[i] !== undefined) && (keys[i] != '')) {
+                if (names[i] != obj[names[i]]) {
+                    res += '@'+names[i]+' :: @'+obj[names[i]]+'\n';
+                } else {
+                    res += '@'+names[i]+' :: SELF\n';
+                }
             }
-        }
-    }
-    return res;
-}
-function friendsList(arr) {
-    var obj = arrjob(arr, ';', ':');
-    var keys = Object.keys(obj);
-    var vals = Object.values(obj);
-    var names = finarr(keys).reverse();
-    var res = '';
-    for (i = 0; i < vals.length; i++) {
-        if ((keys[i] !== undefined) && (keys[i] != '')) {
-            if ((obj[names[i]].split(',').length > 0) && (obj[names[i]] != '')) {
-                res += '@'+names[i]+' ['+obj[names[i]]+']\n';
-            } else {
-                res += '@'+names[i]+' [NULL]\n';
+        } else if (sta == 'auto') {
+
+        } else if (sta == 'friend') {
+            if ((keys[i] !== undefined) && (keys[i] != '')) {
+                if ((obj[names[i]].split(',').length > 0) && (obj[names[i]] != '')) {
+                    res += '@'+names[i]+' ['+obj[names[i]]+']\n';
+                } else {
+                    res += '@'+names[i]+' [NULL]\n';
+                }
             }
-        }
-    }
-    return res;
-}
-function highScores(arr) {
-    var obj = arrjob(arr, ';', ':');
-    var keys = Object.keys(obj);
-    var vals = Object.values(obj);
-    var nums = finarr(vals).reverse();
-    var res = '';
-    for (i = 0; i < vals.length; i++) {
-        if ((nums[i] !== undefined) && (keys[i] != '')) {
-            res += '@'+arraySearch(nums[i], obj)+' ('+nums[i]+')\n';
+        } else {
+            if ((names[i] !== undefined) && (keys[i] != '')) {
+                res += '@'+arraySearch(names[i], obj)+' ('+names[i]+')\n';
+            }
         }
     }
     return res;
