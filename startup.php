@@ -397,7 +397,6 @@ function automator() {
                     dominate(subName, objName, 1, 1, 0);
                 }
             }
-        }
     });
 }
 </script>
