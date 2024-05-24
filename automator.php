@@ -16,9 +16,16 @@ foreach ($autoData as $key=>$value) {
 foreach ($poweredData as $key=>$value) {
     $autoObjects[] = $key;
 }
-do {
+for ($i = 0; $i < 10; $i++) {
     $sub = $autoUsers[rand(0, (count($autoUsers)-1))];
     $obj = $autoObjects[rand(0, (count($autoObjects)-1))];
     $han = $autoObjects[rand(0, (count($autoObjects)-1))];
-} while (($sub == $obj) || ($poweredData[$sub] < 0) || (frndOf($frndData, $sub, $obj)));
-echo $sub."\r\n".$obj."\r\n".$han;
+    if (($sub != $obj) || ($poweredData[$sub] >= 0) || (!frndOf($frndData, $sub, $obj))) {
+        $subUser = $sub; $objUser = $obj;
+        $handle = $han; $status = 200;
+        break;
+    }
+    $subUser = $sub; $objUser = $obj;
+    $handle = $han; $status = 500;
+}
+echo $subUser."\r\n".$objUser."\r\n".$handle."\r\n".$status;
