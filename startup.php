@@ -61,6 +61,7 @@ function world_clock() {
                 playAudio(notifyPlayer, sysDefNotifySound.value);
             } sysDefPostMsgData.value = sysDefMsgData.value;
             $('#powerButton').attr('src', sysDefPrefix.value+'power.png'+sysDefSuffix.value);
+            $('#buttonNext').attr('src', sysDefPrefix.value+'go.png'+sysDefSuffix.value);
             if (sysDefLock.value != 0) {
                 $('#buttonLock').attr('src', sysDefPrefix.value+'key.png'+sysDefSuffix.value);
             } else {

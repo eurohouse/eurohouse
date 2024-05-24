@@ -1,13 +1,14 @@
 <div class='topBarItem'>
     <p align='center' class='block'>
-    <select id="ErotoOlympus" style="width:51%;position:relative;" onchange="setdata('background', ErotoOlympus.options[ErotoOlympus.selectedIndex].id);">
+    <input type="image" onmouseover="soundButton();" id="buttonShuffle" class="power" onclick="setdata('shuffle', flip(sysDefShuffle.value));" src="<?=($session['shuffle'] != 0) ? $prefix.'dice.png'.$suffix : $prefix.'code.png'.$suffix;?>">
+    <select id="ErotoOlympus" style="width:49%;position:relative;" onchange="setdata('background', ErotoOlympus.options[ErotoOlympus.selectedIndex].id);">
     <?php foreach (categories($olympus, $locks['background']) as $key=>$val) { ?>
     <option disabled><?=titled($val, $session['units']);?></option>
     <?php foreach (categoryList($key) as $value) { ?>
     <option id="<?=$value.$suffix;?>" <?php if ((explode('.', $value)[0] == explode('.', $background)[0]) && (explode('.', $value)[1] == explode('.', $background)[1])) { ?> selected="selected" <?php } ?>><?=titler($value, $settings, $session['title'], $session['units']);?></option>
     <?php }} ?>
     </select>
-    <input type="number" min='-11' max='12' step='1' id="setTimeZone" style="width:16%;" value="<?=$session['timezone'];?>" oninput="setdata('timezone', pad(setTimeZone.value, 2)); handleInput(this.value, true);" onkeydown="if (event.keyCode == 27) {
+    <input type="number" min='-11' max='12' step='1' id="setTimeZone" style="width:9%;" value="<?=$session['timezone'];?>" oninput="setdata('timezone', pad(setTimeZone.value, 2)); handleInput(this.value, true);" onkeydown="if (event.keyCode == 27) {
         setTimeZone.value = 0; setdata('timezone', setTimeZone.value);
     } else if (event.keyCode == 8) {
         handleInput(this.value);
@@ -80,7 +81,6 @@
         setdata('sepia', 0);
         setdata('grayscale', 0);
     }" src="<?=$prefix.'movie.png'.$suffix;?>">
-    <input type="image" onmouseover="soundButton();" id="buttonShuffle" class="power" onclick="setdata('shuffle', flip(sysDefShuffle.value));" src="<?=($session['shuffle'] != 0) ? $prefix.'dice.png'.$suffix : $prefix.'code.png'.$suffix;?>">
     <input type="image" onmouseover="soundButton();" id="buttonVintage" class="power" onclick="setdata('vintage', flip(sysDefVintage.value));" src="<?=$prefix.'diamante.png'.$suffix;?>">
     <input type="image" onmouseover="soundButton();" id="buttonGloss" class="power" onclick="setdata('gloss', flip(sysDefGloss.value));" src="<?=($session['gloss'] != 0) ? $prefix.'parfum.png'.$suffix : $prefix.'idea.png'.$suffix;?>">
     <input type="number" min='0' max='23' step='1' id="setTimeHour" style="width:9%;" value="<?=$session['hour'];?>" oninput="setdata('hour', pad(setTimeHour.value, 2));
@@ -92,6 +92,7 @@
         handleInput(this.value);
     }">
     <input type="image" onmouseover="soundButton();" id="buttonAugment" class="power" onclick="setdata('entry', nextImage(sysDefVarsArr.value, sysDefEntry.value));" src="<?=$prefix.'spade.png'.$suffix;?>">
+    <input type="image" id="buttonNext" onmouseover="soundButton();" class="power" onclick="songIndex();" src="<?=$prefix.'go.png'.$suffix;?>">
     </p>
 </div>
 <div class='topBarItem'>
