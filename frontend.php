@@ -399,7 +399,8 @@ function dropFriend(id) {
     }
 }
 function scores(sta) {
-    var arr = document.getElementById('sysDef'+ucfirst(sta)+'Data').value;
+    var sto = ['bind', 'auto', 'friend'];
+    var arr = (arraySearch(sta, sto) !== false) ? document.getElementById('sysDef'+ucfirst(sta)+'Data').value : document.getElementById('sysDefPowersData').value;
     var obj = arrjob(arr, ';', ':');
     var keys = Object.keys(obj);
     var vals = Object.values(obj);
@@ -418,7 +419,7 @@ function scores(sta) {
 
         } else if (sta == 'friend') {
             if ((keys[i] !== undefined) && (keys[i] != '')) {
-                if ((obj[names[i]].split(',').length > 0) && (obj[names[i]] != '')) {
+                if (obj[names[i]] != '') {
                     res += '@'+names[i]+' ['+obj[names[i]]+']\n';
                 } else {
                     res += '@'+names[i]+' [NULL]\n';
