@@ -46,7 +46,9 @@ function world_clock() {
             var tickPanel = pager(data, 1).split(':')[2];
             window.devicePixelRatio = pager(data, 1).split(':')[0];
             if (sysDefBindData.value != sysDefPostBindData.value) {
-                playAudio(bindPlayer, sysDefBindSound.value);
+                if (sysDefMute.value == 0) {
+                    playAudio(bindPlayer, sysDefBindSound.value);
+                }
             } sysDefPostBindData.value = sysDefBindData.value;
             if (sysDefMsgData.value != sysDefPostMsgData.value) {
                 playAudio(notifyPlayer, sysDefNotifySound.value);
