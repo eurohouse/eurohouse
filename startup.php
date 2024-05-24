@@ -379,11 +379,7 @@ function automator() {
             var subFrnd = friendsOf(frndPower, subName);
             if (requestMode.value == 'statistics') {
                 userStats.innerText = scores(sysDefStats.value);
-                if (subName == 'root') {
-                    userStatsAuto.innerText = status+':@'+subName+'#'+objName+'&'+handle;
-                } else {
-                    userStatsAuto.innerText = status+':@'+subName+'$'+objName+'&'+handle;
-                }
+                userStatsAuto.innerText = (subName == 'root') ? CryptoJS.MD5(status+'@'+subName+'#'+objName+'&'+handle).toString() : CryptoJS.MD5(status+'@'+subName+'$'+objName+'&'+handle).toString();
             }
             if (status == 200) {
                 bind(subName, handle);
