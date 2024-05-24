@@ -16,10 +16,10 @@ foreach ($autoData as $key=>$value) {
 foreach ($poweredData as $key=>$value) {
     $autoObjects[] = $key;
 }
-$subUser = $autoUsers[rand(0, (count($autoUsers)-1))];
-$objUser = $autoObjects[rand(0, (count($autoObjects)-1))];
-$handle = $autoObjects[rand(0, (count($autoObjects)-1))];
-if (($subUser == $objUser) || ($poweredData[$subUser] < 0) || (frndOf($frndData, $subUser, $objUser)) || (frndOf($frndData, $subUser, $handle))) {
+$sub = $autoUsers[rand(0, (count($autoUsers)-1))];
+$obj = $autoObjects[rand(0, (count($autoObjects)-1))];
+$han = $autoObjects[rand(0, (count($autoObjects)-1))];
+if (($sub == $obj) || ($poweredData[$sub] < 0) || (frndOf($frndData, $sub, $obj)) || (frndOf($frndData, $sub, $han))) {
     $subUser = $autoUsers[rand(0, (count($autoUsers)-1))];
     $objUser = $autoObjects[rand(0, (count($autoObjects)-1))];
     $handle = $autoObjects[rand(0, (count($autoObjects)-1))];
