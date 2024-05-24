@@ -345,11 +345,11 @@ function rename_user(username, password) {
     move('./'+sysDefSessionID.value+'_lock.json.bak', './'+username+'_lock.json.bak', true, 1);
     move('./.log/'+sysDefSessionID.value+'_msgbox.log', './.log/'+username+'_msgbox.log', true, 1);
 }
-function spawnBot() {
+function spawnBot(id) {
     var ct = arrjob(sysDefPowersData.value,';',':');
     var at = arrjob(sysDefAutoData.value,';',':');
-    if ((!('ai' in ct)) && (!('ai' in at))) {
-        ct['ai'] = 0; at['ai'] = 'auto';
+    if ((!(id in ct)) && (!(id in at))) {
+        ct[id] = 0; at[id] = 'auto';
         set('dominion.json', JSON.stringify(ct), true);
         sysDefPowersData.value = arrpack(ct,';',':');
         set('automator.json', JSON.stringify(at), true);

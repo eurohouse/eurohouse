@@ -249,7 +249,7 @@ function omniEnter() {
         } else if (input == 'clear') {
             clearMessage('');
         } else if (input == 'spawn') {
-            spawnBot();
+            spawnBot('auto');
         } else if ((input == 'unbind') || (input == 'suck it') || (input == 'отсоси')) {
             unbind(sysDefSessionID.value);
         } else if ((input == 'suicide') || (input == 'goodbye')) {
