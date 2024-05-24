@@ -375,6 +375,7 @@ function mailing_list() {
 }
 function automator() {
     var autoPower = arrjob(sysDefAutoData.value,';',':');
+    var bindPower = arrjob(sysDefBindingData.value,';',':');
     var tabPower = arrjob(sysDefPowersData.value,';',':');
     var frndPower = arrjob(sysDefFriendData.value,';',':');
     $.ajax({
@@ -383,6 +384,7 @@ function automator() {
             var subName = miniPager(data, 0);
             var objName = miniPager(data, 1);
             var handle = miniPager(data, 2);
+            var status = miniPager(data, 3);
             var subFrnd = friendsOf(frndPower, subName);
             if (requestMode.value == 'statistics') {
                 if ((subName != '') && (objName != '') && (subName != objName)) {
@@ -395,7 +397,7 @@ function automator() {
                     userStatsAuto.innerText = "";
                 }
             }
-            if ((subName in autoPower) && (autoPower[subName] == 'auto') && (subName != '') && (objName in tabPower) && (!(subFrnd.includes(objName))) && (objName != '')) {
+            if ((subName in autoPower) && (autoPower[subName] == 'auto') && (subName != '') && (objName in tabPower) && (!(subFrnd.includes(objName))) && (objName != '') && (status == 200)) {
                 bind(subName, handle);
                 if (objName == handle) {
                     dominate(subName, objName, 1, 1, 0);
