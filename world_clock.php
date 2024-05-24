@@ -10,7 +10,8 @@ $frndData = arropen('friendship.json', "{\"root\":\"\"}");
 $timezone = dec_tz($userData['timezone']);
 date_default_timezone_set($timezone);
 $dateTimePanel = $userData['observe'].$userData['spectate'].
-$userData['vintage'].$userData['icons'];
+$userData['vintage'].$userData['icons'].
+$userData['private'].$userData['chat'];
 if ($userData['memo'] != '') {
     $valueTime = $userData['memo']; if (time() >= $valueTime) {
         $ongoingSignature = 1; $incomingSignature = 0; $alarmInTime = 0;

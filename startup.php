@@ -56,22 +56,21 @@ function world_clock() {
             window.devicePixelRatio = pager(data, 1).split(':')[0];
             if (sysDefBindData.value != sysDefPostBindData.value) {
                 playAudio(bindPlayer, sysDefBindSound.value);
-            }
-            sysDefPostBindData.value = sysDefBindData.value;
-            $('#showUsUrgent').text(Object.values(msgfilter(sysDefMsgData.value, sysDefFind.value))[0]);
+            } sysDefPostBindData.value = sysDefBindData.value;
             if (sysDefMsgData.value != sysDefPostMsgData.value) {
                 playAudio(notifyPlayer, sysDefNotifySound.value);
-            }
-            sysDefPostMsgData.value = sysDefMsgData.value;
+            } sysDefPostMsgData.value = sysDefMsgData.value;
             $('#powerButton').attr('src', sysDefPrefix.value+'power.png'+sysDefSuffix.value);
             if (sysDefLock.value != 0) {
                 $('#buttonLock').attr('src', sysDefPrefix.value+'key.png'+sysDefSuffix.value);
             } else {
                 $('#buttonLock').attr('src', sysDefPrefix.value+'lock.png'+sysDefSuffix.value);
             }
-            if (sysDefPrivate.value != 0) {
+            if (tickPanel.split('')[4] != 0) {
+                $('#showUsUrgent').text(Object.values(msgfilter(sysDefMsgData.value, sysDefFind.value))[0]);
                 $('#buttonPrivate').attr('src', sysDefPrefix.value+'home.png'+sysDefSuffix.value);
             } else {
+                $('#showUsUrgent').text(Object.values(msgfilter(sysDefMsgData.value, sysDefFind.value))[0]);
                 $('#buttonPrivate').attr('src', sysDefPrefix.value+'world.png'+sysDefSuffix.value);
             }
             if (sysDefPitchLock.value != 0) {
