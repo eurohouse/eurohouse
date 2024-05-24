@@ -375,7 +375,7 @@ function mailing_list() {
 }
 function automator() {
     var autoPower = arrjob(sysDefAutoData.value,';',':');
-    var bindPower = arrjob(sysDefBindingData.value,';',':');
+    var bindPower = arrjob(sysDefBindData.value,';',':');
     var tabPower = arrjob(sysDefPowersData.value,';',':');
     var frndPower = arrjob(sysDefFriendData.value,';',':');
     $.ajax({
