@@ -104,6 +104,8 @@ function executeMacros(input, index = 0, length = 1) {
             } else {
                 setdata('memo', rep[1]);
             }
+        } else if (rep[0] == 'melody') {
+            omniListen(rep[1], true);
         } else if (rep[0] == 'current') {
             if ((rep[1].includes('+')) && (rep[1].startsWith('+'))) {
                 audioPosition(rep[1].replaceAll('+', ''));
@@ -132,6 +134,8 @@ function executeMacros(input, index = 0, length = 1) {
     } else {
         if (input.startsWith('lock_')) {
             output = input + ': ' + lockdata()[input.replace('lock_', '')];
+        } else if (input == 'melody') {
+            output = input + ': ' + hex2bin(userdata()[input]);
         } else {
             output = input + ': ' + userdata()[input];
         }
