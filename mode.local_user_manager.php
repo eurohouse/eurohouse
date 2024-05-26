@@ -10,17 +10,18 @@ foreach ($relBind as $key=>$value) {
     <p align='center' class='block'>
     <input type="image" onmouseover="soundButton();" class="power" src="<?=$cookieLeftAva.$suffix;?>"><input type="button" value="<?=($value == 'root') ? $value.'@'.$websiteID.':'.$request['path'].'#' : $value.'@'.$websiteID.':'.$request['path'].'$';?>" style="width:<?=$line1Size;?>%;" onmouseover="soundButton();">
     <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="bind(sysDefSessionID.value, this.name);" src="<?=$prefix.'chain.png'.$suffix;?>">
-    <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="addFriend(this.name);" src="<?=$prefix.'user.png'.$suffix;?>">
-    <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="dropFriend(this.name);" src="<?=$prefix.'anonym.png'.$suffix;?>">
-    <?php if (isset($_SESSION['user'])) {
+    <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="this.src = (isFriends(this.name)) ? sysDefPrefix.value+'user.png'+sysDefSuffix.value : sysDefPrefix.value+'anonym.png'+sysDefSuffix.value; toggleFriend(this.name);" src="<?=$prefix.'user.png'.$suffix;?>">
+    <?php if (isAuth()) {
         if ($sessionID == 'root') { ?>
-            <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="delete_user(this.name);window.location.reload();" src="<?=$prefix.'delete.png'.$suffix;?>">
+            <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="delete_user(this.name); window.location.reload();" src="<?=$prefix.'delete.png'.$suffix;?>">
         <?php } else {
             if ($value == $sessionID) { ?>
-                <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="delete_user(this.name);omniAuthRequest('signout','','');" src="<?=$prefix.'delete.png'.$suffix;?>">
+                <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="delete_user(this.name); omniAuthRequest('signout','','');" src="<?=$prefix.'delete.png'.$suffix;?>">
             <?php } else { ?>
                 <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name+'_session.json', '', 'false');" src="<?=$prefix.'info.png'.$suffix;?>">
-    <?php }}} else { ?>
+            <?php }
+        }
+    } else { ?>
         <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name+'_session.json', '', 'false');" src="<?=$prefix.'info.png'.$suffix;?>">
     <?php } ?>
 </p>

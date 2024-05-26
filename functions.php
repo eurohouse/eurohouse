@@ -239,14 +239,24 @@ function fileopen($name, $default = '') {
 }
 function arropen($name, $default = '{}', bool $resort = false) {
     if (!file_exists($name)) {
-        file_put_contents($name, $default); chmod($name, 0777);
-    } $test = file_get_contents($name);
+        file_put_contents($name, $default);
+        chmod($name, 0777);
+    }
+    $test = file_get_contents($name);
     if (@json_decode($test, true) != null) {
-        file_put_contents($name.'.bak', $test); chmod($name.'.bak', 0777);
+        file_put_contents($name.'.bak', $test);
+        chmod($name.'.bak', 0777);
     } else {
-        rename($name.'.bak', $name); chmod($name, 0777);
-    } if ($resort != false) { $tryit = json_decode(file_get_contents($name), true);
-    file_put_contents($name, json_encode(equarr(json_decode($default, true), $tryit))); chmod($name, 0777); } $res = json_decode(file_get_contents($name), true); return $res;
+        rename($name.'.bak', $name);
+        chmod($name, 0777);
+    }
+    if ($resort != false) {
+        $tryit = json_decode(file_get_contents($name), true);
+        file_put_contents($name, json_encode(equarr(json_decode($default, true), $tryit)));
+        chmod($name, 0777);
+    }
+    $res = json_decode(file_get_contents($name), true);
+    return $res;
 }
 function equarr(array $src, array $des) {
     foreach ($src as $key=>$val) {
@@ -257,7 +267,8 @@ function equarr(array $src, array $des) {
         if (!isset($src[$key])) {
             unset($des[$key]);
         }
-    } return $des;
+    }
+    return $des;
 }
 function hourize($sec, $min, $mod) {
     return ((($sec / (60 / (12 / $mod))) % (24 / (2 ** $mod))) + ((24 / (2 ** $mod)) * ($min % (2 ** $mod))));
@@ -281,7 +292,8 @@ function themed(string $theme, string $assets = 'head'): bool {
     $arr = explode(',', $assets); $basket = true;
     foreach ($arr as $val) {
         $basket = $basket && file_exists($theme.$val.'.png');
-    } return $basket;
+    }
+    return $basket;
 }
 function spaces($str) {
     if (strpos($str, '_') !== false) {
@@ -293,7 +305,8 @@ function spaces($str) {
         $result = implode(' ', $res);
     } else {
         $result = ucfirst($str);
-    } return $result;
+    }
+    return $result;
 }
 function camel($str) {
     if (strpos($str, '_') !== false) {
@@ -301,10 +314,12 @@ function camel($str) {
         $res = '';
         foreach ($arr as $val) {
             $res .= ucfirst($val);
-        } $result = $res;
+        }
+        $result = $res;
     } else {
         $result = ucfirst($str);
-    } return $result;
+    }
+    return $result;
 }
 function daily($name, $add, $hour): string {
     $num = str_replace('./', '', (glob('./'.explode('.', $name)[0].'.'.explode('.', $name)[1].'.{00,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23}.png', GLOB_BRACE)));
@@ -314,7 +329,9 @@ function daily($name, $add, $hour): string {
 }
 function wasAuth() {
     if (isset($_POST['auth']) && isset($_POST['login']) && isset($_POST['password'])) {
-        $auth = $_POST['auth']; $login = $_POST['login']; $pass = $_POST['password'];
+        $auth = $_POST['auth'];
+        $login = $_POST['login'];
+        $pass = $_POST['password'];
         $logpass = textopen($login.'_password', '');
         if ($auth == 'signup') {
             if (!file_exists($login.'_password')) {
@@ -339,54 +356,82 @@ function whichSess() {
 function express(array $for) {
     foreach ($for as $key=>$pkg) {
         if (strpos($pkg, '>') !== false) {
-            $strlo = explode('>', $pkg); $uri = $strlo[0]; $branch = $strlo[1];
-            $urilo = explode('/', $uri); if (count($urilo) > 2) {
-                $repo = $urilo[count($urilo) - 1]; $user = $urilo[count($urilo) - 2];
+            $strlo = explode('>', $pkg);
+            $uri = $strlo[0]; $branch = $strlo[1];
+            $urilo = explode('/', $uri);
+            if (count($urilo) > 2) {
+                $repo = $urilo[count($urilo) - 1];
+                $user = $urilo[count($urilo) - 2];
                 $host = str_replace('/'.$user.'/'.$repo, '', $uri);
             } else {
-                $host = 'https://github.com'; $user = $urilo[0]; $repo = $urilo[1];
+                $host = 'https://github.com';
+                $user = $urilo[0];
+                $repo = $urilo[1];
             }
         } else {
-            $uri = $pkg; $branch = ''; $urilo = explode('/', $uri); if (count($urilo) > 2) {
-                $repo = $urilo[count($urilo) - 1]; $user = $urilo[count($urilo) - 2];
+            $uri = $pkg;
+            $branch = '';
+            $urilo = explode('/', $uri);
+            if (count($urilo) > 2) {
+                $repo = $urilo[count($urilo) - 1];
+                $user = $urilo[count($urilo) - 2];
                 $host = str_replace('/'.$user.'/'.$repo, '', $uri);
             } else {
-                $host = 'https://github.com'; $user = $urilo[0]; $repo = $urilo[1];
+                $host = 'https://github.com';
+                $user = $urilo[0];
+                $repo = $urilo[1];
             }
-        } $hostArray = explode('://', $host);
+        }
+        $hostArray = explode('://', $host);
         $socketOpen = fsockopen($hostArray[1], 80, $errno, $errstr, 10);
         if ($socketOpen != false) {
             $fileback = str_replace('./','',(glob('./*.txt')));
             foreach ($fileback as $key=>$file) {
                 if (file_exists($file)) {
-                    chmod($file, 0777); rename($file, $file.'.bak');
+                    chmod($file, 0777);
+                    rename($file, $file.'.bak');
                     chmod($file.'.bak', 0777);
                 }
-            } if (file_exists($repo.'.pkg')) {
+            }
+            if (file_exists($repo.'.pkg')) {
                 $files = explode(';', fileopen($repo.'.pkg')['files']);
                 foreach ($files as $key=>$file) {
                     if (file_exists($file)) {
-                        chmod($file, 0777); unlink($file);
+                        chmod($file, 0777);
+                        unlink($file);
                     }
-                } chmod($repo.'.pkg', 0777); unlink($repo.'.pkg');
-            } if (file_exists($repo)) {
-                chmod($repo, 0777); rename($repo, $repo.'.d');
-            } if ($branch != '') {
+                }
+                chmod($repo.'.pkg', 0777);
+                unlink($repo.'.pkg');
+            }
+            if (file_exists($repo)) {
+                chmod($repo, 0777);
+                rename($repo, $repo.'.d');
+            }
+            if ($branch != '') {
                 exec('git clone -b '.$branch.' '.$host.'/'.$user.'/'.$repo);
             } else {
                 exec('git clone '.$host.'/'.$user.'/'.$repo);
-            } chmod($repo, 0777); exec('mv '.$repo.'/* $PWD');
-            exec('chmod -R 777 .'); exec('rm -rf '.$repo); if (file_exists($repo.'.d')) {
-                chmod($repo.'.d', 0777); rename($repo.'.d', $repo);
-            } $filepass = str_replace('./','',(glob('./*.md')));
+            }
+            chmod($repo, 0777);
+            exec('mv '.$repo.'/* $PWD');
+            exec('chmod -R 777 .');
+            exec('rm -rf '.$repo);
+            if (file_exists($repo.'.d')) {
+                chmod($repo.'.d', 0777);
+                rename($repo.'.d', $repo);
+            }
+            $filepass = str_replace('./','',(glob('./*.md')));
             foreach ($filepass as $key=>$file) {
                 if (file_exists($file)) {
                     chmod($file, 0777); unlink($file);
                 }
-            } $filerest = str_replace('./','',(glob('./*.txt.bak')));
+            }
+            $filerest = str_replace('./','',(glob('./*.txt.bak')));
             foreach ($filerest as $key=>$file) {
                 if (file_exists($file)) {
-                    chmod($file, 0777); rename($file, str_replace('.txt.bak', '.txt', $file));
+                    chmod($file, 0777);
+                    rename($file, str_replace('.txt.bak', '.txt', $file));
                     chmod(str_replace('.txt.bak', '.txt', $file), 0777);
                 }
             }
@@ -396,25 +441,50 @@ function express(array $for) {
 function wordfx($word, $sup, array $voc, $title, $units = 'EU') {
     $preg = preg_match_all('/\[[^\]]*\]/', $word, $matches);
     for ($i = 0; $i < count($matches[0]); $i++) {
-        $full = $matches[0][$i]; switch ($full) {
-            case '[year]': $res = date('Y'); break;
-            case '[id]': $res = $sup; break;
-            case '[uname -a]': $res = php_uname('a'); break;
-            case '[uname -s]': $res = php_uname('s'); break;
-            case '[uname -n]': $res = php_uname('n'); break;
-            case '[uname -r]': $res = php_uname('r'); break;
-            case '[uname -v]': $res = php_uname('v'); break;
-            case '[uname -m]': $res = php_uname('m'); break;
-            case '[french]': $res = french($voc, $units); break;
+        $full = $matches[0][$i];
+        switch ($full) {
+            case '[year]':
+                $res = date('Y');
+                break;
+            case '[id]':
+                $res = $sup;
+                break;
+            case '[uname -a]':
+                $res = php_uname('a');
+                break;
+            case '[uname -s]':
+                $res = php_uname('s');
+                break;
+            case '[uname -n]':
+                $res = php_uname('n');
+                break;
+            case '[uname -r]':
+                $res = php_uname('r');
+                break;
+            case '[uname -v]':
+                $res = php_uname('v');
+                break;
+            case '[uname -m]':
+                $res = php_uname('m');
+                break;
+            case '[french]':
+                $res = french($voc, $units);
+                break;
             case '[month]':
-                $res = (isset($voc['locale']['month'][$units][date('n')-1])) ? $voc['locale']['month'][$units][date('n')-1] : $voc['locale']['month']['default'][date('n')-1]; break;
+                $res = (isset($voc['locale']['month'][$units][date('n')-1])) ? $voc['locale']['month'][$units][date('n')-1] : $voc['locale']['month']['default'][date('n')-1];
+                break;
             case '[semester]':
-                $res = (isset($voc['locale']['semester'][$units][date('n')-1])) ? $voc['locale']['semester'][$units][date('n')-1] : $voc['locale']['semester']['default'][date('n')-1]; break;
+                $res = (isset($voc['locale']['semester'][$units][date('n')-1])) ? $voc['locale']['semester'][$units][date('n')-1] : $voc['locale']['semester']['default'][date('n')-1];
+                break;
             case '[quarter]':
-                $res = (isset($voc['locale']['quarter'][$units][date('n')-1])) ? $voc['locale']['quarter'][$units][date('n')-1] : $voc['locale']['quarter']['default'][date('n')-1]; break;
-            case '[title]': $res = $title; break;
-        } $word = str_replace($full, $res, $word);
-    } return $word;
+                $res = (isset($voc['locale']['quarter'][$units][date('n')-1])) ? $voc['locale']['quarter'][$units][date('n')-1] : $voc['locale']['quarter']['default'][date('n')-1];
+                break;
+            case '[title]':
+            $res = $title; break;
+        }
+        $word = str_replace($full, $res, $word);
+    }
+    return $word;
 }
 function titler($name, array $voc, $title, $units = 'EU') {
     $domain = explode('.', $name)[0]; $volume = explode('.', $name)[1];
@@ -428,7 +498,8 @@ function titled($name, $units = 'EU') {
         $res = (isset($lang[$units])) ? $lang[$units] : $domFile['title'];
     } else {
         $res = $domFile['title'];
-    } return $res;
+    }
+    return $res;
 }
 function term($word, array $voc, $units = 'EU') {
     return (isset($voc[$units][$word])) ? $voc[$units][$word] : $word;

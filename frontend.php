@@ -308,12 +308,11 @@ function remove_entry(id, obj, name) {
 }
 function delete_user(id) {
     unbind(sysDefSessionID.value);
-    var hand = arrjob(sysDefBindData.value,';',':');
-    hand[sysDefSessionID.value] = sysDefSessionID.value;
     remove_entry(id, sysDefBindData, 'binding.json');
     remove_entry(id, sysDefPowersData, 'dominion.json');
     remove_entry(id, sysDefAutoData, 'automator.json');
     remove_entry(id, sysDefFriendData, 'friendship.json');
+    copy(id+'_session.json', id+'_session.json.dmp', true);
     del(id+'_session.json', true);
     del(id+'_session.json.bak', true);
     del(id+'_password', true);
@@ -339,8 +338,6 @@ function transfer_entry(id, obj, name) {
 }
 function rename_user(username, password) {
     unbind(sysDefSessionID.value);
-    var hand = arrjob(sysDefBindData.value,';',':');
-    hand[sysDefSessionID.value] = sysDefSessionID.value;
     transfer_self(username, sysDefBindData, 'binding.json');
     transfer_entry(username, sysDefPowersData, 'dominion.json');
     transfer_entry(username, sysDefAutoData, 'automator.json');
@@ -373,6 +370,33 @@ function friendsOf(obj, id) {
         res = [];
     }
     return res;
+}
+function isFriends(id) {
+    var usr = sysDefSessionID.value;
+    var fr = arrjob(sysDefFriendData.value,';',':');
+    var frnd = friendsOf(fr, usr);
+    var res = false;
+    if (id != usr) {
+        if (frnd.indexOf(id) > -1) {
+            res = true;
+        }
+    }
+    return res;
+}
+function toggleFriend(id) {
+    var usr = sysDefSessionID.value;
+    var fr = arrjob(sysDefFriendData.value,';',':');
+    var frnd = friendsOf(fr, usr);
+    if (id != usr) {
+        if (frnd.indexOf(id) > -1) {
+            frnd.splice(frnd.indexOf(id), 1);
+        } else {
+            frnd.push(id);
+        }
+        fr[usr] = finarr(frnd).join(',');
+        set('friendship.json', JSON.stringify(fr), true);
+        sysDefFriendData.value = arrpack(fr,';',':');
+    }
 }
 function addFriend(id) {
     var usr = sysDefSessionID.value;
