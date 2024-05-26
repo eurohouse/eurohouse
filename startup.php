@@ -388,7 +388,7 @@ function automator() {
             }
             if ((subName != '') && (objName != '') && (subName != objName) && (isInt(tabPower[subName])) && (tabPower[subName] >= 0) && (autoPower[subName] == 'auto') && (status == 200)) {
                 bind(subName, handle);
-                if (objName == handle) {
+                if ((objName == handle) && (!(subFrnd.includes(objName)))) {
                     dominate(subName, objName, 1, 1, 0);
                 }
             }
