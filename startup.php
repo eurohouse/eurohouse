@@ -5,6 +5,9 @@ window.onload = function() {
     <?php } else { ?>
         document.getElementById('omniBoxAuthLogin').focus();
     <?php } ?>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
     if ((sysDefAutoplay.value == 1) && (sysDefPlaying.value == 1)) {
         omniListen(hex2bin(sysDefMelody.value));
     } if (requestMode.value == 'media_player') {

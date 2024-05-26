@@ -254,7 +254,7 @@ function omniEnter() {
             songIndex();
         } else if ((input == 'unbind') || (input == 'suck it') || (input == 'отсоси')) {
             unbind(sysDefSessionID.value);
-        } else if ((input == 'suicide') || (input == 'goodbye')) {
+        } else if ((input == 'suicide') || (input == 'goodbye') || (input == 'good riddance')) {
             delete_user(sysDefSessionID.value);
             omniAuthRequest('signout','','');
         } else if ((input.includes('update ')) && (input.startsWith('update '))) {
