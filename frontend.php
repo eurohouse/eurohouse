@@ -412,12 +412,12 @@ function scores(sta) {
                 return obd;
             }, {}
         );
-        for (ind in ordered) {
-            if ((ordered[ind] !== undefined) || (ind != '')) {
-                if (ordered[ind] != ind) {
-                    res += '@'+ind+' :: @'+ordered[ind]+'\n';
+        for (indi in ordered) {
+            if ((ordered[indi] !== undefined) || (indi != '')) {
+                if (ordered[indi] != indi) {
+                    res += '@'+indi+' :: @'+ordered[indi]+'\n';
                 } else {
-                    res += '@'+ind+' :: SELF\n';
+                    res += '@'+indi+' :: SELF\n';
                 }
             }
         }
@@ -428,12 +428,12 @@ function scores(sta) {
                 return obd;
             }, {}
         );
-        for (ind in ordered) {
-            if ((ordered[ind] !== undefined) || (ind != '')) {
-                if (ordered[ind] == 'auto') {
-                    res += '@'+ind+' AUTO\n';
+        for (indi in ordered) {
+            if ((ordered[indi] !== undefined) || (indi != '')) {
+                if (ordered[indi] == 'auto') {
+                    res += '@'+indi+' AUTO\n';
                 } else {
-                    res += '@'+ind+' MANUAL\n';
+                    res += '@'+indi+' MANUAL\n';
                 }
             }
         }
@@ -444,12 +444,12 @@ function scores(sta) {
                 return obd;
             }, {}
         );
-        for (ind in ordered) {
-            if ((ordered[ind] !== undefined) || (ind != '')) {
-                if (ordered[ind] != '') {
-                    res += '@'+ind+' ['+ordered[ind]+']\n';
+        for (indi in ordered) {
+            if ((ordered[indi] !== undefined) || (indi != '')) {
+                if (ordered[indi] != '') {
+                    res += '@'+indi+' ['+ordered[indi]+']\n';
                 } else {
-                    res += '@'+ind+' [NULL]\n';
+                    res += '@'+indi+' [NULL]\n';
                 }
             }
         }
@@ -457,9 +457,9 @@ function scores(sta) {
         sortable = Object.fromEntries(
             Object.entries(obj).sort(([,a],[,b]) => b - a)
         );
-        for (ind in sortable) {
-            if ((sortable[ind] !== undefined) || (ind != '')) {
-                res += '@'+ind+' ('+sortable[ind]+')\n';
+        for (indi in sortable) {
+            if ((sortable[indi] !== undefined) || (indi != '')) {
+                res += '@'+indi+' ('+sortable[indi]+')\n';
             }
         }
     }
