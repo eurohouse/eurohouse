@@ -383,7 +383,7 @@ function automator() {
                 userStats.innerText = scores(sysDefStats.value);
                 userStatsAuto.innerText = (subName == 'root') ? CryptoJS.MD5(status+'@'+subName+'#'+objName+'&'+handle).toString() : CryptoJS.MD5(status+'@'+subName+'$'+objName+'&'+handle).toString();
             }
-            if (status == 200) {
+            if ((subName != '') && (objName != '') && (subName != objName) && (isInt(tabPower[subName])) && (tabPower[subName] >= 0) && (autoPower[subName] == 'auto') && (status == 200)) {
                 bind(subName, handle);
                 if (objName == handle) {
                     dominate(subName, objName, 1, 1, 0);
