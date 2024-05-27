@@ -312,7 +312,6 @@ function delete_user(id) {
     remove_entry(id, sysDefPowersData, 'dominion.json');
     remove_entry(id, sysDefAutoData, 'automator.json');
     remove_entry(id, sysDefFriendData, 'friendship.json');
-    copy(id+'_session.json', id+'_session.json.dmp', true);
     del(id+'_session.json', true);
     del(id+'_session.json.bak', true);
     del(id+'_password', true);
