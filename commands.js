@@ -1,5 +1,5 @@
 function executeMacros(input, index = 0, length = 1) {
-    var output = input; var rep, r1, r2, r3, r4;
+    var output = input; var rep, sansPlus;
     if ((index == (length - 1)) && (input == '_')) {
         omniBack(sysDefParent.value);
     } else if ((index == (length - 1)) && (input == '\\=')) {
@@ -84,13 +84,19 @@ function executeMacros(input, index = 0, length = 1) {
             }
         }
     } else if (input.includes(': ')) {
-        rep = input.split(': '); var sansPlus = '';
+        rep = input.split(': ');
         if (rep[0] == 'memo') {
             if ((rep[1].includes('h')) && (rep[1].startsWith('+'))) {
                 sansPlus = parseInt(rep[1].replace('+', '').replace('h', '')) * 3600;
                 setdata(rep[0], (Math.round(Date.now() / 1000) + parseInt(sansPlus)));
             } else if ((rep[1].includes('min')) && (rep[1].startsWith('+'))) {
                 sansPlus = parseInt(rep[1].replace('+', '').replace('min', '')) * 60;
+                setdata(rep[0], (Math.round(Date.now() / 1000) + parseInt(sansPlus)));
+            } else if ((rep[1].includes('m')) && (rep[1].startsWith('+'))) {
+                sansPlus = parseInt(rep[1].replace('+', '').replace('m', '')) * 60;
+                setdata(rep[0], (Math.round(Date.now() / 1000) + parseInt(sansPlus)));
+            } else if ((rep[1].includes('sec')) && (rep[1].startsWith('+'))) {
+                sansPlus = parseInt(rep[1].replace('+', '').replace('sec', ''));
                 setdata(rep[0], (Math.round(Date.now() / 1000) + parseInt(sansPlus)));
             } else if ((rep[1].includes('s')) && (rep[1].startsWith('+'))) {
                 sansPlus = parseInt(rep[1].replace('+', '').replace('s', ''));
@@ -133,7 +139,24 @@ function executeMacros(input, index = 0, length = 1) {
     } else if ((index == (length - 1)) && (input.includes('=')) && (input.indexOf('=') == 0)) {
         window.location.href = input.replace('=', '');
     } else if ((index == (length - 1)) && (input.includes('+')) && (input.indexOf('+') == 0)) {
-        audioPosition(input.replace('+', ''));
+        if (input.replace('+', '').includes('h')) {
+            sansPlus = parseInt(input.replace('+', '').replace('h', '')) * 3600;
+            setdata('memo', (Math.round(Date.now() / 1000) + parseInt(sansPlus)));
+        } else if (input.replace('+', '').includes('min')) {
+            sansPlus = parseInt(input.replace('+', '').replace('min', '')) * 60;
+            setdata('memo', (Math.round(Date.now() / 1000) + parseInt(sansPlus)));
+        } else if (input.replace('+', '').includes('m')) {
+            sansPlus = parseInt(input.replace('+', '').replace('m', '')) * 60;
+            setdata('memo', (Math.round(Date.now() / 1000) + parseInt(sansPlus)));
+        } else if (input.replace('+', '').includes('sec')) {
+            sansPlus = parseInt(input.replace('+', '').replace('sec', ''));
+            setdata('memo', (Math.round(Date.now() / 1000) + parseInt(sansPlus)));
+        } else if (input.replace('+', '').includes('s')) {
+            sansPlus = parseInt(input.replace('+', '').replace('s', ''));
+            setdata('memo', (Math.round(Date.now() / 1000) + parseInt(sansPlus)));
+        } else {
+            audioPosition(input.replace('+', ''));
+        }
     } else if ((index == (length - 1)) && (input.includes('.'))) {
         if (input.startsWith('.')) {
             addFriend(input.replace('.', ''));
