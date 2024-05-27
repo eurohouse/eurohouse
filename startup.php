@@ -5,12 +5,13 @@ window.onload = function() {
     <?php } else { ?>
         document.getElementById('omniBoxAuthLogin').focus();
     <?php } ?>
-    if ( window.history.replaceState ) {
-        window.history.replaceState( null, null, window.location.href );
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
     }
     if ((sysDefAutoplay.value == 1) && (sysDefPlaying.value == 1)) {
         omniListen(hex2bin(sysDefMelody.value));
-    } if (requestMode.value == 'media_player') {
+    }
+    if (requestMode.value == 'media_player') {
         replayVideo(video);
     }
 }
@@ -45,17 +46,25 @@ function world_clock() {
                 videoRatInd.value = mixers[4];
                 videoBalInd.value = mixers[5];
             }
-            var tickCode = pager(data, 1).split(':')[1];
-            var tickPanel = pager(data, 1).split(':')[2];
-            window.devicePixelRatio = pager(data, 1).split(':')[0];
+            var tickCode = pager(data, 1).split(' ')[0];
+            var tickPane1 = pager(data, 1).split(' ')[1];
+            var tickPane2 = pager(data, 1).split(' ')[2];
+            var obs = tickPane1.split('')[0];
+            var spe = tickPane1.split('')[1];
+            var vint = tickPane1.split('')[2];
+            var icn = tickPane2.split('')[0];
+            var prv = tickPane2.split('')[1];
+            var cht = tickPane2.split('')[2];
             if (sysDefBindData.value != sysDefPostBindData.value) {
                 if (sysDefMute.value == 0) {
                     playAudio(bindPlayer, sysDefBindSound.value);
                 }
-            } sysDefPostBindData.value = sysDefBindData.value;
+            }
+            sysDefPostBindData.value = sysDefBindData.value;
             if (sysDefMsgData.value != sysDefPostMsgData.value) {
                 playAudio(notifyPlayer, sysDefNotifySound.value);
-            } sysDefPostMsgData.value = sysDefMsgData.value;
+            }
+            sysDefPostMsgData.value = sysDefMsgData.value;
             $('#powerButton').attr('src', sysDefPrefix.value+'power.png'+sysDefSuffix.value);
             $('#buttonNext').attr('src', sysDefPrefix.value+'go.png'+sysDefSuffix.value);
             if (sysDefLock.value != 0) {
@@ -70,7 +79,7 @@ function world_clock() {
                 sysDefMsgCounter.value = sysDefMsgCounter.value - 1;
             }
             $('#showUsUrgent').text(Object.values(msgfilter(sysDefMsgData.value, sysDefFind.value))[sysDefMsgCounter.value]);
-            if (tickPanel.split('')[4] != 0) {
+            if (prv != 0) {
                 $('#buttonPrivate').attr('src', sysDefPrefix.value+'home.png'+sysDefSuffix.value);
             } else {
                 $('#buttonPrivate').attr('src', sysDefPrefix.value+'world.png'+sysDefSuffix.value);
@@ -83,7 +92,7 @@ function world_clock() {
             $('#buttonObserve').attr('src', sysDefPrefix.value+'power.png'+sysDefSuffix.value);
             $('#buttonSpectate').attr('src', sysDefPrefix.value+'power.png'+sysDefSuffix.value);
             $('#buttonEnter').attr('src', sysDefPrefix.value+'return.png'+sysDefSuffix.value);
-            if (sysDefChat.value != 0) {
+            if (cht != 0) {
                 $('#buttonChat').attr('src', sysDefPrefix.value+'book.png'+sysDefSuffix.value);
             } else {
                 $('#buttonChat').attr('src', sysDefPrefix.value+'bash.png'+sysDefSuffix.value);
@@ -141,7 +150,7 @@ function world_clock() {
             } else {
                 $('#buttonFaceoff').attr('src', sysDefPrefix.value+'restore.png'+sysDefSuffix.value);
             }
-            if (tickPanel.split('')[3] == 1) {
+            if (icn == 1) {
                 $('#buttonIconsList').attr('src', sysDefPrefix.value+'menu.png'+sysDefSuffix.value);
             } else {
                 $('#buttonIconsList').attr('src', sysDefPrefix.value+'list.png'+sysDefSuffix.value);
@@ -153,18 +162,18 @@ function world_clock() {
                 $('#buttonUserStatus').attr('src', sysDefPrefix.value+'anonym.png'+sysDefSuffix.value);
             }
             $('#buttonEscape').attr('src', sysDefPrefix.value+'escape.png'+sysDefSuffix.value);
-            if (tickPanel.split('')[2] != sysDefPostBackEff.value) {
-                if (tickPanel.split('')[2] != 0) {
+            if (vint != sysDefPostBackEff.value) {
+                if (vint != 0) {
                     playAudio(backgroundPlayer, sysDefBackgroundSound.value);
                 } else {
                     pauseAudio(backgroundPlayer);
                 }
             }
-            sysDefPostBackEff.value = tickPanel.split('')[2];
+            sysDefPostBackEff.value = vint;
             if (requestMode.value == 'news_feed') {
                 msgBox.innerHTML = '<p>'+msghtml(sysDefMsgData.value, sysDefFind.value)+'</p>';
             }
-            if (((tickPanel.split('')[0] == 1) && (tickPanel.split('')[1] == 1)) || ((tickPanel.split('')[0] == 1) && (tickPanel.split('')[1] == 0))) {
+            if (((obs == 1) && (spe == 1)) || ((obs == 1) && (spe == 0))) {
                 $('#powerButton').show();
                 $('.panel').hide();
                 $('.customPanel').hide();
@@ -172,7 +181,7 @@ function world_clock() {
                 $('.lowerGap').hide();
                 $('.topbar').hide();
             } else {
-                if ((tickPanel.split('')[0] == 0) && (tickPanel.split('')[1] == 1)) {
+                if ((obs == 0) && (spe == 1)) {
                     $('#powerButton').hide();
                     $('.panel').hide();
                     $('.customPanel').hide();
@@ -193,12 +202,13 @@ function world_clock() {
             document.querySelector(':root').style.setProperty('--overlay-before-ani', pager(data, 6).split(';')[2]);
             document.querySelector(':root').style.setProperty('--overlay-after-bg', pager(data, 6).split(';')[3]);
             document.querySelector(':root').style.setProperty('--overlay-after-ani', pager(data, 6).split(';')[4]);
-            if (tickCode.split('')[1] != 0) {
+            var ongo = tickCode.split('')[0]; var inco = tickCode.split('')[1];
+            if (inco != 0) {
                 playAudio(tickerPlayer, sysDefTickingSound.value);
             } else {
                 pauseAudio(tickerPlayer);
             }
-            if (tickCode.split('')[0] != 0) {
+            if (ongo != 0) {
                 playAudio(alarmPlayer, sysDefAlarmSound.value); setdata('memo', '');
             }
         },

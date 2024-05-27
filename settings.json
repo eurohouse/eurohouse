@@ -302,7 +302,6 @@
         "find": "#",
         "stats": "score",
         "position": "50% 25%",
-        "pixel_ratio": 1,
         "audio_volume": 1,
         "audio_balance": 0,
         "audio_speed": 1,

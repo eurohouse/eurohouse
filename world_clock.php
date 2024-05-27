@@ -9,9 +9,6 @@ $autoData = arropen('automator.json', "{\"root\":\"manual\"}");
 $frndData = arropen('friendship.json', "{\"root\":\"\"}");
 $timezone = dec_tz($userData['timezone']);
 date_default_timezone_set($timezone);
-$dateTimePanel = $userData['observe'].$userData['spectate'].
-$userData['vintage'].$userData['icons'].
-$userData['private'].$userData['chat'];
 if ($userData['memo'] != '') {
     $valueTime = $userData['memo']; if (time() >= $valueTime) {
         $ongoingSignature = 1; $incomingSignature = 0; $alarmInTime = 0;
@@ -43,7 +40,7 @@ if ($userData['vintage'] != 0) {
     $overlayAfterAnimation = "none";
 }
 echo $dateTimeStr."\r\n\r\n".
-$userData['pixel_ratio'].":".$dateTimeCode.":".$dateTimePanel."\r\n\r\n".
+$dateTimeCode." ".$userData['observe'].$userData['spectate'].$userData['vintage']." ".$userData['icons'].$userData['private'].$userData['chat']."\r\n\r\n".
 hHmMsS($alarmInTime)."\r\n\r\n".
 $cookie."\r\n\r\n".
 valstr($bindingData,';',':')."\r\n\r\n".
