@@ -75,10 +75,12 @@
     <input type="image" onmouseover="soundButton();" id="buttonTime" class="power" onclick="setdata('benchmark', flip(sysDefBenchmark.value));" src="<?=$prefix.'time.png'.$suffix;?>">
     <input type='button' id="currentTime" style="width:32%;position:relative;" onclick="setdata('timedisp', flip(sysDefTimedisp.value));" value="00:00:00">
     <input type="image" onmouseover="soundButton();" id="buttonVintageFilm" class="power" onclick="if ((sysDefSepia.value == 0) && (sysDefGrayscale.value == 0)) {
-        setdata('sepia', 50);
-        setdata('grayscale', 50);
+        setdata('brightness', 90);
+        setdata('contrast', 120);
+        setdata('grayscale', 100);
     } else {
-        setdata('sepia', 0);
+        setdata('brightness', 100);
+        setdata('contrast', 100);
         setdata('grayscale', 0);
     }" src="<?=$prefix.'movie.png'.$suffix;?>">
     <input type="image" onmouseover="soundButton();" id="buttonVintage" class="power" onclick="setdata('vintage', flip(sysDefVintage.value));" src="<?=$prefix.'diamante.png'.$suffix;?>">
