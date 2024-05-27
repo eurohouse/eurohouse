@@ -74,16 +74,11 @@
     <p align='center' class='block'>
     <input type="image" onmouseover="soundButton();" id="buttonTime" class="power" onclick="setdata('benchmark', flip(sysDefBenchmark.value));" src="<?=$prefix.'time.png'.$suffix;?>">
     <input type='button' id="currentTime" style="width:32%;position:relative;" onclick="setdata('timedisp', flip(sysDefTimedisp.value));" value="00:00:00">
-    <input type="image" onmouseover="soundButton();" id="buttonVintageFilm" class="power" onclick="if ((sysDefSepia.value == 0) && (sysDefGrayscale.value == 0)) {
-        setdata('brightness', 90);
-        setdata('contrast', 120);
-        setdata('grayscale', 100);
+    <input type="image" onmouseover="soundButton();" id="buttonVintage" class="power" onclick="if ((sysDefVintage.value == 0) && (sysDefBrightness.value == 100) && (sysDefContrast.value == 100) && (sysDefGrayscale.value == 0)) {
+        setdata('brightness', 90); setdata('contrast', 120); setdata('grayscale', 100);
     } else {
-        setdata('brightness', 100);
-        setdata('contrast', 100);
-        setdata('grayscale', 0);
-    }" src="<?=$prefix.'movie.png'.$suffix;?>">
-    <input type="image" onmouseover="soundButton();" id="buttonVintage" class="power" onclick="setdata('vintage', flip(sysDefVintage.value));" src="<?=$prefix.'diamante.png'.$suffix;?>">
+        setdata('brightness', 100); setdata('contrast', 100); setdata('grayscale', 0);
+    } setdata('vintage', flip(sysDefVintage.value));" src="<?=$prefix.'diamante.png'.$suffix;?>">
     <input type="image" onmouseover="soundButton();" id="buttonGloss" class="power" onclick="setdata('gloss', flip(sysDefGloss.value));" src="<?=($session['gloss'] != 0) ? $prefix.'parfum.png'.$suffix : $prefix.'idea.png'.$suffix;?>">
     <input type="number" min='0' max='23' step='1' id="setTimeHour" style="width:9%;" value="<?=$session['hour'];?>" oninput="setdata('hour', pad(setTimeHour.value, 2));
     handleInput(this.value, true);" onkeydown="if (event.keyCode == 27) {
