@@ -198,7 +198,10 @@ function executeFile(name) {
         data: dataString,
         cache: false,
         success: function(result) {
-            executeCode(miniPager(result, 0));
+            var codeExt = result.split(/\r?\n/);
+            for (str in codeExt) {
+                executeCode(codeExt[str]);
+            }
         }
     });
     return false;
