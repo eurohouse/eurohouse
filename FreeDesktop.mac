@@ -1,1 +1,0 @@
-alarm_sound: gnu_alarm.oga; ticking_sound: gnu_instant.oga; background_sound: ubuntu_startup.oga; focus_sound: gnu_info.oga; type_sound: gnu_info.oga; error_sound: gnu_bell.oga; notify_sound: gnu_instant.oga; bind_sound: gnu_message.oga; hit_sound: gnu_message.oga; suffer_sound: gnu_message.oga;
