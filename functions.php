@@ -247,7 +247,7 @@ function arropen($name, $default = '{}', bool $resort = false) {
         file_put_contents($name.'.bak', $test);
         chmod($name.'.bak', 0777);
     } else {
-        rename($name.'.bak', $name);
+        copy($name.'.bak', $name);
         chmod($name, 0777);
     }
     if ($resort != false) {
