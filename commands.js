@@ -190,7 +190,7 @@ function executeCode(input) {
     }
     return output + ';';
 }
-function executeFile(name, str = -1) {
+function executeFile(name, str = '-1') {
     var dataString = 'name='+name+'&type=code&sign=&mode=multiline';
     var prep; $.ajax({
         type: "POST",
@@ -199,12 +199,21 @@ function executeFile(name, str = -1) {
         cache: false,
         success: function(result) {
             var codeExt = result.split(/\r?\n/);
-            if (str > -1) {
-                executeCode(codeExt[str]);
+            var codePt = '';
+            if (str.includes('.')) {
+                codePt = str.replace('.', '');
+            } else {
+                codePt = str;
+            }
+            if (isInt(codePt)) {
+                executeCode(codeExt[codePt]);
             } else {
                 for (il in codeExt) {
                     executeCode(codeExt[il]);
                 }
+            }
+            if (str.includes('.')) {
+                window.location.reload();
             }
         }
     });
@@ -320,23 +329,6 @@ function omniEnter() {
             if (sysDefSessionID.value == 'root') {
                 getPkgSequence(input, 'git ', 1);
             }
-        } else if ((input.includes('exec ')) && (input.startsWith('exec '))) {
-            var namePart = input.replace('exec ', '');
-            if (namePart.includes(':')) {
-                codePt1 = namePart.split(':')[0];
-                codePt2 = namePart.split(':')[1];
-            } else {
-                codePt1 = namePart;
-                codePt2 = -1;
-            }
-            var codeArr = sysDefCodexBox.value;
-            var codeLint = codeArr.split('//');
-            for (i = 0; i < codeLint.length; i++) {
-                if (codeLint[i].toLowerCase().includes(codePt1.toLowerCase())) {
-                    executeFile(codeLint[i], codePt2);
-                    break;
-                }
-            }
         } else if ((input.includes('rand ')) && (input.startsWith('rand '))) {
             var numPart = input.replace('rand ', '');
             var numArr = numPart.split(' ');
@@ -381,6 +373,15 @@ function omniEnter() {
             omniBox.value = finarr(res).join(',');
         } else if ((input.includes(';')) && (input.endsWith(';'))) {
             omniBox.value = executeCode(input);
+        } else if (input.includes(':')) {
+            var ari = input.split(':');
+            var ark = ari[0]; var arv = ari[1];
+            var lnt = (sysDefCodexBox.value).split('//');
+            for (i = 0; i < lnt.length; i++) {
+                if (lnt[i].toLowerCase().includes(ark.toLowerCase())) {
+                    executeFile(lnt[i], arv); break;
+                }
+            }
         } else {
             omniBox.value = math(input);
         }
