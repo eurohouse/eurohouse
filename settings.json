@@ -186,10 +186,13 @@
         "forward": [
             "https://github.com/infofintech/system",
             "https://github.com/infofintech/bootfont",
+            "https://github.com/infofintech/avatar",
+            "https://github.com/infofintech/branding",
             "https://github.com/infofintech/victorian",
             "https://github.com/infofintech/iso",
             "https://github.com/infofintech/iso3166",
             "https://github.com/infofintech/media",
+            "https://github.com/infofintech/metro",
             "https://github.com/eurohouse/eurohouse"
         ],
         "content": [
@@ -295,7 +298,7 @@
         "blank_text_color": "000000",
         "arc_fore_color": "403F40",
         "arc_input_color": "D5D5D5",
-        "background": "baron.000.00.png",
+        "background": "metro.euro.00.png",
         "menu": "file_finder,preferences",
         "theme": "iso",
         "memo": "",
