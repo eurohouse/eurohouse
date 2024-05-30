@@ -190,7 +190,7 @@ function executeCode(input) {
     }
     return output + ';';
 }
-function executeFile(name) {
+function executeFile(name, str = -1) {
     var dataString = 'name='+name+'&type=code&sign=&mode=multiline';
     var prep; $.ajax({
         type: "POST",
@@ -199,8 +199,12 @@ function executeFile(name) {
         cache: false,
         success: function(result) {
             var codeExt = result.split(/\r?\n/);
-            for (str in codeExt) {
+            if (str > -1) {
                 executeCode(codeExt[str]);
+            } else {
+                for (il in codeExt) {
+                    executeCode(codeExt[il]);
+                }
             }
         }
     });
@@ -318,11 +322,18 @@ function omniEnter() {
             }
         } else if ((input.includes('exec ')) && (input.startsWith('exec '))) {
             var namePart = input.replace('exec ', '');
+            if (namePart.includes(':')) {
+                codePt1 = namePart.split(':')[0];
+                codePt2 = namePart.split(':')[1];
+            } else {
+                codePt1 = namePart;
+                codePt2 = -1;
+            }
             var codeArr = sysDefCodexBox.value;
             var codeLint = codeArr.split('//');
             for (i = 0; i < codeLint.length; i++) {
-                if (codeLint[i].toLowerCase().includes(namePart.toLowerCase())) {
-                    executeFile(codeLint[i]);
+                if (codeLint[i].toLowerCase().includes(codePt1.toLowerCase())) {
+                    executeFile(codeLint[i], codePt2);
                     break;
                 }
             }
