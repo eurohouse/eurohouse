@@ -190,7 +190,7 @@ function executeCode(input) {
     }
     return output + ';';
 }
-function executeFile(name, str = '-1') {
+function executeFile(name, str = 'all', re = false) {
     var dataString = 'name='+name+'&type=code&sign=&mode=multiline';
     var prep; $.ajax({
         type: "POST",
@@ -199,20 +199,14 @@ function executeFile(name, str = '-1') {
         cache: false,
         success: function(result) {
             var codeExt = result.split(/\r?\n/);
-            var codePt = '';
-            if (str.includes('.')) {
-                codePt = str.replace('.', '');
-            } else {
-                codePt = str;
-            }
-            if (isInt(codePt)) {
-                executeCode(codeExt[codePt]);
+            if (isInt(str)) {
+                executeCode(codeExt[str]);
             } else {
                 for (il in codeExt) {
                     executeCode(codeExt[il]);
                 }
             }
-            if (str.includes('.')) {
+            if (re !== false) {
                 window.location.reload();
             }
         }
@@ -373,13 +367,27 @@ function omniEnter() {
             omniBox.value = finarr(res).join(',');
         } else if ((input.includes(';')) && (input.endsWith(';'))) {
             omniBox.value = executeCode(input);
-        } else if (input.includes(':')) {
-            var ari = input.split(':');
-            var ark = ari[0]; var arv = ari[1];
+        } else if (input.includes('exec ')) {
+            var re1 = input.replace('exec ', '');
+            var ark, arv, re2, re3;
+            if (re1.endsWith(' reload')) {
+                re2 = re1.replace(' reload', '');
+                re3 = true;
+            } else {
+                re2 = re1;
+                re3 = false;
+            }
+            if (re2.includes(':')) {
+                ark = re2.split(':')[0];
+                arv = re2.split(':')[1];
+            } else {
+                ark = re2; arv = 'all';
+            }
             var lnt = (sysDefCodexBox.value).split('//');
             for (i = 0; i < lnt.length; i++) {
                 if (lnt[i].toLowerCase().includes(ark.toLowerCase())) {
-                    executeFile(lnt[i], arv); break;
+                    executeFile(lnt[i], arv, re3);
+                    break;
                 }
             }
         } else {
