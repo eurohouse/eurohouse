@@ -232,7 +232,7 @@
         "spectate": 0,
         "private": 1,
         "vintage": 0,
-        "child_safe": 0,
+        "child_safe": 1,
         "magnitude": 5,
         "title": "",
         "description": "",
