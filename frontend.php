@@ -139,24 +139,38 @@ function clearMessage(date) {
         }
     }
 }
+function isoformat(num) {
+    var ob = new Date(num);
+    return (ob.getUTCFullYear())+'-'+pad((ob.getUTCMonth()+1), 2)+'-'+pad((ob.getUTCDate()), 2)+' '+pad((ob.getUTCHours()), 2)+':'+pad((ob.getUTCMinutes()), 2)+':'+pad((ob.getUTCSeconds()), 2);
+}
 function compose(msg) {
-    var it = new Date(Date.now());
-    var stamp = (it.getUTCFullYear())+'-'+pad((it.getUTCMonth()+1), 2)+'-'+pad((it.getUTCDate()), 2)+' '+pad((it.getUTCHours()), 2)+':'+pad((it.getUTCMinutes()), 2)+':'+pad((it.getUTCSeconds()), 2);
     var addr = msg.match(/(@\w*)/g);
-    var userID; var msgbox = '';
+    var userID; var msgbox = ''; var msgbr = [];
     var ratTab = arrjob(sysDefPowersData.value, ';', ':');
     if (ratTab[sysDefSessionID.value] >= 0) {
         if (addr !== null) {
             for (i = 0; i < addr.length; i++) {
                 userID = addr[i].replace('@', '');
-                msgbox = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+stamp+' UTC | '+msg+'\r\n'+openMsgBox(userID);
+                msgbox = openMsgBox(userID);
+                if (msg.includes(' | ')) {
+                    msgbr = msg.split(' | ');
+                    for (j = 0; j < msgbr.length; j++) {
+                        msgbox = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now()+j*1000)+' UTC | '+msgbr[j]+'\r\n'+msgbox;
+                    }
+                } else {
+                    msgbox = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now())+' UTC | '+msg+'\r\n'+msgbox;
+                }
                 set('./.log/'+userID+'_msgbox.log', encodeURIComponent(msgbox), true);
             }
         } else {
-            if (sysDefSessionID.value == 'root') {
-                msgbox = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+stamp+' UTC | '+msg+'\r\n'+sysDefMsgData.value;
+            msgbox = sysDefMsgData.value;
+            if (msg.includes(' | ')) {
+                msgbr = msg.split(' | ');
+                for (j = 0; j < msgbr.length; j++) {
+                    msgbox = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now()+j*1000)+' UTC | '+msgbr[j]+'\r\n'+msgbox;
+                }
             } else {
-                msgbox = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+stamp+' UTC | '+msg+'\r\n'+sysDefMsgData.value;
+                msgbox = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now())+' UTC | '+msg+'\r\n'+msgbox;
             }
             if (sysDefPrivate.value != 0) {
                 set('./.log/'+sysDefSessionID.value+'_msgbox.log', encodeURIComponent(msgbox), true);
