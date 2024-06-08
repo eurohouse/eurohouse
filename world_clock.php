@@ -25,6 +25,7 @@ natcasesort($musicBoxArr); array_unique($musicBoxArr);
 $locksArr = arropen($cookie.'_lock.json', json_encode($userSettings['locks']), true);
 $museBox = excpkg($musicBoxArr, $locksArr['music']);
 $codexBoxArr = str_replace('./','',(glob('./*.mac')));
+$speechBoxArr = str_replace('./','',(glob('./*.pro')));
 $userFileMsg = str_replace('./.log/','',(glob('./.log/*_msgbox.log')));
 $usersList = implode(',',str_replace('_msgbox.log','',$userFileMsg));
 $newsFeed = ($userData['private'] != 0) ? file_get_contents('./.log/'.$cookie.'_msgbox.log') : file_get_contents('./.log/msgbox.log');
@@ -48,7 +49,7 @@ valstr($poweredData,';',':')."\r\n\r\n".
 $vintageBackdropFilter.";".$overlayBeforeBackground.";".$overlayBeforeAnimation.";".$overlayAfterBackground.";".$overlayAfterAnimation."\r\n\r\n".
 $newsFeed."\r\n\r\n".
 implode('//', $museBox)."\r\n\r\n".
-implode('//', $codexBoxArr)."\r\n\r\n".
+implode('//', $codexBoxArr)."\\\\".implode('//', $speechBoxArr)."\r\n\r\n".
 $usersList."\r\n\r\n".
 $userData['audio_volume'].' '.$userData['audio_speed'].' '.$userData['audio_balance'].' '.$userData['video_volume'].' '.$userData['video_speed'].' '.$userData['video_balance']."\r\n\r\n".
 valstr($autoData,';',':')."\r\n\r\n".

@@ -53,6 +53,7 @@ $homer = str_replace('./','',(glob('./*.{'.duplex($settings['collections']['font
 $orpheus = str_replace('./','',(glob('./*.{'.duplex($settings['collections']['audio'], true).'}', GLOB_BRACE)));
 $musicBox = str_replace('./','',(glob('./*.{'.duplex($settings['collections']['music'], true).','.duplex($settings['collections']['audio'], true).'}', GLOB_BRACE)));
 $codexBox = str_replace('./','',(glob('./*.mac')));
+$speechBox = str_replace('./','',(glob('./*.pro')));
 $thematic = str_replace('./','',(glob('./*.start.png')));
 $allUsers = str_replace('./','',(glob('./*_session.json')));
 $locks = arropen($sessionID.'_lock.json', json_encode($settings['locks']), true);

@@ -33,7 +33,9 @@ function world_clock() {
             $('#sysDefPowersData').val(pager(data, 5));
             $('#sysDefMsgData').val(pager(data, 7));
             $('#sysDefMusicBox').val(pager(data, 8));
-            $('#sysDefCodexBox').val(pager(data, 9));
+            var lfi = pager(data, 9).split("\\\\");
+            $('#sysDefCodexBox').val(lfi[0]);
+            $('#sysDefSpeechBox').val(lfi[1]);
             $('#sysDefUsersList').val(pager(data, 10));
             $('#sysDefAutoData').val(pager(data, 12));
             $('#sysDefFriendData').val(pager(data, 13));

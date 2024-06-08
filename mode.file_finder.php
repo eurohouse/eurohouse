@@ -143,6 +143,18 @@ $iconSize = 50; include 'file_manager.php'; ?>
     <?php } else { ?>
         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'true');" src="<?=$prefix.'info.png'.$suffix;?>">
     <?php } ?></p></td>
+    <?php } elseif ($mediaFileExtension == 'pro') {
+        $mediaFileFavicon = $themePrefix.'script.png'.$suffix;
+    ?><td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon.$suffix;?>" onmouseover="soundButton();"></a></td>
+    <td><a style="<?=$preStyle;?>" href="javascript:pronounceFile(%22<?=$mediaFilename;?>%22);"><?=$mediaFileTitle;?></a></td>
+    <td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
+    <td><p align='center' class='block'>
+    <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor', this.name, 'true');" src="<?=$prefix.'book.png'.$suffix;?>">
+    <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
+        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="del(this.name);" src="<?=$prefix.'delete.png'.$suffix;?>">
+    <?php } else { ?>
+        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'true');" src="<?=$prefix.'info.png'.$suffix;?>">
+    <?php } ?></p></td>
     <?php } else { $mediaFileFavicon = $themePrefix.'text.png'; ?>
     <td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon.$suffix;?>" onmouseover="soundButton();"></a></td>
     <td><a style="<?=$preStyle;?>" href="<?=$mediaFilename;?>"><?=$mediaFileTitle;?></a></td><td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>

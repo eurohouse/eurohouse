@@ -139,12 +139,9 @@ function clearMessage(date) {
         }
     }
 }
-function compose(msg, clear = false, fx = 0) {
-    nt = Date.now(); it = nt + fx * 1000;
-    var t = new Date(it); var tY = t.getUTCFullYear();
-    var tM = t.getUTCMonth()+1; var tD = t.getUTCDate();
-    var tH = t.getUTCHours(); var tMin = t.getUTCMinutes();
-    var tS = t.getUTCSeconds();
+function compose(msg) {
+    var it = new Date(Date.now());
+    var stamp = (it.getUTCFullYear())+'-'+pad((it.getUTCMonth()+1), 2)+'-'+pad((it.getUTCDate()), 2)+' '+pad((it.getUTCHours()), 2)+':'+pad((it.getUTCMinutes()), 2)+':'+pad((it.getUTCSeconds()), 2);
     var addr = msg.match(/(@\w*)/g);
     var userID; var msgbox = '';
     var ratTab = arrjob(sysDefPowersData.value, ';', ':');
@@ -152,34 +149,14 @@ function compose(msg, clear = false, fx = 0) {
         if (addr !== null) {
             for (i = 0; i < addr.length; i++) {
                 userID = addr[i].replace('@', '');
-                if (sysDefSessionID.value == 'root') {
-                    if (clear !== false) {
-                        msgbox = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+tY+'-'+pad(tM, 2)+'-'+pad(tD, 2)+' '+pad(tH, 2)+':'+pad(tMin, 2)+':'+pad(tS, 2)+' UTC | '+msg;
-                    } else {
-                        msgbox = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+tY+'-'+pad(tM, 2)+'-'+pad(tD, 2)+' '+pad(tH, 2)+':'+pad(tMin, 2)+':'+pad(tS, 2)+' UTC | '+msg+'\r\n'+openMsgBox(userID);
-                    }
-                } else {
-                    msgbox = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+tY+'-'+pad(tM, 2)+'-'+pad(tD, 2)+' '+pad(tH, 2)+':'+pad(tMin, 2)+':'+pad(tS, 2)+' UTC | '+msg+'\r\n'+openMsgBox(userID);
-                }
+                msgbox = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+stamp+' UTC | '+msg+'\r\n'+openMsgBox(userID);
                 set('./.log/'+userID+'_msgbox.log', encodeURIComponent(msgbox), true);
             }
         } else {
             if (sysDefSessionID.value == 'root') {
-                if (clear !== false) {
-                    msgbox = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+tY+'-'+pad(tM, 2)+'-'+pad(tD, 2)+' '+pad(tH, 2)+':'+pad(tMin, 2)+':'+pad(tS, 2)+' UTC | '+msg;
-                } else {
-                    msgbox = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+tY+'-'+pad(tM, 2)+'-'+pad(tD, 2)+' '+pad(tH, 2)+':'+pad(tMin, 2)+':'+pad(tS, 2)+' UTC | '+msg+'\r\n'+sysDefMsgData.value;
-                }
+                msgbox = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+stamp+' UTC | '+msg+'\r\n'+sysDefMsgData.value;
             } else {
-                if (clear !== false) {
-                    if (sysDefPrivate.value != 0) {
-                        msgbox = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+tY+'-'+pad(tM, 2)+'-'+pad(tD, 2)+' '+pad(tH, 2)+':'+pad(tMin, 2)+':'+pad(tS, 2)+' UTC | '+msg;
-                    } else {
-                        msgbox = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+tY+'-'+pad(tM, 2)+'-'+pad(tD, 2)+' '+pad(tH, 2)+':'+pad(tMin, 2)+':'+pad(tS, 2)+' UTC | '+msg+'\r\n'+sysDefMsgData.value;
-                    }
-                } else {
-                    msgbox = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+tY+'-'+pad(tM, 2)+'-'+pad(tD, 2)+' '+pad(tH, 2)+':'+pad(tMin, 2)+':'+pad(tS, 2)+' UTC | '+msg+'\r\n'+sysDefMsgData.value;
-                }
+                msgbox = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+stamp+' UTC | '+msg+'\r\n'+sysDefMsgData.value;
             }
             if (sysDefPrivate.value != 0) {
                 set('./.log/'+sysDefSessionID.value+'_msgbox.log', encodeURIComponent(msgbox), true);

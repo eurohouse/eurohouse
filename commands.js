@@ -219,6 +219,32 @@ function executeFile(name, str = '', re = false) {
     });
     return false;
 }
+function pronounceFile(name, str = '') {
+    var dataString = 'name='+name+'&type=code&sign=&mode=multiline';
+    $.ajax({
+        type: "POST",
+        url: "read.php",
+        data: dataString,
+        cache: false,
+        success: function(result) {
+            var codeExt = result.split(/\r?\n/);
+            if (isInt(str)) {
+                compose(codeExt[str]);
+            } else if (str == '') {
+                for (il in codeExt) {
+                    compose(codeExt[il]);
+                }
+            } else {
+                for (ik in codeExt) {
+                    if (codeExt[ik].toLowerCase().includes(str.toLowerCase())) {
+                        compose(codeExt[ik]);
+                    }
+                }
+            }
+        }
+    });
+    return false;
+}
 function getPkgSequence(input, cmdword, isRepo = 0) {
     var preQuery = input.replace(cmdword, '');
     var query = '';
@@ -294,7 +320,7 @@ function omniEnter() {
     var input = omniBox.value;
     var output = "";
     if (sysDefChat.value != 0) {
-        compose(input, false, 0);
+        compose(input);
     } else {
         if ((input == 'reload') || (input == 'refresh')) {
             window.location.reload();
@@ -374,25 +400,25 @@ function omniEnter() {
         } else if ((input.includes(';')) && (input.endsWith(';'))) {
             omniBox.value = executeCode(input);
         } else if (input.includes('exec ')) {
-            var re1 = input.replace('exec ', '');
-            var ark, arv, re2, re3;
-            if (re1.endsWith(' reload')) {
-                re2 = re1.replace(' reload', '');
-                re3 = true;
-            } else {
-                re2 = re1;
-                re3 = false;
-            }
-            if (re2.includes(':')) {
-                ark = re2.split(':')[0];
-                arv = re2.split(':')[1];
-            } else {
-                ark = re2; arv = '';
-            }
+            var re2 = ((input.replace('exec ', '')).endsWith(' reload')) ? input.replace('exec ', '').replace(' reload', '') : input.replace('exec ', '');
+            var re3 = ((input.replace('exec ', '')).endsWith(' reload'));
+            var ark = (re2.includes(':')) ? re2.split(':')[0] : re2;
+            var arv = (re2.includes(':')) ? re2.split(':')[1] : '';
             var lnt = (sysDefCodexBox.value).split('//');
             for (i = 0; i < lnt.length; i++) {
                 if (lnt[i].toLowerCase().includes(ark.toLowerCase())) {
                     executeFile(lnt[i], arv, re3);
+                    break;
+                }
+            }
+        } else if (input.includes('pron ')) {
+            var re2 = (input.replace('pron ', ''));
+            var ark = (re2.includes(':')) ? re2.split(':')[0] : re2;
+            var arv = (re2.includes(':')) ? re2.split(':')[1] : '';
+            var lnp = (sysDefSpeechBox.value).split('//');
+            for (i = 0; i < lnp.length; i++) {
+                if (lnp[i].toLowerCase().includes(ark.toLowerCase())) {
+                    pronounceFile(lnp[i], arv);
                     break;
                 }
             }
