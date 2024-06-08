@@ -209,6 +209,7 @@ function executeFile(name, str = '', re = false) {
                 for (ik in codeExt) {
                     if (codeExt[ik].toLowerCase().includes(str.toLowerCase())) {
                         executeCode(codeExt[ik]);
+                        break;
                     }
                 }
             }
@@ -231,13 +232,12 @@ function pronounceFile(name, str = '') {
             if (isInt(str)) {
                 compose(codeExt[str]);
             } else if (str == '') {
-                for (il in codeExt) {
-                    compose(codeExt[il]);
-                }
+                compose(result);
             } else {
                 for (ik in codeExt) {
                     if (codeExt[ik].toLowerCase().includes(str.toLowerCase())) {
                         compose(codeExt[ik]);
+                        break;
                     }
                 }
             }

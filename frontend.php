@@ -152,8 +152,8 @@ function compose(msg) {
             for (i = 0; i < addr.length; i++) {
                 userID = addr[i].replace('@', '');
                 msgbox = openMsgBox(userID);
-                if (msg.includes(' | ')) {
-                    msgbr = msg.split(' | ');
+                if (msg.match(/\r?\n/) !== null) {
+                    msgbr = msg.split(/\r?\n/);
                     for (j = 0; j < msgbr.length; j++) {
                         msgbox = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now()+j*1000)+' UTC | '+msgbr[j]+'\r\n'+msgbox;
                     }
@@ -164,8 +164,8 @@ function compose(msg) {
             }
         } else {
             msgbox = sysDefMsgData.value;
-            if (msg.includes(' | ')) {
-                msgbr = msg.split(' | ');
+            if (msg.match(/\r?\n/) !== null) {
+                msgbr = msg.split(/\r?\n/);
                 for (j = 0; j < msgbr.length; j++) {
                     msgbox = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now()+j*1000)+' UTC | '+msgbr[j]+'\r\n'+msgbox;
                 }
