@@ -398,7 +398,7 @@ function toggleFriend(id) {
         } else {
             frnd.push(id);
         }
-        fr[usr] = finarr(frnd).join(',');
+        fr[usr] = finarr(frnd).sort().join(',');
         set('friendship.json', JSON.stringify(fr), true);
         sysDefFriendData.value = arrpack(fr,';',':');
     }
@@ -409,7 +409,7 @@ function addFriend(id) {
     var frnd = friendsOf(fr, usr);
     if (id != usr) {
         frnd.push(id);
-        fr[usr] = finarr(frnd).join(',');
+        fr[usr] = finarr(frnd).sort().join(',');
         set('friendship.json', JSON.stringify(fr), true);
         sysDefFriendData.value = arrpack(fr,';',':');
     }
@@ -422,7 +422,7 @@ function dropFriend(id) {
         if (frnd.indexOf(id) > -1) {
             frnd.splice(frnd.indexOf(id), 1);
         }
-        fr[usr] = finarr(frnd).join(',');
+        fr[usr] = finarr(frnd).sort().join(',');
         set('friendship.json', JSON.stringify(fr), true);
         sysDefFriendData.value = arrpack(fr,';',':');
     }

@@ -366,7 +366,7 @@ function omniEnter() {
                 mas = arr[i].split(',');
                 res = (i == 0) ? mas : res.concat(mas);
             }
-            omniBox.value = finarr(res).join(',');
+            omniBox.value = finarr(res).sort().join(',');
         } else if (input.includes(' ^ ')) {
             var arr = input.split(' ^ ');
             var mas = []; var res = [];
@@ -376,7 +376,7 @@ function omniEnter() {
                     return mas.indexOf(n) !== -1;
                 });
             }
-            omniBox.value = finarr(res).join(',');
+            omniBox.value = finarr(res).sort().join(',');
         } else if (input.includes(' / ')) {
             var arr = input.split(' / ');
             var mas = []; var res = [];
@@ -386,7 +386,7 @@ function omniEnter() {
                     return mas.indexOf(n) == -1;
                 });
             }
-            omniBox.value = finarr(res).join(',');
+            omniBox.value = finarr(res).sort().join(',');
         } else if (input.includes(' \\ ')) {
             var arr = input.split(' \\ ');
             var mas = []; var res = [];
@@ -396,7 +396,7 @@ function omniEnter() {
                     return res.indexOf(n) == -1;
                 });
             }
-            omniBox.value = finarr(res).join(',');
+            omniBox.value = finarr(res).sort().join(',');
         } else if ((input.includes(';')) && (input.endsWith(';'))) {
             omniBox.value = executeCode(input);
         } else if (input.includes('exec ')) {
