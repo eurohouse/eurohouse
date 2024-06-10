@@ -329,7 +329,7 @@ function omniEnter() {
         } else if (input == 'clear') {
             clearMessage('');
         } else if (input == 'spawn') {
-            spawnBot('auto');
+            init_user('1337', 'auto');
         } else if (input == 'song') {
             songIndex();
         } else if ((input == 'unbind') || (input == 'suck it') || (input == 'отсоси')) {

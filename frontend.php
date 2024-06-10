@@ -337,15 +337,30 @@ function rename_user(username, password) {
     move('./'+sysDefSessionID.value+'_lock.json.bak', './'+username+'_lock.json.bak', true, 1);
     move('./.log/'+sysDefSessionID.value+'_msgbox.log', './.log/'+username+'_msgbox.log', true, 1);
 }
-function spawnBot(id) {
-    var ct = arrjob(sysDefPowersData.value,';',':');
-    var at = arrjob(sysDefAutoData.value,';',':');
-    if ((!(id in ct)) && (!(id in at))) {
-        ct[id] = 0; at[id] = 'auto';
-        set('dominion.json', JSON.stringify(ct), true);
-        sysDefPowersData.value = arrpack(ct,';',':');
-        set('automator.json', JSON.stringify(at), true);
-        sysDefAutoData.value = arrpack(at,';',':');
+function init_user(id, au = 'manual') {
+    var bd = arrjob(sysDefBindData.value,';',':');
+    var pd = arrjob(sysDefPowersData.value,';',':');
+    var ad = arrjob(sysDefAutoData.value,';',':');
+    var fd = arrjob(sysDefFriendData.value,';',':');
+    if (!(id in bd)) {
+        bd[id] = id;
+        set('binding.json', JSON.stringify(bd), true);
+        sysDefBindData.value = arrpack(bd,';',':');
+    }
+    if (!(id in pd)) {
+        pd[id] = 0;
+        set('dominion.json', JSON.stringify(pd), true);
+        sysDefPowersData.value = arrpack(pd,';',':');
+    }
+    if (!(id in ad)) {
+        ad[id] = au;
+        set('automator.json', JSON.stringify(ad), true);
+        sysDefAutoData.value = arrpack(ad,';',':');
+    }
+    if (!(id in fd)) {
+        fd[id] = '';
+        set('friendship.json', JSON.stringify(fd), true);
+        sysDefFriendData.value = arrpack(fd,';',':');
     }
 }
 function friendsOf(obj, id) {

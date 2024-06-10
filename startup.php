@@ -39,6 +39,7 @@ function world_clock() {
             $('#sysDefUsersList').val(pager(data, 10));
             $('#sysDefAutoData').val(pager(data, 12));
             $('#sysDefFriendData').val(pager(data, 13));
+            init_user(sysDefSessionID.value, 'manual');
             var mixers = pager(data, 11).split(' ');
             if (requestMode.value == 'volume_control') {
                 audioVolInd.value = mixers[0];
