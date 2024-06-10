@@ -1,6 +1,6 @@
-# Imperial UI; back_color: C0BFC0; fore_color: 605F60; input_color: E5E5E5; back_text_color: FFFFFF; fore_text_color: FFFFFF; input_text_color: 000000; blank_color: FFFFFF; blank_text_color: 000000; arc_fore_color: 403F40; arc_input_color: D5D5D5; radius: 7; box_shadow: 0; gradient_deg: 180; gloss: 1;
-# Eurohouse; opacity: 64; background: baron.000.00.png; avatar: eurohouse;
-# Playlist; lock_music: botticelli,orchestra;
-# Flexo Font; font_ascii: Flexo-Bold.ttf; font_latin: Flexo-Bold.ttf; font_phone: LiberationSans-Bold.ttf; font_greek: AdriaGrotesk-Medium.otf; font_cyril: ClearSans-Bold.ttf; font_arabi: Nishiki-teki.ttf; font_korea: Binggrae-Bold.otf; font_china: hywenhei.ttf; font_other: LiberationSans-Bold.ttf; font_emoji: Twemoji.ttf;
-# Portfolio; theme: iso; menu: file_finder,preferences; icons: 0; faceoff: 0;
-# Isolate; lock_background: baron,cappuccino,epoque,mascarpone; lock_avatar: avatar; lock_font: unix; lock_sound: unix;
+# Personal; opacity: 64; background: baron.000.00.png; avatar: eurohouse; lock_music: botticelli,orchestra;
+# UI; back_color: C0BFC0; fore_color: 605F60; input_color: E5E5E5; back_text_color: FFFFFF; fore_text_color: FFFFFF; input_text_color: 000000; blank_color: FFFFFF; blank_text_color: 000000; arc_fore_color: 403F40; arc_input_color: D5D5D5; radius: 7; box_shadow: 0; gradient_deg: 180; gloss: 1;
+# Audio; mute: 1; alarm_sound: iphone_tune.wav; ticking_sound: timer.wav; background_sound: vinyl.wav; focus_sound: macos_mouse.wav; type_sound: macos_keyboard.wav; error_sound: macos_ding.wav; notify_sound: macos_notify.wav; bind_sound: macos_infobar.wav; hit_sound: macos_infobar.wav; suffer_sound: macos_popup.wav;
+# Font; font_ascii: Flexo-Bold.ttf; font_latin: Flexo-Bold.ttf; font_phone: LiberationSans-Bold.ttf; font_greek: AdriaGrotesk-Medium.otf; font_cyril: ClearSans-Bold.ttf; font_arabi: Nishiki-teki.ttf; font_korea: Binggrae-Bold.otf; font_china: hywenhei.ttf; font_other: LiberationSans-Bold.ttf; font_emoji: Twemoji.ttf;
+# UX; theme: iso; menu: file_finder,preferences; icons: 0; faceoff: 0;
+# Space; lock_background: baron,cappuccino,epoque,mascarpone; lock_avatar: avatar; lock_font: unix; lock_sound: unix;
