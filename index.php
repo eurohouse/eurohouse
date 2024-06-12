@@ -50,6 +50,9 @@
 <input type='hidden' id="sysDefPostPowersData" value="<?=valstr($powersData,';',':');?>">
 <input type='hidden' id="sysDefPostMsgData" value="">
 <input type='hidden' id='sysDefAvatarIcons' value="<?=implode(';', $kaiser);?>">
+<form id="upload" method="POST" style="display:none;">
+<input type="file" name="file" id="filebrowser" onchange='uploadFile();'>
+</form>
 <p align='center' class='block'>
 <input hidden type="image" onmouseover="soundButton();" class="power" id="powerButton" onclick="setdata('observe', flip(sysDefObserve.value));" src="<?=$prefix.'power.png'.$suffix;?>">
 </p>

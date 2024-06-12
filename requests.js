@@ -23,6 +23,19 @@ function omniAuthRequest(auth, login, pass) {
     document.body.appendChild(form);
     form.submit();
 }
+function uploadFile() {
+    var formData = new FormData();
+    formData.append('file', document.getElementById('filebrowser').files[0], document.getElementById('filebrowser').files[0].name);
+    formData.append('path', requestPath.value);
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function() {
+        if (request.readyState == XMLHttpRequest.DONE) {
+            window.location.reload();
+        }
+    };
+    request.open("POST", "", true);
+    request.send(formData);
+}
 function omniGo(mode) {
     omniRequest(mode, requestSort.value, requestGroup.value, requestAngle.value, requestInput.value, requestOutput.value, requestArgs.value, requestLock.value, omniRef(), requestPath.value);
 }

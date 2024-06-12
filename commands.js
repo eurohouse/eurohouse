@@ -308,6 +308,7 @@ function omniEnter() {
     var angle = requestAngle.value;
     var input = omniBox.value;
     var output = "";
+    var arj = ''; var arg = [];
     if (sysDefChat.value != 0) {
         compose(input);
     } else {
@@ -319,13 +320,69 @@ function omniEnter() {
             clearMessage('');
         } else if (input == 'spawn') {
             init_user('1337', 'auto');
+        } else if (input == 'upload') {
+            document.getElementById('filebrowser').click();
+            return false;
         } else if (input == 'song') {
             songIndex();
-        } else if ((input == 'unbind') || (input == 'suck it') || (input == 'отсоси')) {
+        } else if ((input == 'unbind') || (input == 'detach')) {
             unbind(sysDefSessionID.value);
-        } else if ((input == 'suicide') || (input == 'goodbye') || (input == 'good riddance')) {
+        } else if ((input == 'suicide') || (input == 'goodbye')) {
             delete_user(sysDefSessionID.value);
             omniAuthRequest('signout','','');
+        } else if (input.startsWith('mkdir ')) {
+            if (sysDefSessionID.value == 'root') {
+                arj = input.replace('mkdir ', '');
+                arg = (arj.includes('"')) ? arj.match(/\"([^\"]+)\"/g) : arj.split(' ');
+                if (arg.length > 0) {
+                    for (i = 0; i < arg.length; i++) {
+                        mkdir(requestPath.value+'/'+arg[i].replaceAll('"', ''), true);
+                    }
+                    window.location.reload();
+                }
+            }
+        } else if (input.startsWith('touch ')) {
+            if (sysDefSessionID.value == 'root') {
+                arj = input.replace('touch ', '');
+                arg = (arj.includes('"')) ? arj.match(/\"([^\"]+)\"/g) : arj.split(' ');
+                if (arg.length > 0) {
+                    for (i = 0; i < arg.length; i++) {
+                        set(requestPath.value+'/'+arg[i].replaceAll('"', ''), '', true);
+                    }
+                    window.location.reload();
+                }
+            }
+        } else if (input.startsWith('rm ')) {
+            if (sysDefSessionID.value == 'root') {
+                arj = input.replace('rm ', '');
+                arg = (arj.includes('"')) ? arj.match(/\"([^\"]+)\"/g) : arj.split(' ');
+                if (arg.length > 0) {
+                    for (i = 0; i < arg.length; i++) {
+                        del(requestPath.value+'/'+arg[i].replaceAll('"', ''), true);
+                    }
+                    window.location.reload();
+                }
+            }
+        } else if (input.startsWith('mv ')) {
+            if (sysDefSessionID.value == 'root') {
+                arj = input.replace('mv ', '');
+                arg = (arj.includes('"')) ? arj.match(/\"([^\"]+)\"/g) : arj.split(' ');
+                if (arg.length == 2) {
+                    move(requestPath.value+'/'+arg[0].replaceAll('"', ''), requestPath.value+'/'+arg[1].replaceAll('"', ''), true);
+                    window.location.reload();
+                }
+            }
+        } else if (input.startsWith('cp ')) {
+            if (sysDefSessionID.value == 'root') {
+                arj = input.replace('cp ', '');
+                arg = (arj.includes('"')) ? arj.match(/\"([^\"]+)\"/g) : arj.split(' ');
+                if (arg.length > 1) {
+                    for (i = 1; i < arg.length; i++) {
+                        copy(requestPath.value+'/'+arg[0].replaceAll('"', ''), requestPath.value+'/'+arg[i].replaceAll('"', ''), true);
+                    }
+                    window.location.reload();
+                }
+            }
         } else if ((input.includes('update ')) && (input.startsWith('update '))) {
             if (sysDefSessionID.value == 'root') {
                 var req = input.replace('update ', '');
