@@ -333,7 +333,7 @@ function omniEnter() {
         } else if (input.startsWith('mkdir ')) {
             if (sysDefSessionID.value == 'root') {
                 arj = input.replace('mkdir ', '');
-                arg = (arj.includes('"')) ? arj.match(/\"([^\"]+)\"/g) : arj.split(' ');
+                arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
                 if (arg.length > 0) {
                     for (i = 0; i < arg.length; i++) {
                         mkdir(requestPath.value+'/'+arg[i].replaceAll('"', ''), true);
@@ -344,7 +344,7 @@ function omniEnter() {
         } else if (input.startsWith('touch ')) {
             if (sysDefSessionID.value == 'root') {
                 arj = input.replace('touch ', '');
-                arg = (arj.includes('"')) ? arj.match(/\"([^\"]+)\"/g) : arj.split(' ');
+                arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
                 if (arg.length > 0) {
                     for (i = 0; i < arg.length; i++) {
                         set(requestPath.value+'/'+arg[i].replaceAll('"', ''), '', true);
@@ -355,7 +355,7 @@ function omniEnter() {
         } else if (input.startsWith('rm ')) {
             if (sysDefSessionID.value == 'root') {
                 arj = input.replace('rm ', '');
-                arg = (arj.includes('"')) ? arj.match(/\"([^\"]+)\"/g) : arj.split(' ');
+                arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
                 if (arg.length > 0) {
                     for (i = 0; i < arg.length; i++) {
                         del(requestPath.value+'/'+arg[i].replaceAll('"', ''), true);
@@ -366,7 +366,7 @@ function omniEnter() {
         } else if (input.startsWith('mv ')) {
             if (sysDefSessionID.value == 'root') {
                 arj = input.replace('mv ', '');
-                arg = (arj.includes('"')) ? arj.match(/\"([^\"]+)\"/g) : arj.split(' ');
+                arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
                 if (arg.length == 2) {
                     move(requestPath.value+'/'+arg[0].replaceAll('"', ''), requestPath.value+'/'+arg[1].replaceAll('"', ''), true);
                     window.location.reload();
@@ -375,7 +375,7 @@ function omniEnter() {
         } else if (input.startsWith('cp ')) {
             if (sysDefSessionID.value == 'root') {
                 arj = input.replace('cp ', '');
-                arg = (arj.includes('"')) ? arj.match(/\"([^\"]+)\"/g) : arj.split(' ');
+                arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
                 if (arg.length > 1) {
                     for (i = 1; i < arg.length; i++) {
                         copy(requestPath.value+'/'+arg[0].replaceAll('"', ''), requestPath.value+'/'+arg[i].replaceAll('"', ''), true);
