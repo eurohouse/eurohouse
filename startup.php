@@ -18,6 +18,7 @@ window.onload = function() {
 $(document).ready(function() {
     setInterval(world_clock, <?=$settings['intervals']['world_clock'];?>);
     setInterval(mailing_list, <?=$settings['intervals']['mailing_list'];?>);
+    setInterval(bookkeep_list, <?=$settings['intervals']['bookkeep_list'];?>);
     setInterval(automator, <?=$settings['intervals']['automator'];?>);
     setInterval(visual_effects, <?=$settings['intervals']['visual_effects'];?>);
     setInterval(wallpaper_engine, <?=$settings['intervals']['wallpaper_engine'];?>);

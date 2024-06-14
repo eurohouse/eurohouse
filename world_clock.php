@@ -7,7 +7,7 @@ $bindingData = arropen('binding.json', "{\"root\":\"root\"}");
 $poweredData = arropen('dominion.json', "{\"root\":0}");
 $autoData = arropen('automator.json', "{\"root\":\"manual\"}");
 $frndData = arropen('friendship.json', "{\"root\":\"\"}");
-$userBook = fileopen('./.book/'.$cookie.'_book.log');
+$userBook = file_get_contents('./.book/'.$cookie.'_book.log');
 $timezone = dec_tz($userData['timezone']);
 date_default_timezone_set($timezone);
 if ($userData['memo'] != '') {
@@ -59,4 +59,4 @@ valstr($autoData,';',':')."\r\n\r\n".
 valstr($frndData,';',':')."\r\n\r\n".
 $userData['find']."\r\n\r\n".
 $userBook."\r\n\r\n".
-$userFileBook;
+$booksList;

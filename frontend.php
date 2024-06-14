@@ -269,15 +269,15 @@ function isAllZero(arr) {
 function fixPrice(sen, rec, deb, cre) {
     var tran1 = openBookKeep(sen); var tran2 = openBookKeep(rec);
     var stat = arrjob(sysDefPowersData.value,';',':');
+    var statD = (isInt(stat[sen])) ? parseInt(stat[sen]) : 0;
+    var statC = (isInt(stat[rec])) ? parseInt(stat[rec]) : 0;
     if ((isInt(deb)) && !(isInt(cre))) {
-        stat[sen] = parseInt(deb) + parseInt(stat[sen]);
-        stat[rec] = parseInt(deb) - parseInt(stat[rec]);
+        statD += parseInt(deb); statC -= parseInt(deb);
     } else if (!(isInt(deb)) && (isInt(cre))) {
-        stat[sen] -= parseInt(cre) - parseInt(stat[sen]);
-        stat[rec] += parseInt(cre) + parseInt(stat[rec]);
-    }
-    tran1 = '@'+sen+'    @'+rec+'    '+deb+'    '+cre+'    '+stat[sen]+'\r\n'+tran1;
-    tran2 = '@'+rec+'    @'+sen+'    '+cre+'    '+deb+'    '+stat[rec]+'\r\n'+tran2;
+        statD -= parseInt(cre); statC += parseInt(cre);
+    } stat[sen] = parseInt(statD); stat[rec] = parseInt(statC);
+    tran1 = isoformat(Date.now()*1000)+' UTC | @'+sen+'    @'+rec+'    '+deb+'    '+cre+'    '+stat[sen]+'\r\n'+tran1;
+    tran2 = isoformat(Date.now()*1000)+' UTC | @'+rec+'    @'+sen+'    '+cre+'    '+deb+'    '+stat[rec]+'\r\n'+tran2;
     set('./.book/'+sen+'_book.log', encodeURIComponent(tran1), true);
     set('./.book/'+rec+'_book.log', encodeURIComponent(tran2), true);
     set('dominion.json', JSON.stringify(stat), true);
