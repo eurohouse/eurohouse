@@ -270,9 +270,11 @@ function fixPrice(sen, rec, deb, cre) {
     var tran1 = openBookKeep(sen); var tran2 = openBookKeep(rec);
     var stat = arrjob(sysDefPowersData.value,';',':');
     if ((isInt(deb)) && !(isInt(cre))) {
-        stat[sen] += parseInt(deb); stat[rec] -= parseInt(deb);
+        stat[sen] = parseInt(deb) + parseInt(stat[sen]);
+        stat[rec] = parseInt(deb) - parseInt(stat[rec]);
     } else if (!(isInt(deb)) && (isInt(cre))) {
-        stat[sen] -= parseInt(cre); stat[rec] += parseInt(cre);
+        stat[sen] -= parseInt(cre) - parseInt(stat[sen]);
+        stat[rec] += parseInt(cre) + parseInt(stat[rec]);
     }
     tran1 = '@'+sen+'    @'+rec+'    '+deb+'    '+cre+'    '+stat[sen]+'\r\n'+tran1;
     tran2 = '@'+rec+'    @'+sen+'    '+cre+'    '+deb+'    '+stat[rec]+'\r\n'+tran2;
