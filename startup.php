@@ -39,6 +39,9 @@ function world_clock() {
             $('#sysDefUsersList').val(pager(data, 10));
             $('#sysDefAutoData').val(pager(data, 12));
             $('#sysDefFriendData').val(pager(data, 13));
+            $('#sysDefFind').val(pager(data, 14));
+            $('#sysDefBookKeep').val(pager(data, 15));
+            $('#sysDefUsersBookList').val(pager(data, 16));
             init_user(sysDefSessionID.value, 'manual');
             var mixers = pager(data, 11).split(' ');
             if (requestMode.value == 'volume_control') {
@@ -175,6 +178,9 @@ function world_clock() {
             sysDefPostBackEff.value = vint;
             if (requestMode.value == 'news_feed') {
                 msgBox.innerHTML = '<p>'+msghtml(sysDefMsgData.value, sysDefFind.value)+'</p>';
+            }
+            if (requestMode.value == 'bookkeeping') {
+                bookkeep_disp.innerHTML = '<p>'+msghtml(sysDefBookKeep.value, sysDefFind.value)+'</p>';
             }
             if (((obs == 1) && (spe == 1)) || ((obs == 1) && (spe == 0))) {
                 $('#powerButton').show();
@@ -379,6 +385,14 @@ function mailing_list() {
         url: 'mailing_list.php',
         success: function(data) {
             sysDefMailingList.value = data;
+        }
+    });
+}
+function bookkeep_list() {
+    $.ajax({
+        url: 'bookkeep_list.php',
+        success: function(data) {
+            sysDefBookkeepList.value = data;
         }
     });
 }

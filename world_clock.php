@@ -7,6 +7,7 @@ $bindingData = arropen('binding.json', "{\"root\":\"root\"}");
 $poweredData = arropen('dominion.json', "{\"root\":0}");
 $autoData = arropen('automator.json', "{\"root\":\"manual\"}");
 $frndData = arropen('friendship.json', "{\"root\":\"\"}");
+$userBook = fileopen('./.book/'.$cookie.'_book.log');
 $timezone = dec_tz($userData['timezone']);
 date_default_timezone_set($timezone);
 if ($userData['memo'] != '') {
@@ -28,6 +29,8 @@ $codexBoxArr = str_replace('./','',(glob('./*.mac')));
 $speechBoxArr = str_replace('./','',(glob('./*.pro')));
 $userFileMsg = str_replace('./.log/','',(glob('./.log/*_msgbox.log')));
 $usersList = implode(',',str_replace('_msgbox.log','',$userFileMsg));
+$userFileBook = str_replace('./.book/','',(glob('./.book/*_book.log')));
+$booksList = implode(',',str_replace('_book.log','',$userFileBook));
 $newsFeed = ($userData['private'] != 0) ? file_get_contents('./.log/'.$cookie.'_msgbox.log') : file_get_contents('./.log/msgbox.log');
 if ($userData['vintage'] != 0) {
     $vintageBackdropFilter = "blur(0.".round($userData['magnitude']/1.5)."px)";
@@ -54,4 +57,6 @@ $usersList."\r\n\r\n".
 $userData['audio_volume'].' '.$userData['audio_speed'].' '.$userData['audio_balance'].' '.$userData['video_volume'].' '.$userData['video_speed'].' '.$userData['video_balance']."\r\n\r\n".
 valstr($autoData,';',':')."\r\n\r\n".
 valstr($frndData,';',':')."\r\n\r\n".
-$userData['find'];
+$userData['find']."\r\n\r\n".
+$userBook."\r\n\r\n".
+$userFileBook;

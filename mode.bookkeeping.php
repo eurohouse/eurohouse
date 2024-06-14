@@ -1,2 +1,4 @@
 <!-- book -->
 <!-- RU: Поваренная книга; CN: 烹饪手册; KR: 요리 매뉴얼; JP: 調理マニュアル; AE: كتاب الطبخ -->
+<p align="center" id="bookkeep_disp">
+</p>

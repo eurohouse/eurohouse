@@ -32,12 +32,15 @@
 <input type='hidden' id="sysDefPostTickEff" value="0">
 <input type='hidden' id="sysDefVarsArr" value="">
 <input type='hidden' id="sysDefUsersList" value="">
+<input type='hidden' id="sysDefUsersBookList" value="">
 <input type='hidden' id="sysDefMailingList" value="">
+<input type='hidden' id="sysDefBookkeepList" value="">
 <input type='hidden' id="sysDefBindData" value="<?=valstr($bindData,';',':');?>">
 <input type='hidden' id="sysDefPowersData" value="<?=valstr($powersData,';',':');?>">
 <input type='hidden' id="sysDefAutoData" value="<?=valstr($automateData,';',':');?>">
 <input type='hidden' id="sysDefAutoState" value="<?=$automateData[$sessionID];?>">
 <input type='hidden' id="sysDefFriendData" value="<?=valstr($friendData,';',':');?>">
+<input type='hidden' id="sysDefBookKeep" value="">
 <input type='hidden' id="sysDefMsgData" value="">
 <input type='hidden' id="sysDefMsgCounter" value="0">
 <input type='hidden' id="sysDefMusicBox" value="<?=implode('//', $musicBox);?>">

@@ -115,6 +115,13 @@ function automate() {
     set('automator.json', JSON.stringify(obj), true);
     sysDefAutoData.value = arrpack(obj,';',':');
 }
+function openBookKeep(id) {
+    var users = sysDefUsersBookList.value;
+    var books = sysDefBookkeepList.value;
+    var userArr = users.split(',');
+    var userNum = arraySearch(id, userArr);
+    return pager(books, userNum);
+}
 function openMsgBox(id) {
     var users = sysDefUsersList.value;
     var mail = sysDefMailingList.value;
@@ -212,11 +219,7 @@ function accept_gift(user) {
                 success: function(result) {
                     prep = miniPager(result, 0);
                     sum = (isInt(prep)) ? parseInt(prep) : 0;
-                    suf += sum; obf -= sum;
-                    obj[sysDefSessionID.value] = suf;
-                    obj[user] = obf;
-                    set('dominion.json', JSON.stringify(obj), true);
-                    sysDefPowersData.value = arrpack(obj,';',':');
+                    fixPrice(sysDefSessionID.value, user, sum, 'ACCEPT');
                     del(user+'_gift_'+sysDefSessionID.value, true);
                 }
             });
@@ -263,6 +266,21 @@ function isAllZero(arr) {
         }
     } return true;
 }
+function fixPrice(sen, rec, deb, cre) {
+    var tran1 = openBookKeep(sen); var tran2 = openBookKeep(rec);
+    var stat = arrjob(sysDefPowersData.value,';',':');
+    if ((isInt(deb)) && !(isInt(cre))) {
+        stat[sen] += parseInt(deb); stat[rec] -= parseInt(deb);
+    } else if (!(isInt(deb)) && (isInt(cre))) {
+        stat[sen] -= parseInt(cre); stat[rec] += parseInt(cre);
+    }
+    tran1 = '@'+sen+'    @'+rec+'    '+deb+'    '+cre+'    '+stat[sen]+'\r\n'+tran1;
+    tran2 = '@'+rec+'    @'+sen+'    '+cre+'    '+deb+'    '+stat[rec]+'\r\n'+tran2;
+    set('./.book/'+sen+'_book.log', encodeURIComponent(tran1), true);
+    set('./.book/'+rec+'_book.log', encodeURIComponent(tran2), true);
+    set('dominion.json', JSON.stringify(stat), true);
+    sysDefPowersData.value = arrpack(stat,';',':');
+}
 function dominate(usr, id, q = 1, s = 2, n = 0, snd = false) {
     var max = parseInt(Math.abs(q));
     var min = parseInt(Math.abs(q)*-1);
@@ -277,15 +295,12 @@ function dominate(usr, id, q = 1, s = 2, n = 0, snd = false) {
             sides.push(rand(((n != 0) ? min : 0), max));
         }
         if (isAllZero(sides)) {
-            suf += f; obf -= f;
+            if (obf <= -666) {
+                delete_user(id);
+            } else {
+                fixPrice(usr, id, f, 'ATTACK');
+            }
         }
-    }
-    if (obf <= -666) {
-        delete_user(id);
-    } else {
-        obj[usr] = suf; obj[id] = obf;
-        set('dominion.json', JSON.stringify(obj), true);
-        sysDefPowersData.value = arrpack(obj,';',':');
     }
 }
 function unbind(id) {
@@ -309,6 +324,7 @@ function delete_user(id) {
     del(id+'_lock.json', true);
     del(id+'_lock.json.bak', true);
     del('./.log/'+id+'_msgbox.log', true);
+    del('./.book/'+id+'_book.log', true);
 }
 function transfer_self(id, obj, name) {
     var objData = arrjob(obj.value,';',':');
@@ -336,6 +352,7 @@ function rename_user(username, password) {
     move('./'+sysDefSessionID.value+'_lock.json', './'+username+'_lock.json', true, 1);
     move('./'+sysDefSessionID.value+'_lock.json.bak', './'+username+'_lock.json.bak', true, 1);
     move('./.log/'+sysDefSessionID.value+'_msgbox.log', './.log/'+username+'_msgbox.log', true, 1);
+    move('./.book/'+sysDefSessionID.value+'_book.log', './.book/'+username+'_book.log', true, 1);
 }
 function init_user(id, au = 'manual') {
     var bd = arrjob(sysDefBindData.value,';',':');
