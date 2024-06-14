@@ -318,6 +318,8 @@ function omniEnter() {
             omniAuthRequest('signout', '', '');
         } else if (input == 'clear') {
             clearMessage('');
+        } else if (input == 'erase') {
+            clearBookkeep('');
         } else if (input == 'spawn') {
             init_user('1337', 'auto');
         } else if (input == 'upload') {
@@ -393,6 +395,8 @@ function omniEnter() {
             omniListen('https://github.com/infofintech/'+req.split('\\')[0]+'/blob/main/'+req.split('\\')[1]+'?raw=true', true);
         } else if ((input.includes('clear ')) && (input.startsWith('clear '))) {
             clearMessage(input.replace('clear', ''));
+        } else if ((input.includes('erase ')) && (input.startsWith('erase '))) {
+            clearBookkeep(input.replace('erase', ''));
         } else if ((input.includes('get ')) && (input.startsWith('get '))) {
             if (sysDefSessionID.value == 'root') {
                 getPkgSequence(input, 'get ', 0);

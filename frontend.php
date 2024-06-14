@@ -129,6 +129,12 @@ function openMsgBox(id) {
     var userNum = arraySearch(id, userArr);
     return pager(mail, userNum);
 }
+function clearBookkeep(date) {
+    var msgbox = msgread(sysDefBookKeep.value);
+    var msgarr = [];
+    msgarr = msgclear(msgbox, date);
+    set('./.book/'+sysDefSessionID.value+'_book.log', encodeURIComponent(msgcompile(msgarr)), true);
+}
 function clearMessage(date) {
     var msgbox = msgread(sysDefMsgData.value);
     var msgarr = [];
