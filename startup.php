@@ -22,7 +22,7 @@ $(document).ready(function() {
 });
 function databox() {
     $.ajax({
-        url: 'world_clock.php',
+        url: 'databox.php',
         success: function(data) {
             $('#sysDefSessionID').val(pager(data, 0));
             $('#sysDefFind').val(pager(data, 1));

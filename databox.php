@@ -7,7 +7,6 @@ $bindingData = arropen('binding.json', "{\"root\":\"root\"}");
 $poweredData = arropen('dominion.json', "{\"root\":0}");
 $autoData = arropen('automator.json', "{\"root\":\"manual\"}");
 $frndData = arropen('friendship.json', "{\"root\":\"\"}");
-
 $musicBoxArr = str_replace('./','',(glob('./*.{'.duplex($userSettings['collections']['music'], true).','.duplex($userSettings['collections']['audio'], true).'}', GLOB_BRACE)));
 natcasesort($musicBoxArr); array_unique($musicBoxArr);
 $locksArr = arropen($cookie.'_lock.json', json_encode($userSettings['locks']), true);

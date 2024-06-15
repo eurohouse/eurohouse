@@ -3,7 +3,6 @@ include 'functions.php';
 $cookie = (isset($_COOKIE['user'])) ? $_COOKIE['user'] : 'root';
 $userSettings = fileopen('settings.json');
 $userData = arropen($cookie.'_session.json', json_encode($userSettings['defaults']), true);
-
 $timezone = dec_tz($userData['timezone']);
 date_default_timezone_set($timezone);
 if ($userData['memo'] != '') {
@@ -17,7 +16,6 @@ if ($userData['memo'] != '') {
 }
 $dateTimeCode = $ongoingSignature.$incomingSignature.date('w');
 $dateTimeStr = ($userData['timedisp'] != 0) ? date($userData['date_format']) : date($userData['time_format']);
-
 if ($userData['vintage'] != 0) {
     $vintageBackdropFilter = "blur(0.".round($userData['magnitude']/1.5)."px)";
     $overlayBeforeBackground = "repeating-linear-gradient(90deg, #000".$userData['magnitude']." 0 ".round($userData['magnitude']/2.5)."px, transparent ".round($userData['magnitude']/3.5)."px 35vmin)";

@@ -5,13 +5,13 @@
         "garbage_collector": 604800
     },
     "intervals": {
+        "databox": 250,
         "world_clock": 1000,
+        "visual_effects": 300,
+        "wallpaper_engine": 1000,
         "mailing_list": 1000,
         "bookkeep_list": 1000,
-        "databox": 250,
-        "automator": 250,
-        "visual_effects": 300,
-        "wallpaper_engine": 1000
+        "automator": 250
     },
     "locks": {
         "background": "",
