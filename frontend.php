@@ -319,7 +319,7 @@ function fixPrice(sen, rec, deb, cre) {
         statD -= parseInt(cre); statC += parseInt(cre);
     }
     var statDt = (statDr + parseInt(deb) == statD) ? 'OK' : 'ERR';
-    var statCt = (statCr + parseInt(deb) == statC) ? 'OK' : 'ERR';
+    var statCt = (statCr - parseInt(cre) == statC) ? 'OK' : 'ERR';
     stat[sen] = parseInt(statD); stat[rec] = parseInt(statC);
     trans1 = jsonstr(tran1); trans2 = jsonstr(tran2);
     trans1[isoformat(Date.now())+' UTC'] = '@'+sen+' | @'+rec+' | '+deb+' | '+cre+' | '+statD+' | '+statDt;
