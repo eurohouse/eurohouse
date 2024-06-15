@@ -213,10 +213,11 @@ function world_clock() {
             }
             document.querySelector(':root').style.setProperty('--backdrop-filter', effi[0]);
             document.querySelector(':root').style.setProperty('--overlay-before-bg', effi[1]);
-            document.querySelector(':root').style.setProperty('--overlay-before-ani', effi(';')[2]);
+            document.querySelector(':root').style.setProperty('--overlay-before-ani', effi[2]);
             document.querySelector(':root').style.setProperty('--overlay-after-bg', effi[3]);
             document.querySelector(':root').style.setProperty('--overlay-after-ani', effi[4]);
-            var ongo = tickCode.split('')[0]; var inco = tickCode.split('')[1];
+            var ongo = tickCode.split('')[0];
+            var inco = tickCode.split('')[1];
             if (inco != 0) {
                 playAudio(tickerPlayer, sysDefTickingSound.value);
             } else {
