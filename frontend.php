@@ -313,13 +313,16 @@ function fixPrice(sen, rec, deb, cre) {
     var statD = (isInt(stat[sen])) ? parseInt(stat[sen]) : 0;
     var statC = (isInt(stat[rec])) ? parseInt(stat[rec]) : 0;
     var statDr = parseInt(statD); var statCr = parseInt(statC);
+    var statDt; var statCt;
     if ((isInt(deb)) && !(isInt(cre))) {
         statD += parseInt(deb); statC -= parseInt(deb);
+        statDt = (statDr + parseInt(deb) == statD) ? 'OK' : 'ERR';
+        statCt = (statCr - parseInt(deb) == statC) ? 'OK' : 'ERR';
     } else if (!(isInt(deb)) && (isInt(cre))) {
         statD -= parseInt(cre); statC += parseInt(cre);
+        statDt = (statDr - parseInt(cre) == statD) ? 'OK' : 'ERR';
+        statCt = (statCr + parseInt(cre) == statC) ? 'OK' : 'ERR';
     }
-    var statDt = (statDr + parseInt(deb) == statD) ? 'OK' : 'ERR';
-    var statCt = (statCr - parseInt(cre) == statC) ? 'OK' : 'ERR';
     stat[sen] = parseInt(statD); stat[rec] = parseInt(statC);
     trans1 = jsonstr(tran1); trans2 = jsonstr(tran2);
     trans1[isoformat(Date.now())+' UTC'] = '@'+sen+' | @'+rec+' | '+deb+' | '+cre+' | '+statD+' | '+statDt;
