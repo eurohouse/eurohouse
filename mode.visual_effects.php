@@ -1,5 +1,5 @@
 <!-- paint -->
-<!-- RU: Эффекты изображения; CN: 视觉效果和滤镜; KR: 시각 효과 및 필터; JP: 視覚効果とフィルター; AE: تأثيرات بصرية -->
+<!-- RU: Визуальные эффекты; CN: 视觉效果和滤镜; KR: 시각 효과 및 필터; JP: 視覚効果とフィルター; AE: تأثيرات بصرية -->
 <div class="slidecontainer"><p align='center'><?=term('Opacity', $settings['vocabulary'], $session['units']);?> 
     <input type='button' id="opacityInd" value="<?=$session['opacity'];?>"> <?=term('Blur', $settings['vocabulary'], $session['units']);?> 
     <input type='button' id="blurInd" value="<?=$session['blur'];?>px"></p><p align='center'> 
