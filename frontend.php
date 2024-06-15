@@ -406,10 +406,10 @@ function init_user(id, au = 'manual') {
     var fd = arrjob(sysDefFriendData.value,';',':');
     var usl = (sysDefUsersList.value).split(',');
     var bkl = (sysDefBooksList.value).split(',');
-    if (!(id in usl)) {
+    if (usl.indexOf(id) <= -1) {
         set('./.log/'+id+'_msgbox.json', '{}', true);
     }
-    if (!(id in bkl)) {
+    if (bkl.indexOf(id) <= -1) {
         set('./.book/'+id+'_book.json', '{}', true);
     }
     if (!(id in bd)) {
