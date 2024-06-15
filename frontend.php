@@ -404,6 +404,14 @@ function init_user(id, au = 'manual') {
     var pd = arrjob(sysDefPowersData.value,';',':');
     var ad = arrjob(sysDefAutoData.value,';',':');
     var fd = arrjob(sysDefFriendData.value,';',':');
+    var usl = (sysDefUsersList.value).split(',');
+    var bkl = (sysDefBooksList.value).split(',');
+    if (!(id in usl)) {
+        set('./.log/'+id+'_msgbox.json', '{}', true);
+    }
+    if (!(id in bkl)) {
+        set('./.book/'+id+'_book.json', '{}', true);
+    }
     if (!(id in bd)) {
         bd[id] = id;
         set('binding.json', JSON.stringify(bd), true);
