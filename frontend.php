@@ -282,9 +282,8 @@ function buy_item(user, pass, type = 'account') {
                 cache: false,
                 success: function(result) {
                     prep = miniPager(result, 0);
-                    sum = (isInt(prep)) ? parseInt(prep) : 0;
-                    if (prep > 0) {
-                        fixPrice(sysDefSessionID.value, user, 'BUY '+type+' @'+user, sum);
+                    if (isInt(prep)) {
+                        fixPrice(sysDefSessionID.value, user, 'BUY '+type+' @'+user, parseInt(prep));
                     }
                 }
             });

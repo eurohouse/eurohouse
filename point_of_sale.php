@@ -5,9 +5,8 @@ $to = $_REQUEST['to'];
 $pass = $_REQUEST['pass'];
 $type = $_REQUEST['type'];
 $pwr = arropen('dominion.json', "{\"root\":0}");
-$smo = (is_int($pwr_id)) ? $pwr[$id] : 0;
-$omo = (is_int($pwr_id)) ? $pwr[$to] : 0;
-$total = $cash; $amount = $price;
+$omo = (isset($pwr[$id])) ? $pwr[$id] : 0;
+$smo = (isset($pwr[$to])) ? $pwr[$to] : 0;
 if (file_exists($id.'_'.$type.'_'.$to)) {
     $check = file_get_contents($id.'_'.$type.'_'.$to);
     if ($check == $pass) {
@@ -25,7 +24,7 @@ if (file_exists($id.'_'.$type.'_'.$to)) {
                 chmod($to.'_session.json', 0777);
                 file_put_contents($to.'_password', md5($check)); chmod($to.'_password', 0777); chmod($id.'_'.$type.'_'.$to, 0777); unlink($id.'_'.$type.'_'.$to);
             } else {
-                $amo = 0;
+                $amo = 'INSUFFICIENT FUNDS ('.$smo.' < '.$prix.')';
             }
         } elseif ($type == 'password') {
             $prix = $omo;
@@ -35,13 +34,13 @@ if (file_exists($id.'_'.$type.'_'.$to)) {
                 chmod($id.'_'.$type.'_'.$to, 0777);
                 unlink($id.'_'.$type.'_'.$to);
             } else {
-                $amo = 0;
+                $amo = 'INSUFFICIENT FUNDS ('.$smo.' < '.$prix.')';
             }
         }
     } else {
-        $amo = 0;
+        $amo = 'ACCESS DENIED';
     }
 } else {
-    $amo = 0;
+    $amo = 'ITEM NOT FOUND';
 }
 echo $amo;
