@@ -166,14 +166,18 @@ function clearMessage(date) {
     for (el in msgarr) {
         if (el.toLowerCase().includes(date.toLowerCase())) {
             if (sysDefSessionID.value == 'root') {
-                delete msgarr[el];
                 if (sysDefPrivate.value != 0) {
+                    delete msgarr[el];
                     set('./.log/'+sysDefSessionID.value+'_msgbox.json', encodeURIComponent(JSON.stringify(msgarr)), true);
                 } else {
+                    delete msgarr[el];
                     set('./.log/msgbox.json', encodeURIComponent(JSON.stringify(msgarr)), true);
                 }
             } else {
-                set('./.log/'+sysDefSessionID.value+'_msgbox.json', encodeURIComponent(JSON.stringify(msgarr)), true);
+                if (sysDefPrivate.value != 0) {
+                    delete msgarr[el];
+                    set('./.log/'+sysDefSessionID.value+'_msgbox.json', encodeURIComponent(JSON.stringify(msgarr)), true);
+                }
             }
         }
     }
