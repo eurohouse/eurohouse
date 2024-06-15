@@ -193,7 +193,7 @@ function clearMessage(date) {
 }
 function isoformat(num) {
     var ob = new Date(num);
-    return (ob.getUTCFullYear())+'-'+pad((ob.getUTCMonth()+1), 2)+'-'+pad((ob.getUTCDate()), 2)+' '+pad((ob.getUTCHours()), 2)+':'+pad((ob.getUTCMinutes()), 2)+':'+pad((ob.getUTCSeconds()), 2);
+    return (ob.getUTCFullYear())+'-'+pad((ob.getUTCMonth()+1), 2)+'-'+pad((ob.getUTCDate()), 2)+' '+pad((ob.getUTCHours()), 2)+':'+pad((ob.getUTCMinutes()), 2)+':'+pad((ob.getUTCSeconds()), 2)+'.'+pad((ob.getUTCMilliseconds()), 3);
 }
 function compose(msg) {
     var addr = msg.match(/(@\w*)/g);
@@ -318,8 +318,8 @@ function fixPrice(sen, rec, deb, cre) {
         statD -= parseInt(cre); statC += parseInt(cre);
     } stat[sen] = parseInt(statD); stat[rec] = parseInt(statC);
     trans1 = jsonstr(tran1); trans2 = jsonstr(tran2);
-    trans1[isoformat(Date.now())+' UTC'] = '@'+sen+'    @'+rec+'    '+deb+'    '+cre+'    '+statD;
-    trans2[isoformat(Date.now())+' UTC'] = '@'+rec+'    @'+sen+'    '+cre+'    '+deb+'    '+statC;
+    trans1[isoformat(Date.now())+' UTC'] = '@'+sen+' | @'+rec+' | '+deb+' | '+cre+' | '+statD;
+    trans2[isoformat(Date.now())+' UTC'] = '@'+rec+' | @'+sen+' | '+cre+' | '+deb+' | '+statC;
     set('./.book/'+sen+'_book.json', encodeURIComponent(JSON.stringify(trans1)), true);
     set('./.book/'+rec+'_book.json', encodeURIComponent(JSON.stringify(trans2)), true);
     set('dominion.json', JSON.stringify(stat), true);
