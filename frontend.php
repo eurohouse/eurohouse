@@ -234,9 +234,7 @@ function make_gift(user, sum = 0) {
 function accept_gift(user) {
     if (user != sysDefSessionID.value) {
         var obj = arrjob(sysDefPowersData.value,';',':');
-        if (!(sysDefSessionID.value in obj)) {
-            obj[sysDefSessionID.value] = 0;
-        } var sum, prep, sp, op;
+        var sum, prep, sp, op;
         var sp = obj[sysDefSessionID.value];
         var op = obj[user];
         var suf = (isInt(sp)) ? parseInt(sp) : 0;
@@ -263,18 +261,17 @@ function buy_item(user, pass, type = 'account') {
     if (user != sysDefSessionID.value) {
         var obj = arrjob(sysDefPowersData.value,';',':');
         if ((obj[sysDefSessionID.value] > 0) && (obj[user] > 0)) {
-            var dataString = 'id='+user+'&to='+sysDefSessionID.value+'&price='+obj[user]+'&cash='+obj[sysDefSessionID.value]+'&pass='+encodeURIComponent(pass)+'&type='+type;
+            var dataString = 'id='+user+'&to='+sysDefSessionID.value+'&pass='+encodeURIComponent(pass)+'&type='+type; var prep, sum;
             $.ajax({
                 type: "POST",
                 url: "point_of_sale.php",
                 data: dataString,
                 cache: false,
                 success: function(result) {
-                    if (miniPager(result, 0) == 0) {
-                        obj[sysDefSessionID.value] = miniPager(result, 1);
-                        obj[user] = miniPager(result, 2);
-                        set('dominion.json', JSON.stringify(obj), true);
-                        sysDefPowersData.value = arrpack(obj,';',':');
+                    prep = miniPager(result, 0);
+                    sum = (isInt(prep)) ? parseInt(prep) : 0;
+                    if (prep > 0) {
+                        fixPrice(sysDefSessionID.value, user, 'BUY '+type+' @'+user, sum);
                     }
                 }
             });
