@@ -129,8 +129,17 @@ function openMsgBox(id) {
     var userNum = arraySearch(id, userArr);
     return pager(mail, userNum);
 }
+function jsonstr(str) {
+    var res = {};
+    try {
+        res = JSON.parse(str);
+    } catch (e) {
+        res = {};
+    }
+    return res;
+}
 function JSONFilter(str, mask) {
-    var arr = JSON.parse(str);
+    var arr = jsonstr(str);
     var wordArr = mask.match(/(#\w*)/g);
     var arf = {};
     for (el in arr) {
@@ -153,7 +162,7 @@ function JSONtoHTML(str, mask) {
     return ard;
 }
 function clearBookKeep(date) {
-    var msgarr = JSON.parse(sysDefBookKeep.value);
+    var msgarr = jsonstr(sysDefBookKeep.value);
     for (el in msgarr) {
         if (el.toLowerCase().includes(date.toLowerCase())) {
             delete msgarr[el];
@@ -162,7 +171,7 @@ function clearBookKeep(date) {
     set('./.book/'+sysDefSessionID.value+'_book.json', encodeURIComponent(JSON.stringify(msgarr)), true);
 }
 function clearMessage(date) {
-    var msgarr = JSON.parse(sysDefMsgData.value);
+    var msgarr = jsonstr(sysDefMsgData.value);
     for (el in msgarr) {
         if (el.toLowerCase().includes(date.toLowerCase())) {
             if (sysDefSessionID.value == 'root') {
@@ -195,7 +204,7 @@ function compose(msg) {
             for (i = 0; i < addr.length; i++) {
                 userID = addr[i].replace('@', '');
                 msgbox = openMsgBox(userID);
-                msgarr = JSON.parse(msgbox);
+                msgarr = jsonstr(msgbox);
                 if (msg.match(/\r?\n/) !== null) {
                     msgbr = msg.split(/\r?\n/);
                     for (j = 0; j < msgbr.length; j++) {
@@ -208,7 +217,7 @@ function compose(msg) {
             }
         } else {
             msgbox = sysDefMsgData.value;
-            msgarr = JSON.parse(msgbox);
+            msgarr = jsonstr(msgbox);
             if (msg.match(/\r?\n/) !== null) {
                 msgbr = msg.split(/\r?\n/);
                 for (j = 0; j < msgbr.length; j++) {
@@ -309,7 +318,7 @@ function fixPrice(sen, rec, deb, cre) {
     } else if (!(isInt(deb)) && (isInt(cre))) {
         statD -= parseInt(cre); statC += parseInt(cre);
     } stat[sen] = parseInt(statD); stat[rec] = parseInt(statC);
-    trans1 = JSON.parse(tran1); trans2 = JSON.parse(tran2);
+    trans1 = jsonstr(tran1); trans2 = jsonstr(tran2);
     trans1[isoformat(Date.now())+' UTC'] = '@'+sen+'    @'+rec+'    '+deb+'    '+cre+'    '+statD;
     trans2[isoformat(Date.now())+' UTC'] = '@'+rec+'    @'+sen+'    '+cre+'    '+deb+'    '+statC;
     set('./.book/'+sen+'_book.json', encodeURIComponent(JSON.stringify(trans1)), true);
