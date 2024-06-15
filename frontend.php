@@ -116,39 +116,65 @@ function automate() {
     sysDefAutoData.value = arrpack(obj,';',':');
 }
 function openBookKeep(id) {
-    var users = sysDefUsersBookList.value;
-    var books = sysDefBookkeepList.value;
+    var users = sysDefBooksList.value;
+    var books = sysDefBookKeepJSONs.value;
     var userArr = users.split(',');
     var userNum = arraySearch(id, userArr);
     return pager(books, userNum);
 }
 function openMsgBox(id) {
     var users = sysDefUsersList.value;
-    var mail = sysDefMailingList.value;
+    var mail = sysDefMailingJSONs.value;
     var userArr = users.split(',');
     var userNum = arraySearch(id, userArr);
     return pager(mail, userNum);
 }
-function clearBookkeep(date) {
-    var msgbox = msgread(sysDefBookKeep.value);
-    var msgarr = [];
-    msgarr = msgclear(msgbox, date);
-    set('./.book/'+sysDefSessionID.value+'_book.log', encodeURIComponent(msgcompile(msgarr)), true);
+function JSONFilter(str, mask) {
+    var arr = JSON.parse(str);
+    var wordArr = mask.match(/(#\w*)/g);
+    var arf = {};
+    for (el in arr) {
+        if (wordArr !== null) {
+            for (i = 0; i < wordArr.length; i++) {
+                if (arr[el].toLowerCase().includes(wordArr[i].replace('#', '').toLowerCase())) {
+                    arf[el] = arr[el];
+                }
+            }
+        }
+    }
+    return arf;
+}
+function JSONtoHTML(str, mask) {
+    var arr = JSONFilter(str, mask);
+    var ard = '';
+    for (el in arr) {
+        ard = el+'<br>'+arr[el]+'<br>'+ard;
+    }
+    return ard;
+}
+function clearBookKeep(date) {
+    var msgarr = JSON.parse(sysDefBookKeep.value);
+    for (el in msgarr) {
+        if (el.toLowerCase().includes(date.toLowerCase())) {
+            delete msgarr[el];
+        }
+    }
+    set('./.book/'+sysDefSessionID.value+'_book.json', encodeURIComponent(JSON.stringify(msgarr)), true);
 }
 function clearMessage(date) {
-    var msgbox = msgread(sysDefMsgData.value);
-    var msgarr = [];
-    if (sysDefSessionID.value == 'root') {
-        msgarr = msgclear(msgbox, date);
-        if (sysDefPrivate.value != 0) {
-            set('./.log/'+sysDefSessionID.value+'_msgbox.log', encodeURIComponent(msgcompile(msgarr)), true);
-        } else {
-            set('./.log/msgbox.log', encodeURIComponent(msgcompile(msgarr)), true);
-        }
-    } else {
-        if (sysDefPrivate.value != 0) {
-            msgarr = msgclear(msgbox, date);
-            set('./.log/'+sysDefSessionID.value+'_msgbox.log', encodeURIComponent(msgcompile(msgarr)), true);
+    var msgarr = JSON.parse(sysDefMsgData.value);
+    for (el in msgarr) {
+        if (el.toLowerCase().includes(date.toLowerCase())) {
+            if (sysDefSessionID.value == 'root') {
+                delete msgarr[el];
+                if (sysDefPrivate.value != 0) {
+                    set('./.log/'+sysDefSessionID.value+'_msgbox.json', encodeURIComponent(JSON.stringify(msgarr)), true);
+                } else {
+                    set('./.log/msgbox.json', encodeURIComponent(JSON.stringify(msgarr)), true);
+                }
+            } else {
+                set('./.log/'+sysDefSessionID.value+'_msgbox.json', encodeURIComponent(JSON.stringify(msgarr)), true);
+            }
         }
     }
 }
@@ -165,34 +191,34 @@ function compose(msg) {
             for (i = 0; i < addr.length; i++) {
                 userID = addr[i].replace('@', '');
                 msgbox = openMsgBox(userID);
+                msgarr = JSON.parse(msgbox);
                 if (msg.match(/\r?\n/) !== null) {
                     msgbr = msg.split(/\r?\n/);
                     for (j = 0; j < msgbr.length; j++) {
-                        msgbox = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now()+j*1000)+' UTC | '+msgbr[j]+'\r\n'+msgbox;
+                        msgarr[sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now()+j*1000)+' UTC'] = msgbr[j];
                     }
                 } else {
-                    msgbox = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now())+' UTC | '+msg+'\r\n'+msgbox;
+                    msgarr[sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now())+' UTC'] = msg;
                 }
-                set('./.log/'+userID+'_msgbox.log', encodeURIComponent(msgbox), true);
+                set('./.log/'+userID+'_msgbox.json', encodeURIComponent(JSON.stringify(msgarr)), true);
             }
         } else {
             msgbox = sysDefMsgData.value;
+            msgarr = JSON.parse(msgbox);
             if (msg.match(/\r?\n/) !== null) {
                 msgbr = msg.split(/\r?\n/);
                 for (j = 0; j < msgbr.length; j++) {
-                    msgbox = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now()+j*1000)+' UTC | '+msgbr[j]+'\r\n'+msgbox;
+                    msgarr[sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now()+j*1000)+' UTC'] = msgbr[j];
                 }
             } else {
-                msgbox = sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now())+' UTC | '+msg+'\r\n'+msgbox;
+                msgarr[sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now())+' UTC'] = msg;
             }
             if (sysDefPrivate.value != 0) {
-                set('./.log/'+sysDefSessionID.value+'_msgbox.log', encodeURIComponent(msgbox), true);
+                set('./.log/'+sysDefSessionID.value+'_msgbox.json', encodeURIComponent(JSON.stringify(msgarr)), true);
             } else {
-                set('./.log/msgbox.log', encodeURIComponent(msgbox), true);
+                set('./.log/msgbox.json', encodeURIComponent(JSON.stringify(msgarr)), true);
             }
         }
-        set('dominion.json', JSON.stringify(ratTab), true);
-        sysDefPowersData.value = arrpack(ratTab, ';', ':');
     }
 }
 function make_gift(user, sum = 0) {
@@ -282,10 +308,11 @@ function fixPrice(sen, rec, deb, cre) {
     } else if (!(isInt(deb)) && (isInt(cre))) {
         statD -= parseInt(cre); statC += parseInt(cre);
     } stat[sen] = parseInt(statD); stat[rec] = parseInt(statC);
-    tran1 = isoformat(Date.now()*1000)+' UTC | @'+sen+'    @'+rec+'    '+deb+'    '+cre+'    '+stat[sen]+'\r\n'+tran1;
-    tran2 = isoformat(Date.now()*1000)+' UTC | @'+rec+'    @'+sen+'    '+cre+'    '+deb+'    '+stat[rec]+'\r\n'+tran2;
-    set('./.book/'+sen+'_book.log', encodeURIComponent(tran1), true);
-    set('./.book/'+rec+'_book.log', encodeURIComponent(tran2), true);
+    trans1 = JSON.parse(tran1); trans2 = JSON.parse(tran2);
+    trans1[isoformat(Date.now())+' UTC'] = '@'+sen+'    @'+rec+'    '+deb+'    '+cre+'    '+statD;
+    trans2[isoformat(Date.now())+' UTC'] = '@'+rec+'    @'+sen+'    '+cre+'    '+deb+'    '+statC;
+    set('./.book/'+sen+'_book.json', encodeURIComponent(JSON.stringify(trans1)), true);
+    set('./.book/'+rec+'_book.json', encodeURIComponent(JSON.stringify(trans2)), true);
     set('dominion.json', JSON.stringify(stat), true);
     sysDefPowersData.value = arrpack(stat,';',':');
 }
@@ -331,8 +358,8 @@ function delete_user(id) {
     del(id+'_password', true);
     del(id+'_lock.json', true);
     del(id+'_lock.json.bak', true);
-    del('./.log/'+id+'_msgbox.log', true);
-    del('./.book/'+id+'_book.log', true);
+    del('./.log/'+id+'_msgbox.json', true);
+    del('./.book/'+id+'_book.json', true);
 }
 function transfer_self(id, obj, name) {
     var objData = arrjob(obj.value,';',':');
@@ -359,8 +386,8 @@ function rename_user(username, password) {
     change(sysDefSessionID.value, username, CryptoJS.MD5(password).toString(), true);
     move('./'+sysDefSessionID.value+'_lock.json', './'+username+'_lock.json', true, 1);
     move('./'+sysDefSessionID.value+'_lock.json.bak', './'+username+'_lock.json.bak', true, 1);
-    move('./.log/'+sysDefSessionID.value+'_msgbox.log', './.log/'+username+'_msgbox.log', true, 1);
-    move('./.book/'+sysDefSessionID.value+'_book.log', './.book/'+username+'_book.log', true, 1);
+    move('./.log/'+sysDefSessionID.value+'_msgbox.json', './.log/'+username+'_msgbox.json', true, 1);
+    move('./.book/'+sysDefSessionID.value+'_book.json', './.book/'+username+'_book.json', true, 1);
 }
 function init_user(id, au = 'manual') {
     var bd = arrjob(sysDefBindData.value,';',':');

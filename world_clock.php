@@ -7,7 +7,6 @@ $bindingData = arropen('binding.json', "{\"root\":\"root\"}");
 $poweredData = arropen('dominion.json', "{\"root\":0}");
 $autoData = arropen('automator.json', "{\"root\":\"manual\"}");
 $frndData = arropen('friendship.json', "{\"root\":\"\"}");
-$userBook = file_get_contents('./.book/'.$cookie.'_book.log');
 $timezone = dec_tz($userData['timezone']);
 date_default_timezone_set($timezone);
 if ($userData['memo'] != '') {
@@ -27,11 +26,10 @@ $locksArr = arropen($cookie.'_lock.json', json_encode($userSettings['locks']), t
 $museBox = excpkg($musicBoxArr, $locksArr['music']);
 $codexBoxArr = str_replace('./','',(glob('./*.mac')));
 $speechBoxArr = str_replace('./','',(glob('./*.pro')));
-$userFileMsg = str_replace('./.log/','',(glob('./.log/*_msgbox.log')));
-$usersList = implode(',',str_replace('_msgbox.log','',$userFileMsg));
-$userFileBook = str_replace('./.book/','',(glob('./.book/*_book.log')));
-$booksList = implode(',',str_replace('_book.log','',$userFileBook));
-$newsFeed = ($userData['private'] != 0) ? file_get_contents('./.log/'.$cookie.'_msgbox.log') : file_get_contents('./.log/msgbox.log');
+$usersList = implode(',',str_replace('_msgbox.json','',str_replace('./.log/','',(glob('./.log/*_msgbox.json')))));
+$booksList = implode(',',str_replace('_book.json','',str_replace('./.book/','',(glob('./.book/*_book.json')))));
+$newsFeed = ($userData['private'] != 0) ? file_get_contents('./.log/'.$cookie.'_msgbox.json') : file_get_contents('./.log/msgbox.json');
+$userBook = file_get_contents('./.book/'.$cookie.'_book.json');
 if ($userData['vintage'] != 0) {
     $vintageBackdropFilter = "blur(0.".round($userData['magnitude']/1.5)."px)";
     $overlayBeforeBackground = "repeating-linear-gradient(90deg, #000".$userData['magnitude']." 0 ".round($userData['magnitude']/2.5)."px, transparent ".round($userData['magnitude']/3.5)."px 35vmin)";

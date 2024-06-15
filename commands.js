@@ -319,7 +319,7 @@ function omniEnter() {
         } else if (input == 'clear') {
             clearMessage('');
         } else if (input == 'erase') {
-            clearBookkeep('');
+            clearBookKeep('');
         } else if (input == 'spawn') {
             init_user('1337', 'auto');
         } else if (input == 'upload') {
@@ -396,7 +396,7 @@ function omniEnter() {
         } else if ((input.includes('clear ')) && (input.startsWith('clear '))) {
             clearMessage(input.replace('clear', ''));
         } else if ((input.includes('erase ')) && (input.startsWith('erase '))) {
-            clearBookkeep(input.replace('erase', ''));
+            clearBookKeep(input.replace('erase', ''));
         } else if ((input.includes('get ')) && (input.startsWith('get '))) {
             if (sysDefSessionID.value == 'root') {
                 getPkgSequence(input, 'get ', 0);

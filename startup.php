@@ -42,7 +42,7 @@ function world_clock() {
             $('#sysDefFriendData').val(pager(data, 13));
             $('#sysDefFind').val(pager(data, 14));
             $('#sysDefBookKeep').val(pager(data, 15));
-            $('#sysDefUsersBookList').val(pager(data, 16));
+            $('#sysDefBooksList').val(pager(data, 16));
             init_user(sysDefSessionID.value, 'manual');
             var mixers = pager(data, 11).split(' ');
             if (requestMode.value == 'volume_control') {
@@ -79,13 +79,13 @@ function world_clock() {
             } else {
                 $('#buttonLock').attr('src', sysDefPrefix.value+'lock.png'+sysDefSuffix.value);
             }
-            var msgcnt = Object.keys(msgfilter(sysDefMsgData.value, sysDefFind.value)).length - 1;
+            var msgcnt = Object.keys(JSONFilter(sysDefMsgData.value, sysDefFind.value)).length - 1;
             if (sysDefMsgCounter.value <= 0) {
                 sysDefMsgCounter.value = msgcnt;
             } else {
                 sysDefMsgCounter.value = sysDefMsgCounter.value - 1;
             }
-            $('#showUsUrgent').text(Object.values(msgfilter(sysDefMsgData.value, sysDefFind.value))[sysDefMsgCounter.value]);
+            $('#showUsUrgent').text(Object.values(JSONFilter(sysDefMsgData.value, sysDefFind.value))[sysDefMsgCounter.value]);
             if (prv != 0) {
                 $('#buttonPrivate').attr('src', sysDefPrefix.value+'home.png'+sysDefSuffix.value);
             } else {
@@ -178,10 +178,10 @@ function world_clock() {
             }
             sysDefPostBackEff.value = vint;
             if (requestMode.value == 'news_feed') {
-                msgBox.innerHTML = '<p>'+msghtml(sysDefMsgData.value, sysDefFind.value)+'</p>';
+                msgBox.innerHTML = '<p>'+JSONtoHTML(sysDefMsgData.value, sysDefFind.value)+'</p>';
             }
             if (requestMode.value == 'bookkeeping') {
-                bookkeep_disp.innerHTML = '<p>'+msghtml(sysDefBookKeep.value, sysDefFind.value)+'</p>';
+                bookkeep_disp.innerHTML = '<p>'+JSONtoHTML(sysDefBookKeep.value, sysDefFind.value)+'</p>';
             }
             if (((obs == 1) && (spe == 1)) || ((obs == 1) && (spe == 0))) {
                 $('#powerButton').show();
@@ -385,7 +385,7 @@ function mailing_list() {
     $.ajax({
         url: 'mailing_list.php',
         success: function(data) {
-            sysDefMailingList.value = data;
+            sysDefMailingJSONs.value = data;
         }
     });
 }
@@ -393,7 +393,7 @@ function bookkeep_list() {
     $.ajax({
         url: 'bookkeep_list.php',
         success: function(data) {
-            sysDefBookkeepList.value = data;
+            sysDefBookKeepJSONs.value = data;
         }
     });
 }
