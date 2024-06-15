@@ -312,14 +312,18 @@ function fixPrice(sen, rec, deb, cre) {
     var stat = arrjob(sysDefPowersData.value,';',':');
     var statD = (isInt(stat[sen])) ? parseInt(stat[sen]) : 0;
     var statC = (isInt(stat[rec])) ? parseInt(stat[rec]) : 0;
+    var statDr = parseInt(statD); var statCr = parseInt(statC);
     if ((isInt(deb)) && !(isInt(cre))) {
         statD += parseInt(deb); statC -= parseInt(deb);
     } else if (!(isInt(deb)) && (isInt(cre))) {
         statD -= parseInt(cre); statC += parseInt(cre);
-    } stat[sen] = parseInt(statD); stat[rec] = parseInt(statC);
+    }
+    var statDt = (statDr + parseInt(deb) == statD) ? 'OK' : 'ERR';
+    var statCt = (statCr + parseInt(deb) == statC) ? 'OK' : 'ERR';
+    stat[sen] = parseInt(statD); stat[rec] = parseInt(statC);
     trans1 = jsonstr(tran1); trans2 = jsonstr(tran2);
-    trans1[isoformat(Date.now())+' UTC'] = '@'+sen+' | @'+rec+' | '+deb+' | '+cre+' | '+statD;
-    trans2[isoformat(Date.now())+' UTC'] = '@'+rec+' | @'+sen+' | '+cre+' | '+deb+' | '+statC;
+    trans1[isoformat(Date.now())+' UTC'] = '@'+sen+' | @'+rec+' | '+deb+' | '+cre+' | '+statD+' | '+statDt;
+    trans2[isoformat(Date.now())+' UTC'] = '@'+rec+' | @'+sen+' | '+cre+' | '+deb+' | '+statC+' | '+statCt;
     set('./.book/'+sen+'_book.json', encodeURIComponent(JSON.stringify(trans1)), true);
     set('./.book/'+rec+'_book.json', encodeURIComponent(JSON.stringify(trans2)), true);
     set('dominion.json', JSON.stringify(stat), true);
