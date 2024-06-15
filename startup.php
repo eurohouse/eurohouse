@@ -56,7 +56,8 @@ function world_clock() {
             $('#currentTime').val(pager(data, 0));
             $('#alarmTime').val(pager(data, 2));
             init_user(sysDefSessionID.value, 'manual');
-            var effi = pager(data, 3).split(' ');
+            var enzi = pager(data, 1).split(' ');
+            var effi = pager(data, 3).split(';');
             var mixers = pager(data, 4).split(' ');
             if (requestMode.value == 'volume_control') {
                 audioVolInd.value = mixers[0];
@@ -66,9 +67,9 @@ function world_clock() {
                 videoRatInd.value = mixers[4];
                 videoBalInd.value = mixers[5];
             }
-            var tickCode = pager(data, 1).split(' ')[0];
-            var tickPane1 = pager(data, 1).split(' ')[1];
-            var tickPane2 = pager(data, 1).split(' ')[2];
+            var tickCode = enzi[0];
+            var tickPane1 = enzi[1];
+            var tickPane2 = enzi[2];
             var obs = tickPane1.split('')[0];
             var spe = tickPane1.split('')[1];
             var vint = tickPane1.split('')[2];
