@@ -16,35 +16,49 @@ window.onload = function() {
     }
 }
 $(document).ready(function() {
-    setInterval(world_clock, <?=$settings['intervals']['world_clock'];?>);
-    setInterval(mailing_list, <?=$settings['intervals']['mailing_list'];?>);
-    setInterval(bookkeep_list, <?=$settings['intervals']['bookkeep_list'];?>);
-    setInterval(automator, <?=$settings['intervals']['automator'];?>);
-    setInterval(visual_effects, <?=$settings['intervals']['visual_effects'];?>);
-    setInterval(wallpaper_engine, <?=$settings['intervals']['wallpaper_engine'];?>);
+<?php foreach ($settings['intervals'] as $key=>$val) { ?>
+    setInterval(<?=$key;?>, <?=$val;?>);
+<?php } ?>
 });
+function databox() {
+    $.ajax({
+        url: 'world_clock.php',
+        success: function(data) {
+            $('#sysDefSessionID').val(pager(data, 0));
+            $('#sysDefFind').val(pager(data, 1));
+            $('#sysDefBindData').val(pager(data, 2));
+            $('#sysDefPowersData').val(pager(data, 3));
+            $('#sysDefAutoData').val(pager(data, 4));
+            $('#sysDefFriendData').val(pager(data, 5));
+            $('#sysDefMsgData').val(pager(data, 6));
+            $('#sysDefBookKeep').val(pager(data, 7));
+            $('#sysDefMusicBox').val(pager(data, 8));
+            $('#sysDefCodexBox').val(pager(data, 9).split("\\\\")[0]);
+            $('#sysDefSpeechBox').val(pager(data, 9).split("\\\\")[1]);
+            $('#sysDefUsersList').val(pager(data, 10));
+            $('#sysDefBooksList').val(pager(data, 11));
+            if (sysDefBindData.value != sysDefPostBindData.value) {
+                if (sysDefMute.value == 0) {
+                    playAudio(bindPlayer, sysDefBindSound.value);
+                }
+            }
+            sysDefPostBindData.value = sysDefBindData.value;
+            if (sysDefMsgData.value != sysDefPostMsgData.value) {
+                playAudio(notifyPlayer, sysDefNotifySound.value);
+            }
+            sysDefPostMsgData.value = sysDefMsgData.value;
+        }
+    });
+}
 function world_clock() {
     $.ajax({
         url: 'world_clock.php',
         success: function(data) {
-            $('#alarmTime').val(pager(data, 2));
             $('#currentTime').val(pager(data, 0));
-            $('#sysDefSessionID').val(pager(data, 3));
-            $('#sysDefBindData').val(pager(data, 4));
-            $('#sysDefPowersData').val(pager(data, 5));
-            $('#sysDefMsgData').val(pager(data, 7));
-            $('#sysDefMusicBox').val(pager(data, 8));
-            var lfi = pager(data, 9).split("\\\\");
-            $('#sysDefCodexBox').val(lfi[0]);
-            $('#sysDefSpeechBox').val(lfi[1]);
-            $('#sysDefUsersList').val(pager(data, 10));
-            $('#sysDefAutoData').val(pager(data, 12));
-            $('#sysDefFriendData').val(pager(data, 13));
-            $('#sysDefFind').val(pager(data, 14));
-            $('#sysDefBookKeep').val(pager(data, 15));
-            $('#sysDefBooksList').val(pager(data, 16));
+            $('#alarmTime').val(pager(data, 2));
             init_user(sysDefSessionID.value, 'manual');
-            var mixers = pager(data, 11).split(' ');
+            var effi = pager(data, 3).split(' ');
+            var mixers = pager(data, 4).split(' ');
             if (requestMode.value == 'volume_control') {
                 audioVolInd.value = mixers[0];
                 audioRatInd.value = mixers[1];
@@ -62,16 +76,6 @@ function world_clock() {
             var icn = tickPane2.split('')[0];
             var prv = tickPane2.split('')[1];
             var cht = tickPane2.split('')[2];
-            if (sysDefBindData.value != sysDefPostBindData.value) {
-                if (sysDefMute.value == 0) {
-                    playAudio(bindPlayer, sysDefBindSound.value);
-                }
-            }
-            sysDefPostBindData.value = sysDefBindData.value;
-            if (sysDefMsgData.value != sysDefPostMsgData.value) {
-                playAudio(notifyPlayer, sysDefNotifySound.value);
-            }
-            sysDefPostMsgData.value = sysDefMsgData.value;
             $('#powerButton').attr('src', sysDefPrefix.value+'power.png'+sysDefSuffix.value);
             $('#buttonNext').attr('src', sysDefPrefix.value+'go.png'+sysDefSuffix.value);
             if (sysDefLock.value != 0) {
@@ -207,11 +211,11 @@ function world_clock() {
                     $('.topbar').show();
                 }
             }
-            document.querySelector(':root').style.setProperty('--backdrop-filter', pager(data, 6).split(';')[0]);
-            document.querySelector(':root').style.setProperty('--overlay-before-bg', pager(data, 6).split(';')[1]);
-            document.querySelector(':root').style.setProperty('--overlay-before-ani', pager(data, 6).split(';')[2]);
-            document.querySelector(':root').style.setProperty('--overlay-after-bg', pager(data, 6).split(';')[3]);
-            document.querySelector(':root').style.setProperty('--overlay-after-ani', pager(data, 6).split(';')[4]);
+            document.querySelector(':root').style.setProperty('--backdrop-filter', effi[0]);
+            document.querySelector(':root').style.setProperty('--overlay-before-bg', effi[1]);
+            document.querySelector(':root').style.setProperty('--overlay-before-ani', effi(';')[2]);
+            document.querySelector(':root').style.setProperty('--overlay-after-bg', effi[3]);
+            document.querySelector(':root').style.setProperty('--overlay-after-ani', effi[4]);
             var ongo = tickCode.split('')[0]; var inco = tickCode.split('')[1];
             if (inco != 0) {
                 playAudio(tickerPlayer, sysDefTickingSound.value);
