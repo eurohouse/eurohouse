@@ -25,18 +25,17 @@ function databox() {
         url: 'databox.php',
         success: function(data) {
             $('#sysDefSessionID').val(pager(data, 0));
-            $('#sysDefFind').val(pager(data, 1));
-            $('#sysDefBindData').val(pager(data, 2));
-            $('#sysDefPowersData').val(pager(data, 3));
-            $('#sysDefAutoData').val(pager(data, 4));
-            $('#sysDefFriendData').val(pager(data, 5));
-            $('#sysDefMsgData').val(pager(data, 6));
-            $('#sysDefBookKeep').val(pager(data, 7));
-            $('#sysDefMusicBox').val(pager(data, 8));
-            $('#sysDefCodexBox').val(pager(data, 9).split("\\\\")[0]);
-            $('#sysDefSpeechBox').val(pager(data, 9).split("\\\\")[1]);
-            $('#sysDefUsersList').val(pager(data, 10));
-            $('#sysDefBooksList').val(pager(data, 11));
+            $('#sysDefBindData').val(pager(data, 1));
+            $('#sysDefPowersData').val(pager(data, 2));
+            $('#sysDefAutoData').val(pager(data, 3));
+            $('#sysDefFriendData').val(pager(data, 4));
+            $('#sysDefMsgData').val(pager(data, 5));
+            $('#sysDefBookKeep').val(pager(data, 6));
+            $('#sysDefMusicBox').val(pager(data, 7));
+            $('#sysDefCodexBox').val(pager(data, 8).split("\\\\")[0]);
+            $('#sysDefSpeechBox').val(pager(data, 8).split("\\\\")[1]);
+            $('#sysDefUsersList').val(pager(data, 9));
+            $('#sysDefBooksList').val(pager(data, 10));
             if (sysDefBindData.value != sysDefPostBindData.value) {
                 if (sysDefMute.value == 0) {
                     playAudio(bindPlayer, sysDefBindSound.value);

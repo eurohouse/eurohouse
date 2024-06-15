@@ -18,7 +18,6 @@ $booksList = implode(',',str_replace('_book.json','',str_replace('./.book/','',(
 $newsFeed = ($userData['private'] != 0) ? file_get_contents('./.log/'.$cookie.'_msgbox.json') : file_get_contents('./.log/msgbox.json');
 $userBook = file_get_contents('./.book/'.$cookie.'_book.json');
 echo $cookie."\r\n\r\n".
-$userData['find']."\r\n\r\n".
 valstr($bindingData,';',':')."\r\n\r\n".
 valstr($poweredData,';',':')."\r\n\r\n".
 valstr($autoData,';',':')."\r\n\r\n".
