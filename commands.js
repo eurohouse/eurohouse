@@ -390,9 +390,6 @@ function omniEnter() {
                 var req = input.replace('update ', '');
                 getPkgSequence('get -i '+document.getElementById('updateChannel'+ucfirst(req)).value, 'get ', 0);
             }
-        } else if ((input.includes('play ')) && (input.startsWith('play '))) {
-            var req = input.replace('play ', '');
-            omniListen('https://github.com/infofintech/'+req.split('\\')[0]+'/blob/main/'+req.split('\\')[1]+'?raw=true', true);
         } else if ((input.includes('clear ')) && (input.startsWith('clear '))) {
             clearMessage(input.replace('clear', ''));
         } else if ((input.includes('erase ')) && (input.startsWith('erase '))) {
@@ -417,8 +414,8 @@ function omniEnter() {
                 res = (i == 0) ? mas : res.concat(mas);
             }
             omniBox.value = finarr(res).sort().join(',');
-        } else if (input.includes(' ^ ')) {
-            var arr = input.split(' ^ ');
+        } else if (input.includes(' | ')) {
+            var arr = input.split(' | ');
             var mas = []; var res = [];
             for (i = 0; i < arr.length; i++) {
                 mas = arr[i].split(',');
