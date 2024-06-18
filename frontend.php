@@ -38,6 +38,41 @@ function audioPosition(sec) {
 function savePlayState() {
     setdata('current', audioPlayer.currentTime);
 }
+function arrangePlay() {
+    var dp = arrjob(sysDefPowersData.value,';',':');
+    var db = arrjob(sysDefBindData.value,';',':');
+    var da = arrjob(sysDefAutoData.value,';',':');
+    sysDefAutoState.value = da[sysDefSessionID.value];
+    $('#buttonAutomator').attr('src', sysDefPrefix.value+((sysDefAutoState.value == 'auto')?'wheel.png':'steer.png')+sysDefSuffix.value);
+    var my = dp[sysDefSessionID.value]; var th, bl, pl;
+    if (my <= -666) {
+        delete_user(sysDefSessionID.value);
+        omniAuthRequest('signout', '', '');
+    } var bf = arraySearch(sysDefSessionID.value, db);
+    if (bf != false) {
+        th = dp[bf];
+        bl = my+':'+th;
+        if (db[sysDefSessionID.value] != sysDefSessionID.value) {
+            pl = '+@'+sysDefSessionID.value+'+';
+            $('#buttonBroke').attr('src', sysDefPrefix.value+'broke.png'+sysDefSuffix.value);
+        } else {
+            pl = '+@'+sysDefSessionID.value;
+            $('#buttonBroke').attr('src', sysDefPrefix.value+'broke.png'+sysDefSuffix.value);
+        }
+    } else {
+        if (db[sysDefSessionID.value] != sysDefSessionID.value) {
+            th = dp[db[sysDefSessionID.value]];
+            bl = my+':'+th;
+            pl = '@'+sysDefSessionID.value+'+';
+            $('#buttonBroke').attr('src', sysDefPrefix.value+'broke.png'+sysDefSuffix.value);
+        } else {
+            th = dp[sysDefSessionID.value];
+            bl = my;
+            pl = '@'+sysDefSessionID.value;
+            $('#buttonBroke').attr('src', sysDefPrefix.value+'chain.png'+sysDefSuffix.value);
+        }
+    } $('#showUsInfoPower').val(bl); $('#showUsInfoBond').val(pl);
+}
 function lockdata() {
     var obj = {
         <?php $iter = 0; foreach ($locks as $key=>$value) {

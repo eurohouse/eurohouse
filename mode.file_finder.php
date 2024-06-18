@@ -144,7 +144,7 @@ $iconSize = 50; include 'file_manager.php'; ?>
         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'true');" src="<?=$prefix.'info.png'.$suffix;?>">
     <?php } ?></p></td>
     <?php } elseif ($mediaFileExtension == 'pro') {
-        $mediaFileFavicon = $themePrefix.'script.png'.$suffix;
+        $mediaFileFavicon = $themePrefix.'speed.png'.$suffix;
     ?><td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon.$suffix;?>" onmouseover="soundButton();"></a></td>
     <td><a style="<?=$preStyle;?>" href="javascript:pronounceFile(%22<?=$mediaFilename;?>%22);"><?=$mediaFileTitle;?></a></td>
     <td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>

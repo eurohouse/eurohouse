@@ -46,12 +46,10 @@
 <input type='hidden' id="sysDefMusicBox" value="<?=implode('//', $musicBox);?>">
 <input type='hidden' id="sysDefCodexBox" value="<?=implode('//', $codexBox);?>">
 <input type='hidden' id="sysDefSpeechBox" value="<?=implode('//', $speechBox);?>">
-<input type='hidden' id="sysDefPower" value="<?=$powersData[$sessionID];?>">
-<input type='hidden' id="sysDefPostPower" value="<?=$powersData[$sessionID];?>">
-<input type='hidden' id="sysDefObjPower" value="0">
 <input type='hidden' id="sysDefPostBindData" value="<?=valstr($bindData,';',':');?>">
 <input type='hidden' id="sysDefPostPowersData" value="<?=valstr($powersData,';',':');?>">
 <input type='hidden' id="sysDefPostMsgData" value="">
+<input type='hidden' id="sysDefPostBookKeep" value="">
 <input type='hidden' id='sysDefAvatarIcons' value="<?=implode(';', $kaiser);?>">
 <form id="upload" method="POST" style="display:none;">
 <input type="file" name="file" id="filebrowser" onchange='uploadFile();'>

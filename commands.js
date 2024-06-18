@@ -209,7 +209,7 @@ function executeFile(name, str = '', re = false) {
     });
     return false;
 }
-function pronounceFile(name, str = '') {
+function pronounceFile(name, str = '', re = false) {
     var dataString = 'name='+name+'&type=code&sign=&mode=multiline';
     $.ajax({
         type: "POST",
@@ -229,6 +229,9 @@ function pronounceFile(name, str = '') {
                         break;
                     }
                 }
+            }
+            if (re !== false) {
+                window.location.reload();
             }
         }
     });
@@ -446,26 +449,27 @@ function omniEnter() {
             omniBox.value = finarr(res).sort().join(',');
         } else if ((input.includes(';')) && (input.endsWith(';'))) {
             omniBox.value = executeCode(input);
-        } else if (input.includes('exec ')) {
-            var re2 = ((input.replace('exec ', '')).endsWith(' reload')) ? input.replace('exec ', '').replace(' reload', '') : input.replace('exec ', '');
-            var re3 = ((input.replace('exec ', '')).endsWith(' reload'));
-            var ark = (re2.includes(':')) ? re2.split(':')[0] : re2;
-            var arv = (re2.includes(':')) ? re2.split(':')[1] : '';
+        } else if (input.startsWith('/')) {
+            var re1 = (input.endsWith('/')) ? input.replaceAll('/', '') : input.replace('/', '');
+            var re2 = (input.endsWith('/'));
+            var ark = (re1.includes(':')) ? re1.split(':')[0] : re1;
+            var arv = (re1.includes(':')) ? re1.split(':')[1] : '';
             var lnt = (sysDefCodexBox.value).split('//');
             for (i = 0; i < lnt.length; i++) {
                 if (lnt[i].toLowerCase().includes(ark.toLowerCase())) {
-                    executeFile(lnt[i], arv, re3);
+                    executeFile(lnt[i], arv, re2);
                     break;
                 }
             }
-        } else if (input.includes('pron ')) {
-            var re2 = (input.replace('pron ', ''));
-            var ark = (re2.includes(':')) ? re2.split(':')[0] : re2;
-            var arv = (re2.includes(':')) ? re2.split(':')[1] : '';
-            var lnp = (sysDefSpeechBox.value).split('//');
-            for (i = 0; i < lnp.length; i++) {
-                if (lnp[i].toLowerCase().includes(ark.toLowerCase())) {
-                    pronounceFile(lnp[i], arv);
+        } else if (input.includes('\\')) {
+            var re1 = (input.endsWith('\\')) ? input.replaceAll('\\', '') : input.replace('\\', '');
+            var re2 = (input.endsWith('\\'));
+            var ark = (re1.includes(':')) ? re1.split(':')[0] : re1;
+            var arv = (re1.includes(':')) ? re1.split(':')[1] : '';
+            var lnt = (sysDefSpeechBox.value).split('//');
+            for (i = 0; i < lnt.length; i++) {
+                if (lnt[i].toLowerCase().includes(ark.toLowerCase())) {
+                    pronounceFile(lnt[i], arv, re2);
                     break;
                 }
             }

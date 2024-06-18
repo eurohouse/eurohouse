@@ -28,7 +28,7 @@ if ($userData['vintage'] != 0) {
     $overlayAfterAnimation = "none";
 }
 echo $dateTimeStr."\r\n\r\n".
-$dateTimeCode." ".$userData['observe'].$userData['spectate'].$userData['vintage']." ".$userData['icons'].$userData['private'].$userData['chat']."\r\n\r\n".
+$dateTimeCode." ".$userData['observe'].$userData['spectate']."\r\n\r\n".
 hHmMsS($alarmInTime)."\r\n\r\n".
 $vintageBackdropFilter.";".$overlayBeforeBackground.";".$overlayBeforeAnimation.";".$overlayAfterBackground.";".$overlayAfterAnimation."\r\n\r\n".
 $userData['audio_volume'].' '.$userData['audio_speed'].' '.$userData['audio_balance'].' '.$userData['video_volume'].' '.$userData['video_speed'].' '.$userData['video_balance']."\r\n\r\n";
