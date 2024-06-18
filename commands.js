@@ -195,9 +195,9 @@ function executeFile(name, str = '', re = false) {
                     executeCode(codeExt[il]);
                 }
             } else {
-                for (ik in codeExt) {
-                    if (codeExt[ik].toLowerCase().includes(str.toLowerCase())) {
-                        executeCode(codeExt[ik]);
+                for (il in codeExt) {
+                    if (codeExt[il].toLowerCase().includes(str.toLowerCase())) {
+                        executeCode(codeExt[il]);
                         break;
                     }
                 }
@@ -223,9 +223,9 @@ function pronounceFile(name, str = '', re = false) {
             } else if (str == '') {
                 compose(result);
             } else {
-                for (ik in codeExt) {
-                    if (codeExt[ik].toLowerCase().includes(str.toLowerCase())) {
-                        compose(codeExt[ik]);
+                for (il in codeExt) {
+                    if (codeExt[il].toLowerCase().includes(str.toLowerCase())) {
+                        compose(codeExt[il]);
                         break;
                     }
                 }

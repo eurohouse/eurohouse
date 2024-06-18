@@ -158,52 +158,52 @@ function visual_effects() {
     $.ajax({
         url: 'visual_effects.php',
         success: function(data) {
-            document.querySelector(':root').style.setProperty('--graddeg', miniPager(data, 2)+'deg');
-            document.querySelector(':root').style.setProperty('--backsize', miniPager(data, 3)+'pt');
-            document.querySelector(':root').style.setProperty('--foresize', miniPager(data, 4)+'pt');
-            document.querySelector(':root').style.setProperty('--inputsize', miniPager(data, 5)+'pt');
-            document.querySelector(':root').style.setProperty('--head1size', miniPager(data, 6)+'pt');
-            document.querySelector(':root').style.setProperty('--head2size', miniPager(data, 7)+'pt');
-            document.querySelector(':root').style.setProperty('--head3size', miniPager(data, 8)+'pt');
-            document.querySelector(':root').style.setProperty('--dispsize', miniPager(data, 9)+'pt');
-            document.querySelector(':root').style.setProperty('--priv1size', miniPager(data, 10)+'pt');
-            document.querySelector(':root').style.setProperty('--priv2size', miniPager(data, 11)+'pt');
-            document.querySelector(':root').style.setProperty('--priv3size', miniPager(data, 12)+'pt');
-            document.querySelector(':root').style.setProperty('--backcolor', '#'+miniPager(data, 13));
-            document.querySelector(':root').style.setProperty('--forecolor', '#'+miniPager(data, 14));
-            document.querySelector(':root').style.setProperty('--inputcolor', '#'+miniPager(data, 15));
-            document.querySelector(':root').style.setProperty('--backtextcolor', '#'+miniPager(data, 16));
-            document.querySelector(':root').style.setProperty('--foretextcolor', '#'+miniPager(data, 17));
-            document.querySelector(':root').style.setProperty('--inputtextcolor', '#'+miniPager(data, 18));
-            document.querySelector(':root').style.setProperty('--blankcolor', '#'+miniPager(data, 19));
-            document.querySelector(':root').style.setProperty('--blanktextcolor', '#'+miniPager(data, 20));
-            document.querySelector(':root').style.setProperty('--arcforecolor', '#'+miniPager(data, 21));
-            document.querySelector(':root').style.setProperty('--arcinputcolor', '#'+miniPager(data, 22));
-            document.querySelector(':root').style.setProperty('--bicolor', '#'+miniPager(data, 31));
-            document.querySelector(':root').style.setProperty('--qucolor', '#'+miniPager(data, 13)+'00');
-            document.querySelector(':root').style.setProperty('--radius', miniPager(data, 0)+'px');
-            document.querySelector(':root').style.setProperty('--box-shadow', '0px 0px '+miniPager(data, 1)+'px '+miniPager(data, 1)+'px #'+miniPager(data, 19));
-            document.querySelector(':root').style.setProperty('--text-box-shadow', '0px 0px '+miniPager(data, 1)+'px '+miniPager(data, 1)+'px #'+miniPager(data, 20));
-            document.querySelector(':root').style.setProperty('--blur', 'blur('+miniPager(data, 24)+'px)');
-            document.querySelector(':root').style.setProperty('--filter', 'brightness('+miniPager(data, 25)+'%) saturate('+miniPager(data, 26)+'%) contrast('+miniPager(data, 27)+'%) sepia('+miniPager(data, 28)+'%) grayscale('+miniPager(data, 29)+'%) hue-rotate('+miniPager(data, 30)+'deg)');
+            document.querySelector(':root').style.setProperty('--graddeg', sysDefGradientDeg.value+'deg');
+            document.querySelector(':root').style.setProperty('--backsize', sysDefBackSize.value+'pt');
+            document.querySelector(':root').style.setProperty('--foresize', sysDefForeSize.value+'pt');
+            document.querySelector(':root').style.setProperty('--inputsize', sysDefInputSize.value+'pt');
+            document.querySelector(':root').style.setProperty('--head1size', sysDefHead1Size.value+'pt');
+            document.querySelector(':root').style.setProperty('--head2size', sysDefHead2Size.value+'pt');
+            document.querySelector(':root').style.setProperty('--head3size', sysDefHead3Size.value+'pt');
+            document.querySelector(':root').style.setProperty('--dispsize', sysDefDispSize.value+'pt');
+            document.querySelector(':root').style.setProperty('--priv1size', sysDefPriv1Size.value+'pt');
+            document.querySelector(':root').style.setProperty('--priv2size', sysDefPriv2Size.value+'pt');
+            document.querySelector(':root').style.setProperty('--priv3size', sysDefPriv3Size.value+'pt');
+            document.querySelector(':root').style.setProperty('--backcolor', '#'+sysDefBackColor.value);
+            document.querySelector(':root').style.setProperty('--forecolor', '#'+sysDefForeColor.value);
+            document.querySelector(':root').style.setProperty('--inputcolor', '#'+sysDefInputColor.value);
+            document.querySelector(':root').style.setProperty('--backtextcolor', '#'+sysDefBackTextColor.value);
+            document.querySelector(':root').style.setProperty('--foretextcolor', '#'+sysDefForeTextColor.value);
+            document.querySelector(':root').style.setProperty('--inputtextcolor', '#'+sysDefInputTextColor.value);
+            document.querySelector(':root').style.setProperty('--blankcolor', '#'+sysDefBlankColor.value);
+            document.querySelector(':root').style.setProperty('--blanktextcolor', '#'+sysDefBlankTextColor.value);
+            document.querySelector(':root').style.setProperty('--arcforecolor', '#'+sysDefArcForeColor.value);
+            document.querySelector(':root').style.setProperty('--arcinputcolor', '#'+sysDefArcInputColor.value);
+            document.querySelector(':root').style.setProperty('--bicolor', '#'+miniPager(data, 0));
+            document.querySelector(':root').style.setProperty('--qucolor', '#'+sysDefBackColor.value+'00');
+            document.querySelector(':root').style.setProperty('--radius', sysDefRadius.value+'px');
+            document.querySelector(':root').style.setProperty('--box-shadow', '0px 0px '+sysDefBoxShadow.value+'px '+sysDefBoxShadow.value+'px #'+sysDefBlankColor.value);
+            document.querySelector(':root').style.setProperty('--text-box-shadow', '0px 0px '+sysDefBoxShadow.value+'px '+sysDefBoxShadow.value+'px #'+sysDefBlankTextColor.value);
+            document.querySelector(':root').style.setProperty('--blur', 'blur('+sysDefBlur.value+'px)');
+            document.querySelector(':root').style.setProperty('--filter', 'brightness('+sysDefBrightness.value+'%) saturate('+sysDefSaturation.value+'%) contrast('+sysDefContrast.value+'%) sepia('+sysDefSepia.value+'%) grayscale('+sysDefGrayscale.value+'%) hue-rotate('+sysDefHue.value+'deg)');
             if (sysDefGloss.value == 1) {
-                $('.power').css('background', 'linear-gradient('+miniPager(data, 2)+'deg, #'+miniPager(data, 14)+' 0%, #'+miniPager(data, 21)+' 100%)');
-                document.querySelector(':root').style.setProperty('--gradient-fore', 'linear-gradient(180deg, #'+miniPager(data, 14)+' 0%, #'+miniPager(data, 21)+' 100%)');
-                document.querySelector(':root').style.setProperty('--gradient-input', 'linear-gradient(180deg, #'+miniPager(data, 15)+' 0%, #'+miniPager(data, 22)+' 100%)');
+                $('.power').css('background', 'linear-gradient('+sysDefGradientDeg.value+'deg, #'+sysDefForeColor.value+' 0%, #'+sysDefArcForeColor.value+' 100%)');
+                document.querySelector(':root').style.setProperty('--gradient-fore', 'linear-gradient(180deg, #'+sysDefForeColor.value+' 0%, #'+sysDefArcForeColor.value+' 100%)');
+                document.querySelector(':root').style.setProperty('--gradient-input', 'linear-gradient(180deg, #'+sysDefInputColor.value+' 0%, #'+sysDefArcInputColor.value+' 100%)');
             } else {
-                $('.power').css('background', 'linear-gradient('+miniPager(data, 2)+'deg, #'+miniPager(data, 14)+' 0%, #'+miniPager(data, 14)+' 100%)');
-                document.querySelector(':root').style.setProperty('--gradient-fore', 'linear-gradient(180deg, #'+miniPager(data, 14)+' 0%, #'+miniPager(data, 14)+' 100%)');
-                document.querySelector(':root').style.setProperty('--gradient-input', 'linear-gradient(180deg, #'+miniPager(data, 15)+' 0%, #'+miniPager(data, 15)+' 100%)');
+                $('.power').css('background', 'linear-gradient('+sysDefGradientDeg.value+'deg, #'+sysDefForeColor.value+' 0%, #'+sysDefForeColor.value+' 100%)');
+                document.querySelector(':root').style.setProperty('--gradient-fore', 'linear-gradient(180deg, #'+sysDefForeColor.value+' 0%, #'+sysDefForeColor.value+' 100%)');
+                document.querySelector(':root').style.setProperty('--gradient-input', 'linear-gradient(180deg, #'+sysDefInputColor.value+' 0%, #'+sysDefInputColor.value+' 100%)');
             }
             if (requestMode.value == 'visual_effects') {
-                opacityInd.value = miniPager(data, 23);
-                blurInd.value = miniPager(data, 24)+'px';
-                brightnessInd.value = miniPager(data, 25)+'%';
-                saturationInd.value = miniPager(data, 26)+'%';
-                contrastInd.value = miniPager(data, 27)+'%';
-                sepiaInd.value = miniPager(data, 28)+'%';
-                grayInd.value = miniPager(data, 29)+'%';
-                hueInd.value = miniPager(data, 30)+'deg';
+                opacityInd.value = sysDefOpacity.value;
+                blurInd.value = sysDefBlur.value+'px';
+                brightnessInd.value = sysDefBrightness.value+'%';
+                saturationInd.value = sysDefSaturation.value+'%';
+                contrastInd.value = sysDefContrast.value+'%';
+                sepiaInd.value = sysDefSepia.value+'%';
+                grayInd.value = sysDefGrayscale.value+'%';
+                hueInd.value = sysDefHue.value+'deg';
             }
         },
     });

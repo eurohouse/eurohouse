@@ -231,7 +231,7 @@ function isoformat(num) {
     return (ob.getUTCFullYear())+'-'+pad((ob.getUTCMonth()+1), 2)+'-'+pad((ob.getUTCDate()), 2)+' '+pad((ob.getUTCHours()), 2)+':'+pad((ob.getUTCMinutes()), 2)+':'+pad((ob.getUTCSeconds()), 2)+'.'+pad((ob.getUTCMilliseconds()), 3);
 }
 function compose(msg) {
-    var addr = msg.match(/(@\w*)/g);
+    var addr = (msg !== undefined) ? msg.match(/(@\w*)/g) : '';
     var userID; var msgbox = ''; var msgbr = [];
     var ratTab = arrjob(sysDefPowersData.value, ';', ':');
     if (ratTab[sysDefSessionID.value] >= 0) {
