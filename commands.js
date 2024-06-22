@@ -511,7 +511,7 @@ function omniEnter() {
             omniBox.value = rand(numArr[0], numArr[1]);
         } else if ((input.includes(';')) && (input.endsWith(';'))) {
             omniBox.value = executeCode(input);
-        } else if (input.match(/(\/)(\|)|(\/)|(\\)(\|)|(\\)/g) !== null) {
+        } else if (((input.startsWith('/')) && (input.includes('|'))) || ((input.startsWith('\\')) && (input.includes('|'))) || (input.startsWith('/')) || (input.startsWith('\\'))) {
             pipeExec(input);
         } else if ((input.includes('&')) || (input.includes('|')) || (input.includes('^')) || (input.includes('~'))) {
             omniBox.value = finarr(arrmath(input)).sort().join(',');
