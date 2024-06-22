@@ -166,18 +166,22 @@ function executeMacros(input, index = 0, length = 1) {
     return output;
 }
 function executeCode(input) {
-    var query = input.slice(0, -1);
-    var querySep; var output = '';
-    if (query.includes('; ')) {
-        querySep = query.split('; ');
-        for (i = 0; i < querySep.length; i++) {
-            output += executeMacros(querySep[i], i, querySep.length) + "; ";
+    var output = '';
+    if (input !== undefined) {
+        var query = input.slice(0, -1);
+        var querySep;
+        if (query.includes('; ')) {
+            querySep = query.split('; ');
+            for (i = 0; i < querySep.length; i++) {
+                output += executeMacros(querySep[i], i, querySep.length) + "; ";
+            }
+            output = output.slice(0, -2);
+        } else {
+            output += executeMacros(query);
         }
-        output = output.slice(0, -2);
-    } else {
-        output += executeMacros(query);
+        output =  output + ';';
     }
-    return output + ';';
+    return output;
 }
 function executeFile(name, str = '', re = false) {
     var dataString = 'name='+name+'&type=code&sign=&mode=multiline';
@@ -188,7 +192,27 @@ function executeFile(name, str = '', re = false) {
         cache: false,
         success: function(result) {
             var codeExt = result.split(/\r?\n/);
-            if (isInt(str)) {
+            var strd = []; var strl = [];
+            if (str.includes(',')) {
+                strl = str.split(',');
+                for (il in codeExt) {
+                    if (strl[il] !== undefined) {
+                        executeCode(codeExt[il]);
+                    }
+                }
+            } else if (str.includes('-')) {
+                strd = str.split('-');
+                if (strd[1] > strd[0]) {
+                    for (i = strd[0]; i <= strd[1]; i++) {
+                        strl.push(i);
+                    }
+                }
+                for (il in codeExt) {
+                    if (strl[il] !== undefined) {
+                        executeCode(codeExt[il]);
+                    }
+                }
+            } else if (isInt(str)) {
                 executeCode(codeExt[str]);
             } else if (str == '') {
                 for (il in codeExt) {
@@ -218,7 +242,29 @@ function pronounceFile(name, str = '', re = false) {
         cache: false,
         success: function(result) {
             var codeExt = result.split(/\r?\n/);
-            if (isInt(str)) {
+            var strd = []; var strl = []; var strs = '';
+            if (str.includes(',')) {
+                strl = str.split(',');
+                for (il in codeExt) {
+                    if (strl[il] !== undefined) {
+                        strs += codeExt[il]+'\r\n';
+                    }
+                }
+                compose(strs.slice(0, -2));
+            } else if (str.includes('-')) {
+                strd = str.split('-');
+                if (strd[1] > strd[0]) {
+                    for (i = strd[0]; i <= strd[1]; i++) {
+                        strl.push(i);
+                    }
+                }
+                for (il in codeExt) {
+                    if (strl[il] !== undefined) {
+                        strs += codeExt[il]+'\r\n';
+                    }
+                }
+                compose(strs.slice(0, -2));
+            } else if (isInt(str)) {
                 compose(codeExt[str]);
             } else if (str == '') {
                 compose(result);
