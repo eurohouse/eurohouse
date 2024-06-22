@@ -35,6 +35,7 @@
 <input type='hidden' id="sysDefBooksList" value="">
 <input type='hidden' id="sysDefMailingJSONs" value="">
 <input type='hidden' id="sysDefBookKeepJSONs" value="">
+<input type='hidden' id="sysDefEconTransact" value="">
 <input type='hidden' id="sysDefBindData" value="<?=valstr($bindData,';',':');?>">
 <input type='hidden' id="sysDefPowersData" value="<?=valstr($powersData,';',':');?>">
 <input type='hidden' id="sysDefAutoData" value="<?=valstr($automateData,';',':');?>">

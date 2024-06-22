@@ -354,7 +354,9 @@
             "Video Speed": "Скорость видео",
             "Video Balance": "Баланс аудио",
             "User Score Tab:": "Символ статуса:",
-            "User Operation:": "Текущая операция:"
+            "User Operation:": "Текущая операция:",
+            "Seller:": "Продавец:", "Customer:": "Покупатель:",
+            "Password:": "Пароль:", "Type:": "Тип:"
         },
         "CN": {
             "Name/Position:": "名称及显示位置:",
@@ -382,7 +384,9 @@
             "Audio Balance": "声音平衡", "Video Volume": "视频音量",
             "Video Speed": "视频速度", "Video Balance": "视频平衡",
             "User Score Tab:": "用户评分选项卡：",
-            "User Operation:": "当前用户操作："
+            "User Operation:": "当前用户操作：",
+            "Seller:": "卖方：", "Customer:": "顾客：",
+            "Password:": "密码：", "Type:": "类型："
         },
         "KR": {
             "Name/Position:": "이름 및 표시 위치:",
@@ -410,7 +414,9 @@
             "Audio Balance": "사운드 밸런스", "Video Volume": "비디오 볼륨",
             "Video Speed": "비디오 속도", "Video Balance": "비디오 밸런스",
             "User Score Tab:": "사용자 평가 탭:",
-            "User Operation:": "현재 사용자 작업:"
+            "User Operation:": "현재 사용자 작업:",
+            "Seller:": "파는 사람:", "Customer:": "고객:",
+            "Password:": "비밀번호:", "Type:": "유형:"
         },
         "JP": {
             "Name/Position:": "名称と展示場所:",
@@ -438,7 +444,9 @@
             "Audio Balance": "サウンドバランス", "Video Volume": "ビデオの音量",
             "Video Speed": "ビデオ速度", "Video Balance": "ビデオバランス",
             "User Score Tab:": "ユーザー評価タブ:",
-            "User Operation:": "現在のユーザー操作:"
+            "User Operation:": "現在のユーザー操作:",
+            "Seller:": "売り手：", "Customer:": "お客様：",
+            "Password:": "パスワード：", "Type:": "タイプ："
         }
     }
 }

@@ -215,6 +215,7 @@ function wallpaper_engine() {
             sysDefPrefix.value = pager(data, 6).split(';')[0];
             sysDefReticlePrefix.value = pager(data, 6).split(';')[1];
             var varsPlus = pager(data, 5);
+            sysDefEconTransact.value = pager(data, 11);
             $('#buttonChild').attr('src', sysDefPrefix.value+((varsPlus.split(':')[0] != 0)?'weather.png':'tree.png')+sysDefSuffix.value);
             $('#sysDefVarsArr').val(varsPlus.split(':')[1]);
             $('body').css('background-image', 'url('+pager(data, 1)+')');

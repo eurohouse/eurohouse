@@ -15,6 +15,7 @@ $variations = ($userData['child_safe'] != 0) ? '' : implode(';', str_replace(exp
 $cont = exemplar(str_replace('./','',(glob('./*.contents.json'))));
 $exem = exemplar(str_replace('./','',(glob('./*.models.json'))));
 $uni = $userData['units']; $loc = $userSettings['locale'];
+$voc = $userSettings['vocabulary'];
 $anno = (isset($loc['anno'][$uni])) ? $loc['anno'][$uni] : $loc['anno']['default'];
 if (isset($cont[$showFilename])) {
     $ent = $exem[$cont[$showFilename]];
@@ -78,6 +79,10 @@ if (isset($cont[$showFilename])) {
 }
 $personAvatar1 = $brightAvaFore.$userData['avatar'].'.png';
 $personAvatar2 = $brightAvaBack.$userData['avatar'].'.png';
+$defSeller = (isset($voc[$uni]['Seller:'])) ? $voc[$uni]['Seller:'] : 'Seller:';
+$defCustomer = (isset($voc[$uni]['Customer:'])) ? $voc[$uni]['Customer:'] : 'Customer:';
+$defPassword = (isset($voc[$uni]['Password:'])) ? $voc[$uni]['Password:'] : 'Password:';
+$defType = (isset($voc[$uni]['Type:'])) ? $voc[$uni]['Type:'] : 'Type:';
 echo $userData['title']."\r\n\r\n".
 $showFilename."\r\n\r\n".
 $assignAvatar1."\r\n\r\n".
@@ -88,4 +93,5 @@ $brightSysIcon.";".$brightRetIcon."\r\n\r\n".
 $showHead."\r\n\r\n".
 $showBody."\r\n\r\n".
 $personAvatar1."\r\n\r\n".
-$personAvatar2;
+$personAvatar2."\r\n\r\n".;
+$defSeller." | ".$defCustomer." | ".$defPassword." | ".$defType;

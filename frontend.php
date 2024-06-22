@@ -331,7 +331,8 @@ function sell_item(user, pass, type = 'account') {
         var obj = arrjob(sysDefPowersData.value,';',':');
         if ((obj[sysDefSessionID.value] > 0) && (obj[user] > 0)) {
             set(sysDefSessionID.value+'_'+type+'_'+user, encodeURIComponent(pass), true);
-            compose('FROM @'+sysDefSessionID.value+' TO @'+user+' KEY '+encodeURIComponent(pass));
+            var econT = (sysDefEconTransact.value).split(' | ');
+            compose('['+econT[0]+'] @'+sysDefSessionID.value+' ['+econT[1]+'] @'+user+' ['+econT[3]+'] '+type+' ['+econT[2]+'] '+encodeURIComponent(pass));
         }
     }
 }
