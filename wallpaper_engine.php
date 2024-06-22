@@ -79,10 +79,10 @@ if (isset($cont[$showFilename])) {
 }
 $personAvatar1 = $brightAvaFore.$userData['avatar'].'.png';
 $personAvatar2 = $brightAvaBack.$userData['avatar'].'.png';
-$defSeller = (isset($voc[$uni]['Seller:'])) ? $voc[$uni]['Seller:'] : 'Seller:';
-$defCustomer = (isset($voc[$uni]['Customer:'])) ? $voc[$uni]['Customer:'] : 'Customer:';
-$defPassword = (isset($voc[$uni]['Password:'])) ? $voc[$uni]['Password:'] : 'Password:';
-$defType = (isset($voc[$uni]['Type:'])) ? $voc[$uni]['Type:'] : 'Type:';
+$defSeller = (isset($voc[$uni]['Seller'])) ? $voc[$uni]['Seller'] : 'Seller';
+$defCustomer = (isset($voc[$uni]['Customer'])) ? $voc[$uni]['Customer'] : 'Customer';
+$defPassword = (isset($voc[$uni]['Password'])) ? $voc[$uni]['Password'] : 'Password';
+$defType = (isset($voc[$uni]['Type'])) ? $voc[$uni]['Type'] : 'Type';
 echo $userData['title']."\r\n\r\n".
 $showFilename."\r\n\r\n".
 $assignAvatar1."\r\n\r\n".
