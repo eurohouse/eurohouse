@@ -339,7 +339,7 @@
             "User Interface:": "Настройки интерфейса:",
             "Color Scheme:": "Используемые цвета:", "Clear": "Очистить",
             "Update Password:": "Смена пароля:", "Username": "Логин",
-            "Opacity": "Заливка", "Blur": "Размытие", "Password": "Пароль",
+            "Opacity": "Заливка", "Blur": "Размытие", "Password": "Пароль", "Type": "Тип",
             "Bright": "Яркость", "Saturate": "Насыщение",
             "Contrast": "Контраст", "Sepia": "Сепия",
             "Grayscale": "Чёрно-белый", "Hue": "Оттенок",
@@ -355,8 +355,7 @@
             "Video Balance": "Баланс аудио",
             "User Score Tab:": "Символ статуса:",
             "User Operation:": "Текущая операция:",
-            "Seller:": "Продавец:", "Customer:": "Покупатель:",
-            "Password:": "Пароль:", "Type:": "Тип:"
+            "Seller": "Продавец", "Customer": "Покупатель"
         },
         "CN": {
             "Name/Position:": "名称及显示位置:",
@@ -372,7 +371,7 @@
             "User Interface:": "用户界面设置:",
             "Color Scheme:": "配色方案:", "Clear": "清除",
             "Update Password:": "修改密码:", "Username": "用户名",
-            "Opacity": "不透明度", "Blur": "模糊", "Password": "密码",
+            "Opacity": "不透明度", "Blur": "模糊", "Password": "密码", "Type": "类型",
             "Bright": "亮度", "Saturate": "饱和",
             "Contrast": "对比", "Sepia": "棕褐色",
             "Grayscale": "灰度", "Hue": "色调",
@@ -385,8 +384,7 @@
             "Video Speed": "视频速度", "Video Balance": "视频平衡",
             "User Score Tab:": "用户评分选项卡：",
             "User Operation:": "当前用户操作：",
-            "Seller:": "卖方：", "Customer:": "顾客：",
-            "Password:": "密码：", "Type:": "类型："
+            "SELL": "卖方", "BUY": "顾客"
         },
         "KR": {
             "Name/Position:": "이름 및 표시 위치:",
@@ -402,7 +400,7 @@
             "User Interface:": "사용자 인터페이스 설정:",
             "Color Scheme:": "착색 방식:", "Clear": "분명한",
             "Update Password:": "비밀번호 변경:", "Username": "사용자 이름",
-            "Opacity": "불투명", "Blur": "희미한", "Password": "비밀번호",
+            "Opacity": "불투명", "Blur": "희미한", "Password": "비밀번호", "Type": "유형",
             "Bright": "명도", "Saturate": "포화",
             "Contrast": "비교됨", "Sepia": "갈색",
             "Grayscale": "그레이스케일", "Hue": "음정",
@@ -415,8 +413,7 @@
             "Video Speed": "비디오 속도", "Video Balance": "비디오 밸런스",
             "User Score Tab:": "사용자 평가 탭:",
             "User Operation:": "현재 사용자 작업:",
-            "Seller:": "파는 사람:", "Customer:": "고객:",
-            "Password:": "비밀번호:", "Type:": "유형:"
+            "Sell": "파는 사람", "Buy": "고객"
         },
         "JP": {
             "Name/Position:": "名称と展示場所:",
@@ -432,7 +429,7 @@
             "User Interface:": "ユーザーインターフェース設定:",
             "Color Scheme:": "カラーリングスキーム:", "Clear": "クリア",
             "Update Password:": "パスワードを変更する:", "Username": "ユーザー名",
-            "Opacity": "不透明度", "Blur": "漠然", "Password": "パスワード",
+            "Opacity": "不透明度", "Blur": "漠然", "Password": "パスワード", "Type": "タイプ",
             "Bright": "輝度", "Saturate": "飽和",
             "Contrast": "比較した", "Sepia": "茶色",
             "Grayscale": "グレースケール", "Hue": "トーン",
@@ -445,8 +442,7 @@
             "Video Speed": "ビデオ速度", "Video Balance": "ビデオバランス",
             "User Score Tab:": "ユーザー評価タブ:",
             "User Operation:": "現在のユーザー操作:",
-            "Seller:": "売り手：", "Customer:": "お客様：",
-            "Password:": "パスワード：", "Type:": "タイプ："
+            "Sell": "売り手", "Buy": "お客様"
         }
     }
 }
