@@ -7,10 +7,13 @@ $bindingData = arropen('binding.json', "{\"root\":\"root\"}");
 $poweredData = arropen('dominion.json', "{\"root\":0}");
 $autoData = arropen('automator.json', "{\"root\":\"manual\"}");
 $frndData = arropen('friendship.json', "{\"root\":\"\"}");
-$musicBoxArr = str_replace('./','',(glob('./*.{'.duplex($userSettings['collections']['music'], true).','.duplex($userSettings['collections']['audio'], true).'}', GLOB_BRACE)));
+$musicBoxArr = str_replace('./','',(glob('./*.{'.duplex($userSettings['collections']['music'], true).'}', GLOB_BRACE)));
+$soundBoxArr = str_replace('./','',(glob('./*.{'.duplex($userSettings['collections']['audio'], true).'}', GLOB_BRACE)));
 natcasesort($musicBoxArr); array_unique($musicBoxArr);
+natcasesort($soundBoxArr); array_unique($soundBoxArr);
 $locksArr = arropen($cookie.'_lock.json', json_encode($userSettings['locks']), true);
-$museBox = excpkg($musicBoxArr, $locksArr['music']);
+$musicBox = excpkg($musicBoxArr, $locksArr['music']);
+$soundBox = excpkg($soundBoxArr, $locksArr['sound']);
 $codexBoxArr = str_replace('./','',(glob('./*.mac')));
 $speechBoxArr = str_replace('./','',(glob('./*.pro')));
 $usersList = implode(',',str_replace('_msgbox.json','',str_replace('./.log/','',(glob('./.log/*_msgbox.json')))));
@@ -24,7 +27,7 @@ valstr($autoData,';',':')."\r\n\r\n".
 valstr($frndData,';',':')."\r\n\r\n".
 $newsFeed."\r\n\r\n".
 $userBook."\r\n\r\n".
-implode('//', $museBox)."\r\n\r\n".
+implode('//', $musicBox)."\\\\".implode('//', $soundBox)."\r\n\r\n".
 implode('//', $codexBoxArr)."\\\\".implode('//', $speechBoxArr)."\r\n\r\n".
 $usersList."\r\n\r\n".
 $booksList;

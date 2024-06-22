@@ -45,6 +45,7 @@
 <input type='hidden' id="sysDefMsgData" value="">
 <input type='hidden' id="sysDefMsgCounter" value="0">
 <input type='hidden' id="sysDefMusicBox" value="<?=implode('//', $musicBox);?>">
+<input type='hidden' id="sysDefSoundBox" value="<?=implode('//', $orpheus);?>">
 <input type='hidden' id="sysDefCodexBox" value="<?=implode('//', $codexBox);?>">
 <input type='hidden' id="sysDefSpeechBox" value="<?=implode('//', $speechBox);?>">
 <input type='hidden' id="sysDefPostBindData" value="<?=valstr($bindData,';',':');?>">

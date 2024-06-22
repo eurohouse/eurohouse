@@ -31,7 +31,8 @@ function databox() {
             $('#sysDefFriendData').val(pager(data, 4));
             $('#sysDefMsgData').val(pager(data, 5));
             $('#sysDefBookKeep').val(pager(data, 6));
-            $('#sysDefMusicBox').val(pager(data, 7));
+            $('#sysDefMusicBox').val(pager(data, 7).split("\\\\")[0]);
+            $('#sysDefSoundBox').val(pager(data, 7).split("\\\\")[1]);
             $('#sysDefCodexBox').val(pager(data, 8).split("\\\\")[0]);
             $('#sysDefSpeechBox').val(pager(data, 8).split("\\\\")[1]);
             $('#sysDefUsersList').val(pager(data, 9));
