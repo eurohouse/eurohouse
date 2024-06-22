@@ -93,5 +93,5 @@ $brightSysIcon.";".$brightRetIcon."\r\n\r\n".
 $showHead."\r\n\r\n".
 $showBody."\r\n\r\n".
 $personAvatar1."\r\n\r\n".
-$personAvatar2."\r\n\r\n".;
+$personAvatar2."\r\n\r\n".
 $defSeller." | ".$defCustomer." | ".$defPassword." | ".$defType;
