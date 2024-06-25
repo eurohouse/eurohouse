@@ -41,20 +41,17 @@ function databox() {
                 if (sysDefMute.value == 0) {
                     playAudio(bindPlayer, sysDefBindSound.value);
                 }
-            }
-            sysDefPostBindData.value = sysDefBindData.value;
+            } sysDefPostBindData.value = sysDefBindData.value;
             if (sysDefMsgData.value != sysDefPostMsgData.value) {
                 if (sysDefMute.value == 0) {
                     playAudio(notifyPlayer, sysDefNotifySound.value);
                 }
-            }
-            sysDefPostMsgData.value = sysDefMsgData.value;
+            } sysDefPostMsgData.value = sysDefMsgData.value;
             if (sysDefBookKeep.value != sysDefPostBookKeep.value) {
                 if (sysDefMute.value == 0) {
                     playAudio(sufferPlayer, sysDefSufferSound.value);
                 }
-            }
-            sysDefPostBookKeep.value = sysDefBookKeep.value;
+            } sysDefPostBookKeep.value = sysDefBookKeep.value;
         }
     });
 }
@@ -65,19 +62,13 @@ function world_clock() {
             $('#currentTime').val(pager(data, 0));
             $('#alarmTime').val(pager(data, 2));
             init_user(sysDefSessionID.value, 'manual');
-            var enzi = pager(data, 1).split(' ');
-            var effi = pager(data, 3).split(';');
-            var mixers = pager(data, 4).split(' ');
+            var enzi = pager(data, 1).split(' '); var effi = pager(data, 3).split(';'); var mixers = pager(data, 4).split(' ');
             if (requestMode.value == 'volume_control') {
-                audioVolInd.value = mixers[0];
-                audioRatInd.value = mixers[1];
-                audioBalInd.value = mixers[2];
-                videoVolInd.value = mixers[3];
-                videoRatInd.value = mixers[4];
-                videoBalInd.value = mixers[5];
+                audioVolInd.value = mixers[0]; audioRatInd.value = mixers[1];
+                audioBalInd.value = mixers[2]; videoVolInd.value = mixers[3];
+                videoRatInd.value = mixers[4]; videoBalInd.value = mixers[5];
             } var tickCode = enzi[0]; var tickPanel = enzi[1];
-            var obs = tickPanel.split('')[0];
-            var spe = tickPanel.split('')[1];
+            var obs = tickPanel.split('')[0]; var spe = tickPanel.split('')[1];
             $('#powerButton').attr('src', sysDefPrefix.value+'power.png'+sysDefSuffix.value);
             $('#buttonNext').attr('src', sysDefPrefix.value+'go.png'+sysDefSuffix.value);
             $('#buttonLock').attr('src', sysDefPrefix.value+((sysDefLock.value != 0)?'key.png':'lock.png')+sysDefSuffix.value);
@@ -116,15 +107,12 @@ function world_clock() {
                 } else {
                     pauseAudio(backgroundPlayer);
                 }
-            }
-            sysDefPostBackEff.value = sysDefVintage.value;
+            } sysDefPostBackEff.value = sysDefVintage.value;
             if (requestMode.value == 'news_feed') {
                 msgBox.innerHTML = '<p>'+JSONtoHTML(sysDefMsgData.value, sysDefFind.value)+'</p>';
-            }
-            if (requestMode.value == 'bookkeeping') {
+            } if (requestMode.value == 'bookkeeping') {
                 bookkeep_disp.innerHTML = '<p>'+JSONtoHTML(sysDefBookKeep.value, sysDefFind.value)+'</p>';
-            }
-            if (((obs == 1) && (spe == 1)) || ((obs == 1) && (spe == 0))) {
+            } if (((obs == 1) && (spe == 1)) || ((obs == 1) && (spe == 0))) {
                 $('#powerButton').show(); $('.panel').hide();
                 $('.customPanel').hide(); $('.upperGap').hide();
                 $('.lowerGap').hide(); $('.topbar').hide();
@@ -138,8 +126,7 @@ function world_clock() {
                     $('.customPanel').show(); $('.upperGap').show();
                     $('.lowerGap').show(); $('.topbar').show();
                 }
-            }
-            document.querySelector(':root').style.setProperty('--backdrop-filter', effi[0]);
+            } document.querySelector(':root').style.setProperty('--backdrop-filter', effi[0]);
             document.querySelector(':root').style.setProperty('--overlay-before-bg', effi[1]);
             document.querySelector(':root').style.setProperty('--overlay-before-ani', effi[2]);
             document.querySelector(':root').style.setProperty('--overlay-after-bg', effi[3]);
@@ -148,8 +135,7 @@ function world_clock() {
                 playAudio(tickerPlayer, sysDefTickingSound.value);
             } else {
                 pauseAudio(tickerPlayer);
-            }
-            if (tickCode.split('')[0] != 0) {
+            } if (tickCode.split('')[0] != 0) {
                 playAudio(alarmPlayer, sysDefAlarmSound.value); setdata('memo', '');
             }
         },
@@ -186,8 +172,7 @@ function visual_effects() {
             document.querySelector(':root').style.setProperty('--box-shadow', '0px 0px '+sysDefBoxShadow.value+'px '+sysDefBoxShadow.value+'px #'+sysDefBlankColor.value);
             document.querySelector(':root').style.setProperty('--text-box-shadow', '0px 0px '+sysDefBoxShadow.value+'px '+sysDefBoxShadow.value+'px #'+sysDefBlankTextColor.value);
             document.querySelector(':root').style.setProperty('--blur', 'blur('+sysDefBlur.value+'px)');
-            document.querySelector(':root').style.setProperty('--filter', 'brightness('+sysDefBrightness.value+'%) saturate('+sysDefSaturation.value+'%) contrast('+sysDefContrast.value+'%) sepia('+sysDefSepia.value+'%) grayscale('+sysDefGrayscale.value+'%) hue-rotate('+sysDefHue.value+'deg)');
-            if (sysDefGloss.value == 1) {
+            document.querySelector(':root').style.setProperty('--filter', 'brightness('+sysDefBrightness.value+'%) saturate('+sysDefSaturation.value+'%) contrast('+sysDefContrast.value+'%) sepia('+sysDefSepia.value+'%) grayscale('+sysDefGrayscale.value+'%) hue-rotate('+sysDefHue.value+'deg)'); if (sysDefGloss.value == 1) {
                 $('.power').css('background', 'linear-gradient('+sysDefGradientDeg.value+'deg, #'+sysDefForeColor.value+' 0%, #'+sysDefArcForeColor.value+' 100%)');
                 document.querySelector(':root').style.setProperty('--gradient-fore', 'linear-gradient(180deg, #'+sysDefForeColor.value+' 0%, #'+sysDefArcForeColor.value+' 100%)');
                 document.querySelector(':root').style.setProperty('--gradient-input', 'linear-gradient(180deg, #'+sysDefInputColor.value+' 0%, #'+sysDefArcInputColor.value+' 100%)');
@@ -195,8 +180,7 @@ function visual_effects() {
                 $('.power').css('background', 'linear-gradient('+sysDefGradientDeg.value+'deg, #'+sysDefForeColor.value+' 0%, #'+sysDefForeColor.value+' 100%)');
                 document.querySelector(':root').style.setProperty('--gradient-fore', 'linear-gradient(180deg, #'+sysDefForeColor.value+' 0%, #'+sysDefForeColor.value+' 100%)');
                 document.querySelector(':root').style.setProperty('--gradient-input', 'linear-gradient(180deg, #'+sysDefInputColor.value+' 0%, #'+sysDefInputColor.value+' 100%)');
-            }
-            if (requestMode.value == 'visual_effects') {
+            } if (requestMode.value == 'visual_effects') {
                 opacityInd.value = sysDefOpacity.value;
                 blurInd.value = sysDefBlur.value+'px';
                 brightnessInd.value = sysDefBrightness.value+'%';
@@ -248,17 +232,13 @@ function wallpaper_engine() {
 function mailing_list() {
     $.ajax({
         url: 'mailing_list.php',
-        success: function(data) {
-            sysDefMailingJSONs.value = data;
-        }
+        success: function(data) { sysDefMailingJSONs.value = data; }
     });
 }
 function bookkeep_list() {
     $.ajax({
         url: 'bookkeep_list.php',
-        success: function(data) {
-            sysDefBookKeepJSONs.value = data;
-        }
+        success: function(data) { sysDefBookKeepJSONs.value = data; }
     });
 }
 function automator() {
@@ -269,10 +249,8 @@ function automator() {
     $.ajax({
         url: 'automator.php',
         success: function(data) {
-            var subName = miniPager(data, 0);
-            var objName = miniPager(data, 1);
-            var handle = miniPager(data, 2);
-            var status = miniPager(data, 3);
+            var subName = miniPager(data, 0); var objName = miniPager(data, 1);
+            var handle = miniPager(data, 2); var status = miniPager(data, 3);
             var subFrnd = friendsOf(frndPower, subName);
             if (requestMode.value == 'statistics') {
                 userStats.innerText = scores(sysDefStats.value);

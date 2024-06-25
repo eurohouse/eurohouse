@@ -349,8 +349,7 @@ function fixPrice(sen, rec, deb, cre) {
     var statD = (isInt(stat[sen])) ? parseInt(stat[sen]) : 0;
     var statC = (isInt(stat[rec])) ? parseInt(stat[rec]) : 0;
     var statDr = parseInt(statD); var statCr = parseInt(statC);
-    var statDt; var statCt;
-    if ((isInt(deb)) && !(isInt(cre))) {
+    var statDt; var statCt; if ((isInt(deb)) && !(isInt(cre))) {
         statD += parseInt(deb); statC -= parseInt(deb);
         statDt = (statDr + parseInt(deb) == statD) ? 'OK' : 'ERR';
         statCt = (statCr - parseInt(deb) == statC) ? 'OK' : 'ERR';
@@ -358,13 +357,17 @@ function fixPrice(sen, rec, deb, cre) {
         statD -= parseInt(cre); statC += parseInt(cre);
         statDt = (statDr - parseInt(cre) == statD) ? 'OK' : 'ERR';
         statCt = (statCr + parseInt(cre) == statC) ? 'OK' : 'ERR';
-    }
-    stat[sen] = parseInt(statD); stat[rec] = parseInt(statC);
+    } stat[sen] = parseInt(statD); stat[rec] = parseInt(statC);
     trans1 = jsonstr(tran1); trans2 = jsonstr(tran2);
     trans1[isoformat(Date.now())+' UTC'] = '@'+sen+' | @'+rec+' | '+deb+' | '+cre+' | '+statD+' | '+statDt;
     trans2[isoformat(Date.now())+' UTC'] = '@'+rec+' | @'+sen+' | '+cre+' | '+deb+' | '+statC+' | '+statCt;
-    set('./.book/'+sen+'_book.json', encodeURIComponent(JSON.stringify(trans1)), true);
-    set('./.book/'+rec+'_book.json', encodeURIComponent(JSON.stringify(trans2)), true);
+    var tr1K = Object.keys(trans1); var tr2K = Object.keys(trans2);
+    var tr1SK = tr1K.sort((a, b) => b > a); var tr2SK = tr2K.sort((a, b) => b > a);
+    var tr1RA = {}; var tr2RA = {};
+    for (i = 0; i < tr1SK.length; i++) { tr1RA[tr1SK[i]] = trans1[tr1SK[i]]; }
+    for (i = 0; i < tr2SK.length; i++) { tr2RA[tr2SK[i]] = trans2[tr2SK[i]]; }
+    set('./.book/'+sen+'_book.json', encodeURIComponent(JSON.stringify(tr1RA)), true);
+    set('./.book/'+rec+'_book.json', encodeURIComponent(JSON.stringify(tr2RA)), true);
     set('dominion.json', JSON.stringify(stat), true);
     sysDefPowersData.value = arrpack(stat,';',':');
 }
