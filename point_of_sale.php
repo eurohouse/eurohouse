@@ -1,46 +1,55 @@
 <?php
 include 'functions.php';
-$id = $_REQUEST['id'];
-$to = $_REQUEST['to'];
-$pass = $_REQUEST['pass'];
-$type = $_REQUEST['type'];
+function pos_account($seller, $buyer) {
+    if ($seller.'_session.json.bak') {
+        chmod($seller.'_session.json.bak', 0777);
+        copy($seller.'_session.json.bak', $buyer.'_session.json.bak');
+        chmod($buyer.'_session.json.bak', 0777);
+    }
+    chmod($seller.'_session.json', 0777);
+    copy($seller.'_session.json', $buyer.'_session.json');
+    chmod($buyer.'_session.json', 0777);
+}
+function pos_passwd($user, $content) {
+    file_put_contents($user.'_password', md5($content));
+    chmod($user.'_password', 0777);
+}
+function pos_soldout($user, $type) {
+    chmod($user.'_'.$type.'.exch', 0777);
+    unlink($user.'_'.$type.'.exch');
+}
+$seller = $_REQUEST['seller']; $buyer = $_REQUEST['buyer'];
+$pass = $_REQUEST['pass']; $type = $_REQUEST['type'];
 $pwr = arropen('dominion.json', "{\"root\":0}");
-$omo = (isset($pwr[$id])) ? $pwr[$id] : 0;
-$smo = (isset($pwr[$to])) ? $pwr[$to] : 0;
-if (file_exists($id.'_'.$type.'_'.$to)) {
-    $check = file_get_contents($id.'_'.$type.'_'.$to);
+$ocrd = (isset($pwr[$seller])) ? $pwr[$seller] : 0;
+$scrd = (isset($pwr[$buyer])) ? $pwr[$buyer] : 0;
+if (file_exists($seller.'_'.$type.'.exch')) {
+    $check = file_get_contents($seller.'_'.$type.'.exch');
     if ($check == $pass) {
         if ($type == 'account') {
-            $prix = $omo;
-            if (($smo >= $prix) && ($smo > 0) && ($omo > 0)) {
-                $amo = $prix;
-                if ($id.'_session.json.bak') {
-                    chmod($id.'_session.json.bak', 0777);
-                    copy($id.'_session.json.bak', $to.'_session.json.bak');
-                    chmod($to.'_session.json.bak', 0777);
-                }
-                chmod($id.'_session.json', 0777);
-                copy($id.'_session.json', $to.'_session.json');
-                chmod($to.'_session.json', 0777);
-                file_put_contents($to.'_password', md5($check)); chmod($to.'_password', 0777); chmod($id.'_'.$type.'_'.$to, 0777); unlink($id.'_'.$type.'_'.$to);
+            $prix = $ocrd;
+            if (($scrd >= $prix) && ($scrd > 0) && ($ocrd > 0)) {
+                $amount = $prix;
+                pos_account($seller, $buyer);
+                pos_passwd($buyer, $check);
+                pos_soldout($seller, $type);
             } else {
-                $amo = 'INSUFFICIENT FUNDS ('.$smo.' < '.$prix.')';
+                $amount = 'INSUFFICIENT FUNDS ('.$scrd.' < '.$prix.')';
             }
         } elseif ($type == 'password') {
-            $prix = $omo;
-            if (($smo >= $prix) && ($smo > 0) && ($omo > 0)) {
-                $amo = $prix;
-                file_put_contents($id.'_password', md5($check)); chmod($id.'_password', 0777);
-                chmod($id.'_'.$type.'_'.$to, 0777);
-                unlink($id.'_'.$type.'_'.$to);
+            $prix = $ocrd;
+            if (($scrd >= $prix) && ($scrd > 0) && ($ocrd > 0)) {
+                $amount = $prix;
+                pos_passwd($seller, $check);
+                pos_soldout($seller, $type);
             } else {
-                $amo = 'INSUFFICIENT FUNDS ('.$smo.' < '.$prix.')';
+                $amount = 'INSUFFICIENT FUNDS ('.$scrd.' < '.$prix.')';
             }
         }
     } else {
-        $amo = 'ACCESS DENIED';
+        $amount = 'ACCESS DENIED';
     }
 } else {
-    $amo = 'ITEM NOT FOUND';
+    $amount = 'ITEM NOT FOUND';
 }
-echo $amo;
+echo $amount;

@@ -269,14 +269,11 @@ function compose(msg) {
         }
     }
 }
-function make_gift(user, sum = 0) {
-    if (user != sysDefSessionID.value) {
-        var obj = arrjob(sysDefPowersData.value,';',':');
-        var est = (sum != 0) ? Math.abs(parseInt(sum)) : 1;
-        if (obj[sysDefSessionID.value] >= est) {
-            set(sysDefSessionID.value+'_gift_'+user, est, true);
-            compose('FROM @'+sysDefSessionID.value+' TO @'+user+' GIFT +'+est);
-        }
+function make_gift(sum = 0) {
+    var obj = arrjob(sysDefPowersData.value,';',':');
+    var est = (sum != 0) ? Math.abs(parseInt(sum)) : 1;
+    if (obj[sysDefSessionID.value] >= est) {
+        set(sysDefSessionID.value+'.gift', est, true);
     }
 }
 function accept_gift(user) {
@@ -288,7 +285,7 @@ function accept_gift(user) {
         var suf = (isInt(sp)) ? parseInt(sp) : 0;
         var obf = (isInt(op)) ? parseInt(op) : 0;
         if (obj[sysDefSessionID.value] >= 0) {
-            var dataString = 'name='+user+'_gift_'+sysDefSessionID.value+'&type=number&sign=0&mode=';
+            var dataString = 'name='+user+'.gift'+'&type=number&sign=0&mode=';
             $.ajax({
                 type: "POST",
                 url: "read.php",
@@ -297,8 +294,10 @@ function accept_gift(user) {
                 success: function(result) {
                     prep = miniPager(result, 0);
                     sum = (isInt(prep)) ? parseInt(prep) : 0;
-                    fixPrice(sysDefSessionID.value, user, sum, 'ACCEPT');
-                    del(user+'_gift_'+sysDefSessionID.value, true);
+                    if (sum > 0) {
+                        fixPrice(sysDefSessionID.value, user, sum, 'ACCEPT GIFT');
+                        del(user+'.gift', true);
+                    }
                 }
             });
             return false;
@@ -308,8 +307,8 @@ function accept_gift(user) {
 function buy_item(user, pass, type = 'account') {
     if (user != sysDefSessionID.value) {
         var obj = arrjob(sysDefPowersData.value,';',':');
-        if ((obj[sysDefSessionID.value] > 0) && (obj[user] > 0)) {
-            var dataString = 'id='+user+'&to='+sysDefSessionID.value+'&pass='+encodeURIComponent(pass)+'&type='+type; var prep, sum;
+        if ((obj[sysDefSessionID.value] > 0) && (obj[user] >= 0)) {
+            var dataString = 'seller='+user+'&buyer='+sysDefSessionID.value+'&pass='+encodeURIComponent(pass)+'&type='+type; var prep, sum;
             $.ajax({
                 type: "POST",
                 url: "point_of_sale.php",
@@ -318,7 +317,7 @@ function buy_item(user, pass, type = 'account') {
                 success: function(result) {
                     prep = miniPager(result, 0);
                     if (isInt(prep)) {
-                        fixPrice(sysDefSessionID.value, user, 'BUY '+type+' @'+user, parseInt(prep));
+                        fixPrice(sysDefSessionID.value, user, 'BUY '+type+' FROM @'+user, parseInt(prep));
                     }
                 }
             });
@@ -326,14 +325,10 @@ function buy_item(user, pass, type = 'account') {
         }
     }
 }
-function sell_item(user, pass, type = 'account') {
-    if (user != sysDefSessionID.value) {
-        var obj = arrjob(sysDefPowersData.value,';',':');
-        if ((obj[sysDefSessionID.value] > 0) && (obj[user] > 0)) {
-            set(sysDefSessionID.value+'_'+type+'_'+user, encodeURIComponent(pass), true);
-            var econT = (sysDefEconTransact.value).split(' | ');
-            compose('['+econT[0]+'] @'+sysDefSessionID.value+' ['+econT[1]+'] @'+user+' ['+econT[3]+'] '+type+' ['+econT[2]+'] '+encodeURIComponent(pass));
-        }
+function sell_item(pass, type = 'account') {
+    var obj = arrjob(sysDefPowersData.value,';',':');
+    if (obj[sysDefSessionID.value] >= 0) {
+        set(sysDefSessionID.value+'_'+type+'.exch', encodeURIComponent(pass), true);
     }
 }
 function isAllZero(arr) {

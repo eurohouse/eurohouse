@@ -40,13 +40,6 @@ function executeMacros(input, index = 0, length = 1) {
             } else if (atr[1].includes('rename')) {
                 rename_user(tyx[0], tyx[1]);
                 omniAuthRequest('signin', tyx[0], tyx[1]);
-            } else if (atr[1].includes(':')) {
-                txy = atr[1].split(':');
-                if (txy[0] == 'buy') {
-                    buy_item(tyx[0], tyx[1], txy[1]);
-                } else if (txy[0] == 'sell') {
-                    sell_item(tyx[0], tyx[1], txy[1]);
-                }
             }
         } else {
             if (atr[1].includes('signin')) {
@@ -56,18 +49,6 @@ function executeMacros(input, index = 0, length = 1) {
             } else if (atr[1].includes('rename')) {
                 rename_user(atr[0], '');
                 omniAuthRequest('signin', atr[0], '');
-            } else if (atr[1].includes('accept')) {
-                accept_gift(atr[0]);
-            } else if (atr[1].includes(':')) {
-                txy = atr[1].split(':');
-                if (txy[0] == 'buy') {
-                    buy_item(atr[0], '', txy[1]);
-                } else if (txy[0] == 'sell') {
-                    sell_item(atr[0], '', txy[1]);
-                }
-            } else if (atr[1].includes('+')) {
-                txy = atr[1].split('+');
-                make_gift(atr[0], txy[1]);
             }
         }
     } else if ((index == (length - 1)) && (input.includes('#')) && (input.indexOf('#') == 0)) {
@@ -435,6 +416,18 @@ function omniEnter() {
         } else if ((input == 'suicide') || (input == 'goodbye')) {
             delete_user(sysDefSessionID.value);
             omniAuthRequest('signout','','');
+        } else if (input.startsWith('give ')) {
+            var req = input.replace('give ', '');
+            make_gift(parseInt(req));
+        } else if (input.startsWith('sell ')) {
+            var req = input.replace('sell ', '');
+            sell_item(req.split(' ')[0], req.split(' ')[1]);
+        } else if (input.startsWith('buy ')) {
+            var req = input.replace('buy ', '');
+            buy_item(req.split(' ')[0], req.split(' ')[1], req.split(' ')[1]);
+        } else if (input.startsWith('accept ')) {
+            var req = input.replace('accept ', '');
+            accept_gift(req);
         } else if (input.startsWith('mkdir ')) {
             if (sysDefSessionID.value == 'root') {
                 arj = input.replace('mkdir ', '');

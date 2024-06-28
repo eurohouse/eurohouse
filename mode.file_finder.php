@@ -131,6 +131,33 @@ $iconSize = 50; include 'file_manager.php'; ?>
     <?php } else { ?>
         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'true');" src="<?=$prefix.'info.png'.$suffix;?>">
     <?php } ?></p></td>
+    <?php } elseif ($mediaFileExtension == 'gift') {
+        $mediaFileFavicon = $themePrefix.'money.png'.$suffix;
+    ?><td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon.$suffix;?>" onmouseover="soundButton();"></a></td>
+    <td><a style="<?=$preStyle;?>" href="javascript:accept_gift(%22<?=$mediaFileBasename;?>%22);"><?=$mediaFileTitle;?></a></td>
+    <td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
+    <td><p align='center' class='block'>
+    <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor', this.name, 'true');" src="<?=$prefix.'book.png'.$suffix;?>">
+    <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
+        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="del(this.name);" src="<?=$prefix.'delete.png'.$suffix;?>">
+    <?php } else { ?>
+        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'true');" src="<?=$prefix.'info.png'.$suffix;?>">
+    <?php } ?></p></td>
+    <?php } elseif ($mediaFileExtension == 'exch') {
+        $mediaFileFavicon = $themePrefix.'money.png'.$suffix;
+        $tradeFileID = explode('_', $mediaFileBasename)[0];
+        $tradeFileType = explode('_', $mediaFileBasename)[1];
+        $tradeFileContent = file_get_contents($mediaFilename);
+    ?><td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon.$suffix;?>" onmouseover="soundButton();"></a></td>
+    <td><a style="<?=$preStyle;?>" href="javascript:buy_item(%22<?=$tradeFileID;?>%22, %22<?=$tradeFileContent;?>%22, %22<?=$tradeFileType;?>%22);"><?=$mediaFileTitle;?></a></td>
+    <td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
+    <td><p align='center' class='block'>
+    <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor', this.name, 'true');" src="<?=$prefix.'book.png'.$suffix;?>">
+    <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
+        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="del(this.name);" src="<?=$prefix.'delete.png'.$suffix;?>">
+    <?php } else { ?>
+        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'true');" src="<?=$prefix.'info.png'.$suffix;?>">
+    <?php } ?></p></td>
     <?php } elseif ($mediaFileExtension == 'mac') {
         $mediaFileFavicon = $themePrefix.'bash.png'.$suffix;
     ?><td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon.$suffix;?>" onmouseover="soundButton();"></a></td>

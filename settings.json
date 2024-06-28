@@ -355,7 +355,7 @@
             "Video Balance": "Баланс аудио",
             "User Score Tab:": "Символ статуса:",
             "User Operation:": "Текущая операция:",
-            "Seller": "Продавец", "Customer": "Покупатель"
+            "Sell": "Продать", "Buy": "Купить"
         },
         "CN": {
             "Name/Position:": "名称及显示位置:",
@@ -384,7 +384,7 @@
             "Video Speed": "视频速度", "Video Balance": "视频平衡",
             "User Score Tab:": "用户评分选项卡：",
             "User Operation:": "当前用户操作：",
-            "SELL": "卖方", "BUY": "顾客"
+            "Sell": "卖方", "Buy": "顾客"
         },
         "KR": {
             "Name/Position:": "이름 및 표시 위치:",
