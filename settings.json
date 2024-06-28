@@ -28,7 +28,8 @@
             "solve.js", "requests.js", "commands.js"
         ],
         "foreign": [
-            "http://www.midijs.net/lib/midi.js"
+            "http://www.midijs.net/lib/midi.js",
+            "https://cdnjs.cloudflare.com/ajax/libs/xregexp/3.2.0/xregexp-all.min.js"
         ]
     },
     "collections": {
@@ -293,6 +294,7 @@
         "theme": "iso",
         "memo": "",
         "find": "#",
+        "find_value": "^",
         "stats": "score",
         "position": "50% 25%",
         "audio_volume": 1,

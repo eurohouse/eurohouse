@@ -111,7 +111,7 @@ function world_clock() {
             if (requestMode.value == 'news_feed') {
                 msgBox.innerHTML = '<p>'+JSONtoHTML(sysDefMsgData.value, sysDefFind.value)+'</p>';
             } if (requestMode.value == 'bookkeeping') {
-                bookkeep_disp.innerHTML = '<p>'+JSONtoHTML(sysDefBookKeep.value, sysDefFind.value)+'</p>';
+                bookkeep_disp.innerHTML = '<p>'+JSONtoHTML(sysDefBookKeep.value, sysDefFindValue.value, '^')+'</p>';
             } if (((obs == 1) && (spe == 1)) || ((obs == 1) && (spe == 0))) {
                 $('#powerButton').show(); $('.panel').hide();
                 $('.customPanel').hide(); $('.upperGap').hide();

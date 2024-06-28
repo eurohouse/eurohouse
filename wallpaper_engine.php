@@ -2,7 +2,7 @@
 include 'functions.php';
 $cookie = (isset($_COOKIE['user'])) ? $_COOKIE['user'] : 'root';
 $userSettings = fileopen('settings.json');
-$userData = arropen($cookie.'_session.json', json_encode($userSettings['defaults']), true);
+$userData = arropen($cookie.'_session.json', json_encode($userSettings['defaults']), 'DEFAULT');
 $timezone = dec_tz($userData['timezone']);
 date_default_timezone_set($timezone);
 $substitute = ($userData['lock']) ? sprintf("%02d", $userData['hour']) : ((($userData['benchmark'] > 0) && ($userData['benchmark'] < 5)) ? hourize(date('s'), date('i'), $userData['benchmark']) : date('H'));

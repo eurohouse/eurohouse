@@ -173,14 +173,20 @@ function jsonstr(str) {
     }
     return res;
 }
-function JSONFilter(str, mask) {
+function JSONFilter(str, mask, sym = '#') {
     var arr = jsonstr(str);
-    var wordArr = mask.match(/(#\w*)/g);
+    var wordArr = []; var arrRegex;
+    if (sym != '#') {
+        wordArr = mask.match(/(\^\d*)/g);
+    } else {
+        arrRegex = XRegExp("(#\\p{L}*)", "g");
+        wordArr = XRegExp.match(mask, arrRegex);
+    }
     var arf = {};
     for (el in arr) {
         if (wordArr !== null) {
             for (i = 0; i < wordArr.length; i++) {
-                if (arr[el].toLowerCase().includes(wordArr[i].replace('#', '').toLowerCase())) {
+                if (arr[el].toLowerCase().includes(wordArr[i].replace(sym, '').toLowerCase())) {
                     arf[el] = arr[el];
                 }
             }
@@ -188,8 +194,8 @@ function JSONFilter(str, mask) {
     }
     return arf;
 }
-function JSONtoHTML(str, mask) {
-    var arr = JSONFilter(str, mask);
+function JSONtoHTML(str, mask, sym = '#') {
+    var arr = JSONFilter(str, mask, sym);
     var ard = '';
     for (el in arr) {
         ard = el+'<br>'+arr[el]+'<br>'+ard;

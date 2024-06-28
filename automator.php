@@ -2,7 +2,7 @@
 include 'functions.php';
 $cookie = (isset($_COOKIE['user'])) ? $_COOKIE['user'] : 'root';
 $userSettings = fileopen('settings.json');
-$userData = arropen($cookie.'_session.json', json_encode($userSettings['defaults']), true);
+$userData = arropen($cookie.'_session.json', json_encode($userSettings['defaults']), 'DEFAULT');
 $bindingData = arropen('binding.json', "{\"root\":\"root\"}");
 $poweredData = arropen('dominion.json', "{\"root\":0}");
 $autoData = arropen('automator.json', "{\"root\":\"manual\"}");

@@ -2,7 +2,7 @@
 include 'functions.php';
 $cookie = (isset($_COOKIE['user'])) ? $_COOKIE['user'] : 'root';
 $userSettings = fileopen('settings.json');
-$userData = arropen($cookie.'_session.json', json_encode($userSettings['defaults']), true);
+$userData = arropen($cookie.'_session.json', json_encode($userSettings['defaults']), 'DEFAULT');
 $bindingData = arropen('binding.json', "{\"root\":\"root\"}");
 $poweredData = arropen('dominion.json', "{\"root\":0}");
 $autoData = arropen('automator.json', "{\"root\":\"manual\"}");
@@ -11,7 +11,7 @@ $musicBoxArr = str_replace('./','',(glob('./*.{'.duplex($userSettings['collectio
 $soundBoxArr = str_replace('./','',(glob('./*.{'.duplex($userSettings['collections']['audio'], true).'}', GLOB_BRACE)));
 natcasesort($musicBoxArr); array_unique($musicBoxArr);
 natcasesort($soundBoxArr); array_unique($soundBoxArr);
-$locksArr = arropen($cookie.'_lock.json', json_encode($userSettings['locks']), true);
+$locksArr = arropen($cookie.'_lock.json', json_encode($userSettings['locks']), 'DEFAULT');
 $musicBox = excpkg($musicBoxArr, $locksArr['music']);
 $soundBox = excpkg($soundBoxArr, $locksArr['sound']);
 $codexBoxArr = str_replace('./','',(glob('./*.mac')));
