@@ -383,7 +383,7 @@ function dominate(usr, id, q = 1, s = 2, n = 0, snd = false) {
             if (obf <= -666) {
                 delete_user(id);
             } else {
-                fixPrice(usr, id, f, 'DAMAGE DEALT BY @'+id);
+                fixPrice(usr, id, f, '@'+usr+' OFFENDS @'+id);
             }
         }
     }
