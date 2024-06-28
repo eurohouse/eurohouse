@@ -1,5 +1,8 @@
 <?php
 include 'functions.php';
+function pos_suffice($seller, $buyer, $price) {
+    return (($buyer >= $price) && ($buyer > 0) && ($seller >= 0));
+}
 function pos_account($seller, $buyer) {
     if ($seller.'_session.json.bak') {
         chmod($seller.'_session.json.bak', 0777);
@@ -28,7 +31,7 @@ if (file_exists($seller.'_'.$type.'.exch')) {
     if ($check == $pass) {
         if ($type == 'account') {
             $prix = $ocrd;
-            if (($scrd >= $prix) && ($scrd > 0) && ($ocrd > 0)) {
+            if (pos_suffice($ocrd, $scrd, $prix)) {
                 $amount = $prix;
                 pos_account($seller, $buyer);
                 pos_passwd($buyer, $check);
@@ -37,8 +40,8 @@ if (file_exists($seller.'_'.$type.'.exch')) {
                 $amount = 'INSUFFICIENT FUNDS ('.$scrd.' < '.$prix.')';
             }
         } elseif ($type == 'password') {
-            $prix = $ocrd;
-            if (($scrd >= $prix) && ($scrd > 0) && ($ocrd > 0)) {
+            $prix = strlen($check);
+            if (pos_suffice($ocrd, $scrd, $prix)) {
                 $amount = $prix;
                 pos_passwd($seller, $check);
                 pos_soldout($seller, $type);
