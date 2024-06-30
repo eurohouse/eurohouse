@@ -173,29 +173,30 @@ function jsonstr(str) {
     }
     return res;
 }
-function JSONFilter(str, mask, sym = '#') {
-    var arr = jsonstr(str);
-    var wordArr = []; var arrRegex;
-    if (sym != '#') {
-        wordArr = mask.match(/(\^\d*)/g);
+function JSONFilter(str, mask, sym = '#', uni = 'L') {
+    var arr = jsonstr(str); var arf = {};
+    if (mask == sym) {
+        for (el in arr) {
+            arf[el] = arr[el];
+        }
     } else {
-        arrRegex = XRegExp("(#\\p{L}*)", "g");
-        wordArr = XRegExp.match(mask, arrRegex);
-    }
-    var arf = {};
-    for (el in arr) {
-        if (wordArr !== null) {
-            for (i = 0; i < wordArr.length; i++) {
-                if (arr[el].toLowerCase().includes(wordArr[i].replace(sym, '').toLowerCase())) {
-                    arf[el] = arr[el];
+        var arrRegex = XRegExp('(\\'+sym+'\\p{'+uni+'}+)', 'g');
+        var repRegex = XRegExp('(\\'+sym+'+)', 'g');
+        var wordArr = XRegExp.match(mask, arrRegex);
+        for (el in arr) {
+            if (wordArr !== null) {
+                for (i = 0; i < wordArr.length; i++) {
+                    if (arr[el].toLowerCase().includes(XRegExp.replace(wordArr[i], repRegex, '').toLowerCase())) {
+                        arf[el] = arr[el];
+                    }
                 }
             }
         }
     }
     return arf;
 }
-function JSONtoHTML(str, mask, sym = '#') {
-    var arr = JSONFilter(str, mask, sym);
+function JSONtoHTML(str, mask, sym = '#', uni = 'L') {
+    var arr = JSONFilter(str, mask, sym, uni);
     var ard = '';
     for (el in arr) {
         ard = el+'<br>'+arr[el]+'<br>'+ard;
@@ -362,13 +363,8 @@ function fixPrice(sen, rec, deb, cre) {
     trans1 = jsonstr(tran1); trans2 = jsonstr(tran2);
     trans1[isoformat(Date.now())+' UTC'] = '@'+sen+' | @'+rec+' | '+deb+' | '+cre+' | '+statD+' | '+statDt;
     trans2[isoformat(Date.now())+' UTC'] = '@'+rec+' | @'+sen+' | '+cre+' | '+deb+' | '+statC+' | '+statCt;
-    var tr1K = Object.keys(trans1); var tr2K = Object.keys(trans2);
-    var tr1SK = tr1K.sort((a, b) => b > a); var tr2SK = tr2K.sort((a, b) => b > a);
-    var tr1RA = {}; var tr2RA = {};
-    for (i = 0; i < tr1SK.length; i++) { tr1RA[tr1SK[i]] = trans1[tr1SK[i]]; }
-    for (i = 0; i < tr2SK.length; i++) { tr2RA[tr2SK[i]] = trans2[tr2SK[i]]; }
-    set('./.book/'+sen+'_book.json', encodeURIComponent(JSON.stringify(tr1RA)), true);
-    set('./.book/'+rec+'_book.json', encodeURIComponent(JSON.stringify(tr2RA)), true);
+    set('./.book/'+sen+'_book.json', encodeURIComponent(JSON.stringify(trans1)), true);
+    set('./.book/'+rec+'_book.json', encodeURIComponent(JSON.stringify(trans2)), true);
     set('dominion.json', JSON.stringify(stat), true);
     sysDefPowersData.value = arrpack(stat,';',':');
 }
