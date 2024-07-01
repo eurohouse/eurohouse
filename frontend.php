@@ -372,10 +372,9 @@ function dominate(usr, id, q = 1, s = 2, n = 0, snd = false) {
     var max = parseInt(Math.abs(q));
     var min = parseInt(Math.abs(q)*-1);
     var obj = arrjob(sysDefPowersData.value,';',':');
-    var res = ''; var suf = 0; var obf = 0; var f = 0;
-    f = (isInt(q)) ? parseInt(Math.abs(q)) : 1;
-    suf = (isInt(obj[usr])) ? parseInt(obj[usr]) : 0;
-    obf = (isInt(obj[id])) ? parseInt(obj[id]) : 0;
+    var f = (isInt(q)) ? parseInt(Math.abs(q)) : 1;
+    var suf = (isInt(obj[usr])) ? parseInt(obj[usr]) : 0;
+    var obf = (isInt(obj[id])) ? parseInt(obj[id]) : 0;
     var sides = [];
     if ((usr != id) && (suf >= 0)) {
         for (i = 0; i < s; i++) {
@@ -385,7 +384,10 @@ function dominate(usr, id, q = 1, s = 2, n = 0, snd = false) {
             if (obf <= -666) {
                 delete_user(id);
             } else {
-                fixPrice(usr, id, f, '@'+usr+' OFFENDS @'+id);
+                suf = suf + f; obf = obf - f;
+                obj[usr] = suf; obj[id] = obf;
+                set('dominion.json', JSON.stringify(obj), true);
+                sysDefPowersData.value = arrpack(obj,';',':');
             }
         }
     }
