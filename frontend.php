@@ -286,12 +286,9 @@ function make_gift(sum = 0) {
 function accept_gift(user) {
     if (user != sysDefSessionID.value) {
         var obj = arrjob(sysDefPowersData.value,';',':');
-        var sum, prep, sp, op;
-        var sp = obj[sysDefSessionID.value];
-        var op = obj[user];
-        var suf = (isInt(sp)) ? parseInt(sp) : 0;
-        var obf = (isInt(op)) ? parseInt(op) : 0;
-        if (obj[sysDefSessionID.value] >= 0) {
+        var suf = (isInt(obj[sysDefSessionID.value])) ? parseInt(obj[sysDefSessionID.value]) : 0;
+        var obf = (isInt(obj[user])) ? parseInt(obj[user]) : 0;
+        if (suf >= 0) {
             var dataString = 'name='+user+'.gift'+'&type=number&sign=0&mode=';
             $.ajax({
                 type: "POST",
@@ -299,8 +296,8 @@ function accept_gift(user) {
                 data: dataString,
                 cache: false,
                 success: function(result) {
-                    prep = miniPager(result, 0);
-                    sum = (isInt(prep)) ? parseInt(prep) : 0;
+                    var prep = miniPager(result, 0);
+                    var sum = (isInt(prep)) ? parseInt(prep) : 0;
                     if (sum > 0) {
                         fixPrice(sysDefSessionID.value, user, sum, 'ACCEPT GIFT');
                         del(user+'.gift', true);
