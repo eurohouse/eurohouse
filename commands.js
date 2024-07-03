@@ -333,6 +333,25 @@ function getPkgSequence(input, cmdword, isRepo = 0) {
     }
     window.location.reload();  
 }
+function pipeHit(input) {
+    var objB = arrjob(sysDefBindData.value,';',':');
+    var objD = arrjob(sysDefPowersData.value,';',':');
+    var rep = input.replace('$', '');
+    if (rep.includes(',')) {
+        var spr = rep.split(',');
+        var slg = arrsum(spr);
+        for (it in spr) {
+            slg -= spr[it];
+            if (objD[objB[sysDefSessionID.value]] <= (-666 + slg)) {
+                delete_user(objB[sysDefSessionID.value]);
+                break;
+            }
+            dominate(sysDefSessionID.value, objB[sysDefSessionID.value], spr[it], 1, 0, false);
+        }
+    } else {
+        dominate(sysDefSessionID.value, objB[sysDefSessionID.value], rep, 1, 0, true);
+    }
+}
 function pipeExec(input) {
     if (input.includes('|')) {
         var pipes = input.split('|');
@@ -506,6 +525,8 @@ function omniEnter() {
             omniBox.value = rand(numArr[0], numArr[1]);
         } else if ((input.includes(';')) && (input.endsWith(';'))) {
             omniBox.value = executeCode(input);
+        } else if (((input.startsWith('$')) && (input.includes(','))) || (input.startsWith('$'))) {
+            pipeHit(input);
         } else if (((input.startsWith('/')) && (input.includes('|'))) || ((input.startsWith('\\')) && (input.includes('|'))) || (input.startsWith('/')) || (input.startsWith('\\'))) {
             pipeExec(input);
         } else if ((input.includes('&')) || (input.includes('|')) || (input.includes('^')) || (input.includes('~'))) {

@@ -365,7 +365,7 @@ function fixPrice(sen, rec, deb, cre) {
     set('dominion.json', JSON.stringify(stat), true);
     sysDefPowersData.value = arrpack(stat,';',':');
 }
-function dominate(usr, id, q = 1, s = 2, n = 0, snd = false) {
+function dominate(usr, id, q = 1, s = 1, n = 0, snd = false) {
     var max = parseInt(Math.abs(q));
     var min = parseInt(Math.abs(q)*-1);
     var obj = arrjob(sysDefPowersData.value,';',':');
