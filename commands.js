@@ -190,9 +190,9 @@ function executeFile(name, str = '', re = false) {
                         strl.push(i);
                     }
                 }
-                for (il in codeExt) {
-                    if (strl[il] !== undefined) {
-                        executeCode(codeExt[il]);
+                for (il in strl) {
+                    if (codeExt[strl[il]] !== undefined) {
+                        executeCode(codeExt[strl[il]]);
                     }
                 }
             } else if (isInt(str)) {
@@ -241,9 +241,9 @@ function pronounceFile(name, str = '', re = false) {
                         strl.push(i);
                     }
                 }
-                for (il in codeExt) {
-                    if (strl[il] !== undefined) {
-                        strs += codeExt[il]+'\r\n';
+                for (il in strl) {
+                    if (codeExt[strl[il]] !== undefined) {
+                        strs += codeExt[strl[il]]+'\r\n';
                     }
                 }
                 compose(strs.slice(0, -2));
@@ -353,54 +353,35 @@ function pipeHit(input) {
     }
 }
 function pipeExec(input) {
-    if (input.includes('|')) {
-        var pipes = input.split('|');
+    if (input.includes('/')) {
+        var exr = (input.endsWith('/'));
+        var pipes = input.split('/');
+        var brd = (input.endsWith('/')) ? (pipes.length - 2) : (pipes.length - 1);
         for (it in pipes) {
-            if (pipes[it].startsWith('/')) {
-                var re1 = (pipes[it].endsWith('/')) ? pipes[it].replaceAll('/', '') : pipes[it].replace('/', '');
-                var re2 = (pipes[it].endsWith('/'));
-                var ark = (re1.includes(':')) ? re1.split(':')[0] : re1;
-                var arv = (re1.includes(':')) ? re1.split(':')[1] : '';
+            if ((it >= 1) && (it <= brd)) {
+                var ark = (pipes[it].includes(':')) ? pipes[it].split(':')[0] : pipes[it];
+                var arv = (pipes[it].includes(':')) ? pipes[it].split(':')[1] : '';
                 var lnt = (sysDefCodexBox.value).split('//');
                 for (i = 0; i < lnt.length; i++) {
                     if (lnt[i].toLowerCase().includes(ark.toLowerCase())) {
-                        executeFile(lnt[i], arv, re2); break;
-                    }
-                }
-            } else if (pipes[it].includes('\\')) {
-                var re1 = (pipes[it].endsWith('\\')) ? pipes[it].replaceAll('\\', '') : pipes[it].replace('\\', '');
-                var re2 = (pipes[it].endsWith('\\'));
-                var ark = (re1.includes(':')) ? re1.split(':')[0] : re1;
-                var arv = (re1.includes(':')) ? re1.split(':')[1] : '';
-                var lnt = (sysDefSpeechBox.value).split('//');
-                for (i = 0; i < lnt.length; i++) {
-                    if (lnt[i].toLowerCase().includes(ark.toLowerCase())) {
-                        pronounceFile(lnt[i], arv, re2); break;
+                        executeFile(lnt[i], arv, exr); break;
                     }
                 }
             }
         }
-    } else {
-        if (input.startsWith('/')) {
-            var re1 = (input.endsWith('/')) ? input.replaceAll('/', '') : input.replace('/', '');
-            var re2 = (input.endsWith('/'));
-            var ark = (re1.includes(':')) ? re1.split(':')[0] : re1;
-            var arv = (re1.includes(':')) ? re1.split(':')[1] : '';
-            var lnt = (sysDefCodexBox.value).split('//');
-            for (i = 0; i < lnt.length; i++) {
-                if (lnt[i].toLowerCase().includes(ark.toLowerCase())) {
-                    executeFile(lnt[i], arv, re2); break;
-                }
-            }
-        } else if (input.includes('\\')) {
-            var re1 = (input.endsWith('\\')) ? input.replaceAll('\\', '') : input.replace('\\', '');
-            var re2 = (input.endsWith('\\'));
-            var ark = (re1.includes(':')) ? re1.split(':')[0] : re1;
-            var arv = (re1.includes(':')) ? re1.split(':')[1] : '';
-            var lnt = (sysDefSpeechBox.value).split('//');
-            for (i = 0; i < lnt.length; i++) {
-                if (lnt[i].toLowerCase().includes(ark.toLowerCase())) {
-                    pronounceFile(lnt[i], arv, re2); break;
+    } else if (input.includes('\\')) {
+        var exr = (input.endsWith('\\'));
+        var pipes = input.split('\\');
+        var brd = (input.endsWith('\\')) ? (pipes.length - 2) : (pipes.length - 1);
+        for (it in pipes) {
+            if ((it >= 1) && (it <= brd)) {
+                var ark = (pipes[it].includes(':')) ? pipes[it].split(':')[0] : pipes[it];
+                var arv = (pipes[it].includes(':')) ? pipes[it].split(':')[1] : '';
+                var lnt = (sysDefSpeechBox.value).split('//');
+                for (i = 0; i < lnt.length; i++) {
+                    if (lnt[i].toLowerCase().includes(ark.toLowerCase())) {
+                        pronounceFile(lnt[i], arv, exr); break;
+                    }
                 }
             }
         }
@@ -527,7 +508,7 @@ function omniEnter() {
             omniBox.value = executeCode(input);
         } else if (((input.startsWith('$')) && (input.includes(','))) || (input.startsWith('$'))) {
             pipeHit(input);
-        } else if (((input.startsWith('/')) && (input.includes('|'))) || ((input.startsWith('\\')) && (input.includes('|'))) || (input.startsWith('/')) || (input.startsWith('\\'))) {
+        } else if (((input.startsWith('/')) && (input.includes('/'))) || ((input.startsWith('\\')) && (input.includes('\\'))) || (input.startsWith('/')) || (input.startsWith('\\'))) {
             pipeExec(input);
         } else if ((input.includes('&')) || (input.includes('|')) || (input.includes('^')) || (input.includes('~'))) {
             omniBox.value = finarr(arrmath(input)).sort().join(',');
