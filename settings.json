@@ -66,12 +66,26 @@
             "AE": "امرأة",
             "IN": "महिला"
         },
-        "asexual": {
-            "default": "Non-Binary",
-            "RU": "Безполый",
-            "CN": "無", "KR": "비", "JP": "無",
-            "AE": "غير ثنائي",
-            "IN": "नॉन बाइनरी"
+        "org": {
+            "default": "Organization",
+            "RU": "Организация",
+            "CN": "组织", "KR": "조직", "JP": "組織",
+            "AE": "منظمة",
+            "IN": "संगठन"
+        },
+        "com": {
+            "default": "Commercial",
+            "RU": "Предприятие",
+            "CN": "企业", "KR": "기업", "JP": "企業",
+            "AE": "مَشرُوع",
+            "IN": "उद्यम"
+        },
+        "net": {
+            "default": "Network",
+            "RU": "Сеть",
+            "CN": "网络", "KR": "회로망", "JP": "通信網",
+            "AE": "شبكة",
+            "IN": "नेटवर्क"
         }
     },
     "locale": {
@@ -267,7 +281,7 @@
         "sepia": 0,
         "grayscale": 0,
         "hue": 0,
-        "gender": "asexual",
+        "gender": "male",
         "specimen": "Q F S H Æ Ø Ð Ñ ʒ ʊ ʎ ɸ Σ Φ Ω Θ Г З Х Б ظ ض ؤ ل 인 방 학 적 中 京 日 木 𐎁 𐎛 𐎍 𐎄 🍷 ☕️ 🍾 🍫",
         "font_ascii": "Flexo-Bold.ttf",
         "font_latin": "Flexo-Bold.ttf",
