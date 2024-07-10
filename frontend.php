@@ -162,6 +162,32 @@ function setdata(ent, val) {
             videoRatRange.value = val;
         }
     }
+    if (requestMode.value == 'visual_effects') {
+        if (ent == 'opacity') {
+            opacityRange.value = val;
+        }
+        if (ent == 'blur') {
+            blurRange.value = val;
+        }
+        if (ent == 'brightness') {
+            brightnessRange.value = val;
+        }
+        if (ent == 'saturation') {
+            saturationRange.value = val;
+        }
+        if (ent == 'contrast') {
+            contrastRange.value = val;
+        }
+        if (ent == 'sepia') {
+            sepiaRange.value = val;
+        }
+        if (ent == 'grayscale') {
+            grayscaleRange.value = val;
+        }
+        if (ent == 'hue') {
+            hueRange.value = val;
+        }
+    }
 }
 function bind(usr, id) {
     var obj = arrjob(sysDefBindData.value,';',':');
