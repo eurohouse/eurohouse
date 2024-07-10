@@ -139,21 +139,27 @@ function setdata(ent, val) {
     if (requestMode.value == 'volume_control') {
         if (ent == 'audio_volume') {
             audioVolInd.value = val;
+            audioVolRange.value = val;
         }
         if (ent == 'audio_balance') {
             audioBalInd.value = val;
+            audioBalRange.value = val;
         }
         if (ent == 'audio_speed') {
             audioRatInd.value = val;
+            audioRatRange.value = val;
         }
         if (ent == 'video_volume') {
             videoVolInd.value = val;
+            videoVolRange.value = val;
         }
         if (ent == 'video_balance') {
             videoBalInd.value = val;
+            videoBalRange.value = val;
         }
         if (ent == 'video_speed') {
             videoRatInd.value = val;
+            videoRatRange.value = val;
         }
     }
 }
