@@ -418,14 +418,22 @@ function omniEnter() {
         } else if ((input == 'suicide') || (input == 'goodbye')) {
             delete_user(sysDefSessionID.value);
             omniAuthRequest('signout','','');
-        } else if (input == '+') {
+        } else if ((input == 'fast') || (input == 'spedup')) {
             var vlr = superRound((parseFloat(sysDefAudioSpeed.value) + 0.05), 2);
             setdata('audio_speed', vlr);
             sysDefAudioSpeed.value = vlr;
-        } else if (input == '-') {
+        } else if ((input == 'slow') || (input == 'slowed')) {
             var vlr = superRound((parseFloat(sysDefAudioSpeed.value) - 0.05), 2);
             setdata('audio_speed', vlr);
             sysDefAudioSpeed.value = vlr;
+        } else if (input == 'ff') {
+            var vlr = superRound((parseFloat(sysDefVideoSpeed.value) + 0.05), 2);
+            setdata('video_speed', vlr);
+            sysDefVideoSpeed.value = vlr;
+        } else if (input == 'rew') {
+            var vlr = superRound((parseFloat(sysDefVideoSpeed.value) - 0.05), 2);
+            setdata('video_speed', vlr);
+            sysDefVideoSpeed.value = vlr;
         } else if (input.startsWith('give ')) {
             var req = input.replace('give ', '');
             make_gift(parseInt(req));
