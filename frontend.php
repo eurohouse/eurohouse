@@ -136,6 +136,26 @@ function setdata(ent, val) {
             video.preservesPitch = (val != 0) ? true : false;
         }
     }
+    if (requestMode.value == 'volume_control') {
+        if (ent == 'audio_volume') {
+            audioVolInd.value = val;
+        }
+        if (ent == 'audio_balance') {
+            audioBalInd.value = val;
+        }
+        if (ent == 'audio_speed') {
+            audioRatInd.value = val;
+        }
+        if (ent == 'video_volume') {
+            videoVolInd.value = val;
+        }
+        if (ent == 'video_balance') {
+            videoBalInd.value = val;
+        }
+        if (ent == 'video_speed') {
+            videoRatInd.value = val;
+        }
+    }
 }
 function bind(usr, id) {
     var obj = arrjob(sysDefBindData.value,';',':');
