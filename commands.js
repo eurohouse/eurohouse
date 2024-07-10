@@ -418,6 +418,14 @@ function omniEnter() {
         } else if ((input == 'suicide') || (input == 'goodbye')) {
             delete_user(sysDefSessionID.value);
             omniAuthRequest('signout','','');
+        } else if (input == '+') {
+            var vlr = superRound((parseFloat(sysDefAudioSpeed.value) + 0.05), 2);
+            setdata('audio_speed', vlr);
+            sysDefAudioSpeed.value = vlr;
+        } else if (input == '-') {
+            var vlr = superRound((parseFloat(sysDefAudioSpeed.value) - 0.05), 2);
+            setdata('audio_speed', vlr);
+            sysDefAudioSpeed.value = vlr;
         } else if (input.startsWith('give ')) {
             var req = input.replace('give ', '');
             make_gift(parseInt(req));
