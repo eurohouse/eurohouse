@@ -4,7 +4,7 @@
     <input type='button' id="opacityInd" value="<?=$session['opacity'];?>"> <?=term('Blur', $settings['vocabulary'], $session['units']);?> 
     <input type='button' id="blurInd" value="<?=$session['blur'];?>px"></p><p align='center'> 
     <input type="range" min="0" max="255" step="1" value="<?=$session['opacity'];?>" class="slider" id="opacityRange" onchange="setdata('opacity', this.value);"> 
-    <input type="range" min="0" max="100" step="5" value="<?=$session['blur'];?>" class="slider" id="blurRange" onchange="setdata('blur', this.value);">
+    <input type="range" min="0" max="100" step="1" value="<?=$session['blur'];?>" class="slider" id="blurRange" onchange="setdata('blur', this.value);">
 </p></div>
 <div class="slidecontainer"><p align='center'><?=term('Bright', $settings['vocabulary'], $session['units']);?> 
     <input type='button' id="brightnessInd" value="<?=$session['brightness'].'%';?>"> <?=term('Saturate', $settings['vocabulary'], $session['units']);?> 
