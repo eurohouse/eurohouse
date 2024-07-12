@@ -479,13 +479,26 @@ function wordfx($word, $sup, array $voc, $title, $units = 'EU') {
                 $res = (isset($voc['locale']['month'][$units][date('n')-1])) ? $voc['locale']['month'][$units][date('n')-1] : $voc['locale']['month']['default'][date('n')-1];
                 break;
             case '[semester]':
-                $res = (isset($voc['locale']['semester'][$units][date('n')-1])) ? $voc['locale']['semester'][$units][date('n')-1] : $voc['locale']['semester']['default'][date('n')-1];
+                $qN = date('n') - 1;
+                $qM = intval(($qN > 1) && ($qN < 8));
+                $res = (isset($voc['locale']['semester'][$units][$qM])) ? $voc['locale']['semester'][$units][$qM] : $voc['locale']['semester']['default'][$qM];
                 break;
             case '[quarter]':
-                $res = (isset($voc['locale']['quarter'][$units][date('n')-1])) ? $voc['locale']['quarter'][$units][date('n')-1] : $voc['locale']['quarter']['default'][date('n')-1];
+                $qN = date('n') - 1;
+                if (($qN > 1) && ($qN < 5)) {
+                    $qM = 1;
+                } elseif (($qN > 4) && ($qN < 8)) {
+                    $qM = 2;
+                } elseif (($qN > 7) && ($qN < 11)) {
+                    $qM = 3;
+                } else {
+                    $qM = 0;
+                }
+                $res = (isset($voc['locale']['quarter'][$units][$qM])) ? $voc['locale']['quarter'][$units][$qM] : $voc['locale']['quarter']['default'][$qM];
                 break;
             case '[title]':
-            $res = $title; break;
+                $res = $title;
+                break;
         }
         $word = str_replace($full, $res, $word);
     }
