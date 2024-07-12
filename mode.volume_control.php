@@ -1,5 +1,5 @@
 <!-- volume -->
-<!-- FR: Niveaux de volume; ES: Niveles de volumen; PT: Niveles de volumen; BR: Níveis de volume; RO: Niveluri de volum; IT: Livelli di volume; RU: Уровни громкости; TR: Ses seviyeleri; IN: वॉल्यूम स्तर; LK: आयतनस्तराः; UA: Рівні гучності; RS: Нивои јачине звука; CN: 声音混合器; KR: 사운드 믹서; JP: サウンドミキサー; AE: خلاط الصوت -->
+<!-- GR: Ελεγχος έντασης; CY: Ελεγχος έντασης; FR: Niveaux de volume; DE: Lautstärkeregelung; ES: Niveles de volumen; MX: Niveles de volumen; PT: Niveles de volumen; BR: Níveis de volume; RO: Niveluri de volum; MD: Niveluri de volum; IT: Livelli di volume; RU: Уровни громкости; TR: Ses seviyeleri; IN: वॉल्यूम स्तर; LK: आयतनस्तराः; UA: Рівні гучності; RS: Нивои јачине звука; CN: 声音混合器; KR: 사운드 믹서; JP: サウンドミキサー; AE: خلاط الصوت -->
 <div class="slidecontainer"><p align='center'><?=term('Audio Volume', $settings['vocabulary'], $session['units']);?> 
 <input type='button' id="audioVolInd" value="<?=$session['audio_volume'];?>"> <?=term('Video Volume', $settings['vocabulary'], $session['units']);?> 
     <input type='button' id="videoVolInd" value="<?=$session['video_volume'];?>"></p><p align='center'>
