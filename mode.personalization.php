@@ -1,5 +1,5 @@
 <!-- speed -->
-<!-- GR: Εξατομίκευση; IT: Personalizzazione; FR: Personnalisation; LK: व्यक्तिगतकरणम्; IN: वैयक्तिकरण; TR: Kişiselleştirme; RO: Personalizare; UA: Персоналізація; DE: Personalisierung; RU: Персонализация; CN: 个性化和元数据; KR: 개인화하다; JP: カスタマイズする; AE: إضفاء الطابع الشخصي -->
+<!-- GR: Εξατομίκευση; CY: Εξατομίκευση; IT: Personalizzazione; FR: Personnalisation; LK: व्यक्तिगतकरणम्; IN: वैयक्तिकरण; TR: Kişiselleştirme; RO: Personalizare; MD: Personalizare; RS: Персонализација; NP: མི་སྒེར་ཅན་བཟོ་བ།; BR: Personalização; PT: Personalização; UA: Персоналізація; DE: Personalisierung; RU: Персонализация; CN: 个性化和元数据; KR: 개인화하다; JP: カスタマイズする; AE: إضفاء الطابع الشخصي -->
 <p align='center'>
 <img style="height:11%;position:relative;" id="chooseReticle1" name="<?=$session['reticle_choice_1'];?>" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_1'].'.png'.$suffix;?>" onclick="setdata('reticle', chooseReticle1.name);">
 <img style="height:11%;position:relative;" id="chooseReticle2" name="<?=$session['reticle_choice_2'];?>" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_2'].'.png'.$suffix;?>" onclick="setdata('reticle', chooseReticle2.name);">

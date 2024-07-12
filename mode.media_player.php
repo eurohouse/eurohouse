@@ -1,5 +1,5 @@
 <!-- music -->
-<!-- GR: Οικιακός κινηματογράφος; CY: Οικιακός κινηματογράφος; ES: Cine en casa; MX: Cine en casa; FR: Home cinéma; IT: Home cinema; RO: Cinema acasă; MD: Cinema acasă; LK: गृहचलचित्रम्; TR: Ev Sineması; IN: गृह सिनेमा; PT: Cinema em casa; UA: Домашній кінотеатр; NP: ཁྱིམ་གྱི་གློག་བརྙན་ཁང་།; RU: Домашний кинотеатр; CN: 家庭媒体播放器; KR: 미디어 플레이어; JP: メディアプレーヤー; AE: مشغل الوسائط -->
+<!-- GR: Οικιακός κινηματογράφος; DE: Heimkino; CY: Οικιακός κινηματογράφος; ES: Cine en casa; MX: Cine en casa; FR: Home cinéma; IT: Home cinema; RO: Cinema acasă; MD: Cinema acasă; LK: गृहचलचित्रम्; TR: Ev Sineması; IN: गृह सिनेमा; PT: Cinema em casa; UA: Домашній кінотеатр; NP: ཁྱིམ་གྱི་གློག་བརྙན་ཁང་།; RU: Домашний кинотеатр; CN: 家庭媒体播放器; KR: 미디어 플레이어; JP: メディアプレーヤー; AE: مشغل الوسائط -->
 <!-- <ref> -->
 <!-- true -->
 <p align="center" class="block"><video style="width:92%;height:90%;" id="video" volume="<?=$session['video_volume'];?>" balance="<?=$session['video_balance'];?>" playbackRate="<?=$session['video_speed'];?>" src="<?=$request['input'];?>" controls autoplay="yes" onended="if (sysDefAutoplay.value != 0) { replayVideo(this); }" onvolumechange="setdata('video_volume', this.volume);" onratechange="setdata('video_speed', this.playbackRate);"></p>

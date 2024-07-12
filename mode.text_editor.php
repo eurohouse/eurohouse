@@ -1,5 +1,5 @@
 <!-- text -->
-<!-- GR: Επεξεργαστής κειμένου; FR: Éditeur de texte; DE: Texteditor; IT: Editor de text; ES: Editor de texto; PT: Editor de texto; BR: Editor de texto; RO: Editor de text; RU: Текстовый редактор; UA: Текстовий редактор; IN: पाठ संपादक; TR: Metin düzeltici; LK: पाठ सम्पादक; CN: 文本编辑器; KR: 텍스트 에디터; JP: テキスト編集者; AE: محرر النص -->
+<!-- GR: Επεξεργαστής κειμένου; CY: Επεξεργαστής κειμένου; FR: Éditeur de texte; DE: Texteditor; IT: Editor de text; ES: Editor de texto; MX: Editor de texto; PT: Editor de texto; BR: Editor de texto; RO: Editor de text; MD: Editor de text; RU: Текстовый редактор; NP: ཡི་གེ་རྩོམ་སྒྲིག་པ།; RS: Текст едитор; UA: Текстовий редактор; IN: पाठ संपादक; TR: Metin düzeltici; LK: पाठ सम्पादक; CN: 文本编辑器; KR: 텍스트 에디터; JP: テキスト編集者; AE: محرر النص -->
 <!-- <ref> -->
 <!-- true -->
 <script>
