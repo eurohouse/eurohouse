@@ -1,5 +1,5 @@
 <!-- head -->
-<!--  -->
+<!-- CH: Brigitta Bardot; RU: Брижит Бардо; UA: Бріжит Бардо -->
 <p align="center" class="block">
 <select id="setDegrees" style="width:14%;position:relative;" onchange="omniRotate(setDegrees.options[setDegrees.selectedIndex].id);">
 <?php foreach ($settings['angles'] as $key=>$value) { ?>

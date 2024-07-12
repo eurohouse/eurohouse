@@ -1,5 +1,5 @@
 <!-- user -->
-<!-- RU: Учётные записи пользователей; CN: 用户账户经理; KR: 사용자 계정; JP: ユーザーアカウント; AE: حسابات المستخدمين -->
+<!-- GR: Λογαριασμοί χρηστών; DE: Benutzerkonten; FR: Comptes utilisateur; IT: Profili utente; LK: उपयोक्तृलेखाः; TR: Kullanıcı hesapları; IN: उपयोगकर्ता खाते; PT: Contas de utilizador; BR: Contas de usuário; ES: Cuentas de usuario;  UA: Облікові записи користувачів; RU: Учётные записи пользователей; CN: 用户账户经理; KR: 사용자 계정; JP: ユーザーアカウント; AE: حسابات المستخدمين -->
 <?php $preStyle = "white-space:pre-wrap;word-wrap:break-word;";
 $iconSize = 50; $relBind = str_replace('_session.json', '', $allUsers); ?>
 <table style="width:100%;" id="table">

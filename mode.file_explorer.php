@@ -1,5 +1,5 @@
 <!-- directory -->
-<!-- RU: Файловый проводник; CN: 文件管理器; KR: 파일 관리자; JP: ファイル管理; AE: مستكشف الملفات -->
+<!-- GR: Εξερεύνηση αρχείων; DE: Datei-Explorer; IT: Esplora risorse; FR: Explorateur de fichiers; ES: Explorador de archivos; RU: Файловый проводник; TR: Dosya Gezgini; LK: सञ्चिका अन्वेषकः; IN: फाइल ढूँढने वाला; NP: ཡིག་ཆ་འཚོལ་ཞིབ་ཆས།; RO: Explorator de fișiere; MD: Explorator de fișiere; BR: Explorador de arquivos; PT: Explorador de ficheiros; ES: Explorador de archivos; UA: Файловий провідник; CN: 文件管理器; KR: 파일 관리자; JP: ファイル管理; AE: مستكشف الملفات -->
 <?php
 $line1Size = 35; $line2Size = 15;
 $line3Size = 54; include 'file_manager.php';

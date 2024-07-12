@@ -1,5 +1,5 @@
 <!-- info -->
-<!-- RU: Свойства объекта; CN: 文件信息和属性; KR: 파일정보; JP: ファイル情報; AE: خصائص الملف -->
+<!-- GR: Ιδιότητες αντικειμένου; FR: Propriétés de l'objet; IT: Proprietà dell'oggetto; RU: Свойства объекта; LK: वस्तुगुणाः; IN: वस्तु गुण; ES: Propiedades del objeto; PT: Propriedades do objeto; RO: Proprietățile obiectului; UA: Властивості об'єкту; TR: Nesne özellikleri; CN: 文件信息和属性; KR: 파일정보; JP: ファイル情報; AE: خصائص الملف -->
 <!-- <ref> -->
 <!-- true -->
 <?php $objFile = ($request['lock'] != 'false') ? ['name' => $request['input'], 'type' => filetype($request['input']), 'size' => filesize($request['input']), 'mode' => substr(sprintf('%o', fileperms($request['input'])), -4)] : fileopen($request['input']); if ($request['args'] != '') {
