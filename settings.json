@@ -178,8 +178,9 @@
             "KR": [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월" ]
         },
         "quarter": {
-            "default": [ "Winter", "Spring", "Summer", "Fall" ],
-            "GB": [ "Winter", "Spring", "Summer", "Autumn" ],
+            "default": [ "Winter", "Spring", "Summer", "Autumn" ],
+            "US": [ "Winter", "Spring", "Summer", "Fall" ],
+            "EU": [ "Winter", "Spring", "Summer", "Fall" ],
             "CH": [ "Hiems", "Ver", "Aestas", "Autumna" ],
             "GR": [ "Χειμώνας", "Ανοιξη", "Καλοκαίρι", "Φθινόπωρο" ],
             "FR": [ "Hiver", "Printemps", "Été", "Automne" ],
@@ -192,8 +193,9 @@
             "AE": [ "شتاء", "ربيع", "صيف", "خريف" ]
         },
         "semester": {
-            "default": [ "Fall/Winter", "Spring/Summer" ],
-            "GB": [ "Autumn/Winter", "Spring/Summer" ],
+            "default": [ "Autumn/Winter", "Spring/Summer" ],
+            "US": [ "Fall/Winter", "Spring/Summer" ],
+            "EU": [ "Fall/Winter", "Spring/Summer" ],
             "CH": [ "Autumna/Hiems", "Ver/Aestas" ],
             "GR": [ "Φθινόπωρο/Χειμώνας", "Ανοιξη/Καλοκαίρι" ],
             "FR": [ "Automne/Hiver", "Printemps/Été" ],
