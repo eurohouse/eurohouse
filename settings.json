@@ -18,14 +18,13 @@
     },
     "libraries": {
         "domestic": [
-            "jquery.js", "backend.js", "frontend.js",
-            "tablesort.js", "aframe.js", "crypto.js",
-            "nerdamer.js", "algebra.js", "calculus.js",
-            "solve.js", "requests.js", "commands.js"
+            "backend.js", "frontend.js", "tablesort.js",
+            "requests.js", "commands.js",
+            "jquery.js", "aframe.js", "crypto.js", "XRegExp.js",
+            "nerdamer.js", "algebra.js", "calculus.js", "solve.js"
         ],
         "foreign": [
-            "http://www.midijs.net/lib/midi.js",
-            "https://cdnjs.cloudflare.com/ajax/libs/xregexp/3.2.0/xregexp-all.min.js"
+            "http://www.midijs.net/lib/midi.js"
         ]
     },
     "collections": {
@@ -43,45 +42,115 @@
         "male": {
             "default": "Male",
             "RU": "Мужчина",
+            "UA": "Чоловік",
+            "GR": "Αρσενικός",
+            "CY": "Αρσενικός",
             "CN": "男", "KR": "남성", "JP": "男",
             "FR": "Homme",
+            "BE": "Homme",
             "IT": "Uomo",
             "DE": "Mann",
+            "AT": "Mann",
             "ES": "Hombre",
+            "MX": "Hombre",
+            "PT": "Macho",
+            "BR": "Macho",
             "AE": "رجل",
-            "IN": "आदमी"
+            "IN": "आदमी",
+            "LK": "पुरुषः",
+            "TH": "ชาย",
+            "NP": "ཕོ"
         },
         "female": {
             "default": "Female",
             "RU": "Женщина",
+            "UA": "Дівчина",
+            "GR": "Γυναικείος",
+            "CY": "Γυναικείος",
             "CN": "女", "KR": "여성", "JP": "女",
             "FR": "Femme",
+            "BE": "Femme",
             "IT": "Donna",
+            "BR": "Fêmea",
+            "PT": "Fêmea",
             "DE": "Frau",
+            "AT": "Frau",
             "ES": "Mujer",
+            "MX": "Mujer",
             "AE": "امرأة",
-            "IN": "महिला"
+            "IN": "महिला",
+            "LK": "महिला",
+            "TH": "หญิง",
+            "NP": "མོ"
         },
         "org": {
             "default": "Organization",
+            "CH": "Organizatio",
+            "FR": "Société",
+            "BE": "Société",
+            "IT": "Organizzazione",
+            "BR": "Organização",
+            "PT": "Organização",
+            "ES": "Organización",
+            "MX": "Organización",
+            "GR": "Οργάνωση",
+            "CY": "Οργάνωση",
+            "DE": "Organisation",
+            "AT": "Organisation",
             "RU": "Организация",
+            "UA": "Організація",
             "CN": "组织", "KR": "조직", "JP": "組織",
             "AE": "منظمة",
-            "IN": "संगठन"
+            "IN": "संगठन",
+            "LK": "संघठनं",
+            "TH": "องค์กร",
+            "NP": "རྩ་འཛུགས"
         },
         "com": {
             "default": "Commercial",
+            "CH": "Institorius",
+            "FR": "Commercial",
+            "BE": "Commercial",
+            "IT": "Commerciale",
+            "ES": "Comercial",
+            "MX": "Comercial",
+            "BR": "Comercial",
+            "PT": "Comercial",
+            "GR": "Εμπορικός",
+            "CY": "Εμπορικός",
+            "DE": "Kommerziell",
+            "AT": "Kommerziell",
             "RU": "Предприятие",
+            "UA": "Комерційний",
             "CN": "企业", "KR": "기업", "JP": "企業",
             "AE": "مَشرُوع",
-            "IN": "उद्यम"
+            "IN": "उद्यम",
+            "LK": "वाणिज्यिक",
+            "TH": "ทางการค้า",
+            "NP": "ཚོང་ལས་ཀྱི"
         },
         "net": {
             "default": "Network",
+            "CH": "Penitus",
+            "ES": "Red",
+            "MX": "Red",
+            "PT": "Rede",
+            "BR": "Rede",
+            "DE": "Netzwerk",
+            "AT": "Netzwerk",
+            "IT": "Rete",
+            "FR": "Réseau",
+            "BE": "Réseau",
+            "GR": "Δίκτυο",
+            "CY": "Δίκτυο",
             "RU": "Сеть",
+            "UA": "Мережа",
             "CN": "网络", "KR": "회로망", "JP": "通信網",
             "AE": "شبكة",
-            "IN": "नेटवर्क"
+            "IN": "नेटवर्क",
+            "LK": "जाल",
+            "TH": "เครือข่าย",
+            "NP": "དྲ་རྒྱ"
         }
     },
     "locale": {
