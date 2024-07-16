@@ -255,6 +255,26 @@ function JSONtoHTML(str, mask, sym = '#', uni = 'L') {
     }
     return ard;
 }
+function JSONtoTab(str, mask, sym = '#', uni = 'L', wed) {
+    var arr = JSONFilter(str, mask, sym, uni);
+    var ard = ''; var arl = ''; var eld = []; var dem, der;
+    for (el in arr) {
+        eld = arr[el].split(' | ');
+        dem = Date.parse(el);
+        der = (new Date(dem)).getDay();
+        if (eld[5] == 'ERR') {
+            arl = '<tr style="text-decoration:line-through;"><td>'+wed[der]+'</td>';
+        } else {
+            arl = '<tr><td>'+wed[der]+'</td>';
+        } arl += '<td>'+eld[0]+'</td>';
+        arl += '<td>'+eld[1]+'</td>';
+        arl += '<td>'+eld[2]+'</td>';
+        arl += '<td>'+eld[3]+'</td>';
+        arl += '<td>'+eld[4]+'</td>';
+        ard = arl+'</tr>'+ard;
+    }
+    return ard;
+}
 function clearBookKeep(date) {
     var msgarr = jsonstr(sysDefBookKeep.value);
     for (el in msgarr) {

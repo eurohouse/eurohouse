@@ -62,7 +62,9 @@ function world_clock() {
             $('#currentTime').val(pager(data, 0));
             $('#alarmTime').val(pager(data, 2));
             init_user(sysDefSessionID.value, 'manual');
-            var enzi = pager(data, 1).split(' '); var effi = pager(data, 3).split(';'); var mixers = pager(data, 4).split(' ');
+            var enzi = pager(data, 1).split(' '); var effi = pager(data, 3).split(';');
+            var mixers = pager(data, 4).split(' '); var fint = pager(data, 5).split(' | ');
+            var gdio = pager(data, 6).split(' ');
             if (requestMode.value == 'volume_control') {
                 audioVolInd.value = mixers[0]; audioRatInd.value = mixers[1];
                 audioBalInd.value = mixers[2]; videoVolInd.value = mixers[3];
@@ -111,7 +113,7 @@ function world_clock() {
             if (requestMode.value == 'news_feed') {
                 msgBox.innerHTML = '<p>'+JSONtoHTML(sysDefMsgData.value, sysDefFind.value)+'</p>';
             } if (requestMode.value == 'bookkeeping') {
-                bookkeep_disp.innerHTML = '<p>'+JSONtoHTML(sysDefBookKeep.value, sysDefFindValue.value, '^', 'N')+'</p>';
+                bookkeep_disp.innerHTML = '<table style="width:100%;position:relative;"><thead><th style="width:10%;">'+fint[0]+'</th><th style="width:10%;">'+fint[1]+'</th><th style="width:10%;">'+fint[2]+'</th><th style="width:15%;">'+fint[3]+'</th><th style="width:15%;">'+fint[4]+'</th><th style="width:15%;">'+fint[5]+'</th></thead><tbody>'+JSONtoTab(sysDefBookKeep.value, sysDefFindValue.value, '^', 'N', gdio)+'</tbody></table>';
             } if (((obs == 1) && (spe == 1)) || ((obs == 1) && (spe == 0))) {
                 $('#powerButton').show(); $('.panel').hide();
                 $('.customPanel').hide(); $('.upperGap').hide();

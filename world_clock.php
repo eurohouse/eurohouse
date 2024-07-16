@@ -26,9 +26,19 @@ if ($userData['vintage'] != 0) {
     $vintageBackdropFilter = "none"; $overlayBeforeBackground = "none";
     $overlayBeforeAnimation = "none"; $overlayAfterBackground = "none";
     $overlayAfterAnimation = "none";
-}
-echo $dateTimeStr."\r\n\r\n".
+} $voc = $userSettings['vocabulary']; $uni = $userData['units'];
+$termSen = (isset($voc[$uni]['Sender'])) ? $voc[$uni]['Sender'] : 'Sender';
+$termRec = (isset($voc[$uni]['Recipient'])) ? $voc[$uni]['Recipient'] : 'Recipient';
+$termDeb = (isset($voc[$uni]['Debit'])) ? $voc[$uni]['Debit'] : 'Debit';
+$termCre = (isset($voc[$uni]['Credit'])) ? $voc[$uni]['Credit'] : 'Credit';
+$termBal = (isset($voc[$uni]['Balance'])) ? $voc[$uni]['Balance'] : 'Balance';
+$termDat = (isset($voc[$uni]['Date'])) ? $voc[$uni]['Date'] : 'Date';
+for ($i = 0; $i < 7; $i++) {
+    $wd[$i] = ((isset($userSettings['locale']['weekday'][$uni][$i])) ? $userSettings['locale']['weekday'][$uni][$i] : $userSettings['locale']['weekday']['default'][$i]);
+} echo $dateTimeStr."\r\n\r\n".
 $dateTimeCode." ".$userData['observe'].$userData['spectate']."\r\n\r\n".
 hHmMsS($alarmInTime)."\r\n\r\n".
 $vintageBackdropFilter.";".$overlayBeforeBackground.";".$overlayBeforeAnimation.";".$overlayAfterBackground.";".$overlayAfterAnimation."\r\n\r\n".
-$userData['audio_volume'].' '.$userData['audio_speed'].' '.$userData['audio_balance'].' '.$userData['video_volume'].' '.$userData['video_speed'].' '.$userData['video_balance']."\r\n\r\n";
+$userData['audio_volume'].' '.$userData['audio_speed'].' '.$userData['audio_balance'].' '.$userData['video_volume'].' '.$userData['video_speed'].' '.$userData['video_balance']."\r\n\r\n".
+$termDat.' | '.$termSen.' | '.$termRec.' | '.$termDeb.' | '.$termCre.' | '.$termBal."\r\n\r\n".
+implode(' ', $wd);
