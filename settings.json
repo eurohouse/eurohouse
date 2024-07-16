@@ -414,14 +414,16 @@
         "time_format": "H:i:s"
     },
     "initialize": {
-        "mode": "", "sort": "",
-        "group": "", "angle": 0,
-        "input": "", "output": "",
-        "args": "", "lock": "true",
-        "ref": "menu", "path": "."
-    },
-    "post_request": {
-        "auth": "", "login": "", "password": ""
+        "GET": {
+            "mode": "", "sort": "",
+            "group": "", "angle": 0,
+            "input": "", "output": "",
+            "args": "", "lock": "true",
+            "ref": "menu", "path": "."
+        },
+        "POST": {
+            "auth": "", "login": "", "password": ""
+        }
     },
     "vocabulary": {
         "CH": {

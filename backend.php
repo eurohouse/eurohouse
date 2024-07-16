@@ -28,10 +28,10 @@ $automateData = arropen('automator.json', "{\"root\":\"manual\"}");
 $friendData = arropen('friendship.json', "{\"root\":\"\"}");
 $timezone = dec_tz($session['timezone']); date_default_timezone_set($timezone);
 $prefix = 'iso.'; $request = []; $postRequest = [];
-foreach ($settings['initialize'] as $requestID=>$requestValue) {
+foreach ($settings['initialize']['GET'] as $requestID=>$requestValue) {
     $request[$requestID] = ($_GET[$requestID]) ? $_GET[$requestID] : $requestValue;
 }
-foreach ($settings['post_request'] as $requestID=>$requestValue) {
+foreach ($settings['initialize']['POST'] as $requestID=>$requestValue) {
     $postRequest[$requestID] = ($_POST[$requestID]) ? $_POST[$requestID] : $requestValue;
 }
 if (!empty($_FILES['file']['tmp_name']) && !empty($_POST['path'])) {
