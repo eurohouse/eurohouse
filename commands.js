@@ -343,8 +343,7 @@ function pipeHit(input) {
         for (it in spr) {
             slg -= spr[it];
             if (objD[objB[sysDefSessionID.value]] <= (-666 + slg)) {
-                delete_user(objB[sysDefSessionID.value]);
-                break;
+                delete_user(objB[sysDefSessionID.value]); break;
             }
             dominate(sysDefSessionID.value, objB[sysDefSessionID.value], spr[it], 1, 0, false);
         }
