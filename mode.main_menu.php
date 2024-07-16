@@ -1,5 +1,5 @@
 <!-- home -->
-<!-- GR: Κυρίως μενού; DE: Hauptmenü; CY: Κυρίως μενού; CH: Menu Principal; FR: Menu principal; ES: Menu principal; MX: Menu principal; IT: Menu principale; RU: Главное меню; BR: Menu principal; PT: Menu principal; RO: Meniu principal; MD: Meniu principal; RS: Главни мени; UA: Головне меню; IN: मुख्य मेन्यू; LK: मुख्य मेनू; TR: Ana menü; NP: དཀར་ཆག་གཙོ་བོ།; CN: 主菜单仪表板; KR: 메인 메뉴; JP: 主要メニュー; AE: القائمة الرئيسية -->
+<!-- GR: Κυρίως μενού; DE: Hauptmenü; AT: Hauptmenü; CY: Κυρίως μενού; CH: Menu Principal; FR: Menu principal; BE: Menu principal; ES: Menu principal; MX: Menu principal; IT: Menu principale; RU: Главное меню; BR: Menu principal; PT: Menu principal; RO: Meniu principal; MD: Meniu principal; RS: Главни мени; UA: Головне меню; IN: मुख्य मेन्यू; LK: मुख्य मेनू; TR: Ana menü; NP: དཀར་ཆག་གཙོ་བོ།; CN: 主菜单仪表板; KR: 메인 메뉴; JP: 主要メニュー; AE: القائمة الرئيسية -->
 <!--  -->
 <?php if ($request['lock'] == 'true') {
     $index = explode(',', $session['menu']);
