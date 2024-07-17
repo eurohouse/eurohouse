@@ -27,10 +27,10 @@ $pwr = arropen('dominion.json', "{\"root\":0}");
 $ocrd = (isset($pwr[$seller])) ? $pwr[$seller] : 0;
 $scrd = (isset($pwr[$buyer])) ? $pwr[$buyer] : 0;
 if (file_exists($seller.'_'.$type.'.exch')) {
-    $check = file_get_contents($seller.'_'.$type.'.exch');
+    $check = file_get_contents($seller.'_'.$type.'.exch'); $fprof = file_get_contents($seller.'_session.json');
     if ($check == $pass) {
         if ($type == 'account') {
-            $prix = $ocrd;
+            $prix = strlen($fprof);
             if (pos_suffice($ocrd, $scrd, $prix)) {
                 $amount = $prix;
                 pos_account($seller, $buyer);
