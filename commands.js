@@ -1,5 +1,5 @@
 function executeMacros(input, index = 0, length = 1) {
-    var output = input; var rep, sansPlus;
+    var output = input, rep, san;
     if ((index == (length - 1)) && (input == '_')) {
         omniBack(sysDefParent.value);
     } else if ((index == (length - 1)) && (input == '\\=')) {
@@ -20,26 +20,24 @@ function executeMacros(input, index = 0, length = 1) {
         var museLint = museArr.split('//');
         for (i = 0; i < museLint.length; i++) {
             if (museLint[i].toLowerCase().includes(namePart.toLowerCase())) {
-                omniListen(museLint[i], true);
-                break;
-            }
-            omniPause();
+                omniListen(museLint[i], true); break;
+            } omniPause();
         }
     } else if ((index == (length - 1)) && (input.includes('./')) && (input.indexOf('./') == 0)) {
         omniRead(requestMode.value, input.replace('./', ''), requestLock.value);
     } else if ((index == (length - 1)) && (input.includes('*'))) {
         omniDisp(requestMode.value, input.replace('*', ''), requestLock.value);
     } else if ((index == (length - 1)) && (input.includes('@'))) {
-        var atr = input.split('@'); var tyx, txy;
+        var atr = input.split('@'), atd;
         if (atr[0].includes(':')) {
-            tyx = atr[0].split(':');
+            atd = atr[0].split(':');
             if (atr[1].includes('signin')) {
-                omniAuthRequest('signin', tyx[0], tyx[1]);
+                omniAuthRequest('signin', atd[0], atd[1]);
             } else if (atr[1].includes('signup')) {
-                omniAuthRequest('signup', tyx[0], tyx[1]);
+                omniAuthRequest('signup', atd[0], atd[1]);
             } else if (atr[1].includes('rename')) {
-                rename_user(tyx[0], tyx[1]);
-                omniAuthRequest('signin', tyx[0], tyx[1]);
+                rename_user(atd[0], atd[1]);
+                omniAuthRequest('signin', atd[0], atd[1]);
             }
         } else {
             if (atr[1].includes('signin')) {
@@ -70,23 +68,23 @@ function executeMacros(input, index = 0, length = 1) {
         rep = input.split(': ');
         if (rep[0] == 'memo') {
             if ((rep[1].includes('h')) && (rep[1].startsWith('+'))) {
-                sansPlus = parseInt(rep[1].replace('+', '').replace('h', '')) * 3600;
-                setdata(rep[0], (Math.round(Date.now() / 1000) + parseInt(sansPlus)));
+                san = parseInt(rep[1].replace('+', '').replace('h', '')) * 3600;
+                setdata(rep[0], (Math.round(Date.now() / 1000) + parseInt(san)));
             } else if ((rep[1].includes('min')) && (rep[1].startsWith('+'))) {
-                sansPlus = parseInt(rep[1].replace('+', '').replace('min', '')) * 60;
-                setdata(rep[0], (Math.round(Date.now() / 1000) + parseInt(sansPlus)));
+                san = parseInt(rep[1].replace('+', '').replace('min', '')) * 60;
+                setdata(rep[0], (Math.round(Date.now() / 1000) + parseInt(san)));
             } else if ((rep[1].includes('m')) && (rep[1].startsWith('+'))) {
-                sansPlus = parseInt(rep[1].replace('+', '').replace('m', '')) * 60;
-                setdata(rep[0], (Math.round(Date.now() / 1000) + parseInt(sansPlus)));
+                san = parseInt(rep[1].replace('+', '').replace('m', '')) * 60;
+                setdata(rep[0], (Math.round(Date.now() / 1000) + parseInt(san)));
             } else if ((rep[1].includes('sec')) && (rep[1].startsWith('+'))) {
-                sansPlus = parseInt(rep[1].replace('+', '').replace('sec', ''));
-                setdata(rep[0], (Math.round(Date.now() / 1000) + parseInt(sansPlus)));
+                san = parseInt(rep[1].replace('+', '').replace('sec', ''));
+                setdata(rep[0], (Math.round(Date.now() / 1000) + parseInt(san)));
             } else if ((rep[1].includes('s')) && (rep[1].startsWith('+'))) {
-                sansPlus = parseInt(rep[1].replace('+', '').replace('s', ''));
-                setdata(rep[0], (Math.round(Date.now() / 1000) + parseInt(sansPlus)));
+                san = parseInt(rep[1].replace('+', '').replace('s', ''));
+                setdata(rep[0], (Math.round(Date.now() / 1000) + parseInt(san)));
             } else if (isInt(rep[1].replace('+', '')) && (rep[1].startsWith('+'))) {
-                sansPlus = parseInt(rep[1].replace('+', ''));
-                setdata(rep[0], (Math.round(Date.now() / 1000) + parseInt(sansPlus)));
+                san = parseInt(rep[1].replace('+', ''));
+                setdata(rep[0], (Math.round(Date.now() / 1000) + parseInt(san)));
             } else if ((rep[1] == '') || (rep[1] == 0)) {
                 setdata('memo', '');
                 pauseAudio(alarmPlayer);
@@ -145,8 +143,7 @@ function executeMacros(input, index = 0, length = 1) {
         } else {
             output = input + ': ' + userdata()[input];
         }
-    }
-    return output;
+    } return output;
 }
 function executeCode(input) {
     var output = '';
