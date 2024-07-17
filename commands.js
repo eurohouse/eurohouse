@@ -439,9 +439,6 @@ function omniEnter() {
         } else if (input.startsWith('sell ')) {
             var req = input.replace('sell ', '');
             sell_item(req.split(' ')[0], req.split(' ')[1]);
-        } else if (input.startsWith('buy ')) {
-            var req = input.replace('buy ', '');
-            buy_item(req.split(' ')[0], req.split(' ')[1], req.split(' ')[1]);
         } else if (input.startsWith('accept ')) {
             var req = input.replace('accept ', '');
             accept_gift(req);

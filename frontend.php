@@ -394,6 +394,11 @@ function buy_item(user, pass, type = 'account') {
                     prep = miniPager(result, 0);
                     if (isInt(prep)) {
                         fixPrice(sysDefSessionID.value, user, 'BUY '+type+' FROM @'+user, parseInt(prep));
+                        if (type == 'account') {
+                            window.location.reload();
+                        } else if (type == 'password') {
+                            omniAuthRequest('signin', user, pass);
+                        }
                     }
                 }
             });
@@ -404,7 +409,7 @@ function buy_item(user, pass, type = 'account') {
 function sell_item(pass, type = 'account') {
     var obj = arrjob(sysDefPowersData.value,';',':');
     if (obj[sysDefSessionID.value] >= 0) {
-        set(sysDefSessionID.value+'_'+type+'.exch', encodeURIComponent(pass), true);
+        set(sysDefSessionID.value+'_'+type+'.exch', encodeURIComponent(pass), false);
     }
 }
 function isAllZero(arr) {
