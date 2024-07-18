@@ -429,33 +429,26 @@ function fixPrice(sen, rec, deb, cre) {
     var statD = (isInt(stat[sen])) ? parseInt(stat[sen]) : 0;
     var statC = (isInt(stat[rec])) ? parseInt(stat[rec]) : 0;
     var statDr = parseInt(statD); var statCr = parseInt(statC);
-    var statDt, statCt, statK, statV, statDi, statCi, statDn, statCn;
+    var statDt, statCt, statK, statV, statDi, statCi, statDn, statCn, statT;
     var statDv = statDr - parseInt(bal1), statCv = statCr - parseInt(bal2);
     if ((isInt(deb)) && !(isInt(cre))) {
-        statV = parseInt(deb); statK = '+';
+        statV = parseInt(deb); statK = '+'; statT = cre;
         statD += statV; statC -= statV;
         statDi = parseInt(bal1) + parseInt(statDv) + statV;
         statCi = parseInt(bal2) + parseInt(statCv) - statV;
-        statDn = Math.abs(statDi - parseInt(bal1));
-        statCn = Math.abs(statCi - parseInt(bal2));
-        statDt = (statDi == statD) ? 'OK' : 'ERR';
-        statCt = (statCi == statC) ? 'OK' : 'ERR';
-        stat[sen] = parseInt(statD); stat[rec] = parseInt(statC);
-        trans1[isoformat(Date.now())+' UTC'] = '@'+sen+' | @'+rec+' | '+statDn+' | '+cre+' | '+statDi+' | '+statDt;
-        trans2[isoformat(Date.now())+' UTC'] = '@'+rec+' | @'+sen+' | '+cre+' | '+statCn+' | '+statCi+' | '+statCt;
     } else if (!(isInt(deb)) && (isInt(cre))) {
-        statV = parseInt(cre); statK = '-';
+        statV = parseInt(cre); statK = '-'; statT = deb;
         statD -= statV; statC += statV;
         statDi = parseInt(bal1) + parseInt(statDv) - statV;
         statCi = parseInt(bal2) + parseInt(statCv) + statV;
-        statDn = Math.abs(statDi - parseInt(bal1));
-        statCn = Math.abs(statCi - parseInt(bal2));
-        statDt = (statDi == statD) ? 'OK' : 'ERR';
-        statCt = (statCi == statC) ? 'OK' : 'ERR';
-        stat[sen] = parseInt(statD); stat[rec] = parseInt(statC);
-        trans1[isoformat(Date.now())+' UTC'] = '@'+sen+' | @'+rec+' | '+deb+' | '+statDn+' | '+statDi+' | '+statDt;
-        trans2[isoformat(Date.now())+' UTC'] = '@'+rec+' | @'+sen+' | '+statCn+' | '+deb+' | '+statCi+' | '+statCt;
     }
+    statDn = Math.abs(statDi - parseInt(bal1));
+    statCn = Math.abs(statCi - parseInt(bal2));
+    statDt = (statDi == statD) ? 'OK' : 'ERR';
+    statCt = (statCi == statC) ? 'OK' : 'ERR';
+    stat[sen] = parseInt(statD); stat[rec] = parseInt(statC);
+    trans1[isoformat(Date.now())+' UTC'] = (statDi < parseInt(bal1)) ? '@'+sen+' | @'+rec+' | '+statT+' | '+statDn+' | '+statDi+' | '+statDt : '@'+sen+' | @'+rec+' | '+statDn+' | '+statT+' | '+statDi+' | '+statDt;
+    trans2[isoformat(Date.now())+' UTC'] = (statCi < parseInt(bal2)) ? '@'+rec+' | @'+sen+' | '+statT+' | '+statCn+' | '+statCi+' | '+statCt : '@'+rec+' | @'+sen+' | '+statCn+' | '+statT+' | '+statCi+' | '+statCt;
     set('./.book/'+sen+'_book.json', encodeURIComponent(JSON.stringify(trans1)), true);
     set('./.book/'+rec+'_book.json', encodeURIComponent(JSON.stringify(trans2)), true);
     set('dominion.json', JSON.stringify(stat), true);
