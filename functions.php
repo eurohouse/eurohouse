@@ -268,6 +268,9 @@ function jsonopen($name) {
     if (@json_decode($test, true) != null) {
         file_put_contents($name.'.bak', $test);
         chmod($name.'.bak', 0777);
+    } else if ($test == '{}') {
+        file_put_contents($name.'.bak', $test);
+        chmod($name.'.bak', 0777);
     } else {
         copy($name.'.bak', $name);
         chmod($name, 0777);

@@ -18,7 +18,7 @@ $codexBoxArr = str_replace('./','',(glob('./*.mac')));
 $speechBoxArr = str_replace('./','',(glob('./*.pro')));
 $usersList = implode(',',str_replace('_msgbox.json','',str_replace('./.log/','',(glob('./.log/*_msgbox.json')))));
 $booksList = implode(',',str_replace('_book.json','',str_replace('./.book/','',(glob('./.book/*_book.json')))));
-$newsFeed = ($userData['private'] != 0) ? file_get_contents('./.log/'.$cookie.'_msgbox.json') : file_get_contents('./.log/msgbox.json');
+$newsFeed = ($userData['private'] != 0) ? jsonopen('./.log/'.$cookie.'_msgbox.json') : jsonopen('./.log/msgbox.json');
 $userBook = jsonopen('./.book/'.$cookie.'_book.json');
 echo $cookie."\r\n\r\n".
 valstr($bindingData,';',':')."\r\n\r\n".
