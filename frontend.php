@@ -509,7 +509,9 @@ function delete_user(id) {
     del(id+'_lock.json', true);
     del(id+'_lock.json.bak', true);
     del('./.log/'+id+'_msgbox.json', true);
+    del('./.log/'+id+'_msgbox.json.bak', true);
     del('./.book/'+id+'_book.json', true);
+    del('./.book/'+id+'_book.json.bak', true);
 }
 function transfer_self(id, obj, name) {
     var objData = arrjob(obj.value,';',':');
