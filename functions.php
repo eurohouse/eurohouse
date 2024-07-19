@@ -263,18 +263,24 @@ function arropen($name, $default = '{}', $exec = '') {
     }
     return $res;
 }
-function jsonopen($name) {
+function jsonopen($name, $empt = false) {
     $test = file_get_contents($name);
     if (@json_decode($test, true) != null) {
         file_put_contents($name.'.bak', $test);
         chmod($name.'.bak', 0777);
     } else if ($test == '{}') {
-        file_put_contents($name.'.bak', $test);
-        chmod($name.'.bak', 0777);
+        if ($empt !== false) {
+            copy($name.'.bak', $name);
+            chmod($name, 0777);
+        } else {
+            file_put_contents($name.'.bak', $test);
+            chmod($name.'.bak', 0777);
+        }
     } else {
         copy($name.'.bak', $name);
         chmod($name, 0777);
-    } $res = file_get_contents($name);
+    }
+    $res = file_get_contents($name);
     return $res;
 }
 function equarr(array $src, array $des) {
