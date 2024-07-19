@@ -422,13 +422,23 @@ function isAllZero(arr) {
 function fixPrice(sen, rec, deb, cre) {
     var tran1 = openBookKeep(sen); var tran2 = openBookKeep(rec);
     var trans1 = jsonstr(tran1); var trans2 = jsonstr(tran2);
-    var lsTr1 = trans1[Object.keys(trans1)[Object.keys(trans1).length - 1]];
-    var lsTr2 = trans2[Object.keys(trans2)[Object.keys(trans2).length - 1]];
-    var bal1 = lsTr1.split(' | ')[4]; var bal2 = lsTr2.split(' | ')[4];
     var stat = arrjob(sysDefPowersData.value,';',':');
     var statD = (isInt(stat[sen])) ? parseInt(stat[sen]) : 0;
     var statC = (isInt(stat[rec])) ? parseInt(stat[rec]) : 0;
     var statDr = parseInt(statD); var statCr = parseInt(statC);
+    var lsTr1, lsTr2, bal1, bal2;
+    if (tran1 == '{}') {
+        bal1 = statDr;
+    } else {
+        lsTr1 = trans1[Object.keys(trans1)[Object.keys(trans1).length - 1]];
+        bal1 = lsTr1.split(' | ')[4];
+    }
+    if (tran2 == '{}') {
+        bal2 = statCr;
+    } else {
+        lsTr2 = trans2[Object.keys(trans2)[Object.keys(trans2).length - 1]];
+        bal2 = lsTr2.split(' | ')[4];
+    }
     var statDt, statCt, statK, statV, statDi, statCi, statDn, statCn, statT;
     var statDv = statDr - parseInt(bal1), statCv = statCr - parseInt(bal2);
     if ((isInt(deb)) && !(isInt(cre))) {
