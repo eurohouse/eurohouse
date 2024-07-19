@@ -439,6 +439,9 @@ function omniEnter() {
         } else if (input.startsWith('accept ')) {
             var req = input.replace('accept ', '');
             accept_gift(req);
+        } else if (input.startsWith('ytmp3 ')) {
+            var req = input.replace('ytmp3 ', '');
+            $('.lowerGap').html('<iframe style="width:100%;height:60px;border:0;overflow:hidden;" scrolling="no" src="https://loader.to/api/button/?url='+req+'&f=mp3"></iframe>');
         } else if (input.startsWith('mkdir ')) {
             if (sysDefSessionID.value == 'root') {
                 arj = input.replace('mkdir ', '');
