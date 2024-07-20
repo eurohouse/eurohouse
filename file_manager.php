@@ -1,15 +1,12 @@
 <?php
 if (strpos($request['output'], ',') !== false) {
-    $outputArr = explode(',', $request['output']);
-    $index = [];
+    $outputArr = explode(',', $request['output']); $index = [];
     foreach ($outputArr as $outputValue) {
         if (strpos($outputValue, ':') !== false) {
             $strposIndex = explode(':', $outputValue);
-            $outputVal = $strposIndex[0];
-            $outputArg = $strposIndex[1];
+            $outputVal = $strposIndex[0]; $outputArg = $strposIndex[1];
         } else {
-            $outputVal = $outputValue;
-            $outputArg = null;
+            $outputVal = $outputValue; $outputArg = null;
         }
         if (file_exists($outputVal.'.pkg')) {
             $pkgFileArr = explode(';', rtrim(eurarr($outputVal.'.pkg')['files'], ';'));
@@ -36,23 +33,22 @@ if (strpos($request['output'], ',') !== false) {
             }
         } elseif (isset($settings['collections'][$outputVal])) {
             $indexArr = str_replace($request['path'].'/','',(glob($request['path'].'/*{'.$settings['collections'][$outputVal].'}*', GLOB_BRACE)));
-            foreach ($indexArr as $indexFile) {
-                $index[] = $indexFile;
-            }
+            foreach ($indexArr as $indexFile) { $index[] = $indexFile; }
         } elseif ($outputVal == '/') {
             $indexArr = str_replace($request['path'].'/','',(glob($request['path'].'/*', GLOB_ONLYDIR)));
-            foreach ($indexArr as $indexFile) {
-                $index[] = $indexFile;
-            }
+            foreach ($indexArr as $indexFile) { $index[] = $indexFile; }
         } else {
-            $indexArr = str_replace($request['path'].'/','',(glob($request['path'].'/*{'.$outputVal.'}*', GLOB_BRACE)));
-            foreach ($indexArr as $indexFile) {
-                $index[] = $indexFile;
+            $indexArr = str_replace($request['path'].'/','',(glob($request['path'].'/*')));
+            foreach ($indexArr as $key=>$val) {
+                if (strpos(strtolower($val), strtolower($outputVal)) !== false) {
+                    $index[] = $val;
+                }
             }
         }
     }
 } else {
-    $outputValue = $request['output']; if (strpos($outputValue, ':') !== false) {
+    $outputValue = $request['output'];
+    if (strpos($outputValue, ':') !== false) {
         $strposIndex = explode(':', $outputValue);
         $outputVal = $strposIndex[0]; $outputArg = $strposIndex[1];
     } else {
@@ -62,7 +58,8 @@ if (strpos($request['output'], ',') !== false) {
         $pkgFileArr = explode(';', rtrim(eurarr($outputVal.'.pkg')['files'], ';'));
         if (count($pkgFileArr) > 1) {
             unset($pkgFileArr[count($pkgFileArr)-1]);
-        } if (file_exists($outputVal.'.collection.json')) {
+        }
+        if (file_exists($outputVal.'.collection.json')) {
             foreach ($pkgFileArr as $pkgOneFile) {
                 if (pathinfo($pkgOneFile, PATHINFO_EXTENSION) == 'png') {
                     $indexFileParts = explode('.', $pkgOneFile);
@@ -78,29 +75,23 @@ if (strpos($request['output'], ',') !== false) {
                 }
             }
         } else {
-            foreach ($pkgFileArr as $pkgOneFile) {
-                $index[] = $pkgOneFile;
-            }
+            foreach ($pkgFileArr as $pkgOneFile) { $index[] = $pkgOneFile; }
         }
     } elseif (isset($settings['collections'][$outputVal])) {
         $indexArr = str_replace($request['path'].'/','',(glob($request['path'].'/*{'.$settings['collections'][$outputVal].'}*', GLOB_BRACE)));
-        foreach ($indexArr as $indexFile) {
-            $index[] = $indexFile;
-        }
+        foreach ($indexArr as $indexFile) { $index[] = $indexFile; }
     } elseif ($outputVal == '/') {
         $indexArr = str_replace($request['path'].'/','',(glob($request['path'].'/*', GLOB_ONLYDIR)));
-        foreach ($indexArr as $indexFile) {
-            $index[] = $indexFile;
-        }
+        foreach ($indexArr as $indexFile) { $index[] = $indexFile; }
     } else {
-        $indexArr = str_replace($request['path'].'/','',(glob($request['path'].'/*{'.$outputVal.'}*', GLOB_BRACE)));
-        foreach ($indexArr as $indexFile) {
-            $index[] = $indexFile;
+        $indexArr = str_replace($request['path'].'/','',(glob($request['path'].'/*')));
+        foreach ($indexArr as $key=>$val) {
+            if (strpos(strtolower($val), strtolower($outputVal)) !== false) {
+                $index[] = $val;
+            }
         }
     }
-}
-natcasesort($index);
-array_unique($index);
+} natcasesort($index); array_unique($index);
 usort($index, function ($a, $b) {
     if ($a == $b) {
         return 0;
