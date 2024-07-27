@@ -280,16 +280,24 @@ function clearJournal(num, obj, kw) {
     var ary = [], nur = Math.abs(num);
     var las = Object.keys(msgarr).length - 1;
     var ras = (las - nur);
-    if (num < 0) {
-        for (i = 0; i < nur; i++) {
-            if (msgarr[Object.keys(msgarr)[0]] !== undefined) {
-                delete msgarr[Object.keys(msgarr)[0]];
+    if (isInt(num)) {
+        if (num < 0) {
+            for (i = 0; i < nur; i++) {
+                if (msgarr[Object.keys(msgarr)[0]] !== undefined) {
+                    delete msgarr[Object.keys(msgarr)[0]];
+                }
+            }
+        } else {
+            for (i = las; i > ras; i--) {
+                if (msgarr[Object.keys(msgarr)[i]] !== undefined) {
+                    delete msgarr[Object.keys(msgarr)[i]];
+                }
             }
         }
     } else {
-        for (i = las; i > ras; i--) {
-            if (msgarr[Object.keys(msgarr)[i]] !== undefined) {
-                delete msgarr[Object.keys(msgarr)[i]];
+        for (ek in msgarr) {
+            if (msgarr[ek] !== undefined) {
+                delete msgarr[ek];
             }
         }
     }

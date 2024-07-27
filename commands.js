@@ -172,14 +172,12 @@ function executeFile(name, str = '', re = false, sp = false) {
         success: function(result) {
             var codeExt = result.split(/\r?\n/);
             var strd = []; var strl = []; var strs = '';
-            var kle = Object.keys(jsonstr(sysDefMsgData.value)).length; var skd = 0;
             if (str.includes(',')) {
                 strl = str.split(',');
                 for (il in codeExt) {
                     if (strl[il] !== undefined) {
                         if (sp !== false) {
                             strs += codeExt[il]+'\r\n';
-                            skd++;
                         } else {
                             executeCode(codeExt[il]);
                         }
@@ -196,7 +194,6 @@ function executeFile(name, str = '', re = false, sp = false) {
                     if (codeExt[strl[il]] !== undefined) {
                         if (sp !== false) {
                             strs += codeExt[strl[il]]+'\r\n';
-                            skd++;
                         } else {
                             executeCode(codeExt[strl[il]]);
                         }
@@ -204,7 +201,7 @@ function executeFile(name, str = '', re = false, sp = false) {
                 } compose(strs.slice(0, -2));
             } else if (isInt(str)) {
                 if (sp !== false) {
-                    compose(codeExt[str]); skd++;
+                    compose(codeExt[str]);
                 } else {
                     executeCode(codeExt[str]);
                 }
@@ -212,7 +209,6 @@ function executeFile(name, str = '', re = false, sp = false) {
                 for (il in codeExt) {
                     if (sp !== false) {
                         compose(result);
-                        skd = skd + codeExt.length;
                     } else {
                         executeCode(codeExt[il]);
                     }
@@ -221,7 +217,7 @@ function executeFile(name, str = '', re = false, sp = false) {
                 for (il in codeExt) {
                     if (codeExt[il].toLowerCase().includes(str.toLowerCase())) {
                         if (sp !== false) {
-                            compose(codeExt[il]); skd++; break;
+                            compose(codeExt[il]); break;
                         } else {
                             executeCode(codeExt[il]); break;
                         }
@@ -229,9 +225,7 @@ function executeFile(name, str = '', re = false, sp = false) {
                 }
             }
             if (re !== false) {
-                if (sp !== false) {
-                    clearJournal((skd-kle), sysDefMsgData, 'msgbox');
-                } else {
+                if (sp === false) {
                     window.location.reload();
                 }
             }
@@ -383,6 +377,10 @@ function omniEnter() {
             return false;
         } else if (input == 'song') {
             songIndex();
+        } else if (input == 'clear') {
+            clearJournal('', sysDefMsgData, 'msgbox');
+        } else if (input == 'erase') {
+            clearJournal(-1, sysDefBookKeep, 'book');
         } else if ((input == 'unbind') || (input == 'detach')) {
             unbind(sysDefSessionID.value);
         } else if ((input == 'suicide') || (input == 'goodbye')) {
@@ -475,7 +473,7 @@ function omniEnter() {
                 getPkgSequence('get -i '+document.getElementById('updateChannel'+ucfirst(req)).value, 'get ', 0);
             }
         } else if ((input.includes('clear ')) && (input.startsWith('clear '))) {
-            clearJournal(input.replace('clear', ''), sysDefMsgData, 'msgbox');
+            clearJournal(input.replace('clear ', ''), sysDefMsgData, 'msgbox');
         } else if ((input.includes('erase ')) && (input.startsWith('erase '))) {
             clearJournal(input.replace('erase ', ''), sysDefBookKeep, 'book');
         } else if ((input.includes('get ')) && (input.startsWith('get '))) {
