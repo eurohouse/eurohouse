@@ -174,15 +174,18 @@ function executeFile(name, str = '', re = false, sp = false) {
             var strd = []; var strl = []; var strs = '';
             if (str.includes(',')) {
                 strl = str.split(',');
-                for (il in codeExt) {
-                    if (strl[il] !== undefined) {
+                for (il in strl) {
+                    if (codeExt[strl[il]] !== undefined) {
                         if (sp !== false) {
-                            strs += codeExt[il]+'\r\n';
+                            strs += codeExt[strl[il]]+'\r\n';
                         } else {
-                            executeCode(codeExt[il]);
+                            executeCode(codeExt[strl[il]]);
                         }
                     }
-                } compose(strs.slice(0, -2));
+                }
+                if (sp !== false) {
+                    compose(strs.slice(0, -2));
+                }
             } else if (str.includes('-')) {
                 strd = str.split('-');
                 if (strd[1] > strd[0]) {
@@ -198,7 +201,10 @@ function executeFile(name, str = '', re = false, sp = false) {
                             executeCode(codeExt[strl[il]]);
                         }
                     }
-                } compose(strs.slice(0, -2));
+                }
+                if (sp !== false) {
+                    compose(strs.slice(0, -2));
+                }
             } else if (isInt(str)) {
                 if (sp !== false) {
                     compose(codeExt[str]);
@@ -206,10 +212,10 @@ function executeFile(name, str = '', re = false, sp = false) {
                     executeCode(codeExt[str]);
                 }
             } else if (str == '') {
-                for (il in codeExt) {
-                    if (sp !== false) {
-                        compose(result);
-                    } else {
+                if (sp !== false) {
+                    compose(result);
+                } else {
+                    for (il in codeExt) {
                         executeCode(codeExt[il]);
                     }
                 }
