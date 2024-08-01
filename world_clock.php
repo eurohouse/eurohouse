@@ -33,6 +33,8 @@ $termDeb = (isset($voc[$uni]['Debit'])) ? $voc[$uni]['Debit'] : 'Debit';
 $termCre = (isset($voc[$uni]['Credit'])) ? $voc[$uni]['Credit'] : 'Credit';
 $termBal = (isset($voc[$uni]['Balance'])) ? $voc[$uni]['Balance'] : 'Balance';
 $termDat = (isset($voc[$uni]['Date'])) ? $voc[$uni]['Date'] : 'Date';
+$termOper = (isset($voc[$uni]['User Operation:'])) ? $voc[$uni]['User Operation:'] : 'User Operation:';
+$termScore = (isset($voc[$uni]['User Score Tab:'])) ? $voc[$uni]['User Score Tab:'] : 'User Score Tab:';
 for ($i = 0; $i < 7; $i++) {
     $wd[$i] = ((isset($userSettings['locale']['weekday'][$uni][$i])) ? $userSettings['locale']['weekday'][$uni][$i] : $userSettings['locale']['weekday']['default'][$i]);
 } echo $dateTimeStr."\r\n\r\n".
@@ -40,5 +42,5 @@ $dateTimeCode." ".$userData['observe'].$userData['spectate']."\r\n\r\n".
 hHmMsS($alarmInTime)."\r\n\r\n".
 $vintageBackdropFilter.";".$overlayBeforeBackground.";".$overlayBeforeAnimation.";".$overlayAfterBackground.";".$overlayAfterAnimation."\r\n\r\n".
 $userData['audio_volume'].' '.$userData['audio_speed'].' '.$userData['audio_balance'].' '.$userData['video_volume'].' '.$userData['video_speed'].' '.$userData['video_balance']."\r\n\r\n".
-$termDat.' | '.$termSen.' | '.$termRec.' | '.$termDeb.' | '.$termCre.' | '.$termBal."\r\n\r\n".
-implode(' ', $wd);
+$termDat.' | '.$termSen.' | '.$termRec.' | '.$termDeb.' | '.$termCre.' | '.$termBal.' | '.$termOper.' | '.$termScore."\r\n\r\n".
+implode(' ', $wd)."\r\n\r\n";
