@@ -1,0 +1,8 @@
+# Music; lock_music: botticelli;
+# Avatar; avatar: apple;
+# Background; background: osx.2024.00.png;
+# UI; back_color: C7C7C7; fore_color: 6AA3F4; input_color: F4F4F4; back_text_color: FFFFFF; fore_text_color: FFFFFF; input_text_color: 000000; blank_color: FFFFFF; blank_text_color: 000000; arc_fore_color: 006CF2; arc_input_color: F4F4F4; opacity: 64; radius: 5; box_shadow: 0; gradient_deg: 180; gloss: 1;
+# Audio; mute: 1; alarm_sound: iphone_tune.wav; ticking_sound: timer.wav; background_sound: vinyl.wav; focus_sound: macos_mouse.wav; type_sound: macos_keyboard.wav; error_sound: macos_ding.wav; notify_sound: macos_notify.wav; bind_sound: macos_infobar.wav; hit_sound: macos_infobar.wav; suffer_sound: macos_popup.wav;
+# Font; font_ascii: SFProText-Medium.otf; font_latin: SFProText-Medium.otf; font_phone: SFProText-Medium.otf; font_greek: SFProText-Medium.otf; font_cyril: SFProText-Medium.otf; font_arabi: NotoSansArabic-Regular.ttf; font_korea: Binggrae.otf; font_china: wqy-zenhei.ttf; font_other: LiberationSans-Regular.ttf; font_emoji: Apple-Emoji.ttf;
+# UX; theme: cupertino; menu: file_finder,browse_europedia,personalization,visual_effects,bookkeeping,text_editor,sticky_notes,media_player,localization,user_accounts,preferences,statistics,volume_control,news_feed; icons: 1; faceoff: 1;
+# Space; lock_background: osx; lock_avatar: avatar; lock_font: unix; lock_sound: unix;
