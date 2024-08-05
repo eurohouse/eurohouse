@@ -50,8 +50,7 @@ function arrangePlay() {
         omniAuthRequest('signout', '', '');
     } var bf = arraySearch(sysDefSessionID.value, db);
     if (bf != false) {
-        th = dp[bf];
-        bl = my+':'+th;
+        th = dp[bf]; bl = my+':'+th;
         if (db[sysDefSessionID.value] != sysDefSessionID.value) {
             pl = '+@'+sysDefSessionID.value+'+';
             $('#buttonBroke').attr('src', sysDefPrefix.value+'broke.png'+sysDefSuffix.value);
@@ -61,8 +60,7 @@ function arrangePlay() {
         }
     } else {
         if (db[sysDefSessionID.value] != sysDefSessionID.value) {
-            th = dp[db[sysDefSessionID.value]];
-            bl = my+':'+th;
+            th = dp[db[sysDefSessionID.value]]; bl = my+':'+th;
             pl = '@'+sysDefSessionID.value+'+';
             $('#buttonBroke').attr('src', sysDefPrefix.value+'broke.png'+sysDefSuffix.value);
         } else {
@@ -82,8 +80,7 @@ function lockdata() {
                 echo "'".$key."': lock".camel($key).".value,";
             } $iter++;
         } $iter = 0; ?>
-    };
-    return obj;
+    }; return obj;
 }
 function userdata() {
     var obj = {
@@ -94,8 +91,7 @@ function userdata() {
                 echo "'".$key."': sysDef".camel($key).".value,";
             } $iter++;
         } $iter = 0; ?>
-    };
-    return obj;
+    }; return obj;
 }
 function setlock(ent, val) {
     var obj = lockdata(); obj[ent] = val;
@@ -110,89 +106,36 @@ function setdata(ent, val) {
     <?php foreach ($settings['defaults'] as $key=>$value) {
         echo "sysDef".camel($key).".value = obj['".$key."'];";
     } ?>
-    if (ent == 'audio_volume') {
-        audioPlayer.volume = val;
-    }
-    if (ent == 'audio_balance') {
-        audioPlayer.balance = val;
-    }
-    if (ent == 'audio_speed') {
-        audioPlayer.playbackRate = val;
-    }
-    if (ent == 'pitch_lock') {
-        audioPlayer.preservesPitch = (val != 0) ? true : false;
-    }
+    if (ent == 'audio_volume') { audioPlayer.volume = val; }
+    if (ent == 'audio_balance') { audioPlayer.balance = val; }
+    if (ent == 'audio_speed') { audioPlayer.playbackRate = val; }
+    if (ent == 'pitch_lock') { audioPlayer.preservesPitch = (val != 0) ? true : false; }
     if (requestMode.value == 'media_player') {
-        if (ent == 'video_volume') {
-            video.volume = val;
-        }
-        if (ent == 'video_balance') {
-            video.balance = val;
-        }
-        if (ent == 'video_speed') {
-            video.playbackRate = val;
-        }
-        if (ent == 'pitch_lock') {
-            video.preservesPitch = (val != 0) ? true : false;
-        }
-    }
-    if (requestMode.value == 'volume_control') {
-        if (ent == 'audio_volume') {
-            audioVolInd.value = val;
-            audioVolRange.value = val;
-        }
-        if (ent == 'audio_balance') {
-            audioBalInd.value = val;
-            audioBalRange.value = val;
-        }
-        if (ent == 'audio_speed') {
-            audioRatInd.value = val;
-            audioRatRange.value = val;
-        }
-        if (ent == 'video_volume') {
-            videoVolInd.value = val;
-            videoVolRange.value = val;
-        }
-        if (ent == 'video_balance') {
-            videoBalInd.value = val;
-            videoBalRange.value = val;
-        }
-        if (ent == 'video_speed') {
-            videoRatInd.value = val;
-            videoRatRange.value = val;
-        }
-    }
-    if (requestMode.value == 'visual_effects') {
-        if (ent == 'opacity') {
-            opacityRange.value = val;
-        }
-        if (ent == 'blur') {
-            blurRange.value = val;
-        }
-        if (ent == 'brightness') {
-            brightnessRange.value = val;
-        }
-        if (ent == 'saturation') {
-            saturationRange.value = val;
-        }
-        if (ent == 'contrast') {
-            contrastRange.value = val;
-        }
-        if (ent == 'sepia') {
-            sepiaRange.value = val;
-        }
-        if (ent == 'grayscale') {
-            grayscaleRange.value = val;
-        }
-        if (ent == 'hue') {
-            hueRange.value = val;
-        }
+        if (ent == 'video_volume') { video.volume = val; }
+        if (ent == 'video_balance') { video.balance = val; }
+        if (ent == 'video_speed') { video.playbackRate = val; }
+        if (ent == 'pitch_lock') { video.preservesPitch = (val != 0) ? true : false; }
+    } if (requestMode.value == 'volume_control') {
+        if (ent == 'audio_volume') { audioVolInd.value = val; audioVolRange.value = val; }
+        if (ent == 'audio_balance') { audioBalInd.value = val; audioBalRange.value = val; }
+        if (ent == 'audio_speed') { audioRatInd.value = val; audioRatRange.value = val; }
+        if (ent == 'video_volume') { videoVolInd.value = val; videoVolRange.value = val; }
+        if (ent == 'video_balance') { videoBalInd.value = val; videoBalRange.value = val; }
+        if (ent == 'video_speed') { videoRatInd.value = val; videoRatRange.value = val; }
+    } if (requestMode.value == 'visual_effects') {
+        if (ent == 'opacity') { opacityRange.value = val; }
+        if (ent == 'blur') { blurRange.value = val; }
+        if (ent == 'brightness') { brightnessRange.value = val; }
+        if (ent == 'saturation') { saturationRange.value = val; }
+        if (ent == 'contrast') { contrastRange.value = val; }
+        if (ent == 'sepia') { sepiaRange.value = val; }
+        if (ent == 'grayscale') { grayscaleRange.value = val; }
+        if (ent == 'hue') { hueRange.value = val; }
     }
 }
 function bind(usr, id) {
     var obj = arrjob(sysDefBindData.value,';',':');
-    obj[usr] = id;
-    set('binding.json', JSON.stringify(obj), true);
+    obj[usr] = id; set('binding.json', JSON.stringify(obj), true);
     sysDefBindData.value = arrpack(obj,';',':');
 }
 function automate() {
@@ -218,19 +161,14 @@ function openMsgBox(id) {
 }
 function jsonstr(str) {
     var res = {};
-    try {
-        res = JSON.parse(str);
-    } catch (e) {
-        res = {};
-    }
+    try { res = JSON.parse(str);
+    } catch (e) { res = {}; }
     return res;
 }
 function JSONFilter(str, mask, sym = '#', uni = 'L') {
-    var arr = jsonstr(str); var arf = {};
-    if (mask == sym) {
-        for (el in arr) {
-            arf[el] = arr[el];
-        }
+    var arr = jsonstr(str);
+    var arf = {}; if (mask == sym) {
+        for (el in arr) { arf[el] = arr[el]; }
     } else {
         var arrRegex = XRegExp('(\\'+sym+'\\p{'+uni+'}+)', 'g');
         var repRegex = XRegExp('(\\'+sym+'+)', 'g');
@@ -238,49 +176,38 @@ function JSONFilter(str, mask, sym = '#', uni = 'L') {
         for (el in arr) {
             if (wordArr !== null) {
                 for (i = 0; i < wordArr.length; i++) {
-                    if (arr[el].toLowerCase().includes(XRegExp.replace(wordArr[i], repRegex, '').toLowerCase())) {
-                        arf[el] = arr[el];
-                    }
+                    if (arr[el].toLowerCase().includes(XRegExp.replace(wordArr[i], repRegex, '').toLowerCase())) { arf[el] = arr[el]; }
                 }
             }
         }
-    }
-    return arf;
+    } return arf;
 }
 function JSONtoHTML(str, mask, sym = '#', uni = 'L') {
     var arr = JSONFilter(str, mask, sym, uni);
-    var ard = '';
-    for (el in arr) {
-        ard = el+'<br>'+arr[el]+'<br>'+ard;
-    }
+    var ard = ''; for (el in arr) { ard = el+'<br>'+arr[el]+'<br>'+ard; }
     return ard;
 }
 function JSONtoTab(str, mask, sym = '#', uni = 'L', wed) {
     var arr = JSONFilter(str, mask, sym, uni);
-    var ard = ''; var arl = ''; var eld = []; var dem, der;
+    var ard = ''; var arl = '';
+    var eld = []; var dem, der;
     for (el in arr) {
-        eld = arr[el].split(' | ');
-        dem = Date.parse(el);
+        eld = arr[el].split(' | '); dem = Date.parse(el);
         der = (new Date(dem)).getDay();
         if (eld[5] == 'ERR') {
             arl = '<tr style="text-decoration:line-through;"><td>'+wed[der]+'</td>';
         } else {
             arl = '<tr><td>'+wed[der]+'</td>';
-        } arl += '<td>'+eld[0]+'</td>';
-        arl += '<td>'+eld[1]+'</td>';
-        arl += '<td>'+eld[2]+'</td>';
-        arl += '<td>'+eld[3]+'</td>';
-        arl += '<td>'+eld[4]+'</td>';
-        ard = arl+'</tr>'+ard;
-    }
-    return ard;
+        } arl += '<td>'+eld[0]+'</td>'; arl += '<td>'+eld[1]+'</td>';
+        arl += '<td>'+eld[2]+'</td>'; arl += '<td>'+eld[3]+'</td>';
+        arl += '<td>'+eld[4]+'</td>'; ard = arl+'</tr>'+ard;
+    } return ard;
 }
 function clearJournal(num, obj, kw) {
     var msgarr = jsonstr(obj.value);
     var ary = [], nur = Math.abs(num);
     var las = Object.keys(msgarr).length - 1;
-    var ras = (las - nur);
-    if (isInt(num)) {
+    var ras = (las - nur); if (isInt(num)) {
         if (num < 0) {
             for (i = 0; i < nur; i++) {
                 if (msgarr[Object.keys(msgarr)[0]] !== undefined) {
@@ -296,12 +223,9 @@ function clearJournal(num, obj, kw) {
         }
     } else {
         for (ek in msgarr) {
-            if (msgarr[ek] !== undefined) {
-                delete msgarr[ek];
-            }
+            if (msgarr[ek] !== undefined) { delete msgarr[ek]; }
         }
-    }
-    set('./.'+kw+'/'+sysDefSessionID.value+'_'+kw+'.json', encodeURIComponent(JSON.stringify(msgarr)), true);
+    } set('./.'+kw+'/'+sysDefSessionID.value+'_'+kw+'.json', encodeURIComponent(JSON.stringify(msgarr)), true);
 }
 function isoformat(num) {
     var ob = new Date(num);
@@ -324,12 +248,10 @@ function compose(msg) {
                     }
                 } else {
                     msgarr[sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now())+' UTC'] = msg;
-                }
-                set('./.msgbox/'+userID+'_msgbox.json', encodeURIComponent(JSON.stringify(msgarr)), true);
+                } set('./.msgbox/'+userID+'_msgbox.json', encodeURIComponent(JSON.stringify(msgarr)), true);
             }
         } else {
-            msgbox = sysDefMsgData.value;
-            msgarr = jsonstr(msgbox);
+            msgbox = sysDefMsgData.value; msgarr = jsonstr(msgbox);
             if (msg.match(/\r?\n/) !== null) {
                 msgbr = msg.split(/\r?\n/);
                 for (j = 0; j < msgbr.length; j++) {
@@ -412,9 +334,7 @@ function sell_item(pass, type = 'account') {
 }
 function isAllZero(arr) {
     for (i = 0; i < arr.length; i++) {
-        if ((arr[i] != 0) && (isInt(arr[i]))) {
-            return false; break;
-        }
+        if ((arr[i] != 0) && (isInt(arr[i]))) { return false; break; }
     } return true;
 }
 function fixPrice(sen, rec, deb, cre) {
@@ -430,8 +350,7 @@ function fixPrice(sen, rec, deb, cre) {
     } else {
         lsTr1 = trans1[Object.keys(trans1)[Object.keys(trans1).length - 1]];
         bal1 = lsTr1.split(' | ')[4];
-    }
-    if (tran2 == '{}') {
+    } if (tran2 == '{}') {
         bal2 = statCr;
     } else {
         lsTr2 = trans2[Object.keys(trans2)[Object.keys(trans2).length - 1]];
@@ -449,8 +368,7 @@ function fixPrice(sen, rec, deb, cre) {
         statD -= statV; statC += statV;
         statDi = parseInt(bal1) + parseInt(statDv) - statV;
         statCi = parseInt(bal2) + parseInt(statCv) + statV;
-    }
-    statDn = Math.abs(statDi - parseInt(bal1));
+    } statDn = Math.abs(statDi - parseInt(bal1));
     statCn = Math.abs(statCi - parseInt(bal2));
     statDt = (statDi == statD) ? 'OK' : 'ERR';
     statCt = (statCi == statC) ? 'OK' : 'ERR';
@@ -469,12 +387,10 @@ function dominate(usr, id, q = 1, s = 1, n = 0, snd = false) {
     var f = (isInt(q)) ? parseInt(Math.abs(q)) : 1;
     var suf = (isInt(obj[usr])) ? parseInt(obj[usr]) : 0;
     var obf = (isInt(obj[id])) ? parseInt(obj[id]) : 0;
-    var sides = [];
-    if ((usr != id) && (suf >= 0)) {
+    var sides = []; if ((usr != id) && (suf >= 0)) {
         for (i = 0; i < s; i++) {
             sides.push(rand(((n != 0) ? min : 0), max));
-        }
-        if (isAllZero(sides)) {
+        } if (isAllZero(sides)) {
             if (obf <= -666) {
                 delete_user(id);
             } else {
@@ -486,9 +402,7 @@ function dominate(usr, id, q = 1, s = 1, n = 0, snd = false) {
         }
     }
 }
-function unbind(id) {
-    bind(id, id);
-}
+function unbind(id) { bind(id, id); }
 function remove_entry(id, obj, name) {
     var objData = arrjob(obj.value,';',':');
     delete objData[id];
@@ -511,17 +425,9 @@ function delete_user(id) {
     del('./.book/'+id+'_book.json', true);
     del('./.book/'+id+'_book.json.bak', true);
 }
-function transfer_self(id, obj, name) {
+function transfer_entry(id, obj, name, seb = false) {
     var objData = arrjob(obj.value,';',':');
-    objData[id] = id;
-    if (sysDefSessionID.value != id) {
-        delete objData[sysDefSessionID.value];
-    } set(name, JSON.stringify(objData), true);
-    obj.value = arrpack(objData,';',':');
-}
-function transfer_entry(id, obj, name) {
-    var objData = arrjob(obj.value,';',':');
-    objData[id] = objData[sysDefSessionID.value];
+    objData[id] = (seb !== false) ? id : objData[sysDefSessionID.value];
     if (sysDefSessionID.value != id) {
         delete objData[sysDefSessionID.value];
     } set(name, JSON.stringify(objData), true);
@@ -529,7 +435,7 @@ function transfer_entry(id, obj, name) {
 }
 function rename_user(username, password) {
     unbind(sysDefSessionID.value);
-    transfer_self(username, sysDefBindData, 'binding.json');
+    transfer_entry(username, sysDefBindData, 'binding.json', true);
     transfer_entry(username, sysDefPowersData, 'dominion.json');
     transfer_entry(username, sysDefAutoData, 'automator.json');
     transfer_entry(username, sysDefFriendData, 'friendship.json');
@@ -538,6 +444,8 @@ function rename_user(username, password) {
     move('./'+sysDefSessionID.value+'_lock.json.bak', './'+username+'_lock.json.bak', true, 1);
     move('./.msgbox/'+sysDefSessionID.value+'_msgbox.json', './.msgbox/'+username+'_msgbox.json', true, 1);
     move('./.book/'+sysDefSessionID.value+'_book.json', './.book/'+username+'_book.json', true, 1);
+    del('./.msgbox/'+sysDefSessionID.value+'_msgbox.json.bak', true);
+    del('./.book/'+sysDefSessionID.value+'_book.json.bak', true);
 }
 function init_user(id, au = 'manual') {
     var bd = arrjob(sysDefBindData.value,';',':');
@@ -548,55 +456,34 @@ function init_user(id, au = 'manual') {
     var bkl = (sysDefBooksList.value).split(',');
     if (usl.indexOf(id) <= -1) {
         set('./.msgbox/'+id+'_msgbox.json', '{}', true);
-    }
-    if (bkl.indexOf(id) <= -1) {
+    } if (bkl.indexOf(id) <= -1) {
         set('./.book/'+id+'_book.json', '{}', true);
-    }
-    if (!(id in bd)) {
+    } if (!(id in bd)) {
         bd[id] = id;
         set('binding.json', JSON.stringify(bd), true);
         sysDefBindData.value = arrpack(bd,';',':');
-    }
-    if (!(id in pd)) {
+    } if (!(id in pd)) {
         pd[id] = 0;
         set('dominion.json', JSON.stringify(pd), true);
         sysDefPowersData.value = arrpack(pd,';',':');
-    }
-    if (!(id in ad)) {
+    } if (!(id in ad)) {
         ad[id] = au;
         set('automator.json', JSON.stringify(ad), true);
         sysDefAutoData.value = arrpack(ad,';',':');
-    }
-    if (!(id in fd)) {
+    } if (!(id in fd)) {
         fd[id] = '';
         set('friendship.json', JSON.stringify(fd), true);
         sysDefFriendData.value = arrpack(fd,';',':');
     }
 }
 function friendsOf(obj, id) {
-    var res = [];
-    if (obj[id] !== undefined) {
-        if (obj[id].includes(',')) {
-            res = obj[id].split(',');
-        } else {
-            res = [obj[id]];
-        }
-    } else {
-        res = [];
-    }
-    return res;
+    var res = (obj[id] !== undefined) ? ((obj[id].includes(',')) ? obj[id].split(',') : [obj[id]]) : []; return res;
 }
 function isFriends(id) {
     var usr = sysDefSessionID.value;
     var fr = arrjob(sysDefFriendData.value,';',':');
-    var frnd = friendsOf(fr, usr);
-    var res = false;
-    if (id != usr) {
-        if (frnd.indexOf(id) > -1) {
-            res = true;
-        }
-    }
-    return res;
+    var frnd = friendsOf(fr, usr); var res = false;
+    if (id != usr) { if (frnd.indexOf(id) > -1) { res = true; }} return res;
 }
 function toggleFriend(id) {
     var usr = sysDefSessionID.value;
@@ -607,8 +494,7 @@ function toggleFriend(id) {
             frnd.splice(frnd.indexOf(id), 1);
         } else {
             frnd.push(id);
-        }
-        fr[usr] = finarr(frnd).sort().join(',');
+        } fr[usr] = finarr(frnd).sort().join(',');
         set('friendship.json', JSON.stringify(fr), true);
         sysDefFriendData.value = arrpack(fr,';',':');
     }
@@ -631,18 +517,15 @@ function dropFriend(id) {
     if (id != usr) {
         if (frnd.indexOf(id) > -1) {
             frnd.splice(frnd.indexOf(id), 1);
-        }
-        fr[usr] = finarr(frnd).sort().join(',');
+        } fr[usr] = finarr(frnd).sort().join(',');
         set('friendship.json', JSON.stringify(fr), true);
         sysDefFriendData.value = arrpack(fr,';',':');
     }
 }
 function scores(sta) {
     var sto = ['bind', 'auto', 'friend'];
-    var arr = (arraySearch(sta, sto) !== false) ? document.getElementById('sysDef'+ucfirst(sta)+'Data').value : document.getElementById('sysDefPowersData').value;
-    var obj = arrjob(arr, ';', ':');
-    var keys = Object.keys(obj);
-    var vals = Object.values(obj);
+    var arr = (arraySearch(sta, sto) !== false) ? document.getElementById('sysDef'+ucfirst(sta)+'Data').value : document.getElementById('sysDefPowersData').value; var obj = arrjob(arr, ';', ':');
+    var keys = Object.keys(obj); var vals = Object.values(obj);
     var res = ''; var sortable = {}; var ordered = {};
     if (sta == 'bind') {
         ordered = Object.keys(obj).sort().reduce(
@@ -650,8 +533,7 @@ function scores(sta) {
                 obd[key] = obj[key]; 
                 return obd;
             }, {}
-        );
-        for (indi in ordered) {
+        ); for (indi in ordered) {
             if ((ordered[indi] !== undefined) || (indi != '')) {
                 if (ordered[indi] != indi) {
                     res += '@'+indi+' :: @'+ordered[indi]+'\n';
@@ -666,8 +548,7 @@ function scores(sta) {
                 obd[key] = obj[key]; 
                 return obd;
             }, {}
-        );
-        for (indi in ordered) {
+        ); for (indi in ordered) {
             if ((ordered[indi] !== undefined) || (indi != '')) {
                 if (ordered[indi] == 'auto') {
                     res += '@'+indi+' AUTO\n';
@@ -682,8 +563,7 @@ function scores(sta) {
                 obd[key] = obj[key]; 
                 return obd;
             }, {}
-        );
-        for (indi in ordered) {
+        ); for (indi in ordered) {
             if ((ordered[indi] !== undefined) || (indi != '')) {
                 if (ordered[indi] != '') {
                     res += '@'+indi+' ['+ordered[indi]+']\n';
@@ -695,14 +575,12 @@ function scores(sta) {
     } else {
         sortable = Object.fromEntries(
             Object.entries(obj).sort(([,a],[,b]) => b - a)
-        );
-        for (indi in sortable) {
+        ); for (indi in sortable) {
             if ((sortable[indi] !== undefined) || (indi != '')) {
                 res += '@'+indi+' ('+sortable[indi]+')\n';
             }
         }
-    }
-    return res;
+    } return res;
 }
 function systemUpdate(query) {
     var parts = query.toString('').split(' ');
@@ -797,16 +675,13 @@ function arrangeMenu(list, item) {
     var arr = list.toString('').split(',');
     if (arr.indexOf('') > -1) {
         arr.splice(arr.indexOf(''), 1);
-    }
-    if (arr.indexOf(' ') > -1) {
+    } if (arr.indexOf(' ') > -1) {
         arr.splice(arr.indexOf(' '), 1);
-    }
-    if (arr.indexOf(item) > -1) {
+    } if (arr.indexOf(item) > -1) {
         arr.splice(arr.indexOf(item), 1);
     } else {
         arr.push(item);
-    }
-    return finarr(arr).join(',');
+    } return finarr(arr).join(',');
 }
 function isInMenu(list, item) {
     var arr = list.toString('').split(',');
@@ -821,155 +696,133 @@ function applyTheme(sizes = '7 0 180 14 14 14 17 16 15 18 14 14 14', colors = 'C
         setdata('radius', sysDefRadius.value);
     } else {
         setdata('radius', t4size[0]);
-    }
-    if (t4size[1].includes('i')) {
+    } if (t4size[1].includes('i')) {
         setdata('box_shadow', t4size[t4size[1].replace('i','')]);
     } else if (t4size[1].includes('x')) {
         setdata('box_shadow', sysDefBoxShadow.value);
     } else {
         setdata('box_shadow', t4size[1]);
-    }
-    if (t4size[2].includes('i')) {
+    } if (t4size[2].includes('i')) {
         setdata('gradient_deg', t4size[t4size[2].replace('i','')]);
     } else if (t4size[2].includes('x')) {
         setdata('gradient_deg', sysDefGradientDeg.value);
     } else {
         setdata('gradient_deg', t4size[2]);
-    }
-    if (t4size[3].includes('i')) {
+    } if (t4size[3].includes('i')) {
         setdata('back_size', t4size[t4size[3].replace('i','')]);
     } else if (t4size[3].includes('x')) {
         setdata('back_size', sysDefBackSize.value);
     } else {
         setdata('back_size', t4size[3]);
-    }
-    if (t4size[4].includes('i')) {
+    } if (t4size[4].includes('i')) {
         setdata('fore_size', t4size[t4size[4].replace('i','')]);
     } else if (t4size[4].includes('x')) {
         setdata('fore_size', sysDefForeSize.value);
     } else {
         setdata('fore_size', t4size[4]);
-    }
-    if (t4size[5].includes('i')) {
+    } if (t4size[5].includes('i')) {
         setdata('input_size', t4size[t4size[5].replace('i','')]);
     } else if (t4size[5].includes('x')) {
         setdata('input_size', sysDefInputSize.value);
     } else {
         setdata('input_size', t4size[5]);
-    }
-    if (t4size[6].includes('i')) {
+    } if (t4size[6].includes('i')) {
         setdata('head1_size', t4size[t4size[6].replace('i','')]);
     } else if (t4size[6].includes('x')) {
         setdata('head1_size', sysDefHead1Size.value);
     } else {
         setdata('head1_size', t4size[6]);
-    }
-    if (t4size[7].includes('i')) {
+    } if (t4size[7].includes('i')) {
         setdata('head2_size', t4size[t4size[7].replace('i','')]);
     } else if (t4size[7].includes('x')) {
         setdata('head2_size', sysDefHead2Size.value);
     } else {
         setdata('head2_size', t4size[7]);
-    }
-    if (t4size[8].includes('i')) {
+    } if (t4size[8].includes('i')) {
         setdata('head3_size', t4size[t4size[8].replace('i','')]);
     } else if (t4size[8].includes('x')) {
         setdata('head3_size', sysDefHead3Size.value);
     } else {
         setdata('head3_size', t4size[8]);
-    }
-    if (t4size[9].includes('i')) {
+    } if (t4size[9].includes('i')) {
         setdata('disp_size', t4size[t4size[9].replace('i','')]);
     } else if (t4size[9].includes('x')) {
         setdata('disp_size', sysDefDispSize.value);
     } else {
         setdata('disp_size', t4size[9]);
-    }
-    if (t4size[10].includes('i')) {
+    } if (t4size[10].includes('i')) {
         setdata('priv1_size', t4size[t4size[10].replace('i','')]);
     } else if (t4size[10].includes('x')) {
         setdata('priv1_size', sysDefPriv1Size.value);
     } else {
         setdata('priv1_size', t4size[10]);
-    }
-    if (t4size[11].includes('i')) {
+    } if (t4size[11].includes('i')) {
         setdata('priv2_size', t4size[t4size[11].replace('i','')]);
     } else if (t4size[11].includes('x')) {
         setdata('priv2_size', sysDefPriv2Size.value);
     } else {
         setdata('priv2_size', t4size[11]);
-    }
-    if (t4size[12].includes('i')) {
+    } if (t4size[12].includes('i')) {
         setdata('priv3_size', t4size[t4size[12].replace('i','')]);
     } else if (t4size[12].includes('x')) {
         setdata('priv3_size', sysDefPriv3Size.value);
     } else {
         setdata('priv3_size', t4size[12]);
-    }
-    if (t4color[0].includes('i')) {
+    } if (t4color[0].includes('i')) {
         setdata('back_color', t4color[t4color[0].replace('i','')]);
     } else if (t4color[0].includes('x')) {
         setdata('back_color', sysDefBackColor.value);
     } else {
         setdata('back_color', t4color[0]);
-    }
-    if (t4color[1].includes('i')) {
+    } if (t4color[1].includes('i')) {
         setdata('fore_color', t4color[t4color[1].replace('i','')]);
     } else if (t4color[1].includes('x')) {
         setdata('fore_color', sysDefForeColor.value);
     } else {
         setdata('fore_color', t4color[1]);
-    }
-    if (t4color[2].includes('i')) {
+    } if (t4color[2].includes('i')) {
         setdata('input_color', t4color[t4color[2].replace('i','')]);
     } else if (t4color[2].includes('x')) {
         setdata('input_color', sysDefInputColor.value);
     } else {
         setdata('input_color', t4color[2]);
-    }
-    if (t4color[3].includes('i')) {
+    } if (t4color[3].includes('i')) {
         setdata('back_text_color', t4color[t4color[3].replace('i','')]);
     } else if (t4color[3].includes('x')) {
         setdata('back_text_color', sysDefBackTextColor.value);
     } else {
         setdata('back_text_color', t4color[3]);
-    }
-    if (t4color[4].includes('i')) {
+    } if (t4color[4].includes('i')) {
         setdata('fore_text_color', t4color[t4color[4].replace('i','')]);
     } else if (t4color[4].includes('x')) {
         setdata('fore_text_color', sysDefForeTextColor.value);
     } else {
         setdata('fore_text_color', t4color[4]);
-    }
-    if (t4color[5].includes('i')) {
+    } if (t4color[5].includes('i')) {
         setdata('input_text_color', t4color[t4color[5].replace('i','')]);
     } else if (t4color[5].includes('x')) {
         setdata('input_text_color', sysDefInputTextColor.value);
     } else {
         setdata('input_text_color', t4color[5]);
-    }
-    if (t4color[6].includes('i')) {
+    } if (t4color[6].includes('i')) {
         setdata('blank_color', t4color[t4color[6].replace('i','')]);
     } else if (t4color[6].includes('x')) {
         setdata('blank_color', sysDefBlankColor.value);
     } else {
         setdata('blank_color', t4color[6]);
-    }
-    if (t4color[7].includes('i')) {
+    } if (t4color[7].includes('i')) {
         setdata('blank_text_color', t4color[t4color[7].replace('i','')]);
     } else if (t4color[7].includes('x')) {
         setdata('blank_text_color', sysDefBlankTextColor.value);
     } else {
         setdata('blank_text_color', t4color[7]);
-    }
-    if (t4color[8].includes('i')) {
+    } if (t4color[8].includes('i')) {
         setdata('arc_fore_color', t4color[t4color[8].replace('i','')]);
     } else if (t4color[8].includes('x')) {
         setdata('arc_fore_color', sysDefArcForeColor.value);
     } else {
         setdata('arc_fore_color', t4color[8]);
-    }
-    if (t4color[9].includes('i')) {
+    } if (t4color[9].includes('i')) {
         setdata('arc_input_color', t4color[t4color[9].replace('i','')]);
     } else if (t4color[9].includes('x')) {
         setdata('arc_input_color', sysDefArcInputColor.value);
