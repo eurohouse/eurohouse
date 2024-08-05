@@ -19,7 +19,7 @@ function omniListen(input, scratch = false) {
 function songIndex() {
     var museArr = sysDefMusicBox.value;
     var museLint = museArr.split('//');
-    omniListen(museLint[rand(0, museLint.length-1)], true);
+    omniListen(museLint[rand(0, museLint.length)], true);
 }
 function omniPause() {
     pauseAudio(audioPlayer);
