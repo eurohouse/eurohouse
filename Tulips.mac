@@ -1,0 +1,8 @@
+# Music; lock_music: windows;
+# Avatar; avatar: winxp;
+# Background; background: xp.tulips.00.png;
+# UI; back_color: 75A2E3; fore_color: 8CBD98; input_color: FFFFFF; back_text_color: FFFFFF; fore_text_color: FFFFFF; input_text_color: 000000; blank_color: FFFFFF; blank_text_color: 000000; arc_fore_color: 26792C; arc_input_color: BDBCD6; opacity: 64; radius: 3; box_shadow: 1; gradient_deg: 135; gloss: 1;
+# Audio; mute: 0; alarm_sound: Windows XP Ringin.wav; ticking_sound: Windows XP Exclamation.wav; background_sound: title.wma; focus_sound: Windows XP Menu Command.wav; type_sound: Windows XP Menu Command.wav; error_sound: Windows XP Ding.wav; notify_sound: Windows XP Information Bar.wav; bind_sound: Windows XP Minimize.wav; hit_sound: Windows XP Balloon.wav; suffer_sound: Windows XP Balloon.wav;
+# Font; font_ascii: framd.ttf; font_latin: framd.ttf; font_phone: l_10646.ttf; font_greek: framd.ttf; font_cyril: framd.ttf; font_arabi: arialuni.ttf; font_korea: arialuni.ttf; font_china: arialuni.ttf; font_other: arialuni.ttf; font_emoji: seguiemj.ttf;
+# UX; theme: redmond; menu: file_finder,news_feed,bookkeeping,browse_europedia,text_editor,preferences,personalization,user_accounts,localization,visual_effects,sticky_notes,statistics,media_player,volume_control; icons: 1; faceoff: 1;
+# Space; lock_background: xp; lock_avatar: avatar; lock_font: windows; lock_sound: windows;
