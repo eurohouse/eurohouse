@@ -28,8 +28,9 @@ function executeMacros(input, index = 0, length = 1) {
         var museLint = museArr.split('//');
         for (i = 0; i < museLint.length; i++) {
             if (museLint[i].toLowerCase().includes(namePart1.toLowerCase())) {
-                omniListen(museLint[i], true); nameInc++;
-                if (nameInc >= namePart2) { break; }
+                if (nameInc >= namePart2) {
+                    omniListen(museLint[i], true); break;
+                } nameInc++;
             } omniPause();
         }
     } else if ((index == (length - 1)) && (input.includes('./')) && (input.indexOf('./') == 0)) {
