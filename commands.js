@@ -27,7 +27,7 @@ function executeMacros(input, index = 0, length = 1) {
         var museArr = sysDefMusicBox.value;
         var museLint = museArr.split('//');
         for (i = 0; i < museLint.length; i++) {
-            if (museLint[i].toLowerCase().includes(namePart.toLowerCase())) {
+            if (museLint[i].toLowerCase().includes(namePart1.toLowerCase())) {
                 omniListen(museLint[i], true); nameInc++;
                 if (nameInc >= namePart2) { break; }
             } omniPause();
