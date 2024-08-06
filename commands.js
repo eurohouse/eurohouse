@@ -16,11 +16,20 @@ function executeMacros(input, index = 0, length = 1) {
         omniListen(input.replace('\\=', ''), true);
     } else if ((index == (length - 1)) && (input.includes("\\")) && (input.indexOf('\\') == 0)) {
         var namePart = input.replace("\\", '');
+        var namePart1, namePart2, nameInc = 0;
+        if (namePart.includes(':')) {
+            namePart1 = namePart.split(':')[0];
+            namePart2 = namePart.split(':')[1];
+        } else {
+            namePart1 = namePart;
+            namePart2 = 0;
+        }
         var museArr = sysDefMusicBox.value;
         var museLint = museArr.split('//');
         for (i = 0; i < museLint.length; i++) {
             if (museLint[i].toLowerCase().includes(namePart.toLowerCase())) {
-                omniListen(museLint[i], true); break;
+                omniListen(museLint[i], true); nameInc++;
+                if (nameInc >= namePart2) { break; }
             } omniPause();
         }
     } else if ((index == (length - 1)) && (input.includes('./')) && (input.indexOf('./') == 0)) {
