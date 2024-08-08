@@ -9,11 +9,10 @@ if (strpos($request['output'], ',') !== false) {
             $outputVal = $outputValue; $outputArg = null;
         }
         if (file_exists($outputVal.'.pkg')) {
-            $pkgFileArr = explode(';', rtrim(eurarr($outputVal.'.pkg')['files'], ';'));
+            $pkgFileArr = pkgf($outputVal, true);
             if (count($pkgFileArr) > 1) {
                 unset($pkgFileArr[count($pkgFileArr)-1]);
-            }
-            if (file_exists($outputVal.'.collection.json')) {
+            } if (file_exists($outputVal.'.collection.json')) {
                 foreach ($pkgFileArr as $pkgOneFile) {
                     if (pathinfo($pkgOneFile, PATHINFO_EXTENSION) == 'png') {
                         $indexFileParts = explode('.', $pkgOneFile);
@@ -55,10 +54,8 @@ if (strpos($request['output'], ',') !== false) {
         $outputVal = $outputValue; $outputArg = null;
     }
     if (file_exists($outputVal.'.pkg')) {
-        $pkgFileArr = explode(';', rtrim(eurarr($outputVal.'.pkg')['files'], ';'));
-        if (count($pkgFileArr) > 1) {
-            unset($pkgFileArr[count($pkgFileArr)-1]);
-        }
+        $pkgFileArr = pkgf($outputVal, true);
+        if (count($pkgFileArr) > 1) { unset($pkgFileArr[count($pkgFileArr)-1]); }
         if (file_exists($outputVal.'.collection.json')) {
             foreach ($pkgFileArr as $pkgOneFile) {
                 if (pathinfo($pkgOneFile, PATHINFO_EXTENSION) == 'png') {

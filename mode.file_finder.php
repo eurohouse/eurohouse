@@ -143,7 +143,7 @@ $iconSize = 50; include 'file_manager.php'; ?>
     </p>
     </td>
     <?php } elseif ($mediaFileExtension == 'pkg') {
-        $mediaPkgInfo = eurarr($mediaFileBasename.'.pkg');
+        $mediaPkgInfo = (@json_decode(file_get_contents($mediaFileBasename.'.pkg'), true) != null) ? json_decode(file_get_contents($mediaFileBasename.'.pkg'), true) : [];
         $mediaPkgHost = $mediaPkgInfo['host'];
         $mediaPkgAuthor = $mediaPkgInfo['author'];
         $mediaPkgBranch = $mediaPkgInfo['branch'];

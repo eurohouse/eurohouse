@@ -1,20 +1,23 @@
 <?php
-function eurarr($name): array {
-    $arr = explode('|[1]|', (file_get_contents($name)));
-    $obj = []; foreach ($arr as $line) {
-        $obj[explode('|[>]|', $line)[0]] = explode('|[>]|', $line)[1];
-    } return $obj;
+function pkgf($pkg, $ar = false) {
+    if (@json_decode(file_get_contents($pkg.'.pkg'), true) != null) {
+        $pkgf = json_decode(file_get_contents($pkg.'.pkg'), true);
+        $pkgl = (isset($pkgf['files'])) ? $pkgf['files'] : '';
+    } else {
+        $pkgl = '';
+    } $pkgr = ($ar !== false) ? explode(';', $pkgl) : $pkgl;
+    return $pkgr;
 }
 function excpkg(array $arr, $exc = ''): array {
     $new = []; $fin = [];
     if ($exc != '') {
         if (strpos($exc, ',') !== false) {
             foreach (explode(',', $exc) as $iter=>$pkg) {
-                $pkgf = explode(';', rtrim(eurarr($pkg.'.pkg')['files'], ';'));
+                $pkgf = pkgf($pkg, true);
                 $new = ($iter == 0) ? $pkgf : array_merge($new, $pkgf);
             }
         } else {
-            $new = explode(';', rtrim(eurarr($exc.'.pkg')['files'], ';'));
+            $new = pkgf($exc, true);
         }
     } else {
         $new = $arr;
@@ -23,8 +26,7 @@ function excpkg(array $arr, $exc = ''): array {
         if (in_array($val, $arr) !== false) {
             $fin[] = $val;
         }
-    }
-    return ((!empty($fin)) ? array_unique($fin) : array_unique($arr));
+    } return ((!empty($fin)) ? array_unique($fin) : array_unique($arr));
 }
 function hHmMsS(int $num): string {
     return sprintf('%02d:%02d:%02d', (round($num)/3600), (round($num)/60%60), round($num)%60);
@@ -235,20 +237,17 @@ function textopen($name, $default = '') {
 }
 function fileopen($name, $default = '') {
     $fileOpen = (file_exists($name)) ? file_get_contents($name) : $default;
-    return (@unserialize($fileOpen) !== false) ? unserialize($fileOpen) : ((@json_decode($fileOpen, true) != null) ? json_decode($fileOpen, true) : ((@eurarr($name) !== null) ? eurarr($name) : ((@paging($name) !== null) ? paging($name) : $fileOpen)));
+    return (@unserialize($fileOpen) !== false) ? unserialize($fileOpen) : ((@json_decode($fileOpen, true) != null) ? json_decode($fileOpen, true) : (((@paging($name) !== null) ? paging($name) : $fileOpen)));
 }
 function arropen($name, $default = '{}', $exec = '') {
     if (!file_exists($name)) {
-        file_put_contents($name, $default);
-        chmod($name, 0777);
+        file_put_contents($name, $default); chmod($name, 0777);
     }
     $test = file_get_contents($name);
     if (@json_decode($test, true) != null) {
-        file_put_contents($name.'.bak', $test);
-        chmod($name.'.bak', 0777);
+        file_put_contents($name.'.bak', $test); chmod($name.'.bak', 0777);
     } else {
-        copy($name.'.bak', $name);
-        chmod($name, 0777);
+        copy($name.'.bak', $name); chmod($name, 0777);
     }
     if ($exec == 'DEFAULT') {
         $tryit = json_decode(file_get_contents($name), true);
@@ -530,14 +529,14 @@ function titler($name, array $voc, $title, $units = 'EU') {
     return (isset($collection[$volume]['language'][$units])) ? wordfx($collection[$volume]['language'][$units], $volume, $voc, $title, $units) : ((isset($collection[$volume]['title'])) ? wordfx($collection[$volume]['title'], $volume, $voc, $title, $units) : $name);
 }
 function titled($name, $units = 'EU') {
-    $domain = explode('.', $name)[0]; $domFile = eurarr($domain.'.pkg');
+    $domain = explode('.', $name)[0];
+    $domFile = (@json_decode(file_get_contents($domain.'.pkg'), true) != null) ? json_decode(file_get_contents($domain.'.pkg'), true) : [];
     if (isset($domFile['language'])) {
         $lang = valarr($domFile['language'], '. ', ' - ');
         $res = (isset($lang[$units])) ? $lang[$units] : $domFile['title'];
     } else {
         $res = $domFile['title'];
-    }
-    return $res;
+    } return $res;
 }
 function term($word, array $voc, $units = 'EU') {
     return (isset($voc[$units][$word])) ? $voc[$units][$word] : $word;

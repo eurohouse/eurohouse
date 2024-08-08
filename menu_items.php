@@ -15,12 +15,13 @@
             } ?>
 <img onmouseover="soundButton();" name="<?=$value;?>" style="height:20%;position:relative;" onclick="omniGo(this.name);" src="<?=$elementIcon.$suffix;?>" title="<?=(isset($menuItemLangNew[$session['units']])) ? $menuItemLangNew[$session['units']] : spaces($value);?>">
 <?php }} foreach ($appIndex as $key=>$value) {
-    $eurArrayPkg = eurarr($value);
+    $eurArrayPkg = (@json_decode(file_get_contents($value), true) != null) ? json_decode(file_get_contents($value), true) : [];
         if (!isset($eurArrayPkg['run'])) {
             unset($appIndex[array_search($value, $appIndex)]);
         }
     } foreach ($appIndex as $key=>$value) {
-        $eurArrPkg = eurarr($value); if (isset($eurArrPkg['favicon'])) {
+        $eurArrPkg = (@json_decode(file_get_contents($value), true) != null) ? json_decode(file_get_contents($value), true) : [];
+        if (isset($eurArrPkg['favicon'])) {
             if (file_exists($eurArrPkg['favicon'])) {
                 $eurArrFavicon = $eurArrPkg['favicon'];
             } else {
@@ -47,11 +48,12 @@
     <input type="button" class="button" name="<?=$value;?>" onmouseover="soundButton();" style="width:80%;position:relative;" value="<?=(isset($menuItemLangNew[$session['units']])) ? $menuItemLangNew[$session['units']] : spaces($value);?>" onclick="omniGo(this.name);">
     </p>
     <?php }} foreach ($appIndex as $key=>$value) {
-        $eurArrayPkg = eurarr($value); if (!isset($eurArrayPkg['run'])) {
+        $eurArrayPkg = (@json_decode(file_get_contents($value), true) != null) ? json_decode(file_get_contents($value), true) : [];
+        if (!isset($eurArrayPkg['run'])) {
             unset($appIndex[array_search($value, $appIndex)]);
         }
     } foreach ($appIndex as $key=>$value) {
-        $eurArrPkg = eurarr($value); ?>
+        $eurArrPkg = (@json_decode(file_get_contents($value), true) != null) ? json_decode(file_get_contents($value), true) : []; ?>
         <p align='center'>
         <input type="button" class="button" name="<?=$eurArrPkg['run'];?>" onmouseover="soundButton();" style="width:80%;position:relative;" value="<?=$eurArrPkg['title'];?>" onclick="window.location.href=this.name;">
         </p>

@@ -115,7 +115,7 @@ foreach ($index as $key=>$value) {
         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'true');" src="<?=$prefix.'info.png'.$suffix;?>">
     <?php } ?>
 <?php } elseif ($mediaFileExtension == 'pkg') {
-    $mediaPkgInfo = eurarr($mediaFileBasename.'.pkg');
+    $mediaPkgInfo = (@json_decode(file_get_contents($mediaFileBasename.'.pkg'), true) != null) ? json_decode(file_get_contents($mediaFileBasename.'.pkg'), true) : [];
     $mediaPkgHost = $mediaPkgInfo['host'];
     $mediaPkgAuthor = $mediaPkgInfo['author'];
     $mediaPkgBranch = $mediaPkgInfo['branch'];
