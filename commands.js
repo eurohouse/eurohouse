@@ -516,7 +516,7 @@ function omniEnter() {
         } else if ((input.includes('&')) || (input.includes('|')) || (input.includes('^')) || (input.includes('~'))) {
             omniBox.value = finarr(arrmath(input)).sort().join(',');
         } else {
-            omniBox.value = math(input);
+            omniBox.value = calc(input);
         }
     }
     omniBox.focus();

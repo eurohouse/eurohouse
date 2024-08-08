@@ -116,6 +116,8 @@ function world_clock() {
                 bookkeep_disp.innerHTML = '<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+fint[0]+'</th><th style="width:7%;">'+fint[1]+'</th><th style="width:7%;">'+fint[2]+'</th><th style="width:10%;">'+fint[3]+'</th><th style="width:10%;">'+fint[4]+'</th><th style="width:10%;">'+fint[5]+'</th></thead><tbody>'+JSONtoTab(sysDefBookKeep.value, sysDefFindValue.value, '^', 'N', gdio)+'</tbody></table>';
             } if (requestMode.value == 'statistics') {
                 tabOper.innerText = fint[6]; tabScore.innerText = fint[7];
+            } if (requestMode.value == 'calculator') {
+                tabMathHelp.innerText = pager(data, 7);
             } if (((obs == 1) && (spe == 1)) || ((obs == 1) && (spe == 0))) {
                 $('#powerButton').show(); $('.panel').hide();
                 $('.customPanel').hide(); $('.upperGap').hide();
