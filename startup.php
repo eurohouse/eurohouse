@@ -230,7 +230,7 @@ function wallpaper_engine() {
             <?php } else { ?>
                 $('#articleHead').text(pager(data, 7).toUpperCase());
                 $('#articleBody').text(pager(data, 8));
-                $('#articleLink').text(pager(data, 11));
+                $('#articleLink').attr('href', pager(data, 11));
                 $('#showingAvatarNow').attr('src', pager(data, 3));
             <?php } ?>
         },
