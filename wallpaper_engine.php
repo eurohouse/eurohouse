@@ -64,6 +64,7 @@ if (isset($cont[$showFilename])) {
     }
     $showLine = $showHead.$showBdayLine.$showLengthLine.$showMassLine.$showSizesLine.$showShoeSize;
     $showBody = (isset($ent['language'][$uni]['memoir'])) ? $ent['language'][$uni]['memoir'] : ((isset($ent['memoir'])) ? $ent['memoir'] : $showLine);
+    $showURLMaison = (isset($ent['maison'])) ? $ent['maison'] : "";
     if (isset($ent['insignia'])) {
         $assignAvatar1 = $brightAvaFore.$ent['insignia'].'.png';
         $assignAvatar2 = $brightAvaBack.$ent['insignia'].'.png';
@@ -73,7 +74,7 @@ if (isset($cont[$showFilename])) {
     }
 } else {
     $showHead = $userSettings['defaults']['title'];
-    $showBody = "";
+    $showBody = ""; $showURLMaison = "";
     $assignAvatar1 = $brightAvaFore.$userSettings['defaults']['avatar'].'.png';
     $assignAvatar2 = $brightAvaBack.$userSettings['defaults']['avatar'].'.png';
 }
@@ -89,4 +90,5 @@ $brightSysIcon.";".$brightRetIcon."\r\n\r\n".
 $showHead."\r\n\r\n".
 $showBody."\r\n\r\n".
 $personAvatar1."\r\n\r\n".
-$personAvatar2."\r\n\r\n";
+$personAvatar2."\r\n\r\n".
+$showURLMaison;

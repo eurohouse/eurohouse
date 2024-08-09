@@ -9,4 +9,5 @@
 </p>
 <h1 id="articleHead" align='center' style="cursor:pointer;" onclick="navigator.clipboard.writeText(this.innerText);"></h1>
 <p id="articleBody" align="center" style="cursot:pointer;" onclick="navigator.clipboard.writeText(this.innerText);"></p>
+<p align="center"><a id="articleLink"></a></p>
 <?php } ?>
