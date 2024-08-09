@@ -12,9 +12,15 @@
     <input type="range" min="0.5" max="1.5" step="0.05" value="<?=$session['audio_speed'];?>" class="slider" id="audioRatRange" onchange="setdata('audio_speed', this.value);"> 
     <input type="range" min="0.5" max="1.5" step="0.05" value="<?=$session['video_speed'];?>" class="slider" id="videoRatRange" onchange="setdata('video_speed', this.value);">
 </p></div>
-<div class="slidecontainer"><p align='center'><?=term('Audio Balance', $settings['vocabulary'], $session['units']);?> 
-<input type='button' id="audioBalInd" value="<?=$session['audio_balance'];?>"> <?=term('Video Balance', $settings['vocabulary'], $session['units']);?> 
-    <input type='button' id="videoBalInd" value="<?=$session['video_balance'];?>"></p><p align='center'>
-    <input type="range" min="-10000" max="10000" step="1000" value="<?=$session['audio_balance'];?>" class="slider" id="audioBalRange" onchange="setdata('audio_balance', this.value);"> 
-    <input type="range" min="-10000" max="10000" step="1000" value="<?=$session['video_balance'];?>" class="slider" id="videoBalRange" onchange="setdata('video_balance', this.value);">
+<div class="slidecontainer"><p align='center'><?=term('Alarm Volume', $settings['vocabulary'], $session['units']);?> 
+<input type='button' id="alarmVolInd" value="<?=$session['alarm_volume'];?>"> <?=term('Timer Volume', $settings['vocabulary'], $session['units']);?> 
+    <input type='button' id="timerVolInd" value="<?=$session['timer_volume'];?>"></p><p align='center'>
+    <input type="range" min="0" max="1" step="0.5" value="<?=$session['alarm_volume'];?>" class="slider" id="alarmVolRange" onchange="setdata('alarm_volume', this.value);"> 
+    <input type="range" min="0" max="1" step="0.5" value="<?=$session['timer_volume'];?>" class="slider" id="timerVolRange" onchange="setdata('timer_volume', this.value);">
+</p></div>
+<div class="slidecontainer"><p align='center'><?=term('Loop Volume', $settings['vocabulary'], $session['units']);?> 
+<input type='button' id="loopVolInd" value="<?=$session['loop_volume'];?>"> <?=term('Rest Volume', $settings['vocabulary'], $session['units']);?> 
+    <input type='button' id="restVolInd" value="<?=$session['rest_volume'];?>"></p><p align='center'>
+    <input type="range" min="0" max="1" step="0.5" value="<?=$session['loop_volume'];?>" class="slider" id="loopVolRange" onchange="setdata('loop_volume', this.value);"> 
+    <input type="range" min="0" max="1" step="0.5" value="<?=$session['rest_volume'];?>" class="slider" id="restVolRange" onchange="setdata('rest_volume', this.value);">
 </p></div>

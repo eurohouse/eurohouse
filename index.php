@@ -74,7 +74,7 @@
 </div>
 <div class='upperGap'>
 <span id='showUsUrgent' style="cursor:pointer;" onclick="navigator.clipboard.writeText(this.innerText);"></span>
-<audio id="audioPlayer" style="width:80%;position:relative;" preservesPitch="<?=boolval($session['pitch_lock']);?>" volume="<?=$session['audio_volume'];?>" balance="<?=$session['audio_balance'];?>" playbackRate="<?=$session['audio_speed'];?>" onended="if (sysDefAutoplay.value != 0) {
+<audio id="audioPlayer" style="width:80%;position:relative;" preservesPitch="<?=boolval($session['pitch_lock']);?>" volume="<?=$session['audio_volume'];?>" playbackRate="<?=$session['audio_speed'];?>" onended="if (sysDefAutoplay.value != 0) {
     if (sysDefShuffle.value != 0) {
         songIndex();
     } else {
@@ -89,11 +89,12 @@ if (file_exists('mode.'.$request['mode'].'.php')) {
     include 'welcome.php';
 } ?></div>
 <div class='lowerGap'><span id='showUsText' style="cursor:pointer;" onclick="navigator.clipboard.writeText(this.innerText);"></span></div>
-<audio id="backgroundPlayer" src="<?=$session['background_sound'];?>" onended="playAudio(this, this.src);">
-<audio id="tickerPlayer" src="<?=$session['ticking_sound'];?>" onended="playAudio(this, this.src);">
-<audio id="alarmPlayer" src="<?=$session['alarm_sound'];?>" onended="$('#buttonAlarm').attr('src', sysDefPrefix.value+'call.png'+sysDefSuffix.value);" onplay="$('#buttonAlarm').attr('src', sysDefPrefix.value+'dial.png'+sysDefSuffix.value);" onpause="$('#buttonAlarm').attr('src', sysDefPrefix.value+'call.png'+sysDefSuffix.value);">
-<audio id="soundPlayer"><audio id="typePlayer"><audio id="errorPlayer">
-<audio id="notifyPlayer"><audio id="bindPlayer">
-<audio id="hitPlayer"><audio id="sufferPlayer">
+<audio id="backgroundPlayer" src="<?=$session['background_sound'];?>" volume="<?=$session['loop_volume'];?>" onended="playAudio(this, this.src);">
+<audio id="tickerPlayer" src="<?=$session['ticking_sound'];?>" volume="<?=$session['timer_volume'];?>" onended="playAudio(this, this.src);">
+<audio id="alarmPlayer" src="<?=$session['alarm_sound'];?>" volume="<?=$session['alarm_volume'];?>" onended="$('#buttonAlarm').attr('src', sysDefPrefix.value+'call.png'+sysDefSuffix.value);" onplay="$('#buttonAlarm').attr('src', sysDefPrefix.value+'dial.png'+sysDefSuffix.value);" onpause="$('#buttonAlarm').attr('src', sysDefPrefix.value+'call.png'+sysDefSuffix.value);">
+<audio id="soundPlayer" volume="<?=$session['rest_volume'];?>"><audio id="typePlayer" volume="<?=$session['rest_volume'];?>">
+<audio id="errorPlayer" volume="<?=$session['rest_volume'];?>"><audio id="notifyPlayer" volume="<?=$session['rest_volume'];?>">
+<audio id="bindPlayer" volume="<?=$session['rest_volume'];?>"><audio id="hitPlayer" volume="<?=$session['rest_volume'];?>">
+<audio id="sufferPlayer" volume="<?=$session['rest_volume'];?>">
 </body>
 </html>

@@ -4,7 +4,6 @@ function replayVideo(obj) {
     setdata('pitch_lock', sysDefPitchLock.value);
     setdata('video_volume', sysDefVideoVolume.value);
     setdata('video_speed', sysDefVideoSpeed.value);
-    setdata('video_balance', sysDefVideoBalance.value);
 }
 function omniListen(input, scratch = false) {
     playAudio(audioPlayer, input);
@@ -14,7 +13,6 @@ function omniListen(input, scratch = false) {
     setdata('pitch_lock', sysDefPitchLock.value);
     setdata('audio_volume', sysDefAudioVolume.value);
     setdata('audio_speed', sysDefAudioSpeed.value);
-    setdata('audio_balance', sysDefAudioBalance.value);
 }
 function songIndex() {
     var museArr = sysDefMusicBox.value;
@@ -107,21 +105,28 @@ function setdata(ent, val) {
         echo "sysDef".camel($key).".value = obj['".$key."'];";
     } ?>
     if (ent == 'audio_volume') { audioPlayer.volume = val; }
-    if (ent == 'audio_balance') { audioPlayer.balance = val; }
     if (ent == 'audio_speed') { audioPlayer.playbackRate = val; }
-    if (ent == 'pitch_lock') { audioPlayer.preservesPitch = (val != 0) ? true : false; }
+    if (ent == 'alarm_volume') { alarmPlayer.volume = val; }
+    if (ent == 'timer_volume') { tickerPlayer.volume = val; }
+    if (ent == 'loop_volume') { backgroundPlayer.volume = val; }
+    if (ent == 'rest_volume') {
+        soundPlayer.volume = val; typePlayer.volume = val; errorPlayer.volume = val;
+        notifyPlayer.volume = val; bindPlayer.volume = val;
+        hitPlayer.volume = val; sufferPlayer.volume = val;
+    } if (ent == 'pitch_lock') { audioPlayer.preservesPitch = (val != 0) ? true : false; }
     if (requestMode.value == 'media_player') {
         if (ent == 'video_volume') { video.volume = val; }
-        if (ent == 'video_balance') { video.balance = val; }
         if (ent == 'video_speed') { video.playbackRate = val; }
         if (ent == 'pitch_lock') { video.preservesPitch = (val != 0) ? true : false; }
     } if (requestMode.value == 'volume_control') {
         if (ent == 'audio_volume') { audioVolInd.value = val; audioVolRange.value = val; }
-        if (ent == 'audio_balance') { audioBalInd.value = val; audioBalRange.value = val; }
         if (ent == 'audio_speed') { audioRatInd.value = val; audioRatRange.value = val; }
         if (ent == 'video_volume') { videoVolInd.value = val; videoVolRange.value = val; }
-        if (ent == 'video_balance') { videoBalInd.value = val; videoBalRange.value = val; }
         if (ent == 'video_speed') { videoRatInd.value = val; videoRatRange.value = val; }
+        if (ent == 'alarm_volume') { alarmVolInd.value = val; alarmVolRange.value = val; }
+        if (ent == 'timer_volume') { timerVolInd.value = val; timerVolRange.value = val; }
+        if (ent == 'loop_volume') { loopVolInd.value = val; loopVolRange.value = val; }
+        if (ent == 'rest_volume') { restVolInd.value = val; restVolRange.value = val; }
     } if (requestMode.value == 'visual_effects') {
         if (ent == 'opacity') { opacityRange.value = val; }
         if (ent == 'blur') { blurRange.value = val; }

@@ -13,8 +13,7 @@ if ($userData['memo'] != '') {
     }
 } else {
     $ongoingSignature = 0; $incomingSignature = 0; $alarmInTime = 0;
-}
-$dateTimeCode = $ongoingSignature.$incomingSignature.date('w');
+} $dateTimeCode = $ongoingSignature.$incomingSignature.date('w');
 $dateTimeStr = ($userData['timedisp'] != 0) ? date($userData['date_format']) : date($userData['time_format']);
 if ($userData['vintage'] != 0) {
     $vintageBackdropFilter = "blur(0.".round($userData['magnitude']/1.5)."px)";
@@ -42,7 +41,7 @@ for ($i = 0; $i < 7; $i++) {
 $dateTimeCode." ".$userData['observe'].$userData['spectate']."\r\n\r\n".
 hHmMsS($alarmInTime)."\r\n\r\n".
 $vintageBackdropFilter.";".$overlayBeforeBackground.";".$overlayBeforeAnimation.";".$overlayAfterBackground.";".$overlayAfterAnimation."\r\n\r\n".
-$userData['audio_volume'].' '.$userData['audio_speed'].' '.$userData['audio_balance'].' '.$userData['video_volume'].' '.$userData['video_speed'].' '.$userData['video_balance']."\r\n\r\n".
+$userData['audio_volume'].' '.$userData['audio_speed'].' '.$userData['video_volume'].' '.$userData['video_speed'].' '.$userData['alarm_volume'].' '.$userData['timer_volume'].' '.$userData['loop_volume'].' '.$userData['rest_volume']."\r\n\r\n".
 $termDat.' | '.$termSen.' | '.$termRec.' | '.$termDeb.' | '.$termCre.' | '.$termBal.' | '.$termOper.' | '.$termScore."\r\n\r\n".
 implode(' ', $wd)."\r\n\r\n".
 $mathHelp;

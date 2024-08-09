@@ -67,8 +67,9 @@ function world_clock() {
             var gdio = pager(data, 6).split(' ');
             if (requestMode.value == 'volume_control') {
                 audioVolInd.value = mixers[0]; audioRatInd.value = mixers[1];
-                audioBalInd.value = mixers[2]; videoVolInd.value = mixers[3];
-                videoRatInd.value = mixers[4]; videoBalInd.value = mixers[5];
+                videoVolInd.value = mixers[2]; videoRatInd.value = mixers[3];
+                alarmVolInd.value = mixers[4]; timerVolInd.value = mixers[5];
+                loopVolInd.value = mixers[6]; restVolInd.value = mixers[7];
             } var tickCode = enzi[0]; var tickPanel = enzi[1];
             var obs = tickPanel.split('')[0]; var spe = tickPanel.split('')[1];
             $('#powerButton').attr('src', sysDefPrefix.value+'power.png'+sysDefSuffix.value);
