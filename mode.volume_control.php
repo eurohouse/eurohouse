@@ -15,12 +15,12 @@
 <div class="slidecontainer"><p align='center'><?=term('Alarm Volume', $settings['vocabulary'], $session['units']);?> 
 <input type='button' id="alarmVolInd" value="<?=$session['alarm_volume'];?>"> <?=term('Timer Volume', $settings['vocabulary'], $session['units']);?> 
     <input type='button' id="timerVolInd" value="<?=$session['timer_volume'];?>"></p><p align='center'>
-    <input type="range" min="0" max="1" step="0.5" value="<?=$session['alarm_volume'];?>" class="slider" id="alarmVolRange" onchange="setdata('alarm_volume', this.value);"> 
-    <input type="range" min="0" max="1" step="0.5" value="<?=$session['timer_volume'];?>" class="slider" id="timerVolRange" onchange="setdata('timer_volume', this.value);">
+    <input type="range" min="0" max="1" step="0.05" value="<?=$session['alarm_volume'];?>" class="slider" id="alarmVolRange" onchange="setdata('alarm_volume', this.value);"> 
+    <input type="range" min="0" max="1" step="0.05" value="<?=$session['timer_volume'];?>" class="slider" id="timerVolRange" onchange="setdata('timer_volume', this.value);">
 </p></div>
 <div class="slidecontainer"><p align='center'><?=term('Loop Volume', $settings['vocabulary'], $session['units']);?> 
 <input type='button' id="loopVolInd" value="<?=$session['loop_volume'];?>"> <?=term('Rest Volume', $settings['vocabulary'], $session['units']);?> 
     <input type='button' id="restVolInd" value="<?=$session['rest_volume'];?>"></p><p align='center'>
-    <input type="range" min="0" max="1" step="0.5" value="<?=$session['loop_volume'];?>" class="slider" id="loopVolRange" onchange="setdata('loop_volume', this.value);"> 
-    <input type="range" min="0" max="1" step="0.5" value="<?=$session['rest_volume'];?>" class="slider" id="restVolRange" onchange="setdata('rest_volume', this.value);">
+    <input type="range" min="0" max="1" step="0.05" value="<?=$session['loop_volume'];?>" class="slider" id="loopVolRange" onchange="setdata('loop_volume', this.value);"> 
+    <input type="range" min="0" max="1" step="0.05" value="<?=$session['rest_volume'];?>" class="slider" id="restVolRange" onchange="setdata('rest_volume', this.value);">
 </p></div>
