@@ -69,7 +69,7 @@ $homeDocumentIcon = $themePrefix.'home.png';
 <?php } ?>
 <img class="actionIcon" src="<?=$copyDocumentIcon.$suffix;?>" onmouseover="soundButton();" id="copyButton" onclick="copy(filename.value, doto.value, false);">
 <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
-    <img class="actionIcon" src="<?=$deleteDocumentIcon.$suffix;?>" onmouseover="soundButton();" id="deleteButton" onclick="del(filename.value, false);">
+    <img class="actionIcon" src="<?=$deleteDocumentIcon.$suffix;?>" onmouseover="soundButton();" id="deleteButton" onclick="recycle(filename.value, false);">
 <?php } else { ?>
     <img class="actionIcon" src="<?=$infoDocumentIcon.$suffix;?>" onmouseover="soundButton();" id="infoButton" onclick="omniPath(filename.value, '', 'true');">
 <?php } ?>

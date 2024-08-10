@@ -455,6 +455,17 @@ function omniEnter() {
                     window.location.reload();
                 }
             }
+        } else if (input.startsWith('trash ')) {
+            if (sysDefSessionID.value == 'root') {
+                arj = input.replace('trash ', '');
+                arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
+                if (arg.length > 0) {
+                    for (i = 0; i < arg.length; i++) {
+                        recycle(requestPath.value+'/'+arg[i].replaceAll('"', ''), true);
+                    }
+                    window.location.reload();
+                }
+            }
         } else if (input.startsWith('rm ')) {
             if (sysDefSessionID.value == 'root') {
                 arj = input.replace('rm ', '');

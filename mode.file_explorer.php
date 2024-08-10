@@ -18,7 +18,7 @@ foreach ($index as $key=>$value) {
     <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFilePerms;?>" style="width:<?=$line3Size;?>px;" onmouseover="soundButton();">
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor', this.name, 'true');" src="<?=$prefix.'book.png'.$suffix;?>">
     <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
-        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="del(this.name);" src="<?=$prefix.'delete.png'.$suffix;?>">
+        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="recycle(this.name);" src="<?=$prefix.'delete.png'.$suffix;?>">
     <?php } else { ?>
         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'true');" src="<?=$prefix.'info.png'.$suffix;?>">
     <?php } ?>
@@ -37,7 +37,7 @@ foreach ($index as $key=>$value) {
     <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFilePerms;?>" style="width:<?=$line3Size;?>px;" onmouseover="soundButton();">
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor', this.name, 'true');" src="<?=$prefix.'book.png'.$suffix;?>">
     <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
-        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="del(this.name);" src="<?=$prefix.'delete.png'.$suffix;?>">
+        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="recycle(this.name);" src="<?=$prefix.'delete.png'.$suffix;?>">
     <?php } else { ?>
         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'true');" src="<?=$prefix.'info.png'.$suffix;?>">
     <?php } ?>
@@ -55,7 +55,7 @@ foreach ($index as $key=>$value) {
     <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFilePerms;?>" style="width:<?=$line3Size;?>px;" onmouseover="soundButton();">
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor', this.name, 'false');" src="<?=$prefix.'book.png'.$suffix;?>">
     <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
-        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="del(this.name);" src="<?=$prefix.'delete.png'.$suffix;?>">
+        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="recycle(this.name);" src="<?=$prefix.'delete.png'.$suffix;?>">
     <?php } else { ?>
         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'true');" src="<?=$prefix.'info.png'.$suffix;?>">
     <?php } ?>
@@ -66,7 +66,7 @@ foreach ($index as $key=>$value) {
     <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFilePerms;?>" style="width:<?=$line3Size;?>px;" onmouseover="soundButton();">
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor', this.name, 'false');" src="<?=$prefix.'book.png'.$suffix;?>">
     <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
-        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="del(this.name);" src="<?=$prefix.'delete.png'.$suffix;?>">
+        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="recycle(this.name);" src="<?=$prefix.'delete.png'.$suffix;?>">
     <?php } else { ?>
         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'true');" src="<?=$prefix.'info.png'.$suffix;?>">
     <?php } ?>
@@ -77,7 +77,7 @@ foreach ($index as $key=>$value) {
     <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFilePerms;?>" style="width:<?=$line3Size;?>px;" onmouseover="soundButton();">
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor', this.name, 'false');" src="<?=$prefix.'book.png'.$suffix;?>">
     <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
-        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="del(this.name);" src="<?=$prefix.'delete.png'.$suffix;?>">
+        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="recycle(this.name);" src="<?=$prefix.'delete.png'.$suffix;?>">
     <?php } else { ?>
         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'true');" src="<?=$prefix.'info.png'.$suffix;?>">
     <?php } ?>
@@ -88,7 +88,7 @@ foreach ($index as $key=>$value) {
     <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFilePerms;?>" style="width:<?=$line3Size;?>px;" onmouseover="soundButton();">
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor', this.name, 'false');" src="<?=$prefix.'book.png'.$suffix;?>">
     <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
-        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="del(this.name);" src="<?=$prefix.'delete.png'.$suffix;?>">
+        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="recycle(this.name);" src="<?=$prefix.'delete.png'.$suffix;?>">
     <?php } else { ?>
         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'true');" src="<?=$prefix.'info.png'.$suffix;?>">
     <?php } ?>
@@ -99,7 +99,7 @@ foreach ($index as $key=>$value) {
     <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFilePerms;?>" style="width:<?=$line3Size;?>px;" onmouseover="soundButton();">
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor', this.name, 'false');" src="<?=$prefix.'book.png'.$suffix;?>">
     <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
-        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="del(this.name);" src="<?=$prefix.'delete.png'.$suffix;?>">
+        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="recycle(this.name);" src="<?=$prefix.'delete.png'.$suffix;?>">
     <?php } else { ?>
         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'true');" src="<?=$prefix.'info.png'.$suffix;?>">
     <?php } ?>
@@ -110,7 +110,7 @@ foreach ($index as $key=>$value) {
     <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFilePerms;?>" style="width:<?=$line3Size;?>px;" onmouseover="soundButton();">
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor', this.name, 'false');" src="<?=$prefix.'book.png'.$suffix;?>">
     <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
-        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="del(this.name);" src="<?=$prefix.'delete.png'.$suffix;?>">
+        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="recycle(this.name);" src="<?=$prefix.'delete.png'.$suffix;?>">
     <?php } else { ?>
         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'true');" src="<?=$prefix.'info.png'.$suffix;?>">
     <?php } ?>
@@ -137,7 +137,7 @@ foreach ($index as $key=>$value) {
     <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFilePerms;?>" style="width:<?=$line3Size;?>px;" onmouseover="soundButton();">
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor', this.name, 'true');" src="<?=$prefix.'book.png'.$suffix;?>">
     <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
-        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="del(this.name);" src="<?=$prefix.'delete.png'.$suffix;?>">
+        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="recycle(this.name);" src="<?=$prefix.'delete.png'.$suffix;?>">
     <?php } else { ?>
         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'true');" src="<?=$prefix.'info.png'.$suffix;?>">
     <?php } ?>
@@ -148,7 +148,7 @@ foreach ($index as $key=>$value) {
     <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFilePerms;?>" style="width:<?=$line3Size;?>px;" onmouseover="soundButton();">
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor', this.name, 'true');" src="<?=$prefix.'book.png'.$suffix;?>">
     <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
-        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="del(this.name);" src="<?=$prefix.'delete.png'.$suffix;?>">
+        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="recycle(this.name);" src="<?=$prefix.'delete.png'.$suffix;?>">
     <?php } else { ?>
         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'true');" src="<?=$prefix.'info.png'.$suffix;?>">
     <?php } ?>
@@ -162,7 +162,7 @@ foreach ($index as $key=>$value) {
     <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFilePerms;?>" style="width:<?=$line3Size;?>px;" onmouseover="soundButton();">
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor', this.name, 'true');" src="<?=$prefix.'book.png'.$suffix;?>">
     <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
-        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="del(this.name);" src="<?=$prefix.'delete.png'.$suffix;?>">
+        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="recycle(this.name);" src="<?=$prefix.'delete.png'.$suffix;?>">
     <?php } else { ?>
         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'true');" src="<?=$prefix.'info.png'.$suffix;?>">
     <?php } ?>
@@ -173,7 +173,7 @@ foreach ($index as $key=>$value) {
     <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFilePerms;?>" style="width:<?=$line3Size;?>px;" onmouseover="soundButton();">
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor', this.name, 'true');" src="<?=$prefix.'book.png'.$suffix;?>">
     <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
-        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="del(this.name);" src="<?=$prefix.'delete.png'.$suffix;?>">
+        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="recycle(this.name);" src="<?=$prefix.'delete.png'.$suffix;?>">
     <?php } else { ?>
         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'true');" src="<?=$prefix.'info.png'.$suffix;?>">
     <?php } ?>
@@ -184,7 +184,7 @@ foreach ($index as $key=>$value) {
     <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFilePerms;?>" style="width:<?=$line3Size;?>px;" onmouseover="soundButton();">
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor', this.name, 'true');" src="<?=$prefix.'book.png'.$suffix;?>">
     <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
-        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="del(this.name);" src="<?=$prefix.'delete.png'.$suffix;?>">
+        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="recycle(this.name);" src="<?=$prefix.'delete.png'.$suffix;?>">
     <?php } else { ?>
         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'true');" src="<?=$prefix.'info.png'.$suffix;?>">
     <?php } ?>
@@ -195,7 +195,7 @@ foreach ($index as $key=>$value) {
     <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFilePerms;?>" style="width:<?=$line3Size;?>px;" onmouseover="soundButton();">
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor', this.name, 'false');" src="<?=$prefix.'book.png'.$suffix;?>">
     <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
-        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="del(this.name);" src="<?=$prefix.'delete.png'.$suffix;?>">
+        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="recycle(this.name);" src="<?=$prefix.'delete.png'.$suffix;?>">
     <?php } else { ?>
         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'true');" src="<?=$prefix.'info.png'.$suffix;?>">
     <?php } ?>
