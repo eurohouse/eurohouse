@@ -647,9 +647,5 @@
             "User Operation:": "現在のユーザー操作:", "Rest Volume": "休息時の音量",
             "Sell": "売り手", "Buy": "お客様"
         }
-    },
-    "math_help":
-    {
-        "default": "Addition Qualities:\r\na+b=b+a\ta+(b+c)=(a+b)+c\ta+0=a\r\nSubtraction Qualities:\r\na-(b+c)=a-b-c\t(a+b)-c=(b-c)+a\ta-0=a\ta-a=0\r\nMultiplication Qualities:\r\na*b=b*a\ta*(b*c)=(a*b)*c\t(a+b)*c=a*c+b*c\t(a−b)*c=a*c−b*c\t0*a*b*c=0\ta*1=a\r\nDivision Qualities:\r\na/0=Infinity\t0/a=0\ta/a=1\ta/1=a\ta/b!=b/a\t(a+b)/c=(a/c)+(b/c)\t(a-b)/c=(a/c)-(b/c)\t(a/c)*b=(a*b)/c=a*(b/с)\ta/(b*c)=(a/b)/c=(a/c)/b"
     }
 }
