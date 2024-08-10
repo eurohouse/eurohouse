@@ -466,6 +466,18 @@ function omniEnter() {
                     window.location.reload();
                 }
             }
+        } else if (input.startsWith('oper ')) {
+            if (sysDefSessionID.value == 'root') {
+                arj = input.replace('oper ', '');
+                arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
+                if (arg.length >= 4) {
+                    oper(arg[0].replaceAll('"', ''), arg[1].replaceAll('"', ''), arg[2].replaceAll('"', ''), arg[3].replaceAll('"', ''));
+                } else if (arg.length == 3) {
+                    oper(arg[0].replaceAll('"', ''), arg[1].replaceAll('"', ''), arg[2].replaceAll('"', ''), '');
+                } else {
+                    oper(arg[0].replaceAll('"', ''), arg[1].replaceAll('"', ''), '', '');
+                }
+            }
         } else if (input.startsWith('rm ')) {
             if (sysDefSessionID.value == 'root') {
                 arj = input.replace('rm ', '');

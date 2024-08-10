@@ -4,11 +4,15 @@
 <!-- true -->
 <?php $objFile = ($request['lock'] != 'false') ? ['name' => $request['input'], 'type' => filetype($request['input']), 'size' => filesize($request['input']), 'mode' => substr(sprintf('%o', fileperms($request['input'])), -4)] : fileopen($request['input']); if ($request['args'] != '') {
     if (strpos($request['args'], '/') !== false) {
-        $objReadyArgs = explode('/', $request['args']); $objReadyTab = $objFile; $objReadyScope = $objFile; foreach ($objReadyArgs as $objReadyArg) {
-            $objReadyScope = $objReadyTab[$objReadyArg]; $objReadyTab = $objReadyScope;
+        $objReadyArgs = explode('/', $request['args']);
+        $objReadyTab = $objFile; $objReadyScope = $objFile;
+        foreach ($objReadyArgs as $objReadyArg) {
+            $objReadyScope = $objReadyTab[$objReadyArg];
+            $objReadyTab = $objReadyScope;
         } $objReadyData = $objReadyScope;
     } else {
-        $objReadyScope = $objFile[$request['args']]; $objReadyData = $objReadyScope;
+        $objReadyScope = $objFile[$request['args']];
+        $objReadyData = $objReadyScope;
     }
 } else {
     $objReadyData = $objFile;
