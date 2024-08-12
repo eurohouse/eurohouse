@@ -466,16 +466,16 @@ function omniEnter() {
                     window.location.reload();
                 }
             }
-        } else if (input.startsWith('oper ')) {
+        } else if (input.startsWith('arr ')) {
             if (sysDefSessionID.value == 'root') {
-                arj = input.replace('oper ', '');
+                arj = input.replace('arr ', '');
                 arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
                 if (arg.length >= 4) {
-                    oper(arg[0].replaceAll('"', ''), arg[1].replaceAll('"', ''), arg[2].replaceAll('"', ''), arg[3].replaceAll('"', ''));
+                    arr(arg[0].replaceAll('"', ''), arg[1].replaceAll('"', ''), arg[2].replaceAll('"', ''), arg[3].replaceAll('"', ''));
                 } else if (arg.length == 3) {
-                    oper(arg[0].replaceAll('"', ''), arg[1].replaceAll('"', ''), arg[2].replaceAll('"', ''), '');
+                    arr(arg[0].replaceAll('"', ''), arg[1].replaceAll('"', ''), arg[2].replaceAll('"', ''), '');
                 } else {
-                    oper(arg[0].replaceAll('"', ''), arg[1].replaceAll('"', ''), '', '');
+                    arr(arg[0].replaceAll('"', ''), arg[1].replaceAll('"', ''), '', '');
                 }
             }
         } else if (input.startsWith('rm ')) {
