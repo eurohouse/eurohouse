@@ -28,6 +28,15 @@ function excpkg(array $arr, $exc = ''): array {
         }
     } return ((!empty($fin)) ? array_unique($fin) : array_unique($arr));
 }
+function dir_size($path) {
+    $bytestotal = 0;
+    $path = realpath($path);
+    if (($path !== false) && ($path != '') && file_exists($path)) {
+        foreach(new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path, FilesystemIterator::SKIP_DOTS)) as $object){
+            $bytestotal += $object->getSize();
+        }
+    } return $bytestotal;
+}
 function hHmMsS(int $num): string {
     return sprintf('%02d:%02d:%02d', (round($num)/3600), (round($num)/60%60), round($num)%60);
 }

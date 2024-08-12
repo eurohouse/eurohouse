@@ -3,6 +3,10 @@
 <?php
 $line1Size = 70;
 $recycleDir = str_replace('./.trash/','',(glob('./.trash/*_fragment.json')));
+$sizeString = sizestr(dir_size('./.trash/'), $settings['locale']['size'], $session['units']);
+?>
+<p align="center"><?=$sizeString;?></p>
+<?php
 foreach ($recycleDir as $key=>$val) { ?>
     <p align="center" class="block">
     <input type="button" name="<?='./.trash/'.$val;?>" value="<?=str_replace('_fragment.json', '', $val);?>" style="width:<?=$line1Size;?>%;" onmouseover="soundButton();" onclick="omniPath(this.name,'','false');">
