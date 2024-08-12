@@ -1,8 +1,0 @@
-# Music; lock_music: supermouse;
-# Avatar; avatar: game;
-# Background; background: metro.gta3.00.png;
-# UI; back_color: 4D4D64; fore_color: 677973C0; input_color: 67797360; back_text_color: FDDC70; fore_text_color: FDDC70; input_text_color: 000000; blank_color: FFFFFF; blank_text_color: 000000; arc_fore_color: 677973C0; arc_input_color: 67797360; opacity: 64; radius: 0; box_shadow: 0; gradient_deg: 180; gloss: 0;
-# Audio; mute: 0; alarm_sound: GTA Vice City - Countdown.wav; ticking_sound: GTA Vice City - Timer.wav; background_sound: GTA III - Intro.wav; focus_sound: GTA Vice City - Scroll.wav; type_sound: GTA Vice City - Notification.wav; error_sound: GTA Vice City - Notification.wav; notify_sound: GTA Vice City - Ambulance.wav; bind_sound: GTA Vice City - Pick Up.wav; hit_sound: GTA Vice City - Punch.wav; suffer_sound: GTA Vice City - Scream.wav;
-# Font; font_ascii: BankGothicMediumBT.ttf; font_latin: BankGothicMediumBT.ttf; font_phone: LiberationSans-Bold.ttf; font_greek: Menlo-Bold.ttf; font_cyril: PricedownRus.ttf; font_arabi: NotoSansArabic-Bold.ttf; font_korea: Binggrae-Bold.otf; font_china: hywenhei.ttf; font_other: UnifontMedium.ttf; font_emoji: NotoColorEmoji.ttf;
-# UX; theme: iso; menu: file_explorer,preferences,volume_control,statistics; icons: 0; faceoff: 1;
-# Space; lock_background: metro; lock_avatar: avatar; lock_font: unix; lock_sound: supermouse;
