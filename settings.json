@@ -429,6 +429,7 @@
         "menu": "file_finder,preferences",
         "theme": "iso",
         "memo": "",
+        "notes": "",
         "find": "#",
         "find_value": "^",
         "stats": "score",
