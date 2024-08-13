@@ -1,11 +1,13 @@
 <?php
 function dat($hex) {
-    $dat = explode(' ', $hex);
-    $chr = ''; $met = false;
-    foreach ($dat as $ord=>$val) {
-        $chr .= html_entity_decode('&#x'.$val.';');
-    };
-    return $chr;
+    $res = '';
+    if ($hex != '') {
+        $dat = explode(' ', $hex);
+        $chr = ''; $met = false;
+        foreach ($dat as $ord=>$val) {
+            $chr .= html_entity_decode('&#x'.$val.';');
+        }; $res = $chr;
+    } return $res;
 }
 function pkgf($pkg, $ar = false) {
     if (@json_decode(file_get_contents($pkg.'.pkg'), true) != null) {
