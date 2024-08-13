@@ -5,7 +5,7 @@
 <input type="button" onmouseover="soundButton();" onclick="myNotesDoc.value = ''; setdata('notes', bin2hex(''));" value="<?=term('Clear', $settings['vocabulary'], $session['units']);?>">
 </p>
 <p align='center'>
-<textarea id="myNotesDoc" style="width:78%;height:45%;" placeholder="<?=term('What\'s on your mind...', $settings['vocabulary'], $session['units']);?>" onkeydown="if (event.keyCode == 27) {
+<textarea id="myNotesDoc" style="width:78%;height:60%;" placeholder="<?=term('What\'s on your mind...', $settings['vocabulary'], $session['units']);?>" onkeydown="if (event.keyCode == 27) {
     myNotesDoc.value = '';
     setdata('notes', bin2hex(''));
 } else if (event.keyCode == 8) {
