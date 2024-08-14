@@ -22,6 +22,7 @@ ini_set("session.cookie_lifetime", $settings['lifetime']['cookie_default']);
 session_start(); wasAuth(); $sessionID = whichSess();
 setcookie('user', $sessionID, time() + $settings['lifetime']['cookie_lengthen']);
 $session = arropen($sessionID.'_session.json', json_encode($settings['defaults']), 'DEFAULT');
+$metadata = arropen($sessionID.'_metadata.json', json_encode($settings['metadata']), 'CUSTOM');
 $bindData = arropen('binding.json', "{\"root\":\"root\"}");
 $powersData = arropen('dominion.json', "{\"root\":0}");
 $automateData = arropen('automator.json', "{\"root\":\"manual\"}");

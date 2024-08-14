@@ -346,6 +346,9 @@
             "https://github.com/eurohouse/mascarpone"
         ]
     },
+    "metadata": {
+        "description": ""
+    },
     "defaults": {
         "timezone": 0,
         "units": "EU",
@@ -374,7 +377,6 @@
         "child_safe": 1,
         "magnitude": 5,
         "title": "",
-        "description": "",
         "avatar": "eurohouse",
         "reticle": "reticle",
         "reticle_choice_1": "reticle",
@@ -429,10 +431,10 @@
         "menu": "file_finder,preferences",
         "theme": "iso",
         "memo": "",
-        "notes": "",
         "find": "#",
         "find_value": "^",
         "stats": "score",
+        "current_entry": "description",
         "position": "50% 25%",
         "audio_volume": 1,
         "audio_speed": 1,

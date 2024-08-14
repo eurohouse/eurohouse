@@ -80,6 +80,17 @@ function lockdata() {
         } $iter = 0; ?>
     }; return obj;
 }
+function metadata() {
+    var obj = {
+        <?php $iter = 0; foreach ($metadata as $key=>$value) {
+            if (count($metadata) == ($iter - 1)) {
+                echo "'".$key."': meta".camel($key).".value";
+            } else {
+                echo "'".$key."': meta".camel($key).".value,";
+            } $iter++;
+        } $iter = 0; ?>
+    }; return obj;
+}
 function userdata() {
     var obj = {
         <?php $iter = 0; foreach ($settings['defaults'] as $key=>$value) {
@@ -96,6 +107,20 @@ function setlock(ent, val) {
     set(sysDefSessionID.value+'_lock.json', JSON.stringify(obj), true);
     <?php foreach ($locks as $key=>$value) {
         echo "lock".camel($key).".value = obj['".$key."'];";
+    } ?>
+}
+function setmeta(ent, val) {
+    var obj = metadata(); obj[ent] = val;
+    set(sysDefSessionID.value+'_metadata.json', JSON.stringify(obj), true);
+    <?php foreach ($metadata as $key=>$value) {
+        echo "meta".camel($key).".value = obj['".$key."'];";
+    } ?>
+}
+function delmeta(ent) {
+    var obj = metadata(); delete obj[ent];
+    set(sysDefSessionID.value+'_metadata.json', JSON.stringify(obj), true);
+    <?php foreach ($metadata as $key=>$value) {
+        echo "meta".camel($key).".value = obj['".$key."'];";
     } ?>
 }
 function setdata(ent, val) {

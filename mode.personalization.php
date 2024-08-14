@@ -6,10 +6,10 @@
 <img style="height:11%;position:relative;" id="chooseReticle3" name="<?=$session['reticle_choice_3'];?>" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_3'].'.png'.$suffix;?>" onclick="setdata('reticle', chooseReticle3.name);">
 <img style="height:11%;position:relative;" id="chooseReticle4" name="<?=$session['reticle_choice_4'];?>" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_4'].'.png'.$suffix;?>" onclick="setdata('reticle', chooseReticle4.name);">
 <img style="height:11%;position:relative;" id="chooseReticle5" name="<?=$session['reticle_choice_5'];?>" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_5'].'.png'.$suffix;?>" onclick="setdata('reticle', chooseReticle5.name);"><br>
-<input type="button" onmouseover="soundButton();" onclick="setdata('date_format', setDateFormat.value); setdata('time_format', setTimeFormat.value); setdata('position', setImagePosition.value); setdata('title', encodeURIComponent(setTitle.value)); setdata('description', encodeURIComponent(setDescription.value));" value="<?=term('Apply', $settings['vocabulary'], $session['units']);?>">
-<input type="button" onmouseover="soundButton();" onclick="setdata('units_list', setLanguages.value); setdata('menu', setMenuItems.value); window.location.reload();" value="<?=term('Update', $settings['vocabulary'], $session['units']);?>">
+<input type="button" onmouseover="soundButton();" onclick="setdata('date_format', setDateFormat.value); setdata('time_format', setTimeFormat.value); setdata('position', setImagePosition.value); setdata('title', encodeURIComponent(setTitle.value));" value="<?=term('Apply', $settings['vocabulary'], $session['units']);?>">
+<input type="button" onmouseover="soundButton();" onclick="setmeta('description', bin2hex(setDescription.value)); setdata('units_list', setLanguages.value); setdata('menu', setMenuItems.value); window.location.reload();" value="<?=term('Update', $settings['vocabulary'], $session['units']);?>">
 <input type="button" onmouseover="soundButton();" onclick="setDateFormat.value = 'Y-m-d'; setdata('date_format', setDateFormat.value); setTimeFormat.value = 'H:i:s'; setdata('time_format', setTimeFormat.value); setImagePosition.value = '50% 25%'; setdata('position', setImagePosition.value);" value="<?=term('Reset', $settings['vocabulary'], $session['units']);?>">
-<input type="button" onmouseover="soundButton();" onclick="setLanguages.value = 'EU,US'; setdata('units_list', setLanguages.value); setMenuItems.value = 'file_finder,preferences'; setdata('menu', setMenuItems.value); window.location.reload();" value="<?=term('Clear', $settings['vocabulary'], $session['units']);?>"><br>
+<input type="button" onmouseover="soundButton();" onclick="setLanguages.value = 'EU,US'; setdata('units_list', setLanguages.value); window.location.reload();" value="<?=term('Clear', $settings['vocabulary'], $session['units']);?>"><br>
 <label><?=term('Name/Position:', $settings['vocabulary'], $session['units']);?></label><br>
 <input type="text" id="setTitle" style="width:46%;" value="<?=$session['title'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('title', encodeURIComponent(this.value));
@@ -23,7 +23,8 @@
 <input type="text" id="setImagePosition" style="width:30%;" value="<?=$session['position'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('position', this.value);
 } else if (event.keyCode == 27) {
-    this.value = '50% 25%'; setdata('position', this.value);
+    this.value = '50% 25%';
+    setdata('position', this.value);
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
@@ -31,13 +32,14 @@
 }" oninput="soundButton(true);">
 <br><label><?=term('Description:', $settings['vocabulary'], $session['units']);?></label><br>
 <textarea id="setDescription" style="width:78%;height:25%;" placeholder="<?=term('What\'s on your mind...', $settings['vocabulary'], $session['units']);?>" onkeydown="if (event.keyCode == 27) {
-    setDescription.value = ''; setdata('description', '');
+    setDescription.value = '';
+    setmeta('description', bin2hex(''));
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
     handleInput(this.value);
 }" oninput="handleInput(this.value, true);">
-<?=$session['description'];?></textarea><br>
+<?=dat($metadata['description']);?></textarea><br>
 <label><a href="https://www.php.net/manual/en/datetime.format.php">ISO 8601</a> <?=term('&', $settings['vocabulary'], $session['units']);?> <a href="https://www.iso.org/obp/ui/#iso:pub:PUB500001:en">ISO 3166</a></label><br>
 <input type="text" id="setDateFormat" style="width:25%;" value="<?=$session['date_format'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('date_format', setDateFormat.value);

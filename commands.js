@@ -21,8 +21,7 @@ function executeMacros(input, index = 0, length = 1) {
             namePart1 = namePart.split(':')[0];
             namePart2 = namePart.split(':')[1];
         } else {
-            namePart1 = namePart;
-            namePart2 = 0;
+            namePart1 = namePart; namePart2 = 0;
         }
         var museArr = sysDefMusicBox.value;
         var museLint = museArr.split('//');
@@ -111,6 +110,8 @@ function executeMacros(input, index = 0, length = 1) {
             }
         } else if (rep[0].startsWith('lock_')) {
             setlock(rep[0].replace('lock_', ''), rep[1]);
+        } else if (rep[0].startsWith('meta_')) {
+            setmeta(rep[0].replace('meta_', ''), bin2hex(rep[1]));
         } else {
             setdata(rep[0], rep[1]);
         }
@@ -148,6 +149,8 @@ function executeMacros(input, index = 0, length = 1) {
     } else {
         if (input.startsWith('lock_')) {
             output = input + ': ' + lockdata()[input.replace('lock_', '')];
+        } else if (input.startsWith('meta_')) {
+            output = input + ': ' + metadata()[input.replace('meta_', '')];
         } else if (input == 'melody') {
             output = input + ': ' + hex2bin(userdata()[input]);
         } else {
