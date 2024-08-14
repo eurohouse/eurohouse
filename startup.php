@@ -102,7 +102,11 @@ function world_clock() {
             $('#buttonFaceoff').attr('src', sysDefPrefix.value+((sysDefFaceoff.value != 0)?'maximize.png':'restore.png')+sysDefSuffix.value);
             $('#buttonIconsList').attr('src', sysDefPrefix.value+((sysDefIcons.value == 1)?'menu.png':'list.png')+sysDefSuffix.value);
             $('#buttonUpdate').attr('src', sysDefPrefix.value+'update.png'+sysDefSuffix.value);
-            $('#buttonUserStatus').attr('src', sysDefPrefix.value+((sysDefIsSession.value !== false)?'user.png':'anonym.png')+sysDefSuffix.value);
+            <?php if (isAuth()) { ?>
+                $('#buttonUserStatus').attr('src', sysDefPrefix.value+'user.png'+sysDefSuffix.value);
+            <?php } else { ?>
+                $('#buttonUserStatus').attr('src', sysDefPrefix.value+'anonym.png'+sysDefSuffix.value);
+            <?php } ?>
             $('#buttonEscape').attr('src', sysDefPrefix.value+'escape.png'+sysDefSuffix.value);
             if (sysDefVintage.value != sysDefPostBackEff.value) {
                 if (sysDefVintage.value != 0) {
