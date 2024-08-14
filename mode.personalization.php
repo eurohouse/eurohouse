@@ -82,7 +82,7 @@
 } else if (event.keyCode == 46) {
     handleInput(this.value);
 }" oninput="handleInput(this.value, true);">
-<select id="setGender" style="width:30%;position:relative;" onchange="setdata('gender', setGender.options[setGender.selectedIndex].id);">
+<select id="setGender" style="width:30%;position:relative;" onchange="setdata('gender', setGender.options[setGender.selectedIndex].id); window.location.reload();">
 <?php foreach ($settings['genders'] as $key=>$value) { ?>
 <option id="<?=$key;?>" <?php if ($session['gender'] == $key) { ?> selected <?php } ?>>
 <?=(isset($value[$session['units']])) ? $value[$session['units']] : $value['default'];?></option><?php } ?></select><br>
