@@ -1,8 +1,8 @@
 # Music; lock_music: supermouse;
 # Avatar; avatar: game;
 # Background; background: metro.gtaSA.00.png;
-# UI; back_color: 6D8C87; fore_color: 6D8C8710; input_color: 6D8C8710; back_text_color: D0A32A; fore_text_color: D0A32A; input_text_color: EFEFEF; blank_color: 000000; blank_text_color: FFFFFF; arc_fore_color: 6D8C8710; arc_input_color: 6D8C8710; opacity: 64; radius: 0; box_shadow: 0; gradient_deg: 180; gloss: 0;
-# Audio; mute: 0; alarm_sound: GTA Vice City - Countdown.wav; ticking_sound: GTA Vice City - Timer.wav; background_sound: GTA San Andreas - Intro.wav; focus_sound: GTA Vice City - Scroll.wav; type_sound: GTA Vice City - Notification.wav; error_sound: GTA Vice City - Notification.wav; notify_sound: GTA Vice City - Ambulance.wav; bind_sound: GTA Vice City - Pick Up.wav; hit_sound: GTA Vice City - Punch.wav; suffer_sound: GTA Vice City - Scream.wav;
+# UI; back_color: 6D8C87; fore_color: 6D8C8710; input_color: 6D8C8720; back_text_color: D0A32A; fore_text_color: D0A32A; input_text_color: CFCFCF; blank_color: 000000; blank_text_color: FFFFFF; arc_fore_color: 6D8C8710; arc_input_color: 6D8C8720; opacity: 64; radius: 0; box_shadow: 0; gradient_deg: 180; gloss: 0;
+# Audio; mute: 0; alarm_sound: GTA San Andreas - Power Up.wav; ticking_sound: GTA San Andreas - Power Up.wav; background_sound: GTA San Andreas - Intro.wav; focus_sound: GTA San Andreas - Scroll.wav; type_sound: GTA San Andreas - Enter.wav; error_sound: GTA San Andreas - Exit.wav; notify_sound: GTA San Andreas - Power Up.wav; bind_sound: GTA San Andreas - Pick Up.wav; hit_sound: GTA III - Batted Left.wav; suffer_sound: GTA III - Scream.wav;
 # Font; font_ascii: BankGothicMediumBT.ttf; font_latin: BankGothicMediumBT.ttf; font_phone: Menlo-Regular.ttf; font_greek: Menlo-Regular.ttf; font_cyril: Menlo-Regular.ttf; font_arabi: NotoSansArabic-Medium.ttf; font_korea: Binggrae.otf; font_china: wqy-zenhei.ttf; font_other: UnifontMedium.ttf; font_emoji: NotoColorEmoji.ttf;
 # UX; theme: iso; menu: file_explorer,preferences,volume_control,statistics; icons: 0; faceoff: 1;
 # Space; lock_background: metro; lock_avatar: avatar; lock_font: unix; lock_sound: supermouse;
