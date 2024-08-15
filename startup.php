@@ -217,6 +217,11 @@ function wallpaper_engine() {
             $('#userAvatarBadge').attr('src', pager(data, 9)+sysDefSuffix.value);
             $('#buttonReticle').attr('src', sysDefReticlePrefix.value+sysDefReticle.value+'.png'+sysDefSuffix.value);
             $('#buttonDice').attr('src', sysDefPrefix.value+'dice.png'+sysDefSuffix.value);
+            $('#chooseReticle1').attr('name', sysDefReticleChoice1.value);
+            $('#chooseReticle2').attr('name', sysDefReticleChoice2.value);
+            $('#chooseReticle3').attr('name', sysDefReticleChoice3.value);
+            $('#chooseReticle4').attr('name', sysDefReticleChoice4.value);
+            $('#chooseReticle5').attr('name', sysDefReticleChoice5.value);
             $('#chooseReticle1').attr('src', sysDefReticlePrefix.value+sysDefReticleChoice1.value+'.png'+sysDefSuffix.value);
             $('#chooseReticle2').attr('src', sysDefReticlePrefix.value+sysDefReticleChoice2.value+'.png'+sysDefSuffix.value);
             $('#chooseReticle3').attr('src', sysDefReticlePrefix.value+sysDefReticleChoice3.value+'.png'+sysDefSuffix.value);
