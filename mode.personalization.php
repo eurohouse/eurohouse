@@ -82,9 +82,9 @@
 } else if (event.keyCode == 46) {
     handleInput(this.value);
 }" oninput="handleInput(this.value, true);">
-<select id="setGender" style="width:30%;position:relative;" onchange="setdata('gender', setGender.options[setGender.selectedIndex].id); window.location.reload();">
-<?php foreach ($settings['genders'] as $key=>$value) { ?>
-<option id="<?=$key;?>" <?php if ($session['gender'] == $key) { ?> selected <?php } ?>>
+<select id="setUserType" style="width:30%;position:relative;" onchange="setdata('user_type', setUserType.options[setUserType.selectedIndex].id); window.location.reload();">
+<?php foreach ($settings['user_types'] as $key=>$value) { ?>
+<option id="<?=$key;?>" <?php if ($session['user_type'] == $key) { ?> selected <?php } ?>>
 <?=(isset($value[$session['units']])) ? $value[$session['units']] : $value['default'];?></option><?php } ?></select><br>
 <label><?=term('Your Reticles:', $settings['vocabulary'], $session['units']);?></label><br>
 <select id="setReticle1" style="width:15%;position:relative;" onchange="setdata('reticle_choice_1', setReticle1.options[setReticle1.selectedIndex].id);">
