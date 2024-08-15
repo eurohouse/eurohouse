@@ -22,14 +22,15 @@ function pos_soldout($user, $type) {
     unlink($user.'_'.$type.'.exch');
 }
 $seller = $_REQUEST['seller']; $buyer = $_REQUEST['buyer'];
-$pass = $_REQUEST['pass']; $type = $_REQUEST['type'];
+$type = $_REQUEST['type']; $val = $_REQUEST['val'];
 $pwr = arropen('dominion.json', "{\"root\":0}");
 $ocrd = (isset($pwr[$seller])) ? $pwr[$seller] : 0;
 $scrd = (isset($pwr[$buyer])) ? $pwr[$buyer] : 0;
-if (file_exists($seller.'_'.$type.'.exch')) {
-    $check = file_get_contents($seller.'_'.$type.'.exch'); $fprof = file_get_contents($seller.'_session.json');
-    if ($check == $pass) {
-        if ($type == 'account') {
+if ($type == 'account') {
+    if (file_exists($seller.'_'.$type.'.exch')) {
+        $check = file_get_contents($seller.'_'.$type.'.exch');
+        $fprof = file_get_contents($seller.'_session.json');
+        if ($check == $val) {
             $prix = strlen($fprof);
             if (pos_suffice($ocrd, $scrd, $prix)) {
                 $amount = $prix;
@@ -39,7 +40,16 @@ if (file_exists($seller.'_'.$type.'.exch')) {
             } else {
                 $amount = 'INSUFFICIENT FUNDS ('.$scrd.' < '.$prix.')';
             }
-        } elseif ($type == 'password') {
+        } else {
+            $amount = 'ACCESS DENIED';
+        }
+    } else {
+        $amount = 'ITEM NOT FOUND';
+    }
+} elseif ($type == 'password') {
+    if (file_exists($seller.'_'.$type.'.exch')) {
+        $check = file_get_contents($seller.'_'.$type.'.exch');
+        if ($check == $val) {
             $prix = strlen($check);
             if (pos_suffice($ocrd, $scrd, $prix)) {
                 $amount = $prix;
@@ -48,11 +58,17 @@ if (file_exists($seller.'_'.$type.'.exch')) {
             } else {
                 $amount = 'INSUFFICIENT FUNDS ('.$scrd.' < '.$prix.')';
             }
+        } else {
+            $amount = 'ACCESS DENIED';
         }
     } else {
-        $amount = 'ACCESS DENIED';
+        $amount = 'ITEM NOT FOUND';
     }
 } else {
-    $amount = 'ITEM NOT FOUND';
-}
-echo $amount;
+    $prix = $val;
+    if (pos_suffice($ocrd, $scrd, $prix)) {
+        $amount = $prix;
+    } else {
+        $amount = 'INSUFFICIENT FUNDS ('.$scrd.' < '.$prix.')';
+    }
+} echo $amount;

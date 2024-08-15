@@ -11,6 +11,7 @@
         "wallpaper_engine": 1000,
         "mailing_list": 1000,
         "bookkeep_list": 1000,
+        "store_list": 1000,
         "automator": 250
     },
     "locks": {

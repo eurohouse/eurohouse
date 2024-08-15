@@ -426,7 +426,18 @@ function omniEnter() {
             make_gift(parseInt(req));
         } else if (input.startsWith('sell ')) {
             var req = input.replace('sell ', '');
-            sell_item(req.split(' ')[0], req.split(' ')[1]);
+            if (req.split(' ').length > 3) {
+                sell_item(req.split(' ')[0], req.split(' ')[1], req.split(' ')[2], req.split(' ')[3]);
+            } else {
+                sell_item(req.split(' ')[0], req.split(' ')[1], req.split(' ')[2]);
+            }
+        } else if (input.startsWith('buy ')) {
+            var req = input.replace('buy ', '');
+            if (req.split(' ').length > 3) {
+                buy_item(req.split(' ')[0], req.split(' ')[1], req.split(' ')[2], req.split(' ')[3]);
+            } else {
+                buy_item(req.split(' ')[0], req.split(' ')[1], req.split(' ')[2]);
+            }
         } else if (input.startsWith('accept ')) {
             var req = input.replace('accept ', '');
             accept_gift(req);

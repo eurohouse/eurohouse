@@ -18,8 +18,10 @@ $codexBoxArr = str_replace('./','',(glob('./*.mac')));
 $speechBoxArr = str_replace('./','',(glob('./*.pro')));
 $usersList = implode(',',str_replace('_msgbox.json','',str_replace('./.msgbox/','',(glob('./.msgbox/*_msgbox.json')))));
 $booksList = implode(',',str_replace('_book.json','',str_replace('./.book/','',(glob('./.book/*_book.json')))));
+$storeList = implode(',',str_replace('_store.json','',str_replace('./.store/','',(glob('./.store/*_store.json')))));
 $newsFeed = ($userData['private'] != 0) ? jsonopen('./.msgbox/'.$cookie.'_msgbox.json') : jsonopen('./.msgbox/msgbox.json');
 $userBook = jsonopen('./.book/'.$cookie.'_book.json', true);
+$userStore = jsonopen('./.store/'.$cookie.'_store.json', true);
 echo $cookie."\r\n\r\n".
 valstr($bindingData,';',':')."\r\n\r\n".
 valstr($poweredData,';',':')."\r\n\r\n".
@@ -27,7 +29,7 @@ valstr($autoData,';',':')."\r\n\r\n".
 valstr($frndData,';',':')."\r\n\r\n".
 $newsFeed."\r\n\r\n".
 $userBook."\r\n\r\n".
+$userStore."\r\n\r\n".
 implode('//', $musicBox)."\\\\".implode('//', $soundBox)."\r\n\r\n".
 implode('//', $codexBoxArr)."\\\\".implode('//', $speechBoxArr)."\r\n\r\n".
-$usersList."\r\n\r\n".
-$booksList;
+$usersList.";".$booksList.";".$storeList;

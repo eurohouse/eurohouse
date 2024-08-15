@@ -31,12 +31,14 @@ function databox() {
             $('#sysDefFriendData').val(pager(data, 4));
             $('#sysDefMsgData').val(pager(data, 5));
             $('#sysDefBookKeep').val(pager(data, 6));
-            $('#sysDefMusicBox').val(pager(data, 7).split("\\\\")[0]);
-            $('#sysDefSoundBox').val(pager(data, 7).split("\\\\")[1]);
-            $('#sysDefCodexBox').val(pager(data, 8).split("\\\\")[0]);
-            $('#sysDefSpeechBox').val(pager(data, 8).split("\\\\")[1]);
-            $('#sysDefUsersList').val(pager(data, 9));
-            $('#sysDefBooksList').val(pager(data, 10));
+            $('#sysDefUserStore').val(pager(data, 7));
+            $('#sysDefMusicBox').val(pager(data, 8).split("\\\\")[0]);
+            $('#sysDefSoundBox').val(pager(data, 8).split("\\\\")[1]);
+            $('#sysDefCodexBox').val(pager(data, 9).split("\\\\")[0]);
+            $('#sysDefSpeechBox').val(pager(data, 9).split("\\\\")[1]);
+            $('#sysDefUsersList').val(pager(data, 10).split(";")[0]);
+            $('#sysDefBooksList').val(pager(data, 10).split(";")[1]);
+            $('#sysDefStoreList').val(pager(data, 10).split(";")[2]);
             if (sysDefBindData.value != sysDefPostBindData.value) {
                 if (sysDefMute.value == 0) {
                     playAudio(bindPlayer, sysDefBindSound.value);
@@ -254,6 +256,12 @@ function bookkeep_list() {
     $.ajax({
         url: 'bookkeep_list.php',
         success: function(data) { sysDefBookKeepJSONs.value = data; }
+    });
+}
+function store_list() {
+    $.ajax({
+        url: 'store_list.php',
+        success: function(data) { sysDefStoreJSONs.value = data; }
     });
 }
 function automator() {

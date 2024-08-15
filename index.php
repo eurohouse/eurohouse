@@ -35,8 +35,10 @@
 <input type='hidden' id="sysDefVarsArr" value="">
 <input type='hidden' id="sysDefUsersList" value="">
 <input type='hidden' id="sysDefBooksList" value="">
+<input type='hidden' id="sysDefStoreList" value="">
 <input type='hidden' id="sysDefMailingJSONs" value="">
 <input type='hidden' id="sysDefBookKeepJSONs" value="">
+<input type='hidden' id="sysDefStoreJSONs" value="">
 <input type='hidden' id="sysDefBindData" value="<?=valstr($bindData,';',':');?>">
 <input type='hidden' id="sysDefPowersData" value="<?=valstr($powersData,';',':');?>">
 <input type='hidden' id="sysDefAutoData" value="<?=valstr($automateData,';',':');?>">
@@ -44,6 +46,7 @@
 <input type='hidden' id="sysDefFriendData" value="<?=valstr($friendData,';',':');?>">
 <input type='hidden' id="sysDefBookKeep" value="">
 <input type='hidden' id="sysDefMsgData" value="">
+<input type='hidden' id="sysDefUserStore" value="">
 <input type='hidden' id="sysDefMsgCounter" value="0">
 <input type='hidden' id="sysDefMusicBox" value="<?=implode('//', $musicBox);?>">
 <input type='hidden' id="sysDefSoundBox" value="<?=implode('//', $orpheus);?>">

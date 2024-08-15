@@ -16,7 +16,7 @@ if (!file_exists('get.php')) {
     express(explode(',', $forloadString));
     header("Location: index.php");
 }
-initiate('tmp,msgbox,book,trash');
+initiate('tmp,msgbox,book,store,trash');
 ini_set("session.gc_maxlifetime", $settings['lifetime']['garbage_collector']);
 ini_set("session.cookie_lifetime", $settings['lifetime']['cookie_default']);
 session_start(); wasAuth(); $sessionID = whichSess();

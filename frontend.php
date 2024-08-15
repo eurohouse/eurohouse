@@ -175,20 +175,6 @@ function automate() {
     set('automator.json', JSON.stringify(obj), true);
     sysDefAutoData.value = arrpack(obj,';',':');
 }
-function openBookKeep(id) {
-    var users = sysDefBooksList.value;
-    var books = sysDefBookKeepJSONs.value;
-    var userArr = users.split(',');
-    var userNum = arraySearch(id, userArr);
-    return pager(books, userNum);
-}
-function openMsgBox(id) {
-    var users = sysDefUsersList.value;
-    var mail = sysDefMailingJSONs.value;
-    var userArr = users.split(',');
-    var userNum = arraySearch(id, userArr);
-    return pager(mail, userNum);
-}
 function jsonstr(str) {
     var res = {};
     try { res = JSON.parse(str);
@@ -233,6 +219,13 @@ function JSONtoTab(str, mask, sym = '#', uni = 'L', wed) {
         arl += '<td>'+eld[4]+'</td>'; ard = arl+'</tr>'+ard;
     } return ard;
 }
+function openJournal(id, ob, oj) {
+    var users = ob.value;
+    var jours = oj.value;
+    var userArr = users.split(',');
+    var userNum = arraySearch(id, userArr);
+    return pager(jours, userNum);
+}
 function clearJournal(num, obj, kw) {
     var msgarr = jsonstr(obj.value);
     var ary = [], nur = Math.abs(num);
@@ -269,7 +262,7 @@ function compose(msg) {
         if (addr !== null) {
             for (i = 0; i < addr.length; i++) {
                 userID = addr[i].replace('@', '');
-                msgbox = openMsgBox(userID);
+                msgbox = openJournal(userID, sysDefUsersList, sysDefMailingJSONs);
                 msgarr = jsonstr(msgbox);
                 if (msg.match(/\r?\n/) !== null) {
                     msgbr = msg.split(/\r?\n/);
@@ -330,11 +323,17 @@ function accept_gift(user) {
         }
     }
 }
-function buy_item(user, pass, type = 'account') {
-    if (user != sysDefSessionID.value) {
+function buy_item(type = 'account', art, nom, val = "") {
+    if (nom != sysDefSessionID.value) {
+        var tabS = jsonstr(openJournal(nom, sysDefStoreList, sysDefStoreJSONs));
+        var tabB = jsonstr(openJournal(sysDefSessionID.value, sysDefStoreList, sysDefStoreJSONs)); var tab = {}; var price = 0;
         var obj = arrjob(sysDefPowersData.value,';',':');
-        if ((obj[sysDefSessionID.value] > 0) && (obj[user] >= 0)) {
-            var dataString = 'seller='+user+'&buyer='+sysDefSessionID.value+'&pass='+encodeURIComponent(pass)+'&type='+type; var prep, sum;
+        if ((obj[sysDefSessionID.value] > 0) && (obj[nom] >= 0)) {
+            if (!((type == 'account') || (type == 'password'))) {
+                if ((tabS[art] !== undefined) && (typeof(tabS[art]) == 'object') && (isInt(tabS[art]['price']))) {
+                    tab = tabS[art]; prix = parseInt(tabS[art]['price']);
+                }
+            } var dataString = 'seller='+nom+'&buyer='+sysDefSessionID.value+'&type='+type+'&val='+(((type == 'account') || (type == 'password')) ? encodeURIComponent(val) : parseInt(prix)); var prep, sum;
             $.ajax({
                 type: "POST",
                 url: "point_of_sale.php",
@@ -343,11 +342,17 @@ function buy_item(user, pass, type = 'account') {
                 success: function(result) {
                     prep = miniPager(result, 0);
                     if (isInt(prep)) {
-                        fixPrice(sysDefSessionID.value, user, 'BUY '+type+' FROM @'+user, parseInt(prep));
                         if (type == 'account') {
+                            fixPrice(sysDefSessionID.value, nom, 'BUY '+type+' FROM @'+nom, parseInt(prep));
                             window.location.reload();
                         } else if (type == 'password') {
-                            omniAuthRequest('signin', user, pass);
+                            fixPrice(sysDefSessionID.value, nom, 'BUY '+type+' FROM @'+nom, parseInt(prep));
+                            omniAuthRequest('signin', nom, val);
+                        } else {
+                            fixPrice(sysDefSessionID.value, nom, 'BUY '+art+' FROM @'+nom, parseInt(prep));
+                            delete tabS[art]; tabB[art] = tab;
+                            set('./.store/'+nom+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
+                            set('./.store/'+sysDefSessionID.value+'_store.json', encodeURIComponent(JSON.stringify(tabB)), true);
                         }
                     }
                 }
@@ -356,10 +361,20 @@ function buy_item(user, pass, type = 'account') {
         }
     }
 }
-function sell_item(pass, type = 'account') {
+function sell_item(type = 'account', art, nom, val = "") {
+    var tabS = jsonstr(openJournal(sysDefSessionID.value, sysDefStoreList, sysDefStoreJSONs)); var tab = {}; var price = 0;
     var obj = arrjob(sysDefPowersData.value,';',':');
     if (obj[sysDefSessionID.value] >= 0) {
-        set(sysDefSessionID.value+'_'+type+'.exch', encodeURIComponent(pass), false);
+        if ((type == 'account') || (type == 'password')) {
+            set(sysDefSessionID.value+'_'+type+'.exch', encodeURIComponent(val), false);
+        } else {
+            tabS[art] = {
+                "name": nom,
+                "type": type,
+                "price": parseInt(val)
+            };
+            set('./.store/'+sysDefSessionID.value+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
+        }
     }
 }
 function isAllZero(arr) {
@@ -368,7 +383,8 @@ function isAllZero(arr) {
     } return true;
 }
 function fixPrice(sen, rec, deb, cre) {
-    var tran1 = openBookKeep(sen); var tran2 = openBookKeep(rec);
+    var tran1 = openJournal(sen, sysDefBooksList, sysDefBookKeepJSONs);
+    var tran2 = openJournal(rec, sysDefBooksList, sysDefBookKeepJSONs);
     var trans1 = jsonstr(tran1); var trans2 = jsonstr(tran2);
     var stat = arrjob(sysDefPowersData.value,';',':');
     var statD = (isInt(stat[sen])) ? parseInt(stat[sen]) : 0;
@@ -450,10 +466,14 @@ function delete_user(id) {
     del(id+'_password', true);
     del(id+'_lock.json', true);
     del(id+'_lock.json.bak', true);
+    del(id+'_metadata.json', true);
+    del(id+'_metadata.json.bak', true);
     del('./.msgbox/'+id+'_msgbox.json', true);
     del('./.msgbox/'+id+'_msgbox.json.bak', true);
     del('./.book/'+id+'_book.json', true);
     del('./.book/'+id+'_book.json.bak', true);
+    del('./.store/'+id+'_store.json', true);
+    del('./.store/'+id+'_store.json.bak', true);
 }
 function transfer_entry(id, obj, name, seb = false) {
     var objData = arrjob(obj.value,';',':');
@@ -472,10 +492,14 @@ function rename_user(username, password) {
     change(sysDefSessionID.value, username, CryptoJS.MD5(password).toString(), true);
     move('./'+sysDefSessionID.value+'_lock.json', './'+username+'_lock.json', true, 1);
     move('./'+sysDefSessionID.value+'_lock.json.bak', './'+username+'_lock.json.bak', true, 1);
+    move('./'+sysDefSessionID.value+'_metadata.json', './'+username+'_metadata.json', true, 1);
+    move('./'+sysDefSessionID.value+'_metadata.json.bak', './'+username+'_metadata.json.bak', true, 1);
     move('./.msgbox/'+sysDefSessionID.value+'_msgbox.json', './.msgbox/'+username+'_msgbox.json', true, 1);
     move('./.book/'+sysDefSessionID.value+'_book.json', './.book/'+username+'_book.json', true, 1);
+    move('./.store/'+sysDefSessionID.value+'_store.json', './.store/'+username+'_store.json', true, 1);
     del('./.msgbox/'+sysDefSessionID.value+'_msgbox.json.bak', true);
     del('./.book/'+sysDefSessionID.value+'_book.json.bak', true);
+    del('./.store/'+sysDefSessionID.value+'_store.json.bak', true);
 }
 function init_user(id, au = 'manual') {
     var bd = arrjob(sysDefBindData.value,';',':');
@@ -484,10 +508,13 @@ function init_user(id, au = 'manual') {
     var fd = arrjob(sysDefFriendData.value,';',':');
     var usl = (sysDefUsersList.value).split(',');
     var bkl = (sysDefBooksList.value).split(',');
+    var stl = (sysDefStoreList.value).split(',');
     if (usl.indexOf(id) <= -1) {
         set('./.msgbox/'+id+'_msgbox.json', '{}', true);
     } if (bkl.indexOf(id) <= -1) {
         set('./.book/'+id+'_book.json', '{}', true);
+    } if (stl.indexOf(id) <= -1) {
+        set('./.store/'+id+'_store.json', '{}', true);
     } if (!(id in bd)) {
         bd[id] = id;
         set('binding.json', JSON.stringify(bd), true);
