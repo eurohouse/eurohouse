@@ -3,3 +3,13 @@
 <!-- <ref> -->
 <!-- true -->
 <h1 align='center' class="<?=(in_array($request['input'], ['','.','..','./','./.','./..'])) ? 'euro' : 'userDefine';?>"><?=$session['specimen'];?></h1>
+<h1 align='center' class="<?=(in_array($request['input'], ['','.','..','./','./.','./..'])) ? 'euro' : 'userDefine';?>"><?=$session['pangram_ascii'];?></h1>
+<h1 align='center' class="<?=(in_array($request['input'], ['','.','..','./','./.','./..'])) ? 'euro' : 'userDefine';?>"><?=$session['pangram_latin'];?></h1>
+<h1 align='center' class="<?=(in_array($request['input'], ['','.','..','./','./.','./..'])) ? 'euro' : 'userDefine';?>"><?=$session['pangram_phone'];?></h1>
+<h1 align='center' class="<?=(in_array($request['input'], ['','.','..','./','./.','./..'])) ? 'euro' : 'userDefine';?>"><?=$session['pangram_greek'];?></h1>
+<h1 align='center' class="<?=(in_array($request['input'], ['','.','..','./','./.','./..'])) ? 'euro' : 'userDefine';?>"><?=$session['pangram_cyril'];?></h1>
+<h1 align='center' class="<?=(in_array($request['input'], ['','.','..','./','./.','./..'])) ? 'euro' : 'userDefine';?>"><?=$session['pangram_arabi'];?></h1>
+<h1 align='center' class="<?=(in_array($request['input'], ['','.','..','./','./.','./..'])) ? 'euro' : 'userDefine';?>"><?=$session['pangram_korea'];?></h1>
+<h1 align='center' class="<?=(in_array($request['input'], ['','.','..','./','./.','./..'])) ? 'euro' : 'userDefine';?>"><?=$session['pangram_china'];?></h1>
+<h1 align='center' class="<?=(in_array($request['input'], ['','.','..','./','./.','./..'])) ? 'euro' : 'userDefine';?>"><?=$session['pangram_other'];?></h1>
+<h1 align='center' class="<?=(in_array($request['input'], ['','.','..','./','./.','./..'])) ? 'euro' : 'userDefine';?>"><?=$session['pangram_emoji'];?></h1>
