@@ -2,7 +2,7 @@
 # Avatar; avatar: win98;
 # Background; background: none;
 # UI; back_color: 0000FF; fore_color: FF0000; input_color: FFFFFF; back_text_color: FFFFFF; fore_text_color: FFFFFF; input_text_color: 000000; blank_color: 0000FF; blank_text_color: 0000FF; arc_fore_color: FF0000; arc_input_color: FFFFFF; opacity: 255; radius: 0; box_shadow: 1; gradient_deg: 180; gloss: 0;
-# Pangram; pangram_ascii: Glib jocks quiz nymph to vex dwarf.; pangram_cyril: Широкая электрификация южных губерний даст мощный толчок подъёму сельского хозяйства.;
+# Display; pangram_ascii: Glib jocks quiz nymph to vex dwarf.; pangram_cyril: Широкая электрификация южных губерний даст мощный толчок подъёму сельского хозяйства.; reticle_choice_1: reticle; reticle_choice_2: musket; reticle_choice_3: camera; reticle_choice_4: sniper; reticle_choice_5: german;
 # Audio; mute: 0; alarm_sound: RTCW - Completed.wav; ticking_sound: SH3 - Clock.wav; background_sound: RTCW - Action!.wav; focus_sound: RTCW - Wood 1.wav; type_sound: RTCW - Flesh 1.wav; error_sound: RTCW - Flesh 1.wav; notify_sound: RTCW - Door Close.wav; bind_sound: RTCW - Miss 2.wav; hit_sound: RTCW - Slash 2.wav; suffer_sound: RTCW - Dead 3.wav;
 # Font; font_ascii: clacon.ttf; font_latin: clacon.ttf; font_phone: l_10646.ttf; font_greek: clacon.ttf; font_cyril: clacon.ttf; font_arabi: arialuni.ttf; font_korea: arialuni.ttf; font_china: arialuni.ttf; font_other: arialuni.ttf; font_emoji: seguiemj.ttf;
 # UX; theme: iso; menu: file_explorer,preferences,personalization,local_user_manager,volume_control; icons: 0; faceoff: 1;
