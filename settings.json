@@ -413,6 +413,14 @@
             "auth": "", "login": "", "password": ""
         }
     },
+    "pangram": {
+        "default": "ascii",
+        "GR": "greek", "CY": "greek",
+        "RU": "cyril", "UA": "cyril", "RS": "cyril",
+        "CN": "china", "JP": "china", "KR": "korea",
+        "SA": "arabi", "IL": "arabi",
+        "IN": "other", "LK": "other", "NP": "other"
+    },
     "vocabulary": {
         "CH": {
             "Name/Position:": "Nomen et locum ostentus:",
