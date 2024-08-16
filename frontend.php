@@ -17,7 +17,18 @@ function omniListen(input, scratch = false) {
 function songIndex() {
     var museArr = sysDefMusicBox.value;
     var museLint = museArr.split('//');
-    omniListen(museLint[rand(0, museLint.length)], true);
+    var museInd = arraySearch(hex2bin(sysDefMelody.value), museLint);
+    if (sysDefShuffle.value == 2) {
+        if (isInt(museInd)) {
+            omniListen(museLint[parseInt(museInd)+1], true);
+        }
+    } else if (sysDefShuffle.value == 3) {
+        if (isInt(museInd)) {
+            omniListen(museLint[parseInt(museInd)-1], true);
+        }
+    } else {
+        omniListen(museLint[rand(0, museLint.length)], true);
+    }
 }
 function omniPause() {
     pauseAudio(audioPlayer);
