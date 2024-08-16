@@ -62,11 +62,14 @@ function world_clock() {
         url: 'world_clock.php',
         success: function(data) {
             $('#currentTime').val(pager(data, 0));
+            var enzi = pager(data, 1).split(' ');
             $('#alarmTime').val(pager(data, 2));
+            var effi = pager(data, 3).split(';');
             init_user(sysDefSessionID.value, 'manual');
-            var enzi = pager(data, 1).split(' '); var effi = pager(data, 3).split(';');
-            var mixers = pager(data, 4).split(' '); var fint = pager(data, 5).split(' | ');
+            var mixers = pager(data, 4).split(' ');
+            var fint = pager(data, 5).split(' | ');
             var gdio = pager(data, 6).split(' ');
+            var pngm = pager(data, 7);
             if (requestMode.value == 'volume_control') {
                 audioVolInd.value = mixers[0]; audioRatInd.value = mixers[1];
                 videoVolInd.value = mixers[2]; videoRatInd.value = mixers[3];
@@ -103,8 +106,7 @@ function world_clock() {
             $('#buttonReqLock').attr('src', sysDefPrefix.value+((requestLock.value != 'true')?'expand.png':'collapse.png')+sysDefSuffix.value);
             $('#buttonFaceoff').attr('src', sysDefPrefix.value+((sysDefFaceoff.value != 0)?'maximize.png':'restore.png')+sysDefSuffix.value);
             $('#buttonIconsList').attr('src', sysDefPrefix.value+((sysDefIcons.value == 1)?'menu.png':'list.png')+sysDefSuffix.value);
-            $('#buttonUpdate').attr('src', sysDefPrefix.value+'update.png'+sysDefSuffix.value);
-            <?php if (isAuth()) { ?>
+            $('#buttonUpdate').attr('src', sysDefPrefix.value+'update.png'+sysDefSuffix.value); <?php if (isAuth()) { ?>
                 $('#buttonUserStatus').attr('src', sysDefPrefix.value+'user.png'+sysDefSuffix.value);
             <?php } else { ?>
                 $('#buttonUserStatus').attr('src', sysDefPrefix.value+'anonym.png'+sysDefSuffix.value);
@@ -121,6 +123,13 @@ function world_clock() {
                 msgBox.innerHTML = '<p>'+JSONtoHTML(sysDefMsgData.value, sysDefFind.value)+'</p>';
             } if (requestMode.value == 'bookkeeping') {
                 bookkeep_disp.innerHTML = '<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+fint[0]+'</th><th style="width:7%;">'+fint[1]+'</th><th style="width:7%;">'+fint[2]+'</th><th style="width:10%;">'+fint[3]+'</th><th style="width:10%;">'+fint[4]+'</th><th style="width:10%;">'+fint[5]+'</th></thead><tbody>'+JSONtoTab(sysDefBookKeep.value, sysDefFindValue.value, '^', 'N', gdio)+'</tbody></table>';
+            } if (requestMode.value == 'font_book') {
+                fontBook24Pt.innerText = pngm;
+                fontBook22Pt.innerText = pngm;
+                fontBook20Pt.innerText = pngm;
+                fontBook18Pt.innerText = pngm;
+                fontBook16Pt.innerText = pngm;
+                fontBook14Pt.innerText = pngm;
             } if (requestMode.value == 'statistics') {
                 tabOper.innerText = fint[6]; tabScore.innerText = fint[7];
             } if (((obs == 1) && (spe == 1)) || ((obs == 1) && (spe == 0))) {

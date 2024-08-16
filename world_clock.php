@@ -34,7 +34,6 @@ $termBal = (isset($voc[$uni]['Balance'])) ? $voc[$uni]['Balance'] : 'Balance';
 $termDat = (isset($voc[$uni]['Date'])) ? $voc[$uni]['Date'] : 'Date';
 $termOper = (isset($voc[$uni]['User Operation:'])) ? $voc[$uni]['User Operation:'] : 'User Operation:';
 $termScore = (isset($voc[$uni]['User Score Tab:'])) ? $voc[$uni]['User Score Tab:'] : 'User Score Tab:';
-$mathHelp = (isset($userSettings['math_help'][$uni])) ? $userSettings['math_help'][$uni] : $userSettings['math_help']['default'];
 for ($i = 0; $i < 7; $i++) {
     $wd[$i] = ((isset($userSettings['locale']['weekday'][$uni][$i])) ? $userSettings['locale']['weekday'][$uni][$i] : $userSettings['locale']['weekday']['default'][$i]);
 } echo $dateTimeStr."\r\n\r\n".
@@ -44,4 +43,4 @@ $vintageBackdropFilter.";".$overlayBeforeBackground.";".$overlayBeforeAnimation.
 $userData['audio_volume'].' '.$userData['audio_speed'].' '.$userData['video_volume'].' '.$userData['video_speed'].' '.$userData['alarm_volume'].' '.$userData['timer_volume'].' '.$userData['loop_volume'].' '.$userData['rest_volume']."\r\n\r\n".
 $termDat.' | '.$termSen.' | '.$termRec.' | '.$termDeb.' | '.$termCre.' | '.$termBal.' | '.$termOper.' | '.$termScore."\r\n\r\n".
 implode(' ', $wd)."\r\n\r\n".
-$mathHelp;
+$userData['pangram_'.(($userSettings['pangram'][$uni]) ? $userSettings['pangram'][$uni] : $userSettings['pangram']['default'])];

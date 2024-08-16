@@ -2,7 +2,8 @@
 # Avatar; avatar: windows;
 # Background; background: metro.win11.00.png;
 # UI; back_color: C0BFC0; fore_color: 41495B; input_color: E1E9FB; back_text_color: FFFFFF; fore_text_color: FFFFFF; input_text_color: 000000; blank_color: FFFFFF; blank_text_color: 000000; arc_fore_color: 21293B; arc_input_color: C1C9DB; opacity: 64; radius: 7; box_shadow: 0; gradient_deg: 180; gloss: 1;
+# Pangram; pangram_ascii: Jackdaws love my big sphinx of quartz.; pangram_cyril: Съешь ещё этих мягких французских булок, да выпей же чаю.;
 # Audio; mute: 1; alarm_sound: Windows Ringin.wav; ticking_sound: Windows Ding.wav; background_sound: Aaron Goldberg - OAM's blues.wma; focus_sound: Windows Menu Command.wav; type_sound: Windows Menu Command.wav; error_sound: Windows Ding.wav; notify_sound: Windows Information Bar.wav; bind_sound: Windows Minimize.wav; hit_sound: Windows Balloon.wav; suffer_sound: Windows Balloon.wav;
-# Font; font_ascii: seguisb.ttf; font_latin: seguisb.ttf; font_phone: l_10646.ttf; font_greek: seguisb.ttf; font_cyril: seguisb.ttf; font_arabi: arialuni.ttf; font_korea: arialuni.ttf; font_china: arialuni.ttf; font_other: arialuni.ttf; font_emoji: seguiemj.ttf; pangram_ascii: Jackdaws love my big sphinx of quartz.; pangram_cyril: Съешь ещё этих мягких французских булок, да выпей же чаю.;
+# Font; font_ascii: seguisb.ttf; font_latin: seguisb.ttf; font_phone: l_10646.ttf; font_greek: seguisb.ttf; font_cyril: seguisb.ttf; font_arabi: arialuni.ttf; font_korea: arialuni.ttf; font_china: arialuni.ttf; font_other: arialuni.ttf; font_emoji: seguiemj.ttf;
 # UX; theme: fluent; menu: file_finder,browse_europedia,preferences,sticky_notes,media_player,visual_effects,text_editor,recycle_bin,calculator,localization,user_accounts,statistics,personalization,bookkeeping,news_feed,volume_control; icons: 1; faceoff: 1;
 # Space; lock_background: metro; lock_avatar: avatar; lock_font: windows; lock_sound: windows;
