@@ -291,7 +291,7 @@
         "current": 0,
         "playing": 0,
         "autoplay": 1,
-        "shuffle": 0,
+        "song_index": "",
         "hour": 12,
         "entry": "",
         "bardot": 0,

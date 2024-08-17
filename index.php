@@ -80,11 +80,7 @@
 <div class='upperGap'>
 <span id='showUsUrgent' style="cursor:pointer;" onclick="navigator.clipboard.writeText(this.innerText);"></span>
 <audio id="audioPlayer" style="width:80%;position:relative;" preservesPitch="<?=boolval($session['pitch_lock']);?>" volume="<?=$session['audio_volume'];?>" playbackRate="<?=$session['audio_speed'];?>" onended="if (sysDefAutoplay.value != 0) {
-    if (sysDefShuffle.value != 0) {
-        songIndex();
-    } else {
-        omniListen(this.src, true);
-    }
+    songIndex(sysDefSongIndex.value);
 }" ontimeupdate="savePlayState();" onpause="setdata('playing', 0); $('#buttonPlay').attr('src', sysDefPrefix.value+'play.png'+sysDefSuffix.value);" onplay="setdata('playing', 1); $('#buttonPlay').attr('src', sysDefPrefix.value+'pause.png'+sysDefSuffix.value);" onvolumechange="setdata('audio_volume', this.volume);" onratechange="setdata('audio_speed', this.playbackRate);">
 </div>
 <div class='panel'><?php

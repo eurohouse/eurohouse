@@ -78,7 +78,8 @@ function world_clock() {
             } var tickCode = enzi[0]; var tickPanel = enzi[1];
             var obs = tickPanel.split('')[0]; var spe = tickPanel.split('')[1];
             $('#powerButton').attr('src', sysDefPrefix.value+'power.png'+sysDefSuffix.value);
-            $('#buttonNext').attr('src', sysDefPrefix.value+'go.png'+sysDefSuffix.value);
+            $('#buttonPrev').attr('src', sysDefPrefix.value+'rew.png'+sysDefSuffix.value);
+            $('#buttonNext').attr('src', sysDefPrefix.value+'ff.png'+sysDefSuffix.value);
             $('#buttonLock').attr('src', sysDefPrefix.value+((sysDefLock.value != 0)?'key.png':'lock.png')+sysDefSuffix.value);
             sysDefMsgCounter.value = (sysDefMsgCounter.value <= 0) ? (Object.keys(JSONFilter(sysDefMsgData.value, sysDefFind.value)).length - 1) : (sysDefMsgCounter.value - 1);
             $('#showUsUrgent').text(Object.values(JSONFilter(sysDefMsgData.value, sysDefFind.value))[sysDefMsgCounter.value]);
@@ -96,7 +97,16 @@ function world_clock() {
             $('#buttonOnend').attr('src', sysDefPrefix.value+'ff.png'+sysDefSuffix.value);
             $('#buttonTime').attr('src', sysDefPrefix.value+((sysDefBenchmark.value != 0)?'speed.png':'time.png')+sysDefSuffix.value);
             $('#buttonAutoplay').attr('src', sysDefPrefix.value+((sysDefAutoplay.value != 0)?'autopause.png':'autoplay.png')+sysDefSuffix.value);
-            $('#buttonShuffle').attr('src', sysDefPrefix.value+((sysDefShuffle.value != 0)?'dice.png':'code.png')+sysDefSuffix.value);
+            $('#buttonRandom').attr('src', sysDefPrefix.value+'dice.png'+sysDefSuffix.value);
+            if (sysDefSongIndex.value == 'random') {
+                $('#buttonSongIndex').attr('src', sysDefPrefix.value+'dice.png'+sysDefSuffix.value);
+            } else if (sysDefSongIndex.value == 'prev') {
+                $('#buttonSongIndex').attr('src', sysDefPrefix.value+'rew.png'+sysDefSuffix.value);
+            } else if (sysDefSongIndex.value == 'next') {
+                $('#buttonSongIndex').attr('src', sysDefPrefix.value+'ff.png'+sysDefSuffix.value);
+            } else {
+                $('#buttonSongIndex').attr('src', sysDefPrefix.value+'code.png'+sysDefSuffix.value);
+            }
             $('#buttonVintage').attr('src', sysDefPrefix.value+'diamante.png'+sysDefSuffix.value);
             $('#buttonVintageFilm').attr('src', sysDefPrefix.value+'movie.png'+sysDefSuffix.value);
             $('#buttonGloss').attr('src', sysDefPrefix.value+((sysDefGloss.value != 0)?'parfum.png':'idea.png')+sysDefSuffix.value);

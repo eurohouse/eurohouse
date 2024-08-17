@@ -14,20 +14,24 @@ function omniListen(input, scratch = false) {
     setdata('audio_volume', sysDefAudioVolume.value);
     setdata('audio_speed', sysDefAudioSpeed.value);
 }
-function songIndex() {
+function songIndex(mode = '') {
     var museArr = sysDefMusicBox.value;
     var museLint = museArr.split('//');
     var museInd = arraySearch(hex2bin(sysDefMelody.value), museLint);
-    if (sysDefShuffle.value == 2) {
+    if (mode == 'next') {
         if (isInt(museInd)) {
             omniListen(museLint[parseInt(museInd)+1], true);
         }
-    } else if (sysDefShuffle.value == 3) {
+    } else if (mode == 'prev') {
         if (isInt(museInd)) {
             omniListen(museLint[parseInt(museInd)-1], true);
         }
-    } else {
+    } else if (mode == 'random') {
         omniListen(museLint[rand(0, museLint.length)], true);
+    } else {
+        if (isInt(museInd)) {
+            omniListen(museLint[parseInt(museInd)], true);
+        }
     }
 }
 function omniPause() {
