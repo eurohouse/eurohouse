@@ -213,12 +213,27 @@ function JSONtoHTML(str, mask, sym = '#', uni = 'L') {
     var ard = ''; for (el in arr) { ard = el+'<br>'+arr[el]+'<br>'+ard; }
     return ard;
 }
+function JSONtoStore(id) {
+    var arr = jsonstr(openJournal(id, sysDefStoreList, sysDefStoreJSONs));
+    var ard = ''; var arl = '';
+    var eld = {}; var elt = ''; var fuc = '';
+    for (el in arr) {
+        if ((arr[el] !== undefined) && (typeof(arr[el]) == 'object')) {
+            eld = arr[el]; elt = eld['type'];
+            fuc = "<a href='javascript:buy_item(&#34;"+elt+"&#34;,&#34;"+el+"&#34;,&#34;"+id+"&#34;);'>";
+            arl = '<tr>';
+            arl += '<td>'+((id != sysDefSessionID.value) ? fuc+el+'</a>' : el)+'</td><td>'+eld['name']+'</td><td>'+eld['type']+'</td><td>'+eld['price']+'</td>';
+            ard = arl+'</tr>'+ard;
+        }
+    } return ard;
+}
 function JSONtoTab(str, mask, sym = '#', uni = 'L', wed) {
     var arr = JSONFilter(str, mask, sym, uni);
     var ard = ''; var arl = '';
     var eld = []; var dem, der;
     for (el in arr) {
-        eld = arr[el].split(' | '); dem = Date.parse(el);
+        eld = arr[el].split(' | ');
+        dem = Date.parse(el);
         der = (new Date(dem)).getDay();
         if (eld[5] == 'ERR') {
             arl = '<tr style="text-decoration:line-through;"><td>'+wed[der]+'</td>';

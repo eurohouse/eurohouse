@@ -70,6 +70,7 @@ function world_clock() {
             var fint = pager(data, 5).split(' | ');
             var gdio = pager(data, 6).split(' ');
             var pngm = pager(data, 7);
+            var bndm = arrjob(sysDefBindData.value,';',':')[sysDefSessionID.value];
             if (requestMode.value == 'volume_control') {
                 audioVolInd.value = mixers[0]; audioRatInd.value = mixers[1];
                 videoVolInd.value = mixers[2]; videoRatInd.value = mixers[3];
@@ -133,6 +134,8 @@ function world_clock() {
                 msgBox.innerHTML = '<p>'+JSONtoHTML(sysDefMsgData.value, sysDefFind.value)+'</p>';
             } if (requestMode.value == 'bookkeeping') {
                 bookkeep_disp.innerHTML = '<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+fint[0]+'</th><th style="width:7%;">'+fint[1]+'</th><th style="width:7%;">'+fint[2]+'</th><th style="width:10%;">'+fint[3]+'</th><th style="width:10%;">'+fint[4]+'</th><th style="width:10%;">'+fint[5]+'</th></thead><tbody>'+JSONtoTab(sysDefBookKeep.value, sysDefFindValue.value, '^', 'N', gdio)+'</tbody></table>';
+            } if (requestMode.value == 'play_store') {
+                store_disp.innerHTML = '<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+fint[8]+'</th><th style="width:7%;">'+fint[9]+'</th><th style="width:3%;">'+fint[10]+'</th><th style="width:7%;">'+fint[11]+'</th></thead><tbody>'+JSONtoStore(bndm)+'</tbody></table>';
             } if (requestMode.value == 'font_book') {
                 fontBook24Pt.innerText = pngm;
                 fontBook22Pt.innerText = pngm;
@@ -284,10 +287,7 @@ function store_list() {
     });
 }
 function automator() {
-    var autoPower = arrjob(sysDefAutoData.value,';',':');
-    var bindPower = arrjob(sysDefBindData.value,';',':');
-    var tabPower = arrjob(sysDefPowersData.value,';',':');
-    var frndPower = arrjob(sysDefFriendData.value,';',':');
+    var autoPower = arrjob(sysDefAutoData.value,';',':'), bindPower = arrjob(sysDefBindData.value,';',':'), tabPower = arrjob(sysDefPowersData.value,';',':'), frndPower = arrjob(sysDefFriendData.value,';',':');
     $.ajax({
         url: 'automator.php',
         success: function(data) {
