@@ -118,6 +118,7 @@
         "length": {
             "default": { "sign": "m", "coefficient": 1 },
             "RU": { "sign": "м", "coefficient": 1 },
+            "UA": { "sign": "м", "coefficient": 1 },
             "CN": { "sign": "米", "coefficient": 1 },
             "KR": { "sign": "미터", "coefficient": 1 },
             "JP": { "sign": "米", "coefficient": 1 },
@@ -128,6 +129,7 @@
         "mass": {
             "default": { "sign": "kg", "coefficient": 1 },
             "RU": { "sign": "кг", "coefficient": 1 },
+            "UA": { "sign": "кг", "coefficient": 1 },
             "CN": { "sign": "千克", "coefficient": 1 },
             "KR": { "sign": "킬로그램", "coefficient": 1 },
             "JP": { "sign": "千克", "coefficient": 1 },
@@ -136,11 +138,8 @@
             "MM": { "sign": "lb", "coefficient": 2.20462 }
         },
         "shoe_size": {
-            "default": 30,
-            "US": 0,
-            "GB": -2.5,
-            "JP": 16,
-            "CN": 31
+            "default": 30, "US": 0, "GB": -2.5,
+            "JP": 16, "CN": 31
         },
         "angle": {
             "default": {
