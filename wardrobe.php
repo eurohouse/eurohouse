@@ -129,6 +129,25 @@ body {
     border: none; border-radius: 0px; position: relative;
     background-color: var(--qucolor); color: var(--backtextcolor);
 }
+.notesMenu {
+    float: left;
+    width: 20%;
+    flex: 0%;
+}
+.notesContent {
+    float: right;
+    width: 80%;
+    flex: 0%;
+}
+.notesRow {
+    display: flex;
+    height: 100%;
+}
+.notesRow:after {
+    content: "";
+    display: table;
+    clear: both;
+}
 .overlay { width: 100%; height: 100%; filter: var(--backdrop-filter); }
 .overlay:before {
     content: ''; position: absolute;
@@ -172,6 +191,9 @@ a, p, b, i {
 table, tr, td, th {
     color: var(--backtextcolor); font-family: "euro";
     font-size: var(--backsize); text-align: center;
+}
+img {
+    position: relative;
 }
 input[type=button], input[type=image], marquee, button {
     background: var(--gradient-fore);

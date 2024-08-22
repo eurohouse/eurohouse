@@ -8,7 +8,7 @@ if ($request['group'] != '') {
         if ($value != $request['group']) { unset($contentsArr[$key]); }
     } ?><p align='center' class='block'>
 <?php foreach ($contentsArr as $key=>$value) { ?>
-    <a href="<?=$key;?>"><img style="width:<?=$imgWSize;?>%;position:relative;" src="<?=$key.$suffix?>" onmouseover="soundButton();"></a>
+    <a href="<?=$key;?>"><img style="width:<?=$imgWSize;?>%;" src="<?=$key.$suffix?>" onmouseover="soundButton();"></a>
 <?php } ?></p><?php } else {
     $iconSize = 50; $preAvaSize = 25;
     $preStyle = "white-space:pre-wrap;word-wrap:break-word;";

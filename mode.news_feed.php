@@ -3,7 +3,7 @@
 <?php if (isset($_SESSION['user'])) { ?>
 <div class='customPanel'>
 <p align='center' class='block'>
-<input type="text" id="composeMessage" style="width:54%;position:relative;" placeholder="<?=term('What\'s on your mind...', $settings['vocabulary'], $session['units']);?>" value="" onkeydown="if (event.keyCode == 13) {
+<input type="text" id="composeMessage" style="width:54%;" placeholder="<?=term('What\'s on your mind...', $settings['vocabulary'], $session['units']);?>" value="" onkeydown="if (event.keyCode == 13) {
     compose(composeMessage.value);
 } else if (event.keyCode == 27) {
     document.getElementById('composeMessage').value = '';
