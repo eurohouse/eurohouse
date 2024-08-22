@@ -152,7 +152,7 @@ function executeMacros(input, index = 0, length = 1) {
         if (input.startsWith('lock_')) {
             output = input + ': ' + lockdata()[input.replace('lock_', '')];
         } else if (input.startsWith('meta_')) {
-            output = input + ': ' + metadata()[bin2hex(input.replace('meta_', ''))];
+            output = input + ': ' + hex2bin(metadata()[bin2hex(input.replace('meta_', ''))]);
         } else if ((input == 'melody') || (input == 'current_entry')) {
             output = input + ': ' + hex2bin(userdata()[input]);
         } else {
