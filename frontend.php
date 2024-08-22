@@ -94,9 +94,9 @@ function metadata() {
     var obj = {
         <?php $iter = 0; foreach ($metadata as $key=>$value) {
             if (count($metadata) == ($iter - 1)) {
-                echo "'".$key."': meta".camel($key).".value";
+                echo "'".$key."': meta_".str_replace(' ', '_', $key).".value";
             } else {
-                echo "'".$key."': meta".camel($key).".value,";
+                echo "'".$key."': meta_".str_replace(' ', '_', $key).".value,";
             } $iter++;
         } $iter = 0; ?>
     }; return obj;
@@ -123,14 +123,14 @@ function setmeta(ent, val) {
     var obj = metadata(); obj[ent] = val;
     set(sysDefSessionID.value+'_metadata.json', JSON.stringify(obj), true);
     <?php foreach ($metadata as $key=>$value) {
-        echo "meta".camel($key).".value = obj['".$key."'];";
+        echo "meta_".str_replace(' ', '_', $key).".value = obj['".$key."'];";
     } ?>
 }
 function delmeta(ent) {
     var obj = metadata(); delete obj[ent];
     set(sysDefSessionID.value+'_metadata.json', JSON.stringify(obj), true);
     <?php foreach ($metadata as $key=>$value) {
-        echo "meta".camel($key).".value = obj['".$key."'];";
+        echo "meta_".str_replace(' ', '_', $key).".value = obj['".$key."'];";
     } ?>
 }
 function setdata(ent, val) {

@@ -18,7 +18,7 @@
 <?php } foreach ($session as $key=>$value) { ?>
     <input type='hidden' id="<?='sysDef'.camel($key);?>" value="<?=$value;?>">
 <?php } foreach ($metadata as $key=>$value) { ?>
-    <input type='hidden' id="<?='meta'.camel($key);?>" value="<?=$value;?>">
+    <input type='hidden' id="<?='meta_'.str_replace(' ', '_', $key);?>" value="<?=$value;?>">
 <?php } foreach ($locks as $key=>$value) { ?>
     <input type='hidden' id="<?='lock'.camel($key);?>" value="<?=$value;?>">
 <?php } foreach ($updateChannel as $key=>$value) { ?>

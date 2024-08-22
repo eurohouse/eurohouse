@@ -102,6 +102,8 @@ function executeMacros(input, index = 0, length = 1) {
             }
         } else if (rep[0] == 'melody') {
             omniListen(rep[1], true);
+        } else if (rep[0] == 'current_entry') {
+            setdata('current_entry', bin2hex(rep[1]));
         } else if (rep[0] == 'current') {
             if ((rep[1].includes('+')) && (rep[1].startsWith('+'))) {
                 audioPosition(rep[1].replaceAll('+', ''));
@@ -111,7 +113,7 @@ function executeMacros(input, index = 0, length = 1) {
         } else if (rep[0].startsWith('lock_')) {
             setlock(rep[0].replace('lock_', ''), rep[1]);
         } else if (rep[0].startsWith('meta_')) {
-            setmeta(rep[0].replace('meta_', ''), bin2hex(rep[1]));
+            setmeta(bin2hex(rep[0].replace('meta_', '')), bin2hex(rep[1]));
         } else {
             setdata(rep[0], rep[1]);
         }
@@ -150,8 +152,8 @@ function executeMacros(input, index = 0, length = 1) {
         if (input.startsWith('lock_')) {
             output = input + ': ' + lockdata()[input.replace('lock_', '')];
         } else if (input.startsWith('meta_')) {
-            output = input + ': ' + metadata()[input.replace('meta_', '')];
-        } else if (input == 'melody') {
+            output = input + ': ' + metadata()[bin2hex(input.replace('meta_', ''))];
+        } else if ((input == 'melody') || (input == 'current_entry')) {
             output = input + ': ' + hex2bin(userdata()[input]);
         } else {
             output = input + ': ' + userdata()[input];
