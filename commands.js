@@ -424,8 +424,8 @@ function omniEnter() {
             setdata('video_speed', vlr);
             sysDefVideoSpeed.value = vlr;
         } else if (input.startsWith('withdraw ')) {
-            var req = input.replace('withdraw ', '');
-            withdraw(req, true);
+            var req = input.replace('withdraw ', '').split(' ');
+            withdraw(req[0], req[1], true);
         } else if (input.startsWith('give ')) {
             var req = input.replace('give ', '');
             make_gift(parseInt(req));
