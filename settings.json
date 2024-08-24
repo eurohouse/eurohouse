@@ -274,9 +274,12 @@
         ],
         "eurohouse": [
             "https://github.com/eurohouse/baron",
+            "https://github.com/eurohouse/boutique",
             "https://github.com/eurohouse/cappuccino",
+            "https://github.com/eurohouse/echelon",
             "https://github.com/eurohouse/epoque",
-            "https://github.com/eurohouse/mascarpone"
+            "https://github.com/eurohouse/mascarpone",
+            "https://github.com/eurohouse/stellar"
         ]
     },
     "metadata": {
