@@ -22,8 +22,7 @@ function executeMacros(input, index = 0, length = 1) {
             namePart2 = namePart.split(':')[1];
         } else {
             namePart1 = namePart; namePart2 = 0;
-        }
-        var museArr = sysDefMusicBox.value;
+        } var museArr = sysDefMusicBox.value;
         var museLint = museArr.split('//');
         for (i = 0; i < museLint.length; i++) {
             if (museLint[i].toLowerCase().includes(namePart1.toLowerCase())) {
@@ -172,10 +171,8 @@ function executeCode(input) {
             } output = output.slice(0, -2);
         } else {
             output += executeMacros(query);
-        }
-        output = output + ';';
-    }
-    return output;
+        } output = output + ';';
+    } return output;
 }
 function executeFile(name, str = '', re = false, sp = false) {
     var dataString = 'name='+name+'&type=code&sign=&mode=multiline';
@@ -377,12 +374,7 @@ function pipeExec(input) {
     }
 }
 function omniEnter() {
-    var mode = requestMode.value;
-    var sort = requestSort.value;
-    var group = requestGroup.value;
-    var angle = requestAngle.value;
     var input = omniBox.value;
-    var output = "";
     var arj = ''; var arg = [];
     if (sysDefChat.value != 0) {
         compose(input);
@@ -409,26 +401,21 @@ function omniEnter() {
             omniAuthRequest('signout','','');
         } else if ((input == 'fast') || (input == 'spedup')) {
             var vlr = superRound((parseFloat(sysDefAudioSpeed.value) + 0.05), 2);
-            setdata('audio_speed', vlr);
-            sysDefAudioSpeed.value = vlr;
+            setdata('audio_speed', vlr); sysDefAudioSpeed.value = vlr;
         } else if ((input == 'slow') || (input == 'slowed')) {
             var vlr = superRound((parseFloat(sysDefAudioSpeed.value) - 0.05), 2);
-            setdata('audio_speed', vlr);
-            sysDefAudioSpeed.value = vlr;
+            setdata('audio_speed', vlr); sysDefAudioSpeed.value = vlr;
         } else if (input == 'ff') {
             var vlr = superRound((parseFloat(sysDefVideoSpeed.value) + 0.05), 2);
-            setdata('video_speed', vlr);
-            sysDefVideoSpeed.value = vlr;
+            setdata('video_speed', vlr); sysDefVideoSpeed.value = vlr;
         } else if (input == 'rew') {
             var vlr = superRound((parseFloat(sysDefVideoSpeed.value) - 0.05), 2);
-            setdata('video_speed', vlr);
-            sysDefVideoSpeed.value = vlr;
+            setdata('video_speed', vlr); sysDefVideoSpeed.value = vlr;
         } else if (input.startsWith('withdraw ')) {
             var req = input.replace('withdraw ', '').split(' ');
             withdraw(req[0], req[1], true);
         } else if (input.startsWith('give ')) {
-            var req = input.replace('give ', '');
-            make_gift(parseInt(req));
+            make_gift(parseInt(input.replace('give ', '')));
         } else if (input.startsWith('sell ')) {
             var req = input.replace('sell ', '');
             if (req.split(' ').length > 3) {
@@ -444,8 +431,7 @@ function omniEnter() {
                 buy_item(req.split(' ')[0], req.split(' ')[1], req.split(' ')[2]);
             }
         } else if (input.startsWith('accept ')) {
-            var req = input.replace('accept ', '');
-            accept_gift(req);
+            accept_gift(input.replace('accept ', ''));
         } else if (input.startsWith('ytmp3 ')) {
             var req = input.replace('ytmp3 ', '');
             $('.lowerGap').html('<iframe style="width:100%;height:60px;border:0;overflow:hidden;" scrolling="no" src="https://loader.to/api/button/?url='+req+'&f=mp3"></iframe>');
@@ -459,8 +445,7 @@ function omniEnter() {
                 if (arg.length > 0) {
                     for (i = 0; i < arg.length; i++) {
                         mkdir(requestPath.value+'/'+arg[i].replaceAll('"', ''), true);
-                    }
-                    window.location.reload();
+                    } window.location.reload();
                 }
             }
         } else if (input.startsWith('touch ')) {
@@ -470,8 +455,7 @@ function omniEnter() {
                 if (arg.length > 0) {
                     for (i = 0; i < arg.length; i++) {
                         set(requestPath.value+'/'+arg[i].replaceAll('"', ''), '', true);
-                    }
-                    window.location.reload();
+                    } window.location.reload();
                 }
             }
         } else if (input.startsWith('trash ')) {
@@ -481,8 +465,7 @@ function omniEnter() {
                 if (arg.length > 0) {
                     for (i = 0; i < arg.length; i++) {
                         recycle(requestPath.value+'/'+arg[i].replaceAll('"', ''), true);
-                    }
-                    window.location.reload();
+                    } window.location.reload();
                 }
             }
         } else if (input.startsWith('arr ')) {
@@ -504,8 +487,7 @@ function omniEnter() {
                 if (arg.length > 0) {
                     for (i = 0; i < arg.length; i++) {
                         del(requestPath.value+'/'+arg[i].replaceAll('"', ''), true);
-                    }
-                    window.location.reload();
+                    } window.location.reload();
                 }
             }
         } else if (input.startsWith('mv ')) {
@@ -524,8 +506,7 @@ function omniEnter() {
                 if (arg.length > 1) {
                     for (i = 1; i < arg.length; i++) {
                         copy(requestPath.value+'/'+arg[0].replaceAll('"', ''), requestPath.value+'/'+arg[i].replaceAll('"', ''), true);
-                    }
-                    window.location.reload();
+                    } window.location.reload();
                 }
             }
         } else if ((input.includes('update ')) && (input.startsWith('update '))) {
@@ -546,9 +527,8 @@ function omniEnter() {
                 getPkgSequence(input, 'git ', 1);
             }
         } else if ((input.includes('rand ')) && (input.startsWith('rand '))) {
-            var numPart = input.replace('rand ', '');
-            var numArr = numPart.split(' ');
-            omniBox.value = rand(numArr[0], numArr[1]);
+            var numPart = input.replace('rand ', '').split(' ');
+            omniBox.value = rand(numPart[0], numPart[1]);
         } else if ((input.includes(';')) && (input.endsWith(';'))) {
             omniBox.value = executeCode(input);
         } else if (((input.startsWith('$')) && (input.includes(','))) || (input.startsWith('$'))) {
@@ -557,6 +537,11 @@ function omniEnter() {
             pipeExec(input);
         } else if ((input.includes('&')) || (input.includes('|')) || (input.includes('^')) || (input.includes('~'))) {
             omniBox.value = finarr(arrmath(input)).sort().join(',');
+        } else if ((input.includes('.')) && ((input.split('.').length == 3) || (input.split('.').length == 4))) {
+            var reh = input.split('.')[2].substring(0, 2);
+            var rey = input.split('.')[2].substring(2);
+            setdata('background', input.split('.')[0]+'.'+input.split('.')[1]+'.'+input.split('.')[2]+'.png');
+            setdata('lock', 1); setdata('hour', reh); setdata('entry', rey);
         } else {
             omniBox.value = calc(input);
         }
