@@ -60,18 +60,18 @@ function arrangePlay() {
         jh = dp[arraySearch(sysDefSessionID.value, db)];
         if (db[sysDefSessionID.value] != sysDefSessionID.value) {
             th = dp[db[sysDefSessionID.value]];
-            bl = (jh != th) ? jh+'('+my+')'+th : jh+'('+my;
+            bl = (jh != th) ? jh+'?'+my+':'+th : jh+'?'+my;
             pl = '+@'+sysDefSessionID.value+'+';
             $('#buttonBroke').attr('src', sysDefPrefix.value+'broke.png'+sysDefSuffix.value);
         } else {
             th = dp[sysDefSessionID.value];
-            bl = jh+'('+my;
+            bl = jh+'?'+my;
             pl = '+@'+sysDefSessionID.value;
             $('#buttonBroke').attr('src', sysDefPrefix.value+'broke.png'+sysDefSuffix.value);
         }
     } else {
         if (db[sysDefSessionID.value] != sysDefSessionID.value) {
-            th = dp[db[sysDefSessionID.value]]; bl = my+')'+th;
+            th = dp[db[sysDefSessionID.value]]; bl = my+':'+th;
             pl = '@'+sysDefSessionID.value+'+';
             $('#buttonBroke').attr('src', sysDefPrefix.value+'broke.png'+sysDefSuffix.value);
         } else {
