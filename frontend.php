@@ -340,7 +340,7 @@ function accept_gift(user) {
                     var prep = miniPager(result, 0);
                     var sum = (isInt(prep)) ? parseInt(prep) : 0;
                     if (sum > 0) {
-                        fixPrice(sysDefSessionID.value, user, sum, 'ACCEPT GIFT');
+                        fixPrice(sysDefSessionID.value, user, sum, '');
                         del(user+'.gift', true);
                     }
                 }
@@ -357,19 +357,13 @@ function buy_item(art, sel) {
         var obj = arrjob(sysDefPowersData.value,';',':');
         if ((obj[sysDefSessionID.value] > 0) && (obj[sel] >= 0)) {
             if ((tabS[art] !== undefined) && (typeof(tabS[art]) == 'object') && (isInt(tabS[art]['price']))) {
-                tab = tabS[art];
-                typ = tab['type'];
+                tab = tabS[art]; typ = tab['type'];
                 prix = parseInt(tab['price']);
-                if ((typ == 'account') || (typ == 'password')) {
-                    pass = tab['password'];
-                } else {
-                    pass = '';
-                }
+                pass = ((typ == 'account') || (typ == 'password')) ? tab['password'] : '';
             } else {
                 tab = {}; typ = ''; prix = 0; pass = '';
             }
-            var dataString = 'seller='+sel+'&buyer='+sysDefSessionID.value+'&type='+typ+'&price='+parseInt(prix)+'&pass='+encodeURIComponent(pass);
-            var prep, sum;
+            var dataString = 'seller='+sel+'&buyer='+sysDefSessionID.value+'&type='+typ+'&price='+parseInt(prix)+'&pass='+encodeURIComponent(pass); var prep, sum;
             $.ajax({
                 type: "POST",
                 url: "point_of_sale.php",
@@ -379,7 +373,7 @@ function buy_item(art, sel) {
                     prep = miniPager(result, 0);
                     if (isInt(prep)) {
                         if (parseInt(prep) > 0) {
-                            fixPrice(sysDefSessionID.value, sel, 'BUY '+typ+' '+art+' FROM @'+sel, parseInt(prep));
+                            fixPrice(sysDefSessionID.value, sel, typ.toUpperCase()+' '+art, parseInt(prep));
                             delete tabS[art]; tabB[art] = tab;
                             set('./.store/'+sel+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
                             set('./.store/'+sysDefSessionID.value+'_store.json', encodeURIComponent(JSON.stringify(tabB)), true);
