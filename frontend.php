@@ -52,28 +52,30 @@ function arrangePlay() {
     var da = arrjob(sysDefAutoData.value,';',':');
     sysDefAutoState.value = da[sysDefSessionID.value];
     $('#buttonAutomator').attr('src', sysDefPrefix.value+((sysDefAutoState.value == 'auto')?'wheel.png':'steer.png')+sysDefSuffix.value);
-    var my = dp[sysDefSessionID.value]; var th, bl, pl;
+    var my = dp[sysDefSessionID.value]; var th, jh, bl, pl;
     if (my <= -666) {
         delete_user(sysDefSessionID.value);
         omniAuthRequest('signout', '', '');
-    } var bf = arraySearch(sysDefSessionID.value, db);
-    if (bf != false) {
-        th = dp[bf]; bl = my+':'+th;
+    } if (arraySearch(sysDefSessionID.value, db) != false) {
+        jh = dp[arraySearch(sysDefSessionID.value, db)];
         if (db[sysDefSessionID.value] != sysDefSessionID.value) {
+            th = dp[db[sysDefSessionID.value]];
+            bl = (jh != th) ? jh+'('+my+')'+th : jh+'('+my;
             pl = '+@'+sysDefSessionID.value+'+';
             $('#buttonBroke').attr('src', sysDefPrefix.value+'broke.png'+sysDefSuffix.value);
         } else {
+            th = dp[sysDefSessionID.value];
+            bl = jh+'('+my;
             pl = '+@'+sysDefSessionID.value;
             $('#buttonBroke').attr('src', sysDefPrefix.value+'broke.png'+sysDefSuffix.value);
         }
     } else {
         if (db[sysDefSessionID.value] != sysDefSessionID.value) {
-            th = dp[db[sysDefSessionID.value]]; bl = my+':'+th;
+            th = dp[db[sysDefSessionID.value]]; bl = my+')'+th;
             pl = '@'+sysDefSessionID.value+'+';
             $('#buttonBroke').attr('src', sysDefPrefix.value+'broke.png'+sysDefSuffix.value);
         } else {
-            th = dp[sysDefSessionID.value];
-            bl = my;
+            th = dp[sysDefSessionID.value]; bl = my;
             pl = '@'+sysDefSessionID.value;
             $('#buttonBroke').attr('src', sysDefPrefix.value+'chain.png'+sysDefSuffix.value);
         }
@@ -216,12 +218,11 @@ function JSONtoHTML(str, mask, sym = '#', uni = 'L') {
 function JSONtoStore(id) {
     var arr = jsonstr(openJournal(id, sysDefStoreList, sysDefStoreJSONs));
     var ard = ''; var arl = '';
-    var eld = {}; var elt = ''; var fuc = '';
+    var eld = {}; var fuc = '';
     for (el in arr) {
         if ((arr[el] !== undefined) && (typeof(arr[el]) == 'object')) {
-            eld = arr[el]; elt = eld['type'];
-            fuc = "<a href='javascript:buy_item(&#34;"+elt+"&#34;,&#34;"+el+"&#34;,&#34;"+id+"&#34;);'>";
-            arl = '<tr>';
+            eld = arr[el];
+            fuc = "<a href='javascript:buy_item(&#34;"+el+"&#34;,&#34;"+id+"&#34;);'>"; arl = '<tr>';
             arl += '<td>'+((id != sysDefSessionID.value) ? fuc+el+'</a>' : el)+'</td><td>'+eld['name']+'</td><td>'+eld['type']+'</td><td>'+eld['price']+'</td>';
             ard = arl+'</tr>'+ard;
         }
@@ -348,19 +349,27 @@ function accept_gift(user) {
         }
     }
 }
-function buy_item(type = 'account', art, nom, val = "") {
-    if (nom != sysDefSessionID.value) {
-        var tabS = jsonstr(openJournal(nom, sysDefStoreList, sysDefStoreJSONs));
-        var tabB = jsonstr(openJournal(sysDefSessionID.value, sysDefStoreList, sysDefStoreJSONs)); var tab = {}; var prix = 0;
+function buy_item(art, sel) {
+    if (sel != sysDefSessionID.value) {
+        var tabS = jsonstr(openJournal(sel, sysDefStoreList, sysDefStoreJSONs));
+        var tabB = jsonstr(openJournal(sysDefSessionID.value, sysDefStoreList, sysDefStoreJSONs));
+        var tab = {}, typ = '', prix = 0, pass = '';
         var obj = arrjob(sysDefPowersData.value,';',':');
-        if ((obj[sysDefSessionID.value] > 0) && (obj[nom] >= 0)) {
-            if (!((type == 'account') || (type == 'password'))) {
-                if ((tabS[art] !== undefined) && (typeof(tabS[art]) == 'object') && (isInt(tabS[art]['price']))) {
-                    tab = tabS[art]; prix = parseInt(tabS[art]['price']);
+        if ((obj[sysDefSessionID.value] > 0) && (obj[sel] >= 0)) {
+            if ((tabS[art] !== undefined) && (typeof(tabS[art]) == 'object') && (isInt(tabS[art]['price']))) {
+                tab = tabS[art];
+                typ = tab['type'];
+                prix = parseInt(tab['price']);
+                if ((typ == 'account') || (typ == 'password')) {
+                    pass = tab['password'];
                 } else {
-                    prix = 0;
+                    pass = '';
                 }
-            } var dataString = 'seller='+nom+'&buyer='+sysDefSessionID.value+'&type='+type+'&val='+(((type == 'account') || (type == 'password')) ? encodeURIComponent(val) : parseInt(prix)); var prep, sum;
+            } else {
+                tab = {}; typ = ''; prix = 0; pass = '';
+            }
+            var dataString = 'seller='+sel+'&buyer='+sysDefSessionID.value+'&type='+typ+'&price='+parseInt(prix)+'&pass='+encodeURIComponent(pass);
+            var prep, sum;
             $.ajax({
                 type: "POST",
                 url: "point_of_sale.php",
@@ -369,20 +378,15 @@ function buy_item(type = 'account', art, nom, val = "") {
                 success: function(result) {
                     prep = miniPager(result, 0);
                     if (isInt(prep)) {
-                        if (type == 'account') {
-                            if (parseInt(prep) > 0) {
-                                fixPrice(sysDefSessionID.value, nom, 'BUY '+type+' FROM @'+nom, parseInt(prep));
-                            } window.location.reload();
-                        } else if (type == 'password') {
-                            if (parseInt(prep) > 0) {
-                                fixPrice(sysDefSessionID.value, nom, 'BUY '+type+' FROM @'+nom, parseInt(prep));
-                            } omniAuthRequest('signin', nom, val);
-                        } else {
-                            if (parseInt(prep) > 0) {
-                                fixPrice(sysDefSessionID.value, nom, 'BUY '+art+' FROM @'+nom, parseInt(prep));
-                                delete tabS[art]; tabB[art] = tab;
-                                set('./.store/'+nom+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
-                                set('./.store/'+sysDefSessionID.value+'_store.json', encodeURIComponent(JSON.stringify(tabB)), true);
+                        if (parseInt(prep) > 0) {
+                            fixPrice(sysDefSessionID.value, sel, 'BUY '+typ+' '+art+' FROM @'+sel, parseInt(prep));
+                            delete tabS[art]; tabB[art] = tab;
+                            set('./.store/'+sel+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
+                            set('./.store/'+sysDefSessionID.value+'_store.json', encodeURIComponent(JSON.stringify(tabB)), true);
+                            if (typ == 'account') {
+                                window.location.reload();
+                            } else if (typ == 'password') {
+                                omniAuthRequest('signin', sel, pass);
                             }
                         }
                     }
@@ -392,20 +396,19 @@ function buy_item(type = 'account', art, nom, val = "") {
         }
     }
 }
-function sell_item(type = 'account', art, nom, val = "") {
-    var tabS = jsonstr(openJournal(sysDefSessionID.value, sysDefStoreList, sysDefStoreJSONs)); var tab = {}; var price = 0;
+function sell_item(typ, art, ttl, prix, pass = '') {
+    var tabS = jsonstr(openJournal(sysDefSessionID.value, sysDefStoreList, sysDefStoreJSONs)); var tab = {};
     var obj = arrjob(sysDefPowersData.value,';',':');
     if (obj[sysDefSessionID.value] >= 0) {
-        if ((type == 'account') || (type == 'password')) {
-            set(sysDefSessionID.value+'_'+type+'.exch', encodeURIComponent(val), false);
-        } else {
-            tabS[art] = {
-                "name": nom,
-                "type": type,
-                "price": parseInt(val)
-            };
-            set('./.store/'+sysDefSessionID.value+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
+        tabS[art] = {
+            "name": ttl,
+            "type": typ,
+            "price": parseInt(prix)
+        };
+        if ((typ == 'account') || (typ == 'password')) {
+            tabS[art]['password'] = pass;
         }
+        set('./.store/'+sysDefSessionID.value+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
     }
 }
 function isAllZero(arr) {

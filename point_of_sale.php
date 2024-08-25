@@ -17,55 +17,30 @@ function pos_passwd($user, $content) {
     file_put_contents($user.'_password', md5($content));
     chmod($user.'_password', 0777);
 }
-function pos_soldout($user, $type) {
-    chmod($user.'_'.$type.'.exch', 0777);
-    unlink($user.'_'.$type.'.exch');
-}
-$seller = $_REQUEST['seller']; $buyer = $_REQUEST['buyer'];
-$type = $_REQUEST['type']; $val = $_REQUEST['val'];
+$seller = $_REQUEST['seller'];
+$buyer = $_REQUEST['buyer'];
+$type = $_REQUEST['type'];
+$prix = $_REQUEST['price'];
+$pass = $_REQUEST['pass'];
 $pwr = arropen('dominion.json', "{\"root\":0}");
 $ocrd = (isset($pwr[$seller])) ? $pwr[$seller] : 0;
 $scrd = (isset($pwr[$buyer])) ? $pwr[$buyer] : 0;
 if ($type == 'account') {
-    if (file_exists($seller.'_'.$type.'.exch')) {
-        $check = file_get_contents($seller.'_'.$type.'.exch');
-        $fprof = file_get_contents($seller.'_session.json');
-        if ($check == $val) {
-            $prix = strlen($fprof);
-            if (pos_suffice($ocrd, $scrd, $prix)) {
-                $amount = $prix;
-                pos_account($seller, $buyer);
-                pos_passwd($buyer, $check);
-                pos_soldout($seller, $type);
-            } else {
-                $amount = 'INSUFFICIENT FUNDS ('.$scrd.' < '.$prix.')';
-            }
-        } else {
-            $amount = 'ACCESS DENIED';
-        }
+    if (pos_suffice($ocrd, $scrd, $prix)) {
+        $amount = $prix;
+        pos_account($seller, $buyer);
+        pos_passwd($buyer, $pass);
     } else {
-        $amount = 'ITEM NOT FOUND';
+        $amount = 'INSUFFICIENT FUNDS ('.$scrd.' < '.$prix.')';
     }
 } elseif ($type == 'password') {
-    if (file_exists($seller.'_'.$type.'.exch')) {
-        $check = file_get_contents($seller.'_'.$type.'.exch');
-        if ($check == $val) {
-            $prix = strlen($check);
-            if (pos_suffice($ocrd, $scrd, $prix)) {
-                $amount = $prix;
-                pos_passwd($seller, $check);
-                pos_soldout($seller, $type);
-            } else {
-                $amount = 'INSUFFICIENT FUNDS ('.$scrd.' < '.$prix.')';
-            }
-        } else {
-            $amount = 'ACCESS DENIED';
-        }
+    if (pos_suffice($ocrd, $scrd, $prix)) {
+        $amount = $prix;
+        pos_passwd($seller, $pass);
     } else {
-        $amount = 'ITEM NOT FOUND';
+        $amount = 'INSUFFICIENT FUNDS ('.$scrd.' < '.$prix.')';
     }
 } else {
-    $prix = $val;
     if (pos_suffice($ocrd, $scrd, $prix)) {
         $amount = $prix;
     } else {

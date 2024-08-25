@@ -418,18 +418,14 @@ function omniEnter() {
             make_gift(parseInt(input.replace('give ', '')));
         } else if (input.startsWith('sell ')) {
             var req = input.replace('sell ', '');
-            if (req.split(' ').length > 3) {
-                sell_item(req.split(' ')[0], req.split(' ')[1], req.split(' ')[2], req.split(' ')[3]);
+            if (req.split(' ').length > 4) {
+                sell_item(req.split(' ')[0], req.split(' ')[1], req.split(' ')[2], req.split(' ')[3], req.split(' ')[4]);
             } else {
-                sell_item(req.split(' ')[0], req.split(' ')[1], req.split(' ')[2]);
+                sell_item(req.split(' ')[0], req.split(' ')[1], req.split(' ')[2], req.split(' ')[3]);
             }
         } else if (input.startsWith('buy ')) {
             var req = input.replace('buy ', '');
-            if (req.split(' ').length > 3) {
-                buy_item(req.split(' ')[0], req.split(' ')[1], req.split(' ')[2], req.split(' ')[3]);
-            } else {
-                buy_item(req.split(' ')[0], req.split(' ')[1], req.split(' ')[2]);
-            }
+            buy_item(req.split(' from ')[0], req.split(' from ')[1]);
         } else if (input.startsWith('accept ')) {
             accept_gift(input.replace('accept ', ''));
         } else if (input.startsWith('ytmp3 ')) {
