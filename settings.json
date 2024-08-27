@@ -282,9 +282,7 @@
             "https://github.com/eurohouse/stellar"
         ]
     },
-    "metadata": {
-        "000064 000065 000073 000063 000072 000069 000070 000074 000069 00006f 00006e": ""
-    },
+    "metadata": {},
     "defaults": {
         "timezone": 0,
         "units": "EU",
@@ -380,7 +378,7 @@
         "find": "#",
         "find_value": "^",
         "stats": "score",
-        "current_entry": "description",
+        "current_entry": "",
         "position": "50% 25%",
         "audio_volume": 1,
         "audio_speed": 1,
