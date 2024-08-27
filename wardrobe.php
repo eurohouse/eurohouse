@@ -131,6 +131,7 @@ body {
 }
 .notesMenu {
     float: left;
+    overflow-y: scroll;
     width: 20%;
     flex: 0%;
 }
@@ -141,7 +142,7 @@ body {
 }
 .notesRow {
     display: flex;
-    height: 100%;
+    height: 80%;
 }
 .notesRow:after {
     content: "";

@@ -27,7 +27,7 @@
 </div>
 <div class="notesContent">
 <p align='center'>
-<textarea id="myNotesDoc" style="width:78%;height:60%;" placeholder="<?=term('What\'s on your mind...', $settings['vocabulary'], $session['units']);?>" onkeydown="if (event.keyCode == 27) {
+<textarea id="myNotesDoc" style="width:100%;height:100%;" placeholder="<?=term('What\'s on your mind...', $settings['vocabulary'], $session['units']);?>" onkeydown="if (event.keyCode == 27) {
     myNotesDoc.value = '';
     setmeta(bin2hex(myNotesEnt.value), bin2hex(myNotesDoc.value));
 } else if (event.keyCode == 8) {
