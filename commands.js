@@ -13,7 +13,9 @@ function executeMacros(input, index = 0, length = 1) {
     } else if ((index == (length - 1)) && (input.includes(':\\')) && (input.indexOf(':\\') == 0)) {
         playMIDI(input.replace(':\\', ''));
     } else if ((index == (length - 1)) && (input.includes('\\=')) && (input.indexOf('\\=') == 0)) {
-        omniListen(input.replace('\\=', ''), true);
+        var req = input.replace('\\=', '');
+        var res = (req.includes('://')) ? req : 'https://github.com/'+req.split('/')[0]+'/'+req.split('/')[1]+'/blob/main/'+req.split('/')[2]+'?raw=true';
+        omniListen(res, true);
     } else if ((index == (length - 1)) && (input.includes("\\")) && (input.indexOf('\\') == 0)) {
         var namePart = input.replace("\\", '');
         var namePart1, namePart2, nameInc = 0;
