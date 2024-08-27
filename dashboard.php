@@ -60,7 +60,7 @@
         }" oninput="handleInput(this.value, true);">
         <input type='password' id="omniBoxAuthPass" style="width:33%;" placeholder="<?=term('Password', $settings['vocabulary'], $session['units']);?>" value="" onkeydown="
         if (event.keyCode == 13) {
-            omniAuthRequest('signin', omniBoxAuthLogin.value, omniBoxAuthPass.value);
+            omniAuthRequest('signin', omniBoxAuthLogin.value, CryptoJS.MD5(omniBoxAuthPass.value).toString());
         } else if (event.keyCode == 27) {
             document.getElementById('omniBoxAuthPass').value = '';
             document.getElementById('omniBoxAuthLogin').focus();
@@ -69,8 +69,8 @@
         } else if (event.keyCode == 46) {
             handleInput(this.value);
         }" oninput="handleInput(this.value, true);">
-        <input type="image" onmouseover="soundButton();" id="buttonLogin" class="power" onclick="omniAuthRequest('signin', omniBoxAuthLogin.value, omniBoxAuthPass.value);" src="<?=$prefix.'user.png'.$suffix;?>">
-        <input type="image" onmouseover="soundButton();" id="buttonRegister" class="power" onclick="omniAuthRequest('signup', omniBoxAuthLogin.value, omniBoxAuthPass.value);" src="<?=$prefix.'book.png'.$suffix;?>">
+        <input type="image" onmouseover="soundButton();" id="buttonLogin" class="power" onclick="omniAuthRequest('signin', omniBoxAuthLogin.value, CryptoJS.MD5(omniBoxAuthPass.value).toString());" src="<?=$prefix.'user.png'.$suffix;?>">
+        <input type="image" onmouseover="soundButton();" id="buttonRegister" class="power" onclick="omniAuthRequest('signup', omniBoxAuthLogin.value, CryptoJS.MD5(omniBoxAuthPass.value).toString());" src="<?=$prefix.'book.png'.$suffix;?>">
         <input type="image" onmouseover="soundButton();" id="buttonCancelSignin" class="power" onclick="
         document.getElementById('omniBoxAuthPass').value = '';
         document.getElementById('omniBoxAuthLogin').value = '';

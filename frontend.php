@@ -193,10 +193,16 @@ function jsonstr(str) {
     } catch (e) { res = {}; }
     return res;
 }
-function JSONFilter(str, mask, sym = '#', uni = 'L') {
-    var arr = jsonstr(str);
-    var arf = {}; if (mask == sym) {
-        for (el in arr) { arf[el] = arr[el]; }
+function JSONFilter(str, mask, typ) {
+    var arr = jsonstr(str); var sym, uni, cyp;
+    if (typ == 'msg') {
+        sym = '#'; uni = 'L'; cyp = true;
+    } else if (typ == 'book') {
+        sym = '^'; uni = 'N'; cyp = false;
+    } var arf = {}; if (mask == sym) {
+        for (el in arr) {
+            arf[el] = (cyp) ? hex2bin(arr[el]) : arr[el];
+        }
     } else {
         var arrRegex = XRegExp('(\\'+sym+'\\p{'+uni+'}+)', 'g');
         var repRegex = XRegExp('(\\'+sym+'+)', 'g');
@@ -204,50 +210,51 @@ function JSONFilter(str, mask, sym = '#', uni = 'L') {
         for (el in arr) {
             if (wordArr !== null) {
                 for (i = 0; i < wordArr.length; i++) {
-                    if (arr[el].toLowerCase().includes(XRegExp.replace(wordArr[i], repRegex, '').toLowerCase())) { arf[el] = arr[el]; }
+                    if (cyp) {
+                        if (hex2bin(arr[el]).toLowerCase().includes(XRegExp.replace(wordArr[i], repRegex, '').toLowerCase())) {
+                            arf[el] = hex2bin(arr[el]);
+                        }
+                    } else {
+                        if (arr[el].toLowerCase().includes(XRegExp.replace(wordArr[i], repRegex, '').toLowerCase())) {
+                            arf[el] = arr[el];
+                        }
+                    }
                 }
             }
         }
     } return arf;
 }
-function JSONtoHTML(str, mask, sym = '#', uni = 'L') {
-    var arr = JSONFilter(str, mask, sym, uni);
-    var ard = ''; for (el in arr) { ard = el+'<br>'+arr[el]+'<br>'+ard; }
-    return ard;
+function JSONtoHTML(str, mask) {
+    var arr = JSONFilter(str, mask, 'msg');
+    var ard = ''; for (el in arr) {
+        ard = el+'<br>'+arr[el]+'<br>'+ard;
+    } return ard;
 }
 function JSONtoStore(id) {
     var arr = jsonstr(openJournal(id, sysDefStoreList, sysDefStoreJSONs));
-    var ard = ''; var arl = '';
-    var eld = {}; var fuc = '';
+    var ard = '', arl = '', eld = {}, fuc = '';
     for (el in arr) {
         if ((arr[el] !== undefined) && (typeof(arr[el]) == 'object')) {
             eld = arr[el];
             fuc = "<a href='javascript:buy_item(&#34;"+el+"&#34;,&#34;"+id+"&#34;);'>"; arl = '<tr>';
-            arl += '<td>'+((id != sysDefSessionID.value) ? fuc+el+'</a>' : el)+'</td><td>'+eld['name']+'</td><td>'+eld['type']+'</td><td>'+eld['price']+'</td>';
-            ard = arl+'</tr>'+ard;
+            arl += '<td>'+((id != sysDefSessionID.value) ? fuc+el+'</a>' : el)+'</td><td>'+hex2bin(eld['name'])+'</td><td>'+eld['type']+'</td><td>'+eld['price']+'</td>'; ard = arl+'</tr>'+ard;
         }
     } return ard;
 }
-function JSONtoTab(str, mask, sym = '#', uni = 'L', wed) {
-    var arr = JSONFilter(str, mask, sym, uni);
-    var ard = ''; var arl = '';
-    var eld = []; var dem, der;
+function JSONtoTab(str, mask, wed) {
+    var arr = JSONFilter(str, mask, 'book');
+    var ard = '', arl = '', eld = [], dem, der;
     for (el in arr) {
         eld = arr[el].split(' | ');
-        dem = Date.parse(el);
-        der = (new Date(dem)).getDay();
-        if (eld[5] == 'ERR') {
-            arl = '<tr style="text-decoration:line-through;"><td>'+wed[der]+'</td>';
-        } else {
-            arl = '<tr><td>'+wed[der]+'</td>';
-        } arl += '<td>'+eld[0]+'</td>'; arl += '<td>'+eld[1]+'</td>';
+        dem = Date.parse(el); der = (new Date(dem)).getDay();
+        arl = (eld[5] == 'ERR') ? '<tr style="text-decoration:line-through;"><td>'+wed[der]+'</td>' : '<tr><td>'+wed[der]+'</td>';
+        arl += '<td>'+eld[0]+'</td>'; arl += '<td>'+eld[1]+'</td>';
         arl += '<td>'+eld[2]+'</td>'; arl += '<td>'+eld[3]+'</td>';
         arl += '<td>'+eld[4]+'</td>'; ard = arl+'</tr>'+ard;
     } return ard;
 }
 function openJournal(id, ob, oj) {
-    var users = ob.value;
-    var jours = oj.value;
+    var users = ob.value; var jours = oj.value;
     var userArr = users.split(',');
     var userNum = arraySearch(id, userArr);
     return pager(jours, userNum);
@@ -293,10 +300,10 @@ function compose(msg) {
                 if (msg.match(/\r?\n/) !== null) {
                     msgbr = msg.split(/\r?\n/);
                     for (j = 0; j < msgbr.length; j++) {
-                        msgarr[sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now()+j*1000)+' UTC'] = msgbr[j];
+                        msgarr[sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now()+j*1000)+' UTC'] = bin2hex(msgbr[j]);
                     }
                 } else {
-                    msgarr[sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now())+' UTC'] = msg;
+                    msgarr[sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now())+' UTC'] = bin2hex(msg);
                 } set('./.msgbox/'+userID+'_msgbox.json', encodeURIComponent(JSON.stringify(msgarr)), true);
             }
         } else {
@@ -304,10 +311,10 @@ function compose(msg) {
             if (msg.match(/\r?\n/) !== null) {
                 msgbr = msg.split(/\r?\n/);
                 for (j = 0; j < msgbr.length; j++) {
-                    msgarr[sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now()+j*1000)+' UTC'] = msgbr[j];
+                    msgarr[sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now()+j*1000)+' UTC'] = bin2hex(msgbr[j]);
                 }
             } else {
-                msgarr[sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now())+' UTC'] = msg;
+                msgarr[sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now())+' UTC'] = bin2hex(msg);
             }
             if (sysDefPrivate.value != 0) {
                 set('./.msgbox/'+sysDefSessionID.value+'_msgbox.json', encodeURIComponent(JSON.stringify(msgarr)), true);
@@ -352,8 +359,7 @@ function accept_gift(user) {
 function buy_item(art, sel) {
     if (sel != sysDefSessionID.value) {
         var tabS = jsonstr(openJournal(sel, sysDefStoreList, sysDefStoreJSONs));
-        var tabB = jsonstr(openJournal(sysDefSessionID.value, sysDefStoreList, sysDefStoreJSONs));
-        var tab = {}, typ = '', prix = 0, pass = '';
+        var tabB = jsonstr(openJournal(sysDefSessionID.value, sysDefStoreList, sysDefStoreJSONs)); var tab = {}, typ = '', prix = 0, pass = '';
         var obj = arrjob(sysDefPowersData.value,';',':');
         if ((obj[sysDefSessionID.value] > 0) && (obj[sel] >= 0)) {
             if ((tabS[art] !== undefined) && (typeof(tabS[art]) == 'object') && (isInt(tabS[art]['price']))) {
@@ -362,8 +368,7 @@ function buy_item(art, sel) {
                 pass = ((typ == 'account') || (typ == 'password')) ? tab['password'] : '';
             } else {
                 tab = {}; typ = ''; prix = 0; pass = '';
-            }
-            var dataString = 'seller='+sel+'&buyer='+sysDefSessionID.value+'&type='+typ+'&price='+parseInt(prix)+'&pass='+encodeURIComponent(pass); var prep, sum;
+            } var dataString = 'seller='+sel+'&buyer='+sysDefSessionID.value+'&type='+typ+'&price='+parseInt(prix)+'&pass='+encodeURIComponent(pass); var prep, sum;
             $.ajax({
                 type: "POST",
                 url: "point_of_sale.php",
@@ -394,14 +399,18 @@ function sell_item(typ, art, ttl, prix, pass = '') {
     var tabS = jsonstr(openJournal(sysDefSessionID.value, sysDefStoreList, sysDefStoreJSONs)); var tab = {};
     var obj = arrjob(sysDefPowersData.value,';',':');
     if (obj[sysDefSessionID.value] >= 0) {
-        tabS[art] = {
-            "name": ttl,
-            "type": typ,
-            "price": parseInt(prix)
-        };
+        tabS[art] = { "name": bin2hex(ttl), "type": typ,
+        "price": parseInt(prix) };
         if ((typ == 'account') || (typ == 'password')) {
-            tabS[art]['password'] = pass;
-        }
+            tabS[art]['password'] = CryptoJS.MD5(pass).toString();
+        } set('./.store/'+sysDefSessionID.value+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
+    }
+}
+function del_item(art) {
+    var tabS = jsonstr(openJournal(sysDefSessionID.value, sysDefStoreList, sysDefStoreJSONs)); var tab = {};
+    var obj = arrjob(sysDefPowersData.value,';',':');
+    if (obj[sysDefSessionID.value] >= 0) {
+        if ((tabS[art] !== undefined) && (typeof(tabS[art]) == 'object') && (isInt(tabS[art]['price']))) { delete tabS[art]; }
         set('./.store/'+sysDefSessionID.value+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
     }
 }

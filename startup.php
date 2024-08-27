@@ -82,8 +82,8 @@ function world_clock() {
             $('#buttonPrev').attr('src', sysDefPrefix.value+'rew.png'+sysDefSuffix.value);
             $('#buttonNext').attr('src', sysDefPrefix.value+'ff.png'+sysDefSuffix.value);
             $('#buttonLock').attr('src', sysDefPrefix.value+((sysDefLock.value != 0)?'key.png':'lock.png')+sysDefSuffix.value);
-            sysDefMsgCounter.value = (sysDefMsgCounter.value <= 0) ? (Object.keys(JSONFilter(sysDefMsgData.value, sysDefFind.value)).length - 1) : (sysDefMsgCounter.value - 1);
-            $('#showUsUrgent').text(Object.values(JSONFilter(sysDefMsgData.value, sysDefFind.value))[sysDefMsgCounter.value]);
+            sysDefMsgCounter.value = (sysDefMsgCounter.value <= 0) ? (Object.keys(JSONFilter(sysDefMsgData.value, sysDefFind.value, 'msg')).length - 1) : (sysDefMsgCounter.value - 1);
+            $('#showUsUrgent').text(Object.values(JSONFilter(sysDefMsgData.value, sysDefFind.value, 'msg'))[sysDefMsgCounter.value]);
             $('#buttonPrivate').attr('src', sysDefPrefix.value+((sysDefPrivate.value != 0)?'home.png':'world.png')+sysDefSuffix.value);
             $('#buttonPitched').attr('src', sysDefPrefix.value+((sysDefPitchLock.value != 0)?'microphone.png':'volume.png')+sysDefSuffix.value);
             $('#buttonObserve').attr('src', sysDefPrefix.value+'power.png'+sysDefSuffix.value);
@@ -133,7 +133,7 @@ function world_clock() {
             if (requestMode.value == 'news_feed') {
                 msgBox.innerHTML = '<p>'+JSONtoHTML(sysDefMsgData.value, sysDefFind.value)+'</p>';
             } if (requestMode.value == 'bookkeeping') {
-                bookkeep_disp.innerHTML = '<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+fint[0]+'</th><th style="width:7%;">'+fint[1]+'</th><th style="width:7%;">'+fint[2]+'</th><th style="width:10%;">'+fint[3]+'</th><th style="width:10%;">'+fint[4]+'</th><th style="width:10%;">'+fint[5]+'</th></thead><tbody>'+JSONtoTab(sysDefBookKeep.value, sysDefFindValue.value, '^', 'N', gdio)+'</tbody></table>';
+                bookkeep_disp.innerHTML = '<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+fint[0]+'</th><th style="width:7%;">'+fint[1]+'</th><th style="width:7%;">'+fint[2]+'</th><th style="width:10%;">'+fint[3]+'</th><th style="width:10%;">'+fint[4]+'</th><th style="width:10%;">'+fint[5]+'</th></thead><tbody>'+JSONtoTab(sysDefBookKeep.value, sysDefFindValue.value, gdio)+'</tbody></table>';
             } if (requestMode.value == 'play_store') {
                 store_disp.innerHTML = '<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+fint[8]+'</th><th style="width:7%;">'+fint[9]+'</th><th style="width:3%;">'+fint[10]+'</th><th style="width:7%;">'+fint[11]+'</th></thead><tbody>'+JSONtoStore(bndm)+'</tbody></table>';
             } if (requestMode.value == 'font_book') {

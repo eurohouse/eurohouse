@@ -42,21 +42,21 @@ function executeMacros(input, index = 0, length = 1) {
         if (atr[0].includes(':')) {
             atd = atr[0].split(':');
             if (atr[1].includes('signin')) {
-                omniAuthRequest('signin', atd[0], atd[1]);
+                omniAuthRequest('signin', atd[0], CryptoJS.MD5(atd[1]).toString());
             } else if (atr[1].includes('signup')) {
-                omniAuthRequest('signup', atd[0], atd[1]);
+                omniAuthRequest('signup', atd[0], CryptoJS.MD5(atd[1]).toString());
             } else if (atr[1].includes('rename')) {
                 rename_user(atd[0], atd[1]);
-                omniAuthRequest('signin', atd[0], atd[1]);
+                omniAuthRequest('signin', atd[0], CryptoJS.MD5(atd[1]).toString());
             }
         } else {
             if (atr[1].includes('signin')) {
-                omniAuthRequest('signin', atr[0], '');
+                omniAuthRequest('signin', atr[0], CryptoJS.MD5('').toString());
             } else if (atr[1].includes('signup')) {
-                omniAuthRequest('signup', atr[0], '');
+                omniAuthRequest('signup', atr[0], CryptoJS.MD5('').toString());
             } else if (atr[1].includes('rename')) {
                 rename_user(atr[0], '');
-                omniAuthRequest('signin', atr[0], '');
+                omniAuthRequest('signin', atr[0], CryptoJS.MD5('').toString());
             }
         }
     } else if ((index == (length - 1)) && (input.includes('#')) && (input.indexOf('#') == 0)) {
@@ -384,7 +384,7 @@ function omniEnter() {
         if ((input == 'reload') || (input == 'refresh')) {
             window.location.reload();
         } else if ((input == 'signout') || (input == 'logout') || (input == 'logoff')) {
-            omniAuthRequest('signout', '', '');
+            omniAuthRequest('signout','','');
         } else if (input == 'spawn') {
             init_user('1337', 'auto');
         } else if (input == 'upload') {
@@ -418,16 +418,16 @@ function omniEnter() {
             withdraw(req[0], req[1], true);
         } else if (input.startsWith('give ')) {
             make_gift(parseInt(input.replace('give ', '')));
+        } else if (input.startsWith('del ')) {
+            del_item(input.replace('del ', ''));
         } else if (input.startsWith('sell ')) {
-            var req = input.replace('sell ', '');
-            if (req.split(' ').length > 4) {
-                sell_item(req.split(' ')[0], req.split(' ')[1], req.split(' ')[2], req.split(' ')[3], req.split(' ')[4]);
+            arj = input.replace('sell ', '');
+            arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
+            if (arg.length > 4) {
+                sell_item(arg[0].replaceAll('"', ''), arg[1].replaceAll('"', ''), arg[2].replaceAll('"', ''), arg[3].replaceAll('"', ''), arg[4].replaceAll('"', ''));
             } else {
-                sell_item(req.split(' ')[0], req.split(' ')[1], req.split(' ')[2], req.split(' ')[3]);
+                sell_item(arg[0].replaceAll('"', ''), arg[1].replaceAll('"', ''), arg[2].replaceAll('"', ''), arg[3].replaceAll('"', ''));
             }
-        } else if (input.startsWith('buy ')) {
-            var req = input.replace('buy ', '');
-            buy_item(req.split(' from ')[0], req.split(' from ')[1]);
         } else if (input.startsWith('accept ')) {
             accept_gift(input.replace('accept ', ''));
         } else if (input.startsWith('ytmp3 ')) {

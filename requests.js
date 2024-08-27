@@ -2,7 +2,6 @@ function omniRequest(mode, sort, group, angle, input, output, args, lock, ref, p
     window.location.href = 'index.php?mode='+mode+'&sort='+sort+'&group='+group+'&angle='+angle+'&input='+input+'&output='+output+'&args='+args+'&lock='+lock+'&ref='+ref+'&path='+path;
 }
 function omniAuthRequest(auth, login, pass) {
-    var cryptPass = CryptoJS.MD5(pass).toString();
     var form = document.createElement('form');
     form.method = 'POST'; form.action = window.location.href;
     var hiddenField = document.createElement('input');
@@ -18,7 +17,7 @@ function omniAuthRequest(auth, login, pass) {
     var hiddenField = document.createElement('input');
     hiddenField.type = 'hidden';
     hiddenField.name = 'password';
-    hiddenField.value = cryptPass;
+    hiddenField.value = pass;
     form.appendChild(hiddenField);
     document.body.appendChild(form);
     form.submit();
