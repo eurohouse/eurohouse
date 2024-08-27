@@ -471,7 +471,7 @@ function omniEnter() {
                 if (arg.length >= 4) {
                     arr(arg[0].replaceAll('"', ''), arg[1].replaceAll('"', ''), arg[2].replaceAll('"', ''), arg[3].replaceAll('"', ''));
                 } else if (arg.length == 3) {
-                    arr(arg[0].replaceAll('"', ''), arg[1].replaceAll('"', ''), arg[2].replaceAll('"', ''), '');
+                    arr(arg[0].replaceAll('"', ''), arg[1].replaceAll('"', ''), arg[2].replaceAll('"', ''));
                 } else {
                     arr(arg[0].replaceAll('"', ''), arg[1].replaceAll('"', ''), '', '');
                 }
