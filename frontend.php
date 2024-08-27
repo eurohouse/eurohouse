@@ -410,8 +410,9 @@ function del_item(art) {
     var tabS = jsonstr(openJournal(sysDefSessionID.value, sysDefStoreList, sysDefStoreJSONs)); var tab = {};
     var obj = arrjob(sysDefPowersData.value,';',':');
     if (obj[sysDefSessionID.value] >= 0) {
-        if ((tabS[art] !== undefined) && (typeof(tabS[art]) == 'object') && (isInt(tabS[art]['price']))) { delete tabS[art]; }
-        set('./.store/'+sysDefSessionID.value+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
+        if (tabS[art] !== undefined) {
+            delete tabS[art];
+        } set('./.store/'+sysDefSessionID.value+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
     }
 }
 function isAllZero(arr) {
