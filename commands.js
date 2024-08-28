@@ -416,8 +416,6 @@ function omniEnter() {
         } else if (input.startsWith('withdraw ')) {
             var req = input.replace('withdraw ', '').split(' ');
             withdraw(req[0], req[1], true);
-        } else if (input.startsWith('give ')) {
-            make_gift(parseInt(input.replace('give ', '')));
         } else if (input.startsWith('del ')) {
             del_item(input.replace('del ', ''));
         } else if (input.startsWith('sell ')) {
@@ -425,11 +423,11 @@ function omniEnter() {
             arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
             if (arg.length > 4) {
                 sell_item(arg[0].replaceAll('"', ''), arg[1].replaceAll('"', ''), arg[2].replaceAll('"', ''), arg[3].replaceAll('"', ''), arg[4].replaceAll('"', ''));
-            } else {
+            } else if (arg.length == 4) {
                 sell_item(arg[0].replaceAll('"', ''), arg[1].replaceAll('"', ''), arg[2].replaceAll('"', ''), arg[3].replaceAll('"', ''));
+            } else {
+                sell_item(arg[0].replaceAll('"', ''), arg[1].replaceAll('"', ''), arg[2].replaceAll('"', ''));
             }
-        } else if (input.startsWith('accept ')) {
-            accept_gift(input.replace('accept ', ''));
         } else if (input.startsWith('ytmp3 ')) {
             var req = input.replace('ytmp3 ', '');
             $('.lowerGap').html('<iframe style="width:100%;height:60px;border:0;overflow:hidden;" scrolling="no" src="https://loader.to/api/button/?url='+req+'&f=mp3"></iframe>');
