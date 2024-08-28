@@ -207,16 +207,20 @@ function JSONFilter(str, mask, typ) {
         var arrRegex = XRegExp('(\\'+sym+'\\p{'+uni+'}+)', 'g');
         var repRegex = XRegExp('(\\'+sym+'+)', 'g');
         var wordArr = XRegExp.match(mask, arrRegex);
+        var hbin = ''; var hbio = {};
         for (el in arr) {
             if (wordArr !== null) {
-                for (i = 0; i < wordArr.length; i++) {
+                for (iy in wordArr) {
                     if (cyp) {
-                        if (hex2bin(arr[el]).toLowerCase().includes(XRegExp.replace(wordArr[i], repRegex, '').toLowerCase())) {
-                            arf[el] = hex2bin(arr[el]);
+                        hbin = hex2bin(arr[el]);
+                        hbio = XRegExp.replace(wordArr[iy], repRegex, '');
+                        if (hbin.toLowerCase().includes(hbio.toLowerCase())) {
+                            arf[el] = hbin;
                         }
                     } else {
-                        if (arr[el].toLowerCase().includes(XRegExp.replace(wordArr[i], repRegex, '').toLowerCase())) {
-                            arf[el] = arr[el];
+                        hbin = arr[el]; hbio = XRegExp.replace(wordArr[iy], repRegex, '');
+                        if (hbin.toLowerCase().includes(hbio.toLowerCase())) {
+                            arf[el] = hbin;
                         }
                     }
                 }
