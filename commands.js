@@ -38,25 +38,26 @@ function executeMacros(input, index = 0, length = 1) {
     } else if ((index == (length - 1)) && (input.includes('*'))) {
         omniDisp(requestMode.value, input.replace('*', ''), requestLock.value);
     } else if ((index == (length - 1)) && (input.includes('@'))) {
-        var atr = input.split('@'), atd;
+        var atr = input.split('@'), atd, atx;
         if (atr[0].includes(':')) {
-            atd = atr[0].split(':');
+            atd = atr[0].split(':'); atx = CryptoJS.SHA256(atd[1]).toString();
             if (atr[1].includes('signin')) {
-                omniAuthRequest('signin', atd[0], CryptoJS.MD5(atd[1]).toString());
+                omniAuthRequest('signin', atd[0], atx);
             } else if (atr[1].includes('signup')) {
-                omniAuthRequest('signup', atd[0], CryptoJS.MD5(atd[1]).toString());
+                omniAuthRequest('signup', atd[0], atx);
             } else if (atr[1].includes('rename')) {
                 rename_user(atd[0], atd[1]);
-                omniAuthRequest('signin', atd[0], CryptoJS.MD5(atd[1]).toString());
+                omniAuthRequest('signin', atd[0], atx);
             }
         } else {
+            atx = CryptoJS.SHA256('').toString();
             if (atr[1].includes('signin')) {
-                omniAuthRequest('signin', atr[0], CryptoJS.MD5('').toString());
+                omniAuthRequest('signin', atr[0], atx);
             } else if (atr[1].includes('signup')) {
-                omniAuthRequest('signup', atr[0], CryptoJS.MD5('').toString());
+                omniAuthRequest('signup', atr[0], atx);
             } else if (atr[1].includes('rename')) {
                 rename_user(atr[0], '');
-                omniAuthRequest('signin', atr[0], CryptoJS.MD5('').toString());
+                omniAuthRequest('signin', atr[0], atx);
             }
         }
     } else if ((index == (length - 1)) && (input.includes('#')) && (input.indexOf('#') == 0)) {

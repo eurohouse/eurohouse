@@ -393,7 +393,7 @@ function sell_item(typ, art, ttl, prix = '', pass = '') {
     if (obj[sysDefSessionID.value] >= 0) {
         tabS[art] = { "name": bin2hex(ttl), "type": typ, "price": prix };
         if ((typ == 'account') || (typ == 'password')) {
-            tabS[art]['password'] = CryptoJS.MD5(pass).toString();
+            tabS[art]['password'] = CryptoJS.SHA256(pass).toString();
         } set('./.store/'+sysDefSessionID.value+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
     }
 }
@@ -524,15 +524,7 @@ function rename_user(username, password) {
     transfer_entry(username, sysDefPowersData, 'dominion.json');
     transfer_entry(username, sysDefAutoData, 'automator.json');
     transfer_entry(username, sysDefFriendData, 'friendship.json');
-    change(sysDefSessionID.value, username, CryptoJS.MD5(password).toString(), true);
-    move('./'+sysDefSessionID.value+'_lock.json', './'+username+'_lock.json', true, 1);
-    move('./'+sysDefSessionID.value+'_lock.json.bak', './'+username+'_lock.json.bak', true, 1);
-    del('./'+sysDefSessionID.value+'_lock.json', true);
-    del('./'+sysDefSessionID.value+'_lock.json.bak', true);
-    move('./'+sysDefSessionID.value+'_metadata.json', './'+username+'_metadata.json', true, 1);
-    move('./'+sysDefSessionID.value+'_metadata.json.bak', './'+username+'_metadata.json.bak', true, 1);
-    del('./'+sysDefSessionID.value+'_metadata.json', true);
-    del('./'+sysDefSessionID.value+'_metadata.json.bak', true);
+    change(sysDefSessionID.value, username, CryptoJS.SHA256(password).toString(), true);
     move('./.msgbox/'+sysDefSessionID.value+'_msgbox.json', './.msgbox/'+username+'_msgbox.json', true, 1);
     move('./.book/'+sysDefSessionID.value+'_book.json', './.book/'+username+'_book.json', true, 1);
     move('./.store/'+sysDefSessionID.value+'_store.json', './.store/'+username+'_store.json', true, 1);

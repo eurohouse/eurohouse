@@ -2,7 +2,7 @@
 <!-- GR: Πίνακας Ελέγχου; CY: Πίνακας Ελέγχου; FR: Panneau de contrôle; BE: Panneau de contrôle; IT: Pannello di controllo; PT: Painel de controlo; BR: Painel de controle; IN: कंट्रोल पैनल; LK: नियन्त्रण पटल; RS: Контролна табла; ES: Panel de control; MX: Panel de control; DE: Schalttafel; AT: Schalttafel; CH: Occasus Generalis; RO: Panou de control; MD: Panou de control; UA: Панель управління; NP: ཚོད་འཛིན་སྒྲོམ་གཞི།; TR: Kontrol Paneli; RU: Панель управления; CN: 应用程序偏好设置; KR: 프로그램 설정; JP: 番組設定; AE: تفضيلات التطبيق -->
 <p align='center'>
 <input type="button" onmouseover="soundButton();" onclick="applyTheme(setSizeSequence.value, setColorSequence.value); setdata('specimen', encodeURIComponent(setSpecimen.value));" value="<?=term('Apply', $settings['vocabulary'], $session['units']);?>">
-<input type="button" onmouseover="soundButton();" onclick="rename_user(setUsername.value, setPassword.value); omniAuthRequest('signin', setUsername.value, CryptoJS.MD5(setPassword.value).toString());" value="<?=term('Update', $settings['vocabulary'], $session['units']);?>">
+<input type="button" onmouseover="soundButton();" onclick="rename_user(setUsername.value, setPassword.value); omniAuthRequest('signin', setUsername.value, CryptoJS.SHA256(setPassword.value).toString());" value="<?=term('Update', $settings['vocabulary'], $session['units']);?>">
 <input type="button" onmouseover="soundButton();" onclick="setSizeSequence.value = '7 0 180 14 14 14 17 16 15 18 14 14 14'; setColorSequence.value = 'C0BFC0|605F60|E5E5E5|FFFFFF|FFFFFF|000000|FFFFFF|000000|403F40|D5D5D5'; applyTheme(setSizeSequence.value, setColorSequence.value); setSpecimen.value = 'Q F S H Æ Ø Ð Ñ ʒ ʊ ʎ ɸ Σ Φ Ω Θ Г З Х Б ظ ض ؤ ل 인 방 학 적 中 京 日 木 𐎁 𐎛 𐎍 𐎄 🍷 ☕️ 🍾 🍫'; setdata('specimen', setSpecimen.value);" value="<?=term('Reset', $settings['vocabulary'], $session['units']);?>">
 <input type="button" onmouseover="soundButton();" onclick="setdata('font_ascii', 'flexo.ttf'); setdata('font_latin', 'flexo.ttf'); setdata('font_phone', 'arialuni.ttf'); setdata('font_greek', 'ubuntu.ttf'); setdata('font_cyril', 'ubuntu.ttf'); setdata('font_arabi', 'arialuni.ttf'); setdata('font_korea', 'arialuni.ttf'); setdata('font_china', 'arialuni.ttf'); setdata('font_other', 'arialuni.ttf'); setdata('font_emoji', 'twemoji.ttf'); window.location.reload();" value="<?=term('Clear', $settings['vocabulary'], $session['units']);?>"><br>
 <label><?=term('Specimen Text:', $settings['vocabulary'], $session['units']);?></label><br>
@@ -166,7 +166,7 @@ if (event.keyCode == 13) {
 }" oninput="handleInput(this.value, true);">
 <input type="password" placeholder="<?=term('Set a password for your account...', $settings['vocabulary'], $session['units']);?>" id="setPassword" style="width:40%;" value="" onkeydown="if (event.keyCode == 13) {
     rename_user(setUsername.value, setPassword.value);
-    omniAuthRequest('signin', setUsername.value, CryptoJS.MD5(setPassword.value).toString());
+    omniAuthRequest('signin', setUsername.value, CryptoJS.SHA256(setPassword.value).toString());
 } else if (event.keyCode == 27) {
     setPassword.value = '';
     setUsername.focus();

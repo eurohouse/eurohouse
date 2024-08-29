@@ -60,7 +60,7 @@
         }" oninput="handleInput(this.value, true);">
         <input type='password' id="omniBoxAuthPass" style="width:33%;" placeholder="<?=term('Password', $settings['vocabulary'], $session['units']);?>" value="" onkeydown="
         if (event.keyCode == 13) {
-            omniAuthRequest('signin', omniBoxAuthLogin.value, CryptoJS.MD5(omniBoxAuthPass.value).toString());
+            omniAuthRequest('signin', omniBoxAuthLogin.value, CryptoJS.SHA256(omniBoxAuthPass.value).toString());
         } else if (event.keyCode == 27) {
             document.getElementById('omniBoxAuthPass').value = '';
             document.getElementById('omniBoxAuthLogin').focus();
@@ -69,13 +69,11 @@
         } else if (event.keyCode == 46) {
             handleInput(this.value);
         }" oninput="handleInput(this.value, true);">
-        <input type="image" onmouseover="soundButton();" id="buttonLogin" class="power" onclick="omniAuthRequest('signin', omniBoxAuthLogin.value, CryptoJS.MD5(omniBoxAuthPass.value).toString());" src="<?=$prefix.'user.png'.$suffix;?>">
-        <input type="image" onmouseover="soundButton();" id="buttonRegister" class="power" onclick="omniAuthRequest('signup', omniBoxAuthLogin.value, CryptoJS.MD5(omniBoxAuthPass.value).toString());" src="<?=$prefix.'book.png'.$suffix;?>">
-        <input type="image" onmouseover="soundButton();" id="buttonCancelSignin" class="power" onclick="
-        document.getElementById('omniBoxAuthPass').value = '';
+        <input type="image" onmouseover="soundButton();" id="buttonLogin" class="power" onclick="omniAuthRequest('signin', omniBoxAuthLogin.value, CryptoJS.SHA256(omniBoxAuthPass.value).toString());" src="<?=$prefix.'user.png'.$suffix;?>">
+        <input type="image" onmouseover="soundButton();" id="buttonRegister" class="power" onclick="omniAuthRequest('signup', omniBoxAuthLogin.value, CryptoJS.SHA256(omniBoxAuthPass.value).toString());" src="<?=$prefix.'book.png'.$suffix;?>">
+        <input type="image" onmouseover="soundButton();" id="buttonCancelSignin" class="power" onclick="document.getElementById('omniBoxAuthPass').value = '';
         document.getElementById('omniBoxAuthLogin').value = '';
-        document.getElementById('omniBoxAuthLogin').focus();
-        " src="<?=$prefix.'backspace.png'.$suffix;?>">
+        document.getElementById('omniBoxAuthLogin').focus();" src="<?=$prefix.'backspace.png'.$suffix;?>">
     <?php } ?>
     </p>
 </div>
