@@ -10,6 +10,9 @@ $frndData = arropen('friendship.json', "{\"root\":\"\"}");
 $musicBoxArr = str_replace('./','',(glob('./*.{'.duplex($userSettings['collections']['music'], true).'}', GLOB_BRACE)));
 $soundBoxArr = str_replace('./','',(glob('./*.{'.duplex($userSettings['collections']['audio'], true).'}', GLOB_BRACE)));
 $locksArr = arropen($cookie.'_lock.json', json_encode($userSettings['locks']), 'DEFAULT');
+$notesArr = arropen($cookie.'_metadata.json', json_encode($userSettings['metadata']), 'CUSTOM');
+$notesList = implode(' | ', array_keys($notesArr));
+$notesJSON = file_get_contents($cookie.'_metadata.json');
 $musicBox = excpkg($musicBoxArr, $locksArr['music']);
 $soundBox = excpkg($soundBoxArr, $locksArr['sound']);
 natcasesort($musicBox); array_unique($musicBox);
@@ -31,4 +34,6 @@ $userBook."\r\n\r\n".
 $userStore."\r\n\r\n".
 implode('//', $musicBox)."\\\\".implode('//', $soundBox)."\r\n\r\n".
 implode('//', $codexBoxArr)."\\\\".implode('//', $speechBoxArr)."\r\n\r\n".
-$usersList.";".$booksList.";".$storeList;
+$usersList.";".$booksList.";".$storeList."\r\n\r\n".
+$notesList."\r\n\r\n".
+$notesJSON;

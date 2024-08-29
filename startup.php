@@ -39,6 +39,8 @@ function databox() {
             $('#sysDefUsersList').val(pager(data, 10).split(";")[0]);
             $('#sysDefBooksList').val(pager(data, 10).split(";")[1]);
             $('#sysDefStoreList').val(pager(data, 10).split(";")[2]);
+            $('#sysDefMetaList').val(pager(data, 11));
+            $('#sysDefMetaData').val(pager(data, 12));
             if (sysDefBindData.value != sysDefPostBindData.value) {
                 if (sysDefMute.value == 0) {
                     playAudio(bindPlayer, sysDefBindSound.value);
@@ -145,6 +147,8 @@ function world_clock() {
                 fontBook14Pt.innerText = pngm;
             } if (requestMode.value == 'statistics') {
                 tabOper.innerText = fint[6]; tabScore.innerText = fint[7];
+            } if (requestMode.value == 'sticky_notes') {
+                notesMenu.innerHTML = '<p>'+notesListDisp(sysDefMetaList.value)+'</p>';
             } if (((obs == 1) && (spe == 1)) || ((obs == 1) && (spe == 0))) {
                 $('#powerButton').show(); $('.panel').hide();
                 $('.customPanel').hide(); $('.upperGap').hide();

@@ -17,8 +17,6 @@
     <input type='hidden' id="<?='postRequest'.camel($key);?>" value="<?=$value;?>">
 <?php } foreach ($session as $key=>$value) { ?>
     <input type='hidden' id="<?='sysDef'.camel($key);?>" value="<?=$value;?>">
-<?php } foreach ($metadata as $key=>$value) { ?>
-    <input type='hidden' id="<?='meta_'.str_replace(' ', '_', $key);?>" value="<?=$value;?>">
 <?php } foreach ($locks as $key=>$value) { ?>
     <input type='hidden' id="<?='lock'.camel($key);?>" value="<?=$value;?>">
 <?php } foreach ($updateChannel as $key=>$value) { ?>
@@ -30,6 +28,7 @@
 <input type='hidden' id='sysDefSuffix' value="<?=$suffix;?>">
 <input type='hidden' id="sysDefIsSession" value="<?=isAuth();?>">
 <input type='hidden' id="sysDefSessionID" value="<?=$sessionID;?>">
+<input type='hidden' id="sysDefPassword" value="<?=file_get_contents($sessionID.'_password');?>">
 <input type='hidden' id="sysDefPostBackEff" value="0">
 <input type='hidden' id="sysDefPostTickEff" value="0">
 <input type='hidden' id="sysDefVarsArr" value="">
@@ -44,6 +43,8 @@
 <input type='hidden' id="sysDefAutoData" value="<?=valstr($automateData,';',':');?>">
 <input type='hidden' id="sysDefAutoState" value="<?=$automateData[$sessionID];?>">
 <input type='hidden' id="sysDefFriendData" value="<?=valstr($friendData,';',':');?>">
+<input type='hidden' id="sysDefMetaData" value="<?=$metaJSON;?>">
+<input type='hidden' id="sysDefMetaList" value="<?=$metaList;?>">
 <input type='hidden' id="sysDefBookKeep" value="">
 <input type='hidden' id="sysDefMsgData" value="">
 <input type='hidden' id="sysDefUserStore" value="">

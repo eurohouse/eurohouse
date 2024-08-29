@@ -93,15 +93,8 @@ function lockdata() {
     }; return obj;
 }
 function metadata() {
-    var obj = {
-        <?php $iter = 0; foreach ($metadata as $key=>$value) {
-            if (count($metadata) == ($iter - 1)) {
-                echo "'".$key."': meta_".str_replace(' ', '_', $key).".value";
-            } else {
-                echo "'".$key."': meta_".str_replace(' ', '_', $key).".value,";
-            } $iter++;
-        } $iter = 0; ?>
-    }; return obj;
+    var obj = jsonstr(sysDefMetaData.value);
+    return obj;
 }
 function userdata() {
     var obj = {
@@ -124,16 +117,10 @@ function setlock(ent, val) {
 function setmeta(ent, val) {
     var obj = metadata(); obj[ent] = val;
     set(sysDefSessionID.value+'_metadata.json', JSON.stringify(obj), true);
-    <?php foreach ($metadata as $key=>$value) {
-        echo "meta_".str_replace(' ', '_', $key).".value = obj['".$key."'];";
-    } ?>
 }
 function delmeta(ent) {
     var obj = metadata(); delete obj[ent];
     set(sysDefSessionID.value+'_metadata.json', JSON.stringify(obj), true);
-    <?php foreach ($metadata as $key=>$value) {
-        echo "meta_".str_replace(' ', '_', $key).".value = obj['".$key."'];";
-    } ?>
 }
 function setdata(ent, val) {
     var obj = userdata(); obj[ent] = val;
@@ -192,6 +179,18 @@ function jsonstr(str) {
     try { res = JSON.parse(str);
     } catch (e) { res = {}; }
     return res;
+}
+function advEnc(data) {
+    let key = sysDefPassword.value;
+    let code = CryptoJS.AES.encrypt(JSON.stringify(data), key).toString();
+    let res = CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(code));
+    return res;
+}
+function advDec(data) {
+    let key = sysDefPassword.value;
+    let code = CryptoJS.enc.Base64.parse(data).toString(CryptoJS.enc.Utf8);
+    let res = CryptoJS.AES.decrypt(code, key).toString(CryptoJS.enc.Utf8);
+    return JSON.parse(res);
 }
 function JSONFilter(str, mask, typ) {
     var arr = jsonstr(str); var sym, uni, cyp;
@@ -255,6 +254,15 @@ function JSONtoTab(str, mask, wed) {
         arl += '<td>'+eld[0]+'</td>'; arl += '<td>'+eld[1]+'</td>';
         arl += '<td>'+eld[2]+'</td>'; arl += '<td>'+eld[3]+'</td>';
         arl += '<td>'+eld[4]+'</td>'; ard = arl+'</tr>'+ard;
+    } return ard;
+}
+function notesListDisp(str) {
+    var arr = str.split(' | ');
+    var ard = '', arl = '', eld = '', elt = '';
+    for (el in arr) {
+        eld = arr[el]; elt = hex2bin(eld);
+        arl = "<input type='button' style='width:100%;' onclick='openNote(&#34;"+elt+"&#34;);' value='"+elt+"'>"
+        ard = ard+arl+'<br>';
     } return ard;
 }
 function openJournal(id, ob, oj) {

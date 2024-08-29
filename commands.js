@@ -418,6 +418,14 @@ function omniEnter() {
             withdraw(req[0], req[1], true);
         } else if (input.startsWith('del ')) {
             del_item(input.replace('del ', ''));
+        } else if (input.startsWith('enc ')) {
+            arj = input.replace('enc ', '');
+            arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
+            omniBox.value = "dec \""+aes256_encrypt(arg[0].replaceAll('"', ''), arg[1].replaceAll('"', ''))+"\" \""+arg[1].replaceAll('"', '')+"\"";
+        } else if (input.startsWith('dec ')) {
+            arj = input.replace('dec ', '');
+            arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
+            omniBox.value = "enc \""+aes256_decrypt(arg[0].replaceAll('"', ''), arg[1].replaceAll('"', ''))+"\" \""+arg[1].replaceAll('"', '')+"\"";
         } else if (input.startsWith('sell ')) {
             arj = input.replace('sell ', '');
             arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
