@@ -20,13 +20,13 @@ function songIndex(mode = '') {
     var museMelo = hex2bin(sysDefMelody.value);
     var museInd = arraySearch(((museMelo.startsWith(requestPath.value+'/')) ? museMelo.replace(requestPath.value+'/','') : museMelo), museLint);
     if (mode == 'next') {
-        omniListen(((museInd >= (museLint.length-1)) ? museLint[0] : museLint[parseInt(museInd)+1]), true);
+        omniListen((((museInd >= (museLint.length-1)) || (museInd === false)) ? museLint[0] : museLint[parseInt(museInd)+1]), true);
     } else if (mode == 'prev') {
-        omniListen(((museInd <= 0) ? museLint[museLint.length-1] : museLint[parseInt(museInd)-1]), true);
+        omniListen((((museInd <= 0) || (museInd === false)) ? museLint[museLint.length-1] : museLint[parseInt(museInd)-1]), true);
     } else if (mode == 'random') {
         omniListen(museLint[rand(0, museLint.length)], true);
     } else {
-        omniListen(hex2bin(sysDefMelody.value), true);
+        omniListen(museMelo, true);
     }
 }
 function omniPause() {
