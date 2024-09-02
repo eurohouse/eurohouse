@@ -1,7 +1,7 @@
 <div class='topBarItem'>
     <p align='center' class='block'>
     <input type="image" onmouseover="soundButton();" id="buttonRandom" class="power" onclick="songIndex('random');" src="<?=$prefix.'dice.png'.$suffix;?>">
-    <select id="ErotoOlympus" style="width:40%;" onchange="setdata('background', ErotoOlympus.options[ErotoOlympus.selectedIndex].id);">
+    <select id="ErotoOlympus" style="width:32%;" onchange="setdata('background', ErotoOlympus.options[ErotoOlympus.selectedIndex].id);">
     <?php foreach (categories($olympus, $locks['background']) as $key=>$val) { ?>
     <option disabled><?=titled($val, $session['units']);?></option>
     <?php foreach (categoryList($key) as $value) { ?>
@@ -16,6 +16,7 @@
         handleInput(this.value);
     }">
     <input type="image" id="buttonLock" onmouseover="soundButton();" class="power" onclick="setdata('lock', flip(sysDefLock.value));" src="<?=($session['lock'] != 0) ? $prefix.'key.png'.$suffix : $prefix.'lock.png'.$suffix;?>">
+    <input type="image" id="buttonOnReload" onmouseover="soundButton();" class="power" onclick="setdata('apply_locale', flip(sysDefApplyLocale.value));" src="<?=($session['apply_locale'] != 0) ? $prefix.'character.png'.$suffix : $prefix.'font.png'.$suffix;?>">
     <input type="image" onmouseover="soundButton();" id="buttonSongIndex" class="power" onclick="setdata('song_index', nextImage(';random;next;prev',sysDefSongIndex.value));" src="<?php if ($session['song_index'] == 'random') {
         echo $prefix.'dice.png'.$suffix;
     } elseif ($session['song_index'] == 'prev') {
@@ -33,7 +34,7 @@
     <p align='center' class='block'>
     <?php if (isAuth()) { ?>
         <input type="image" onmouseover="soundButton();" id="buttonChat" class="power" onclick="setdata('chat', flip(sysDefChat.value)); omniBox.focus();" src="<?=($session['chat'] != 0) ? $prefix.'book.png'.$suffix : $prefix.'bash.png'.$suffix;?>">
-        <input type='text' id="omniBox" style="width:59%;" placeholder="<?=term('Type expression and press ENTER', $settings['vocabulary'], $session['units']);?>" value="" onkeydown="
+        <input type='text' id="omniBox" style="width:60%;" placeholder="<?=term('Type expression and press ENTER', $settings['vocabulary'], $session['units']);?>" value="" onkeydown="
         if (event.keyCode == 13) {
             omniEnter();
         } else if (event.keyCode == 27) {
@@ -58,7 +59,7 @@
         } else if (event.keyCode == 46) {
             handleInput(this.value);
         }" oninput="handleInput(this.value, true);">
-        <input type='password' id="omniBoxAuthPass" style="width:33%;" placeholder="<?=term('Password', $settings['vocabulary'], $session['units']);?>" value="" onkeydown="
+        <input type='password' id="omniBoxAuthPass" style="width:34%;" placeholder="<?=term('Password', $settings['vocabulary'], $session['units']);?>" value="" onkeydown="
         if (event.keyCode == 13) {
             omniAuthRequest('signin', omniBoxAuthLogin.value, CryptoJS.SHA256(omniBoxAuthPass.value).toString());
         } else if (event.keyCode == 27) {
@@ -80,7 +81,7 @@
 <div class='topBarItem'>
     <p align='center' class='block'>
     <input type="image" onmouseover="soundButton();" id="buttonTime" class="power" onclick="setdata('benchmark', flip(sysDefBenchmark.value));" src="<?=$prefix.'time.png'.$suffix;?>">
-    <input type='button' id="currentTime" style="width:32%;" onclick="setdata('timedisp', flip(sysDefTimedisp.value));" value="00:00:00">
+    <input type='button' id="currentTime" style="width:31%;" onclick="setdata('timedisp', flip(sysDefTimedisp.value));" value="00:00:00">
     <input type="image" id="buttonPrev" onmouseover="soundButton();" class="power" onclick="songIndex('prev');" src="<?=$prefix.'rew.png'.$suffix;?>">
     <input type="image" id="buttonNext" onmouseover="soundButton();" class="power" onclick="songIndex('next');" src="<?=$prefix.'ff.png'.$suffix;?>">
     <input type="number" min='0' max='23' step='1' id="setTimeHour" style="width:10%;" value="<?=$session['hour'];?>" oninput="setdata('hour', pad(setTimeHour.value, 2));
@@ -99,14 +100,14 @@
 <div class='topBarItem'>
     <p align='center' class='block'>
     <input type="image" onmouseover="soundButton();" id="buttonAutoplay" class="power" onclick="setdata('autoplay', flip(sysDefAutoplay.value));" src="<?=$prefix.'autoplay.png'.$suffix;?>">
-    <input type='button' id="alarmTime" style="width:32%;" onclick="setdata('memo', ''); pauseAudio(alarmPlayer);" value="00:00:00">
+    <input type='button' id="alarmTime" style="width:31%;" onclick="setdata('memo', ''); pauseAudio(alarmPlayer);" value="00:00:00">
     <input type="image" id="buttonPlay" onmouseover="soundButton();" class="power" onclick="if (sysDefPlaying.value == 1) {
         omniPause();
     } else {
         omniListen(hex2bin(sysDefMelody.value));
     }" src="<?=$prefix.'play.png'.$suffix;?>">
     <input type="image" onmouseover="soundButton();" id="buttonPitched" class="power" onclick="setdata('pitch_lock', flip(sysDefPitchLock.value));" src="<?=($session['pitch_lock']) ? $prefix.'microphone.png'.$suffix : $prefix.'volume.png'.$suffix;?>">
-    <select id="avatarPicker" style="width:18%;" onchange="setdata('avatar', avatarPicker.options[avatarPicker.selectedIndex].id);">
+    <select id="avatarPicker" style="width:19%;" onchange="setdata('avatar', avatarPicker.options[avatarPicker.selectedIndex].id);">
     <?php foreach (excpkg($kaiser, $locks['avatar']) as $key=>$value) { ?>
     <option id="<?=explode('.', $value)[1];?>" <?php if ($session['avatar'] == explode('.', $value)[1]) { ?> selected <?php } ?>>
         <?=explode('.', $value)[1];?>
@@ -134,7 +135,7 @@
 <div class='topBarItem'>
     <p align='center' class='block'>
     <input type="image" id="userAvatarBadge" onmouseover="soundButton();" class="power" src="<?=$abcPrefix.$session['avatar'].'.png'.$suffix;?>" onclick="setdata('spectate', flip(sysDefSpectate.value));">
-    <select id="setUnits" style="width:14%;" onchange="setdata('units', setUnits.options[setUnits.selectedIndex].id);window.location.reload();">
+    <select id="setUnits" style="width:14%;" onchange="setdata('units', setUnits.options[setUnits.selectedIndex].id); if (sysDefApplyLocale.value != 0) { window.location.reload(); }">
     <?php foreach (explode(',', $session['units_list']) as $selID) { ?>
     <option id="<?=$selID;?>" <?php if ($session['units'] == $selID) { ?> selected <?php } ?>><?=$selID;?></option>
     <?php } ?>

@@ -84,6 +84,7 @@ function world_clock() {
             $('#buttonPrev').attr('src', sysDefPrefix.value+'rew.png'+sysDefSuffix.value);
             $('#buttonNext').attr('src', sysDefPrefix.value+'ff.png'+sysDefSuffix.value);
             $('#buttonLock').attr('src', sysDefPrefix.value+((sysDefLock.value != 0)?'key.png':'lock.png')+sysDefSuffix.value);
+            $('#buttonOnReload').attr('src', sysDefPrefix.value+((sysDefApplyLocale.value != 0)?'character.png':'font.png')+sysDefSuffix.value);
             sysDefMsgCounter.value = (sysDefMsgCounter.value <= 0) ? (Object.keys(JSONFilter(sysDefMsgData.value, sysDefFind.value, 'msg')).length - 1) : (sysDefMsgCounter.value - 1);
             $('#showUsUrgent').text(Object.values(JSONFilter(sysDefMsgData.value, sysDefFind.value, 'msg'))[sysDefMsgCounter.value]);
             $('#buttonPrivate').attr('src', sysDefPrefix.value+((sysDefPrivate.value != 0)?'home.png':'world.png')+sysDefSuffix.value);

@@ -308,6 +308,7 @@
         "spectate": 0,
         "private": 1,
         "vintage": 0,
+        "apply_locale": 0,
         "child_safe": 1,
         "magnitude": 5,
         "title": "",
