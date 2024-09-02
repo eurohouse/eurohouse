@@ -6,21 +6,30 @@ function newNote() {
     myNotesDoc.value = '';
 }
 function openNote(id) {
-    myNotesDoc.value = hex2bin(metadata()[bin2hex(id)]);
     myNotesEnt.value = id;
+    myNotesDoc.value = hex2bin(metadata()[bin2hex(id)], myNotesEnc.value);
 }
 function saveNote(id) {
-    setmeta(bin2hex(id), bin2hex(myNotesDoc.value));
+    setmeta(bin2hex(id), bin2hex(myNotesDoc.value, myNotesEnc.value));
 }
 function deleteNote(id) {
     delmeta(bin2hex(id));
 }
 </script>
 <p align='center' class='block'>
-<input class="text" id="myNotesEnt" style="width:40%;" type="text" value="" onkeydown="if (event.keyCode == 13) {
-    openNote(myNotesEnt.value);
+<input class="text" id="myNotesEnt" style="width:34%;" type="text" value="" onkeydown="if (event.keyCode == 13) {
+    myNotesEnc.focus();
 } else if (event.keyCode == 27) {
     this.value = '';
+} else if (event.keyCode == 8) {
+    handleInput(this.value);
+} else if (event.keyCode == 46) {
+    handleInput(this.value);
+}" oninput="handleInput(this.value, true);">
+<input class="text" id="myNotesEnc" style="width:32%;" type="password" value="" onkeydown="if (event.keyCode == 13) {
+    openNote(myNotesEnt.value);
+} else if (event.keyCode == 27) {
+    this.value = ''; myNotesEnt.focus();
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
@@ -29,7 +38,6 @@ function deleteNote(id) {
 <input type="image" onmouseover="soundButton();" class="power" onclick="newNote();" src="<?=$prefix.'new.png'.$suffix;?>">
 <input type="image" onmouseover="soundButton();" class="power" onclick="openNote(myNotesEnt.value);" src="<?=$prefix.'open.png'.$suffix;?>">
 <input type="image" onmouseover="soundButton();" class="power" onclick="saveNote(myNotesEnt.value);" src="<?=$prefix.'save.png'.$suffix;?>">
-<input type="image" onmouseover="soundButton();" class="power" onclick="deleteNote(myNotesEnt.value);" src="<?=$prefix.'delete.png'.$suffix;?>">
 </p>
 <div class="notesRow">
 <div class="notesMenu" id="notesMenu"></div>

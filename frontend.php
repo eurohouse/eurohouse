@@ -180,18 +180,6 @@ function jsonstr(str) {
     } catch (e) { res = {}; }
     return res;
 }
-function advEnc(data) {
-    let key = sysDefPassword.value;
-    let code = CryptoJS.AES.encrypt(JSON.stringify(data), key).toString();
-    let res = CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(code));
-    return res;
-}
-function advDec(data) {
-    let key = sysDefPassword.value;
-    let code = CryptoJS.enc.Base64.parse(data).toString(CryptoJS.enc.Utf8);
-    let res = CryptoJS.AES.decrypt(code, key).toString(CryptoJS.enc.Utf8);
-    return JSON.parse(res);
-}
 function JSONFilter(str, mask, typ) {
     var arr = jsonstr(str); var sym, uni, cyp;
     if (typ == 'msg') {
@@ -259,9 +247,11 @@ function JSONtoTab(str, mask, wed) {
 function notesListDisp(str) {
     var arr = str.split(' | ');
     var ard = '', arl = '', eld = '', elt = '';
+    var epr = sysDefPrefix.value, esu = sysDefSuffix.value;
     for (el in arr) {
         eld = arr[el]; elt = hex2bin(eld);
-        arl = "<input type='button' style='width:100%;' onclick='openNote(&#34;"+elt+"&#34;);' value='"+elt+"'>"
+        arl = "<input type='button' style='width:80%;' onclick='openNote(&#34;"+elt+"&#34;);' value='"+elt+"'>";
+        arl += "<input type='image' class='power' src='"+epr+"delete.png"+esu+"' onclick='deleteNote(&#34;"+elt+"&#34;);'>";
         ard = ard+arl+'<br>';
     } return ard;
 }
@@ -499,6 +489,7 @@ function delete_user(id) {
     del(id+'_session.json', true);
     del(id+'_session.json.bak', true);
     del(id+'_password', true);
+    del(id+'_cipher', true);
     del(id+'_lock.json', true);
     del(id+'_lock.json.bak', true);
     del(id+'_metadata.json', true);
