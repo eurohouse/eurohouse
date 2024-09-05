@@ -21,8 +21,8 @@
         "domestic": [
             "backend.js", "frontend.js", "tablesort.js",
             "requests.js", "commands.js",
-            "jquery.js", "aframe.js", "crypto.js", "XRegExp.js",
-            "nerdamer.js", "algebra.js", "calculus.js", "solve.js"
+            "jquery.js", "aframe.js", "crypto.js",
+            "XRegExp.js", "nerdamer.js", "algebra.js", "calculus.js", "solve.js"
         ],
         "foreign": [
             "http://www.midijs.net/lib/midi.js"
@@ -252,32 +252,38 @@
             "https://github.com/infofintech/iso3166",
             "https://github.com/eurohouse/eurohouse"
         ],
-        "winxp": [
-            "https://github.com/infofintech/windows",
+        "GTA": [
+            "https://github.com/infofintech/metro",
+            "https://github.com/infofintech/game"
+        ],
+        "Windows XP": [
+            "https://github.com/infofintech/dos",
             "https://github.com/infofintech/redmond",
             "https://github.com/infofintech/xp"
         ],
-        "win11": [
-            "https://github.com/infofintech/windows",
+        "Windows 11": [
+            "https://github.com/infofintech/dos",
             "https://github.com/infofintech/fluent",
-            "https://github.com/infofintech/metro"
+            "https://github.com/infofintech/metro",
+            "https://github.com/eurohouse/orchestra"
         ],
-        "macos": [
-            "https://github.com/infofintech/unix",
+        "macOS": [
             "https://github.com/infofintech/cupertino",
-            "https://github.com/infofintech/osx"
+            "https://github.com/infofintech/osx",
+            "https://github.com/eurohouse/botticelli"
         ],
-        "ubuntu": [
-            "https://github.com/infofintech/unix",
+        "Ubuntu": [
             "https://github.com/infofintech/gnome",
-            "https://github.com/infofintech/distro"
+            "https://github.com/infofintech/distro",
+            "https://github.com/infofintech/midi"
         ],
-        "eurohouse": [
+        "Eurohouse": [
             "https://github.com/eurohouse/baron",
             "https://github.com/eurohouse/boutique",
             "https://github.com/eurohouse/cappuccino",
             "https://github.com/eurohouse/echelon",
             "https://github.com/eurohouse/epoque",
+            "https://github.com/eurohouse/kunstkammer",
             "https://github.com/eurohouse/mascarpone",
             "https://github.com/eurohouse/stellar"
         ]
