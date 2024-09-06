@@ -16,7 +16,7 @@
         handleInput(this.value);
     }">
     <input type="image" id="buttonLock" onmouseover="soundButton();" class="power" onclick="setdata('lock', flip(sysDefLock.value));" src="<?=($session['lock'] != 0) ? $prefix.'key.png'.$suffix : $prefix.'lock.png'.$suffix;?>">
-    <input type="image" id="buttonOnReload" onmouseover="soundButton();" class="power" onclick="setdata('reload', flip(sysDefApplyLocale.value));" src="<?=($session['reload'] != 0) ? $prefix.'character.png'.$suffix : $prefix.'font.png'.$suffix;?>">
+    <input type="image" id="buttonOnReload" onmouseover="soundButton();" class="power" onclick="setdata('reload', flip(sysDefReload.value));" src="<?=($session['reload'] != 0) ? $prefix.'character.png'.$suffix : $prefix.'font.png'.$suffix;?>">
     <input type="image" onmouseover="soundButton();" id="buttonSongIndex" class="power" onclick="setdata('song_index', nextImage(';random;next;prev',sysDefSongIndex.value));" src="<?php if ($session['song_index'] == 'random') {
         echo $prefix.'dice.png'.$suffix;
     } elseif ($session['song_index'] == 'prev') {
@@ -26,7 +26,7 @@
     } else {
         echo $prefix.'code.png'.$suffix;
     } ?>">
-    <input type="image" id="buttonChild" onmouseover="soundButton();" class="power" onclick="setdata('censor', flip(sysDefChildSafe.value));" src="<?=($session['censor'] != 0) ? $prefix.'weather.png'.$suffix : $prefix.'tree.png'.$suffix;?>">
+    <input type="image" id="buttonChild" onmouseover="soundButton();" class="power" onclick="setdata('censor', flip(sysDefCensor.value));" src="<?=($session['censor'] != 0) ? $prefix.'weather.png'.$suffix : $prefix.'tree.png'.$suffix;?>">
     <input type="image" id="buttonObserve" onmouseover="soundButton();" class="power" onclick="setdata('observe', flip(sysDefObserve.value));" src="<?=$prefix.'power.png'.$suffix;?>">
     </p>
 </div>
@@ -135,7 +135,7 @@
 <div class='topBarItem'>
     <p align='center' class='block'>
     <input type="image" id="userAvatarBadge" onmouseover="soundButton();" class="power" src="<?=$abcPrefix.$session['avatar'].'.png'.$suffix;?>" onclick="setdata('spectate', flip(sysDefSpectate.value));">
-    <select id="setUnits" style="width:14%;" onchange="setdata('units', setUnits.options[setUnits.selectedIndex].id); if (sysDefApplyLocale.value != 0) { window.location.reload(); }">
+    <select id="setUnits" style="width:14%;" onchange="setdata('units', setUnits.options[setUnits.selectedIndex].id); if (sysDefReload.value != 0) { window.location.reload(); }">
     <?php foreach (explode(',', $session['units_list']) as $selID) { ?>
     <option id="<?=$selID;?>" <?php if ($session['units'] == $selID) { ?> selected <?php } ?>><?=$selID;?></option>
     <?php } ?>
