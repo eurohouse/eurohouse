@@ -13,16 +13,14 @@ function excpkg(array $arr, $exc = ''): array {
     if ($exc != '') {
         if (strpos($exc, ',') !== false) {
             foreach (explode(',', $exc) as $iter=>$pkg) {
-                $pkgf = pkgf($pkg, true);
-                $new = ($iter == 0) ? $pkgf : array_merge($new, $pkgf);
+                $new = ($iter == 0) ? pkgf($pkg, true) : array_merge($new, pkgf($pkg, true));
             }
         } else {
             $new = pkgf($exc, true);
         }
     } else {
         $new = $arr;
-    }
-    foreach ($new as $val) {
+    } foreach ($new as $val) {
         if (in_array($val, $arr) !== false) {
             $fin[] = $val;
         }
@@ -91,13 +89,7 @@ function enc_tz($tz): string {
     } return $res;
 }
 function dec_tz($tz): string {
-    if ($tz == 0) {
-        $res = 'Etc/GMT';
-    } elseif ($tz < 0) {
-        $res = 'Etc/GMT'.'+'.abs($tz);
-    } else {
-        $res = 'Etc/GMT'.'-'.abs($tz);
-    } return $res;
+    return ($tz == 0) ? 'Etc/GMT' : (($tz < 0) ? 'Etc/GMT'.'+'.abs($tz) : 'Etc/GMT'.'-'.abs($tz));
 }
 function french(array $voc, $units = 'EU'): string {
     $yearQ = ((date('Y') % 4 == 0) && (date('Y') % 400 == 0)) ? 366 : 365;
@@ -150,10 +142,8 @@ function categories(array $arr, $exc = ''): array {
             }
         } else {
             $new[$el] = $exem;
-        }
-        $sup[$el] = $exem;
-    }
-    return ((!empty($new)) ? $new : $sup);
+        } $sup[$el] = $exem;
+    } return ((!empty($new)) ? $new : $sup);
 }
 function categoryList($cat): array {
     return str_replace('./','',(glob('./'.$cat.'.*.00.png')));
@@ -176,39 +166,8 @@ function sizestr(string $val, array $voc, $units = 'EU') {
     $valZB = (isset($voc['ZB'][$units]['value'])) ? $voc['ZB'][$units]['value'] : 1.1805916207174113e+21;
     $unitYB = (isset($voc['YB'][$units]['sign'])) ? $voc['YB'][$units]['sign'] : 'YB';
     $valYB = (isset($voc['YB'][$units]['value'])) ? $voc['YB'][$units]['value'] : 1.2089258196146292e+24;
-    if ($val < $valKB) {
-        $res = $val.' '.$unitB;
-    } else {
-        if ($val < $valMB) {
-            $res = round(($val / $valKB), 2).' '.$unitKB;
-        } else {
-            if ($val < $valGB) {
-                $res = round(($val / $valMB), 2).' '.$unitMB;
-            } else {
-                if ($val < $valTB) {
-                    $res = round(($val / $valGB), 2).' '.$unitGB;
-                } else {
-                    if ($val < $valPB) {
-                        $res = round(($val / $valTB), 2).' '.$unitTB;
-                    } else {
-                        if ($val < $valEB) {
-                            $res = round(($val / $valPB), 2).' '.$unitPB;
-                        } else {
-                            if ($val < $valZB) {
-                                $res = round(($val / $valEB), 2).' '.$unitEB;
-                            } else {
-                                if ($val < $valYB) {
-                                    $res = round(($val / $valZB), 2).' '.$unitZB;
-                                } else {
-                                    $res = round(($val / $valYB), 2).' '.$unitYB;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    } return $res;
+    $res = ($val < $valKB) ? $val.' '.$unitB : (($val < $valMB) ? round(($val / $valKB), 2).' '.$unitKB : (($val < $valGB) ? round(($val / $valMB), 2).' '.$unitMB : (($val < $valTB) ? round(($val / $valGB), 2).' '.$unitGB : (($val < $valPB) ? round(($val / $valTB), 2).' '.$unitTB : (($val < $valEB) ? round(($val / $valPB), 2).' '.$unitPB : (($val < $valZB) ? round(($val / $valEB), 2).' '.$unitEB : (($val < $valYB) ? round(($val / $valZB), 2).' '.$unitZB : $res = round(($val / $valYB), 2).' '.$unitYB)))))));
+    return $res;
 }
 function initiate($str = 'tmp') {
     $arr = explode(',', $str); foreach ($arr as $dir) {
@@ -218,27 +177,16 @@ function initiate($str = 'tmp') {
     }
 }
 function horizontal($a, $circle = 6.285714285714286) {
-    $part = 4 * ($a / $circle); if ($part < 1) {
-        $res = 'u';
-    } elseif ($part >= 1 && $part < 2) {
-        $res = 'r';
-    } elseif ($part >= 2 && $part < 3) {
-        $res = 'd';
-    } elseif ($part >= 3 && $part < 4) {
-        $res = 'l';
-    } else {
-        $res = 'u';
-    } return $res;
+    return floor(4 * ($a / $circle));
 }
 function paging($name, $opt = [0, 2]): array {
-    $arr = preg_split("/\r\n|\n|\r/", (file_get_contents($name)));
-    $obj = []; foreach ($opt as $n) {
+    $arr = preg_split("/\r\n|\n|\r/", (file_get_contents($name))); $obj = [];
+    foreach ($opt as $n) {
         $obj[$n] = $arr[$n];
     } return $obj;
 }
 function pages($name): array {
-    $arr = preg_split("/\r\n|\n|\r/", (file_get_contents($name)));
-    return $arr;
+    return preg_split("/\r\n|\n|\r/", (file_get_contents($name)));
 }
 function textopen($name, $default = '') {
     $fileOpen = (file_exists($name)) ? file_get_contents($name) : $default;
@@ -284,9 +232,7 @@ function jsonopen($name, $empt = false) {
     } else {
         copy($name.'.bak', $name);
         chmod($name, 0777);
-    }
-    $res = file_get_contents($name);
-    return $res;
+    } return file_get_contents($name);
 }
 function equarr(array $src, array $des) {
     foreach ($src as $key=>$val) {
@@ -297,8 +243,7 @@ function equarr(array $src, array $des) {
         if (!isset($src[$key])) {
             unset($des[$key]);
         }
-    }
-    return $des;
+    } return $des;
 }
 function hourize($sec, $min, $mod) {
     return ((($sec / (60 / (12 / $mod))) % (24 / (2 ** $mod))) + ((24 / (2 ** $mod)) * ($min % (2 ** $mod))));
@@ -308,9 +253,6 @@ function incher($num, $koeff = 3.28084, $denom = 12) {
     $nat = explode('.', $modul)[0];
     $frac = round($denom * (explode('.', $modul)[1] / 10));
     return $nat."' ".$frac."\"";
-}
-function circumflex($val, $def) {
-    return (strpos($val, ' ^') !== false) ? [explode(' ^', $val)[0],explode(' ^', $val)[1]] : [$val, $def];
 }
 function lux($hex): bool {
     $r = hexdec(substr($hex,0,2));
@@ -322,8 +264,7 @@ function themed(string $theme, string $assets = 'head'): bool {
     $arr = explode(',', $assets); $basket = true;
     foreach ($arr as $val) {
         $basket = $basket && file_exists($theme.$val.'.png');
-    }
-    return $basket;
+    } return $basket;
 }
 function spaces($str) {
     if (strpos($str, '_') !== false) {
@@ -335,8 +276,7 @@ function spaces($str) {
         $result = implode(' ', $res);
     } else {
         $result = ucfirst($str);
-    }
-    return $result;
+    } return $result;
 }
 function camel($str) {
     if (strpos($str, '_') !== false) {
@@ -348,8 +288,7 @@ function camel($str) {
         $result = $res;
     } else {
         $result = ucfirst($str);
-    }
-    return $result;
+    } return $result;
 }
 function daily($name, $add, $hour): string {
     $num = str_replace('./', '', (glob('./'.explode('.', $name)[0].'.'.explode('.', $name)[1].'.{00,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23}.png', GLOB_BRACE)));
@@ -395,12 +334,10 @@ function express(array $for) {
                 $host = str_replace('/'.$user.'/'.$repo, '', $uri);
             } else {
                 $host = 'https://github.com';
-                $user = $urilo[0];
-                $repo = $urilo[1];
+                $user = $urilo[0]; $repo = $urilo[1];
             }
         } else {
-            $uri = $pkg;
-            $branch = '';
+            $uri = $pkg; $branch = '';
             $urilo = explode('/', $uri);
             if (count($urilo) > 2) {
                 $repo = $urilo[count($urilo) - 1];
@@ -408,13 +345,10 @@ function express(array $for) {
                 $host = str_replace('/'.$user.'/'.$repo, '', $uri);
             } else {
                 $host = 'https://github.com';
-                $user = $urilo[0];
-                $repo = $urilo[1];
+                $user = $urilo[0]; $repo = $urilo[1];
             }
-        }
-        $hostArray = explode('://', $host);
-        $socketOpen = fsockopen($hostArray[1], 80, $errno, $errstr, 10);
-        if ($socketOpen != false) {
+        } $hostArray = explode('://', $host);
+        $socketOpen = fsockopen($hostArray[1], 80, $errno, $errstr, 10); if ($socketOpen != false) {
             $fileback = str_replace('./','',(glob('./*.txt')));
             foreach ($fileback as $key=>$file) {
                 if (file_exists($file)) {
@@ -422,42 +356,35 @@ function express(array $for) {
                     rename($file, $file.'.bak');
                     chmod($file.'.bak', 0777);
                 }
-            }
-            if (file_exists($repo.'.pkg')) {
+            } if (file_exists($repo.'.pkg')) {
                 $files = explode(';', fileopen($repo.'.pkg')['files']);
                 foreach ($files as $key=>$file) {
                     if (file_exists($file)) {
                         chmod($file, 0777);
                         unlink($file);
                     }
-                }
-                chmod($repo.'.pkg', 0777);
+                } chmod($repo.'.pkg', 0777);
                 unlink($repo.'.pkg');
-            }
-            if (file_exists($repo)) {
+            } if (file_exists($repo)) {
                 chmod($repo, 0777);
                 rename($repo, $repo.'.d');
-            }
-            if ($branch != '') {
+            } if ($branch != '') {
                 exec('git clone -b '.$branch.' '.$host.'/'.$user.'/'.$repo);
             } else {
                 exec('git clone '.$host.'/'.$user.'/'.$repo);
-            }
-            chmod($repo, 0777);
+            } chmod($repo, 0777);
             exec('mv '.$repo.'/* $PWD');
             exec('chmod -R 777 .');
             exec('rm -rf '.$repo);
             if (file_exists($repo.'.d')) {
                 chmod($repo.'.d', 0777);
                 rename($repo.'.d', $repo);
-            }
-            $filepass = str_replace('./','',(glob('./*.md')));
+            } $filepass = str_replace('./','',(glob('./*.md')));
             foreach ($filepass as $key=>$file) {
                 if (file_exists($file)) {
                     chmod($file, 0777); unlink($file);
                 }
-            }
-            $filerest = str_replace('./','',(glob('./*.txt.bak')));
+            } $filerest = str_replace('./','',(glob('./*.txt.bak')));
             foreach ($filerest as $key=>$file) {
                 if (file_exists($file)) {
                     chmod($file, 0777);
@@ -471,63 +398,39 @@ function express(array $for) {
 function wordfx($word, $sup, array $voc, $title, $units = 'EU') {
     $preg = preg_match_all('/\[[^\]]*\]/', $word, $matches);
     for ($i = 0; $i < count($matches[0]); $i++) {
-        $full = $matches[0][$i];
-        switch ($full) {
+        $full = $matches[0][$i]; switch ($full) {
             case '[year]':
-                $res = date('Y');
-                break;
+                $res = date('Y'); break;
             case '[id]':
-                $res = $sup;
-                break;
+                $res = $sup; break;
             case '[uname -a]':
-                $res = php_uname('a');
-                break;
+                $res = php_uname('a'); break;
             case '[uname -s]':
-                $res = php_uname('s');
-                break;
+                $res = php_uname('s'); break;
             case '[uname -n]':
-                $res = php_uname('n');
-                break;
+                $res = php_uname('n'); break;
             case '[uname -r]':
-                $res = php_uname('r');
-                break;
+                $res = php_uname('r'); break;
             case '[uname -v]':
-                $res = php_uname('v');
-                break;
+                $res = php_uname('v'); break;
             case '[uname -m]':
-                $res = php_uname('m');
-                break;
+                $res = php_uname('m'); break;
             case '[french]':
-                $res = french($voc, $units);
-                break;
+                $res = french($voc, $units); break;
             case '[month]':
-                $res = (isset($voc['locale']['month'][$units][date('n')-1])) ? $voc['locale']['month'][$units][date('n')-1] : $voc['locale']['month']['default'][date('n')-1];
-                break;
+                $res = (isset($voc['locale']['month'][$units][date('n')-1])) ? $voc['locale']['month'][$units][date('n')-1] : $voc['locale']['month']['default'][date('n')-1]; break;
             case '[semester]':
                 $qN = date('n') - 1;
                 $qM = intval(($qN > 1) && ($qN < 8));
-                $res = (isset($voc['locale']['semester'][$units][$qM])) ? $voc['locale']['semester'][$units][$qM] : $voc['locale']['semester']['default'][$qM];
-                break;
+                $res = (isset($voc['locale']['semester'][$units][$qM])) ? $voc['locale']['semester'][$units][$qM] : $voc['locale']['semester']['default'][$qM]; break;
             case '[quarter]':
                 $qN = date('n') - 1;
-                if (($qN > 1) && ($qN < 5)) {
-                    $qM = 1;
-                } elseif (($qN > 4) && ($qN < 8)) {
-                    $qM = 2;
-                } elseif (($qN > 7) && ($qN < 11)) {
-                    $qM = 3;
-                } else {
-                    $qM = 0;
-                }
-                $res = (isset($voc['locale']['quarter'][$units][$qM])) ? $voc['locale']['quarter'][$units][$qM] : $voc['locale']['quarter']['default'][$qM];
-                break;
+                (($qN > 1) && ($qN < 5)) ? 1 : ((($qN > 4) && ($qN < 8)) ? 2 : ((($qN > 7) && ($qN < 11)) ? 3 : 0));
+                $res = (isset($voc['locale']['quarter'][$units][$qM])) ? $voc['locale']['quarter'][$units][$qM] : $voc['locale']['quarter']['default'][$qM]; break;
             case '[title]':
-                $res = $title;
-                break;
-        }
-        $word = str_replace($full, $res, $word);
-    }
-    return $word;
+                $res = $title; break;
+        } $word = str_replace($full, $res, $word);
+    } return $word;
 }
 function titler($name, array $voc, $title, $units = 'EU') {
     $domain = explode('.', $name)[0]; $volume = explode('.', $name)[1];
