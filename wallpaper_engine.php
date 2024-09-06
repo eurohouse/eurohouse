@@ -11,7 +11,7 @@ $brightRetIcon = ((lux($userData['fore_text_color'])) ? 'rtd.' : 'rtc.');
 $brightAvaFore = ((lux($userData['fore_text_color'])) ? 'ava.' : 'abc.');
 $brightAvaBack = ((lux($userData['back_text_color'])) ? 'ava.' : 'abc.');
 $showFilename = daily($userData['background'], $userData['entry'], $substitute);
-$variations = ($userData['child_safe'] != 0) ? '' : implode(';', str_replace(explode('.', $showFilename)[0].'.'.explode('.', $showFilename)[1].'.'.substr(explode('.', $showFilename)[2], 0, 2), '', str_replace('.png', '', str_replace('./', '', (glob('./'.explode('.', $showFilename)[0].'.'.explode('.', $showFilename)[1].'.'.substr(explode('.', $showFilename)[2], 0, 2).'*.png'))))));
+$variations = ($userData['censor'] != 0) ? '' : implode(';', str_replace(explode('.', $showFilename)[0].'.'.explode('.', $showFilename)[1].'.'.substr(explode('.', $showFilename)[2], 0, 2), '', str_replace('.png', '', str_replace('./', '', (glob('./'.explode('.', $showFilename)[0].'.'.explode('.', $showFilename)[1].'.'.substr(explode('.', $showFilename)[2], 0, 2).'*.png'))))));
 $cont = exemplar(str_replace('./','',(glob('./*.contents.json'))));
 $exem = exemplar(str_replace('./','',(glob('./*.models.json'))));
 $uni = $userData['units']; $loc = $userSettings['locale'];
@@ -85,7 +85,7 @@ $showFilename."\r\n\r\n".
 $assignAvatar1."\r\n\r\n".
 $assignAvatar2."\r\n\r\n".
 $userData['position']."\r\n\r\n".
-$userData['child_safe'].":".$variations."\r\n\r\n".
+$userData['censor'].":".$variations."\r\n\r\n".
 $brightSysIcon.";".$brightRetIcon."\r\n\r\n".
 $showHead."\r\n\r\n".
 $showBody."\r\n\r\n".
