@@ -251,14 +251,12 @@ function fileopen($name, $default = '') {
 function arropen($name, $default = '{}', $exec = '') {
     if (!file_exists($name)) {
         file_put_contents($name, $default); chmod($name, 0777);
-    }
-    $test = file_get_contents($name);
+    } $test = file_get_contents($name);
     if (@json_decode($test, true) != null) {
         file_put_contents($name.'.bak', $test); chmod($name.'.bak', 0777);
     } else {
         copy($name.'.bak', $name); chmod($name, 0777);
-    }
-    if ($exec == 'DEFAULT') {
+    } if ($exec == 'DEFAULT') {
         $tryit = json_decode(file_get_contents($name), true);
         file_put_contents($name, json_encode(equarr(json_decode($default, true), $tryit))); chmod($name, 0777);
         $res = $tryit;
@@ -268,8 +266,7 @@ function arropen($name, $default = '{}', $exec = '') {
     } else {
         $tryit = json_decode(file_get_contents($name), true);
         $res = $tryit;
-    }
-    return $res;
+    } return $res;
 }
 function jsonopen($name, $empt = false) {
     $test = file_get_contents($name);
