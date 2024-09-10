@@ -95,6 +95,58 @@
                 "trail": [ "CN", "JP", "KR", "AE", "SA", "IQ", "IR", "LA", "MM", "KH" ]
             }
         },
+        "continent": {
+            "CH": {
+                "Worldwide": "Orbis Terrarum",
+                "Europe": "Europa", "Oceania": "Australia"
+            },
+            "RU": {
+                "Worldwide": "Международный",
+                "Europe": "Европа", "Asia": "Азия",
+                "Africa": "Африка", "America": "Америка",
+                "Oceania": "Австралия и Океания",
+                "Antarctica": "Антарктида"
+            },
+            "UA": {
+                "Worldwide": "По всьому світу",
+                "Europe": "Європа", "Asia": "Азії",
+                "Africa": "Африка", "America": "Америка",
+                "Oceania": "Австралії та Океанії",
+                "Antarctica": "Антарктида"
+            },
+            "GR": {
+                "Worldwide": "Παγκόσμιος",
+                "Europe": "Ευρώπη", "Asia": "Ασία",
+                "Africa": "Αφρική", "America": "Αμερική",
+                "Oceania": "Αυστραλία και Ωκεανία",
+                "Antarctica": "Ανταρκτική"
+            },
+            "CY": {
+                "Worldwide": "Παγκόσμιος",
+                "Europe": "Ευρώπη", "Asia": "Ασία",
+                "Africa": "Αφρική", "America": "Αμερική",
+                "Oceania": "Αυστραλία και Ωκεανία",
+                "Antarctica": "Ανταρκτική"
+            },
+            "CN": {
+                "Worldwide": "全世界",
+                "Europe": "欧洲", "Asia": "亚洲",
+                "Africa": "非洲", "America": "美洲",
+                "Oceania": "大洋洲", "Antarctica": "南极洲"
+            },
+            "JP": {
+                "Worldwide": "全世界",
+                "Europe": "ヨーロッパ", "Asia": "アジア",
+                "Africa": "アフリカ", "America": "アメリカ",
+                "Oceania": "オセアニア", "Antarctica": "南極大陸"
+            },
+            "KR": {
+                "Worldwide": "세계적인",
+                "Europe": "유럽", "Asia": "아시아",
+                "Africa": "아프리카", "America": "아메리카",
+                "Oceania": "오세아니아", "Antarctica": "남극대륙"
+            }
+        },
         "size": {
             "B": { "RU": { "sign": "Б" }, "UA": { "sign": "Б" }, "CN": { "sign": "字节" }, "JP": { "sign": "字节" }, "KR": { "sign": "바이트" } },
             "KB": { "RU": { "sign": "КБ", "value": 1024 }, "UA": { "sign": "кБ", "value": 1000 }, "US": { "sign": "kB", "value": 1000 }, "GB": { "sign": "KiB", "value": 1024 }, "CN": { "sign": "千字节" }, "JP": { "sign": "千字节" }, "KR": { "sign": "킬로바이트" } },

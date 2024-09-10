@@ -60,6 +60,8 @@ function executeMacros(input, index = 0, length = 1) {
                 omniAuthRequest('signin', atr[0], atx);
             }
         }
+    } else if ((index == (length - 1)) && (input.includes('--')) && (input.indexOf('--') == 0)) {
+        omniSort(input.replace('--',''));
     } else if ((index == (length - 1)) && (input.includes('#')) && (input.indexOf('#') == 0)) {
         setdata('find', input);
     } else if ((index == (length - 1)) && (input.includes('^')) && (input.indexOf('^') == 0)) {
