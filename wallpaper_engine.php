@@ -50,11 +50,11 @@ if (isset($cont[$showFilename])) {
         $showBirthMonth = date('n', strtotime($bday));
         $showBirthCycle = date('z', strtotime($bday));
         $showBirthCake = (($showBirthDay == date('j')) && ($showBirthMonth == date('n'))) ? "🎂" : "";
-        if (isset($loc['anno_ind']['space'][$uni])) {
+        if (in_array($uni, $loc['anno_ind']['space'])) {
             $showBirthAgeDisp = $showBirthAge.' '.$anno;
-        } elseif (isset($loc['anno_ind']['concat']['trail'][$uni])) {
+        } elseif (in_array($uni, $loc['anno_ind']['concat']['trail'])) {
             $showBirthAgeDisp = $showBirthAge.$anno;
-        } elseif (isset($loc['anno_ind']['concat']['trail'][$uni])) {
+        } elseif (in_array($uni, $loc['anno_ind']['concat']['trail'])) {
             $showBirthAgeDisp = $anno.$showBirthAge;
         } else {
             $showBirthAgeDisp = $anno.' '.$showBirthAge;
