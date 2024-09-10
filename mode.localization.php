@@ -2,11 +2,15 @@
 <!-- GR: Γλωσσικά και περιφερειακά πρότυπα; CY: Γλωσσικά και περιφερειακά πρότυπα; DE: Lokalisierung; AT: Lokalisierung; CH: Eligere Lingua; FR: Normes linguistiques et régionales; BE: Normes linguistiques et régionales; IT: Lingua e standard regionali; ES: Idioma y estándares regionales; MX: Idioma y estándares regionales; RO: Localizare; MD: Localizare; RU: Язык и региональные стандарты; UA: Мова та регіональні стандарти; TR: Dil ve bölgesel standartlar; PT: Línguas e padrões regionais; BR: idiomas e padrões regionais; NP: སྐད་ཡིག་དང་ས་ཁུལ་གྱི་ཚད་གཞི།; TR: Dil ve bölgesel standartlar; LK: भाषा तथा क्षेत्रीय मानक; CN: 黄金十亿国家; KR: 황금십억나라; JP: 黄金十億の国; AE: المليار الذهبي -->
 <p align="center">
 <?php $arr = fileopen('i18n.json');
-$dev = $arr; foreach ($arr as $key=>$value) {
+function hdi2019sum(array $arr): array {
+    $res = []; foreach ($arr as $key=>$val) {
+        $res[$key] = $val['HDI'][2019];
+    } return $res;
+} $dev = $arr; foreach ($arr as $key=>$value) {
     if ($value['HDI'][2019] < 0.8) { unset($dev[$key]); }
-    $arr['UN']['HDI'][2019] = round((array_sum($arr) / count($arr)), 3);
+    $arr['UN']['HDI'][2019] = round((hdi2019sum($arr) / count($arr)), 3);
     $arr['UN']['Continent'] = 'Global'; $arr['EU']['Continent'] = 'Europe';
-    $arr['EU']['HDI'][2019] = round((array_sum($dev) / count($dev)), 3);
+    $arr['EU']['HDI'][2019] = round((hdi2019sum($dev) / count($dev)), 3);
     $arr['AQ']['HDI'][2019] = 0; arsort($arr); $arr['AQ']['Continent'] = 'Antarctica';
     if ($request['lock'] != 'false') {
         if ($value['HDI'][2019] < 0.8) { unset($arr[$key]); }
