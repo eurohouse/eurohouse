@@ -14,8 +14,7 @@ function executeMacros(input, index = 0, length = 1) {
         playMIDI(input.replace(':\\', ''));
     } else if ((index == (length - 1)) && (input.includes('\\=')) && (input.indexOf('\\=') == 0)) {
         var req = input.replace('\\=', '');
-        var res = (req.includes('://')) ? req : 'https://github.com/'+req.split('/')[0]+'/'+req.split('/')[1]+'/blob/main/'+req.split('/')[2]+'?raw=true';
-        omniListen(res, true);
+        var res = (req.includes('://')) ? req : 'https://bitbucket.org/baronnaise/'+req.split('/')[0]+'/raw/master/'+req.split('/')[1]; omniListen(res, true);
     } else if ((index == (length - 1)) && (input.includes("\\")) && (input.indexOf('\\') == 0)) {
         var namePart = input.replace("\\", '');
         var namePart1, namePart2, nameInc = 0;
