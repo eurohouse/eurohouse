@@ -8,11 +8,13 @@ function newNote() {
 function openNote(id) {
     myNotesEnt.value = id;
     var ci = gemstr(myNotesEnc.value);
-    myNotesDoc.value = hex2bin(metadata()[bin2hex(id)], ci);
+    var cd = parseInt(myNotesRad.value);
+    myNotesDoc.value = hex2bin(metadata()[bin2hex(id)], ci, cd);
 }
 function saveNote(id) {
     var ci = gemstr(myNotesEnc.value);
-    setmeta(bin2hex(id), bin2hex(myNotesDoc.value, ci));
+    var cd = parseInt(myNotesRad.value);
+    setmeta(bin2hex(id), bin2hex(myNotesDoc.value, ci, cd));
 }
 function deleteNote(id) {
     delmeta(bin2hex(id));
@@ -28,10 +30,19 @@ function deleteNote(id) {
 } else if (event.keyCode == 46) {
     handleInput(this.value);
 }" oninput="handleInput(this.value, true);">
-<input class="text" id="myNotesEnc" style="width:32%;" type="password" value="" onkeydown="if (event.keyCode == 13) {
+<input class="text" id="myNotesEnc" style="width:26%;" type="password" value="" onkeydown="if (event.keyCode == 13) {
     openNote(myNotesEnt.value);
 } else if (event.keyCode == 27) {
     this.value = ''; myNotesEnt.focus();
+} else if (event.keyCode == 8) {
+    handleInput(this.value);
+} else if (event.keyCode == 46) {
+    handleInput(this.value);
+}" oninput="handleInput(this.value, true);">
+<input class="text" id="myNotesRad" style="width:12%;" type="number" value="16" onkeydown="if (event.keyCode == 13) {
+    openNote(myNotesEnt.value);
+} else if (event.keyCode == 27) {
+    myNotesRad.value = 16;
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
