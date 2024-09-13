@@ -142,7 +142,7 @@ body {
 }
 .notesRow {
     display: flex;
-    height: 80%;
+    height: 70%;
 }
 .notesRow:after {
     content: "";

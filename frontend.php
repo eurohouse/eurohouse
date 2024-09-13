@@ -246,12 +246,13 @@ function JSONtoTab(str, mask, wed) {
 }
 function notesListDisp(str) {
     var arr = str.split(' | ');
-    var ard = '', arl = '', eld = '', elt = '';
+    var ard = '', arl = '', eld = '', elt = '', eln = '';
     var epr = sysDefPrefix.value, esu = sysDefSuffix.value;
     for (el in arr) {
-        eld = arr[el]; elt = hex2bin(eld);
-        arl = "<input type='button' style='width:80%;' onclick='openNote(&#34;"+elt+"&#34;);' value='"+elt+"'>";
-        arl += "<input type='image' class='power' src='"+epr+"delete.png"+esu+"' onclick='deleteNote(&#34;"+elt+"&#34;);'>";
+        eld = arr[el]; eln = sysDefNumeric.value;
+        elt = hex2bin(eld,'',eln);
+        arl = "<input type='button' style='width:80%;' onclick='openNote(&#34;"+elt+"&#34;,&#34;&#34;,&#34;"+eln+"&#34;);' value='"+elt+"'>";
+        arl += "<input type='image' class='power' src='"+epr+"delete.png"+esu+"' onclick='deleteNote(&#34;"+elt+"&#34;,&#34;&#34;,&#34;"+eln+"&#34;);'>";
         ard = ard+arl+'<br>';
     } return ard;
 }
