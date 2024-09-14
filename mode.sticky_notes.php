@@ -7,12 +7,12 @@ function newNote() {
 }
 function openNote(id) {
     myNotesEnt.value = id;
-    var ci = gemstr(myNotesEnc.value);
+    var ci = obfstr(CryptoJS.SHA256(myNotesEnc.value));
     var cd = sysDefNumeric.value;
     myNotesDoc.value = hex2bin(metadata()[bin2hex(id,'',cd)], ci, cd);
 }
 function saveNote(id) {
-    var ci = gemstr(myNotesEnc.value);
+    var ci = obfstr(CryptoJS.SHA256(myNotesEnc.value));
     var cd = myNotesRad.value;
     setmeta(bin2hex(id,'',cd), bin2hex(myNotesDoc.value, ci, cd));
 }
