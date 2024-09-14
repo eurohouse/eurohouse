@@ -188,7 +188,7 @@ function JSONFilter(str, mask, typ) {
         sym = '^'; uni = 'N'; cyp = false;
     } var arf = {}; if (mask == sym) {
         for (el in arr) {
-            arf[el] = (cyp) ? hex2bin(arr[el]) : arr[el];
+            arf[el] = (cyp) ? hex2bin(arr[el], obfstr(CryptoJS.SHA256(sysDefSessionID.value).toString())) : arr[el];
         }
     } else {
         var arrRegex = XRegExp('(\\'+sym+'\\p{'+uni+'}+)', 'g');
@@ -199,7 +199,7 @@ function JSONFilter(str, mask, typ) {
             if (wordArr !== null) {
                 for (iy in wordArr) {
                     if (cyp) {
-                        hbin = hex2bin(arr[el]);
+                        hbin = hex2bin(arr[el], obfstr(CryptoJS.SHA256(sysDefSessionID.value).toString()));
                         hbio = XRegExp.replace(wordArr[iy], repRegex, '');
                         if (hbin.toLowerCase().includes(hbio.toLowerCase())) {
                             arf[el] = hbin;
@@ -296,17 +296,17 @@ function compose(msg) {
     var ratTab = arrjob(sysDefPowersData.value, ';', ':');
     if (ratTab[sysDefSessionID.value] >= 0) {
         if (addr !== null) {
-            for (i = 0; i < addr.length; i++) {
-                userID = addr[i].replace('@', '');
+            for (it in addr) {
+                userID = addr[it].replace('@', '');
                 msgbox = openJournal(userID, sysDefUsersList, sysDefMailingJSONs);
                 msgarr = jsonstr(msgbox);
                 if (msg.match(/\r?\n/) !== null) {
                     msgbr = msg.split(/\r?\n/);
                     for (j = 0; j < msgbr.length; j++) {
-                        msgarr[sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now()+j*1000)+' UTC'] = bin2hex(msgbr[j]);
+                        msgarr[sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now()+j*1000)+' UTC'] = bin2hex(msgbr[j], obfstr(CryptoJS.SHA256(userID).toString()));
                     }
                 } else {
-                    msgarr[sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now())+' UTC'] = bin2hex(msg);
+                    msgarr[sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now())+' UTC'] = bin2hex(msg, obfstr(CryptoJS.SHA256(userID).toString()));
                 } set('./.msgbox/'+userID+'_msgbox.json', encodeURIComponent(JSON.stringify(msgarr)), true);
             }
         } else {
@@ -314,10 +314,10 @@ function compose(msg) {
             if (msg.match(/\r?\n/) !== null) {
                 msgbr = msg.split(/\r?\n/);
                 for (j = 0; j < msgbr.length; j++) {
-                    msgarr[sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now()+j*1000)+' UTC'] = bin2hex(msgbr[j]);
+                    msgarr[sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now()+j*1000)+' UTC'] = bin2hex(msgbr[j], obfstr(CryptoJS.SHA256(sysDefSessionID.value).toString()));
                 }
             } else {
-                msgarr[sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now())+' UTC'] = bin2hex(msg);
+                msgarr[sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now())+' UTC'] = bin2hex(msg, obfstr(CryptoJS.SHA256(sysDefSessionID.value).toString()));
             }
             if (sysDefPrivate.value != 0) {
                 set('./.msgbox/'+sysDefSessionID.value+'_msgbox.json', encodeURIComponent(JSON.stringify(msgarr)), true);
@@ -512,17 +512,22 @@ function transfer_entry(id, obj, name, seb = false) {
 }
 function rename_user(username, password) {
     unbind(sysDefSessionID.value);
-    transfer_entry(username, sysDefBindData, 'binding.json', true);
-    transfer_entry(username, sysDefPowersData, 'dominion.json');
-    transfer_entry(username, sysDefAutoData, 'automator.json');
-    transfer_entry(username, sysDefFriendData, 'friendship.json');
     change(sysDefSessionID.value, username, CryptoJS.SHA256(password).toString(), true);
-    move('./.msgbox/'+sysDefSessionID.value+'_msgbox.json', './.msgbox/'+username+'_msgbox.json', true, 1);
-    move('./.book/'+sysDefSessionID.value+'_book.json', './.book/'+username+'_book.json', true, 1);
-    move('./.store/'+sysDefSessionID.value+'_store.json', './.store/'+username+'_store.json', true, 1);
-    del('./.msgbox/'+sysDefSessionID.value+'_msgbox.json.bak', true);
-    del('./.book/'+sysDefSessionID.value+'_book.json.bak', true);
-    del('./.store/'+sysDefSessionID.value+'_store.json.bak', true);
+    if (sysDefSessionID.value != username) {
+        transfer_entry(username, sysDefBindData, 'binding.json', true);
+        transfer_entry(username, sysDefPowersData, 'dominion.json');
+        transfer_entry(username, sysDefAutoData, 'automator.json');
+        transfer_entry(username, sysDefFriendData, 'friendship.json');
+        del('./.msgbox/'+sysDefSessionID.value+'_msgbox.json.bak', true);
+        del('./.book/'+sysDefSessionID.value+'_book.json.bak', true);
+        del('./.store/'+sysDefSessionID.value+'_store.json.bak', true);
+        move('./.msgbox/'+sysDefSessionID.value+'_msgbox.json', './.msgbox/'+username+'_msgbox.json', true, 1);
+        move('./.book/'+sysDefSessionID.value+'_book.json', './.book/'+username+'_book.json', true, 1);
+        move('./.store/'+sysDefSessionID.value+'_store.json', './.store/'+username+'_store.json', true, 1);
+        del('./.msgbox/'+sysDefSessionID.value+'_msgbox.json.bak', true);
+        del('./.book/'+sysDefSessionID.value+'_book.json.bak', true);
+        del('./.store/'+sysDefSessionID.value+'_store.json.bak', true);
+    }
 }
 function init_user(id, au = 'manual') {
     var bd = arrjob(sysDefBindData.value,';',':');
