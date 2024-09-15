@@ -390,8 +390,7 @@ function omniEnter() {
         } else if (input == 'spawn') {
             init_user('1337', 'auto');
         } else if (input == 'upload') {
-            document.getElementById('filebrowser').click();
-            return false;
+            document.getElementById('filebrowser').click(); return false;
         } else if (input == 'song') {
             songIndex();
         } else if (input == 'clear') {
@@ -401,8 +400,7 @@ function omniEnter() {
         } else if ((input == 'unbind') || (input == 'detach')) {
             unbind(sysDefSessionID.value);
         } else if ((input == 'suicide') || (input == 'goodbye')) {
-            delete_user(sysDefSessionID.value);
-            omniAuthRequest('signout','','');
+            delete_user(sysDefSessionID.value); omniAuthRequest('signout','','');
         } else if ((input == 'fast') || (input == 'spedup')) {
             var vlr = superRound((parseFloat(sysDefAudioSpeed.value) + 0.05), 2);
             setdata('audio_speed', vlr); sysDefAudioSpeed.value = vlr;
@@ -415,19 +413,11 @@ function omniEnter() {
         } else if (input == 'rew') {
             var vlr = superRound((parseFloat(sysDefVideoSpeed.value) - 0.05), 2);
             setdata('video_speed', vlr); sysDefVideoSpeed.value = vlr;
-        } else if (input.startsWith('withdraw ')) {
-            var req = input.replace('withdraw ', '').split(' ');
+        } else if (input.startsWith('with ')) {
+            var req = input.replace('with ', '').split(' ');
             withdraw(req[0], req[1], true);
         } else if (input.startsWith('del ')) {
             del_item(input.replace('del ', ''));
-        } else if (input.startsWith('enc ')) {
-            arj = input.replace('enc ', '');
-            arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
-            omniBox.value = "dec \""+aes256_encrypt(arg[0].replaceAll('"', ''), arg[1].replaceAll('"', ''))+"\" \""+arg[1].replaceAll('"', '')+"\"";
-        } else if (input.startsWith('dec ')) {
-            arj = input.replace('dec ', '');
-            arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
-            omniBox.value = "enc \""+aes256_decrypt(arg[0].replaceAll('"', ''), arg[1].replaceAll('"', ''))+"\" \""+arg[1].replaceAll('"', '')+"\"";
         } else if (input.startsWith('sell ')) {
             arj = input.replace('sell ', '');
             arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
@@ -546,8 +536,7 @@ function omniEnter() {
         } else if ((input.includes('.')) && ((input.split('.').length == 3) || (input.split('.').length == 4))) {
             var reh = input.split('.')[2].substring(0, 2);
             var rey = input.split('.')[2].substring(2);
-            setdata('background', input.split('.')[0]+'.'+input.split('.')[1]+'.'+input.split('.')[2]+'.png');
-            setdata('lock', 1); setdata('hour', reh); setdata('entry', rey);
+            setdata('background', input.split('.')[0]+'.'+input.split('.')[1]+'.'+input.split('.')[2]+'.png'); setdata('lock', 1); setdata('hour', reh); setdata('entry', rey);
         } else {
             omniBox.value = calc(input);
         }
