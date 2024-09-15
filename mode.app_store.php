@@ -5,7 +5,7 @@ $line1Size = 70;
 foreach ($settings['payload'] as $key=>$val) {
 ?><p align='center'>
     <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
-    <a href="javascript:getPkgSequence('get -i '+updateChannel<?=md5($key);?>, 'get ', 0);"><?php } ?>
+    <a href="javascript:getPkgSequence('get -i '+updateChannel<?=md5($key);?>.value, 'get ', 0);"><?php } ?>
         <?=$key;?>
     <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
     </a><?php } ?><br>
