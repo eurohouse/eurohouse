@@ -138,7 +138,9 @@ function setdata(ent, val) {
         notifyPlayer.volume = val; bindPlayer.volume = val;
         hitPlayer.volume = val; sufferPlayer.volume = val;
     } if (ent == 'pitch_lock') { audioPlayer.preservesPitch = (val != 0) ? true : false; }
-    if (requestMode.value == 'media_player') {
+    if (requestMode.value == 'sticky_notes') {
+        if (ent == 'numeric') { myNotesRad.value = val; }
+    } if (requestMode.value == 'media_player') {
         if (ent == 'video_volume') { video.volume = val; }
         if (ent == 'video_speed') { video.playbackRate = val; }
         if (ent == 'pitch_lock') { video.preservesPitch = (val != 0) ? true : false; }
