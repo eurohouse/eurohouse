@@ -1,6 +1,7 @@
 # Music; lock_music: botticelli,orchestra;
 # Avatar; avatar: eurohouse;
 # Background; background: baron.000.00.png;
+# Personal; numeric: 0123456789abcdefghijklmnopqstuvwxyzαβγδεζηθικλμνξοπρςστυφχψωϐϑϕϖϗϙϛϝϟϡϰϱϸϻϼабвгдеёжзийїклмнопрстуфхѡѿцчшщъыьѣѥэюяѫѭѧѩѯѱѳѵҁђєљњћџ; date_format: d.m.Y; time_format: H:i:s;
 # UI; back_color: C0BFC0; fore_color: 605F60; input_color: E5E5E5; back_text_color: FFFFFF; fore_text_color: FFFFFF; input_text_color: 000000; blank_color: FFFFFF; blank_text_color: 000000; arc_fore_color: 403F40; arc_input_color: D5D5D5; opacity: 64; radius: 7; box_shadow: 0; gradient_deg: 180; gloss: 1;
 # Display; pangram_ascii: The quick brown fox jumps over the lazy dog.; pangram_cyril: Съешь ещё этих мягких французских булок, да выпей же чаю.; reticle_choice_1: reticle; reticle_choice_2: musket; reticle_choice_3: camera; reticle_choice_4: sniper; reticle_choice_5: german;
 # Audio; mute: 1; alarm_sound: iphone_tune.wav; ticking_sound: timer.wav; background_sound: vinyl.wav; focus_sound: macos_mouse.wav; type_sound: macos_keyboard.wav; error_sound: macos_ding.wav; notify_sound: macos_notify.wav; bind_sound: macos_infobar.wav; hit_sound: macos_infobar.wav; suffer_sound: macos_popup.wav;

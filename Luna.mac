@@ -1,6 +1,7 @@
 # Music; lock_music: dos;
 # Avatar; avatar: winxp;
 # Background; background: xp.bliss.00.png;
+# Personal; numeric: 0123456789abcdef; date_format: D, M d; time_format: h:i A;
 # UI; back_color: 75A2E3; fore_color: 8CBD98; input_color: FFFFFF; back_text_color: FFFFFF; fore_text_color: FFFFFF; input_text_color: 000000; blank_color: FFFFFF; blank_text_color: 000000; arc_fore_color: 26792C; arc_input_color: BDBCD6; opacity: 64; radius: 3; box_shadow: 1; gradient_deg: 135; gloss: 1;
 # Display; pangram_ascii: Jackdaws love my big sphinx of quartz.; pangram_cyril: Съешь ещё этих мягких французских булок, да выпей же чаю.; reticle_choice_1: reticle; reticle_choice_2: musket; reticle_choice_3: camera; reticle_choice_4: sniper; reticle_choice_5: german;
 # Audio; mute: 0; alarm_sound: Windows XP Ringin.wav; ticking_sound: Windows XP Exclamation.wav; background_sound: title.wma; focus_sound: Windows XP Menu Command.wav; type_sound: Windows XP Menu Command.wav; error_sound: Windows XP Ding.wav; notify_sound: Windows XP Information Bar.wav; bind_sound: Windows XP Minimize.wav; hit_sound: Windows XP Balloon.wav; suffer_sound: Windows XP Default.wav;
