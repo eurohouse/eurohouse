@@ -294,6 +294,13 @@
             "https://github.com/infofintech/i18n",
             "https://github.com/eurohouse/eurohouse"
         ],
+        "UNIX": [
+            "https://github.com/infofintech/dos",
+            "https://github.com/infofintech/metro",
+            "https://github.com/infofintech/game",
+            "https://github.com/infofintech/retro",
+            "https://github.com/infofintech/aughts"
+        ],
         "GTA": [
             "https://github.com/infofintech/metro",
             "https://github.com/infofintech/game"
