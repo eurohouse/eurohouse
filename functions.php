@@ -322,6 +322,9 @@ function isAuth() {
 function whichSess() {
     return (isset($_SESSION['user'])) ? $_SESSION['user'] : 'root';
 }
+function isAdmin() {
+    return (isset($_SESSION['user']) && $_SESSION['user'] == 'root');
+}
 function express(array $for) {
     foreach ($for as $key=>$pkg) {
         if (strpos($pkg, '>') !== false) {

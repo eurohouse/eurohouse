@@ -4,15 +4,14 @@
 $line1Size = 70;
 foreach ($settings['payload'] as $key=>$val) {
 ?><p align='center'>
-    <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
+    <?php if (isAdmin()) { ?>
     <a href="javascript:getPkgSequence('get -i '+updateChannel<?=md5($key);?>.value, 'get ', 0);"><?php } ?>
         <?=$key;?>
-    <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
+    <?php if (isAdmin()) { ?>
     </a><?php } ?><br>
 <?php foreach ($val as $ch) { ?>
-    <input type="button" name="<?=$ch;?>" value="<?=$ch;?>" style="width:<?=$line1Size;?>%;" onmouseover="soundButton();">
-    <?php
-    if ((isset($_SESSION['user'])) && ($sessionID == 'root')) {
+    <input type="button" name="<?=$ch;?>" value="<?=$ch;?>" style="width:<?=$line1Size;?>%;" onmouseover="soundButton();" <?php if (isAdmin()) { ?> onclick="getPkgSequence('get -i '+this.name, 'get ');" <?php } ?>>
+    <?php if (isAdmin()) {
         $pkgID = explode('/', $ch)[count(explode('/', $ch))-1];
         if (file_exists($pkgID.'.pkg')) { ?>
             <input type="image" name="<?=$pkgID;?>" onmouseover="soundButton();" class="power" onclick="getPkgSequence('get -d '+this.name, 'get ');" src="<?=$prefix.'delete.png'.$suffix;?>">
