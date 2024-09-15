@@ -20,7 +20,7 @@
 <?php } foreach ($locks as $key=>$value) { ?>
     <input type='hidden' id="<?='lock'.camel($key);?>" value="<?=$value;?>">
 <?php } foreach ($updateChannel as $key=>$value) { ?>
-    <input type='hidden' id='<?='updateChannel'.camel($key);?>' value="<?=$value;?>">
+    <input type='hidden' id='<?='updateChannel'.md5($key);?>' value="<?=$value;?>">
 <?php } ?>
 <input type='hidden' id='sysDefBackload' value="<?=$backloadString;?>">
 <input type='hidden' id='sysDefPrefix' value="<?=$prefix;?>">

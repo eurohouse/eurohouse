@@ -508,7 +508,7 @@ function omniEnter() {
         } else if ((input.includes('update ')) && (input.startsWith('update '))) {
             if (sysDefSessionID.value == 'root') {
                 var req = input.replace('update ', '');
-                getPkgSequence('get -i '+document.getElementById('updateChannel'+ucfirst(req)).value, 'get ', 0);
+                getPkgSequence('get -i '+document.getElementById('updateChannel'+CryptoJS.MD5(req).toString()).value, 'get ', 0);
             }
         } else if ((input.includes('clear ')) && (input.startsWith('clear '))) {
             clearJournal(input.replace('clear ', ''), sysDefMsgData, 'msgbox');

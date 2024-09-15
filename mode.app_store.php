@@ -3,7 +3,12 @@
 <?php
 $line1Size = 70;
 foreach ($settings['payload'] as $key=>$val) {
-?><p align='center'><?=$key;?><br>
+?><p align='center'>
+    <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
+    <a href="javascript:getPkgSequence('get -i '+updateChannel<?=md5($key);?>, 'get ', 0);"><?php } ?>
+        <?=$key;?>
+    <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
+    </a><?php } ?><br>
 <?php foreach ($val as $ch) { ?>
     <input type="button" name="<?=$ch;?>" value="<?=$ch;?>" style="width:<?=$line1Size;?>%;" onmouseover="soundButton();">
     <?php
