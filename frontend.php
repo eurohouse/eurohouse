@@ -182,50 +182,35 @@ function jsonstr(str) {
     } catch (e) { res = {}; }
     return res;
 }
-function JSONFilter(str, mask, typ) {
-    var arr = jsonstr(str); var sym, uni, cyp;
-    if (typ == 'msg') {
-        sym = '#'; uni = 'L'; cyp = true;
-    } else if (typ == 'book') {
-        sym = '^'; uni = 'N'; cyp = false;
-    } var arf = {}; if (mask == sym) {
+function jsonFilter(str, mask) {
+    var arr = jsonstr(str), arf = {}, sym = '#'; uni = 'L';
+    if (mask == sym) {
         for (el in arr) {
-            arf[el] = (cyp) ? hex2bin(arr[el], obfstr(CryptoJS.SHA256(sysDefSessionID.value).toString())) : arr[el];
+            arf[el] = hex2bin(arr[el], obfstr(CryptoJS.SHA256(sysDefSessionID.value).toString()));
         }
     } else {
         var arrRegex = XRegExp('(\\'+sym+'\\p{'+uni+'}+)', 'g');
         var repRegex = XRegExp('(\\'+sym+'+)', 'g');
         var wordArr = XRegExp.match(mask, arrRegex);
-        var hbin = ''; var hbio = {};
-        for (el in arr) {
+        var hbin = ''; var hbio = {}; for (el in arr) {
             if (wordArr !== null) {
                 for (iy in wordArr) {
-                    if (cyp) {
-                        hbin = hex2bin(arr[el], obfstr(CryptoJS.SHA256(sysDefSessionID.value).toString()));
-                        hbio = XRegExp.replace(wordArr[iy], repRegex, '');
-                        if (hbin.toLowerCase().includes(hbio.toLowerCase())) {
-                            arf[el] = hbin;
-                        }
-                    } else {
-                        hbin = arr[el]; hbio = XRegExp.replace(wordArr[iy], repRegex, '');
-                        if (hbin.toLowerCase().includes(hbio.toLowerCase())) {
-                            arf[el] = hbin;
-                        }
-                    }
+                    hbin = hex2bin(arr[el], obfstr(CryptoJS.SHA256(sysDefSessionID.value).toString()));
+                    hbio = XRegExp.replace(wordArr[iy], repRegex, '');
+                    if (hbin.toLowerCase().includes(hbio.toLowerCase())) { arf[el] = hbin; }
                 }
             }
         }
     } return arf;
 }
-function JSONtoHTML(str, mask) {
-    var arr = JSONFilter(str, mask, 'msg');
+function jsonHTML(str, mask) {
+    var arr = jsonFilter(str, mask);
     var ard = ''; for (el in arr) {
         ard = el+'<br>'+arr[el]+'<br>'+ard;
     } return ard;
 }
-function JSONtoStore(id) {
-    var arr = jsonstr(openJournal(id, sysDefStoreList, sysDefStoreJSONs));
-    var ard = '', arl = '', eld = {}, fuc = '';
+function jsonStore(id) {
+    var arr = jsonstr(openJournal(id, sysDefStoreList, sysDefStoreJSONs)), ard = '', arl = '', eld = {}, fuc = '';
     for (el in arr) {
         if ((arr[el] !== undefined) && (typeof(arr[el]) == 'object')) {
             eld = arr[el];
@@ -234,10 +219,9 @@ function JSONtoStore(id) {
         }
     } return ard;
 }
-function JSONtoTab(str, mask, wed) {
-    var arr = JSONFilter(str, mask, 'book');
-    var ard = '', arl = '', eld = [], dem, der;
-    for (el in arr) {
+function jsonBookKeep(str, wed) {
+    var arr = jsonstr(str), ard = '', arl = '';
+    var eld = [], dem, der; for (el in arr) {
         eld = arr[el].split(' | ');
         dem = Date.parse(el); der = (new Date(dem)).getDay();
         arl = (eld[5] == 'ERR') ? '<tr style="text-decoration:line-through;"><td>'+wed[der]+'</td>' : '<tr><td>'+wed[der]+'</td>';

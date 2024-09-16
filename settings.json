@@ -376,7 +376,7 @@
         "blank_text_color": "000000", "arc_fore_color": "403F40",
         "arc_input_color": "D5D5D5", "background": "baron.000.00.png",
         "menu": "file_finder,preferences", "theme": "iso", "memo": "",
-        "find": "#", "find_value": "^", "stats": "score", "current_entry": "",
+        "find": "#", "stats": "score", "current_entry": "",
         "position": "50% 25%", "audio_volume": 1, "audio_speed": 1,
         "video_volume": 1, "video_speed": 1, "alarm_volume": 1, "timer_volume": 1,
         "loop_volume": 1, "rest_volume": 1, "alarm_sound": "iphone_tune.wav",
