@@ -298,9 +298,7 @@ function daily($name, $add, $hour): string {
 }
 function wasAuth() {
     if (isset($_POST['auth']) && isset($_POST['login']) && isset($_POST['password'])) {
-        $auth = $_POST['auth'];
-        $login = $_POST['login'];
-        $pass = $_POST['password'];
+        $auth = $_POST['auth']; $login = $_POST['login']; $pass = $_POST['password'];
         $logpass = textopen($login.'_password', '');
         if ($auth == 'signup') {
             if (!file_exists($login.'_password')) {
