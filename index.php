@@ -21,17 +21,14 @@
     <input type='hidden' id="<?='lock'.camel($key);?>" value="<?=$value;?>">
 <?php } foreach ($updateChannel as $key=>$value) { ?>
     <input type='hidden' id='<?='updateChannel'.md5($key);?>' value="<?=$value;?>">
-<?php } ?>
-<input type='hidden' id='sysDefBackload' value="<?=$backloadString;?>">
+<?php } ?><input type='hidden' id='sysDefBackload' value="<?=$backloadString;?>">
 <input type='hidden' id='sysDefPrefix' value="<?=$prefix;?>">
 <input type='hidden' id='sysDefReticlePrefix' value="<?=$reticlePrefix;?>">
 <input type='hidden' id='sysDefSuffix' value="<?=$suffix;?>">
 <input type='hidden' id="sysDefIsSession" value="<?=isAuth();?>">
 <input type='hidden' id="sysDefSessionID" value="<?=$sessionID;?>">
-<input type='hidden' id="sysDefPostBackEff" value="0">
-<input type='hidden' id="sysDefPostTickEff" value="0">
+<input type='hidden' id="sysDefPostBackEff" value="0"><input type='hidden' id="sysDefPostTickEff" value="0">
 <input type='hidden' id="sysDefVarsArr" value="">
-<input type='hidden' id="sysDefUserHexes" value="">
 <input type='hidden' id="sysDefUsersList" value="">
 <input type='hidden' id="sysDefBooksList" value="">
 <input type='hidden' id="sysDefStoreList" value="">
@@ -45,18 +42,15 @@
 <input type='hidden' id="sysDefFriendData" value="<?=valstr($friendData,';',':');?>">
 <input type='hidden' id="sysDefMetaData" value="<?=$metaJSON;?>">
 <input type='hidden' id="sysDefMetaList" value="<?=$metaList;?>">
-<input type='hidden' id="sysDefBookKeep" value="">
-<input type='hidden' id="sysDefMsgData" value="">
-<input type='hidden' id="sysDefUserStore" value="">
-<input type='hidden' id="sysDefMsgCounter" value="0">
+<input type='hidden' id="sysDefBookKeep" value=""><input type='hidden' id="sysDefMsgData" value="">
+<input type='hidden' id="sysDefUserStore" value=""><input type='hidden' id="sysDefMsgCounter" value="0">
 <input type='hidden' id="sysDefMusicBox" value="<?=implode('//', $musicBox);?>">
 <input type='hidden' id="sysDefSoundBox" value="<?=implode('//', $orpheus);?>">
 <input type='hidden' id="sysDefCodexBox" value="<?=implode('//', $codexBox);?>">
 <input type='hidden' id="sysDefSpeechBox" value="<?=implode('//', $speechBox);?>">
 <input type='hidden' id="sysDefPostBindData" value="<?=valstr($bindData,';',':');?>">
 <input type='hidden' id="sysDefPostPowersData" value="<?=valstr($powersData,';',':');?>">
-<input type='hidden' id="sysDefPostMsgData" value="">
-<input type='hidden' id="sysDefPostBookKeep" value="">
+<input type='hidden' id="sysDefPostMsgData" value=""><input type='hidden' id="sysDefPostBookKeep" value="">
 <input type='hidden' id='sysDefAvatarIcons' value="<?=implode(';', $kaiser);?>">
 <form id="upload" method="POST" style="display:none;">
 <input type="file" name="file" id="filebrowser" onchange='uploadFile();'>
