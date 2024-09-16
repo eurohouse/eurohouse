@@ -1,7 +1,11 @@
+# BIN; numeric: 01;
+# OCT; numeric: 01234567;
+# DEC; numeric: 0123456789;
+# HEX; numeric: 0123456789ABCDEF;
+# Morse; numeric: .-;
 # Music; lock_music: game;
 # Avatar; avatar: game;
 # Background; background: metro.gtaVC.00.png;
-# Personal; numeric: .-; date_format: m/d/y; time_format: h:i a;
 # UI; back_color: 7A7985; fore_color: 198246E0; input_color: 1974A560; back_text_color: FC94D6; fore_text_color: FC94D6; input_text_color: 000000; blank_color: FFFFFF; blank_text_color: 000000; arc_fore_color: 198246F0; arc_input_color: 1974A580; opacity: 64; radius: 0; box_shadow: 0; gradient_deg: 180; gloss: 0;
 # Display; pangram_ascii: The quick brown fox jumps over the lazy dog.; pangram_cyril: Съешь ещё этих мягких французских булок, да выпей же чаю.; reticle_choice_1: cross; reticle_choice_2: crosshair; reticle_choice_3: chef; reticle_choice_4: lock; reticle_choice_5: frame;
 # Audio; mute: 0; alarm_sound: GTA Vice City - Countdown.wav; ticking_sound: GTA Vice City - Timer.wav; background_sound: GTA Vice City - Intro.wav; focus_sound: GTA Vice City - Scroll.wav; type_sound: GTA Vice City - Notification.wav; error_sound: GTA Vice City - Notification.wav; notify_sound: GTA Vice City - Ambulance.wav; bind_sound: GTA Vice City - Pick Up.wav; hit_sound: GTA Vice City - Punch.wav; suffer_sound: GTA Vice City - Scream.wav;

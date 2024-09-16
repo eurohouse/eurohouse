@@ -1,7 +1,11 @@
-# Music; lock_music: orchestra;
+# BIN; numeric: 01;
+# OCT; numeric: 01234567;
+# DEC; numeric: 0123456789;
+# HEX; numeric: 0123456789ABCDEF;
+# Morse; numeric: .-;
+# Music; lock_music: botticelli,orchestra;
 # Avatar; avatar: dos;
 # Background; background: metro.win11.00.png;
-# Personal; numeric: 0123456789abcdefghijklmnopqstuvwxyzαβγδεζηθικλμνξοπρςστυφχψωϐϑϕ; date_format: d.m.y; time_format: h:i A;
 # UI; back_color: C0BFC0; fore_color: 41495B; input_color: E1E9FB; back_text_color: FFFFFF; fore_text_color: FFFFFF; input_text_color: 000000; blank_color: FFFFFF; blank_text_color: 000000; arc_fore_color: 21293B; arc_input_color: C1C9DB; opacity: 64; radius: 7; box_shadow: 0; gradient_deg: 180; gloss: 1;
 # Display; pangram_ascii: Jackdaws love my big sphinx of quartz.; pangram_cyril: Съешь ещё этих мягких французских булок, да выпей же чаю.; reticle_choice_1: reticle; reticle_choice_2: musket; reticle_choice_3: camera; reticle_choice_4: sniper; reticle_choice_5: german;
 # Audio; mute: 1; alarm_sound: Windows Ringin.wav; ticking_sound: Windows Ding.wav; background_sound: Aaron Goldberg - OAM's blues.wma; focus_sound: Windows Menu Command.wav; type_sound: Windows Menu Command.wav; error_sound: Windows Ding.wav; notify_sound: Windows Information Bar.wav; bind_sound: Windows Minimize.wav; hit_sound: Windows Balloon.wav; suffer_sound: Windows Balloon.wav;

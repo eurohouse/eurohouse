@@ -1,7 +1,11 @@
+# BIN; numeric: 01;
+# OCT; numeric: 01234567;
+# DEC; numeric: 0123456789;
+# HEX; numeric: 0123456789ABCDEF;
+# Morse; numeric: .-;
 # Music; lock_music: game;
 # Avatar; avatar: game;
 # Background; background: metro.gtaIII.00.png;
-# Personal; numeric: .-; date_format: m/d/y; time_format: h:i a;
 # UI; back_color: 4D4D64; fore_color: 677973C0; input_color: 67797360; back_text_color: FDDC70; fore_text_color: FDDC70; input_text_color: 000000; blank_color: FFFFFF; blank_text_color: 000000; arc_fore_color: 677973C0; arc_input_color: 67797360; opacity: 64; radius: 0; box_shadow: 0; gradient_deg: 180; gloss: 0;
 # Display; pangram_ascii: The quick brown fox jumps over the lazy dog.; pangram_cyril: Съешь ещё этих мягких французских булок, да выпей же чаю.; reticle_choice_1: cross; reticle_choice_2: crosshair; reticle_choice_3: chef; reticle_choice_4: lock; reticle_choice_5: frame;
 # Audio; mute: 0; alarm_sound: GTA San Andreas - Power Up.wav; ticking_sound: GTA San Andreas - Power Up.wav; background_sound: GTA San Andreas - Intro.wav; focus_sound: GTA San Andreas - Scroll.wav; type_sound: GTA San Andreas - Enter.wav; error_sound: GTA San Andreas - Exit.wav; notify_sound: GTA San Andreas - Power Up.wav; bind_sound: GTA San Andreas - Pick Up.wav; hit_sound: GTA III - Batted Left.wav; suffer_sound: GTA III - Scream.wav;
