@@ -476,7 +476,6 @@ function delete_user(id) {
     del(id+'_session.json', true);
     del(id+'_session.json.bak', true);
     del(id+'_password', true);
-    del(id+'_cipher', true);
     del(id+'_lock.json', true);
     del(id+'_lock.json.bak', true);
     del(id+'_metadata.json', true);
@@ -504,15 +503,7 @@ function rename_user(username, password) {
         transfer_entry(username, sysDefPowersData, 'dominion.json');
         transfer_entry(username, sysDefAutoData, 'automator.json');
         transfer_entry(username, sysDefFriendData, 'friendship.json');
-        del('./.msgbox/'+sysDefSessionID.value+'_msgbox.json.bak', true);
-        del('./.book/'+sysDefSessionID.value+'_book.json.bak', true);
-        del('./.store/'+sysDefSessionID.value+'_store.json.bak', true);
-        move('./.msgbox/'+sysDefSessionID.value+'_msgbox.json', './.msgbox/'+username+'_msgbox.json', true, 1);
-        move('./.book/'+sysDefSessionID.value+'_book.json', './.book/'+username+'_book.json', true, 1);
-        move('./.store/'+sysDefSessionID.value+'_store.json', './.store/'+username+'_store.json', true, 1);
-        del('./.msgbox/'+sysDefSessionID.value+'_msgbox.json.bak', true);
-        del('./.book/'+sysDefSessionID.value+'_book.json.bak', true);
-        del('./.store/'+sysDefSessionID.value+'_store.json.bak', true);
+        delete_user(sysDefSessionID.value);
     }
 }
 function init_user(id, au = 'manual') {
