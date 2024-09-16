@@ -186,7 +186,7 @@ function jsonFilter(str, mask) {
     var arr = jsonstr(str), arf = {}, sym = '#'; uni = 'L';
     if (mask == sym) {
         for (el in arr) {
-            arf[el] = hex2bin(arr[el], obfstr(CryptoJS.SHA256(sysDefSessionID.value).toString()), openJournal(sysDefSessionID.value, sysDefUsersList, sysDefUserHexes, true));
+            arf[el] = hex2bin(arr[el], obfstr(CryptoJS.SHA256(sysDefSessionID.value).toString()), '.-');
         }
     } else {
         var arrRegex = XRegExp('(\\'+sym+'\\p{'+uni+'}+)', 'g');
@@ -195,7 +195,7 @@ function jsonFilter(str, mask) {
         var hbin = ''; var hbio = {}; for (el in arr) {
             if (wordArr !== null) {
                 for (iy in wordArr) {
-                    hbin = hex2bin(arr[el], obfstr(CryptoJS.SHA256(sysDefSessionID.value).toString()), openJournal(sysDefSessionID.value, sysDefUsersList, sysDefUserHexes, true));
+                    hbin = hex2bin(arr[el], obfstr(CryptoJS.SHA256(sysDefSessionID.value).toString()), '.-');
                     hbio = XRegExp.replace(wordArr[iy], repRegex, '');
                     if (hbin.toLowerCase().includes(hbio.toLowerCase())) { arf[el] = hbin; }
                 }
@@ -243,9 +243,10 @@ function notesListDisp(str) {
     } return ard;
 }
 function openJournal(id, ob, oj, cr = false) {
-    var users = ob.value, jours = (cr) ? CryptoJS.enc.Utf8.stringify(CryptoJS.enc.Base64.parse(oj.value)) : oj.value, userArr = users.split(',');
+    var users = ob.value, jours = oj.value;
+    var userArr = users.split(',');
     var userNum = arraySearch(id, userArr);
-    return (cr) ? jours.split(' ')[userNum] : pager(jours, userNum);
+    return pager(jours, userNum);
 }
 function clearJournal(num, obj, kw) {
     var msgarr = jsonstr(obj.value);
@@ -288,10 +289,10 @@ function compose(msg) {
                 if (msg.match(/\r?\n/) !== null) {
                     msgbr = msg.split(/\r?\n/);
                     for (j = 0; j < msgbr.length; j++) {
-                        msgarr[sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now()+j*1000)+' UTC'] = bin2hex(msgbr[j], obfstr(CryptoJS.SHA256(userID).toString()), openJournal(userID, sysDefUsersList, sysDefUserHexes, true));
+                        msgarr[sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now()+j*1000)+' UTC'] = bin2hex(msgbr[j], obfstr(CryptoJS.SHA256(userID).toString()), '.-');
                     }
                 } else {
-                    msgarr[sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now())+' UTC'] = bin2hex(msg, obfstr(CryptoJS.SHA256(userID).toString()), openJournal(userID, sysDefUsersList, sysDefUserHexes, true));
+                    msgarr[sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now())+' UTC'] = bin2hex(msg, obfstr(CryptoJS.SHA256(userID).toString()), '.-');
                 } set('./.msgbox/'+userID+'_msgbox.json', encodeURIComponent(JSON.stringify(msgarr)), true);
             }
         } else {
@@ -299,10 +300,10 @@ function compose(msg) {
             if (msg.match(/\r?\n/) !== null) {
                 msgbr = msg.split(/\r?\n/);
                 for (j = 0; j < msgbr.length; j++) {
-                    msgarr[sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now()+j*1000)+' UTC'] = bin2hex(msgbr[j], obfstr(CryptoJS.SHA256(sysDefSessionID.value).toString()), openJournal(sysDefSessionID.value, sysDefUsersList, sysDefUserHexes, true));
+                    msgarr[sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now()+j*1000)+' UTC'] = bin2hex(msgbr[j], obfstr(CryptoJS.SHA256(sysDefSessionID.value).toString()), '.-');
                 }
             } else {
-                msgarr[sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now())+' UTC'] = bin2hex(msg, obfstr(CryptoJS.SHA256(sysDefSessionID.value).toString()), openJournal(sysDefSessionID.value, sysDefUsersList, sysDefUserHexes, true));
+                msgarr[sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now())+' UTC'] = bin2hex(msg, obfstr(CryptoJS.SHA256(sysDefSessionID.value).toString()), '.-');
             } if (sysDefPrivate.value != 0) {
                 set('./.msgbox/'+sysDefSessionID.value+'_msgbox.json', encodeURIComponent(JSON.stringify(msgarr)), true);
             } else {

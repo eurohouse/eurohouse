@@ -69,7 +69,7 @@ function world_clock() {
             var mixers = pager(data, 4).split(' ');
             var fint = pager(data, 5).split(' | ');
             var gdio = pager(data, 6).split(' ');
-            sysDefUserHexes.value = pager(data, 7); var pngm = pager(data, 8);
+            var pngm = pager(data, 7);
             var bndm = arrjob(sysDefBindData.value,';',':')[sysDefSessionID.value];
             if (requestMode.value == 'volume_control') {
                 audioVolInd.value = mixers[0]; audioRatInd.value = mixers[1];
