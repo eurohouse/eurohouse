@@ -99,7 +99,7 @@ function world_clock() {
             $('#buttonRegister').attr('src', sysDefPrefix.value+'book.png'+sysDefSuffix.value);
             $('#buttonCancelSignin').attr('src', sysDefPrefix.value+'backspace.png'+sysDefSuffix.value);
             $('#buttonOnend').attr('src', sysDefPrefix.value+'ff.png'+sysDefSuffix.value);
-            $('#buttonTime').attr('src', sysDefPrefix.value+((sysDefBenchmark.value != 0)?'speed.png':'time.png')+sysDefSuffix.value);
+            $('#buttonTime').attr('src', sysDefPrefix.value+((sysDefTimedisp.value != 0)?'calendar.png':(sysDefBenchmark.value != 0)?'speed.png':'time.png')+sysDefSuffix.value);
             $('#buttonAutoplay').attr('src', sysDefPrefix.value+((sysDefAutoplay.value != 0)?'autopause.png':'autoplay.png')+sysDefSuffix.value);
             $('#buttonRandom').attr('src', sysDefPrefix.value+'dice.png'+sysDefSuffix.value);
             if (sysDefSongIndex.value == 'random') {
