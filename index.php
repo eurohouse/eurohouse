@@ -31,6 +31,7 @@
 <input type='hidden' id="sysDefPostBackEff" value="0">
 <input type='hidden' id="sysDefPostTickEff" value="0">
 <input type='hidden' id="sysDefVarsArr" value="">
+<input type='hidden' id="sysDefUserHexes" value="">
 <input type='hidden' id="sysDefUsersList" value="">
 <input type='hidden' id="sysDefBooksList" value="">
 <input type='hidden' id="sysDefStoreList" value="">

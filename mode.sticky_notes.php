@@ -20,19 +20,23 @@ function deleteNote(id) {
     var cd = sysDefNumeric.value;
     delmeta(bin2hex(id,'',cd));
 }
+function countNote() {
+    var bitsCount = (document.getElementById('myNotesRad').value).length;
+    var charsCount = (document.getElementById('myNotesDoc').value).length;
+    var statusBar = 'BITS = '+bitsCount+'; CHARS = '+charsCount;
+    document.getElementById('numBits').innerHTML = statusBar;
+}
 </script>
 <p align='center' class='block'>
-<label id='numBits'></label><br>
 <input class="text" id="myNotesRad" style="width:88%;" type="text" value="<?=$session['numeric'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('numeric', myNotesRad.value);
 } else if (event.keyCode == 27) {
-    myNotesRad.value = '0123456789abcdef';
-    setdata('numeric', myNotesRad.value);
+    myNotesRad.value = '';
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
     handleInput(this.value);
-}" oninput="handleInput(this.value, true);">
+}" oninput="handleInput(this.value, true); countNote();">
 </p>
 <p align='center' class='block'>
 <input class="text" id="myNotesEnt" style="width:34%;" type="text" value="" onkeydown="if (event.keyCode == 13) {
@@ -67,9 +71,10 @@ function deleteNote(id) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
     handleInput(this.value);
-}" oninput="handleInput(this.value, true);">
+}" oninput="handleInput(this.value, true); countNote();">
 </textarea>
 </p>
 </div>
-</div>
+</div><br>
+<label id='numBits' style="width:98%;"></label>
 <?php } ?>

@@ -48,7 +48,7 @@
 @font-face {
     font-family: "euro";
     src: url("<?=$session['font_phone'];?>?rev=<?=time();?>");
-    unicode-range: U+0100-036F, U+0500-058F, U+10A0-10FF;
+    unicode-range: U+0100-036F, U+0500-058F;
 }
 @font-face {
     font-family: "euro";

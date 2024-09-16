@@ -34,7 +34,7 @@ function countText() {
     var sourceText = document.getElementById('content').value;
     var charsCount = sourceText.length;
     document.getElementById('statusBar').innerHTML = 'CHARS = ' + charsCount;
-} countText();
+}
 </script>
 <?php
 if ($request['lock'] != 'true') {
