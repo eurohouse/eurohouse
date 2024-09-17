@@ -206,7 +206,8 @@ function arropen($name, $default = '{}', $exec = '') {
         copy($name.'.bak', $name); chmod($name, 0777);
     } if ($exec == 'DEFAULT') {
         $tryit = json_decode(file_get_contents($name), true);
-        file_put_contents($name, json_encode(equarr(json_decode($default, true), $tryit))); chmod($name, 0777);
+        file_put_contents($name, json_encode(equarr(json_decode($default, true), $tryit)));
+        chmod($name, 0777);
         $res = $tryit;
     } elseif ($exec == 'JSON') {
         $tryit = file_get_contents($name);

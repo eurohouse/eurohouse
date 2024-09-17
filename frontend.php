@@ -502,7 +502,6 @@ function rename_user(username, password) {
         transfer_entry(username, sysDefPowersData, 'dominion.json');
         transfer_entry(username, sysDefAutoData, 'automator.json');
         transfer_entry(username, sysDefFriendData, 'friendship.json');
-        delete_user(sysDefSessionID.value);
     }
 }
 function init_user(id, au = 'manual') {
