@@ -136,7 +136,7 @@ function world_clock() {
             } if (requestMode.value == 'statistics') {
                 tabOper.innerText = fint[6]; tabScore.innerText = fint[7];
             } if (requestMode.value == 'sticky_notes') {
-                notesMenu.innerHTML = '<p align="center" class="block">'+notesListDisp(sysDefMetaList.value)+'</p>';
+                notesMenu.innerHTML = '<p align="center" class="block">'+noteBook(sysDefMetaList.value)+'</p>';
             } if (((obs == 1) && (spe == 1)) || ((obs == 1) && (spe == 0))) {
                 $('#powerButton').show(); $('.panel').hide();
                 $('.customPanel').hide(); $('.upperGap').hide();

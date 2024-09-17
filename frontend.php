@@ -183,21 +183,25 @@ function jsonstr(str) {
     return res;
 }
 function jsonFilter(str, mask) {
-    var arr = jsonstr(str), arf = {}, sym = '#'; uni = 'L';
+    var cyp = '.-';
+    var arr = jsonstr(str), sym = '#'; uni = 'L';
+    var arf = {}, hbin = '', hkin = '', hbio = {};
     if (mask == sym) {
         for (el in arr) {
-            arf[el] = hex2bin(arr[el], obfstr(CryptoJS.SHA256(sysDefSessionID.value).toString()), '.-');
+            hbin = dtw(arr[el], sysDefSessionID.value, cyp);
+            hkin = dtw(el, sysDefSessionID.value, cyp); arf[hkin] = hbin;
         }
     } else {
         var arrRegex = XRegExp('(\\'+sym+'\\p{'+uni+'}+)', 'g');
         var repRegex = XRegExp('(\\'+sym+'+)', 'g');
         var wordArr = XRegExp.match(mask, arrRegex);
-        var hbin = ''; var hbio = {}; for (el in arr) {
+        for (el in arr) {
             if (wordArr !== null) {
                 for (iy in wordArr) {
-                    hbin = hex2bin(arr[el], obfstr(CryptoJS.SHA256(sysDefSessionID.value).toString()), '.-');
+                    hbin = dtw(arr[el], sysDefSessionID.value, cyp);
+                    hkin = dtw(el, sysDefSessionID.value, cyp);
                     hbio = XRegExp.replace(wordArr[iy], repRegex, '');
-                    if (hbin.toLowerCase().includes(hbio.toLowerCase())) { arf[el] = hbin; }
+                    if (hbin.toLowerCase().includes(hbio.toLowerCase())) { arf[hkin] = hbin; }
                 }
             }
         }
@@ -230,7 +234,7 @@ function jsonBookKeep(str, wed) {
         arl += '<td>'+eld[4]+'</td>'; ard = arl+'</tr>'+ard;
     } return ard;
 }
-function notesListDisp(str) {
+function noteBook(str) {
     var arr = str.split(' | ');
     var ard = '', arl = '', eld = '', elt = '', eln = '';
     var epr = sysDefPrefix.value, esu = sysDefSuffix.value;
@@ -276,7 +280,14 @@ function isoformat(num) {
     var ob = new Date(num);
     return (ob.getUTCFullYear())+'-'+pad((ob.getUTCMonth()+1), 2)+'-'+pad((ob.getUTCDate()), 2)+' '+pad((ob.getUTCHours()), 2)+':'+pad((ob.getUTCMinutes()), 2)+':'+pad((ob.getUTCSeconds()), 2)+'.'+pad((ob.getUTCMilliseconds()), 3);
 }
+function etw(msg, usr, hx = '.-') {
+    return bin2hex(msg, obfstr(CryptoJS.SHA256(usr).toString()), hx);
+}
+function dtw(msg, usr, hx = '.-') {
+    return hex2bin(msg, obfstr(CryptoJS.SHA256(usr).toString()), hx);
+}
 function compose(msg) {
+    var cyp = '.-';
     var addr = (msg !== undefined) ? msg.match(/(@\w*)/g) : '';
     var userID; var msgbox = ''; var msgbr = [];
     var ratTab = arrjob(sysDefPowersData.value, ';', ':');
@@ -289,10 +300,10 @@ function compose(msg) {
                 if (msg.match(/\r?\n/) !== null) {
                     msgbr = msg.split(/\r?\n/);
                     for (j = 0; j < msgbr.length; j++) {
-                        msgarr[sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now()+j*1000)+' UTC'] = bin2hex(msgbr[j], obfstr(CryptoJS.SHA256(userID).toString()), '.-');
+                        msgarr[etw(sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now()+j*1000)+' UTC', userID, cyp)] = etw(msgbr[j], userID, cyp);
                     }
                 } else {
-                    msgarr[sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now())+' UTC'] = bin2hex(msg, obfstr(CryptoJS.SHA256(userID).toString()), '.-');
+                    msgarr[etw(sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now())+' UTC', userID, cyp)] = etw(msg, userID, cyp);
                 } set('./.msgbox/'+userID+'_msgbox.json', encodeURIComponent(JSON.stringify(msgarr)), true);
             }
         } else {
@@ -300,10 +311,10 @@ function compose(msg) {
             if (msg.match(/\r?\n/) !== null) {
                 msgbr = msg.split(/\r?\n/);
                 for (j = 0; j < msgbr.length; j++) {
-                    msgarr[sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now()+j*1000)+' UTC'] = bin2hex(msgbr[j], obfstr(CryptoJS.SHA256(sysDefSessionID.value).toString()), '.-');
+                    msgarr[etw(sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now()+j*1000)+' UTC', sysDefSessionID.value, cyp)] = etw(msgbr[j], sysDefSessionID.value, cyp);
                 }
             } else {
-                msgarr[sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now())+' UTC'] = bin2hex(msg, obfstr(CryptoJS.SHA256(sysDefSessionID.value).toString()), '.-');
+                msgarr[etw(sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now())+' UTC', sysDefSessionID.value, cyp)] = etw(msg, sysDefSessionID.value, cyp);
             } if (sysDefPrivate.value != 0) {
                 set('./.msgbox/'+sysDefSessionID.value+'_msgbox.json', encodeURIComponent(JSON.stringify(msgarr)), true);
             } else {
