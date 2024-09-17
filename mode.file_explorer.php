@@ -115,6 +115,17 @@ foreach ($index as $key=>$value) {
     <?php } else { ?>
         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'true');" src="<?=$prefix.'info.png'.$suffix;?>">
     <?php } ?>
+<?php } elseif (($mediaFileExtension == 'lnk') || ($mediaFileExtension == 'url')) { ?>
+    <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" src="<?=$prefix.'link.png'.$suffix;?>">
+    <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFileTitle;?>" style="width:<?=$line1Size;?>%;" onmouseover="soundButton();" onclick="window.location.href = this.name;">
+    <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFileSizeStr;?>" style="width:<?=$line2Size;?>%;" onmouseover="soundButton();">
+    <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFilePerms;?>" style="width:<?=$line3Size;?>px;" onmouseover="soundButton();">
+    <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor', this.name, 'false');" src="<?=$prefix.'book.png'.$suffix;?>">
+    <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
+        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="recycle(this.name);" src="<?=$prefix.'delete.png'.$suffix;?>">
+    <?php } else { ?>
+        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'true');" src="<?=$prefix.'info.png'.$suffix;?>">
+    <?php } ?>
 <?php } elseif ($mediaFileExtension == 'pkg') {
     $mediaPkgInfo = (@json_decode(file_get_contents($mediaFileBasename.'.pkg'), true) != null) ? json_decode(file_get_contents($mediaFileBasename.'.pkg'), true) : [];
     $mediaPkgHost = $mediaPkgInfo['host'];
@@ -134,31 +145,6 @@ foreach ($index as $key=>$value) {
 <?php } elseif (in_array($mediaFileExtension, duplex($settings['collections']['image']))) { ?>
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" src="<?=$prefix.'image.png'.$suffix;?>">
     <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFileTitle;?>" style="width:<?=$line1Size;?>%;" onmouseover="soundButton();" onclick="window.location.href=this.name;">
-    <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFileSizeStr;?>" style="width:<?=$line2Size;?>%;" onmouseover="soundButton();">
-    <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFilePerms;?>" style="width:<?=$line3Size;?>px;" onmouseover="soundButton();">
-    <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor', this.name, 'true');" src="<?=$prefix.'book.png'.$suffix;?>">
-    <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
-        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="recycle(this.name);" src="<?=$prefix.'delete.png'.$suffix;?>">
-    <?php } else { ?>
-        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'true');" src="<?=$prefix.'info.png'.$suffix;?>">
-    <?php } ?>
-<?php } elseif ($mediaFileExtension == 'gift') { ?>
-    <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" src="<?=$prefix.'money.png'.$suffix;?>">
-    <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFileTitle;?>" style="width:<?=$line1Size;?>%;" onmouseover="soundButton();" onclick="accept_gift(&#34;<?=$mediaFileBasename;?>&#34;);">
-    <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFileSizeStr;?>" style="width:<?=$line2Size;?>%;" onmouseover="soundButton();">
-    <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFilePerms;?>" style="width:<?=$line3Size;?>px;" onmouseover="soundButton();">
-    <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor', this.name, 'true');" src="<?=$prefix.'book.png'.$suffix;?>">
-    <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
-        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="recycle(this.name);" src="<?=$prefix.'delete.png'.$suffix;?>">
-    <?php } else { ?>
-        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'true');" src="<?=$prefix.'info.png'.$suffix;?>">
-    <?php } ?>
-<?php } elseif ($mediaFileExtension == 'exch') {
-    $tradeFileID = explode('_', $mediaFileBasename)[0];
-    $tradeFileType = explode('_', $mediaFileBasename)[1];
-    $tradeFileContent = file_get_contents($mediaFilename); ?>
-    <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" src="<?=$prefix.'playstore.png'.$suffix;?>">
-    <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFileTitle;?>" style="width:<?=$line1Size;?>%;" onmouseover="soundButton();" onclick="buy_item(&#34;<?=$tradeFileID;?>&#34;, &#34;<?=$tradeFileContent;?>&#34;, &#34;<?=$tradeFileType;?>&#34;);">
     <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFileSizeStr;?>" style="width:<?=$line2Size;?>%;" onmouseover="soundButton();">
     <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFilePerms;?>" style="width:<?=$line3Size;?>px;" onmouseover="soundButton();">
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor', this.name, 'true');" src="<?=$prefix.'book.png'.$suffix;?>">
