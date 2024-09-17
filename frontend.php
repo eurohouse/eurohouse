@@ -253,11 +253,11 @@ function openJournal(id, ob, oj, cr = false) {
     return pager(jours, userNum);
 }
 function clearJournal(num, obj, kw) {
-    var msgarr = jsonstr(obj.value);
-    var ary = [], nur = Math.abs(num);
+    var msgarr = jsonstr(obj.value), nur, ras;
     var las = Object.keys(msgarr).length - 1;
-    var ras = (las - nur); if (isInt(num)) {
-        if (num < 0) {
+    if (isInt(num)) {
+        nur = Math.abs(num);
+        ras = (las - nur); if (num < 0) {
             for (i = 0; i < nur; i++) {
                 if (msgarr[Object.keys(msgarr)[0]] !== undefined) {
                     delete msgarr[Object.keys(msgarr)[0]];
@@ -271,8 +271,11 @@ function clearJournal(num, obj, kw) {
             }
         }
     } else {
-        for (ek in msgarr) {
-            if (msgarr[ek] !== undefined) { delete msgarr[ek]; }
+        nur = Math.abs(las);
+        for (i = 0; i < nur; i++) {
+            if (msgarr[Object.keys(msgarr)[0]] !== undefined) {
+                delete msgarr[Object.keys(msgarr)[0]];
+            }
         }
     } set('./.'+kw+'/'+sysDefSessionID.value+'_'+kw+'.json', encodeURIComponent(JSON.stringify(msgarr)), true);
 }
