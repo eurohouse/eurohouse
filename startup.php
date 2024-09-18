@@ -194,8 +194,8 @@ function visual_effects() {
             document.querySelector(':root').style.setProperty('--bicolor', '#'+miniPager(data, 0));
             document.querySelector(':root').style.setProperty('--qucolor', '#'+sysDefBackColor.value+'00');
             document.querySelector(':root').style.setProperty('--radius', sysDefRadius.value+'px');
-            document.querySelector(':root').style.setProperty('--box-shadow', '0px 0px '+sysDefBoxShadow.value+'px '+sysDefBoxShadow.value+'px #'+sysDefBlankColor.value);
-            document.querySelector(':root').style.setProperty('--text-box-shadow', '0px 0px '+sysDefBoxShadow.value+'px '+sysDefBoxShadow.value+'px #'+sysDefBlankTextColor.value);
+            document.querySelector(':root').style.setProperty('--box-shadow', sysDefBoxShadow.value);
+            document.querySelector(':root').style.setProperty('--text-box-shadow', sysDefTextBoxShadow.value)
             document.querySelector(':root').style.setProperty('--blur', 'blur('+sysDefBlur.value+'px)');
             document.querySelector(':root').style.setProperty('--filter', 'brightness('+sysDefBrightness.value+'%) saturate('+sysDefSaturation.value+'%) contrast('+sysDefContrast.value+'%) sepia('+sysDefSepia.value+'%) grayscale('+sysDefGrayscale.value+'%) hue-rotate('+sysDefHue.value+'deg)'); if (sysDefGloss.value == 1) {
                 $('.power').css('background', 'linear-gradient('+sysDefGradientDeg.value+'deg, #'+sysDefForeColor.value+' 0%, #'+sysDefArcForeColor.value+' 100%)');

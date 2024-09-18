@@ -25,8 +25,8 @@
     --qucolor: #<?=$session['back_color'].'00';?>;
     --graddeg: #<?=$session['gradient_deg'].'deg';?>;
     --radius: <?=$session['radius'];?>px;
-    --box-shadow: 0px 0px <?=$session['box_shadow'];?>px <?=$session['box_shadow'];?>px #<?=$session['blank_color'];?>;
-    --text-box-shadow: 0px 0px <?=$session['box_shadow'];?>px <?=$session['box_shadow'];?>px #<?=$session['blank_text_color'];?>;
+    --box-shadow: <?=$session['box_shadow'];?>;
+    --text-box-shadow: <?=$session['text_box_shadow'];?>;
     --blur: blur(<?=$session['blur'];?>px); --position: <?=$session['position'];?>;
     --filter: brightness(<?=$session['brightness'];?>%) saturate(<?=$session['saturation'];?>%) contrast(<?=$session['contrast'];?>%) sepia(<?=$session['sepia'];?>%) grayscale(<?=$session['grayscale'];?>%) hue-rotate(<?=$session['hue'];?>deg);
     --gradient-fore: linear-gradient(180deg, var(--forecolor) 0%, var(--arcforecolor) 100%);
