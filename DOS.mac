@@ -1,4 +1,4 @@
-# Music; lock_music: retro,aughts;
+# Music; lock_music: aughts;
 # Avatar; avatar: win98;
 # Background; background: none;
 # UI; back_size: 13; fore_size: 13; input_size: 13; back_color: 008080; fore_color: C0C0C0; input_color: F7FCF6; back_text_color: FFFFFF; fore_text_color: 222222; input_text_color: 222222; blank_color: FFFFFF; blank_text_color: 000000; arc_fore_color: C0C0C0; arc_input_color: F7FCF6; opacity: 255; radius: 0; gradient_deg: 180; gloss: 0; box_shadow: inset 2px 2px #FFFFFF, inset -2px -2px #000000; text_box_shadow: inset 2px 2px #FFFFFF, inset -2px -2px #000000;

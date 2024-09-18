@@ -1,4 +1,4 @@
-# Music; lock_music: botticelli,orchestra;
+# Music; lock_music: orchestra;
 # Avatar; avatar: dos;
 # Background; background: metro.win11.00.png;
 # UI; back_size: 14; fore_size: 14; input_size: 14; back_color: C0BFC0; fore_color: 41495B; input_color: E1E9FB; back_text_color: FFFFFF; fore_text_color: FFFFFF; input_text_color: 000000; blank_color: FFFFFF; blank_text_color: 000000; arc_fore_color: 21293B; arc_input_color: C1C9DB; opacity: 64; radius: 7; gradient_deg: 180; gloss: 1; box_shadow: inset 0px 0px #000000, inset 0px 0px #000000; text_box_shadow: inset 0px 0px #000000, inset 0px 0px #000000;
