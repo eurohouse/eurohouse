@@ -6,7 +6,7 @@
 <input type="button" onmouseover="soundButton();" onclick="setSizeSequence.value = '7 0 180 14 14 14 17 16 15 18 14 14 14'; setColorSequence.value = 'C0BFC0|605F60|E5E5E5|FFFFFF|FFFFFF|000000|FFFFFF|000000|403F40|D5D5D5'; applyTheme(setSizeSequence.value, setColorSequence.value); setSpecimen.value = 'Q F S H Æ Ø Ð Ñ ʒ ʊ ʎ ɸ Σ Φ Ω Θ Г З Х Б ظ ض ؤ ل 인 방 학 적 中 京 日 木 𐎁 𐎛 𐎍 𐎄 🍷 ☕️ 🍾 🍫'; setdata('specimen', setSpecimen.value);" value="<?=term('Reset', $settings['vocabulary'], $session['units']);?>">
 <input type="button" onmouseover="soundButton();" onclick="setdata('font_ascii', 'flexo.ttf'); setdata('font_latin', 'flexo.ttf'); setdata('font_phone', 'arialuni.ttf'); setdata('font_greek', 'ubuntu.ttf'); setdata('font_cyril', 'ubuntu.ttf'); setdata('font_arabi', 'arialuni.ttf'); setdata('font_korea', 'arialuni.ttf'); setdata('font_china', 'arialuni.ttf'); setdata('font_other', 'arialuni.ttf'); setdata('font_emoji', 'twemoji.ttf'); window.location.reload();" value="<?=term('Clear', $settings['vocabulary'], $session['units']);?>"><br>
 <label><?=term('Specimen Text:', $settings['vocabulary'], $session['units']);?></label><br>
-<input type="text" id="setSpecimen" style="width:70%;" value="<?=$session['specimen'];?>" onkeydown="if (event.keyCode == 13) {
+<input type="text" id="setSpecimen" style="width:86%;" value="<?=$session['specimen'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('specimen', encodeURIComponent(this.value));
 } else if (event.keyCode == 27) {
     this.value = 'Q F S H Æ Ø Ð Ñ ʒ ʊ ʎ ɸ Σ Φ Ω Θ Г З Х Б ظ ض ؤ ل 인 방 학 적 中 京 日 木 𐎁 𐎛 𐎍 𐎄 🍷 ☕️ 🍾 🍫'; setdata('specimen', this.value);
@@ -14,15 +14,7 @@
     handleInput(this.value);
 } else if (event.keyCode == 46) {
     handleInput(this.value);
-}" oninput="handleInput(this.value, true);">
-<input type="number" min='0' max='9' step='1' id="setMagnitude" style="width:14%;" value="<?=$session['magnitude'];?>" oninput="setdata('magnitude', setMagnitude.value); handleInput(this.value, true);" onkeydown="if (event.keyCode == 27) {
-    setMagnitude.value = 5;
-    setdata('magnitude', setMagnitude.value);
-} else if (event.keyCode == 8) {
-    handleInput(this.value);
-} else if (event.keyCode == 46) {
-    handleInput(this.value);
-}"><br>
+}" oninput="handleInput(this.value, true);"><br>
 <label><?=term('Font Configuration:', $settings['vocabulary'], $session['units']);?></label><br>
 <select id="setUTF0" style="width:15%;" onchange="setdata('font_ascii', setUTF0.options[setUTF0.selectedIndex].id); window.location.reload();">
 <?php foreach ($lockFonts as $key=>$value) { ?>
@@ -163,15 +155,6 @@
 } else if (event.keyCode == 46) {
     handleInput(this.value);
 }" oninput="handleInput(this.value, true);">
-<input type="text" id="setGradDeg" style="width:15%;" value="<?=$session['gradient_deg'];?>" onkeydown="if (even.keyCode == 13) {
-    setdata('gradient_deg', this.value);
-} else if (event.keyCode == 27) {
-    this.value = '180'; setdata('gradient_deg', this.value);
-} else if (event.keyCode == 8) {
-    handleInput(this.value);
-} else if (event.keyCode == 46) {
-    handleInput(this.value);
-}" oninput="handleInput(this.value, true);">
 <input type="text" id="setBackSize" style="width:15%;" value="<?=$session['back_size'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('back_size', this.value);
 } else if (event.keyCode == 27) {
@@ -198,7 +181,24 @@
     handleInput(this.value);
 } else if (event.keyCode == 46) {
     handleInput(this.value);
-}" oninput="handleInput(this.value, true);"><br>
+}" oninput="handleInput(this.value, true);">
+<input type="number" min='0' max='9' step='1' id="setMagnitude" style="width:14%;" value="<?=$session['magnitude'];?>" oninput="setdata('magnitude', setMagnitude.value); handleInput(this.value, true);" onkeydown="if (event.keyCode == 27) {
+    setMagnitude.value = 5;
+    setdata('magnitude', setMagnitude.value);
+} else if (event.keyCode == 8) {
+    handleInput(this.value);
+} else if (event.keyCode == 46) {
+    handleInput(this.value);
+}"><br>
+<input type="text" id="setGradDeg" style="width:15%;" value="<?=$session['gradient_deg'];?>" onkeydown="if (even.keyCode == 13) {
+    setdata('gradient_deg', this.value);
+} else if (event.keyCode == 27) {
+    this.value = '180'; setdata('gradient_deg', this.value);
+} else if (event.keyCode == 8) {
+    handleInput(this.value);
+} else if (event.keyCode == 46) {
+    handleInput(this.value);
+}" oninput="handleInput(this.value, true);">
 <input type="text" id="setHead1Size" style="width:15%;" value="<?=$session['head1_size'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('head1_size', this.value);
 } else if (event.keyCode == 27) {
