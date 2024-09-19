@@ -213,13 +213,25 @@ function jsonHTML(str, mask) {
         ard = el+'<br>'+arr[el]+'<br>'+ard;
     } return ard;
 }
+function jsonMarket(id, typ = '') {
+    var arr = jsonstr(openJournal(id, sysDefStoreList, sysDefStoreJSONs));
+    var res = {}; if (typ != '') {
+        for (el in arr) {
+            if ((arr[el] !== undefined) && (typeof(arr[el]) == 'object') && (arr[el]['type'] == typ)) {
+                res[el] = arr[el];
+            }
+        }
+    } else {
+        res = arr;
+    } return res;
+}
 function jsonStore(id) {
-    var arr = jsonstr(openJournal(id, sysDefStoreList, sysDefStoreJSONs)), ard = '', arl = '', eld = {}, fuc = '';
-    for (el in arr) {
+    var arr = jsonstr(openJournal(id, sysDefStoreList, sysDefStoreJSONs));
+    var ard = '', arl = '', eld = {}, fuc = ''; for (el in arr) {
         if ((arr[el] !== undefined) && (typeof(arr[el]) == 'object')) {
             eld = arr[el];
             fuc = "<a href='javascript:buy_item(&#34;"+el+"&#34;,&#34;"+id+"&#34;);'>"; arl = '<tr>';
-            arl += '<td>'+((id != sysDefSessionID.value) ? fuc+el+'</a>' : el)+'</td><td>'+hex2bin(eld['name'])+'</td><td>'+eld['type']+'</td><td>'+eld['price']+'</td>'; ard = arl+'</tr>'+ard;
+            arl += '<td>'+((id != sysDefSessionID.value) ? fuc+el+'</a>' : el)+'</td><td>'+hex2bin(eld['name'])+'</td><td>'+eld['type']+'</td><td>'+eld['quantity']+'</td><td>'+eld['price']+'</td>'; ard = arl+'</tr>'+ard;
         }
     } return ard;
 }
@@ -327,63 +339,92 @@ function compose(msg) {
     }
 }
 function buy_item(art, sel) {
-    var bye = sysDefSessionID.value;
-    if (sel != bye) {
+    var bye = sysDefSessionID.value; if (sel != bye) {
         var tabS = jsonstr(openJournal(sel, sysDefStoreList, sysDefStoreJSONs));
         var tabB = jsonstr(openJournal(bye, sysDefStoreList, sysDefStoreJSONs));
-        var itemS = {}, prix, pass, itemB = {};
-        var obj = arrjob(sysDefPowersData.value,';',':');
+        var prix, pass, obj = arrjob(sysDefPowersData.value,';',':');
         if ((obj[bye] >= 0) && (obj[sel] >= 0)) {
             if ((tabS[art] !== undefined) && (typeof(tabS[art]) == 'object')) {
-                itemS = tabS[art];
-                if ((isInt(itemS['price'])) && (!isInt(art))) {
-                    prix = parseInt(itemS['price']);
-                    pass = ((itemS['type'] == 'account') || (itemS['type'] == 'password')) ? itemS['password'] : '';
-                    if (obj[bye] >= prix) {
+                if ((isInt(tabS[art]['price'])) && (!isInt(art))) {
+                    // Buy any product for certain price
+                    prix = parseInt(tabS[art]['price']);
+                    pass = ((tabS[art]['type'] == 'account') || (tabS[art]['type'] == 'password')) ? tabS[art]['password'] : ''; if (obj[bye] >= prix) {
                         fixPrice(bye, sel, art, prix);
-                        delete tabS[art]; tabB[art] = itemS;
-                        set('./.store/'+sel+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
+                        if ((tabB[art] !== undefined) && (typeof(tabB[art]) == 'object') && (tabB[art]['quantity'] !== undefined) && isInt(tabB[art]['quantity']) && (parseInt(tabB[art]['quantity']) >= 0)) {
+                            tabB[art]['quantity'] = parseInt(tabB[art]['quantity'])+1;
+                        } else {
+                            tabB[art] = tabS[art];
+                            tabB[art]['quantity'] = 1;
+                        } if ((tabS[art]['quantity'] !== undefined) && isInt(tabS[art]['quantity'])) {
+                            if (parseInt(tabS[art]['quantity']) > 1) {
+                                tabS[art]['quantity'] = parseInt(tabS[art]['quantity'])-1;
+                            } else {
+                                delete tabS[art];
+                            }
+                        } set('./.store/'+sel+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
                         set('./.store/'+bye+'_store.json', encodeURIComponent(JSON.stringify(tabB)), true);
-                        if (itemS['type'] == 'account') {
+                        if (tabS[art]['type'] == 'account') {
                             copy(sel+'_session.json.bak', bye+'_session.json.bak', true, 1);
                             copy(sel+'_session.json', bye+'_session.json', true, 1);
-                            change(bye, bye, pass, true);
-                            omniAuthRequest('signin', bye, pass);
-                        } else if (itemS['type'] == 'password') {
-                            change(sel, sel, pass, true);
-                            omniAuthRequest('signin', sel, pass);
+                            change(bye, bye, pass, true); omniAuthRequest('signin', bye, pass);
+                        } else if (tabS[art]['type'] == 'password') {
+                            change(sel, sel, pass, true); omniAuthRequest('signin', sel, pass);
                         }
                     }
-                } else if ((!isInt(itemS['price'])) && (!isInt(art))) {
-                    if ((tabB[itemS['price']] !== undefined) && (typeof(tabB[itemS['price']]) == 'object')) {
-                        itemB = tabB[itemS['price']];
-                        prix = itemS['price'];
-                        fixPrice(bye, sel, art, prix);
-                        delete tabS[art]; tabB[art] = itemS;
-                        delete tabB[prix]; tabS[prix] = itemB;
-                        set('./.store/'+sel+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
-                        set('./.store/'+bye+'_store.json', encodeURIComponent(JSON.stringify(tabB)), true);
-                    }
-                } else if ((!isInt(itemS['price'])) && (isInt(art))) {
-                    if ((itemS['price'] == '')) {
-                        prix = itemS['price'];
-                        fixPrice(bye, sel, art, prix);
-                        delete tabS[art];
-                        set('./.store/'+sel+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
-                        set('./.store/'+bye+'_store.json', encodeURIComponent(JSON.stringify(tabB)), true);
-                    }
+                } else if ((!isInt(tabS[art]['price'])) && (!isInt(art)) && (tabB[tabS[art]['price']] !== undefined) && (typeof(tabB[tabS[art]['price']]) == 'object')) {
+                    // Exchange goods with other users
+                    prix = tabS[art]['price']; fixPrice(bye, sel, art, prix);
+                    if ((tabB[art] !== undefined) && (typeof(tabB[art]) == 'object') && (tabB[art]['quantity'] !== undefined) && isInt(tabB[art]['quantity']) && (parseInt(tabB[art]['quantity']) >= 0)) {
+                        tabB[art]['quantity'] = parseInt(tabB[art]['quantity'])+1;
+                    } else {
+                        tabB[art] = tabS[art]; tabB[art]['quantity'] = 1;
+                    } if ((tabS[art]['quantity'] !== undefined) && isInt(tabS[art]['quantity'])) {
+                        if (parseInt(tabS[art]['quantity']) > 1) {
+                            tabS[art]['quantity'] = parseInt(tabS[art]['quantity'])-1;
+                        } else {
+                            delete tabS[art];
+                        }
+                    } if ((tabS[prix] !== undefined) && (typeof(tabS[prix]) == 'object') && (tabS[prix]['quantity'] !== undefined) && isInt(tabS[prix]['quantity']) && (parseInt(tabS[prix]['quantity']) >= 0)) {
+                        tabS[prix]['quantity'] = parseInt(tabS[prix]['quantity'])+1;
+                    } else {
+                        tabS[prix] = tabB[prix]; tabS[prix]['quantity'] = 1;
+                    } if ((tabB[prix]['quantity'] !== undefined) && isInt(tabB[prix]['quantity'])) {
+                        if (parseInt(tabB[prix]['quantity']) > 1) {
+                            tabB[prix]['quantity'] = parseInt(tabB[prix]['quantity'])-1;
+                        } else {
+                            delete tabB[prix];
+                        }
+                    } set('./.store/'+sel+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
+                    set('./.store/'+bye+'_store.json', encodeURIComponent(JSON.stringify(tabB)), true);
+                } else if ((!isInt(tabS[art]['price'])) && (isInt(art)) && (tabS[art]['price'] == '')) {
+                    // Get certain amount of money as a gift
+                    prix = tabS[art]['price']; fixPrice(bye, sel, art, prix);
+                    if ((tabB[art] !== undefined) && (typeof(tabB[art]) == 'object') && (tabB[art]['quantity'] !== undefined) && isInt(tabB[art]['quantity']) && (parseInt(tabB[art]['quantity']) >= 0)) {
+                        tabB[art]['quantity'] = parseInt(tabB[art]['quantity'])+1;
+                    } else {
+                        tabB[art] = tabS[art]; tabB[art]['quantity'] = 1;
+                    } if ((tabS[art]['quantity'] !== undefined) && isInt(tabS[art]['quantity'])) {
+                        if (parseInt(tabS[art]['quantity']) > 1) {
+                            tabS[art]['quantity'] = parseInt(tabS[art]['quantity'])-1;
+                        } else {
+                            delete tabS[art];
+                        }
+                    } set('./.store/'+sel+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
+                    set('./.store/'+bye+'_store.json', encodeURIComponent(JSON.stringify(tabB)), true);
                 }
             }
         }
     }
 }
-function sell_item(typ, art, ttl, prix = '', pass = '') {
-    var tabS = jsonstr(openJournal(sysDefSessionID.value, sysDefStoreList, sysDefStoreJSONs)); var tab = {};
+function sell_item(typ, art, ttl, prix = '', dat = '') {
+    var tabS = jsonstr(openJournal(sysDefSessionID.value, sysDefStoreList, sysDefStoreJSONs));
     var obj = arrjob(sysDefPowersData.value,';',':');
     if (obj[sysDefSessionID.value] >= 0) {
-        tabS[art] = { "name": bin2hex(ttl), "type": typ, "price": prix };
-        if ((typ == 'account') || (typ == 'password')) {
-            tabS[art]['password'] = CryptoJS.SHA256(pass).toString();
+        var qu = ((tabS[art] !== undefined) && (typeof(tabS[art]) == 'object') && (tabS[art]['quantity'] !== undefined) && isInt(tabS[art]['quantity']) && (tabS[art]['quantity'] >= 0)) ? parseInt(tabS[art]['quantity'])+1 : 1; tabS[art] = { "name": bin2hex(ttl), "type": typ, "quantity": qu, "price": prix }; if ((typ == 'account') || (typ == 'password')) {
+            tabS[art]['password'] = CryptoJS.SHA256(dat).toString();
+        } else if (typ == 'weapon') {
+            tabS[art]['hasAmmo'] = (dat.includes(':')) ? dat.split(':')[0] : 0;
+            tabS[art]['damage'] = (dat.includes(':')) ? dat.split(':')[1] : dat;
         } set('./.store/'+sysDefSessionID.value+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
     }
 }
@@ -451,25 +492,32 @@ function fixPrice(sen, rec, deb, cre) {
     set('dominion.json', JSON.stringify(stat), true);
     sysDefPowersData.value = arrpack(stat,';',':');
 }
-function dominate(usr, id, q = 1, s = 1, n = 0, snd = false) {
-    var max = parseInt(Math.abs(q));
-    var min = parseInt(Math.abs(q)*-1);
+function dominate(usr, id, wep = '', snd = false) {
     var obj = arrjob(sysDefPowersData.value,';',':');
-    var f = (isInt(q)) ? parseInt(Math.abs(q)) : 1;
+    var stu = jsonMarket(usr), f = mu = ep = 0;
     var suf = (isInt(obj[usr])) ? parseInt(obj[usr]) : 0;
     var obf = (isInt(obj[id])) ? parseInt(obj[id]) : 0;
     var sides = []; if ((usr != id) && (suf >= 0)) {
-        for (i = 0; i < s; i++) {
-            sides.push(rand(((n != 0) ? min : 0), max));
-        } if (isAllZero(sides)) {
-            if (obf <= -666) {
-                delete_user(id);
-            } else {
-                suf = suf + f; obf = obf - f;
-                obj[usr] = suf; obj[id] = obf;
-                set('dominion.json', JSON.stringify(obj), true);
-                sysDefPowersData.value = arrpack(obj,';',':');
-            }
+        if ((stu[wep] !== undefined) && (typeof(stu[wep]) == 'object') && (stu[wep]['type'] == 'weapon')) {
+            mu = ((stu[wep]['quantity'] !== undefined) && isInt(stu[wep]['quantity'])) ? parseInt(stu[wep]['quantity']) : 1;
+            f = ((stu[wep]['damage'] !== undefined) && isInt(stu[wep]['damage'])) ? parseInt(stu[wep]['damage']) : 1;
+            ep = ((stu[wep]['hasAmmo'] !== undefined) && isInt(stu[wep]['hasAmmo'])) ? parseInt(stu[wep]['hasAmmo']) : 0;
+        } else {
+            mu = 1, f = 1, ep = 0;
+        } if (obf <= -666) {
+            delete_user(id);
+        } else {
+            if ((ep != 0) && (mu > 0)) {
+                suf += f; obf -= f; mu -= 1;
+                stu[wep]['quantity'] = mu;
+            } else if ((ep != 0) && (mu <= 0)) {
+                delete stu[wep];
+            } else if (ep == 0) {
+                suf += f; obf -= f;
+            } obj[usr] = suf; obj[id] = obf;
+            set('./.store/'+usr+'_store.json', encodeURIComponent(JSON.stringify(stu)), true);
+            set('dominion.json', JSON.stringify(obj), true);
+            sysDefPowersData.value = arrpack(obj,';',':');
         }
     }
 }

@@ -35,6 +35,7 @@ $termDat = (isset($voc[$uni]['Date'])) ? $voc[$uni]['Date'] : 'Date';
 $termArt = (isset($voc[$uni]['Article'])) ? $voc[$uni]['Article'] : 'Article';
 $termNom = (isset($voc[$uni]['Name'])) ? $voc[$uni]['Name'] : 'Name';
 $termType = (isset($voc[$uni]['Type'])) ? $voc[$uni]['Type'] : 'Type';
+$termQua = (isset($voc[$uni]['Quantity'])) ? $voc[$uni]['Quantity'] : 'Quantity';
 $termPri = (isset($voc[$uni]['Price'])) ? $voc[$uni]['Price'] : 'Price';
 $termOper = (isset($voc[$uni]['User Operation:'])) ? $voc[$uni]['User Operation:'] : 'User Opeation:';
 $termScore = (isset($voc[$uni]['User Score Tab:'])) ? $voc[$uni]['User Score Tab:'] : 'User Score Tab:';
@@ -45,6 +46,6 @@ $dateTimeCode." ".$userData['observe'].$userData['spectate']."\r\n\r\n".
 hHmMsS($alarmInTime)."\r\n\r\n".
 $vintageBackdropFilter.";".$overlayBeforeBackground.";".$overlayBeforeAnimation.";".$overlayAfterBackground.";".$overlayAfterAnimation."\r\n\r\n".
 $userData['audio_volume'].' '.$userData['audio_speed'].' '.$userData['video_volume'].' '.$userData['video_speed'].' '.$userData['alarm_volume'].' '.$userData['timer_volume'].' '.$userData['loop_volume'].' '.$userData['rest_volume']."\r\n\r\n".
-$termDat.' | '.$termSen.' | '.$termRec.' | '.$termDeb.' | '.$termCre.' | '.$termBal.' | '.$termOper.' | '.$termScore.' | '.$termArt.' | '.$termNom.' | '.$termType.' | '.$termPri."\r\n\r\n".
+$termDat.' | '.$termSen.' | '.$termRec.' | '.$termDeb.' | '.$termCre.' | '.$termBal.' | '.$termOper.' | '.$termScore.' | '.$termArt.' | '.$termNom.' | '.$termType.' | '.$termQua.' | '.$termPri."\r\n\r\n".
 implode(' ', $wd)."\r\n\r\n".
 $userData['pangram_'.(($userSettings['pangram'][$uni]) ? $userSettings['pangram'][$uni] : $userSettings['pangram']['default'])];
