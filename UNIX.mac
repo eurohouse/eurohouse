@@ -1,5 +1,5 @@
 # Music; lock_music: retro,aughts;
-# Avatar; avatar: att;
+# Avatar; avatar: BellLabs;
 # Background; background: none;
 # UI; back_size: 14; fore_size: 14; input_size: 14; back_color: ECE9D8; fore_color: BCB9A8; input_color: DCD9C8; back_text_color: 000000; fore_text_color: 000000; input_text_color: 000000; blank_color: 000000; blank_text_color: 000000; arc_fore_color: BCB9A8; arc_input_color: DCD9C8; opacity: 255; radius: 0; gradient_deg: 180; gloss: 0; box_shadow: inset 1.5px 1.5px #000000, inset -1.5px -1.5px #000000; text_box_shadow: inset 1.5px 1.5px #000000, inset -1.5px -1.5px #000000;
 # Display; pangram_ascii: Waltz, bad nymph, for quick jigs vex.; pangram_cyril: Широкая электрификация южных губерний даст мощный толчок подъёму сельского хозяйства.; reticle_choice_1: reticle; reticle_choice_2: musket; reticle_choice_3: camera; reticle_choice_4: sniper; reticle_choice_5: german;

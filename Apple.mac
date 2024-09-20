@@ -1,5 +1,5 @@
 # Music; lock_music: botticelli;
-# Avatar; avatar: apple;
+# Avatar; avatar: Apple;
 # Background; background: osx.2017.00.png;
 # UI; back_size: 14; fore_size: 14; input_size: 14; back_color: C7C7C7; fore_color: 6AA3F4; input_color: F4F4F4; back_text_color: FFFFFF; fore_text_color: FFFFFF; input_text_color: 000000; blank_color: FFFFFF; blank_text_color: 000000; arc_fore_color: 006CF2; arc_input_color: F4F4F4; opacity: 64; radius: 5; gradient_deg: 180; gloss: 1; box_shadow: inset 0px 0px #000000, inset 0px 0px #000000; text_box_shadow: inset 0px 0px #000000, inset 0px 0px #000000;
 # Display; pangram_ascii: How quickly daft jumping zebras vex!; pangram_cyril: Вступив в бой с шипящими змеями — эфой и гадюкой — маленький, цепкий, храбрый ёж чуть не съел их.; reticle_choice_1: reticle; reticle_choice_2: musket; reticle_choice_3: camera; reticle_choice_4: sniper; reticle_choice_5: german;

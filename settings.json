@@ -346,7 +346,7 @@
         "benchmark": 0, "pitch_lock": 0, "chat": 0, "lock": 0, "icons": 0,
         "mute": 1, "gloss": 1, "observe": 0, "spectate": 0, "private": 1,
         "vintage": 0, "reload": 0, "censor": 1, "magnitude": 5,
-        "title": "", "avatar": "eurohouse", "reticle": "reticle",
+        "title": "", "avatar": "Eurohouse", "reticle": "reticle",
         "reticle_choice_1": "reticle", "reticle_choice_2": "musket",
         "reticle_choice_3": "camera", "reticle_choice_4": "sniper",
         "reticle_choice_5": "german", "radius": 7,
