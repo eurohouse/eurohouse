@@ -29,25 +29,20 @@ $bindData = arropen('binding.json', "{\"root\":\"root\"}");
 $powersData = arropen('dominion.json', "{\"root\":0}");
 $automateData = arropen('automator.json', "{\"root\":\"manual\"}");
 $friendData = arropen('friendship.json', "{\"root\":\"\"}");
+$toolboxData = arropen('toolbox.json', "{\"root\":\"\"}");
 $timezone = dec_tz($session['timezone']); date_default_timezone_set($timezone);
 $prefix = 'iso.'; $request = []; $postRequest = [];
 foreach ($settings['initialize']['GET'] as $requestID=>$requestValue) {
     $request[$requestID] = ($_GET[$requestID]) ? $_GET[$requestID] : $requestValue;
-}
-foreach ($settings['initialize']['POST'] as $requestID=>$requestValue) {
+} foreach ($settings['initialize']['POST'] as $requestID=>$requestValue) {
     $postRequest[$requestID] = ($_POST[$requestID]) ? $_POST[$requestID] : $requestValue;
-}
-if (!empty($_FILES['file']['tmp_name']) && !empty($_POST['path'])) {
+} if (!empty($_FILES['file']['tmp_name']) && !empty($_POST['path'])) {
     $filename = $_FILES["file"]["name"];
-    $path = $_POST['path'];
-    if ($path != "/") {
-        $path .= "/";
-    }
+    $path = $_POST['path']; if ($path != "/") { $path .= "/"; }
     chmod($_FILES["file"]["tmp_name"], 0777);
     move_uploaded_file($_FILES["file"]["tmp_name"], $path.$filename);
     chmod($path.$filename, 0777);
-}
-$avaPrefix = (lux($session['back_text_color'])) ? 'ava.' : 'abc.';
+} $avaPrefix = (lux($session['back_text_color'])) ? 'ava.' : 'abc.';
 $abcPrefix = (lux($session['fore_text_color'])) ? 'ava.' : 'abc.';
 $prefix = (lux($session['fore_text_color'])) ? 'iso.' : 'iec.';
 $reticlePrefix = (lux($session['fore_text_color'])) ? 'rtd.' : 'rtc.';

@@ -4,7 +4,8 @@
 <input type='image' onmouseover="soundButton();" class="power" onclick="setdata('stats', 'auto');" src="<?=$prefix.'steer.png'.$suffix;?>">
 <input type='image' onmouseover="soundButton();" class="power" onclick="setdata('stats', 'friend');" src="<?=$prefix.'dial.png'.$suffix;?>">
 <input type='image' onmouseover="soundButton();" class="power" onclick="setdata('stats', 'bind');" src="<?=$prefix.'chain.png'.$suffix;?>">
+<input type='image' onmouseover="soundButton();" class="power" onclick="setdata('stats', 'tool');" src="<?=$prefix.'dice.png'.$suffix;?>">
 <input type='image' onmouseover="soundButton();" class="power" onclick="setdata('stats', 'score');" src="<?=$prefix.'money.png'.$suffix;?>">
 </p>
-<p align='center'><?=term('User Operation:', $settings['vocabulary'], $session['units']);?></p><p align='center' id='userStatsAuto'></p>
-<p align='center'><?=term('User Score Tab:', $settings['vocabulary'], $session['units']);?></p><p align='center' id='userStats'></p>
+<p align='center' id='tabOper'><?=term('User Operation:', $settings['vocabulary'], $session['units']);?></p><p align='center' id='userStatsAuto'></p>
+<p align='center' id='tabScore'><?=term('User Score Tab:', $settings['vocabulary'], $session['units']);?></p><p align='center' id='userStats'></p>

@@ -7,6 +7,7 @@ $bindingData = arropen('binding.json', "{\"root\":\"root\"}");
 $poweredData = arropen('dominion.json', "{\"root\":0}");
 $autoData = arropen('automator.json', "{\"root\":\"manual\"}");
 $frndData = arropen('friendship.json', "{\"root\":\"\"}");
+$toolData = arropen('toolbox.json', "{\"root\":\"\"}");
 $musicBoxArr = str_replace('./','',(glob('./*.{'.duplex($userSettings['collections']['music'], true).'}', GLOB_BRACE)));
 $soundBoxArr = str_replace('./','',(glob('./*.{'.duplex($userSettings['collections']['audio'], true).'}', GLOB_BRACE)));
 $locksArr = arropen($cookie.'_lock.json', json_encode($userSettings['locks']), 'DEFAULT');
@@ -29,6 +30,7 @@ valstr($bindingData,';',':')."\r\n\r\n".
 valstr($poweredData,';',':')."\r\n\r\n".
 valstr($autoData,';',':')."\r\n\r\n".
 valstr($frndData,';',':')."\r\n\r\n".
+valstr($toolData,';',':')."\r\n\r\n".
 $newsFeed."\r\n\r\n".
 $userBook."\r\n\r\n".
 $userStore."\r\n\r\n".

@@ -27,21 +27,25 @@ function databox() {
             $('#sysDefPowersData').val(pager(data, 2));
             $('#sysDefAutoData').val(pager(data, 3));
             $('#sysDefFriendData').val(pager(data, 4));
-            $('#sysDefMsgData').val(pager(data, 5));
-            $('#sysDefBookKeep').val(pager(data, 6));
-            $('#sysDefUserStore').val(pager(data, 7));
-            $('#sysDefMusicBox').val(pager(data, 8).split("\\\\")[0]);
-            $('#sysDefSoundBox').val(pager(data, 8).split("\\\\")[1]);
-            $('#sysDefCodexBox').val(pager(data, 9).split("\\\\")[0]);
-            $('#sysDefSpeechBox').val(pager(data, 9).split("\\\\")[1]);
-            $('#sysDefUsersList').val(pager(data, 10).split(";")[0]);
-            $('#sysDefBooksList').val(pager(data, 10).split(";")[1]);
-            $('#sysDefStoreList').val(pager(data, 10).split(";")[2]);
-            $('#sysDefMetaList').val(pager(data, 11));
-            $('#sysDefMetaData').val(pager(data, 12));
+            $('#sysDefToolData').val(pager(data, 5));
+            $('#sysDefMsgData').val(pager(data, 6));
+            $('#sysDefBookKeep').val(pager(data, 7));
+            $('#sysDefUserStore').val(pager(data, 8));
+            $('#sysDefMusicBox').val(pager(data, 9).split("\\\\")[0]);
+            $('#sysDefSoundBox').val(pager(data, 9).split("\\\\")[1]);
+            $('#sysDefCodexBox').val(pager(data, 10).split("\\\\")[0]);
+            $('#sysDefSpeechBox').val(pager(data, 10).split("\\\\")[1]);
+            $('#sysDefUsersList').val(pager(data, 11).split(";")[0]);
+            $('#sysDefBooksList').val(pager(data, 11).split(";")[1]);
+            $('#sysDefStoreList').val(pager(data, 11).split(";")[2]);
+            $('#sysDefMetaList').val(pager(data, 12));
+            $('#sysDefMetaData').val(pager(data, 13));
             if (sysDefBindData.value != sysDefPostBindData.value) {
                 playAudio(bindPlayer, sysDefBindSound.value);
             } sysDefPostBindData.value = sysDefBindData.value;
+            if (sysDefToolData.value != sysDefPostToolData.value) {
+                playAudio(bindPlayer, sysDefBindSound.value);
+            } sysDefPostToolData.value = sysDefToolData.value;
             if (sysDefMsgData.value != sysDefPostMsgData.value) {
                 playAudio(notifyPlayer, sysDefNotifySound.value);
             } sysDefPostMsgData.value = sysDefMsgData.value;
@@ -114,9 +118,6 @@ function world_clock() {
                 $('#buttonUserStatus').attr('src', sysDefPrefix.value+'anonym.png'+sysDefSuffix.value);
             <?php } ?>
             $('#buttonEscape').attr('src', sysDefPrefix.value+'escape.png'+sysDefSuffix.value);
-            if (sysDefWeapon.value != sysDefLastWeapon.value) {
-                playAudio(bindPlayer, sysDefBindSound.value);
-            } sysDefLastWeapon.value = sysDefWeapon.value;
             if (sysDefVintage.value != sysDefPostBackEff.value) {
                 if (sysDefVintage.value != 0) {
                     playAudio(backgroundPlayer, sysDefBackgroundSound.value);
@@ -280,24 +281,25 @@ function store_list() {
     });
 }
 function automator() {
-    var autoPower = arrjob(sysDefAutoData.value,';',':'), bindPower = arrjob(sysDefBindData.value,';',':'), tabPower = arrjob(sysDefPowersData.value,';',':'), frndPower = arrjob(sysDefFriendData.value,';',':');
-    $.ajax({
-        url: 'automator.php',
-        success: function(data) {
-            var subName = miniPager(data, 0); var objName = miniPager(data, 1);
-            var handle = miniPager(data, 2); var status = miniPager(data, 3);
-            var subFrnd = friendsOf(frndPower, subName);
-            if (requestMode.value == 'statistics') {
-                userStats.innerText = scores(sysDefStats.value);
-                userStatsAuto.innerText = (subName == 'root') ? CryptoJS.MD5(status+'@'+subName+'#'+objName+'&'+handle).toString() : CryptoJS.MD5(status+'@'+subName+'$'+objName+'&'+handle).toString();
-            }
-            if ((subName != '') && (objName != '') && (subName != objName) && (isInt(tabPower[subName])) && (tabPower[subName] >= 0) && (autoPower[subName] == 'auto') && (status == 200)) {
-                bind(subName, handle);
-                if ((objName == handle) && (!(subFrnd.includes(objName)))) {
-                    dominate(subName, objName, 1, 1, 0);
-                }
-            }
+    var autoPower = arrjob(sysDefAutoData.value,';',':');
+    var bindPower = arrjob(sysDefBindData.value,';',':');
+    var tabPower = arrjob(sysDefPowersData.value,';',':');
+    var frndPower = arrjob(sysDefFriendData.value,';',':');
+    var toolPower = arrjob(sysDefToolData.value,';',':');
+    var userList = (sysDefUsersList.value).split(',');
+    var subName = userList[rand(0, userList.length)];
+    var objName = userList[rand(0, userList.length)];
+    var handle = userList[rand(0, userList.length)];
+    var subFrnd = friendsOf(frndPower, subName);
+    var arms = Object.keys(jsonMarket(subName));
+    if (requestMode.value == 'statistics') {
+        userStats.innerText = scores(sysDefStats.value);
+        userStatsAuto.innerText = (subName == 'root') ? CryptoJS.MD5(status+'@'+subName+'#'+objName+'&'+handle).toString() : CryptoJS.MD5(status+'@'+subName+'$'+objName+'&'+handle).toString();
+    } if ((subName != '') && (objName != '') && (subName != objName) && (isInt(tabPower[subName])) && (tabPower[subName] >= 0) && (autoPower[subName] == 'auto')) {
+        bind(subName, handle); equip(subName, arms[rand(0, arms.length-1)]);
+        if ((objName == handle) && (!(subFrnd.includes(objName)))) {
+            dominate(subName, objName, 1, 1, 0);
         }
-    });
+    }
 }
 </script>

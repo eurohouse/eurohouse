@@ -168,6 +168,11 @@ function bind(usr, id) {
     obj[usr] = id; set('binding.json', JSON.stringify(obj), true);
     sysDefBindData.value = arrpack(obj,';',':');
 }
+function equip(usr, id) {
+    var obj = arrjob(sysDefToolData.value,';',':');
+    obj[usr] = id; set('toolbox.json', JSON.stringify(obj), true);
+    sysDefToolData.value = arrpack(obj,';',':');
+}
 function automate() {
     var usr = sysDefSessionID.value;
     var obj = arrjob(sysDefAutoData.value,';',':');
@@ -239,7 +244,7 @@ function jsonStore(id) {
     var ard = '', arl = '', eld = {}, fuc = '', fut = ''; for (el in arr) {
         if ((arr[el] !== undefined) && (typeof(arr[el]) == 'object')) {
             fuc = "buy_item(&#34;"+el+"&#34;,&#34;"+id+"&#34;);";
-            fut = "setdata(&#34;weapon&#34;,&#34;"+el+"&#34;);", eld = arr[el], arl = '<tr>';
+            fut = "equip(&#34;"+id+"&#34;,&#34;"+el+"&#34;);", eld = arr[el], arl = '<tr>';
             arl += "<td><input type='button' style='width:100%;' onclick='"+((id != sysDefSessionID.value) ? fuc : fut)+"' value='"+el+"'></td><td>"+eld['quantity']+"</td><td>"+eld['price']+"</td>"; ard = arl+"</tr>"+ard;
         }
     } return ard;
@@ -506,6 +511,7 @@ function dominate(usr, id, wep = '', snd = false) {
     }
 }
 function unbind(id) { bind(id, id); }
+function unequip(id) { equip(id, ''); }
 function remove_entry(id, obj, name) {
     var objData = arrjob(obj.value,';',':');
     delete objData[id];
@@ -518,6 +524,7 @@ function delete_user(id) {
     remove_entry(id, sysDefPowersData, 'dominion.json');
     remove_entry(id, sysDefAutoData, 'automator.json');
     remove_entry(id, sysDefFriendData, 'friendship.json');
+    remove_entry(id, sysDefToolData, 'toolbox.json');
     del(id+'_session.json', true);
     del(id+'_session.json.bak', true);
     del(id+'_password', true);
@@ -548,6 +555,7 @@ function rename_user(username, password) {
         transfer_entry(username, sysDefPowersData, 'dominion.json');
         transfer_entry(username, sysDefAutoData, 'automator.json');
         transfer_entry(username, sysDefFriendData, 'friendship.json');
+        transfer_entry(username, sysDefToolData, 'toolbox.json');
     }
 }
 function init_user(id, au = 'manual') {
@@ -555,6 +563,7 @@ function init_user(id, au = 'manual') {
     var pd = arrjob(sysDefPowersData.value,';',':');
     var ad = arrjob(sysDefAutoData.value,';',':');
     var fd = arrjob(sysDefFriendData.value,';',':');
+    var td = arrjob(sysDefToolData.value,';',':');
     var usl = (sysDefUsersList.value).split(',');
     var bkl = (sysDefBooksList.value).split(',');
     var stl = (sysDefStoreList.value).split(',');
@@ -580,6 +589,10 @@ function init_user(id, au = 'manual') {
         fd[id] = '';
         set('friendship.json', JSON.stringify(fd), true);
         sysDefFriendData.value = arrpack(fd,';',':');
+    } if (!(id in td)) {
+        td[id] = '';
+        set('toolbox.json', JSON.stringify(td), true);
+        sysDefToolData.value = arrpack(td,';',':');
     }
 }
 function friendsOf(obj, id) {
@@ -629,7 +642,7 @@ function dropFriend(id) {
     }
 }
 function scores(sta) {
-    var sto = ['bind', 'auto', 'friend'];
+    var sto = ['bind', 'auto', 'friend', 'tool'];
     var arr = (arraySearch(sta, sto) !== false) ? document.getElementById('sysDef'+ucfirst(sta)+'Data').value : document.getElementById('sysDefPowersData').value; var obj = arrjob(arr, ';', ':');
     var keys = Object.keys(obj); var vals = Object.values(obj);
     var res = ''; var sortable = {}; var ordered = {};
@@ -675,6 +688,21 @@ function scores(sta) {
                     res += '@'+indi+' ['+ordered[indi]+']\n';
                 } else {
                     res += '@'+indi+' [NULL]\n';
+                }
+            }
+        }
+    } else if (sta == 'tool') {
+        ordered = Object.keys(obj).sort().reduce(
+            (obd, key) => { 
+                obd[key] = obj[key]; 
+                return obd;
+            }, {}
+        ); for (indi in ordered) {
+            if ((ordered[indi] !== undefined) || (indi != '')) {
+                if (ordered[indi] != '') {
+                    res += '@'+indi+' <'+ordered[indi]+'>\n';
+                } else {
+                    res += '@'+indi+' <NULL>\n';
                 }
             }
         }
