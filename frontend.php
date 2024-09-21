@@ -127,8 +127,7 @@ function setdata(ent, val) {
     set(sysDefSessionID.value+'_session.json', JSON.stringify(obj), true);
     <?php foreach ($settings['defaults'] as $key=>$value) {
         echo "sysDef".camel($key).".value = obj['".$key."'];";
-    } ?>
-    if (ent == 'audio_volume') { audioPlayer.volume = val; }
+    } ?> if (ent == 'audio_volume') { audioPlayer.volume = val; }
     if (ent == 'audio_speed') { audioPlayer.playbackRate = val; }
     if (ent == 'alarm_volume') { alarmPlayer.volume = val; }
     if (ent == 'timer_volume') { tickerPlayer.volume = val; }
@@ -225,13 +224,22 @@ function jsonMarket(id, typ = '') {
         res = arr;
     } return res;
 }
+function jsonStoreUsers() {
+    var arr = (sysDefStoreList.value).split(',');
+    var arl = "<p align='center' class='block'>", eld = '', elt = ''; for (el in arr) {
+        if (arr[el] !== undefined) {
+            eld = arr[el], elt = sysDefSessionID.value;
+            arl += "<input type='button' onclick='bind(&#34;"+elt+"&#34;,&#34;"+eld+"&#34;);' value='"+eld+"'>";
+        }
+    } arl += "</p>"; return arl;
+}
 function jsonStore(id) {
     var arr = jsonstr(openJournal(id, sysDefStoreList, sysDefStoreJSONs));
-    var ard = '', arl = '', eld = {}, fuc = ''; for (el in arr) {
+    var ard = '', arl = '', eld = {}, fuc = '', fut = ''; for (el in arr) {
         if ((arr[el] !== undefined) && (typeof(arr[el]) == 'object')) {
-            eld = arr[el];
-            fuc = "<a href='javascript:buy_item(&#34;"+el+"&#34;,&#34;"+id+"&#34;);'>"; arl = '<tr>';
-            arl += '<td>'+((id != sysDefSessionID.value) ? fuc+el+'</a>' : el)+'</td><td>'+hex2bin(eld['name'])+'</td><td>'+eld['type']+'</td><td>'+eld['quantity']+'</td><td>'+eld['price']+'</td>'; ard = arl+'</tr>'+ard;
+            fuc = "buy_item(&#34;"+el+"&#34;,&#34;"+id+"&#34;);";
+            fut = "setdata(&#34;weapon&#34;,&#34;"+el+"&#34;);", eld = arr[el], arl = '<tr>';
+            arl += "<td><input type='button' style='width:100%;' onclick='"+((id != sysDefSessionID.value) ? fuc : fut)+"' value='"+dtw(eld['name'])+"'></td><td>"+eld['quantity']+"</td><td>"+eld['price']+"</td>"; ard = arl+"</tr>"+ard;
         }
     } return ard;
 }
@@ -295,10 +303,10 @@ function isoformat(num) {
     var ob = new Date(num);
     return (ob.getUTCFullYear())+'-'+pad((ob.getUTCMonth()+1), 2)+'-'+pad((ob.getUTCDate()), 2)+' '+pad((ob.getUTCHours()), 2)+':'+pad((ob.getUTCMinutes()), 2)+':'+pad((ob.getUTCSeconds()), 2)+'.'+pad((ob.getUTCMilliseconds()), 3);
 }
-function etw(msg, usr, hx = '.-') {
+function etw(msg, usr = '', hx = '.-') {
     return bin2hex(msg, obfstr(CryptoJS.SHA256(usr).toString()), hx);
 }
-function dtw(msg, usr, hx = '.-') {
+function dtw(msg, usr = '', hx = '.-') {
     return hex2bin(msg, obfstr(CryptoJS.SHA256(usr).toString()), hx);
 }
 function compose(msg) {
@@ -410,20 +418,6 @@ function sell_item(typ, art, ttl, prix = '', dat = '') {
             tabS[art]['damage'] = (dat.includes(':')) ? dat.split(':')[1] : dat;
         } set('./.store/'+sysDefSessionID.value+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
     }
-}
-function del_item(art) {
-    var tabS = jsonstr(openJournal(sysDefSessionID.value, sysDefStoreList, sysDefStoreJSONs)); var tab = {};
-    var obj = arrjob(sysDefPowersData.value,';',':');
-    if (obj[sysDefSessionID.value] >= 0) {
-        if (tabS[art] !== undefined) {
-            delete tabS[art];
-        } set('./.store/'+sysDefSessionID.value+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
-    }
-}
-function isAllZero(arr) {
-    for (i = 0; i < arr.length; i++) {
-        if ((arr[i] != 0) && (isInt(arr[i]))) { return false; break; }
-    } return true;
 }
 function fixPrice(sen, rec, deb, cre) {
     var tran1 = openJournal(sen, sysDefBooksList, sysDefBookKeepJSONs);

@@ -4,18 +4,14 @@ function executeMacros(input, index = 0, length = 1) {
         omniBack(sysDefParent.value);
     } else if ((index == (length - 1)) && (input == '\\=')) {
         output = '\\='+hex2bin(userdata()['melody']);
-    } else if ((index == (length - 1)) && (input == '\\')) {
-        omniPause();
-    } else if ((index == (length - 1)) && (input == ':/')) {
-        pauseMIDI();
+    } else if ((index == (length - 1)) && (input == '&')) {
+        unbind(sysDefSessionID.value);
     } else if ((input.includes('# ')) && (input.indexOf('# ') == 0)) {
         // YOUR COMMENTS HERE...
-    } else if ((index == (length - 1)) && (input.includes(':\\')) && (input.indexOf(':\\') == 0)) {
-        playMIDI(input.replace(':\\', ''));
-    } else if ((index == (length - 1)) && (input.includes('\\=')) && (input.indexOf('\\=') == 0)) {
+    } else if ((index == (length - 1)) && (input.includes('\\=')) && (input.startsWith('\\='))) {
         var req = input.replace('\\=', '');
         var res = (req.includes('://')) ? req : 'https://bitbucket.org/baronnaise/'+req.split('/')[0]+'/raw/master/'+req.split('/')[1]; omniListen(res, true);
-    } else if ((index == (length - 1)) && (input.includes("\\")) && (input.indexOf('\\') == 0)) {
+    } else if ((index == (length - 1)) && (input.includes("\\")) && (input.startsWith('\\'))) {
         var namePart = input.replace("\\", '');
         var namePart1, namePart2, nameInc = 0;
         if (namePart.includes(':')) {
@@ -27,12 +23,10 @@ function executeMacros(input, index = 0, length = 1) {
         var museLint = museArr.split('//');
         for (i = 0; i < museLint.length; i++) {
             if (museLint[i].toLowerCase().includes(namePart1.toLowerCase())) {
-                if (nameInc >= namePart2) {
-                    omniListen(museLint[i], true); break;
-                } nameInc++;
+                if (nameInc >= namePart2) { omniListen(museLint[i], true); break; } nameInc++;
             } omniPause();
         }
-    } else if ((index == (length - 1)) && (input.includes('./')) && (input.indexOf('./') == 0)) {
+    } else if ((index == (length - 1)) && (input.includes('./')) && (input.startsWith('./'))) {
         omniRead(requestMode.value, input.replace('./', ''), requestLock.value);
     } else if ((index == (length - 1)) && (input.includes('*'))) {
         omniDisp(requestMode.value, input.replace('*', ''), requestLock.value);
@@ -59,13 +53,13 @@ function executeMacros(input, index = 0, length = 1) {
                 omniAuthRequest('signin', atr[0], atx);
             }
         }
-    } else if ((index == (length - 1)) && (input.includes('--')) && (input.indexOf('--') == 0)) {
+    } else if ((index == (length - 1)) && (input.includes('--')) && (input.startsWith('--'))) {
         omniSort(input.replace('--',''));
-    } else if ((index == (length - 1)) && (input.includes('#')) && (input.indexOf('#') == 0)) {
+    } else if ((index == (length - 1)) && (input.includes('#')) && (input.startsWith('#'))) {
         setdata('find', input);
-    } else if ((index == (length - 1)) && (input.includes('&')) && (input.indexOf('&') == 0)) {
+    } else if ((index == (length - 1)) && (input.includes('&')) && (input.startsWith('&'))) {
         bind(sysDefSessionID.value, input.replace('&', ''));
-    } else if ((index == (length - 1)) && (input.includes('~')) && (input.indexOf('~') == 0)) {
+    } else if ((index == (length - 1)) && (input.includes('~')) && (input.startsWith('~'))) {
         if (sysDefSessionID.value == 'root') {
             delete_user(input.replace('~', ''));
         } else {
@@ -75,8 +69,7 @@ function executeMacros(input, index = 0, length = 1) {
             }
         }
     } else if (input.includes(': ')) {
-        rep = input.split(': ');
-        if (rep[0] == 'memo') {
+        rep = input.split(': '); if (rep[0] == 'memo') {
             if ((rep[1].includes('h')) && (rep[1].startsWith('+'))) {
                 san = parseInt(rep[1].replace('+', '').replace('h', '')) * 3600;
                 setdata(rep[0], (Math.round(Date.now() / 1000) + parseInt(san)));
@@ -96,8 +89,7 @@ function executeMacros(input, index = 0, length = 1) {
                 san = parseInt(rep[1].replace('+', ''));
                 setdata(rep[0], (Math.round(Date.now() / 1000) + parseInt(san)));
             } else if ((rep[1] == '') || (rep[1] == 0)) {
-                setdata('memo', '');
-                pauseAudio(alarmPlayer);
+                setdata('memo', ''); pauseAudio(alarmPlayer);
             } else {
                 setdata('memo', rep[1]);
             }
@@ -118,11 +110,11 @@ function executeMacros(input, index = 0, length = 1) {
         } else {
             setdata(rep[0], rep[1]);
         }
-    } else if ((index == (length - 1)) && (input.includes('_')) && (input.indexOf('_') == 0)) {
+    } else if ((index == (length - 1)) && (input.includes('_')) && (input.startsWith('_'))) {
         omniGo(input.replace('_', ''));
-    } else if ((index == (length - 1)) && (input.includes('=')) && (input.indexOf('=') == 0)) {
+    } else if ((index == (length - 1)) && (input.includes('=')) && (input.startsWith('='))) {
         window.location.href = input.replace('=', '');
-    } else if ((index == (length - 1)) && (input.includes('+')) && (input.indexOf('+') == 0)) {
+    } else if ((index == (length - 1)) && (input.includes('+')) && (input.startsWith('+'))) {
         if (input.replace('+', '').includes('h')) {
             sansPlus = parseInt(input.replace('+', '').replace('h', '')) * 3600;
             setdata('memo', (Math.round(Date.now() / 1000) + parseInt(sansPlus)));
@@ -179,10 +171,8 @@ function executeCode(input) {
 function executeFile(name, str = '', re = false, sp = false) {
     var dataString = 'name='+name+'&type=code&sign=&mode=multiline';
     $.ajax({
-        type: "POST",
-        url: "read.php",
-        data: dataString,
-        cache: false,
+        type: "POST", url: "read.php",
+        data: dataString, cache: false,
         success: function(result) {
             var codeExt = result.split(/\r?\n/);
             var strd = []; var strl = []; var strs = '';
@@ -196,18 +186,11 @@ function executeFile(name, str = '', re = false, sp = false) {
                             executeCode(codeExt[strl[il]]);
                         }
                     }
-                }
-                if (sp !== false) {
-                    compose(strs.slice(0, -2));
-                }
+                } if (sp !== false) { compose(strs.slice(0, -2)); }
             } else if (str.includes('-')) {
-                strd = str.split('-');
-                if (strd[1] > strd[0]) {
-                    for (i = strd[0]; i <= strd[1]; i++) {
-                        strl.push(i);
-                    }
-                }
-                for (il in strl) {
+                strd = str.split('-'); if (strd[1] > strd[0]) {
+                    for (i = strd[0]; i <= strd[1]; i++) { strl.push(i); }
+                } for (il in strl) {
                     if (codeExt[strl[il]] !== undefined) {
                         if (sp !== false) {
                             strs += codeExt[strl[il]]+'\r\n';
@@ -215,23 +198,14 @@ function executeFile(name, str = '', re = false, sp = false) {
                             executeCode(codeExt[strl[il]]);
                         }
                     }
-                }
-                if (sp !== false) {
-                    compose(strs.slice(0, -2));
-                }
+                } if (sp !== false) { compose(strs.slice(0, -2)); }
             } else if (isInt(str)) {
-                if (sp !== false) {
-                    compose(codeExt[str]);
-                } else {
-                    executeCode(codeExt[str]);
-                }
+                if (sp !== false) { compose(codeExt[str]); } else { executeCode(codeExt[str]); }
             } else if (str == '') {
                 if (sp !== false) {
                     compose(result);
                 } else {
-                    for (il in codeExt) {
-                        executeCode(codeExt[il]);
-                    }
+                    for (il in codeExt) { executeCode(codeExt[il]); }
                 }
             } else {
                 for (il in codeExt) {
@@ -243,102 +217,40 @@ function executeFile(name, str = '', re = false, sp = false) {
                         }
                     }
                 }
-            }
-            if (re !== false) {
-                if (sp === false) {
-                    window.location.reload();
-                }
-            }
+            } if (re !== false) { if (sp === false) { window.location.reload(); }}
         }
-    });
-    return false;
+    }); return false;
 }
 function getPkgSequence(input, cmdword, isRepo = 0) {
     var preQuery = input.replace(cmdword, '');
-    var query = '';
-    if (preQuery.includes('-i ')) {
+    var query = ''; if (preQuery.includes('-i ')) {
         query = preQuery.replace('-i ', '');
-        if (isRepo != 0) {
-            obtainRepo(query);
-        } else {
-            systemUpdate(query);
-        }
+        if (isRepo != 0) { obtainRepo(query); } else { systemUpdate(query); }
     } else if (preQuery.includes('-s ')) {
         query = preQuery.replace('-s ', '');
-        if (isRepo != 0) {
-            obtainRepo(query);
-        } else {
-            systemUpdate(query);
-        }
+        if (isRepo != 0) { obtainRepo(query); } else { systemUpdate(query); }
     } else if (preQuery.includes('-o ')) {
         query = preQuery.replace('-o ', '');
-        if (isRepo != 0) {
-            obtainRepo(query);
-        } else {
-            systemUpdate(query);
-        }
+        if (isRepo != 0) { obtainRepo(query); } else { systemUpdate(query); }
     } else if (preQuery.includes('-d ')) {
         query = preQuery.replace('-d ', '');
-        if (isRepo != 0) {
-            terminate(query);
-        } else {
-            uninstall(query);
-        }
+        if (isRepo != 0) { terminate(query); } else { uninstall(query); }
     } else if (preQuery.includes('-u ')) {
         query = preQuery.replace('-u ', '');
-        if (isRepo != 0) {
-            terminate(query);
-        } else {
-            uninstall(query);
-        }
+        if (isRepo != 0) { terminate(query); } else { uninstall(query); }
     } else if (preQuery.includes('-x ')) {
         query = preQuery.replace('-x ', '');
-        if (isRepo != 0) {
-            terminate(query);
-        } else {
-            uninstall(query);
-        }
+        if (isRepo != 0) { terminate(query); } else { uninstall(query); }
     } else if (preQuery.includes(' -r ')) {
         query = preQuery.split(' -r ');
-        if (isRepo != 0) {
-            replaceRepo(query[0], query[1], 0);
-        } else {
-            replacePackage(query[0], query[1], 0);
-        }
+        if (isRepo != 0) { replaceRepo(query[0], query[1], 0); } else { replacePackage(query[0], query[1], 0); }
     } else if (preQuery.includes(' -p ')) {
         query = preQuery.split(' -p ');
-        if (isRepo != 0) {
-            replaceRepo(query[0], query[1], 1);
-        } else {
-            replacePackage(query[0], query[1], 1);
-        }
+        if (isRepo != 0) { replaceRepo(query[0], query[1], 1); } else { replacePackage(query[0], query[1], 1); }
     } else if (preQuery.includes(' -m ')) {
         query = preQuery.split(' -m ');
-        if (isRepo != 0) {
-            replaceRepo(query[0], query[1], -1);
-        } else {
-            replacePackage(query[0], query[1], -1);
-        }
-    }
-    window.location.reload();  
-}
-function pipeHit(input) {
-    var objB = arrjob(sysDefBindData.value,';',':');
-    var objD = arrjob(sysDefPowersData.value,';',':');
-    var rep = input.replace('$', '');
-    if (rep.includes(',')) {
-        var spr = rep.split(',');
-        var slg = arrsum(spr);
-        for (it in spr) {
-            slg -= spr[it];
-            if (objD[objB[sysDefSessionID.value]] <= (-666 + slg)) {
-                delete_user(objB[sysDefSessionID.value]); break;
-            }
-            dominate(sysDefSessionID.value, objB[sysDefSessionID.value], spr[it], 1, 0, false);
-        }
-    } else {
-        dominate(sysDefSessionID.value, objB[sysDefSessionID.value], rep, 1, 0, true);
-    }
+        if (isRepo != 0) { replaceRepo(query[0], query[1], -1); } else { replacePackage(query[0], query[1], -1); }
+    } window.location.reload();  
 }
 function pipeExec(input) {
     if (input.includes('/')) {
@@ -376,8 +288,7 @@ function pipeExec(input) {
     }
 }
 function omniEnter() {
-    var input = omniBox.value;
-    var arj = ''; var arg = [];
+    var input = omniBox.value, arj = '', arg = [];
     if (sysDefChat.value != 0) {
         compose(input);
     } else {
@@ -411,11 +322,26 @@ function omniEnter() {
         } else if (input == 'rew') {
             var vlr = superRound((parseFloat(sysDefVideoSpeed.value) - 0.05), 2);
             setdata('video_speed', vlr); sysDefVideoSpeed.value = vlr;
-        } else if (input.startsWith('with ')) {
-            var req = input.replace('with ', '').split(' ');
-            withdraw(req[0], req[1], true);
-        } else if (input.startsWith('del ')) {
-            del_item(input.replace('del ', ''));
+        } else if (input.startsWith('store rm ')) {
+            var st = jsonstr(openJournal(sysDefSessionID.value, sysDefStoreList, sysDefStoreJSONs));
+            var ob = arrjob(sysDefPowersData.value,';',':');
+            if (ob[sysDefSessionID.value] >= 0) {
+                arj = input.replace('store rm ', '');
+                arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
+                if (arg.length > 0) {
+                    for (i = 0; i < arg.length; i++) {
+                        if (st[arg[i]] !== undefined) { delete st[arg[0]]; }
+                    }
+                }
+            }
+        } else if (input.startsWith('store:mv ')) {
+            var st = jsonstr(openJournal(sysDefSessionID.value, sysDefStoreList, sysDefStoreJSONs));
+            var ob = arrjob(sysDefPowersData.value,';',':');
+            if (ob[sysDefSessionID.value] >= 0) {
+                arj = input.replace('store:mv ', '');
+                arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
+                if (st[arg[0]] !== undefined) { st[arg[1]] = st[arg[0]]; delete st[arg[0]]; }
+            }
         } else if (input.startsWith('sell ')) {
             arj = input.replace('sell ', '');
             arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
@@ -427,11 +353,9 @@ function omniEnter() {
                 sell_item(arg[0].replaceAll('"', ''), arg[1].replaceAll('"', ''), arg[2].replaceAll('"', ''));
             }
         } else if (input.startsWith('ytmp3 ')) {
-            var req = input.replace('ytmp3 ', '');
-            $('.lowerGap').html('<iframe style="width:100%;height:60px;border:0;overflow:hidden;" scrolling="no" src="https://loader.to/api/button/?url='+req+'&f=mp3"></iframe>');
+            $('.lowerGap').html('<iframe style="width:100%;height:60px;border:0;overflow:hidden;" scrolling="no" src="https://loader.to/api/button/?url='+input.replace('ytmp3 ', '')+'&f=mp3"></iframe>');
         } else if (input.startsWith('ytmp4 ')) {
-            var req = input.replace('ytmp4 ', '');
-            $('.lowerGap').html('<iframe style="width:100%;height:60px;border:0;overflow:hidden;" scrolling="no" src="https://loader.to/api/button/?url='+req+'&f=360"></iframe>');
+            $('.lowerGap').html('<iframe style="width:100%;height:60px;border:0;overflow:hidden;" scrolling="no" src="https://loader.to/api/button/?url='+input.replace('ytmp4 ', '')+'&f=360"></iframe>');
         } else if (input.startsWith('mkdir ')) {
             if (sysDefSessionID.value == 'root') {
                 arj = input.replace('mkdir ', '');
@@ -505,28 +429,21 @@ function omniEnter() {
             }
         } else if ((input.includes('update ')) && (input.startsWith('update '))) {
             if (sysDefSessionID.value == 'root') {
-                var req = input.replace('update ', '');
-                getPkgSequence('get -i '+document.getElementById('updateChannel'+CryptoJS.MD5(req).toString()).value, 'get ', 0);
+                getPkgSequence('get -i '+document.getElementById('updateChannel'+CryptoJS.MD5(input.replace('update ', '')).toString()).value, 'get ', 0);
             }
         } else if ((input.includes('clear ')) && (input.startsWith('clear '))) {
             clearJournal(input.replace('clear ', ''), sysDefMsgData, 'msgbox');
         } else if ((input.includes('erase ')) && (input.startsWith('erase '))) {
             clearJournal(input.replace('erase ', ''), sysDefBookKeep, 'book');
         } else if ((input.includes('get ')) && (input.startsWith('get '))) {
-            if (sysDefSessionID.value == 'root') {
-                getPkgSequence(input, 'get ', 0);
-            }
+            if (sysDefSessionID.value == 'root') { getPkgSequence(input, 'get ', 0); }
         } else if ((input.includes('git ')) && (input.startsWith('git '))) {
-            if (sysDefSessionID.value == 'root') {
-                getPkgSequence(input, 'git ', 1);
-            }
+            if (sysDefSessionID.value == 'root') { getPkgSequence(input, 'git ', 1); }
         } else if ((input.includes('rand ')) && (input.startsWith('rand '))) {
             var numPart = input.replace('rand ', '').split(' ');
             omniBox.value = rand(numPart[0], numPart[1]);
         } else if ((input.includes(';')) && (input.endsWith(';'))) {
             omniBox.value = executeCode(input);
-        } else if (((input.startsWith('$')) && (input.includes(','))) || (input.startsWith('$'))) {
-            pipeHit(input);
         } else if (((input.startsWith('/')) && (input.includes('/'))) || ((input.startsWith('\\')) && (input.includes('\\'))) || (input.startsWith('/')) || (input.startsWith('\\'))) {
             pipeExec(input);
         } else if ((input.includes('&')) || (input.includes('|')) || (input.includes('^')) || (input.includes('~'))) {
@@ -538,6 +455,5 @@ function omniEnter() {
         } else {
             omniBox.value = calc(input);
         }
-    }
-    omniBox.focus();
+    } omniBox.focus();
 }

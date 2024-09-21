@@ -118,6 +118,9 @@ function world_clock() {
                 $('#buttonUserStatus').attr('src', sysDefPrefix.value+'anonym.png'+sysDefSuffix.value);
             <?php } ?>
             $('#buttonEscape').attr('src', sysDefPrefix.value+'escape.png'+sysDefSuffix.value);
+            if (sysDefWeapon.value != sysDefLastWeapon.value) {
+                playAudio(bindPlayer, sysDefBindSound.value);
+            } sysDefLastWeapon.value = sysDefWeapon.value;
             if (sysDefVintage.value != sysDefPostBackEff.value) {
                 if (sysDefVintage.value != 0) {
                     playAudio(backgroundPlayer, sysDefBackgroundSound.value);
@@ -130,7 +133,8 @@ function world_clock() {
             } if (requestMode.value == 'bookkeeping') {
                 bookkeep_disp.innerHTML = '<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+fint[0]+'</th><th style="width:7%;">'+fint[1]+'</th><th style="width:7%;">'+fint[2]+'</th><th style="width:10%;">'+fint[3]+'</th><th style="width:10%;">'+fint[4]+'</th><th style="width:10%;">'+fint[5]+'</th></thead><tbody>'+jsonBookKeep(sysDefBookKeep.value, gdio)+'</tbody></table>';
             } if (requestMode.value == 'play_store') {
-                store_disp.innerHTML = '<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+fint[8]+'</th><th style="width:7%;">'+fint[9]+'</th><th style="width:3%;">'+fint[10]+'</th><th style="width:7%;">'+fint[11]+'</th><th style="width:7%;">'+fint[12]+'</th></thead><tbody>'+jsonStore(bndm)+'</tbody></table>';
+                store_users.innerHTML = jsonStoreUsers();
+                store_disp.innerHTML = '<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+fint[8]+'</th><th style="width:7%;">'+fint[9]+'</th><th style="width:3%;">'+fint[10]+'</th></thead><tbody>'+jsonStore(bndm)+'</tbody></table>';
             } if (requestMode.value == 'font_book') {
                 fontBook24Pt.innerText = fontBook22Pt.innerText = fontBook20Pt.innerText = fontBook18Pt.innerText = fontBook16Pt.innerText = fontBook14Pt.innerText = pngm;
             } if (requestMode.value == 'statistics') {
