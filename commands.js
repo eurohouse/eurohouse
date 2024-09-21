@@ -433,17 +433,15 @@ function omniEnter() {
                 }
             }
         } else if ((input.includes('update ')) && (input.startsWith('update '))) {
-            if (sysDefSessionID.value == 'root') {
-                getPkgSequence('get -i '+document.getElementById('updateChannel'+CryptoJS.MD5(input.replace('update ', '')).toString()).value, 'get ', 0);
-            }
+            getPkgSequence('get -i '+document.getElementById('updateChannel'+CryptoJS.MD5(input.replace('update ', '')).toString()).value, 'get ', 0);
         } else if ((input.includes('clear ')) && (input.startsWith('clear '))) {
             clearJournal(input.replace('clear ', ''), sysDefMsgData, 'msgbox');
         } else if ((input.includes('erase ')) && (input.startsWith('erase '))) {
             clearJournal(input.replace('erase ', ''), sysDefBookKeep, 'book');
         } else if ((input.includes('get ')) && (input.startsWith('get '))) {
-            if (sysDefSessionID.value == 'root') { getPkgSequence(input, 'get ', 0); }
+            getPkgSequence(input, 'get ', 0);
         } else if ((input.includes('git ')) && (input.startsWith('git '))) {
-            if (sysDefSessionID.value == 'root') { getPkgSequence(input, 'git ', 1); }
+            getPkgSequence(input, 'git ', 1);
         } else if ((input.includes('rand ')) && (input.startsWith('rand '))) {
             var numPart = input.replace('rand ', '').split(' ');
             omniBox.value = rand(numPart[0], numPart[1]);
