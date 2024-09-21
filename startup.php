@@ -128,10 +128,10 @@ function world_clock() {
                 msgBox.innerHTML = '<p>'+jsonHTML(sysDefMsgData.value, sysDefFind.value)+'</p>';
             } if (requestMode.value == 'bookkeeping') {
                 bookkeep_users.innerHTML = jsonListUsers(sysDefBooksList);
-                bookkeep_disp.innerHTML = '<table style="width:100%;position:relative;"><thead><th style="width:25%;">'+fint[1]+'</th><th style="width:25%;">'+fint[2]+'</th><th style="width:25%;">'+fint[3]+'</th></thead><tbody>'+jsonBookKeep(sysDefBookKeep.value, bndm)+'</tbody></table>';
+                bookkeep_disp.innerHTML = '<table style="width:100%;position:relative;"><thead><th style="width:25%;">'+fint[0]+'</th><th style="width:25%;">'+fint[1]+'</th><th style="width:25%;">'+fint[2]+'</th></thead><tbody>'+jsonBookKeep(sysDefBookKeep.value, bndm)+'</tbody></table>';
             } if (requestMode.value == 'play_store') {
                 store_users.innerHTML = jsonListUsers(sysDefStoreList);
-                store_disp.innerHTML = '<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+fint[8]+'</th><th style="width:7%;">'+fint[9]+'</th><th style="width:3%;">'+fint[10]+'</th></thead><tbody>'+jsonStore(bndm)+'</tbody></table>';
+                store_disp.innerHTML = '<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+fint[3]+'</th><th style="width:7%;">'+fint[4]+'</th><th style="width:3%;">'+fint[5]+'</th></thead><tbody>'+jsonStore(bndm)+'</tbody></table>';
             } if (requestMode.value == 'font_book') {
                 fontBook24Pt.innerText = fontBook22Pt.innerText = fontBook20Pt.innerText = fontBook18Pt.innerText = fontBook16Pt.innerText = fontBook14Pt.innerText = pngm;
             } if (requestMode.value == 'statistics') {

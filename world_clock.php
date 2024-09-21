@@ -26,7 +26,6 @@ if ($userData['vintage'] != 0) {
     $overlayBeforeAnimation = "none"; $overlayAfterBackground = "none";
     $overlayAfterAnimation = "none";
 } $voc = $userSettings['vocabulary']; $uni = $userData['units'];
-$termRec = (isset($voc[$uni]['Recipient'])) ? $voc[$uni]['Recipient'] : 'Recipient';
 $termDeb = (isset($voc[$uni]['Debit'])) ? $voc[$uni]['Debit'] : 'Debit';
 $termCre = (isset($voc[$uni]['Credit'])) ? $voc[$uni]['Credit'] : 'Credit';
 $termBal = (isset($voc[$uni]['Balance'])) ? $voc[$uni]['Balance'] : 'Balance';
@@ -40,5 +39,5 @@ $dateTimeCode." ".$userData['observe'].$userData['spectate']."\r\n\r\n".
 hHmMsS($alarmInTime)."\r\n\r\n".
 $vintageBackdropFilter.";".$overlayBeforeBackground.";".$overlayBeforeAnimation.";".$overlayAfterBackground.";".$overlayAfterAnimation."\r\n\r\n".
 $userData['audio_volume'].' '.$userData['audio_speed'].' '.$userData['video_volume'].' '.$userData['video_speed'].' '.$userData['alarm_volume'].' '.$userData['timer_volume'].' '.$userData['loop_volume'].' '.$userData['rest_volume']."\r\n\r\n".
-$termRec.' | '.$termDeb.' | '.$termCre.' | '.$termBal.' | '.$termOper.' | '.$termScore.' | '.$termNom.' | '.$termQua.' | '.$termPri."\r\n\r\n".
+$termDeb.' | '.$termCre.' | '.$termBal.' | '.$termNom.' | '.$termQua.' | '.$termPri.' | '.$termOper.' | '.$termScore."\r\n\r\n".
 $userData['pangram_'.(($userSettings['pangram'][$uni]) ? $userSettings['pangram'][$uni] : $userSettings['pangram']['default'])];
