@@ -481,12 +481,12 @@ function fixPrice(sen, rec, deb, cre) {
     set('dominion.json', JSON.stringify(stat), true);
     sysDefPowersData.value = arrpack(stat,';',':');
 }
-function dominate(usr, id, wep = '', snd = false) {
+function dominate(usr, id, wep = '') {
     var obj = arrjob(sysDefPowersData.value,';',':');
-    var stu = jsonMarket(usr), f = mu = ep = 0;
+    var stu = jsonMarket(usr, 'weapon'), f = mu = ep = 0;
     var suf = (isInt(obj[usr])) ? parseInt(obj[usr]) : 0;
     var obf = (isInt(obj[id])) ? parseInt(obj[id]) : 0;
-    var sides = []; if ((usr != id) && (suf >= 0)) {
+    if ((usr != id) && (suf >= 0)) {
         if ((stu[wep] !== undefined) && (typeof(stu[wep]) == 'object') && (stu[wep]['type'] == 'weapon')) {
             mu = ((stu[wep]['quantity'] !== undefined) && isInt(stu[wep]['quantity'])) ? parseInt(stu[wep]['quantity']) : 1;
             f = ((stu[wep]['damage'] !== undefined) && isInt(stu[wep]['damage'])) ? parseInt(stu[wep]['damage']) : 1;
