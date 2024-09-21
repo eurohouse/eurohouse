@@ -137,6 +137,11 @@ function world_clock() {
                 fontBook24Pt.innerText = fontBook22Pt.innerText = fontBook20Pt.innerText = fontBook18Pt.innerText = fontBook16Pt.innerText = fontBook14Pt.innerText = pngm;
             } if (requestMode.value == 'statistics') {
                 tabOper.innerText = fint[6]; tabScore.innerText = fint[7];
+                $('#switchBtnAuto').attr('src', sysDefPrefix.value+'steer.png'+sysDefSuffix.value);
+                $('#switchBtnFrnd').attr('src', sysDefPrefix.value+'dial.png'+sysDefSuffix.value);
+                $('#switchBtnBind').attr('src', sysDefPrefix.value+'chain.png'+sysDefSuffix.value);
+                $('#switchBtnTool').attr('src', sysDefPrefix.value+'parfum.png'+sysDefSuffix.value);
+                $('#switchBtnScore').attr('src', sysDefPrefix.value+'money.png'+sysDefSuffix.value);
             } if (requestMode.value == 'sticky_notes') {
                 notesMenu.innerHTML = '<p align="center" class="block">'+noteBook(sysDefMetaList.value)+'</p>';
             } if (((obs == 1) && (spe == 1)) || ((obs == 1) && (spe == 0))) {
