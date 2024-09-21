@@ -127,7 +127,7 @@
     <input type="image" onmouseover="soundButton();" id="buttonAutomator" class="power" onclick="automate();" src="<?=($automateData[$sessionID] == 'auto') ? $prefix.'wheel.png'.$suffix : $prefix.'steer.png'.$suffix;?>">
     <input type='button' id="showUsInfoPower" style="width:29%;" value="<?=intval($powersData[$sessionID]);?>">
     <input type="image" onmouseover="soundButton();" id="buttonBroke" class="power" onclick="unbind(sysDefSessionID.value);" src="<?=$prefix.'chain.png'.$suffix;?>">
-    <input type="image" onmouseover="soundButton();" id="buttonReticle" class="power" onclick="dominate(sysDefSessionID.value, arrjob(sysDefBindData.value,';',':')[sysDefSessionID.value], sysDefWeapon.value); playAudio(hitPlayer, sysDefHitSound.value);" src="<?=$reticlePrefix.$session['reticle'].'.png'.$suffix;?>">
+    <input type="image" onmouseover="soundButton();" id="buttonReticle" class="power" onclick="dominate(sysDefSessionID.value, arrjob(sysDefBindData.value,';',':')[sysDefSessionID.value], arrjob(sysDefToolData.value,';',':')[sysDefSessionID.value]); playAudio(hitPlayer, sysDefHitSound.value);" src="<?=$reticlePrefix.$session['reticle'].'.png'.$suffix;?>">
     <input type='button' id="showUsInfoBond" style="width:30%;" value="<?='@'.$sessionID;?>">
     <input type="image" onmouseover="soundButton();" id="buttonPrivate" class="power" onclick="setdata('private', flip(sysDefPrivate.value));" src="<?=($session['private'] != 0) ? $prefix.'home.png'.$suffix : $prefix.'world.png'.$suffix;?>">
     </p>
