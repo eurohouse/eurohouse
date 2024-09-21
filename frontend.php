@@ -338,6 +338,29 @@ function compose(msg) {
         }
     }
 }
+function storeq(tabS, tabB, art) {
+    var qS = 0, qB = 0;
+    if ((tabS[art]['quantity'] !== undefined) && isInt(tabS[art]['quantity'])) {
+        qS = parseInt(tabS[art]['quantity']); if (qS > 1) {
+            if ((tabB[art] !== undefined) && (typeof(tabB[art]) == 'object') && (tabB[art]['quantity'] !== undefined) && isInt(tabB[art]['quantity'])) {
+                qB = parseInt(tabB[art]['quantity']);
+                qB = (qB > 0) ? (qB + 1) : 1;
+                tabB[art]['quantity'] = parseInt(qB);
+            } else {
+                qB = 1; tabB[art] = tabS[art];
+                tabB[art]['quantity'] = parseInt(qB);
+            } qS = qS - 1; tabS[art]['quantity'] = parseInt(qS);
+        } else {
+            if ((tabB[art] !== undefined) && (typeof(tabB[art]) == 'object') && (tabB[art]['quantity'] !== undefined) && isInt(tabB[art]['quantity'])) {
+                qB = parseInt(tabB[art]['quantity']);
+                qB = (qB > 0) ? (qB + 1) : 1;
+                tabB[art]['quantity'] = parseInt(qB);
+            } else {
+                tabB[art] = tabS[art];
+            } delete tabS[art];
+        }
+    }
+}
 function buy_item(art, sel) {
     var bye = sysDefSessionID.value; if (sel != bye) {
         var tabS = jsonstr(openJournal(sel, sysDefStoreList, sysDefStoreJSONs));
@@ -349,19 +372,8 @@ function buy_item(art, sel) {
                     // Buy any product for certain price
                     prix = parseInt(tabS[art]['price']);
                     pass = ((tabS[art]['type'] == 'account') || (tabS[art]['type'] == 'password')) ? tabS[art]['password'] : ''; if (obj[bye] >= prix) {
-                        fixPrice(bye, sel, art, prix);
-                        if ((tabB[art] !== undefined) && (typeof(tabB[art]) == 'object') && (tabB[art]['quantity'] !== undefined) && isInt(tabB[art]['quantity']) && (parseInt(tabB[art]['quantity']) >= 0)) {
-                            tabB[art]['quantity'] = parseInt(tabB[art]['quantity'])+1;
-                        } else {
-                            tabB[art] = tabS[art];
-                            tabB[art]['quantity'] = 1;
-                        } if ((tabS[art]['quantity'] !== undefined) && isInt(tabS[art]['quantity'])) {
-                            if (parseInt(tabS[art]['quantity']) > 1) {
-                                tabS[art]['quantity'] = parseInt(tabS[art]['quantity'])-1;
-                            } else {
-                                delete tabS[art];
-                            }
-                        } set('./.store/'+sel+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
+                        fixPrice(bye, sel, art, prix); storeq(tabS, tabB, art);
+                        set('./.store/'+sel+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
                         set('./.store/'+bye+'_store.json', encodeURIComponent(JSON.stringify(tabB)), true);
                         if (tabS[art]['type'] == 'account') {
                             copy(sel+'_session.json.bak', bye+'_session.json.bak', true, 1);
@@ -374,42 +386,13 @@ function buy_item(art, sel) {
                 } else if ((!isInt(tabS[art]['price'])) && (!isInt(art)) && (tabB[tabS[art]['price']] !== undefined) && (typeof(tabB[tabS[art]['price']]) == 'object')) {
                     // Exchange goods with other users
                     prix = tabS[art]['price']; fixPrice(bye, sel, art, prix);
-                    if ((tabB[art] !== undefined) && (typeof(tabB[art]) == 'object') && (tabB[art]['quantity'] !== undefined) && isInt(tabB[art]['quantity']) && (parseInt(tabB[art]['quantity']) >= 0)) {
-                        tabB[art]['quantity'] = parseInt(tabB[art]['quantity'])+1;
-                    } else {
-                        tabB[art] = tabS[art]; tabB[art]['quantity'] = 1;
-                    } if ((tabS[art]['quantity'] !== undefined) && isInt(tabS[art]['quantity'])) {
-                        if (parseInt(tabS[art]['quantity']) > 1) {
-                            tabS[art]['quantity'] = parseInt(tabS[art]['quantity'])-1;
-                        } else {
-                            delete tabS[art];
-                        }
-                    } if ((tabS[prix] !== undefined) && (typeof(tabS[prix]) == 'object') && (tabS[prix]['quantity'] !== undefined) && isInt(tabS[prix]['quantity']) && (parseInt(tabS[prix]['quantity']) >= 0)) {
-                        tabS[prix]['quantity'] = parseInt(tabS[prix]['quantity'])+1;
-                    } else {
-                        tabS[prix] = tabB[prix]; tabS[prix]['quantity'] = 1;
-                    } if ((tabB[prix]['quantity'] !== undefined) && isInt(tabB[prix]['quantity'])) {
-                        if (parseInt(tabB[prix]['quantity']) > 1) {
-                            tabB[prix]['quantity'] = parseInt(tabB[prix]['quantity'])-1;
-                        } else {
-                            delete tabB[prix];
-                        }
-                    } set('./.store/'+sel+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
+                    storeq(tabB, tabS, prix); storeq(tabS, tabB, art);
+                    set('./.store/'+sel+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
                     set('./.store/'+bye+'_store.json', encodeURIComponent(JSON.stringify(tabB)), true);
                 } else if ((!isInt(tabS[art]['price'])) && (isInt(art)) && (tabS[art]['price'] == '')) {
                     // Get certain amount of money as a gift
-                    prix = tabS[art]['price']; fixPrice(bye, sel, art, prix);
-                    if ((tabB[art] !== undefined) && (typeof(tabB[art]) == 'object') && (tabB[art]['quantity'] !== undefined) && isInt(tabB[art]['quantity']) && (parseInt(tabB[art]['quantity']) >= 0)) {
-                        tabB[art]['quantity'] = parseInt(tabB[art]['quantity'])+1;
-                    } else {
-                        tabB[art] = tabS[art]; tabB[art]['quantity'] = 1;
-                    } if ((tabS[art]['quantity'] !== undefined) && isInt(tabS[art]['quantity'])) {
-                        if (parseInt(tabS[art]['quantity']) > 1) {
-                            tabS[art]['quantity'] = parseInt(tabS[art]['quantity'])-1;
-                        } else {
-                            delete tabS[art];
-                        }
-                    } set('./.store/'+sel+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
+                    prix = tabS[art]['price']; fixPrice(bye, sel, art, prix); storeq(tabS, tabB, art);
+                    set('./.store/'+sel+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
                     set('./.store/'+bye+'_store.json', encodeURIComponent(JSON.stringify(tabB)), true);
                 }
             }
