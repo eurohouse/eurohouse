@@ -331,16 +331,17 @@ function omniEnter() {
                 if (arg.length > 0) {
                     for (i = 0; i < arg.length; i++) {
                         if (st[arg[i]] !== undefined) { delete st[arg[0]]; }
-                    }
+                    } set('./.store/'+sysDefSessionID.value+'_store.json', encodeURIComponent(JSON.stringify(st)), true);
                 }
             }
-        } else if (input.startsWith('store:mv ')) {
+        } else if (input.startsWith('store mv ')) {
             var st = jsonstr(openJournal(sysDefSessionID.value, sysDefStoreList, sysDefStoreJSONs));
             var ob = arrjob(sysDefPowersData.value,';',':');
             if (ob[sysDefSessionID.value] >= 0) {
-                arj = input.replace('store:mv ', '');
+                arj = input.replace('store mv ', '');
                 arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
                 if (st[arg[0]] !== undefined) { st[arg[1]] = st[arg[0]]; delete st[arg[0]]; }
+                set('./.store/'+sysDefSessionID.value+'_store.json', encodeURIComponent(JSON.stringify(st)), true);
             }
         } else if (input.startsWith('sell ')) {
             arj = input.replace('sell ', '');

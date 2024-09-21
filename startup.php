@@ -60,11 +60,8 @@ function world_clock() {
             $('#alarmTime').val(pager(data, 2));
             var effi = pager(data, 3).split(';');
             init_user(sysDefSessionID.value, 'manual');
-            var mixers = pager(data, 4).split(' ');
-            var fint = pager(data, 5).split(' | ');
-            var gdio = pager(data, 6).split(' ');
-            var pngm = pager(data, 7);
-            var bndm = arrjob(sysDefBindData.value,';',':')[sysDefSessionID.value];
+            var mixers = pager(data, 4).split(' '), fint = pager(data, 5).split(' | ');
+            var pngm = pager(data, 6), bndm = arrjob(sysDefBindData.value,';',':')[sysDefSessionID.value];
             if (requestMode.value == 'volume_control') {
                 audioVolInd.value = mixers[0]; audioRatInd.value = mixers[1];
                 videoVolInd.value = mixers[2]; videoRatInd.value = mixers[3];
@@ -102,8 +99,7 @@ function world_clock() {
                 $('#buttonSongIndex').attr('src', sysDefPrefix.value+'ff.png'+sysDefSuffix.value);
             } else {
                 $('#buttonSongIndex').attr('src', sysDefPrefix.value+'code.png'+sysDefSuffix.value);
-            }
-            $('#buttonVintage').attr('src', sysDefPrefix.value+'diamante.png'+sysDefSuffix.value);
+            } $('#buttonVintage').attr('src', sysDefPrefix.value+'diamante.png'+sysDefSuffix.value);
             $('#buttonVintageFilm').attr('src', sysDefPrefix.value+'movie.png'+sysDefSuffix.value);
             $('#buttonGloss').attr('src', sysDefPrefix.value+((sysDefGloss.value != 0)?'parfum.png':'idea.png')+sysDefSuffix.value);
             $('#buttonPlay').attr('src', sysDefPrefix.value+((audioPlayer.paused != true)?'pause.png':'play.png')+sysDefSuffix.value);
@@ -131,9 +127,10 @@ function world_clock() {
             if (requestMode.value == 'news_feed') {
                 msgBox.innerHTML = '<p>'+jsonHTML(sysDefMsgData.value, sysDefFind.value)+'</p>';
             } if (requestMode.value == 'bookkeeping') {
-                bookkeep_disp.innerHTML = '<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+fint[0]+'</th><th style="width:7%;">'+fint[1]+'</th><th style="width:7%;">'+fint[2]+'</th><th style="width:10%;">'+fint[3]+'</th><th style="width:10%;">'+fint[4]+'</th><th style="width:10%;">'+fint[5]+'</th></thead><tbody>'+jsonBookKeep(sysDefBookKeep.value, gdio)+'</tbody></table>';
+                bookkeep_users.innerHTML = jsonListUsers(sysDefBooksList);
+                bookkeep_disp.innerHTML = '<table style="width:100%;position:relative;"><thead><th style="width:25%;">'+fint[1]+'</th><th style="width:25%;">'+fint[2]+'</th><th style="width:25%;">'+fint[3]+'</th></thead><tbody>'+jsonBookKeep(sysDefBookKeep.value, bndm)+'</tbody></table>';
             } if (requestMode.value == 'play_store') {
-                store_users.innerHTML = jsonStoreUsers();
+                store_users.innerHTML = jsonListUsers(sysDefStoreList);
                 store_disp.innerHTML = '<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+fint[8]+'</th><th style="width:7%;">'+fint[9]+'</th><th style="width:3%;">'+fint[10]+'</th></thead><tbody>'+jsonStore(bndm)+'</tbody></table>';
             } if (requestMode.value == 'font_book') {
                 fontBook24Pt.innerText = fontBook22Pt.innerText = fontBook20Pt.innerText = fontBook18Pt.innerText = fontBook16Pt.innerText = fontBook14Pt.innerText = pngm;

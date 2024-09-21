@@ -26,24 +26,19 @@ if ($userData['vintage'] != 0) {
     $overlayBeforeAnimation = "none"; $overlayAfterBackground = "none";
     $overlayAfterAnimation = "none";
 } $voc = $userSettings['vocabulary']; $uni = $userData['units'];
-$termSen = (isset($voc[$uni]['Sender'])) ? $voc[$uni]['Sender'] : 'Sender';
 $termRec = (isset($voc[$uni]['Recipient'])) ? $voc[$uni]['Recipient'] : 'Recipient';
 $termDeb = (isset($voc[$uni]['Debit'])) ? $voc[$uni]['Debit'] : 'Debit';
 $termCre = (isset($voc[$uni]['Credit'])) ? $voc[$uni]['Credit'] : 'Credit';
 $termBal = (isset($voc[$uni]['Balance'])) ? $voc[$uni]['Balance'] : 'Balance';
-$termDat = (isset($voc[$uni]['Date'])) ? $voc[$uni]['Date'] : 'Date';
 $termNom = (isset($voc[$uni]['Name'])) ? $voc[$uni]['Name'] : 'Name';
 $termQua = (isset($voc[$uni]['Amount'])) ? $voc[$uni]['Amount'] : 'Amount';
 $termPri = (isset($voc[$uni]['Price'])) ? $voc[$uni]['Price'] : 'Price';
 $termOper = (isset($voc[$uni]['User Operation:'])) ? $voc[$uni]['User Operation:'] : 'User Opeation:';
 $termScore = (isset($voc[$uni]['User Score Tab:'])) ? $voc[$uni]['User Score Tab:'] : 'User Score Tab:';
-for ($i = 0; $i < 7; $i++) {
-    $wd[$i] = ((isset($userSettings['locale']['weekday'][$uni][$i])) ? $userSettings['locale']['weekday'][$uni][$i] : $userSettings['locale']['weekday']['default'][$i]);
-} echo $dateTimeStr."\r\n\r\n".
+echo $dateTimeStr."\r\n\r\n".
 $dateTimeCode." ".$userData['observe'].$userData['spectate']."\r\n\r\n".
 hHmMsS($alarmInTime)."\r\n\r\n".
 $vintageBackdropFilter.";".$overlayBeforeBackground.";".$overlayBeforeAnimation.";".$overlayAfterBackground.";".$overlayAfterAnimation."\r\n\r\n".
 $userData['audio_volume'].' '.$userData['audio_speed'].' '.$userData['video_volume'].' '.$userData['video_speed'].' '.$userData['alarm_volume'].' '.$userData['timer_volume'].' '.$userData['loop_volume'].' '.$userData['rest_volume']."\r\n\r\n".
-$termDat.' | '.$termSen.' | '.$termRec.' | '.$termDeb.' | '.$termCre.' | '.$termBal.' | '.$termOper.' | '.$termScore.' | '.$termNom.' | '.$termQua.' | '.$termPri."\r\n\r\n".
-implode(' ', $wd)."\r\n\r\n".
+$termRec.' | '.$termDeb.' | '.$termCre.' | '.$termBal.' | '.$termOper.' | '.$termScore.' | '.$termNom.' | '.$termQua.' | '.$termPri."\r\n\r\n".
 $userData['pangram_'.(($userSettings['pangram'][$uni]) ? $userSettings['pangram'][$uni] : $userSettings['pangram']['default'])];

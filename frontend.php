@@ -224,9 +224,10 @@ function jsonMarket(id, typ = '') {
         res = arr;
     } return res;
 }
-function jsonStoreUsers() {
-    var arr = (sysDefStoreList.value).split(',');
-    var arl = "<p align='center' class='block'>", eld = '', elt = ''; for (el in arr) {
+function jsonListUsers(ob) {
+    var arr = (ob.value).split(',');
+    var arl = "<p align='center' class='block'>";
+    var eld = '', elt = ''; for (el in arr) {
         if (arr[el] !== undefined) {
             eld = arr[el], elt = sysDefSessionID.value;
             arl += "<input type='button' onclick='bind(&#34;"+elt+"&#34;,&#34;"+eld+"&#34;);' value='"+eld+"'>";
@@ -239,17 +240,23 @@ function jsonStore(id) {
         if ((arr[el] !== undefined) && (typeof(arr[el]) == 'object')) {
             fuc = "buy_item(&#34;"+el+"&#34;,&#34;"+id+"&#34;);";
             fut = "setdata(&#34;weapon&#34;,&#34;"+el+"&#34;);", eld = arr[el], arl = '<tr>';
-            arl += "<td><input type='button' style='width:100%;' onclick='"+((id != sysDefSessionID.value) ? fuc : fut)+"' value='"+dtw(eld['name'])+"'></td><td>"+eld['quantity']+"</td><td>"+eld['price']+"</td>"; ard = arl+"</tr>"+ard;
+            arl += "<td><input type='button' style='width:100%;' onclick='"+((id != sysDefSessionID.value) ? fuc : fut)+"' value='"+el+"'></td><td>"+eld['quantity']+"</td><td>"+eld['price']+"</td>"; ard = arl+"</tr>"+ard;
         }
     } return ard;
 }
-function jsonBookKeep(str, wed) {
-    var arr = jsonstr(str), ard = '', arl = '';
-    var eld = [], dem, der; for (el in arr) {
+function jsonBookKeep(str, bd) {
+    var arr = jsonstr(str);
+    var ard = '', arl = '', arf = {}, eld = [];
+    for (el in arr) {
         eld = arr[el].split(' | ');
-        dem = Date.parse(el); der = (new Date(dem)).getDay();
-        arl = (eld[5] == 'ERR') ? '<tr style="text-decoration:line-through;"><td>'+wed[der]+'</td>' : '<tr><td>'+wed[der]+'</td>';
-        arl += '<td>'+eld[0]+'</td>'; arl += '<td>'+eld[1]+'</td>';
+        if (bd != sysDefSessionID.value) {
+            if (bd == (eld[1].replace('@',''))) { arf[el] = arr[el]; }
+        } else {
+            arf[el] = arr[el];
+        }
+    } for (el in arf) {
+        eld = arr[el].split(' | ');
+        arl = (eld[5] == 'ERR') ? '<tr style="text-decoration:line-through;">' : '<tr>';
         arl += '<td>'+eld[2]+'</td>'; arl += '<td>'+eld[3]+'</td>';
         arl += '<td>'+eld[4]+'</td>'; ard = arl+'</tr>'+ard;
     } return ard;
