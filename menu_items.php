@@ -14,7 +14,7 @@
                 $menuItemLangNew[$menuItemLangKey] = $menuItemLangVal;
             } ?>
 <img onmouseover="soundButton();" name="<?=$value;?>" style="height:20%;" onclick="omniGo(this.name);" src="<?=$elementIcon.$suffix;?>" title="<?=(isset($menuItemLangNew[$session['units']])) ? $menuItemLangNew[$session['units']] : spaces($value);?>">
-<?php }} foreach ($appIndex as $key=>$value) {
+<?php }} if ($session['hide_apps'] != 0) { foreach ($appIndex as $key=>$value) {
     $eurArrayPkg = (@json_decode(file_get_contents($value), true) != null) ? json_decode(file_get_contents($value), true) : [];
         if (!isset($eurArrayPkg['run'])) {
             unset($appIndex[array_search($value, $appIndex)]);
@@ -31,7 +31,7 @@
             $eurArrFavicon = $themePrefix.'package.png';
         } ?>
 <img onmouseover="soundButton();" name="<?=$eurArrPkg['run'];?>" style="height:25%;" onclick="window.location.href=this.name;" src="<?=$eurArrFavicon.$suffix;?>" title="<?=$eurArrPkg['title'];?>">
-<?php } ?>
+<?php }} ?>
 </p>
 <?php } else {
     foreach ($index as $key=>$value) {
@@ -47,7 +47,8 @@
     <p align='center'>
     <input type="button" class="button" name="<?=$value;?>" onmouseover="soundButton();" style="width:80%;" value="<?=(isset($menuItemLangNew[$session['units']])) ? $menuItemLangNew[$session['units']] : spaces($value);?>" onclick="omniGo(this.name);">
     </p>
-    <?php }} foreach ($appIndex as $key=>$value) {
+    <?php }} if ($session['hide_apps'] != 0) {
+    foreach ($appIndex as $key=>$value) {
         $eurArrayPkg = (@json_decode(file_get_contents($value), true) != null) ? json_decode(file_get_contents($value), true) : [];
         if (!isset($eurArrayPkg['run'])) {
             unset($appIndex[array_search($value, $appIndex)]);
@@ -57,7 +58,7 @@
         <p align='center'>
         <input type="button" class="button" name="<?=$eurArrPkg['run'];?>" onmouseover="soundButton();" style="width:80%;" value="<?=$eurArrPkg['title'];?>" onclick="window.location.href=this.name;">
         </p>
-    <?php }}} else {
+    <?php }}}} else {
         if ($session['icons'] == 1) { ?>
         <p align='center' class='block'>
         <?php foreach ($index as $key=>$value) {
