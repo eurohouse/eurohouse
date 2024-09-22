@@ -644,9 +644,9 @@ function dropFriend(id) {
 function scores(sta) {
     var sto = ['bind', 'auto', 'friend', 'tool'];
     var arr = (arraySearch(sta, sto) !== false) ? document.getElementById('sysDef'+ucfirst(sta)+'Data').value : document.getElementById('sysDefPowersData').value; var obj = arrjob(arr, ';', ':');
-    var keys = Object.keys(obj); var vals = Object.values(obj);
-    var res = ''; var sortable = {}; var ordered = {};
-    if (sta == 'bind') {
+    var keys = Object.keys(obj), vals = Object.values(obj);
+    var res = '', sortable = {}, ordered = {};
+    var dat = {}, amo = 0; if (sta == 'bind') {
         ordered = Object.keys(obj).sort().reduce(
             (obd, key) => { 
                 obd[key] = obj[key]; 
@@ -699,8 +699,10 @@ function scores(sta) {
             }, {}
         ); for (indi in ordered) {
             if ((ordered[indi] !== undefined) || (indi != '')) {
+                dat = jsonstr(openJournal(indi, sysDefStoreList, sysDefStoreJSONs));
+                amo = (dat[ordered[indi]]['quantity'] !== undefined) ? dat[ordered[indi]]['quantity'] : 0;
                 if (ordered[indi] != '') {
-                    res += '@'+indi+' <'+ordered[indi]+'>\n';
+                    res += '@'+indi+' <'+ordered[indi]+'> '+amo+'\n';
                 } else {
                     res += '@'+indi+' <NULL>\n';
                 }
