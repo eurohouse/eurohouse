@@ -301,7 +301,7 @@ function omniEnter() {
         } else if ((input == 'signout') || (input == 'logout') || (input == 'logoff')) {
             omniAuthRequest('signout','','');
         } else if (input == 'spawn') {
-            var ob = jsonMarket(usr, 'weapon');
+            var ob = jsonMarket(sysDefSessionID.value, 'weapon');
             init_user('1337', 'auto', ob);
         } else if (input == 'upload') {
             document.getElementById('filebrowser').click(); return false;
