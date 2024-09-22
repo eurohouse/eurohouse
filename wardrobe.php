@@ -190,7 +190,7 @@ a, p, b, i {
     color: var(--backtextcolor); font-family: "euro"; font-size: var(--backsize);
 }
 table, tr, td, th {
-    color: var(--backtextcolor); font-family: "euro";
+    color: var(--backtextcolor); font-family: "euro"; font-weight: normal;
     font-size: var(--backsize); text-align: center;
 }
 img {
