@@ -297,15 +297,14 @@ function automator() {
     var objName = userList[rand(0, userList.length)];
     var handle = userList[rand(0, userList.length)];
     var subFrnd = friendsOf(frndPower, subName);
-    var weps = jsonMarket(subName, 'weapon');
-    var arms = Object.keys(weps), wep = '';
+    var arms = Object.keys(jsonMarket(subName, 'weapon')), wep = '';
     if (requestMode.value == 'statistics') {
         userStats.innerText = scores(sysDefStats.value);
         userStatsAuto.innerText = (subName == 'root') ? CryptoJS.MD5(status+'@'+subName+'#'+objName+'&'+handle).toString() : CryptoJS.MD5(status+'@'+subName+'$'+objName+'&'+handle).toString();
     } if ((subName != '') && (objName != '') && (subName != objName) && (isInt(tabPower[subName])) && (tabPower[subName] >= 0) && (autoPower[subName] == 'auto')) {
-        bind(subName, handle); wep = arms[rand(0, arms.length-1)];
-        equip(subName, wep);
+        bind(subName, handle);
         if ((objName == handle) && (!(subFrnd.includes(objName)))) {
+            wep = arms[rand(0, arms.length)]; equip(subName, wep);
             dominate(subName, objName, wep);
         }
     }
