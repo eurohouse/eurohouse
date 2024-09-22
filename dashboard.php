@@ -135,12 +135,12 @@
 <div class='topBarItem'>
     <p align='center' class='block'>
     <input type="image" id="userAvatarBadge" onmouseover="soundButton();" class="power" src="<?=$abcPrefix.$session['avatar'].'.png'.$suffix;?>" onclick="setdata('spectate', flip(sysDefSpectate.value));">
-    <select id="setUnits" style="width:14%;" onchange="setdata('units', setUnits.options[setUnits.selectedIndex].id); if (sysDefReload.value != 0) { window.location.reload(); }">
+    <select id="setUnits" style="width:13%;" onchange="setdata('units', setUnits.options[setUnits.selectedIndex].id); if (sysDefReload.value != 0) { window.location.reload(); }">
     <?php foreach (explode(',', $session['units_list']) as $selID) { ?>
     <option id="<?=$selID;?>" <?php if ($session['units'] == $selID) { ?> selected <?php } ?>><?=$selID;?></option>
     <?php } ?>
     </select>
-    <select id="setTheme" style="width:16%;" onchange="setdata('theme', setTheme.options[setTheme.selectedIndex].id);window.location.reload();">
+    <select id="setTheme" style="width:15%;" onchange="setdata('theme', setTheme.options[setTheme.selectedIndex].id);window.location.reload();">
     <?php foreach ($thematic as $key=>$value) { ?>
         <option id="<?=explode('.', $value)[0];?>" <?php if ($session['theme'] == explode('.', $value)[0]) { ?> selected <?php } ?>><?=explode('.', $value)[0];?></option>
     <?php } ?></select>
