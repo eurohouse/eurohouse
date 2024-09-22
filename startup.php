@@ -136,6 +136,7 @@ function world_clock() {
             } if (requestMode.value == 'font_book') {
                 fontBook24Pt.innerText = fontBook22Pt.innerText = fontBook20Pt.innerText = fontBook18Pt.innerText = fontBook16Pt.innerText = fontBook14Pt.innerText = pngm;
             } if (requestMode.value == 'statistics') {
+                stat_users.innerHTML = jsonListUsers(sysDefUsersList);
                 tabOper.innerText = fint[6]; tabScore.innerText = fint[7];
                 $('#switchBtnAuto').attr('src', sysDefPrefix.value+'steer.png'+sysDefSuffix.value);
                 $('#switchBtnFrnd').attr('src', sysDefPrefix.value+'dial.png'+sysDefSuffix.value);
