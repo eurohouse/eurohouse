@@ -6,7 +6,7 @@ function executeMacros(input, index = 0, length = 1) {
         output = '\\='+hex2bin(userdata()['melody']);
     } else if ((index == (length - 1)) && (input == '&')) {
         unbind(sysDefSessionID.value);
-    } else if ((index == (length - 1)) && (input == '->')) {
+    } else if ((index == (length - 1)) && (input == '$')) {
         unequip(sysDefSessionID.value);
     } else if ((input.includes('# ')) && (input.indexOf('# ') == 0)) {
         // YOUR COMMENTS HERE...
@@ -61,8 +61,8 @@ function executeMacros(input, index = 0, length = 1) {
         setdata('find', input);
     } else if ((index == (length - 1)) && (input.includes('&')) && (input.startsWith('&'))) {
         bind(sysDefSessionID.value, input.replace('&', ''));
-    } else if ((index == (length - 1)) && (input.includes('->')) && (input.startsWith('->'))) {
-        equip(sysDefSessionID.value, input.replace('->', ''));
+    } else if ((index == (length - 1)) && (input.includes('$')) && (input.startsWith('$'))) {
+        equip(sysDefSessionID.value, input.replace('$', ''));
     } else if ((index == (length - 1)) && (input.includes('~')) && (input.startsWith('~'))) {
         if (sysDefSessionID.value == 'root') {
             delete_user(input.replace('~', ''));
