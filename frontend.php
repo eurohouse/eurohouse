@@ -558,7 +558,7 @@ function rename_user(username, password) {
         transfer_entry(username, sysDefToolData, 'toolbox.json');
     }
 }
-function init_user(id, au = 'manual') {
+function init_user(id, au = 'manual', ob = {}) {
     var bd = arrjob(sysDefBindData.value,';',':');
     var pd = arrjob(sysDefPowersData.value,';',':');
     var ad = arrjob(sysDefAutoData.value,';',':');
@@ -572,7 +572,7 @@ function init_user(id, au = 'manual') {
     } if (bkl.indexOf(id) <= -1) {
         set('./.book/'+id+'_book.json', '{}', true);
     } if (stl.indexOf(id) <= -1) {
-        set('./.store/'+id+'_store.json', '{}', true);
+        set('./.store/'+id+'_store.json', ob, true);
     } if (!(id in bd)) {
         bd[id] = id;
         set('binding.json', JSON.stringify(bd), true);
