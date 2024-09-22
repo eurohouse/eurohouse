@@ -110,6 +110,7 @@ function world_clock() {
             $('#buttonAlarm').attr('src', sysDefPrefix.value+((alarmPlayer.paused != true)?'dial.png':'call.png')+sysDefSuffix.value);
             $('#buttonMute').attr('src', sysDefPrefix.value+((sysDefMute.value != 0)?'audio.png':'music.png')+sysDefSuffix.value);
             $('#buttonReqLock').attr('src', sysDefPrefix.value+((requestLock.value != 'true')?'expand.png':'collapse.png')+sysDefSuffix.value);
+            $('#buttonMenuStyle').attr('src', sysDefPrefix.value+'menu.png'+sysDefSuffix.value);
             $('#buttonUpdate').attr('src', sysDefPrefix.value+'update.png'+sysDefSuffix.value); <?php if (isAuth()) { ?>
                 $('#buttonUserStatus').attr('src', sysDefPrefix.value+'user.png'+sysDefSuffix.value);
             <?php } else { ?>

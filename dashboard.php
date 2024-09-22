@@ -149,6 +149,7 @@
     } else {
         omniLock('true');
     }" src="<?=($request['lock'] == 'true') ? $prefix.'collapse.png'.$suffix : $prefix.'expand.png'.$suffix;?>">
+    <input type="image" onmouseover="soundButton();" id="buttonMenuStyle" class="power" onclick="setdata('icons', flip(sysDefIcons.value)); setdata('face', flip(sysDefFace.value)); setdata('apps', flip(sysDefApps.value));" src="<?=$prefix.'menu.png'.$suffix;?>">
     <input type="image" onmouseover="soundButton();" id="buttonUpdate" class="power" onclick="systemUpdate(sysDefBackload.value);window.location.reload();" src="<?=$prefix.'update.png'.$suffix;?>">
     <input type="image" onmouseover="soundButton();" id="buttonUserStatus" class="power" onclick="omniAuthRequest('signout','','');" src="<?php if (isAuth()) {
         echo $prefix.'user.png'.$suffix;
