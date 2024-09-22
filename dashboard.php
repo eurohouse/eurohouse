@@ -135,12 +135,12 @@
 <div class='topBarItem'>
     <p align='center' class='block'>
     <input type="image" id="userAvatarBadge" onmouseover="soundButton();" class="power" src="<?=$abcPrefix.$session['avatar'].'.png'.$suffix;?>" onclick="setdata('spectate', flip(sysDefSpectate.value));">
-    <select id="setUnits" style="width:12%;" onchange="setdata('units', setUnits.options[setUnits.selectedIndex].id); if (sysDefReload.value != 0) { window.location.reload(); }">
+    <select id="setUnits" style="width:14%;" onchange="setdata('units', setUnits.options[setUnits.selectedIndex].id); if (sysDefReload.value != 0) { window.location.reload(); }">
     <?php foreach (explode(',', $session['units_list']) as $selID) { ?>
     <option id="<?=$selID;?>" <?php if ($session['units'] == $selID) { ?> selected <?php } ?>><?=$selID;?></option>
     <?php } ?>
     </select>
-    <select id="setTheme" style="width:16%;" onchange="setdata('theme', setTheme.options[setTheme.selectedIndex].id);window.location.reload();">
+    <select id="setTheme" style="width:24%;" onchange="setdata('theme', setTheme.options[setTheme.selectedIndex].id);window.location.reload();">
     <?php foreach ($thematic as $key=>$value) { ?>
         <option id="<?=explode('.', $value)[0];?>" <?php if ($session['theme'] == explode('.', $value)[0]) { ?> selected <?php } ?>><?=explode('.', $value)[0];?></option>
     <?php } ?></select>
@@ -149,17 +149,6 @@
     } else {
         omniLock('true');
     }" src="<?=($request['lock'] == 'true') ? $prefix.'collapse.png'.$suffix : $prefix.'expand.png'.$suffix;?>">
-    <input type="image" onmouseover="soundButton();" id="buttonFaceoff" class="power" onclick="setdata('faceoff', flip(sysDefFaceoff.value)); window.location.reload();
-    " src="<?php if ($session['faceoff'] == 1) {
-        echo $prefix.'maximize.png'.$suffix;
-    } else {
-        echo $prefix.'restore.png'.$suffix;
-    } ?>">
-    <input type="image" onmouseover="soundButton();" id="buttonIconsList" class="power" onclick="setdata('icons', flip(sysDefIcons.value));window.location.reload();" src="<?php if ($session['icons'] == 1) {
-        echo $prefix.'menu.png'.$suffix;
-    } else {
-        echo $prefix.'list.png'.$suffix;
-    } ?>">
     <input type="image" onmouseover="soundButton();" id="buttonUpdate" class="power" onclick="systemUpdate(sysDefBackload.value);window.location.reload();" src="<?=$prefix.'update.png'.$suffix;?>">
     <input type="image" onmouseover="soundButton();" id="buttonUserStatus" class="power" onclick="omniAuthRequest('signout','','');" src="<?php if (isAuth()) {
         echo $prefix.'user.png'.$suffix;

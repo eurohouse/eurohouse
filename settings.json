@@ -342,7 +342,7 @@
     "defaults": {
         "timezone": 0, "units": "EU", "units_list": "EU,US",
         "melody": "", "current": 0, "playing": 0, "autoplay": 1, "song_index": "",
-        "hour": 12, "entry": "", "bardot": 0, "faceoff": 1, "timedisp": 0,
+        "hour": 12, "entry": "", "bardot": 0, "face": 1, "timedisp": 0,
         "benchmark": 0, "pitch_lock": 0, "chat": 0, "lock": 0, "icons": 0,
         "mute": 1, "gloss": 1, "observe": 0, "spectate": 0, "private": 1,
         "vintage": 0, "reload": 0, "censor": 1, "magnitude": 5,

@@ -13,7 +13,7 @@
     <img onmouseover="soundButton();" id="showingBardotRNow" name="preferences" style="height:54%;" onclick="omniGo(this.name);" src="<?=$portfolioPrefix.'right0.png'.$suffix;?>">
 </p>
 <?php } else { 
-    if ($session['faceoff'] == 0) {
+    if ($session['face'] == 1) {
 ?><div class='customPanel'><p align="center">
     <img onmouseover="soundButton();" id="showingAvatarNow" name="" style="height:24%;" onclick="omniGo(this.name);" src="<?=$avaPrefix.$session['avatar'].'.png'.$suffix;?>">
     <h1 id="projectTitle" align='center' style="cursor:pointer;" onclick="navigator.clipboard.writeText(this.innerText);"></h1>
