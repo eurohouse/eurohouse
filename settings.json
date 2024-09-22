@@ -349,7 +349,7 @@
         "title": "", "avatar": "Eurohouse", "reticle": "reticle",
         "reticle_choice_1": "reticle", "reticle_choice_2": "musket",
         "reticle_choice_3": "camera", "reticle_choice_4": "sniper",
-        "reticle_choice_5": "german", "radius": 7,
+        "reticle_choice_5": "german", "radius": 7, "apps": 1,
         "gradient_deg": 180, "back_size": 14, "fore_size": 14, "input_size": 14,
         "head1_size": 17, "head2_size": 16, "head3_size": 15, "disp_size": 18,
         "priv1_size": 14, "priv2_size": 14, "priv3_size": 14, "opacity": 64,

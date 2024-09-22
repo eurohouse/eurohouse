@@ -14,7 +14,7 @@
                 $menuItemLangNew[$menuItemLangKey] = $menuItemLangVal;
             } ?>
 <img onmouseover="soundButton();" name="<?=$value;?>" style="height:20%;" onclick="omniGo(this.name);" src="<?=$elementIcon.$suffix;?>" title="<?=(isset($menuItemLangNew[$session['units']])) ? $menuItemLangNew[$session['units']] : spaces($value);?>">
-<?php }} if ($session['hide_apps'] != 0) { foreach ($appIndex as $key=>$value) {
+<?php }} if ($session['apps'] != 0) { foreach ($appIndex as $key=>$value) {
     $eurArrayPkg = (@json_decode(file_get_contents($value), true) != null) ? json_decode(file_get_contents($value), true) : [];
         if (!isset($eurArrayPkg['run'])) {
             unset($appIndex[array_search($value, $appIndex)]);
@@ -47,7 +47,7 @@
     <p align='center'>
     <input type="button" class="button" name="<?=$value;?>" onmouseover="soundButton();" style="width:80%;" value="<?=(isset($menuItemLangNew[$session['units']])) ? $menuItemLangNew[$session['units']] : spaces($value);?>" onclick="omniGo(this.name);">
     </p>
-    <?php }} if ($session['hide_apps'] != 0) {
+    <?php }} if ($session['apps'] != 0) {
     foreach ($appIndex as $key=>$value) {
         $eurArrayPkg = (@json_decode(file_get_contents($value), true) != null) ? json_decode(file_get_contents($value), true) : [];
         if (!isset($eurArrayPkg['run'])) {
