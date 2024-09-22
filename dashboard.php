@@ -140,7 +140,7 @@
     <option id="<?=$selID;?>" <?php if ($session['units'] == $selID) { ?> selected <?php } ?>><?=$selID;?></option>
     <?php } ?>
     </select>
-    <select id="setTheme" style="width:24%;" onchange="setdata('theme', setTheme.options[setTheme.selectedIndex].id);window.location.reload();">
+    <select id="setTheme" style="width:18%;" onchange="setdata('theme', setTheme.options[setTheme.selectedIndex].id);window.location.reload();">
     <?php foreach ($thematic as $key=>$value) { ?>
         <option id="<?=explode('.', $value)[0];?>" <?php if ($session['theme'] == explode('.', $value)[0]) { ?> selected <?php } ?>><?=explode('.', $value)[0];?></option>
     <?php } ?></select>
@@ -149,13 +149,12 @@
     } else {
         omniLock('true');
     }" src="<?=($request['lock'] == 'true') ? $prefix.'collapse.png'.$suffix : $prefix.'expand.png'.$suffix;?>">
-    <input type="image" onmouseover="soundButton();" id="buttonMenuStyle" class="power" onclick="setdata('icons', flip(sysDefIcons.value)); setdata('face', flip(sysDefFace.value)); setdata('apps', flip(sysDefApps.value));" src="<?=$prefix.'menu.png'.$suffix;?>">
+    <input type="image" onmouseover="soundButton();" id="buttonMaximize" class="power" onclick="setdata('apps', flip(sysDefApps.value));" src="<?=$prefix.(($session['apps'] != 0)?'restore.png':'maxinize.png').$suffix;?>">
+    <input type="image" onmouseover="soundButton();" id="buttonMenuStyle" class="power" onclick="setdata('icons', flip(sysDefIcons.value));" src="<?=$prefix.(($session['icons'] != 0)?'menu.png':'list.png').$suffix;?>">
     <input type="image" onmouseover="soundButton();" id="buttonUpdate" class="power" onclick="systemUpdate(sysDefBackload.value);window.location.reload();" src="<?=$prefix.'update.png'.$suffix;?>">
-    <input type="image" onmouseover="soundButton();" id="buttonUserStatus" class="power" onclick="omniAuthRequest('signout','','');" src="<?php if (isAuth()) {
-        echo $prefix.'user.png'.$suffix;
-    } else {
-        echo $prefix.'anonym.png'.$suffix;
-    } ?>">
+    <input type="image" onmouseover="soundButton();" id="buttonUserStatus" class="power" onclick="omniAuthRequest('signout','','');" src="<?php
+        echo $prefix.((isAuth()) ? 'user.png' : 'anonym.png').$suffix;
+    ?>">
     <input type="image" onmouseover="soundButton();" id="buttonEscape" class="power" onclick="omniBack(sysDefParent.value);" src="<?=$prefix.'escape.png'.$suffix;?>">
     </p>
 </div>
