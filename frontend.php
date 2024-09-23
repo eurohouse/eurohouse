@@ -187,9 +187,8 @@ function jsonstr(str) {
     return res;
 }
 function jsonFilter(str, mask) {
-    var cyp = '.-';
     var arr = jsonstr(str), sym = '#'; uni = 'L';
-    var arf = {}, hbin = '', hkin = '', hbio = {};
+    var arf = {}, cyp = '.-', hbin = '', hkin = '', hbio = {};
     if (mask == sym) {
         for (el in arr) {
             hbin = dtw(arr[el], sysDefSessionID.value, cyp);
@@ -322,9 +321,8 @@ function dtw(msg, usr = '', hx = '.-') {
     return hex2bin(msg, obfstr(CryptoJS.SHA256(usr).toString()), hx);
 }
 function compose(msg) {
-    var cyp = '.-';
     var addr = (msg !== undefined) ? msg.match(/(@\w*)/g) : '';
-    var userID; var msgbox = ''; var msgbr = [];
+    var userID, cyp = '.-', msgbox = '', msgbr = [];
     var ratTab = arrjob(sysDefPowersData.value, ';', ':');
     if (ratTab[sysDefSessionID.value] >= 0) {
         if (addr !== null) {
@@ -421,9 +419,9 @@ function buy_item(art, sel) {
 }
 function sell_item(typ, art, ttl, prix = '', dat = '') {
     var tabS = jsonstr(openJournal(sysDefSessionID.value, sysDefStoreList, sysDefStoreJSONs));
-    var obj = arrjob(sysDefPowersData.value,';',':');
+    var obj = arrjob(sysDefPowersData.value,';',':'), cyp = '.-';
     if (obj[sysDefSessionID.value] >= 0) {
-        var qu = ((tabS[art] !== undefined) && (typeof(tabS[art]) == 'object') && (tabS[art]['quantity'] !== undefined) && isInt(tabS[art]['quantity']) && (tabS[art]['quantity'] >= 0)) ? parseInt(tabS[art]['quantity'])+1 : 1; tabS[art] = { "name": bin2hex(ttl), "type": typ, "quantity": qu, "price": prix }; if ((typ == 'account') || (typ == 'password')) {
+        var qu = ((tabS[art] !== undefined) && (typeof(tabS[art]) == 'object') && (tabS[art]['quantity'] !== undefined) && isInt(tabS[art]['quantity']) && (tabS[art]['quantity'] >= 0)) ? parseInt(tabS[art]['quantity'])+1 : 1; tabS[art] = { "name": etw(ttl, '', cyp), "type": typ, "quantity": qu, "price": prix }; if ((typ == 'account') || (typ == 'password')) {
             tabS[art]['password'] = CryptoJS.SHA256(dat).toString();
         } else if (typ == 'weapon') {
             tabS[art]['hasAmmo'] = (dat.includes(':')) ? dat.split(':')[0] : 0;
