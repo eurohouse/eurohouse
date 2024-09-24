@@ -59,10 +59,8 @@ function world_clock() {
     $.ajax({
         url: 'world_clock.php',
         success: function(data) {
-            $('#currentTime').val(pager(data, 0));
-            var enzi = pager(data, 1).split(' ');
-            $('#alarmTime').val(pager(data, 2));
-            var effi = pager(data, 3).split(';');
+            $('#currentTime').val(pager(data, 0)); var enzi = pager(data, 1).split(' ');
+            $('#alarmTime').val(pager(data, 2)); var effi = pager(data, 3).split(';');
             init_user(sysDefSessionID.value, 'manual');
             var mixers = pager(data, 4).split(' '), fint = pager(data, 5).split(' | ');
             var pngm = pager(data, 6), bndm = arrjob(sysDefBindData.value,';',':')[sysDefSessionID.value];
@@ -95,15 +93,8 @@ function world_clock() {
             $('#buttonTime').attr('src', sysDefPrefix.value+((sysDefTimedisp.value != 0)?((sysDefBenchmark.value != 0)?'note.png':'calendar.png'):((sysDefBenchmark.value != 0)?'speed.png':'time.png'))+sysDefSuffix.value);
             $('#buttonAutoplay').attr('src', sysDefPrefix.value+((sysDefAutoplay.value != 0)?'autopause.png':'autoplay.png')+sysDefSuffix.value);
             $('#buttonRandom').attr('src', sysDefPrefix.value+'dice.png'+sysDefSuffix.value);
-            if (sysDefSongIndex.value == 'random') {
-                $('#buttonSongIndex').attr('src', sysDefPrefix.value+'dice.png'+sysDefSuffix.value);
-            } else if (sysDefSongIndex.value == 'prev') {
-                $('#buttonSongIndex').attr('src', sysDefPrefix.value+'rew.png'+sysDefSuffix.value);
-            } else if (sysDefSongIndex.value == 'next') {
-                $('#buttonSongIndex').attr('src', sysDefPrefix.value+'ff.png'+sysDefSuffix.value);
-            } else {
-                $('#buttonSongIndex').attr('src', sysDefPrefix.value+'code.png'+sysDefSuffix.value);
-            } $('#buttonVintage').attr('src', sysDefPrefix.value+'diamante.png'+sysDefSuffix.value);
+            $('#buttonSongIndex').attr('src', sysDefPrefix.value+((sysDefSongIndex.value == 'random')?'dice.png':'code.png')+sysDefSuffix.value);
+            $('#buttonVintage').attr('src', sysDefPrefix.value+'diamante.png'+sysDefSuffix.value);
             $('#buttonVintageFilm').attr('src', sysDefPrefix.value+'movie.png'+sysDefSuffix.value);
             $('#buttonGloss').attr('src', sysDefPrefix.value+((sysDefGloss.value != 0)?'parfum.png':'idea.png')+sysDefSuffix.value);
             $('#buttonPlay').attr('src', sysDefPrefix.value+((audioPlayer.paused != true)?'pause.png':'play.png')+sysDefSuffix.value);
@@ -112,20 +103,15 @@ function world_clock() {
             $('#buttonReqLock').attr('src', sysDefPrefix.value+((requestLock.value != 'true')?'expand.png':'collapse.png')+sysDefSuffix.value);
             $('#buttonMaximize').attr('src', sysDefPrefix.value+((sysDefApps.value != 0)?'restore.png':'maximize.png')+sysDefSuffix.value);
             $('#buttonMenuStyle').attr('src', sysDefPrefix.value+((sysDefIcons.value != 0)?'menu.png':'list.png')+sysDefSuffix.value);
-            $('#buttonUpdate').attr('src', sysDefPrefix.value+'update.png'+sysDefSuffix.value); <?php if (isAuth()) { ?>
-                $('#buttonUserStatus').attr('src', sysDefPrefix.value+'user.png'+sysDefSuffix.value);
-            <?php } else { ?>
-                $('#buttonUserStatus').attr('src', sysDefPrefix.value+'anonym.png'+sysDefSuffix.value);
-            <?php } ?>
-            $('#buttonEscape').attr('src', sysDefPrefix.value+'escape.png'+sysDefSuffix.value);
+            $('#buttonUpdate').attr('src', sysDefPrefix.value+'update.png'+sysDefSuffix.value);
+            $('#buttonUserStatus').attr('src', sysDefPrefix.value+<?=(isAuth())?'user.png':'anonym.png';?>+sysDefSuffix.value); $('#buttonEscape').attr('src', sysDefPrefix.value+'escape.png'+sysDefSuffix.value);
             if (sysDefVintage.value != sysDefPostBackEff.value) {
                 if (sysDefVintage.value != 0) {
                     playAudio(backgroundPlayer, sysDefBackgroundSound.value);
                 } else {
                     pauseAudio(backgroundPlayer);
                 }
-            } sysDefPostBackEff.value = sysDefVintage.value;
-            if (requestMode.value == 'news_feed') {
+            } sysDefPostBackEff.value = sysDefVintage.value; if (requestMode.value == 'news_feed') {
                 msgBox.innerHTML = '<p>'+jsonHTML(sysDefMsgData.value, sysDefFind.value)+'</p>';
             } if (requestMode.value == 'bookkeeping') {
                 bookkeep_users.innerHTML = jsonListUsers(sysDefBooksList);

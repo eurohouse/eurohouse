@@ -17,12 +17,8 @@
     }">
     <input type="image" id="buttonLock" onmouseover="soundButton();" class="power" onclick="setdata('lock', flip(sysDefLock.value));" src="<?=($session['lock'] != 0) ? $prefix.'key.png'.$suffix : $prefix.'lock.png'.$suffix;?>">
     <input type="image" id="buttonOnReload" onmouseover="soundButton();" class="power" onclick="setdata('reload', flip(sysDefReload.value));" src="<?=($session['reload'] != 0) ? $prefix.'character.png'.$suffix : $prefix.'font.png'.$suffix;?>">
-    <input type="image" onmouseover="soundButton();" id="buttonSongIndex" class="power" onclick="setdata('song_index', nextImage(';random;next;prev',sysDefSongIndex.value));" src="<?php if ($session['song_index'] == 'random') {
+    <input type="image" onmouseover="soundButton();" id="buttonSongIndex" class="power" onclick="setdata('song_index', nextImage(';random',sysDefSongIndex.value));" src="<?php if ($session['song_index'] == 'random') {
         echo $prefix.'dice.png'.$suffix;
-    } elseif ($session['song_index'] == 'prev') {
-        echo $prefix.'rew.png'.$suffix;
-    } elseif ($session['song_index'] == 'next') {
-        echo $prefix.'ff.png'.$suffix;
     } else {
         echo $prefix.'code.png'.$suffix;
     } ?>">
