@@ -131,7 +131,7 @@
 <input type="text" id="setBoxShadow" style="width:86%;" value="<?=$session['box_shadow'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('box_shadow', this.value);
 } else if (event.keyCode == 27) {
-    this.value = 'inset 0px 0px #FFFFFF, inset 0px 0px #000000';
+    this.value = 'inset 0px 0px #FFFFFF, inset 0px 0px #FFFFFF';
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
@@ -140,7 +140,7 @@
 <input type="text" id="setTextBoxShadow" style="width:86%;" value="<?=$session['text_box_shadow'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('text_box_shadow', this.value);
 } else if (event.keyCode == 27) {
-    this.value = 'inset 0px 0px #FFFFFF, inset 0px 0px #000000';
+    this.value = 'inset 0px 0px #FFFFFF, inset 0px 0px #FFFFFF';
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
