@@ -111,6 +111,9 @@ function executeMacros(input, index = 0, length = 1) {
             setlock(rep[0].replace('lock_', ''), rep[1]);
         } else if (rep[0].startsWith('meta_')) {
             setmeta(bin2hex(rep[0].replace('meta_', '')), bin2hex(rep[1]));
+        } else if (rep[1].includes('?rev=')) {
+            var atr = rep[1].split('?rev=')[1];
+            setdata(rep[0], rep[1].replace(atr, '').replace('?rev=', ''));
         } else {
             setdata(rep[0], rep[1]);
         }
