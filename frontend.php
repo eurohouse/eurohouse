@@ -391,9 +391,7 @@ function buy_item(art, sel) {
                     prix = parseInt(tabS[art]['price']);
                     pass = ((tabS[art]['type'] == 'account') || (tabS[art]['type'] == 'password')) ? tabS[art]['password'] : ''; if (obj[bye] >= prix) {
                         fixPrice(bye, sel, art, prix); storeq(tabS, tabB, art);
-                        set('./.store/'+sel+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
-                        set('./.store/'+bye+'_store.json', encodeURIComponent(JSON.stringify(tabB)), true);
-                        if (tabS[art]['type'] == 'account') {
+                        set('./.store/'+sel+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true); set('./.store/'+bye+'_store.json', encodeURIComponent(JSON.stringify(tabB)), true); if (tabS[art]['type'] == 'account') {
                             copy(sel+'_session.json.bak', bye+'_session.json.bak', true, 1);
                             copy(sel+'_session.json', bye+'_session.json', true, 1);
                             change(bye, bye, pass, true); omniAuthRequest('signin', bye, pass);
@@ -407,8 +405,8 @@ function buy_item(art, sel) {
                     storeq(tabB, tabS, prix); storeq(tabS, tabB, art);
                     set('./.store/'+sel+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
                     set('./.store/'+bye+'_store.json', encodeURIComponent(JSON.stringify(tabB)), true);
-                } else if ((!isInt(tabS[art]['price'])) && (isInt(art)) && (tabS[art]['price'] == '')) {
-                    // Get certain amount of money as a gift
+                } else if ((!isInt(tabS[art]['price'])) && (tabS[art]['price'] == '')) {
+                    // Get certain amount of money or good from user as a gift
                     prix = tabS[art]['price']; fixPrice(bye, sel, art, prix); storeq(tabS, tabB, art);
                     set('./.store/'+sel+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
                     set('./.store/'+bye+'_store.json', encodeURIComponent(JSON.stringify(tabB)), true);
