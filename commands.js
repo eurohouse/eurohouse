@@ -338,7 +338,7 @@ function omniEnter() {
                 arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
                 if (arg.length > 0) {
                     for (i = 0; i < arg.length; i++) {
-                        if (st[arg[i]] !== undefined) { delete st[arg[0]]; }
+                        if (st[arg[i]] !== undefined) { delete st[arg[i]]; }
                     } set('./.store/'+sysDefSessionID.value+'_store.json', encodeURIComponent(JSON.stringify(st)), true);
                 }
             }
