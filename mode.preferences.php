@@ -3,13 +3,13 @@
 <p align='center'>
 <input type="button" onmouseover="soundButton();" onclick="applyTheme(setSizeSequence.value, setColorSequence.value); setdata('specimen', encodeURIComponent(setSpecimen.value));" value="<?=term('Apply', $settings['vocabulary'], $session['units']);?>">
 <input type="button" onmouseover="soundButton();" onclick="rename_user(setUsername.value, setPassword.value); omniAuthRequest('signin', setUsername.value, CryptoJS.SHA256(setPassword.value).toString());" value="<?=term('Update', $settings['vocabulary'], $session['units']);?>">
-<input type="button" onmouseover="soundButton();" onclick="setSizeSequence.value = '7 0 180 14 14 14 17 16 15 18 14 14 14'; setColorSequence.value = 'C0BFC0|605F60|E5E5E5|FFFFFF|FFFFFF|000000|FFFFFF|000000|403F40|D5D5D5'; applyTheme(setSizeSequence.value, setColorSequence.value); setSpecimen.value = 'Q F S H Æ Ø Ð Ñ ʒ ʊ ʎ ɸ Σ Φ Ω Θ Г З Х Б ظ ض ؤ ل 인 방 학 적 中 京 日 木 𐎁 𐎛 𐎍 𐎄 🍷 ☕️ 🍾 🍫'; setdata('specimen', setSpecimen.value);" value="<?=term('Reset', $settings['vocabulary'], $session['units']);?>">
+<input type="button" onmouseover="soundButton();" onclick="setSpecimen.value = 'Q F S H Æ Ø Ð Ñ ʒ ʊ ʎ ɸ Σ Φ Ω Θ Г З Х Б ظ ض ؤ ل 인 방 학 적 中 京 日 木 𐎁 𐎛 𐎍 𐎄 🍷 ☕️ 🍾 🍫'; setdata('specimen', setSpecimen.value);" value="<?=term('Reset', $settings['vocabulary'], $session['units']);?>">
 <input type="button" onmouseover="soundButton();" onclick="setdata('font_ascii', 'flexo.ttf'); setdata('font_latin', 'flexo.ttf'); setdata('font_phone', 'arialuni.ttf'); setdata('font_greek', 'ubuntu.ttf'); setdata('font_cyril', 'ubuntu.ttf'); setdata('font_arabi', 'arialuni.ttf'); setdata('font_korea', 'arialuni.ttf'); setdata('font_china', 'arialuni.ttf'); setdata('font_other', 'arialuni.ttf'); setdata('font_emoji', 'twemoji.ttf'); window.location.reload();" value="<?=term('Clear', $settings['vocabulary'], $session['units']);?>"><br>
 <label><?=term('Specimen Text:', $settings['vocabulary'], $session['units']);?></label><br>
 <input type="text" id="setSpecimen" style="width:86%;" value="<?=$session['specimen'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('specimen', encodeURIComponent(this.value));
 } else if (event.keyCode == 27) {
-    this.value = 'Q F S H Æ Ø Ð Ñ ʒ ʊ ʎ ɸ Σ Φ Ω Θ Г З Х Б ظ ض ؤ ل 인 방 학 적 中 京 日 木 𐎁 𐎛 𐎍 𐎄 🍷 ☕️ 🍾 🍫'; setdata('specimen', this.value);
+    this.value = 'Q F S H Æ Ø Ð Ñ ʒ ʊ ʎ ɸ Σ Φ Ω Θ Г З Х Б ظ ض ؤ ل 인 방 학 적 中 京 日 木 𐎁 𐎛 𐎍 𐎄 🍷 ☕️ 🍾 🍫';
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
@@ -131,7 +131,7 @@
 <input type="text" id="setBoxShadow" style="width:86%;" value="<?=$session['box_shadow'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('box_shadow', this.value);
 } else if (event.keyCode == 27) {
-    this.value = ''; setdata('box_shadow', this.value);
+    this.value = 'inset 0px 0px #FFFFFF, inset 0px 0px #000000';
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
@@ -140,7 +140,7 @@
 <input type="text" id="setTextBoxShadow" style="width:86%;" value="<?=$session['text_box_shadow'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('text_box_shadow', this.value);
 } else if (event.keyCode == 27) {
-    this.value = ''; setdata('text_box_shadow', this.value);
+    this.value = 'inset 0px 0px #FFFFFF, inset 0px 0px #000000';
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
@@ -149,7 +149,7 @@
 <input type="text" id="setBorderRadius" style="width:15%;" value="<?=$session['radius'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('radius', this.value);
 } else if (event.keyCode == 27) {
-    this.value = '7'; setdata('radius', this.value);
+    this.value = '7';
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
@@ -158,7 +158,7 @@
 <input type="text" id="setBackSize" style="width:15%;" value="<?=$session['back_size'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('back_size', this.value);
 } else if (event.keyCode == 27) {
-    this.value = '14'; setdata('back_size', this.value);
+    this.value = '14';
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
@@ -167,7 +167,7 @@
 <input type="text" id="setForeSize" style="width:15%;" value="<?=$session['fore_size'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('fore_size', this.value);
 } else if (event.keyCode == 27) {
-    this.value = '14'; setdata('fore_size', this.value);
+    this.value = '14';
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
@@ -176,15 +176,14 @@
 <input type="text" id="setInputSize" style="width:15%;" value="<?=$session['input_size'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('input_size', this.value);
 } else if (event.keyCode == 27) {
-    this.value = '14'; setdata('input_size', this.value);
+    this.value = '14';
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
     handleInput(this.value);
 }" oninput="handleInput(this.value, true);">
 <input type="number" min='0' max='9' step='1' id="setMagnitude" style="width:14%;" value="<?=$session['magnitude'];?>" oninput="setdata('magnitude', setMagnitude.value); handleInput(this.value, true);" onkeydown="if (event.keyCode == 27) {
-    setMagnitude.value = 5;
-    setdata('magnitude', setMagnitude.value);
+    this.value = 5;
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
@@ -193,7 +192,7 @@
 <input type="text" id="setGradDeg" style="width:15%;" value="<?=$session['gradient_deg'];?>" onkeydown="if (even.keyCode == 13) {
     setdata('gradient_deg', this.value);
 } else if (event.keyCode == 27) {
-    this.value = '180'; setdata('gradient_deg', this.value);
+    this.value = '180';
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
@@ -202,7 +201,7 @@
 <input type="text" id="setHead1Size" style="width:15%;" value="<?=$session['head1_size'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('head1_size', this.value);
 } else if (event.keyCode == 27) {
-    this.value = '17'; setdata('head1_size', this.value);
+    this.value = '17';
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
@@ -211,7 +210,7 @@
 <input type="text" id="setHead2Size" style="width:15%;" value="<?=$session['head2_size'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('head2_size', this.value);
 } else if (event.keyCode == 27) {
-    this.value = '16'; setdata('head2_size', this.value);
+    this.value = '16';
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
@@ -220,7 +219,7 @@
 <input type="text" id="setHead3Size" style="width:15%;" value="<?=$session['head3_size'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('head3_size', this.value);
 } else if (event.keyCode == 27) {
-    this.value = '15'; setdata('head3_size', this.value);
+    this.value = '15';
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
@@ -229,7 +228,7 @@
 <input type="text" id="setDispSize" style="width:15%;" value="<?=$session['disp_size'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('disp_size', this.value);
 } else if (event.keyCode == 27) {
-    this.value = '18'; setdata('disp_size', this.value);
+    this.value = '18';
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
@@ -238,7 +237,7 @@
 <input type="text" id="setBackColor" style="width:15%;" value="<?=$session['back_color'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('back_color', this.value);
 } else if (event.keyCode == 27) {
-    this.value = 'C0BFC0'; setdata('back_color', this.value);
+    this.value = 'C0BFC0';
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
@@ -247,7 +246,7 @@
 <input type="text" id="setForeColor" style="width:15%;" value="<?=$session['fore_color'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('fore_color', this.value);
 } else if (event.keyCode == 27) {
-    this.value = '605F60'; setdata('fore_color', this.value);
+    this.value = '605F60';
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
@@ -256,7 +255,7 @@
 <input type="text" id="setInputColor" style="width:15%;" value="<?=$session['input_color'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('input_color', this.value);
 } else if (event.keyCode == 27) {
-    this.value = 'E5E5E5'; setdata('input_color', this.value);
+    this.value = 'E5E5E5';
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
@@ -265,7 +264,7 @@
 <input type="text" id="setBackTextColor" style="width:15%;" value="<?=$session['back_text_color'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('back_text_color', this.value);
 } else if (event.keyCode == 27) {
-    this.value = 'FFFFFF'; setdata('back_text_color', this.value);
+    this.value = 'FFFFFF';
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
@@ -274,7 +273,7 @@
 <input type="text" id="setForeTextColor" style="width:15%;" value="<?=$session['fore_text_color'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('fore_text_color', this.value);
 } else if (event.keyCode == 27) {
-    this.value = 'FFFFFF'; setdata('fore_text_color', this.value);
+    this.value = 'FFFFFF';
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
@@ -283,7 +282,7 @@
 <input type="text" id="setInputTextColor" style="width:15%;" value="<?=$session['input_text_color'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('input_text_color', this.value);
 } else if (event.keyCode == 27) {
-    this.value = '000000'; setdata('input_text_color', this.value);
+    this.value = '000000';
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
@@ -292,7 +291,7 @@
 <input type="text" id="setBlankColor" style="width:15%;" value="<?=$session['blank_color'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('blank_color', this.value);
 } else if (event.keyCode == 27) {
-    this.value = 'FFFFFF'; setdata('blank_color', this.value);
+    this.value = 'FFFFFF';
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
@@ -301,7 +300,7 @@
 <input type="text" id="setBlankTextColor" style="width:15%;" value="<?=$session['blank_text_color'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('blank_text_color', this.value);
 } else if (event.keyCode == 27) {
-    this.value = '000000'; setdata('blank_text_color', this.value);
+    this.value = '000000';
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
@@ -310,7 +309,7 @@
 <input type="text" id="setArcForeColor" style="width:15%;" value="<?=$session['arc_fore_color'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('arc_fore_color', this.value);
 } else if (event.keyCode == 27) {
-    this.value = '403F40'; setdata('arc_fore_color', this.value);
+    this.value = '403F40';
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
@@ -319,7 +318,7 @@
 <input type="text" id="setArcInputColor" style="width:15%;" value="<?=$session['arc_input_color'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('arc_input_color', this.value);
 } else if (event.keyCode == 27) {
-    this.value = 'D5D5D5'; setdata('arc_input_color', this.value);
+    this.value = 'D5D5D5';
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
