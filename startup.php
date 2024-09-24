@@ -104,7 +104,7 @@ function world_clock() {
             $('#buttonMaximize').attr('src', sysDefPrefix.value+((sysDefApps.value != 0)?'restore.png':'maximize.png')+sysDefSuffix.value);
             $('#buttonMenuStyle').attr('src', sysDefPrefix.value+((sysDefIcons.value != 0)?'menu.png':'list.png')+sysDefSuffix.value);
             $('#buttonUpdate').attr('src', sysDefPrefix.value+'update.png'+sysDefSuffix.value);
-            $('#buttonUserStatus').attr('src', sysDefPrefix.value+<?=(isAuth())?'user.png':'anonym.png';?>+sysDefSuffix.value); $('#buttonEscape').attr('src', sysDefPrefix.value+'escape.png'+sysDefSuffix.value);
+            $('#buttonUserStatus').attr('src', sysDefPrefix.value+"<?=(isAuth())?'user.png':'anonym.png';?>"+sysDefSuffix.value); $('#buttonEscape').attr('src', sysDefPrefix.value+'escape.png'+sysDefSuffix.value);
             if (sysDefVintage.value != sysDefPostBackEff.value) {
                 if (sysDefVintage.value != 0) {
                     playAudio(backgroundPlayer, sysDefBackgroundSound.value);
