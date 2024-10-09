@@ -26,7 +26,7 @@ function executeMacros(input, index = 0, length = 1) {
     } else if ((index == (length - 1)) && (input.includes("\\/")) && (input.startsWith('\\/'))) {
         var nameNum = input.replace("\\/", ''), museMelo = hex2bin(sysDefMelody.value);
         var museLint = (sysDefMusicBox.value).split('//');
-        var museInd = arraySearch(((museMelo.startsWith(requestPath.value+'/')) ? museMelo.replace(requestPath.value+'/','') : museMelo), museLint);
+        var museInd = arraySearch(((museMelo.startsWith(requestPath.value+'/')) ? museMelo.replace(requestPath.value+'/','') : museMelo), museLint); console.log(museInd);
         var museNum = museLint.length, museDiv = Math.floor(museNum / parseInt(nameNum));
         var museNxt = (museInd+museDiv)%museNum;
         console.log(museNxt);
