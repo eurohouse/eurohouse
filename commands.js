@@ -27,7 +27,7 @@ function executeMacros(input, index = 0, length = 1) {
         var nameNum = input.replace("\\/", ''), museMelo = hex2bin(sysDefMelody.value);
         var museLint = (sysDefMusicBox.value).split('//');
         var museInd = arraySearch(((museMelo.startsWith(requestPath.value+'/')) ? museMelo.replace(requestPath.value+'/','') : museMelo), museLint);
-        var museNum = museLint.length, museDiv = Math.floor(museNum / nameNum);
+        var museNum = museLint.length, museDiv = Math.floor(museNum / parseInt(nameNum));
         var museNxt = (museInd+museDiv)%museNum; omniListen(museLint[museNxt], true);
     } else if ((index == (length - 1)) && (input.includes('./')) && (input.startsWith('./'))) {
         omniRead(requestMode.value, input.replace('./', ''), requestLock.value);
