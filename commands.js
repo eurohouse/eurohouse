@@ -17,12 +17,18 @@ function executeMacros(input, index = 0, length = 1) {
         var namePart = input.replace("\\", ''), nameInc = 0;
         var namePart1 = (namePart.includes(':')) ? namePart.split(':')[0] : namePart;
         var namePart2 = (namePart.includes(':')) ? namePart.split(':')[1] : 0;
-        var museArr = sysDefMusicBox.value, museLint = museArr.split('//');
+        var museLint = (sysDefMusicBox.value).split('//');
         for (i = 0; i < museLint.length; i++) {
             if (museLint[i].toLowerCase().includes(namePart1.toLowerCase())) {
                 if (nameInc >= namePart2) { omniListen(museLint[i], true); break; } nameInc++;
             } omniPause();
         }
+    } else if ((index == (length - 1)) && (input.includes("\\/")) && (input.startsWith('\\/'))) {
+        var nameNum = input.replace("\\/", ''), museMelo = hex2bin(sysDefMelody.value);
+        var museLint = (sysDefMusicBox.value).split('//');
+        var museInd = arraySearch(((museMelo.startsWith(requestPath.value+'/')) ? museMelo.replace(requestPath.value+'/','') : museMelo), museLint);
+        var museNum = museLint.length, museDiv = Math.floor(museNum / nameNum);
+        var museNxt = (museInd+museDiv)%museNum; omniListen(museLint[museNxt], true);
     } else if ((index == (length - 1)) && (input.includes('./')) && (input.startsWith('./'))) {
         omniRead(requestMode.value, input.replace('./', ''), requestLock.value);
     } else if ((index == (length - 1)) && (input.includes('*'))) {

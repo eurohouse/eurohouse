@@ -15,8 +15,7 @@ function omniListen(input, scratch = false) {
     setdata('audio_speed', sysDefAudioSpeed.value);
 }
 function songIndex(mode = '') {
-    var museArr = sysDefMusicBox.value;
-    var museLint = museArr.split('//');
+    var museLint = (sysDefMusicBox.value).split('//');
     var museMelo = hex2bin(sysDefMelody.value);
     var museInd = arraySearch(((museMelo.startsWith(requestPath.value+'/')) ? museMelo.replace(requestPath.value+'/','') : museMelo), museLint);
     if (mode == 'next') {
