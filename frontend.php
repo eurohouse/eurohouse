@@ -17,8 +17,7 @@ function omniListen(input, scratch = false) {
 function songIndex(mode = '') {
     var museLint = (sysDefMusicBox.value).split('//');
     var museMelo = hex2bin(sysDefMelody.value);
-    var museInd = arraySearch(((museMelo.startsWith(requestPath.value+'/')) ? museMelo.replace(requestPath.value+'/','') : museMelo), museLint);
-    if (mode == 'next') {
+    var museInd = arraySearch(((museMelo.startsWith(requestPath.value+'/')) ? museMelo.replace(requestPath.value+'/','') : museMelo), museLint); if (mode == 'next') {
         omniListen((((museInd >= (museLint.length-1)) || (museInd === false)) ? museLint[0] : museLint[parseInt(museInd)+1]), true);
     } else if (mode == 'prev') {
         omniListen((((museInd <= 0) || (museInd === false)) ? museLint[museLint.length-1] : museLint[parseInt(museInd)-1]), true);
