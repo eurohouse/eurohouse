@@ -14,6 +14,7 @@ $relBind = str_replace('_session.json', '', $allUsers); ?>
         <p align='center' class='block'>
         <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="bind(sysDefSessionID.value, this.name);" src="<?=$prefix.'chain.png';?>">
         <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="this.src = (isFriends(this.name))?sysDefPrefix.value+'user.png':sysDefPrefix.value+'anonym.png'; toggleFriend(this.name);" src="<?=$prefix.'user.png';?>">
+        <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name+'_session.json', '', 'false');" src="<?=$prefix.'info.png';?>">
         <?php if (isAuth()) {
         if ($sessionID == 'root') { ?>
             <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="delete_user(this.name); window.location.reload();" src="<?=$prefix.'delete.png';?>">
