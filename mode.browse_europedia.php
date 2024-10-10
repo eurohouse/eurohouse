@@ -6,9 +6,9 @@ $contentsArr = exemplar(str_replace('./','',(glob('./*.contents.json'))));
 if ($request['group'] != '') {
     foreach ($contentsArr as $key=>$value) {
         if ($value != $request['group']) { unset($contentsArr[$key]); }
-    } ?><p align='center' class='block'>
+    } ?><p align='center' style="display:flex;" class='block'>
 <?php foreach ($contentsArr as $key=>$value) { ?>
-    <a href="<?=$key;?>"><img style="width:25%;display:flex;" loading="lazy" src="<?=$key?>" onmouseover="soundButton();"></a>
+    <a href="<?=$key;?>"><img style="width:25%;" loading="lazy" src="<?=$key?>" onmouseover="soundButton();"></a>
 <?php } ?></p><?php } else {
     $preStyle = "white-space:pre-wrap;word-wrap:break-word;";
     $showLocale = $settings['locale'];
