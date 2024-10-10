@@ -1,9 +1,9 @@
 function executeMacros(input, index = 0, length = 1) {
-    var output = input, rep, san, jks = '.-';
+    var output = input, rep, san;
     if ((index == (length - 1)) && (input == '_')) {
         omniBack(sysDefParent.value);
     } else if ((index == (length - 1)) && (input == '\\=')) {
-        output = '\\='+dtw(userdata()['melody'], sysDefSessionID.value, '.-');
+        output = '\\='+dtw(userdata()['melody'], sysDefSessionID.value, '.-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz');
     } else if ((index == (length - 1)) && (input == '&')) {
         unbind(sysDefSessionID.value);
     } else if ((index == (length - 1)) && (input == '$')) {
@@ -95,8 +95,6 @@ function executeMacros(input, index = 0, length = 1) {
             audioPosition(((rep[1].includes('+')) && (rep[1].startsWith('+'))) ? rep[1].replaceAll('+', '') : rep[1]);
         } else if (rep[0].startsWith('lock_')) {
             setlock(rep[0].replace('lock_', ''), rep[1]);
-        } else if (rep[0].startsWith('meta_')) {
-            setmeta(bin2hex(rep[0].replace('meta_', '')), etw(rep[1], sysDefSessionID.value, jks));
         } else if (rep[1].includes('?rev=')) {
             var atr = rep[1].split('?rev=')[1];
             setdata(rep[0], rep[1].replace(atr, '').replace('?rev=', ''));
@@ -132,10 +130,8 @@ function executeMacros(input, index = 0, length = 1) {
     } else {
         if (input.startsWith('lock_')) {
             output = input + ': ' + lockdata()[input.replace('lock_', '')];
-        } else if (input.startsWith('meta_')) {
-            output = input + ': ' + dtw(metadata()[etw(input.replace('meta_', ''), sysDefSessionID.value, jks)], sysDefSessionID.value, jks);
         } else if ((input == 'melody')) {
-            output = input + ': ' + dtw(userdata()[input], sysDefSessionID.value, jks);
+            output = input + ': ' + dtw(userdata()[input], sysDefSessionID.value, '.-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz');
         } else {
             output = input + ': ' + userdata()[input];
         }

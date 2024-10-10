@@ -16,7 +16,7 @@ function omniListen(input, scratch = false) {
 }
 function songIndex(mode = '') {
     var museLint = (sysDefMusicBox.value).split('//');
-    var museMelo = dtw(sysDefMelody.value, sysDefSessionID.value, '.-');
+    var museMelo = dtw(sysDefMelody.value, sysDefSessionID.value, '.-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz');
     var museInd = arraySearch(((museMelo.startsWith(requestPath.value+'/')) ? museMelo.replace(requestPath.value+'/','') : museMelo), museLint); omniListen(((mode == 'next') ? (((museInd >= (museLint.length-1)) || (museInd === false)) ? museLint[0] : museLint[parseInt(museInd)+1]) : ((mode == 'prev') ? (((museInd <= 0) || (museInd === false)) ? museLint[museLint.length-1] : museLint[parseInt(museInd)-1]) : ((mode == 'random') ? museLint[rand(0, museLint.length)] : museMelo))), true);
 }
 function omniPause() { pauseAudio(audioPlayer); }
