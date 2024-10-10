@@ -3,10 +3,10 @@
 <?php $preStyle = "white-space:pre-wrap;word-wrap:break-word;";
 $relBind = str_replace('_session.json', '', $allUsers); ?>
 <table style="width:98%;" id="table"><thead><tr>
-    <th style="width:12%;<?=$preStyle;?>"><a href="javascript:SortTable(0, 'T');"><?=term('Name', $settings['vocabulary'], $session['units']);?>
+    <th style="width:10%;<?=$preStyle;?>"><a href="javascript:SortTable(0, 'T');"><?=term('Name', $settings['vocabulary'], $session['units']);?>
     </a></th>
     <th style="width:10%;<?=$preStyle;?>"><a href="javascript:SortTable(1, 'T');"><?=term('Username', $settings['vocabulary'], $session['units']);?></a></th>
-    <th style="width:8%;"><?=term('Actions', $settings['vocabulary'], $session['units']);?></th>
+    <th style="width:10%;"><?=term('Actions', $settings['vocabulary'], $session['units']);?></th>
     </tr></thead><tbody><?php foreach ($relBind as $key=>$value) {
         $relTitle = (@json_decode(file_get_contents($value.'_session.json'), true) != null) ? json_decode(file_get_contents($value.'_session.json'), true)['title'] : $value; ?>
         <tr><td><?=$relTitle;?></td>
