@@ -1,6 +1,6 @@
 <!-- world -->
 <!-- CH: Explorare Europedia; DE: Entdecken Sie Europedia; AT: Entdecken Sie Europedia; GR: Εξερευνήστε Ευρωπαιδεία; CY: Εξερευνήστε Ευρωπαιδεία; FR: Parcourir Europedia; BE: Parcourir Europedia; IT: Sfoglia Europadia; ES: Explora Europadia; MX: Explora Europadia; BR: Explorar a Europadia; PT: Explorar a Europadia; RO: Explorați Europedia; MD: Explorați Europedia; TR: Europedia'yı keşfedin; IN: यूरोपियाडिया का अन्वेषण करें; LK: यूरोपडिया अन्वेषणं कुर्वन्तु; NP: ཡོ་རོབ་གླིང་ལ་མྱུལ་ཞིང༌།; RU: Просмотр Европедии; UA: Досліджуйте Europedia; CN: 浏览元素 Europedia; KR: 요소 찾아보기 Europedia; JP: 要素の閲覧 Europedia; AE: تصفح عناصر Europedia -->
-<?php $imgWSize = 20; $preAvaSize = 25;
+<?php
 $exemplarArr = exemplar(str_replace('./','',(glob('./*.models.json'))));
 $contentsArr = exemplar(str_replace('./','',(glob('./*.contents.json'))));
 if ($request['group'] != '') {
@@ -8,7 +8,7 @@ if ($request['group'] != '') {
         if ($value != $request['group']) { unset($contentsArr[$key]); }
     } ?><p align='center' class='block'>
 <?php foreach ($contentsArr as $key=>$value) { ?>
-    <a href="<?=$key;?>"><img style="width:<?=$imgWSize;?>%;" loading="lazy" src="<?=$key?>" onmouseover="soundButton();"></a>
+    <a href="<?=$key;?>"><img style="width:98%;" loading="lazy" src="<?=$key?>" onmouseover="soundButton();"></a>
 <?php } ?></p><?php } else {
     $preStyle = "white-space:pre-wrap;word-wrap:break-word;";
     $showLocale = $settings['locale'];
