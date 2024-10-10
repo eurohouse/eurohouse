@@ -62,14 +62,14 @@ function executeMacros(input, index = 0, length = 1) {
             delete_user(input.replace('~', ''));
         } else {
             if (input.replace('~', '') == sysDefSessionID.value) {
-                delete_user(input.replace('~', '')); omniAuthRequest('signout','','');
+                delete_user(input.replace('~', ''));
+                omniAuthRequest('signout','','');
             }
         }
     } else if (input.includes(': ')) {
         rep = input.split(': '); if (rep[0] == 'memo') {
             if ((rep[1].includes('h')) && (rep[1].startsWith('+'))) {
-                san = parseInt(rep[1].replace('+', '').replace('h', '')) * 3600;
-                setdata(rep[0], (Math.round(Date.now() / 1000) + parseInt(san)));
+                san = parseInt(rep[1].replace('+', '').replace('h', '')) * 3600; setdata(rep[0], (Math.round(Date.now() / 1000) + parseInt(san)));
             } else if ((rep[1].includes('min')) && (rep[1].startsWith('+'))) {
                 san = parseInt(rep[1].replace('+', '').replace('min', '')) * 60;
                 setdata(rep[0], (Math.round(Date.now() / 1000) + parseInt(san)));
@@ -90,16 +90,9 @@ function executeMacros(input, index = 0, length = 1) {
             } else {
                 setdata('memo', rep[1]);
             }
-        } else if (rep[0] == 'melody') {
-            omniListen(rep[1], true);
-        } else if (rep[0] == 'current_entry') {
-            setdata('current_entry', etw(rep[1], sysDefSessionID.value, jks));
+        } else if (rep[0] == 'melody') { omniListen(rep[1], true);
         } else if (rep[0] == 'current') {
-            if ((rep[1].includes('+')) && (rep[1].startsWith('+'))) {
-                audioPosition(rep[1].replaceAll('+', ''));
-            } else {
-                audioPosition(rep[1]);
-            }
+            audioPosition(((rep[1].includes('+')) && (rep[1].startsWith('+'))) ? rep[1].replaceAll('+', '') : rep[1]);
         } else if (rep[0].startsWith('lock_')) {
             setlock(rep[0].replace('lock_', ''), rep[1]);
         } else if (rep[0].startsWith('meta_')) {
@@ -107,9 +100,7 @@ function executeMacros(input, index = 0, length = 1) {
         } else if (rep[1].includes('?rev=')) {
             var atr = rep[1].split('?rev=')[1];
             setdata(rep[0], rep[1].replace(atr, '').replace('?rev=', ''));
-        } else {
-            setdata(rep[0], rep[1]);
-        }
+        } else { setdata(rep[0], rep[1]); }
     } else if ((index == (length - 1)) && (input.includes('_')) && (input.startsWith('_'))) {
         omniGo(input.replace('_', ''));
     } else if ((index == (length - 1)) && (input.includes('=')) && (input.startsWith('='))) {
@@ -143,7 +134,7 @@ function executeMacros(input, index = 0, length = 1) {
             output = input + ': ' + lockdata()[input.replace('lock_', '')];
         } else if (input.startsWith('meta_')) {
             output = input + ': ' + dtw(metadata()[etw(input.replace('meta_', ''), sysDefSessionID.value, jks)], sysDefSessionID.value, jks);
-        } else if ((input == 'melody') || (input == 'current_entry')) {
+        } else if ((input == 'melody')) {
             output = input + ': ' + dtw(userdata()[input], sysDefSessionID.value, jks);
         } else {
             output = input + ': ' + userdata()[input];
