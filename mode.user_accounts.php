@@ -15,7 +15,7 @@ $iconSize = 50; $relBind = str_replace('_session.json', '', $allUsers); ?>
     $cookieRight = (@json_decode(file_get_contents($attacheID.'_session.json'), true) != null) ? json_decode(file_get_contents($attacheID.'_session.json'), true) : $cookieLeft;
     $cookieLeftAva = (file_exists($avaPrefix.$cookieLeft['avatar'].'.png')) ? $avaPrefix.$cookieLeft['avatar'].'.png' : $avaPrefix.$defaultUserData['avatar'].'.png';
     $powersInd = (is_numeric($powersData[$value])) ? $powersData[$value] : 0; ?><tr>
-    <td><a href="<?=$cookieLeftAva;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$cookieLeftAva;?>" onmouseover="soundButton();"></a></td>
+    <td><a href="<?=$cookieLeftAva;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$cookieLeftAva;?>" loading="lazy" onmouseover="soundButton();"></a></td>
     <td><?=$cookieLeft['title'];?></td>
     <td><?=$value;?></td><td>
     <p align='center' class='block'>
