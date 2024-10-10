@@ -11,12 +11,10 @@ function executeMacros(input, index = 0, length = 1) {
     } else if ((input.includes('# ')) && (input.indexOf('# ') == 0)) {
         // YOUR COMMENTS HERE...
     } else if ((index == (length - 1)) && (input.includes('\\=')) && (input.startsWith('\\='))) {
-        var req = input.replace('\\=', '');
-        var res = (req.includes('://')) ? req : 'https://bitbucket.org/baronnaise/'+req.split('/')[0]+'/raw/master/'+req.split('/')[1]; omniListen(res, true);
+        omniListen(input.replace('\\=', ''), true);
     } else if ((index == (length - 1)) && (input.includes("\\")) && (input.startsWith('\\'))) {
         var namePart = input.replace("\\", ''), nameInc = 0;
-        var namePart1 = (namePart.includes(':')) ? namePart.split(':')[0] : namePart;
-        var namePart2 = (namePart.includes(':')) ? namePart.split(':')[1] : 0;
+        var namePart1 = (namePart.includes(':')) ? namePart.split(':')[0] : namePart; var namePart2 = (namePart.includes(':')) ? namePart.split(':')[1] : 0;
         var museLint = (sysDefMusicBox.value).split('//');
         for (i = 0; i < museLint.length; i++) {
             if (museLint[i].toLowerCase().includes(namePart1.toLowerCase())) {
