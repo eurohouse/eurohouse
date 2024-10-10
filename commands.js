@@ -3,7 +3,7 @@ function executeMacros(input, index = 0, length = 1) {
     if ((index == (length - 1)) && (input == '_')) {
         omniBack(sysDefParent.value);
     } else if ((index == (length - 1)) && (input == '\\=')) {
-        output = '\\='+dtw(userdata()['melody'], sysDefSessionID.value, '.-0123456789AÆBCÇDÐEFGHIJKLMNOØŒPÞQRSTUVWXYZaæbcçdðefghijklmnoøœpþqrstuvwxyzΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩαβγδεζηθικλμνξοπρςστυφχψω*=/');
+        output = '\\='+dtw(userdata()['melody'], sysDefSessionID.value, 'あいうえおかがきぎぐけげこごさざしじすずせぜそぞただちぢづてでとどなにぬねのはばぱひびぴふぶぷべぺほぼぽまみむめもやゆよらりるれろわゐゑをんゔゟ');
     } else if ((index == (length - 1)) && (input == '&')) {
         unbind(sysDefSessionID.value);
     } else if ((index == (length - 1)) && (input == '$')) {
@@ -87,9 +87,7 @@ function executeMacros(input, index = 0, length = 1) {
                 setdata(rep[0], (Math.round(Date.now() / 1000) + parseInt(san)));
             } else if ((rep[1] == '') || (rep[1] == 0)) {
                 setdata('memo', ''); pauseAudio(alarmPlayer);
-            } else {
-                setdata('memo', rep[1]);
-            }
+            } else { setdata('memo', rep[1]); }
         } else if (rep[0] == 'melody') { omniListen(rep[1], true);
         } else if (rep[0] == 'current') {
             audioPosition(((rep[1].includes('+')) && (rep[1].startsWith('+'))) ? rep[1].replaceAll('+', '') : rep[1]);
@@ -116,9 +114,7 @@ function executeMacros(input, index = 0, length = 1) {
         } else if (input.replace('+', '').includes('s')) {
             sansPlus = parseInt(input.replace('+', '').replace('s', ''));
             setdata('memo', (Math.round(Date.now() / 1000) + parseInt(sansPlus)));
-        } else {
-            audioPosition(input.replace('+', ''));
-        }
+        } else { audioPosition(input.replace('+', '')); }
     } else if ((index == (length - 1)) && (input.includes('.'))) {
         if (input.startsWith('.')) {
             addFriend(input.replace('.', ''));
@@ -131,7 +127,7 @@ function executeMacros(input, index = 0, length = 1) {
         if (input.startsWith('lock_')) {
             output = input + ': ' + lockdata()[input.replace('lock_', '')];
         } else if ((input == 'melody')) {
-            output = input + ': ' + dtw(userdata()[input], sysDefSessionID.value, '.-0123456789AÆBCÇDÐEFGHIJKLMNOØŒPÞQRSTUVWXYZaæbcçdðefghijklmnoøœpþqrstuvwxyzΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩαβγδεζηθικλμνξοπρςστυφχψω*=/');
+            output = input + ': ' + dtw(userdata()[input], sysDefSessionID.value, 'あいうえおかがきぎぐけげこごさざしじすずせぜそぞただちぢづてでとどなにぬねのはばぱひびぴふぶぷべぺほぼぽまみむめもやゆよらりるれろわゐゑをんゔゟ');
         } else {
             output = input + ': ' + userdata()[input];
         }
