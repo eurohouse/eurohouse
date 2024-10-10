@@ -9,41 +9,23 @@ function omniListen(input, scratch = false) {
     playAudio(audioPlayer, input);
     currentPos = parseInt(sysDefCurrent.value);
     audioPlayer.currentTime = (scratch) ? 0 : currentPos;
-    setdata('melody', bin2hex(input));
+    setdata('melody', etw(input, sysDefSessionID.value, '.-'));
     setdata('pitch_lock', sysDefPitchLock.value);
     setdata('audio_volume', sysDefAudioVolume.value);
     setdata('audio_speed', sysDefAudioSpeed.value);
 }
 function songIndex(mode = '') {
     var museLint = (sysDefMusicBox.value).split('//');
-    var museMelo = hex2bin(sysDefMelody.value);
-    var museInd = arraySearch(((museMelo.startsWith(requestPath.value+'/')) ? museMelo.replace(requestPath.value+'/','') : museMelo), museLint); if (mode == 'next') {
-        omniListen((((museInd >= (museLint.length-1)) || (museInd === false)) ? museLint[0] : museLint[parseInt(museInd)+1]), true);
-    } else if (mode == 'prev') {
-        omniListen((((museInd <= 0) || (museInd === false)) ? museLint[museLint.length-1] : museLint[parseInt(museInd)-1]), true);
-    } else if (mode == 'random') {
-        omniListen(museLint[rand(0, museLint.length)], true);
-    } else {
-        omniListen(museMelo, true);
-    }
+    var museMelo = dtw(sysDefMelody.value, sysDefSessionID.value, '.-');
+    var museInd = arraySearch(((museMelo.startsWith(requestPath.value+'/')) ? museMelo.replace(requestPath.value+'/','') : museMelo), museLint); omniListen(((mode == 'next') ? (((museInd >= (museLint.length-1)) || (museInd === false)) ? museLint[0] : museLint[parseInt(museInd)+1]) : ((mode == 'prev') ? (((museInd <= 0) || (museInd === false)) ? museLint[museLint.length-1] : museLint[parseInt(museInd)-1]) : ((mode == 'random') ? museLint[rand(0, museLint.length)] : museMelo))), true);
 }
-function omniPause() {
-    pauseAudio(audioPlayer);
-}
+function omniPause() { pauseAudio(audioPlayer); }
 function audioPosition(sec) {
     if (audioPlayer.duration > sec) {
-        if (sec.includes('-')) {
-            audioPlayer.currentTime = audioPlayer.duration - parseInt(sec.replace('-',''));
-        } else if (sec.includes('+')) {
-            audioPlayer.currentTime = parseInt(sec.replace('+',''));
-        } else {
-            audioPlayer.currentTime = parseInt(sec);
-        }
+        audioPlayer.currentTime = (sec.includes('-')) ? (audioPlayer.duration - parseInt(sec.replace('-',''))) : (((sec.includes('+'))) ? (parseInt(sec.replace('+',''))) : (parseInt(sec)));
     }
 }
-function savePlayState() {
-    setdata('current', audioPlayer.currentTime);
-}
+function savePlayState() { setdata('current', audioPlayer.currentTime); }
 function arrangePlay() {
     var dp = arrjob(sysDefPowersData.value,';',':');
     var db = arrjob(sysDefBindData.value,';',':');
@@ -62,8 +44,7 @@ function arrangePlay() {
             pl = '+@'+sysDefSessionID.value+'+';
             $('#buttonBroke').attr('src', sysDefPrefix.value+'broke.png');
         } else {
-            th = dp[sysDefSessionID.value];
-            bl = jh+'?'+my;
+            th = dp[sysDefSessionID.value]; bl = jh+'?'+my;
             pl = '+@'+sysDefSessionID.value;
             $('#buttonBroke').attr('src', sysDefPrefix.value+'broke.png');
         }
@@ -82,26 +63,15 @@ function arrangePlay() {
 function lockdata() {
     var obj = {
         <?php $iter = 0; foreach ($locks as $key=>$value) {
-            if (count($locks) == ($iter - 1)) {
-                echo "'".$key."': lock".camel($key).".value";
-            } else {
-                echo "'".$key."': lock".camel($key).".value,";
-            } $iter++;
+            echo "'".$key."': lock".camel($key).".value".((count($locks) == ($iter-1))?'':','); $iter++;
         } $iter = 0; ?>
     }; return obj;
 }
-function metadata() {
-    var obj = jsonstr(sysDefMetaData.value);
-    return obj;
-}
+function metadata() { return jsonstr(sysDefMetaData.value); }
 function userdata() {
     var obj = {
         <?php $iter = 0; foreach ($settings['defaults'] as $key=>$value) {
-            if (count($settings['defaults']) == ($iter - 1)) {
-                echo "'".$key."': sysDef".camel($key).".value";
-            } else {
-                echo "'".$key."': sysDef".camel($key).".value,";
-            } $iter++;
+            echo "'".$key."': sysDef".camel($key).".value".((count($settings['defaults']) == ($iter-1))?'':','); $iter++;
         } $iter = 0; ?>
     }; return obj;
 }
@@ -179,10 +149,11 @@ function automate() {
     sysDefAutoData.value = arrpack(obj,';',':');
 }
 function jsonstr(str) {
-    var res = {};
-    try { res = JSON.parse(str);
-    } catch (e) { res = {}; }
-    return res;
+    var res = {}; try {
+        res = JSON.parse(str);
+    } catch (e) {
+        res = {};
+    } return res;
 }
 function jsonFilter(str, mask) {
     var arr = jsonstr(str), sym = '#'; uni = 'L';

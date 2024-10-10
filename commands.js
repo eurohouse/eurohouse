@@ -1,9 +1,9 @@
 function executeMacros(input, index = 0, length = 1) {
-    var output = input, rep, san;
+    var output = input, rep, san, jks = '.-';
     if ((index == (length - 1)) && (input == '_')) {
         omniBack(sysDefParent.value);
     } else if ((index == (length - 1)) && (input == '\\=')) {
-        output = '\\='+hex2bin(userdata()['melody']);
+        output = '\\='+dtw(userdata()['melody'], sysDefSessionID.value, '.-');
     } else if ((index == (length - 1)) && (input == '&')) {
         unbind(sysDefSessionID.value);
     } else if ((index == (length - 1)) && (input == '$')) {
@@ -93,7 +93,7 @@ function executeMacros(input, index = 0, length = 1) {
         } else if (rep[0] == 'melody') {
             omniListen(rep[1], true);
         } else if (rep[0] == 'current_entry') {
-            setdata('current_entry', bin2hex(rep[1]));
+            setdata('current_entry', etw(rep[1], sysDefSessionID.value, jks));
         } else if (rep[0] == 'current') {
             if ((rep[1].includes('+')) && (rep[1].startsWith('+'))) {
                 audioPosition(rep[1].replaceAll('+', ''));
@@ -103,7 +103,7 @@ function executeMacros(input, index = 0, length = 1) {
         } else if (rep[0].startsWith('lock_')) {
             setlock(rep[0].replace('lock_', ''), rep[1]);
         } else if (rep[0].startsWith('meta_')) {
-            setmeta(bin2hex(rep[0].replace('meta_', '')), bin2hex(rep[1]));
+            setmeta(bin2hex(rep[0].replace('meta_', '')), etw(rep[1], sysDefSessionID.value, jks));
         } else if (rep[1].includes('?rev=')) {
             var atr = rep[1].split('?rev=')[1];
             setdata(rep[0], rep[1].replace(atr, '').replace('?rev=', ''));
@@ -116,14 +116,11 @@ function executeMacros(input, index = 0, length = 1) {
         window.location.href = input.replace('=', '');
     } else if ((index == (length - 1)) && (input.includes('+')) && (input.startsWith('+'))) {
         if (input.replace('+', '').includes('h')) {
-            sansPlus = parseInt(input.replace('+', '').replace('h', '')) * 3600;
-            setdata('memo', (Math.round(Date.now() / 1000) + parseInt(sansPlus)));
+            sansPlus = parseInt(input.replace('+', '').replace('h', '')) * 3600; setdata('memo', (Math.round(Date.now() / 1000) + parseInt(sansPlus)));
         } else if (input.replace('+', '').includes('min')) {
-            sansPlus = parseInt(input.replace('+', '').replace('min', '')) * 60;
-            setdata('memo', (Math.round(Date.now() / 1000) + parseInt(sansPlus)));
+            sansPlus = parseInt(input.replace('+', '').replace('min', '')) * 60; setdata('memo', (Math.round(Date.now() / 1000) + parseInt(sansPlus)));
         } else if (input.replace('+', '').includes('m')) {
-            sansPlus = parseInt(input.replace('+', '').replace('m', '')) * 60;
-            setdata('memo', (Math.round(Date.now() / 1000) + parseInt(sansPlus)));
+            sansPlus = parseInt(input.replace('+', '').replace('m', '')) * 60; setdata('memo', (Math.round(Date.now() / 1000) + parseInt(sansPlus)));
         } else if (input.replace('+', '').includes('sec')) {
             sansPlus = parseInt(input.replace('+', '').replace('sec', ''));
             setdata('memo', (Math.round(Date.now() / 1000) + parseInt(sansPlus)));
@@ -145,19 +142,17 @@ function executeMacros(input, index = 0, length = 1) {
         if (input.startsWith('lock_')) {
             output = input + ': ' + lockdata()[input.replace('lock_', '')];
         } else if (input.startsWith('meta_')) {
-            output = input + ': ' + hex2bin(metadata()[bin2hex(input.replace('meta_', ''))]);
+            output = input + ': ' + dtw(metadata()[etw(input.replace('meta_', ''), sysDefSessionID.value, jks)], sysDefSessionID.value, jks);
         } else if ((input == 'melody') || (input == 'current_entry')) {
-            output = input + ': ' + hex2bin(userdata()[input]);
+            output = input + ': ' + dtw(userdata()[input], sysDefSessionID.value, jks);
         } else {
             output = input + ': ' + userdata()[input];
         }
     } return output;
 }
 function executeCode(input) {
-    var output = '';
-    if (input !== undefined) {
-        var query = input.slice(0, -1);
-        var querySep;
+    var output = ''; if (input !== undefined) {
+        var query = input.slice(0, -1), querySep;
         if (query.includes('; ')) {
             querySep = query.split('; ');
             for (i = 0; i < querySep.length; i++) {
@@ -272,8 +267,7 @@ function pipeExec(input) {
     } else if (input.includes('\\')) {
         var exr = (input.endsWith('\\'));
         var pipes = input.split('\\');
-        var brd = (input.endsWith('\\')) ? (pipes.length - 2) : (pipes.length - 1);
-        for (it in pipes) {
+        var brd = (input.endsWith('\\')) ? (pipes.length - 2) : (pipes.length - 1); for (it in pipes) {
             if ((it >= 1) && (it <= brd)) {
                 var ark = (pipes[it].includes(':')) ? pipes[it].split(':')[0] : pipes[it];
                 var arv = (pipes[it].includes(':')) ? pipes[it].split(':')[1] : '';
@@ -289,8 +283,7 @@ function pipeExec(input) {
 }
 function omniEnter() {
     var input = omniBox.value, arj = '', arg = [];
-    if (sysDefChat.value != 0) {
-        compose(input);
+    if (sysDefChat.value != 0) { compose(input);
     } else {
         if ((input == 'reload') || (input == 'refresh')) {
             window.location.reload();
@@ -301,8 +294,7 @@ function omniEnter() {
             init_user('1337', 'auto', ob);
         } else if (input == 'upload') {
             document.getElementById('filebrowser').click(); return false;
-        } else if (input == 'song') {
-            songIndex();
+        } else if (input == 'song') { songIndex();
         } else if (input == 'clear') {
             clearJournal('', sysDefMsgData, 'msgbox');
         } else if (input == 'erase') {
@@ -435,25 +427,20 @@ function omniEnter() {
             clearJournal(input.replace('clear ', ''), sysDefMsgData, 'msgbox');
         } else if ((input.includes('erase ')) && (input.startsWith('erase '))) {
             clearJournal(input.replace('erase ', ''), sysDefBookKeep, 'book');
-        } else if ((input.includes('get ')) && (input.startsWith('get '))) {
-            getPkgSequence(input, 'get ', 0);
-        } else if ((input.includes('git ')) && (input.startsWith('git '))) {
-            getPkgSequence(input, 'git ', 1);
+        } else if ((input.includes('get ')) && (input.startsWith('get '))) { getPkgSequence(input, 'get ', 0);
+        } else if ((input.includes('git ')) && (input.startsWith('git '))) { getPkgSequence(input, 'git ', 1);
         } else if ((input.includes('rand ')) && (input.startsWith('rand '))) {
             var numPart = input.replace('rand ', '').split(' ');
             omniBox.value = rand(numPart[0], numPart[1]);
         } else if ((input.includes(';')) && (input.endsWith(';'))) {
             omniBox.value = executeCode(input);
-        } else if (((input.startsWith('/')) && (input.includes('/'))) || ((input.startsWith('\\')) && (input.includes('\\'))) || (input.startsWith('/')) || (input.startsWith('\\'))) {
-            pipeExec(input);
+        } else if (((input.startsWith('/')) && (input.includes('/'))) || ((input.startsWith('\\')) && (input.includes('\\'))) || (input.startsWith('/')) || (input.startsWith('\\'))) { pipeExec(input);
         } else if ((input.includes('&')) || (input.includes('|')) || (input.includes('^')) || (input.includes('~'))) {
             omniBox.value = finarr(arrmath(input)).sort().join(',');
         } else if ((input.includes('.')) && ((input.split('.').length == 3) || (input.split('.').length == 4))) {
             var reh = input.split('.')[2].substring(0, 2);
             var rey = input.split('.')[2].substring(2);
             setdata('background', input.split('.')[0]+'.'+input.split('.')[1]+'.'+input.split('.')[2]+'.png'); setdata('lock', 1); setdata('hour', reh); setdata('entry', rey);
-        } else {
-            omniBox.value = calc(input);
-        }
+        } else { omniBox.value = calc(input); }
     } omniBox.focus();
 }
