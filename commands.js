@@ -3,7 +3,7 @@ function executeMacros(input, index = 0, length = 1) {
     if ((index == (length - 1)) && (input == '_')) {
         omniBack(sysDefParent.value);
     } else if ((index == (length - 1)) && (input == '\\=')) {
-        output = '\\='+dtw(userdata()['melody'], sysDefSessionID.value, '.-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz');
+        output = '\\='+dtw(userdata()['melody'], sysDefSessionID.value, '.-0123456789AÆBCÇDÐEFGHIJKLMNOØŒPÞQRSTUVWXYZaæbcçdðefghijklmnoøœpþqrstuvwxyzΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩαβγδεζηθικλμνξοπρςστυφχψω*=/');
     } else if ((index == (length - 1)) && (input == '&')) {
         unbind(sysDefSessionID.value);
     } else if ((index == (length - 1)) && (input == '$')) {
@@ -131,7 +131,7 @@ function executeMacros(input, index = 0, length = 1) {
         if (input.startsWith('lock_')) {
             output = input + ': ' + lockdata()[input.replace('lock_', '')];
         } else if ((input == 'melody')) {
-            output = input + ': ' + dtw(userdata()[input], sysDefSessionID.value, '.-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz');
+            output = input + ': ' + dtw(userdata()[input], sysDefSessionID.value, '.-0123456789AÆBCÇDÐEFGHIJKLMNOØŒPÞQRSTUVWXYZaæbcçdðefghijklmnoøœpþqrstuvwxyzΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩαβγδεζηθικλμνξοπρςστυφχψω*=/');
         } else {
             output = input + ': ' + userdata()[input];
         }

@@ -9,14 +9,14 @@ function omniListen(input, scratch = false) {
     playAudio(audioPlayer, input);
     currentPos = parseInt(sysDefCurrent.value);
     audioPlayer.currentTime = (scratch) ? 0 : currentPos;
-    setdata('melody', etw(input, sysDefSessionID.value, '.-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'));
+    setdata('melody', etw(input, sysDefSessionID.value, '.-0123456789AÆBCÇDÐEFGHIJKLMNOØŒPÞQRSTUVWXYZaæbcçdðefghijklmnoøœpþqrstuvwxyzΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩαβγδεζηθικλμνξοπρςστυφχψω*=/'));
     setdata('pitch_lock', sysDefPitchLock.value);
     setdata('audio_volume', sysDefAudioVolume.value);
     setdata('audio_speed', sysDefAudioSpeed.value);
 }
 function songIndex(mode = '') {
     var museLint = (sysDefMusicBox.value).split('//');
-    var museMelo = dtw(sysDefMelody.value, sysDefSessionID.value, '.-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz');
+    var museMelo = dtw(sysDefMelody.value, sysDefSessionID.value, '.-0123456789AÆBCÇDÐEFGHIJKLMNOØŒPÞQRSTUVWXYZaæbcçdðefghijklmnoøœpþqrstuvwxyzΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩαβγδεζηθικλμνξοπρςστυφχψω*=/');
     var museInd = arraySearch(((museMelo.startsWith(requestPath.value+'/')) ? museMelo.replace(requestPath.value+'/','') : museMelo), museLint); omniListen(((mode == 'next') ? (((museInd >= (museLint.length-1)) || (museInd === false)) ? museLint[0] : museLint[parseInt(museInd)+1]) : ((mode == 'prev') ? (((museInd <= 0) || (museInd === false)) ? museLint[museLint.length-1] : museLint[parseInt(museInd)-1]) : ((mode == 'random') ? museLint[rand(0, museLint.length)] : museMelo))), true);
 }
 function omniPause() { pauseAudio(audioPlayer); }
