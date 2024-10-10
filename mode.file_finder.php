@@ -20,7 +20,7 @@ $iconSize = 50; include 'file_manager.php'; ?>
     $mediaFileSizeStr = sizestr($mediaFileSize, $settings['locale']['size'], $session['units']); ?>
     <tr><?php if (is_dir($mediaFilename)) {
     $mediaFileFavicon = (file_exists($mediaFilename.'/favicon.png')) ? $mediaFilename.'/favicon.png' : $themePrefix.'directory.png'; ?>
-<td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon;?>" onmouseover="soundButton();"></a></td><td><a style="<?=$preStyle;?>" href="javascript:omniPathDir(%22<?=$mediaFilename;?>%22, requestMode.value);"><?=$mediaFileTitle;?></a></td><td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
+<td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon;?>" loading="lazy" onmouseover="soundButton();"></a></td><td><a style="<?=$preStyle;?>" href="javascript:omniPathDir(%22<?=$mediaFilename;?>%22, requestMode.value);"><?=$mediaFileTitle;?></a></td><td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
 <td><p align='center' class='block'>
 <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor', this.name, 'true');" src="<?=$prefix.'book.png';?>">
 <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
@@ -31,14 +31,14 @@ $iconSize = 50; include 'file_manager.php'; ?>
 <?php } else {
     if (in_array($mediaFileExtension, duplex($settings['collections']['music']))) {
         $mediaFileFavicon = $themePrefix.'music.png'; ?>
-    <td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon;?>" onmouseover="soundButton();"></a></td><td><a style="<?=$preStyle;?>" href="javascript:omniListen(%22<?=$mediaFilename;?>%22, true);"><?=$mediaFileTitle;?></a></td><td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
+    <td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon;?>" loading="lazy" onmouseover="soundButton();"></a></td><td><a style="<?=$preStyle;?>" href="javascript:omniListen(%22<?=$mediaFilename;?>%22, true);"><?=$mediaFileTitle;?></a></td><td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
     <td><p align='center' class='block'>
         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniListen(this.name);" src="<?=$prefix.'play.png';?>">
         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPause();" src="<?=$prefix.'pause.png';?>">
     </p></td>
 <?php } elseif (in_array($mediaFileExtension, duplex($settings['collections']['movie']))) {
         $mediaFileFavicon = $themePrefix.'movie.png'; ?>
-    <td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon;?>" onmouseover="soundButton();"></a></td><td><a style="<?=$preStyle;?>" href="javascript:omniRead('media_player', %22<?=$mediaFilename;?>%22, 'true');"><?=$mediaFileTitle;?></a></td><td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
+    <td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon;?>" loading="lazy" onmouseover="soundButton();"></a></td><td><a style="<?=$preStyle;?>" href="javascript:omniRead('media_player', %22<?=$mediaFilename;?>%22, 'true');"><?=$mediaFileTitle;?></a></td><td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
     <td><p align='center' class='block'>
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor', this.name, 'true');" src="<?=$prefix.'book.png';?>">
     <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
@@ -49,14 +49,14 @@ $iconSize = 50; include 'file_manager.php'; ?>
     </p></td>
 <?php } elseif (in_array($mediaFileExtension, duplex($settings['collections']['audio']))) {
         $mediaFileFavicon = $themePrefix.'audio.png'; ?>
-    <td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon;?>" onmouseover="soundButton();"></a></td><td><a style="<?=$preStyle;?>" href="javascript:omniListen(%22<?=$mediaFilename;?>%22, true);"><?=$mediaFileTitle;?></a></td><td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
+    <td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon;?>" loading="lazy" onmouseover="soundButton();"></a></td><td><a style="<?=$preStyle;?>" href="javascript:omniListen(%22<?=$mediaFilename;?>%22, true);"><?=$mediaFileTitle;?></a></td><td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
     <td><p align='center' class='block'>
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniListen(this.name);" src="<?=$prefix.'play.png';?>">
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPause();" src="<?=$prefix.'pause.png';?>">
     </p></td>
 <?php } elseif (in_array($mediaFileExtension, duplex($settings['collections']['video']))) {
     $mediaFileFavicon = $themePrefix.'video.png'; ?>
-    <td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon;?>" onmouseover="soundButton();"></a></td><td><a style="<?=$preStyle;?>" href="javascript:omniRead('media_player', %22<?=$mediaFilename;?>%22, 'true');"><?=$mediaFileTitle;?></a></td><td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
+    <td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon;?>" loading="lazy" onmouseover="soundButton();"></a></td><td><a style="<?=$preStyle;?>" href="javascript:omniRead('media_player', %22<?=$mediaFilename;?>%22, 'true');"><?=$mediaFileTitle;?></a></td><td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
     <td><p align='center' class='block'>
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor', this.name, 'true');" src="<?=$prefix.'book.png';?>">
     <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
@@ -67,14 +67,14 @@ $iconSize = 50; include 'file_manager.php'; ?>
     </p></td>
 <?php } elseif (in_array($mediaFileExtension, duplex($settings['collections']['midi']))) {
         $mediaFileFavicon = $themePrefix.'midi.png'; ?>
-    <td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon;?>" onmouseover="soundButton();"></a></td><td><a style="<?=$preStyle;?>" href="javascript:playMIDI(%22<?=$mediaFilename;?>%22);"><?=$mediaFileTitle;?></a></td><td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
+    <td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon;?>" loading="lazy" onmouseover="soundButton();"></a></td><td><a style="<?=$preStyle;?>" href="javascript:playMIDI(%22<?=$mediaFilename;?>%22);"><?=$mediaFileTitle;?></a></td><td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
     <td><p align='center' class='block'>
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="playMIDI(this.name);" src="<?=$prefix.'play.png';?>">
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="pauseMIDI();" src="<?=$prefix.'pause.png';?>">
     </p></td>
 <?php } elseif (in_array($mediaFileExtension, duplex($settings['collections']['font']))) {
         $mediaFileFavicon = $themePrefix.'font.png'; ?>
-    <td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon;?>" onmouseover="soundButton();"></a></td><td><a style="<?=$preStyle;?>" href="javascript:omniRead('font_book', %22<?=$mediaFilename;?>%22, 'true');"><?=$mediaFileTitle;?></a></td><td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
+    <td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon;?>" loading="lazy" onmouseover="soundButton();"></a></td><td><a style="<?=$preStyle;?>" href="javascript:omniRead('font_book', %22<?=$mediaFilename;?>%22, 'true');"><?=$mediaFileTitle;?></a></td><td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
     <td><p align='center' class='block'>
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor', this.name, 'false');" src="<?=$prefix.'book.png';?>">
     <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
@@ -85,7 +85,7 @@ $iconSize = 50; include 'file_manager.php'; ?>
     </p></td>
 <?php } elseif (in_array($mediaFileExtension, duplex($settings['collections']['data']))) {
         $mediaFileFavicon = $themePrefix.'database.png'; ?>
-    <td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon;?>" onmouseover="soundButton();"></a></td><td><a style="<?=$preStyle;?>" href="javascript:omniPath(%22<?=$mediaFilename;?>%22, '', 'false');"><?=$mediaFileTitle;?></a></td><td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
+    <td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon;?>" loading="lazy" onmouseover="soundButton();"></a></td><td><a style="<?=$preStyle;?>" href="javascript:omniPath(%22<?=$mediaFilename;?>%22, '', 'false');"><?=$mediaFileTitle;?></a></td><td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
     <td><p align='center' class='block'>
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor', this.name, 'false');" src="<?=$prefix.'book.png';?>">
     <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
@@ -96,7 +96,7 @@ $iconSize = 50; include 'file_manager.php'; ?>
     </p></td>
 <?php } elseif (in_array($mediaFileExtension, duplex($settings['collections']['script']))) {
         $mediaFileFavicon = $themePrefix.'script.png'; ?>
-    <td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon;?>" onmouseover="soundButton();"></a></td><td><a style="<?=$preStyle;?>" href="<?=$mediaFilename;?>"><?=$mediaFileTitle;?></a></td><td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
+    <td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon;?>" loading="lazy" onmouseover="soundButton();"></a></td><td><a style="<?=$preStyle;?>" href="<?=$mediaFilename;?>"><?=$mediaFileTitle;?></a></td><td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
     <td><p align='center' class='block'>
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor', this.name, 'false');" src="<?=$prefix.'book.png';?>">
     <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
@@ -108,7 +108,7 @@ $iconSize = 50; include 'file_manager.php'; ?>
     </td>
 <?php } elseif (in_array($mediaFileExtension, duplex($settings['collections']['book']))) {
         $mediaFileFavicon = $themePrefix.'book.png'; ?>
-    <td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon;?>" onmouseover="soundButton();"></a></td><td><a style="<?=$preStyle;?>" href="<?=$mediaFilename;?>"><?=$mediaFileTitle;?></a></td><td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
+    <td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon;?>" loading="lazy" onmouseover="soundButton();"></a></td><td><a style="<?=$preStyle;?>" href="<?=$mediaFilename;?>"><?=$mediaFileTitle;?></a></td><td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
     <td><p align='center' class='block'>
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor', this.name, 'false');" src="<?=$prefix.'book.png';?>">
     <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
@@ -120,7 +120,7 @@ $iconSize = 50; include 'file_manager.php'; ?>
     </td>
 <?php } elseif (in_array($mediaFileExtension, duplex($settings['collections']['archive']))) {
         $mediaFileFavicon = $themePrefix.'archive.png'; ?>
-    <td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon;?>" onmouseover="soundButton();"></a></td><td><a style="<?=$preStyle;?>" href="<?=$mediaFilename;?>"><?=$mediaFileTitle;?></a></td><td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
+    <td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon;?>" loading="lazy" onmouseover="soundButton();"></a></td><td><a style="<?=$preStyle;?>" href="<?=$mediaFilename;?>"><?=$mediaFileTitle;?></a></td><td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
     <td><p align='center' class='block'>
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor', this.name, 'false');" src="<?=$prefix.'book.png';?>">
     <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
@@ -132,7 +132,7 @@ $iconSize = 50; include 'file_manager.php'; ?>
     </td>
 <?php } elseif ($mediaFileExtension == 'bfc') {
         $mediaFileFavicon = $themePrefix.'briefcase.png'; ?>
-    <td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon;?>" onmouseover="soundButton();"></a></td><td><a style="<?=$preStyle;?>" href="<?=$mediaFilename;?>"><?=$mediaFileTitle;?></a></td><td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
+    <td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon;?>" loading="lazy" onmouseover="soundButton();"></a></td><td><a style="<?=$preStyle;?>" href="<?=$mediaFilename;?>"><?=$mediaFileTitle;?></a></td><td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
     <td><p align='center' class='block'>
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor', this.name, 'false');" src="<?=$prefix.'book.png';?>">
     <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
@@ -144,7 +144,7 @@ $iconSize = 50; include 'file_manager.php'; ?>
     </td>
 <?php } elseif (($mediaFileExtension == 'lnk') || ($mediaFileExtension == 'url')) {
         $mediaFileFavicon = $themePrefix.'link.png'; ?>
-    <td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon;?>" onmouseover="soundButton();"></a></td><td><a style="<?=$preStyle;?>" href="<?=$mediaFilename;?>"><?=$mediaFileTitle;?></a></td><td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
+    <td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon;?>" loading="lazy" onmouseover="soundButton();"></a></td><td><a style="<?=$preStyle;?>" href="<?=$mediaFilename;?>"><?=$mediaFileTitle;?></a></td><td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
     <td><p align='center' class='block'>
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor', this.name, 'false');" src="<?=$prefix.'book.png';?>">
     <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
@@ -161,7 +161,7 @@ $iconSize = 50; include 'file_manager.php'; ?>
         $mediaPkgBranch = $mediaPkgInfo['branch'];
         $mediaPkgRun = (isset($mediaPkgInfo['run']) && ($mediaPkgInfo['run'] != "")) ? $mediaPkgInfo['run'] : "index.php?mode=object_info&sort=&group=&angle=".$request['angle']."&input=".$mediaFileBasename.".pkg&output=".$request['output']."&args=&lock=false&ref=".$request['mode']."&path=".$request['path'];
         $mediaFileFavicon = (file_exists($mediaPkgInfo['favicon'])) ? $mediaPkgInfo['favicon'] : $themePrefix.'package.png';
-    ?><td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon;?>" onmouseover="soundButton();"></a></td><td><a style="<?=$preStyle;?>" href="<?=$mediaPkgRun;?>"><?=$mediaFileTitle;?></a></td><td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
+    ?><td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" loading="lazy" src="<?=$mediaFileFavicon;?>" onmouseover="soundButton();"></a></td><td><a style="<?=$preStyle;?>" href="<?=$mediaPkgRun;?>"><?=$mediaFileTitle;?></a></td><td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
     <td><p align='center' class='block'>
     <input type="image" name="<?=$mediaFileBasename;?>" onmouseover="soundButton();" class="power" onclick="get('i', '<?=$mediaPkgHost;?>', 'from', this.name, '<?=$mediaPkgBranch;?>', '<?=$mediaPkgAuthor;?>', false);" src="<?=$prefix.'update.png';?>">
     <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
@@ -170,7 +170,7 @@ $iconSize = 50; include 'file_manager.php'; ?>
         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'true');" src="<?=$prefix.'info.png';?>">
     <?php } ?></p></td>
 <?php } elseif (in_array($mediaFileExtension, duplex($settings['collections']['image']))) { $mediaFileFavicon = $mediaFilename; ?>
-    <td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon;?>" onmouseover="soundButton();"></a></td><td><a style="<?=$preStyle;?>" href="<?=$mediaFilename;?>"><?=$mediaFileTitle;?></a></td><td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
+    <td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon;?>" loading="lazy" onmouseover="soundButton();"></a></td><td><a style="<?=$preStyle;?>" href="<?=$mediaFilename;?>"><?=$mediaFileTitle;?></a></td><td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
     <td><p align='center' class='block'>
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor', this.name, 'true');" src="<?=$prefix.'book.png';?>">
     <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
@@ -180,7 +180,7 @@ $iconSize = 50; include 'file_manager.php'; ?>
     <?php } ?></p></td>
 <?php } elseif ($mediaFileExtension == 'mac') {
         $mediaFileFavicon = $themePrefix.'bash.png';
-    ?><td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon;?>" onmouseover="soundButton();"></a></td>
+    ?><td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon;?>" loading="lazy" onmouseover="soundButton();"></a></td>
     <td><a style="<?=$preStyle;?>" href="javascript:executeFile(%22<?=$mediaFilename;?>%22);"><?=$mediaFileTitle;?></a></td>
     <td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
     <td><p align='center' class='block'>
@@ -192,7 +192,7 @@ $iconSize = 50; include 'file_manager.php'; ?>
     <?php } ?></p></td>
 <?php } elseif ($mediaFileExtension == 'pro') {
         $mediaFileFavicon = $themePrefix.'speed.png';
-    ?><td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon;?>" onmouseover="soundButton();"></a></td>
+    ?><td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon;?>" loading="lazy" onmouseover="soundButton();"></a></td>
     <td><a style="<?=$preStyle;?>" href="javascript:executeFile(%22<?=$mediaFilename;?>%22, '', true, true);"><?=$mediaFileTitle;?></a></td>
     <td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
     <td><p align='center' class='block'>
@@ -203,7 +203,7 @@ $iconSize = 50; include 'file_manager.php'; ?>
         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'true');" src="<?=$prefix.'info.png';?>">
     <?php } ?></p></td>
 <?php } else { $mediaFileFavicon = $themePrefix.'text.png'; ?>
-    <td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon;?>" onmouseover="soundButton();"></a></td><td><a style="<?=$preStyle;?>" href="<?=$mediaFilename;?>"><?=$mediaFileTitle;?></a></td><td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
+    <td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon;?>" loading="lazy" onmouseover="soundButton();"></a></td><td><a style="<?=$preStyle;?>" href="<?=$mediaFilename;?>"><?=$mediaFileTitle;?></a></td><td><?=$mediaFileSizeStr;?></td><td><?=$mediaFilePerms;?></td>
     <td><p align='center' class='block'>
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor', this.name, 'true');" src="<?=$prefix.'book.png';?>">
     <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
