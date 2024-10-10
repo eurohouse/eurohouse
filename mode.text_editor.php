@@ -71,9 +71,9 @@ $homeDocumentIcon = $themePrefix.'home.png'; ?>
     <img class="actionIcon" loading="lazy" src="<?=$infoDocumentIcon;?>" onmouseover="soundButton();" id="infoButton" onclick="omniPath(filename.value, '', 'true');">
 <?php } ?>
 <img class="actionIcon" loading="lazy" src="<?=$homeDocumentIcon;?>" onmouseover="soundButton();" id="homeButton" onclick="omniBack('<?=$parent?>');"><br>
-<input class="text" id="filename" name="<?=$request['mode'];?>" style="width:46%;" type="text" value="<?=$request['input'];?>" onkeydown="if (event.keyCode == 13) {
+<input class="text" id="filename" name="<?=$request['mode'];?>" style="width:50%;" type="text" value="<?=$request['input'];?>" onkeydown="if (event.keyCode == 13) {
     omniRead(this.name, this.value, 'false');
-}"><input class="text" id="doto" style="width:46%;" type="text" value="" onkeydown="if (event.keyCode == 13) { saveGUI(); }">
+}"><input class="text" id="doto" style="width:50%;" type="text" value="" onkeydown="if (event.keyCode == 13) { saveGUI(); }">
 <textarea class="text" id="content" style="width:100%;height:50%;" oninput="countText();"><?=$content;?></textarea><br>
 <input class="text" id="findbox" style="width:36%;" type="text" value="">
 <input class="text" id="replacebox" style="width:36%;" type="text" value="">
