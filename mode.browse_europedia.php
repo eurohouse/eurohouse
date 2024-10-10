@@ -31,11 +31,13 @@ if (($request['group'] != '') && (strlen($request['group']) > 2)) {
     </tr></thead>
     <tbody><?php foreach ($exemplarArr as $key=>$value) {
         $modelCountryCode = $value['country'];
-        $modelIndexValue = (isset($value['index'])) ? $value['index'] : 0;
+        $modelIndexValues = (isset($value['index'])) ? $value['index'] : '0'; $modelIndexVals = explode(',', $modelIndexValues);
         $countryAva = (file_exists('Flag.'.$modelCountryCode.'.png')) ? 'Flag.'.$modelCountryCode.'.png' : 'Flag.UN.png';
         $letIndexKeys = array_keys($contentsArr, $key);
-        foreach ($letIndexKeys as $lind=>$val) {
-            if ($lind >= $modelIndexValue) { $letModelIMG = $val; break; }
+        $modelIndexes = []; foreach ($letIndexKeys as $lind=>$val) {
+            if ($lind <= max($modelIndexVals)) { $modelIndexes[] = $val; }
+        } foreach ($letIndexKeys as $lind=>$val) {
+            if ($lind >= $modelIndexes) { $letModelIMG = $val; break; }
         } $letModelTitle = (isset($exemplarArr[$key]['language'][$session['units']]['title'])) ? $exemplarArr[$key]['language'][$session['units']]['title'] : $key;
         $modelAva = (file_exists($letModelIMG)) ? $letModelIMG : $themePrefix.'image.png'; ?>
     <tr><td><a href="<?=$modelAva;?>"><img style="width:<?=$iconSize;?>%;" loading="lazy" src="<?=$modelAva;?>" onmouseover="soundButton();"></a></td>
