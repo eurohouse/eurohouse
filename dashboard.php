@@ -74,7 +74,7 @@
     <input type="image" onmouseover="soundButton();" id="buttonAutoplay" class="power" onclick="setdata('autoplay', flip(sysDefAutoplay.value));" src="<?=$prefix.'autoplay.png';?>">
     <input type='button' id="alarmTime" style="width:30%;" onclick="setdata('memo', ''); pauseAudio(alarmPlayer);" value="00:00:00">
     <input type="image" id="buttonPlay" onmouseover="soundButton();" class="power" onclick="if (sysDefPlaying.value == 1) { omniPause();
-    } else { omniListen(hex2bin(sysDefMelody.value)); }" src="<?=$prefix.'play.png';?>">
+    } else { omniListen(dtw(sysDefMelody.value, sysDefSessionID.value, 'あいうえおかがきぎぐけげこごさざしじすずせぜそぞただちぢづてでとどなにぬねのはばぱひびぴふぶぷべぺほぼぽまみむめもやゆよらりるれろわゐゑをんゔゟ')); }" src="<?=$prefix.'play.png';?>">
     <input type="image" onmouseover="soundButton();" id="buttonPitched" class="power" onclick="setdata('pitch_lock', flip(sysDefPitchLock.value));" src="<?=$prefix.(($session['pitch_lock'] != 0)?'midi.png':'volume.png');?>">
     <select id="avatarPicker" style="width:18%;" onchange="setdata('avatar', avatarPicker.options[avatarPicker.selectedIndex].id); if (sysDefReload.value != 0) { window.location.reload(); }">
     <?php foreach (excpkg($kaiser, $locks['avatar']) as $key=>$value) { ?>
