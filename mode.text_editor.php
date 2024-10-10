@@ -51,26 +51,26 @@ $copyDocumentIcon = $themePrefix.'copy.png';
 $deleteDocumentIcon = $themePrefix.'delete.png';
 $infoDocumentIcon = $themePrefix.'info.png';
 $homeDocumentIcon = $themePrefix.'home.png'; ?>
-<img class="actionIcon" src="<?=$newDocumentIcon;?>" onmouseover="soundButton();" id="newButton" onclick="omniRead(requestMode.value, 'file', 'true');">
-<img class="actionIcon" src="<?=$openDocumentIcon;?>" onmouseover="soundButton();" id="openButton" onclick="omniRead(requestMode.value, filename.value, 'false');">
+<img class="actionIcon" loading="lazy" src="<?=$newDocumentIcon;?>" onmouseover="soundButton();" id="newButton" onclick="omniRead(requestMode.value, 'file', 'true');">
+<img class="actionIcon" loading="lazy" src="<?=$openDocumentIcon;?>" onmouseover="soundButton();" id="openButton" onclick="omniRead(requestMode.value, filename.value, 'false');">
 <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
-    <img class="actionIcon" src="<?=$saveDocumentIcon;?>" onmouseover="soundButton();" id="saveButton" onclick="saveGUI();">
+    <img class="actionIcon" loading="lazy" src="<?=$saveDocumentIcon;?>" onmouseover="soundButton();" id="saveButton" onclick="saveGUI();">
 <?php } else { ?>
-    <img class="actionIcon" src="<?=$filmDocumentIcon;?>" onmouseover="soundButton();" id="filmButton" onclick="omniRead('media_player', filename.value, 'true');">
+    <img class="actionIcon" loading="lazy" src="<?=$filmDocumentIcon;?>" onmouseover="soundButton();" id="filmButton" onclick="omniRead('media_player', filename.value, 'true');">
 <?php } ?>
-<img class="actionIcon" src="<?=$mkdirDocumentIcon;?>" onmouseover="soundButton();" id="mkdirButton" onclick="mkdir(filename.value, false);">
+<img class="actionIcon" loading="lazy" src="<?=$mkdirDocumentIcon;?>" onmouseover="soundButton();" id="mkdirButton" onclick="mkdir(filename.value, false);">
 <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
-    <img class="actionIcon" src="<?=$moveDocumentIcon;?>" onmouseover="soundButton();" id="moveButton" onclick="move(filename.value, doto.value, false);">
+    <img class="actionIcon" loading="lazy" src="<?=$moveDocumentIcon;?>" onmouseover="soundButton();" id="moveButton" onclick="move(filename.value, doto.value, false);">
 <?php } else { ?>
-    <img class="actionIcon" src="<?=$dbDocumentIcon;?>" onmouseover="soundButton();" id="dbButton" onclick="omniPath(filename.value, '', 'false');">
+    <img class="actionIcon" loading="lazy" src="<?=$dbDocumentIcon;?>" onmouseover="soundButton();" id="dbButton" onclick="omniPath(filename.value, '', 'false');">
 <?php } ?>
-<img class="actionIcon" src="<?=$copyDocumentIcon;?>" onmouseover="soundButton();" id="copyButton" onclick="copy(filename.value, doto.value, false);">
+<img class="actionIcon" loading="lazy" src="<?=$copyDocumentIcon;?>" onmouseover="soundButton();" id="copyButton" onclick="copy(filename.value, doto.value, false);">
 <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
-    <img class="actionIcon" src="<?=$deleteDocumentIcon;?>" onmouseover="soundButton();" id="deleteButton" onclick="recycle(filename.value, false);">
+    <img class="actionIcon" loading="lazy" src="<?=$deleteDocumentIcon;?>" onmouseover="soundButton();" id="deleteButton" onclick="recycle(filename.value, false);">
 <?php } else { ?>
-    <img class="actionIcon" src="<?=$infoDocumentIcon;?>" onmouseover="soundButton();" id="infoButton" onclick="omniPath(filename.value, '', 'true');">
+    <img class="actionIcon" loading="lazy" src="<?=$infoDocumentIcon;?>" onmouseover="soundButton();" id="infoButton" onclick="omniPath(filename.value, '', 'true');">
 <?php } ?>
-<img class="actionIcon" src="<?=$homeDocumentIcon;?>" onmouseover="soundButton();" id="homeButton" onclick="omniBack('<?=$parent?>');"><br>
+<img class="actionIcon" loading="lazy" src="<?=$homeDocumentIcon;?>" onmouseover="soundButton();" id="homeButton" onclick="omniBack('<?=$parent?>');"><br>
 <input class="text" id="filename" name="<?=$request['mode'];?>" style="width:36%;" type="text" value="<?=$request['input'];?>" onkeydown="if (event.keyCode == 13) {
     omniRead(this.name, this.value, 'false');
 }">
