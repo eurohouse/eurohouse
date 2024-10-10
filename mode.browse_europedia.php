@@ -8,7 +8,7 @@ if ($request['group'] != '') {
         if ($value != $request['group']) { unset($contentsArr[$key]); }
     } ?><p align='center' class='block'>
 <?php foreach ($contentsArr as $key=>$value) { ?>
-    <a href="<?=$key;?>"><img style="height:50%;display:block;object-fit: contain;" loading="lazy" src="<?=$key?>" onmouseover="soundButton();"></a>
+    <a href="<?=$key;?>"><img style="width:50%;display:block;object-fit: contain;" loading="lazy" src="<?=$key?>" onmouseover="soundButton();"></a>
 <?php } ?></p><?php } else {
     $preStyle = "white-space:pre-wrap;word-wrap:break-word;";
     $showLocale = $settings['locale'];
