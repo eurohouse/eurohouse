@@ -8,7 +8,7 @@ window.onload = function() {
     if (window.history.replaceState) {
         window.history.replaceState(null, null, window.location.href);
     } if ((sysDefAutoplay.value == 1) && (sysDefPlaying.value == 1)) {
-        omniListen(hex2bin(sysDefMelody.value));
+        omniListen(dtw(sysDefMelody.value, sysDefSessionID.value, '.-'));
     } if (requestMode.value == 'media_player') {
         replayVideo(video);
     }
