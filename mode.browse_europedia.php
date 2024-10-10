@@ -31,7 +31,7 @@ if ($request['group'] != '') {
         $letModelIMG = array_search($key, $contentsArr);
         $letModelTitle = (isset($exemplarArr[$key]['language'][$session['units']]['title'])) ? $exemplarArr[$key]['language'][$session['units']]['title'] : $key;
         $modelAva = (file_exists($letModelIMG)) ? $letModelIMG : $themePrefix.'image.png'; ?>
-    <tr><td><a href="<?=$modelAva;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$modelAva;?>" onmouseover="soundButton();"></a></td>
+    <tr><td><a href="<?=$modelAva;?>"><img style="width:<?=$iconSize;?>%;" loading="lazy" src="<?=$modelAva;?>" onmouseover="soundButton();"></a></td>
     <td><a href="<?=$countryAva;?>"><img style="width:<?=$preAvaSize;?>%;" src="<?=$countryAva;?>" onmouseover="soundButton();"></a></td>
     <td><a href="javascript:omniSwitch(%22<?=$key;?>%22);"><?=$letModelTitle;?></a></td>
     <td><?=(isset($value['height'])) ? ((isset($showLocale['length'][$session['units']])) ? ((isset($showLocale['length'][$session['units']]['inch'])) ? incher($value['height']) : (round(($value['height'] * $showLocale['length'][$session['units']]['coefficient']), 2))) : (round(($value['height'] * $showLocale['length']['default']['coefficient']), 2))) : 'N/A';?></td>

@@ -13,7 +13,7 @@
                 $menuItemLangVal = explode(': ', $menuItemLangStr)[1];
                 $menuItemLangNew[$menuItemLangKey] = $menuItemLangVal;
             } ?>
-<img onmouseover="soundButton();" name="<?=$value;?>" style="height:20%;" onclick="omniGo(this.name);" src="<?=$elementIcon;?>" title="<?=(isset($menuItemLangNew[$session['units']])) ? $menuItemLangNew[$session['units']] : spaces($value);?>">
+<img onmouseover="soundButton();" loading="lazy" name="<?=$value;?>" style="height:20%;" onclick="omniGo(this.name);" src="<?=$elementIcon;?>" title="<?=(isset($menuItemLangNew[$session['units']])) ? $menuItemLangNew[$session['units']] : spaces($value);?>">
 <?php }} if ($session['apps'] != 0) { foreach ($appIndex as $key=>$value) {
     $eurArrayPkg = (@json_decode(file_get_contents($value), true) != null) ? json_decode(file_get_contents($value), true) : [];
         if (!isset($eurArrayPkg['run'])) {
@@ -30,7 +30,7 @@
         } else {
             $eurArrFavicon = $themePrefix.'package.png';
         } ?>
-<img onmouseover="soundButton();" name="<?=$eurArrPkg['run'];?>" style="height:25%;" onclick="window.location.href=this.name;" src="<?=$eurArrFavicon;?>" title="<?=$eurArrPkg['title'];?>">
+<img onmouseover="soundButton();" loading="lazy" name="<?=$eurArrPkg['run'];?>" style="height:25%;" onclick="window.location.href=this.name;" src="<?=$eurArrFavicon;?>" title="<?=$eurArrPkg['title'];?>">
 <?php }} ?>
 </p>
 <?php } else {
@@ -75,7 +75,7 @@
                 $menuItemLangVal = explode(': ', $menuItemLangStr)[1];
                 $menuItemLangNew[$menuItemLangKey] = $menuItemLangVal;
             } ?>
-        <img onmouseover="soundButton();" name="<?=$menuElementName;?>" style="height:20%;" onclick="omniGo(this.name);" src="<?=$elementIcon;?>" title="<?=(isset($menuItemLangNew[$session['units']])) ? $menuItemLangNew[$session['units']] : spaces($menuElementName);?>">
+        <img onmouseover="soundButton();" loading="lazy" name="<?=$menuElementName;?>" style="height:20%;" onclick="omniGo(this.name);" src="<?=$elementIcon;?>" title="<?=(isset($menuItemLangNew[$session['units']])) ? $menuItemLangNew[$session['units']] : spaces($menuElementName);?>">
         <input type="image" name="<?=$menuElementName;?>" onmouseover="soundButton();" class="power" onclick="this.src = (isInMenu(sysDefMenu.value, this.name))?sysDefPrefix.value+'plus.png':sysDefPrefix.value+'min.png'; setdata('menu', arrangeMenu(sysDefMenu.value, this.name));" src="<?=$prefix.$statusFound.'.png';?>">
         <?php } ?>
         </p>
