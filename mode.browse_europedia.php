@@ -3,7 +3,7 @@
 <?php $imgWSize = 20;
 $exemplarArr = exemplar(str_replace('./','',(glob('./*.models.json'))));
 $contentsArr = exemplar(str_replace('./','',(glob('./*.contents.json'))));
-if (($request['group'] != '') && (strlen($request['group']) > 2)) {
+if ($request['group'] != '') {
     foreach ($contentsArr as $key=>$value) {
         if ($value != $request['group']) { unset($contentsArr[$key]); }
     } ?><p align='center' class='block'>
@@ -19,26 +19,17 @@ if (($request['group'] != '') && (strlen($request['group']) > 2)) {
         } else {
             if (!isset($value['nsfw'])) { unset($exemplarArr[$key]); }
         }
-    } foreach ($exemplarArr as $key=>$value) {
-        if (($request['group'] != '') && (strlen($request['group']) == 2) && ($request['group'] != $value['country'])) {
-            unset($exemplarArr[$key]);
-        }
     } ?><table style="width:90%;" id="table"><thead><tr>
     <th style="width:16%;"><?=term('Image', $settings['vocabulary'], $session['units']);?></th><th style="width:7%;"><?=term('Flag', $settings['vocabulary'], $session['units']);?></th><th style="width:12%;<?=$preStyle;?>"><a href="javascript:SortTable(2, 'T');"><?=term('Name', $settings['vocabulary'], $session['units']);?></a></th>
     <th style="width:5%;<?=$preStyle;?>"><a href="javascript:SortTable(3, 'N');"><?=term('Height', $settings['vocabulary'], $session['units']);?></a></th>
     <th style="width:5%;<?=$preStyle;?>"><a href="javascript:SortTable(4, 'N');"><?=term('Weight', $settings['vocabulary'], $session['units']);?></a></th>
     <th style="width:5%;<?=$preStyle;?>"><a href="javascript:SortTable(5, 'N');"><?=term('Shoe Size', $settings['vocabulary'], $session['units']);?></a></th>
-    </tr></thead>
-    <tbody><?php foreach ($exemplarArr as $key=>$value) {
+    </tr></thead><tbody><?php
+    foreach ($exemplarArr as $key=>$value) {
         $modelCountryCode = $value['country'];
-        $modelIndexValues = (isset($value['index'])) ? $value['index'] : '0'; $modelIndexVals = explode(',', $modelIndexValues);
         $countryAva = (file_exists('Flag.'.$modelCountryCode.'.png')) ? 'Flag.'.$modelCountryCode.'.png' : 'Flag.UN.png';
-        $letIndexKeys = array_keys($contentsArr, $key);
-        $modelIndexes = []; foreach ($letIndexKeys as $lind=>$val) {
-            if ($lind <= max($modelIndexVals)) { $modelIndexes[] = $val; }
-        } foreach ($letIndexKeys as $lind=>$val) {
-            if ($lind >= $modelIndexes) { $letModelIMG = $val; break; }
-        } $letModelTitle = (isset($exemplarArr[$key]['language'][$session['units']]['title'])) ? $exemplarArr[$key]['language'][$session['units']]['title'] : $key;
+        $letModelIMG = array_search($key, $contentsArr);
+        $letModelTitle = (isset($exemplarArr[$key]['language'][$session['units']]['title'])) ? $exemplarArr[$key]['language'][$session['units']]['title'] : $key;
         $modelAva = (file_exists($letModelIMG)) ? $letModelIMG : $themePrefix.'image.png'; ?>
     <tr><td><a href="<?=$modelAva;?>"><img style="width:<?=$iconSize;?>%;" loading="lazy" src="<?=$modelAva;?>" onmouseover="soundButton();"></a></td>
     <td><a href="<?=$countryAva;?>"><img style="width:<?=$preAvaSize;?>%;" src="<?=$countryAva;?>" loading="lazy" onmouseover="soundButton();"></a></td>
