@@ -19,10 +19,10 @@ if ($request['group'] != '') {
             if (!isset($value['nsfw'])) { unset($exemplarArr[$key]); }
         }
     } ?><table style="width:98%;" id="table"><thead><tr>
-    <th style="width:15%;<?=$preStyle;?>"><a href="javascript:SortTable(0, 'T');"><?=term('Name', $settings['vocabulary'], $session['units']);?></a></th>
-    <th style="width:5%;<?=$preStyle;?>"><a href="javascript:SortTable(1, 'N');"><?=term('Height', $settings['vocabulary'], $session['units']);?></a></th>
-    <th style="width:5%;<?=$preStyle;?>"><a href="javascript:SortTable(2, 'N');"><?=term('Weight', $settings['vocabulary'], $session['units']);?></a></th>
-    <th style="width:10%;<?=$preStyle;?>"><a href="javascript:SortTable(3, 'N');"><?=term('Shoe Size', $settings['vocabulary'], $session['units']);?></a></th></tr></thead><tbody>
+    <th style="width:12%;<?=$preStyle;?>"><a href="javascript:SortTable(0, 'T');"><?=term('Name', $settings['vocabulary'], $session['units']);?></a></th>
+    <th style="width:6%;<?=$preStyle;?>"><a href="javascript:SortTable(1, 'N');"><?=term('Height', $settings['vocabulary'], $session['units']);?></a></th>
+    <th style="width:6%;<?=$preStyle;?>"><a href="javascript:SortTable(2, 'N');"><?=term('Weight', $settings['vocabulary'], $session['units']);?></a></th>
+    <th style="width:6%;<?=$preStyle;?>"><a href="javascript:SortTable(3, 'N');"><?=term('Shoe Size', $settings['vocabulary'], $session['units']);?></a></th></tr></thead><tbody>
     <?php foreach ($exemplarArr as $key=>$value) {
         $countryAva = (file_exists('Flag.'.$value['country'].'.png')) ? 'Flag.'.$value['country'].'.png' : 'Flag.UN.png';
         $letModelIMG = array_search($key, $contentsArr);
