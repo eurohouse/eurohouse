@@ -3,7 +3,7 @@
 <?php $imgWSize = 20;
 $exemplarArr = exemplar(str_replace('./','',(glob('./*.models.json'))));
 $contentsArr = exemplar(str_replace('./','',(glob('./*.contents.json'))));
-if ($request['group'] != '') {
+if (($request['group'] != '') && (strlen($request['group']) > 2)) {
     foreach ($contentsArr as $key=>$value) {
         if ($value != $request['group']) { unset($contentsArr[$key]); }
     } ?><p align='center' class='block'>
@@ -18,6 +18,10 @@ if ($request['group'] != '') {
             if (isset($value['nsfw'])) { unset($exemplarArr[$key]); }
         } else {
             if (!isset($value['nsfw'])) { unset($exemplarArr[$key]); }
+        }
+    } foreach ($exemplarArr as $key=>$value) {
+        if (($request['group'] != '') && (strlen($request['group']) == 2) && ($request['group'] != $value['country'])) {
+            unset($exemplarArr[$key]);
         }
     } ?><table style="width:90%;" id="table"><thead><tr>
     <th style="width:16%;"><?=term('Image', $settings['vocabulary'], $session['units']);?></th><th style="width:7%;"><?=term('Flag', $settings['vocabulary'], $session['units']);?></th><th style="width:12%;<?=$preStyle;?>"><a href="javascript:SortTable(2, 'T');"><?=term('Name', $settings['vocabulary'], $session['units']);?></a></th>
