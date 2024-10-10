@@ -8,7 +8,7 @@ if ($request['group'] != '') {
         if ($value != $request['group']) { unset($contentsArr[$key]); }
     } ?><p align='center' class='block'>
 <?php foreach ($contentsArr as $key=>$value) { ?>
-    <a href="<?=$key;?>"><img style="width:<?=$imgWSize;?>%;" src="<?=$key?>" onmouseover="soundButton();"></a>
+    <a href="<?=$key;?>"><img style="width:<?=$imgWSize;?>%;" loading="lazy" src="<?=$key?>" onmouseover="soundButton();"></a>
 <?php } ?></p><?php } else {
     $iconSize = 50; $preAvaSize = 25;
     $preStyle = "white-space:pre-wrap;word-wrap:break-word;";
@@ -32,7 +32,7 @@ if ($request['group'] != '') {
         $letModelTitle = (isset($exemplarArr[$key]['language'][$session['units']]['title'])) ? $exemplarArr[$key]['language'][$session['units']]['title'] : $key;
         $modelAva = (file_exists($letModelIMG)) ? $letModelIMG : $themePrefix.'image.png'; ?>
     <tr><td><a href="<?=$modelAva;?>"><img style="width:<?=$iconSize;?>%;" loading="lazy" src="<?=$modelAva;?>" onmouseover="soundButton();"></a></td>
-    <td><a href="<?=$countryAva;?>"><img style="width:<?=$preAvaSize;?>%;" src="<?=$countryAva;?>" onmouseover="soundButton();"></a></td>
+    <td><a href="<?=$countryAva;?>"><img style="width:<?=$preAvaSize;?>%;" src="<?=$countryAva;?>" loading="lazy" onmouseover="soundButton();"></a></td>
     <td><a href="javascript:omniSwitch(%22<?=$key;?>%22);"><?=$letModelTitle;?></a></td>
     <td><?=(isset($value['height'])) ? ((isset($showLocale['length'][$session['units']])) ? ((isset($showLocale['length'][$session['units']]['inch'])) ? incher($value['height']) : (round(($value['height'] * $showLocale['length'][$session['units']]['coefficient']), 2))) : (round(($value['height'] * $showLocale['length']['default']['coefficient']), 2))) : 'N/A';?></td>
     <td><?=(isset($value['weight'])) ? ((isset($showLocale['mass'][$session['units']])) ? (round($value['weight'] * $showLocale['mass'][$session['units']]['coefficient'])) : (round($value['weight'] * $showLocale['mass']['default']['coefficient']))) : 'N/A';?></td>
