@@ -31,9 +31,12 @@ if (($request['group'] != '') && (strlen($request['group']) > 2)) {
     </tr></thead>
     <tbody><?php foreach ($exemplarArr as $key=>$value) {
         $modelCountryCode = $value['country'];
+        $modelIndexValue = (isset($value['index'])) ? $value['index'] : 0;
         $countryAva = (file_exists('Flag.'.$modelCountryCode.'.png')) ? 'Flag.'.$modelCountryCode.'.png' : 'Flag.UN.png';
-        $letModelIMG = array_search($key, $contentsArr);
-        $letModelTitle = (isset($exemplarArr[$key]['language'][$session['units']]['title'])) ? $exemplarArr[$key]['language'][$session['units']]['title'] : $key;
+        $letIndexKeys = array_keys($contentsArr, $key);
+        foreach ($letIndexKeys as $lind=>$val) {
+            if ($lind >= $modelIndexValue) { $letModelIMG = $val; break; }
+        } $letModelTitle = (isset($exemplarArr[$key]['language'][$session['units']]['title'])) ? $exemplarArr[$key]['language'][$session['units']]['title'] : $key;
         $modelAva = (file_exists($letModelIMG)) ? $letModelIMG : $themePrefix.'image.png'; ?>
     <tr><td><a href="<?=$modelAva;?>"><img style="width:<?=$iconSize;?>%;" loading="lazy" src="<?=$modelAva;?>" onmouseover="soundButton();"></a></td>
     <td><a href="<?=$countryAva;?>"><img style="width:<?=$preAvaSize;?>%;" src="<?=$countryAva;?>" loading="lazy" onmouseover="soundButton();"></a></td>
