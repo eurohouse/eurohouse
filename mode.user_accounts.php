@@ -7,16 +7,15 @@ $relBind = str_replace('_session.json', '', $allUsers); ?>
     </a></th>
     <th style="width:10%;<?=$preStyle;?>"><a href="javascript:SortTable(1, 'T');"><?=term('Username', $settings['vocabulary'], $session['units']);?></a></th>
     <th style="width:10%;"><?=term('Actions', $settings['vocabulary'], $session['units']);?></th>
-    </tr></thead><tbody><?php foreach ($relBind as $key=>$value) {
+    </tr></thead><tbody>
+    <?php foreach ($relBind as $key=>$value) {
         $relTitle = (@json_decode(file_get_contents($value.'_session.json'), true) != null) ? json_decode(file_get_contents($value.'_session.json'), true)['title'] : $value; ?>
         <tr><td><?=$relTitle;?></td>
         <td><?='@'.$value;?></td><td>
         <p align='center' class='block'>
-        <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="bind(sysDefSessionID.value, this.name);" src="<?=$prefix.'chain.png';?>">
-        <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="this.src = (isFriends(this.name))?sysDefPrefix.value+'user.png':sysDefPrefix.value+'anonym.png'; toggleFriend(this.name);" src="<?=$prefix.'user.png';?>">
-        <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name+'_session.json', '', 'false');" src="<?=$prefix.'info.png';?>">
-        <?php if (isAuth()) {
-        if ($sessionID == 'root') { ?>
+        <?php if (isAuth()) { ?>
+            <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="this.src = (isFriends(this.name))?sysDefPrefix.value+'user.png':sysDefPrefix.value+'anonym.png'; toggleFriend(this.name);" src="<?=$prefix.'user.png';?>">
+        <?php if ($sessionID == 'root') { ?>
             <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="delete_user(this.name); window.location.reload();" src="<?=$prefix.'delete.png';?>">
         <?php } else {
             if ($value == $sessionID) { ?>
@@ -25,6 +24,7 @@ $relBind = str_replace('_session.json', '', $allUsers); ?>
                 <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name+'_session.json', '', 'false');" src="<?=$prefix.'info.png';?>">
             <?php }
         }} else { ?>
+        <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="bind(sysDefSessionID.value, this.name);" src="<?=$prefix.'chain.png';?>">
         <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name+'_session.json', '', 'false');" src="<?=$prefix.'info.png';?>">
     <?php } ?></p>
 </td></tr><?php } ?>
