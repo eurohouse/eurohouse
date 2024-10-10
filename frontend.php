@@ -9,7 +9,7 @@ function omniListen(input, scratch = false) {
     playAudio(audioPlayer, input);
     currentPos = parseInt(sysDefCurrent.value);
     audioPlayer.currentTime = (scratch) ? 0 : currentPos;
-    setdata('melody', etw(input, sysDefSessionID.value, '.-'));
+    setdata('melody', etw(input, sysDefSessionID.value, '.-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'));
     setdata('pitch_lock', sysDefPitchLock.value);
     setdata('audio_volume', sysDefAudioVolume.value);
     setdata('audio_speed', sysDefAudioSpeed.value);
