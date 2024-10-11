@@ -31,7 +31,7 @@
     --filter: brightness(<?=$session['brightness'];?>%) saturate(<?=$session['saturation'];?>%) contrast(<?=$session['contrast'];?>%) sepia(<?=$session['sepia'];?>%) grayscale(<?=$session['grayscale'];?>%) hue-rotate(<?=$session['hue'];?>deg);
     --gradient-fore: linear-gradient(180deg, var(--forecolor) 0%, var(--arcforecolor) 100%);
     --gradient-input: linear-gradient(180deg, var(--inputcolor) 0%, var(--arcinputcolor) 100%);
-    --gradient-power: linear-gradient(var(--graddeg), var(--forecolor) 0%, var(--arcforecolor) 100%); 
+    --gradient-power: linear-gradient(var(--graddeg), var(--forecolor) 0%, var(--arcforecolor) 100%);
     --backdrop-filter: none; --overlay-before-bg: none;
     --overlay-before-ani: none; --overlay-after-bg: none; --overlay-after-ani: none;
 }
