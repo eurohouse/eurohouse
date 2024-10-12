@@ -261,9 +261,9 @@ function lux($hex): bool {
     $b = hexdec(substr($hex,4,2));
     return (($r + $g + $b) > 382);
 }
-function rgbap($hex, $opa = '') {
+function rgbap($hex, $opa) {
     $fst = substr($hex,0,6);
-    $lst = (is_int($opa)) ? dechex($opa) : '00';
+    $lst = ($opa == 'IF') ? '00' : (($opa == 'FI') ? 'FF' : dechex($opa));
     return strtoupper($fst.$lst);
 }
 function themed(string $theme, string $assets = 'head'): bool {

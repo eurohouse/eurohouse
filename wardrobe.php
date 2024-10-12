@@ -22,7 +22,7 @@
     --arcinputcolor: #<?=$session['arc_input_color'];?>;
     --background: url("<?=$background;?>");
     --bicolor: #<?=rgbap($session['back_color'], $session['opacity']);?>;
-    --qucolor: #<?=rgbap($session['back_color']);?>;
+    --qucolor: #<?=rgbap($session['back_color'], 'IF');?>;
     --graddeg: #<?=$session['gradient_deg'].'deg';?>;
     --radius: <?=$session['radius'];?>px;
     --box-shadow: <?=$session['box_shadow'];?>;
