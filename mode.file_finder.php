@@ -16,6 +16,7 @@ $iconSize = 50; include 'file_manager.php'; ?>
     $mediaFileExtension = pathinfo($value, PATHINFO_EXTENSION);
     $mediaFileBasename = basename($value, '.'.$mediaFileExtension);
     $mediaFilename = $request['path'].'/'.$value;
+    $mediaFileSize = filesize($mediaFilename);
     $mediaFileSizeStr = sizestr($mediaFileSize, $settings['locale']['size'], $session['units']); ?>
     <tr><?php if (is_dir($mediaFilename)) {
     $mediaFileFavicon = (file_exists($mediaFilename.'/favicon.png')) ? $mediaFilename.'/favicon.png' : $themePrefix.'directory.png'; ?>
@@ -191,7 +192,8 @@ $iconSize = 50; include 'file_manager.php'; ?>
 <?php } elseif ($mediaFileExtension == 'pro') {
         $mediaFileFavicon = $themePrefix.'speed.png';
     ?><td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon;?>" loading="lazy" onmouseover="soundButton();"></a></td>
-    <td><a style="<?=$preStyle;?>" href="javascript:executeFile(%22<?=$mediaFilename;?>%22, '', true, true);"><?=$mediaFileTitle;?></a></td><td><?=$mediaFileSizeStr;?></td>
+    <td><a style="<?=$preStyle;?>" href="javascript:executeFile(%22<?=$mediaFilename;?>%22, '', true, true);"><?=$mediaFileTitle;?></a></td>
+    <td><?=$mediaFileSizeStr;?></td>
     <td><p align='center' class='block'>
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor', this.name, 'true');" src="<?=$prefix.'book.png';?>">
     <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
