@@ -59,17 +59,22 @@ function world_clock() {
     $.ajax({
         url: 'world_clock.php',
         success: function(data) {
-            $('#currentTime').val(pager(data, 0)); var enzi = pager(data, 1).split(' ');
-            $('#alarmTime').val(pager(data, 2)); var effi = pager(data, 3).split(';');
+            $('#currentTime').val(pager(data, 0));
+            var enzi = pager(data, 1).split(' ');
+            $('#alarmTime').val(pager(data, 2));
+            var effi = pager(data, 3).split(';');
             init_user(sysDefSessionID.value, 'manual');
-            var mixers = pager(data, 4).split(' '), fint = pager(data, 5).split(' | ');
-            var pngm = pager(data, 6), bndm = arrjob(sysDefBindData.value,';',':')[sysDefSessionID.value]; if (requestMode.value == 'volume_control') {
+            var mixers = pager(data, 4).split(' ')
+            var fint = pager(data, 5).split(' | ');
+            var pngm = pager(data, 6);
+            var bndm = arrjob(sysDefBindData.value,';',':')[sysDefSessionID.value];
+            if (requestMode.value == 'volume_control') {
                 audioVolInd.value = mixers[0]; audioRatInd.value = mixers[1];
                 videoVolInd.value = mixers[2]; videoRatInd.value = mixers[3];
                 alarmVolInd.value = mixers[4]; timerVolInd.value = mixers[5];
                 loopVolInd.value = mixers[6]; restVolInd.value = mixers[7];
-            } var tickCode = enzi[0]; var tickPanel = enzi[1];
-            var obs = tickPanel.split('')[0]; var spe = tickPanel.split('')[1];
+            } document.querySelector(':root').style.setProperty('--bicolor', '#'+(sysDefBackColor.value).toString()+enzi[2]);
+            var obs = enzi[1].split('')[0], spe = enzi[1].split('')[1];
             sysDefMsgCounter.value = (sysDefMsgCounter.value <= 0) ? (Object.keys(jsonFilter(sysDefMsgData.value, sysDefFind.value)).length - 1) : (sysDefMsgCounter.value - 1);
             $('#showUsUrgent').text(Object.values(jsonFilter(sysDefMsgData.value, sysDefFind.value, 'msg'))[sysDefMsgCounter.value]);
             if (sysDefVintage.value != sysDefPostBackEff.value) {
@@ -145,11 +150,11 @@ function world_clock() {
             document.querySelector(':root').style.setProperty('--overlay-before-ani', effi[2]);
             document.querySelector(':root').style.setProperty('--overlay-after-bg', effi[3]);
             document.querySelector(':root').style.setProperty('--overlay-after-ani', effi[4]);
-            if (tickCode.split('')[1] != 0) {
+            if (enzi[0].split('')[1] != 0) {
                 playAudio(tickerPlayer, sysDefTickingSound.value);
             } else {
                 pauseAudio(tickerPlayer);
-            } if (tickCode.split('')[0] != 0) {
+            } if (enzi[0].split('')[0] != 0) {
                 playAudio(alarmPlayer, sysDefAlarmSound.value); setdata('memo', '');
             }
         },
@@ -177,9 +182,7 @@ function visual_effects() {
     document.querySelector(':root').style.setProperty('--blanktextcolor', '#'+sysDefBlankTextColor.value);
     document.querySelector(':root').style.setProperty('--arcforecolor', '#'+sysDefArcForeColor.value);
     document.querySelector(':root').style.setProperty('--arcinputcolor', '#'+sysDefArcInputColor.value);
-    //document.querySelector(':root').style.setProperty('--bicolor', '#'+(sysDefBackColor.value).toString()+hexify(sysDefOpacity.value).toString());
-    document.querySelector(':root').style.setProperty('--bicolor', '#'+sysDefBackColor.value);
-    document.querySelector(':root').style.setProperty('--qucolor', '#'+sysDefBackColor.value);
+    document.querySelector(':root').style.setProperty('--qucolor', '#'+sysDefBackColor.value+'00');
     document.querySelector(':root').style.setProperty('--radius', sysDefRadius.value+'px');
     document.querySelector(':root').style.setProperty('--box-shadow', sysDefBoxShadow.value);
     document.querySelector(':root').style.setProperty('--text-box-shadow', sysDefTextBoxShadow.value)
