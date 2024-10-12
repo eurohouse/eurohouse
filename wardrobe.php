@@ -29,6 +29,7 @@
     --text-box-shadow: <?=$session['text_box_shadow'];?>;
     --blur: blur(<?=$session['blur'];?>px); --position: <?=$session['position'];?>;
     --filter: brightness(<?=$session['brightness'];?>%) saturate(<?=$session['saturation'];?>%) contrast(<?=$session['contrast'];?>%) sepia(<?=$session['sepia'];?>%) grayscale(<?=$session['grayscale'];?>%) hue-rotate(<?=$session['hue'];?>deg);
+    --blur-filter: blur(<?=$session['blur'];?>px) brightness(<?=$session['brightness'];?>%) saturate(<?=$session['saturation'];?>%) contrast(<?=$session['contrast'];?>%) sepia(<?=$session['sepia'];?>%) grayscale(<?=$session['grayscale'];?>%) hue-rotate(<?=$session['hue'];?>deg);
     --gradient-fore: linear-gradient(180deg, var(--forecolor) 0%, var(--arcforecolor) 100%);
     --gradient-input: linear-gradient(180deg, var(--inputcolor) 0%, var(--arcinputcolor) 100%);
     --gradient-power: linear-gradient(var(--graddeg), var(--forecolor) 0%, var(--arcforecolor) 100%);
@@ -90,8 +91,8 @@
     src: url("<?=$request['input'];?>");
 }
 body {
-    -moz-filter: var(--filter); -webkit-filter: var(--filter);
-    filter: var(--filter); -moz-backdrop-filter: var(--blur);
+    -moz-filter: var(--blur-filter); -webkit-filter: var(--filter);
+    filter: var(--filter); -moz-backdrop-filter: var(--blur-filter);
     -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur);
     background-image: var(--background); background-size: cover;
     background-repeat: no-repeat; background-position: var(--position);
