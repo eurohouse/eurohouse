@@ -91,9 +91,12 @@
     src: url("<?=$request['input'];?>");
 }
 body {
-    -moz-filter: var(--blur-filter); -webkit-filter: var(--filter);
-    filter: var(--filter); -moz-backdrop-filter: var(--blur-filter);
-    -webkit-backdrop-filter: var(--blur); backdrop-filter: var(--blur);
+    -moz-filter: var(--blur-filter);
+    -webkit-filter: var(--blur-filter);
+    filter: var(--blur-filter);
+    -moz-backdrop-filter: var(--blur-filter);
+    -webkit-backdrop-filter: var(--blur-filter);
+    backdrop-filter: var(--blur-filter);
     background-image: var(--background); background-size: cover;
     background-repeat: no-repeat; background-position: var(--position);
     background-color: var(--backcolor); color: var(--backtextcolor);
