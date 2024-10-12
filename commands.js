@@ -1,6 +1,5 @@
 function executeMacros(input, index = 0, length = 1) {
-    var output = input, rep, san;
-    if ((index == (length - 1)) && (input == '_')) {
+    var output = input, rep, san, atr, atd, atx, plu, np, inc, np1, np2, mil; if ((index == (length - 1)) && (input == '_')) {
         omniBack(sysDefParent.value);
     } else if ((index == (length - 1)) && (input == '\\=')) {
         output = '\\='+dtw(userdata()['melody'], sysDefSessionID.value, 'あいうえおかがきぎぐけげこごさざしじすずせぜそぞただちぢづてでとどなにぬねのはばぱひびぴふぶぷべぺほぼぽまみむめもやゆよらりるれろわゐゑをんゔゟ');
@@ -12,13 +11,16 @@ function executeMacros(input, index = 0, length = 1) {
         // YOUR COMMENTS HERE...
     } else if ((index == (length - 1)) && (input.includes('\\=')) && (input.startsWith('\\='))) {
         omniListen(input.replace('\\=', ''), true);
+    } else if ((index == (length - 1)) && (input.includes('\\:')) && (input.startsWith('\\:'))) {
+        rep = input.replace('\\:', '').split('/');
+        omniListen('https://bitbucket.org/baronnaise/'+rep[0]+'/raw/master/'+rep[1]+'.aac', true);
     } else if ((index == (length - 1)) && (input.includes("\\")) && (input.startsWith('\\'))) {
-        var namePart = input.replace("\\", ''), nameInc = 0;
-        var namePart1 = (namePart.includes(':')) ? namePart.split(':')[0] : namePart; var namePart2 = (namePart.includes(':')) ? namePart.split(':')[1] : 0;
-        var museLint = (sysDefMusicBox.value).split('//');
-        for (i = 0; i < museLint.length; i++) {
-            if (museLint[i].toLowerCase().includes(namePart1.toLowerCase())) {
-                if (nameInc >= namePart2) { omniListen(museLint[i], true); break; } nameInc++;
+        np = input.replace("\\", ''), inc = 0;
+        var np1 = (np.includes(':')) ? np.split(':')[0] : np; var np2 = (np.includes(':')) ? np.split(':')[1] : 0;
+        var mil = (sysDefMusicBox.value).split('//');
+        for (i = 0; i < mil.length; i++) {
+            if (mil[i].toLowerCase().includes(np1.toLowerCase())) {
+                if (inc >= np2) { omniListen(mil[i], true); break; } inc++;
             } omniPause();
         }
     } else if ((index == (length - 1)) && (input.includes('./')) && (input.startsWith('./'))) {
@@ -26,10 +28,9 @@ function executeMacros(input, index = 0, length = 1) {
     } else if ((index == (length - 1)) && (input.includes('*'))) {
         omniDisp(requestMode.value, input.replace('*', ''), requestLock.value);
     } else if ((index == (length - 1)) && (input.includes('@'))) {
-        var atr = input.split('@'), atd, atx;
+        atr = input.split('@'), atd, atx;
         if (atr[0].includes(':')) {
-            atd = atr[0].split(':'); atx = CryptoJS.SHA256(atd[1]).toString();
-            if (atr[1].includes('signin')) {
+            atd = atr[0].split(':'); atx = CryptoJS.SHA256(atd[1]).toString(); if (atr[1].includes('signin')) {
                 omniAuthRequest('signin', atd[0], atx);
             } else if (atr[1].includes('signup')) {
                 omniAuthRequest('signup', atd[0], atx);
@@ -101,17 +102,17 @@ function executeMacros(input, index = 0, length = 1) {
         window.location.href = input.replace('=', '');
     } else if ((index == (length - 1)) && (input.includes('+')) && (input.startsWith('+'))) {
         if (input.replace('+', '').includes('h')) {
-            sansPlus = parseInt(input.replace('+', '').replace('h', '')) * 3600; setdata('memo', (Math.round(Date.now() / 1000) + parseInt(sansPlus)));
+            plu = parseInt(input.replace('+', '').replace('h', '')) * 3600; setdata('memo', (Math.round(Date.now() / 1000) + parseInt(plu)));
         } else if (input.replace('+', '').includes('min')) {
-            sansPlus = parseInt(input.replace('+', '').replace('min', '')) * 60; setdata('memo', (Math.round(Date.now() / 1000) + parseInt(sansPlus)));
+            plu = parseInt(input.replace('+', '').replace('min', '')) * 60; setdata('memo', (Math.round(Date.now() / 1000) + parseInt(plu)));
         } else if (input.replace('+', '').includes('m')) {
-            sansPlus = parseInt(input.replace('+', '').replace('m', '')) * 60; setdata('memo', (Math.round(Date.now() / 1000) + parseInt(sansPlus)));
+            plu = parseInt(input.replace('+', '').replace('m', '')) * 60; setdata('memo', (Math.round(Date.now() / 1000) + parseInt(plu)));
         } else if (input.replace('+', '').includes('sec')) {
-            sansPlus = parseInt(input.replace('+', '').replace('sec', ''));
-            setdata('memo', (Math.round(Date.now() / 1000) + parseInt(sansPlus)));
+            plu = parseInt(input.replace('+', '').replace('sec', ''));
+            setdata('memo', (Math.round(Date.now() / 1000) + parseInt(plu)));
         } else if (input.replace('+', '').includes('s')) {
-            sansPlus = parseInt(input.replace('+', '').replace('s', ''));
-            setdata('memo', (Math.round(Date.now() / 1000) + parseInt(sansPlus)));
+            plu = parseInt(input.replace('+', '').replace('s', ''));
+            setdata('memo', (Math.round(Date.now() / 1000) + parseInt(plu)));
         } else { audioPosition(input.replace('+', '')); }
     } else if ((index == (length - 1)) && (input.includes('.'))) {
         if (input.startsWith('.')) {
