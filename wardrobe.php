@@ -21,7 +21,7 @@
     --arcforecolor: #<?=$session['arc_fore_color'];?>;
     --arcinputcolor: #<?=$session['arc_input_color'];?>;
     --background: url("<?=$background;?>");
-    --bicolor: #<?=$session['back_color'].dechex($session['opacity']);?>;
+    --bicolor: #<?=$session['back_color'].strtoupper(dechex($session['opacity']));?>;
     --qucolor: #<?=$session['back_color'].'00';?>;
     --graddeg: #<?=$session['gradient_deg'].'deg';?>;
     --radius: <?=$session['radius'];?>px;
