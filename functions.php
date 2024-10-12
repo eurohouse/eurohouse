@@ -261,6 +261,11 @@ function lux($hex): bool {
     $b = hexdec(substr($hex,4,2));
     return (($r + $g + $b) > 382);
 }
+function rgbap($hex, $opa = '') {
+    $fst = substr($hex,0,6);
+    $lst = (is_int($opa)) ? dechex($opa) : '00';
+    return strtoupper($fst.$lst);
+}
 function themed(string $theme, string $assets = 'head'): bool {
     $arr = explode(',', $assets); $basket = true;
     foreach ($arr as $val) {
