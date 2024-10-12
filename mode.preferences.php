@@ -139,7 +139,7 @@
 <input type="number" min='0' max='9' step='1' id="setMagnitude" style="width:14%;" value="<?=$session['magnitude'];?>" oninput="setdata('magnitude', setMagnitude.value); handleInput(this.value, true);" onkeydown="if (event.keyCode == 27) { this.value = 5;
 } else if (event.keyCode == 8) { handleInput(this.value);
 } else if (event.keyCode == 46) { handleInput(this.value); }"><br>
-<input type="text" id="setGradDeg" style="width:15%;" value="<?=$session['gradient'];?>" onkeydown="if (even.keyCode == 13) {
+<input type="text" id="setGradDeg" style="width:15%;" value="<?=$session['gradient'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('gradient', this.value);
 } else if (event.keyCode == 27) { this.value = '180';
 } else if (event.keyCode == 8) { handleInput(this.value);
