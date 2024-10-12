@@ -23,7 +23,7 @@
     --background: url("<?=$background;?>");
     --bicolor: #<?=rgbap($session['back_color'], $session['opacity']);?>;
     --qucolor: #<?=rgbap($session['back_color'], 'IF');?>;
-    --graddeg: #<?=$session['gradient_deg'].'deg';?>;
+    --graddeg: #<?=$session['gradient'].'deg';?>;
     --radius: <?=$session['radius'];?>px;
     --box-shadow: <?=$session['box_shadow'];?>;
     --text-box-shadow: <?=$session['text_box_shadow'];?>;
