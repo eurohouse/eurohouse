@@ -1,6 +1,6 @@
 <!-- directory -->
 <!-- GR: Εξερεύνηση αρχείων; CY: Εξερεύνηση αρχείων; DE: Datei-Explorer; CH: Explorare Documentas; AT: Datei-Explorer; IT: Esplora risorse; FR: Explorateur de fichiers; BE: Explorateur de fichiers; ES: Explorador de archivos; RU: Файловый проводник; TR: Dosya Gezgini; LK: सञ्चिका अन्वेषकः; IN: फाइल ढूँढने वाला; NP: ཡིག་ཆ་འཚོལ་ཞིབ་ཆས།; RO: Explorator de fișiere; MD: Explorator de fișiere; BR: Explorador de arquivos; PT: Explorador de ficheiros; MX: Explorador de archivos; UA: Файловий провідник; CN: 文件管理器; KR: 파일 관리자; JP: ファイル管理; AE: مستكشف الملفات -->
-<?php $line1Size = 60; $line2Size = 20;
+<?php $line1Size = 64; $line2Size = 16;
 include 'file_manager.php'; foreach ($index as $key=>$value) {
     $mediaFileExtension = pathinfo($value, PATHINFO_EXTENSION);
     $mediaFileBasename = basename($value, '.'.$mediaFileExtension);
