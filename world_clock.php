@@ -33,7 +33,7 @@ $termPri = (isset($voc[$uni]['Price'])) ? $voc[$uni]['Price'] : 'Price';
 $termOper = (isset($voc[$uni]['User Operation:'])) ? $voc[$uni]['User Operation:'] : 'User Opeation:';
 $termScore = (isset($voc[$uni]['User Score Tab:'])) ? $voc[$uni]['User Score Tab:'] : 'User Score Tab:';
 echo $dateTimeStr."\r\n\r\n". // Read Line 0
-$dateTimeCode." ".$userData['observe'].$userData['spectate']." ".$userData['back_color'].dechex($userData['opacity'])."\r\n\r\n". // Read Line 1
+$dateTimeCode." ".$userData['observe'].$userData['spectate']." ".$userData['back_color'].strtoupper(dechex($userData['opacity']))."\r\n\r\n". // Read Line 1
 hHmMsS($alarmInTime)."\r\n\r\n". // Read Line 2
 $vintageBackdropFilter.";".$overlayBeforeBackground.";".$overlayBeforeAnimation.";".$overlayAfterBackground.";".$overlayAfterAnimation."\r\n\r\n". // Read Line 3
 $userData['audio_volume'].' '.$userData['audio_speed'].' '.$userData['video_volume'].' '.$userData['video_speed'].' '.$userData['alarm_volume'].' '.$userData['timer_volume'].' '.$userData['loop_volume'].' '.$userData['rest_volume']."\r\n\r\n". // Read Line 4
