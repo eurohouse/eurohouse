@@ -3,8 +3,7 @@ include 'functions.php';
 $cookie = (isset($_COOKIE['user'])) ? $_COOKIE['user'] : 'root';
 $userSettings = fileopen('settings.json');
 $userData = arropen($cookie.'_session.json', json_encode($userSettings['defaults']), 'DEFAULT');
-$timezone = dec_tz($userData['timezone']);
-date_default_timezone_set($timezone);
+$timezone = dec_tz($userData['timezone']); date_default_timezone_set($timezone);
 if ($userData['memo'] != '') {
     $valueTime = $userData['memo']; if (time() >= $valueTime) {
         $ongoingSignature = 1; $incomingSignature = 0; $alarmInTime = 0;
@@ -14,8 +13,7 @@ if ($userData['memo'] != '') {
 } else {
     $ongoingSignature = 0; $incomingSignature = 0; $alarmInTime = 0;
 } $dateTimeCode = $ongoingSignature.$incomingSignature.date('w');
-$dateTimeStr = ($userData['timedisp'] != 0) ? date($userData['date_format']) : date($userData['time_format']);
-if ($userData['vintage'] != 0) {
+$dateTimeStr = ($userData['timedisp'] != 0) ? date($userData['date_format']) : date($userData['time_format']); if ($userData['vintage'] != 0) {
     $vintageBackdropFilter = "blur(0.".round($userData['magnitude']/1.5)."px)";
     $overlayBeforeBackground = "repeating-linear-gradient(90deg, #000".$userData['magnitude']." 0 ".round($userData['magnitude']/2.5)."px, transparent ".round($userData['magnitude']/3.5)."px 35vmin)";
     $overlayBeforeAnimation = "vlines 0.45s steps(1) infinite";
@@ -34,10 +32,10 @@ $termQua = (isset($voc[$uni]['Amount'])) ? $voc[$uni]['Amount'] : 'Amount';
 $termPri = (isset($voc[$uni]['Price'])) ? $voc[$uni]['Price'] : 'Price';
 $termOper = (isset($voc[$uni]['User Operation:'])) ? $voc[$uni]['User Operation:'] : 'User Opeation:';
 $termScore = (isset($voc[$uni]['User Score Tab:'])) ? $voc[$uni]['User Score Tab:'] : 'User Score Tab:';
-echo $dateTimeStr."\r\n\r\n".
-$dateTimeCode." ".$userData['observe'].$userData['spectate']."\r\n\r\n".
-hHmMsS($alarmInTime)."\r\n\r\n".
-$vintageBackdropFilter.";".$overlayBeforeBackground.";".$overlayBeforeAnimation.";".$overlayAfterBackground.";".$overlayAfterAnimation."\r\n\r\n".
-$userData['audio_volume'].' '.$userData['audio_speed'].' '.$userData['video_volume'].' '.$userData['video_speed'].' '.$userData['alarm_volume'].' '.$userData['timer_volume'].' '.$userData['loop_volume'].' '.$userData['rest_volume']."\r\n\r\n".
-$termDeb.' | '.$termCre.' | '.$termBal.' | '.$termNom.' | '.$termQua.' | '.$termPri.' | '.$termOper.' | '.$termScore."\r\n\r\n".
-$userData['pangram_'.(($userSettings['pangram'][$uni]) ? $userSettings['pangram'][$uni] : $userSettings['pangram']['default'])];
+echo $dateTimeStr."\r\n\r\n". // Read Line 0
+$dateTimeCode." ".$userData['observe'].$userData['spectate']."\r\n\r\n". // Read Line 1
+hHmMsS($alarmInTime)."\r\n\r\n". // Read Line 2
+$vintageBackdropFilter.";".$overlayBeforeBackground.";".$overlayBeforeAnimation.";".$overlayAfterBackground.";".$overlayAfterAnimation."\r\n\r\n". // Read Line 3
+$userData['audio_volume'].' '.$userData['audio_speed'].' '.$userData['video_volume'].' '.$userData['video_speed'].' '.$userData['alarm_volume'].' '.$userData['timer_volume'].' '.$userData['loop_volume'].' '.$userData['rest_volume']."\r\n\r\n". // Read Line 4
+$termDeb.' | '.$termCre.' | '.$termBal.' | '.$termNom.' | '.$termQua.' | '.$termPri.' | '.$termOper.' | '.$termScore."\r\n\r\n". // Read Line 5
+$userData['pangram_'.(($userSettings['pangram'][$uni]) ? $userSettings['pangram'][$uni] : $userSettings['pangram']['default'])]; // Read Line 6

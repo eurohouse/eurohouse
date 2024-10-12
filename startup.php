@@ -156,56 +156,52 @@ function world_clock() {
     });
 }
 function visual_effects() {
-    $.ajax({
-        url: 'visual_effects.php',
-        success: function(data) {
-            document.querySelector(':root').style.setProperty('--graddeg', sysDefGradientDeg.value+'deg');
-            document.querySelector(':root').style.setProperty('--backsize', sysDefBackSize.value+'pt');
-            document.querySelector(':root').style.setProperty('--foresize', sysDefForeSize.value+'pt');
-            document.querySelector(':root').style.setProperty('--inputsize', sysDefInputSize.value+'pt');
-            document.querySelector(':root').style.setProperty('--head1size', sysDefHead1Size.value+'pt');
-            document.querySelector(':root').style.setProperty('--head2size', sysDefHead2Size.value+'pt');
-            document.querySelector(':root').style.setProperty('--head3size', sysDefHead3Size.value+'pt');
-            document.querySelector(':root').style.setProperty('--dispsize', sysDefDispSize.value+'pt');
-            document.querySelector(':root').style.setProperty('--priv1size', sysDefPriv1Size.value+'pt');
-            document.querySelector(':root').style.setProperty('--priv2size', sysDefPriv2Size.value+'pt');
-            document.querySelector(':root').style.setProperty('--priv3size', sysDefPriv3Size.value+'pt');
-            document.querySelector(':root').style.setProperty('--backcolor', '#'+sysDefBackColor.value);
-            document.querySelector(':root').style.setProperty('--forecolor', '#'+sysDefForeColor.value);
-            document.querySelector(':root').style.setProperty('--inputcolor', '#'+sysDefInputColor.value);
-            document.querySelector(':root').style.setProperty('--backtextcolor', '#'+sysDefBackTextColor.value);
-            document.querySelector(':root').style.setProperty('--foretextcolor', '#'+sysDefForeTextColor.value);
-            document.querySelector(':root').style.setProperty('--inputtextcolor', '#'+sysDefInputTextColor.value);
-            document.querySelector(':root').style.setProperty('--blankcolor', '#'+sysDefBlankColor.value);
-            document.querySelector(':root').style.setProperty('--blanktextcolor', '#'+sysDefBlankTextColor.value);
-            document.querySelector(':root').style.setProperty('--arcforecolor', '#'+sysDefArcForeColor.value);
-            document.querySelector(':root').style.setProperty('--arcinputcolor', '#'+sysDefArcInputColor.value);
-            document.querySelector(':root').style.setProperty('--bicolor', '#'+miniPager(data, 0));
-            document.querySelector(':root').style.setProperty('--qucolor', '#'+sysDefBackColor.value+'00');
-            document.querySelector(':root').style.setProperty('--radius', sysDefRadius.value+'px');
-            document.querySelector(':root').style.setProperty('--box-shadow', sysDefBoxShadow.value);
-            document.querySelector(':root').style.setProperty('--text-box-shadow', sysDefTextBoxShadow.value)
-            document.querySelector(':root').style.setProperty('--blur', 'blur('+sysDefBlur.value+'px)');
-            document.querySelector(':root').style.setProperty('--filter', 'brightness('+sysDefBrightness.value+'%) saturate('+sysDefSaturation.value+'%) contrast('+sysDefContrast.value+'%) sepia('+sysDefSepia.value+'%) grayscale('+sysDefGrayscale.value+'%) hue-rotate('+sysDefHue.value+'deg)'); if (sysDefGloss.value == 1) {
-                $('.power').css('background', 'linear-gradient('+sysDefGradientDeg.value+'deg, #'+sysDefForeColor.value+' 0%, #'+sysDefArcForeColor.value+' 100%)');
-                document.querySelector(':root').style.setProperty('--gradient-fore', 'linear-gradient(180deg, #'+sysDefForeColor.value+' 0%, #'+sysDefArcForeColor.value+' 100%)');
-                document.querySelector(':root').style.setProperty('--gradient-input', 'linear-gradient(180deg, #'+sysDefInputColor.value+' 0%, #'+sysDefArcInputColor.value+' 100%)');
-            } else {
-                $('.power').css('background', 'linear-gradient('+sysDefGradientDeg.value+'deg, #'+sysDefForeColor.value+' 0%, #'+sysDefForeColor.value+' 100%)');
-                document.querySelector(':root').style.setProperty('--gradient-fore', 'linear-gradient(180deg, #'+sysDefForeColor.value+' 0%, #'+sysDefForeColor.value+' 100%)');
-                document.querySelector(':root').style.setProperty('--gradient-input', 'linear-gradient(180deg, #'+sysDefInputColor.value+' 0%, #'+sysDefInputColor.value+' 100%)');
-            } if (requestMode.value == 'visual_effects') {
-                opacityInd.value = sysDefOpacity.value;
-                blurInd.value = sysDefBlur.value+'px';
-                brightnessInd.value = sysDefBrightness.value+'%';
-                saturationInd.value = sysDefSaturation.value+'%';
-                contrastInd.value = sysDefContrast.value+'%';
-                sepiaInd.value = sysDefSepia.value+'%';
-                grayInd.value = sysDefGrayscale.value+'%';
-                hueInd.value = sysDefHue.value+'deg';
-            }
-        },
-    });
+    document.querySelector(':root').style.setProperty('--graddeg', sysDefGradientDeg.value+'deg');
+    document.querySelector(':root').style.setProperty('--backsize', sysDefBackSize.value+'pt');
+    document.querySelector(':root').style.setProperty('--foresize', sysDefForeSize.value+'pt');
+    document.querySelector(':root').style.setProperty('--inputsize', sysDefInputSize.value+'pt');
+    document.querySelector(':root').style.setProperty('--head1size', sysDefHead1Size.value+'pt');
+    document.querySelector(':root').style.setProperty('--head2size', sysDefHead2Size.value+'pt');
+    document.querySelector(':root').style.setProperty('--head3size', sysDefHead3Size.value+'pt');
+    document.querySelector(':root').style.setProperty('--dispsize', sysDefDispSize.value+'pt');
+    document.querySelector(':root').style.setProperty('--priv1size', sysDefPriv1Size.value+'pt');
+    document.querySelector(':root').style.setProperty('--priv2size', sysDefPriv2Size.value+'pt');
+    document.querySelector(':root').style.setProperty('--priv3size', sysDefPriv3Size.value+'pt');
+    document.querySelector(':root').style.setProperty('--backcolor', '#'+sysDefBackColor.value);
+    document.querySelector(':root').style.setProperty('--forecolor', '#'+sysDefForeColor.value);
+    document.querySelector(':root').style.setProperty('--inputcolor', '#'+sysDefInputColor.value);
+    document.querySelector(':root').style.setProperty('--backtextcolor', '#'+sysDefBackTextColor.value);
+    document.querySelector(':root').style.setProperty('--foretextcolor', '#'+sysDefForeTextColor.value);
+    document.querySelector(':root').style.setProperty('--inputtextcolor', '#'+sysDefInputTextColor.value);
+    document.querySelector(':root').style.setProperty('--blankcolor', '#'+sysDefBlankColor.value);
+    document.querySelector(':root').style.setProperty('--blanktextcolor', '#'+sysDefBlankTextColor.value);
+    document.querySelector(':root').style.setProperty('--arcforecolor', '#'+sysDefArcForeColor.value);
+    document.querySelector(':root').style.setProperty('--arcinputcolor', '#'+sysDefArcInputColor.value);
+    var bicolor = '#'+sysDefBackColor.value+pad((sysDefOpacity.value).toString(16), 2);
+    document.querySelector(':root').style.setProperty('--bicolor', '#'+bicolor);
+    document.querySelector(':root').style.setProperty('--qucolor', '#'+sysDefBackColor.value+'00');
+    document.querySelector(':root').style.setProperty('--radius', sysDefRadius.value+'px');
+    document.querySelector(':root').style.setProperty('--box-shadow', sysDefBoxShadow.value);
+    document.querySelector(':root').style.setProperty('--text-box-shadow', sysDefTextBoxShadow.value)
+    document.querySelector(':root').style.setProperty('--blur', 'blur('+sysDefBlur.value+'px)');
+    document.querySelector(':root').style.setProperty('--filter', 'brightness('+sysDefBrightness.value+'%) saturate('+sysDefSaturation.value+'%) contrast('+sysDefContrast.value+'%) sepia('+sysDefSepia.value+'%) grayscale('+sysDefGrayscale.value+'%) hue-rotate('+sysDefHue.value+'deg)'); if (sysDefGloss.value == 1) {
+        $('.power').css('background', 'linear-gradient('+sysDefGradientDeg.value+'deg, #'+sysDefForeColor.value+' 0%, #'+sysDefArcForeColor.value+' 100%)');
+        document.querySelector(':root').style.setProperty('--gradient-fore', 'linear-gradient(180deg, #'+sysDefForeColor.value+' 0%, #'+sysDefArcForeColor.value+' 100%)');
+        document.querySelector(':root').style.setProperty('--gradient-input', 'linear-gradient(180deg, #'+sysDefInputColor.value+' 0%, #'+sysDefArcInputColor.value+' 100%)');
+    } else {
+        $('.power').css('background', 'linear-gradient('+sysDefGradientDeg.value+'deg, #'+sysDefForeColor.value+' 0%, #'+sysDefForeColor.value+' 100%)');
+        document.querySelector(':root').style.setProperty('--gradient-fore', 'linear-gradient(180deg, #'+sysDefForeColor.value+' 0%, #'+sysDefForeColor.value+' 100%)');
+        document.querySelector(':root').style.setProperty('--gradient-input', 'linear-gradient(180deg, #'+sysDefInputColor.value+' 0%, #'+sysDefInputColor.value+' 100%)');
+    } if (requestMode.value == 'visual_effects') {
+        opacityInd.value = sysDefOpacity.value;
+        blurInd.value = sysDefBlur.value+'px';
+        brightnessInd.value = sysDefBrightness.value+'%';
+        saturationInd.value = sysDefSaturation.value+'%';
+        contrastInd.value = sysDefContrast.value+'%';
+        sepiaInd.value = sysDefSepia.value+'%';
+        grayInd.value = sysDefGrayscale.value+'%';
+        hueInd.value = sysDefHue.value+'deg';
+    }
 }
 function wallpaper_engine() {
     $.ajax({

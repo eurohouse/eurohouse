@@ -25,17 +25,17 @@ $storeList = implode(',',str_replace('_store.json','',str_replace('./.store/',''
 $newsFeed = jsonopen('./.msgbox/'.$cookie.'_msgbox.json', true);
 $userBook = jsonopen('./.book/'.$cookie.'_book.json', true);
 $userStore = jsonopen('./.store/'.$cookie.'_store.json', true);
-echo $cookie."\r\n\r\n".
-valstr($bindingData,';',':')."\r\n\r\n".
-valstr($poweredData,';',':')."\r\n\r\n".
-valstr($autoData,';',':')."\r\n\r\n".
-valstr($frndData,';',':')."\r\n\r\n".
-valstr($toolData,';',':')."\r\n\r\n".
-$newsFeed."\r\n\r\n".
-$userBook."\r\n\r\n".
-$userStore."\r\n\r\n".
-implode('//', $musicBox)."\\\\".implode('//', $soundBox)."\r\n\r\n".
-implode('//', $codexBoxArr)."\\\\".implode('//', $speechBoxArr)."\r\n\r\n".
-$usersList.";".$booksList.";".$storeList."\r\n\r\n".
-$notesList."\r\n\r\n".
-$notesJSON;
+echo $cookie."\r\n\r\n". // Read Line 0
+valstr($bindingData,';',':')."\r\n\r\n". // Read Line 1
+valstr($poweredData,';',':')."\r\n\r\n". // Read Line 2
+valstr($autoData,';',':')."\r\n\r\n". // Read Line 3
+valstr($frndData,';',':')."\r\n\r\n". // Read Line 4
+valstr($toolData,';',':')."\r\n\r\n". // Read Line 5
+$newsFeed."\r\n\r\n". // Read Line 6
+$userBook."\r\n\r\n". // Read Line 7
+$userStore."\r\n\r\n". // Read Line 8
+implode('//', $musicBox)."\\\\".implode('//', $soundBox)."\r\n\r\n". // Read Line 9
+implode('//', $codexBoxArr)."\\\\".implode('//', $speechBoxArr)."\r\n\r\n". // Read Line 10
+$usersList.";".$booksList.";".$storeList."\r\n\r\n". // Read Line 11
+$notesList."\r\n\r\n". // Read Line 12
+$notesJSON; // Read Line 13
