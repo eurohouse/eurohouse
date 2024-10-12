@@ -178,6 +178,7 @@ function visual_effects() {
     document.querySelector(':root').style.setProperty('--arcforecolor', '#'+sysDefArcForeColor.value);
     document.querySelector(':root').style.setProperty('--arcinputcolor', '#'+sysDefArcInputColor.value);
     document.querySelector(':root').style.setProperty('--bicolor', '#'+(sysDefBackColor.value).toString()+hexify(sysDefOpacity.value).toString());
+    document.querySelector(':root').style.setProperty('--bicolor', '#'+(sysDefBackColor.value).toString());
     document.querySelector(':root').style.setProperty('--qucolor', '#'+sysDefBackColor.value+'00');
     document.querySelector(':root').style.setProperty('--radius', sysDefRadius.value+'px');
     document.querySelector(':root').style.setProperty('--box-shadow', sysDefBoxShadow.value);
