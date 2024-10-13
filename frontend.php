@@ -215,7 +215,7 @@ function jsonStore(id) {
             eld = arr[el], arl = '<tr>';
             fu0 = "buy_item(&#34;"+el+"&#34;,&#34;"+id+"&#34;);";
             if (isInt(el)) {
-                fu1 = "points(&#34;"+id+"&#34;,&#34;"+el+"&#34;);";
+                fu1 = "charge(&#34;"+id+"&#34;,&#34;"+el+"&#34;);";
             } else {
                 fu1 = "equip(&#34;"+id+"&#34;,&#34;"+el+"&#34;);";
             } arl += "<td><input type='button' style='width:100%;' onclick='"+((id != sysDefSessionID.value) ? fu0 : fu1)+"' value='"+el+"'></td><td>"+eld['amount']+"</td><td>"+eld['price']+"</td>"; ard = arl+"</tr>"+ard;
@@ -446,18 +446,21 @@ function fixPrice(sen, rec, deb, cre) {
     set('dominion.json', JSON.stringify(stat), true);
     sysDefPowersData.value = arrpack(stat,';',':');
 }
-function points(usr, num) {
+function charge(usr, itp = '') {
     var obj = arrjob(sysDefPowersData.value,';',':');
+    var stu = jsonMarket(usr, 'gift'), f = 0;
     var suf = (isInt(obj[usr])) ? parseInt(obj[usr]) : 0;
-    var f = (isInt(num)) ? parseInt(num) : 0; if (suf >= 0) {
-        suf += f; obj[usr] = suf;
+    if (suf >= 0) {
+        if ((stu[itp] !== undefined) && (typeof(stu[itp]) == 'object') && (stu[itp]['type'] == 'gift')) {
+            f = (isInt(itp)) ? parseInt(itp) : 0;
+        } else { f = 0; } suf += f; obj[usr] = suf;
         set('dominion.json', JSON.stringify(obj), true);
         sysDefPowersData.value = arrpack(obj,';',':');
     }
 }
 function dominate(usr, id, wep = '') {
     var obj = arrjob(sysDefPowersData.value,';',':');
-    var stu = jsonMarket(usr, 'weapon'), f = mu = ep = sk = 0;
+    var stu = jsonMarket(usr, 'weapon'), f = mu = ep = sc = 0;
     var suf = (isInt(obj[usr])) ? parseInt(obj[usr]) : 0;
     var obf = (isInt(obj[id])) ? parseInt(obj[id]) : 0;
     if ((usr != id) && (suf >= 0)) {
@@ -466,21 +469,21 @@ function dominate(usr, id, wep = '') {
             f = ((stu[wep]['damage'] !== undefined) && isInt(stu[wep]['damage'])) ? parseInt(stu[wep]['damage']) : 1;
             ep = ((stu[wep]['hasAmmo'] !== undefined) && isInt(stu[wep]['hasAmmo'])) ? parseInt(stu[wep]['hasAmmo']) : 0;
             sc = ((stu[wep]['suck'] !== undefined) && isInt(stu[wep]['suck'])) ? parseInt(stu[wep]['suck']) : 0;
-        } else {
-            mu = 1, f = 1, ep = 0, sk = 0;
-        } if (obf <= -666) {
-            delete_user(id);
-        } else {
-            if ((ep != 0) && (mu > 0)) {
+        } else { mu = 1, f = 1, ep = 0, sk = 0; }
+        if (obf <= -666) { delete_user(id); } else {
+            if (ep != 0) {
+                if (mu > 0) {
+                    if (sc != 0) {
+                        do { suf += f; obf -= f; sc -= 1; }
+                        while (sc > 0);
+                    } else { suf += f; obf -= f; }
+                    mu -= 1; stu[wep]['amount'] = mu;
+                } else { delete stu[wep]; }
+            } else {
                 if (sc != 0) {
-                    do { suf += f; obf -= f; sc -= 1; } while (sc > 0);
-                } else {
-                    suf += f; obf -= f;
-                } mu -= 1; stu[wep]['amount'] = mu;
-            } else if ((ep != 0) && (mu <= 0)) {
-                delete stu[wep];
-            } else if (ep == 0) {
-                suf += f; obf -= f;
+                    do { suf += f; obf -= f; sc -= 1; }
+                    while (sc > 0);
+                } else { suf += f; obf -= f; }
             } obj[usr] = suf; obj[id] = obf;
             set('./.store/'+usr+'_store.json', encodeURIComponent(JSON.stringify(stu)), true);
             set('dominion.json', JSON.stringify(obj), true);
