@@ -211,9 +211,13 @@ function jsonStore(id) {
     var arr = jsonstr(openJournal(id, sysDefStoreList, sysDefStoreJSONs));
     var ard = '', arl = '', eld = {}, fuc = '', fut = ''; for (el in arr) {
         if ((arr[el] !== undefined) && (typeof(arr[el]) == 'object')) {
-            fuc = "buy_item(&#34;"+el+"&#34;,&#34;"+id+"&#34;);";
-            fut = "equip(&#34;"+id+"&#34;,&#34;"+el+"&#34;);", eld = arr[el], arl = '<tr>';
-            arl += "<td><input type='button' style='width:100%;' onclick='"+((id != sysDefSessionID.value) ? fuc : fut)+"' value='"+el+"'></td><td>"+eld['amount']+"</td><td>"+eld['price']+"</td>"; ard = arl+"</tr>"+ard;
+            eld = arr[el], arl = '<tr>';
+            fu0 = "buy_item(&#34;"+el+"&#34;,&#34;"+id+"&#34;);";
+            if (isInt(el)) {
+                fu1 = "buy_item(&#34;"+el+"&#34;,&#34;"+id+"&#34;);";
+            } else if {
+                fu1 = "equip(&#34;"+id+"&#34;,&#34;"+el+"&#34;);";
+            } arl += "<td><input type='button' style='width:100%;' onclick='"+((id != sysDefSessionID.value) ? fu0 : fu1)+"' value='"+el+"'></td><td>"+eld['amount']+"</td><td>"+eld['price']+"</td>"; ard = arl+"</tr>"+ard;
         }
     } return ard;
 }
