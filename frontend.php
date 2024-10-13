@@ -208,17 +208,13 @@ function jsonListUsers(ob) {
     } arl += "</p>"; return arl;
 }
 function jsonStore(id) {
-    var arr = jsonstr(openJournal(id, sysDefStoreList, sysDefStoreJSONs));
-    var ard = '', arl = '', eld = {}, fu0 = '', fu1 = '';
-    for (el in arr) {
+    var arr = jsonstr(openJournal(id, sysDefStoreList, sysDefStoreJSONs)), var ard = '', arl = '', eld = {};
+    fu0 = '', fu1 = ''; for (el in arr) {
         if ((arr[el] !== undefined) && (typeof(arr[el]) == 'object')) {
             eld = arr[el], arl = '<tr>';
             fu0 = "buy_item(&#34;"+el+"&#34;,&#34;"+id+"&#34;);";
-            if (isInt(el)) {
-                fu1 = "charge(&#34;"+id+"&#34;,&#34;"+el+"&#34;);";
-            } else {
-                fu1 = "equip(&#34;"+id+"&#34;,&#34;"+el+"&#34;);";
-            } arl += "<td><input type='button' style='width:100%;' onclick='"+((id != sysDefSessionID.value) ? fu0 : fu1)+"' value='"+el+"'></td><td>"+eld['amount']+"</td><td>"+eld['price']+"</td>"; ard = arl+"</tr>"+ard;
+            fu1 = (isInt(el)) ? "charge(&#34;"+id+"&#34;,&#34;"+el+"&#34;);" : ((eld['type'] == 'weapon') ? "equip(&#34;"+id+"&#34;,&#34;"+el+"&#34;);" : "charge(&#34;"+id+"&#34;,&#34;"+el+"&#34;);");
+            arl += "<td><input type='button' style='width:100%;' onclick='"+((id != sysDefSessionID.value) ? fu0 : fu1)+"' value='"+el+"'></td><td>"+eld['amount']+"</td><td>"+eld['price']+"</td>"; ard = arl+"</tr>"+ard;
         }
     } return ard;
 }
@@ -455,7 +451,7 @@ function charge(usr, itp = '') {
     if (suf >= 0) {
         if ((stu[itp] !== undefined) && (typeof(stu[itp]) == 'object') && (stu[itp]['type'] == 'gift')) {
             m = ((stu[itp]['amount'] !== undefined) && isInt(stu[itp]['amount'])) ? parseInt(stu[itp]['amount']) : 1;
-            f = (isInt(itp)) ? parseInt(itp) : (((stu[itp]['force'] !== undefined) && isInt(stu[itp]['force'])) ? parseInt(stu[itp]['force']) : 0);
+            f = (isInt(itp)) ? parseInt(itp) : (((stu[itp]['force'] !== undefined) && isInt(stu[itp]['force'])) ? parseInt(stu[itp]['force']) : 1);
             n = ((stu[itp]['finite'] !== undefined) && isInt(stu[itp]['finite'])) ? parseInt(stu[itp]['finite']) : 0;
             s = ((stu[itp]['series'] !== undefined) && isInt(stu[itp]['series'])) ? parseInt(stu[itp]['series']) : 0;
         } else { m = f = 1, n = s = 0; }
