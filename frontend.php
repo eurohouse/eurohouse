@@ -449,8 +449,8 @@ function fixPrice(sen, rec, deb, cre) {
 function points(usr, num) {
     var obj = arrjob(sysDefPowersData.value,';',':');
     var suf = (isInt(obj[usr])) ? parseInt(obj[usr]) : 0;
-    if (suf >= 0) {
-        suf += num;
+    var f = (isInt(num)) ? parseInt(num) : 0; if (suf >= 0) {
+        suf += f; obj[usr] = suf;
         set('dominion.json', JSON.stringify(obj), true);
         sysDefPowersData.value = arrpack(obj,';',':');
     }
