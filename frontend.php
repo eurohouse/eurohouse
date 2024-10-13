@@ -383,17 +383,15 @@ function buy_item(art, sel) {
         }
     }
 }
-function sell_item(typ, art, prix = '', dat = '', ttl = '') {
+function sell_item(art, dat = '') {
     var tabS = jsonstr(openJournal(sysDefSessionID.value, sysDefStoreList, sysDefStoreJSONs));
     var obj = arrjob(sysDefPowersData.value,';',':');
-    var ttp = (ttl != '') ? etw(ttl, '', '.-') : etw(art, '', '.-');
     var dap = arrjob(dat,'; ',': ');
     if (obj[sysDefSessionID.value] >= 0) {
-        var qu = ((tabS[art] !== undefined) && (typeof(tabS[art]) == 'object') && (tabS[art]['amount'] !== undefined) && isInt(tabS[art]['amount']) && (tabS[art]['amount'] >= 0)) ? parseInt(tabS[art]['amount'])+1 : 1; tabS[art] = { "name": ttp, "type": typ, "amount": qu, "price": prix };
+        var qu = ((tabS[art] !== undefined) && (typeof(tabS[art]) == 'object') && (tabS[art]['amount'] !== undefined) && isInt(tabS[art]['amount']) && (tabS[art]['amount'] >= 0)) ? parseInt(tabS[art]['amount'])+1 : 1; tabS[art] = { "amount": qu };
+        for (iu in dap) { tabS[art][iu] = dap[iu]; }
         if ((typ == 'account') || (typ == 'password')) {
             tabS[art]['password'] = CryptoJS.SHA256(dat).toString();
-        } else {
-            for (iu in dap) { tabS[art][iu] = dap[iu]; }
         } set('./.store/'+sysDefSessionID.value+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
     }
 }

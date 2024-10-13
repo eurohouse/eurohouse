@@ -321,13 +321,7 @@ function omniEnter() {
         } else if (input.startsWith('sell ')) {
             arj = input.replace('sell ', '');
             arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
-            if (arg.length > 4) {
-                sell_item(arg[0].replaceAll('"', ''), arg[1].replaceAll('"', ''), arg[2].replaceAll('"', ''), arg[3].replaceAll('"', ''), arg[4].replaceAll('"', ''));
-            } else if (arg.length == 4) {
-                sell_item(arg[0].replaceAll('"', ''), arg[1].replaceAll('"', ''), arg[2].replaceAll('"', ''), arg[3].replaceAll('"', ''));
-            } else {
-                sell_item(arg[0].replaceAll('"', ''), arg[1].replaceAll('"', ''), arg[2].replaceAll('"', ''));
-            }
+            sell_item(arg[0].replaceAll('"', ''), arg[1].replaceAll('"', ''));
         } else if (input.startsWith('ytmp3 ')) {
             $('.lowerGap').html('<iframe style="width:100%;height:60px;border:0;overflow:hidden;" scrolling="no" src="https://loader.to/api/button/?url='+input.replace('ytmp3 ', '')+'&f=mp3"></iframe>');
         } else if (input.startsWith('ytmp4 ')) {
