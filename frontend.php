@@ -450,8 +450,7 @@ function fixPrice(sen, rec, deb, cre) {
 }
 function charge(usr, itp = '') {
     var obj = arrjob(sysDefPowersData.value,';',':');
-    var stu = jsonMarket(usr, 'gift');
-    var sti = jsonMarket(usr); f = m = 0;
+    var stu = jsonMarket(usr); f = m = 0;
     var suf = (isInt(obj[usr])) ? parseInt(obj[usr]) : 0;
     if (suf >= 0) {
         if ((stu[itp] !== undefined) && (typeof(stu[itp]) == 'object') && (stu[itp]['type'] == 'gift')) {
@@ -473,16 +472,15 @@ function charge(usr, itp = '') {
                 do { suf += f; s -= 1; }
                 while (s > 0);
             } else { suf += f; }
-        } obj[usr] = suf; var stv = { ...sti, ...stu }
-        set('./.store/'+usr+'_store.json', encodeURIComponent(JSON.stringify(stv)), true);
+        } obj[usr] = suf;
+        set('./.store/'+usr+'_store.json', encodeURIComponent(JSON.stringify(stu)), true);
         set('dominion.json', JSON.stringify(obj), true);
         sysDefPowersData.value = arrpack(obj,';',':');
     }
 }
 function dominate(usr, id, wep = '') {
     var obj = arrjob(sysDefPowersData.value,';',':');
-    var stu = jsonMarket(usr, 'weapon');
-    var sti = jsonMarket(usr); f = m = ep = sc = 0;
+    var stu = jsonMarket(usr); f = m = ep = sc = 0;
     var suf = (isInt(obj[usr])) ? parseInt(obj[usr]) : 0;
     var obf = (isInt(obj[id])) ? parseInt(obj[id]) : 0;
     if ((usr != id) && (suf >= 0)) {
@@ -507,8 +505,7 @@ function dominate(usr, id, wep = '') {
                     while (s > 0);
                 } else { suf += f; obf -= f; }
             } obj[usr] = suf; obj[id] = obf;
-            var stv = { ...sti, ...stu }
-            set('./.store/'+usr+'_store.json', encodeURIComponent(JSON.stringify(stv)), true);
+            set('./.store/'+usr+'_store.json', encodeURIComponent(JSON.stringify(stu)), true);
             set('dominion.json', JSON.stringify(obj), true);
             sysDefPowersData.value = arrpack(obj,';',':');
         }
