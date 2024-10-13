@@ -383,7 +383,7 @@ function buy_item(art, sel) {
         }
     }
 }
-function sell_item(xi, typ, art, prix, dat = '', ttl = '') {
+function sell_item(typ, art, prix, dat = '', ttl = '') {
     var tabS = jsonstr(openJournal(sysDefSessionID.value, sysDefStoreList, sysDefStoreJSONs));
     var obj = arrjob(sysDefPowersData.value,';',':');
     var ttp = (ttl != '') ? etw(ttl, '', '.-') : etw(art, '', '.-');
@@ -392,9 +392,9 @@ function sell_item(xi, typ, art, prix, dat = '', ttl = '') {
         if ((typ == 'account') || (typ == 'password')) {
             tabS[art]['password'] = CryptoJS.SHA256(dat).toString();
         } else {
-            tabS[art]['force'] = (dat.includes('*')) ? parseInt(dat.split('*')[0]) : parseInt(dat);
-            tabS[art]['finite'] = (xi) ? 1 : 0;
-            tabS[art]['series'] = (dat.includes('*')) ? parseInt(dat.split('*')[1]) : 0;
+            tabS[art]['force'] = (dat.includes(':')) ? dat.split(':')[2] : parseInt(dat);
+            tabS[art]['finite'] = (dat.includes(':')) ? dat.split(':')[0] : 0;
+            tabS[art]['series'] = (dat.includes(':')) ? dat.split(':')[1] : 0;
         } set('./.store/'+sysDefSessionID.value+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
     }
 }
