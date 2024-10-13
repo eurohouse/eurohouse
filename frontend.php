@@ -215,7 +215,7 @@ function jsonStore(id) {
             eld = arr[el], arl = '<tr>';
             fu0 = "buy_item(&#34;"+el+"&#34;,&#34;"+id+"&#34;);";
             if (isInt(el)) {
-                fu1 = "buy_item(&#34;"+el+"&#34;,&#34;"+id+"&#34;);";
+                fu1 = "points(&#34;"+id+"&#34;,&#34;"+el+"&#34;);";
             } else {
                 fu1 = "equip(&#34;"+id+"&#34;,&#34;"+el+"&#34;);";
             } arl += "<td><input type='button' style='width:100%;' onclick='"+((id != sysDefSessionID.value) ? fu0 : fu1)+"' value='"+el+"'></td><td>"+eld['amount']+"</td><td>"+eld['price']+"</td>"; ard = arl+"</tr>"+ard;
@@ -445,6 +445,15 @@ function fixPrice(sen, rec, deb, cre) {
     set('./.book/'+rec+'_book.json', encodeURIComponent(JSON.stringify(trans2)), true);
     set('dominion.json', JSON.stringify(stat), true);
     sysDefPowersData.value = arrpack(stat,';',':');
+}
+function points(usr, num) {
+    var obj = arrjob(sysDefPowersData.value,';',':');
+    var suf = (isInt(obj[usr])) ? parseInt(obj[usr]) : 0;
+    if (suf >= 0) {
+        suf += num;
+        set('dominion.json', JSON.stringify(obj), true);
+        sysDefPowersData.value = arrpack(obj,';',':');
+    }
 }
 function dominate(usr, id, wep = '') {
     var obj = arrjob(sysDefPowersData.value,';',':');
