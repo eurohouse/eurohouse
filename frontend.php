@@ -383,16 +383,18 @@ function buy_item(art, sel) {
         }
     }
 }
-function sell_item(typ, art, ttl, prix = '', dat = '') {
+function sell_item(xi, typ, art, prix, dat = '', ttl = '') {
     var tabS = jsonstr(openJournal(sysDefSessionID.value, sysDefStoreList, sysDefStoreJSONs));
-    var obj = arrjob(sysDefPowersData.value,';',':'), cyp = '.-';
+    var obj = arrjob(sysDefPowersData.value,';',':');
+    var ttp = (ttl != '') ? etw(ttl, '', '.-') : etw(art, '', '.-');
     if (obj[sysDefSessionID.value] >= 0) {
-        var qu = ((tabS[art] !== undefined) && (typeof(tabS[art]) == 'object') && (tabS[art]['amount'] !== undefined) && isInt(tabS[art]['amount']) && (tabS[art]['amount'] >= 0)) ? parseInt(tabS[art]['amount'])+1 : 1; tabS[art] = { "name": etw(ttl, '', cyp), "type": typ, "amount": qu, "price": prix }; if ((typ == 'account') || (typ == 'password')) {
+        var qu = ((tabS[art] !== undefined) && (typeof(tabS[art]) == 'object') && (tabS[art]['amount'] !== undefined) && isInt(tabS[art]['amount']) && (tabS[art]['amount'] >= 0)) ? parseInt(tabS[art]['amount'])+1 : 1; tabS[art] = { "name": ttp, "type": typ, "amount": qu, "price": prix };
+        if ((typ == 'account') || (typ == 'password')) {
             tabS[art]['password'] = CryptoJS.SHA256(dat).toString();
-        } else if (typ == 'weapon') {
-            tabS[art]['hasAmmo'] = (dat.includes(':')) ? ((dat.split(':').length > 2) ? dat.split(':')[0] : dat.split(':')[0]) : 0;
-            tabS[art]['suck'] = (dat.includes(':')) ? ((dat.split(':').length > 2) ? dat.split(':')[1] : 0) : 0;
-            tabS[art]['damage'] = (dat.includes(':')) ? ((dat.split(':').length > 2) ? dat.split(':')[2] : dat.split(':')[1]) : dat;
+        } else {
+            tabS[art]['force'] = (dat.includes('*')) ? parseInt(dat.split('*')[0]) : parseInt(dat);
+            tabS[art]['finite'] = (xi) ? 1 : 0;
+            tabS[art]['sequence'] = (dat.includes('*')) ? parseInt(dat.split('*')[1]) : 0;
         } set('./.store/'+sysDefSessionID.value+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
     }
 }
@@ -448,41 +450,58 @@ function fixPrice(sen, rec, deb, cre) {
 }
 function charge(usr, itp = '') {
     var obj = arrjob(sysDefPowersData.value,';',':');
-    var stu = jsonMarket(usr, 'gift'), f = 0;
+    var stu = jsonMarket(usr, 'gift'), f = m = 0;
     var suf = (isInt(obj[usr])) ? parseInt(obj[usr]) : 0;
     if (suf >= 0) {
         if ((stu[itp] !== undefined) && (typeof(stu[itp]) == 'object') && (stu[itp]['type'] == 'gift')) {
-            f = (isInt(itp)) ? parseInt(itp) : 0;
-        } else { f = 0; } suf += f; obj[usr] = suf;
+            m = ((stu[itp]['amount'] !== undefined) && isInt(stu[itp]['amount'])) ? parseInt(stu[itp]['amount']) : 1;
+            f = (isInt(itp)) ? parseInt(itp) : (((stu[itp]['force'] !== undefined) && isInt(stu[itp]['force'])) ? parseInt(stu[itp]['force']) : 0);
+            n = ((stu[itp]['finite'] !== undefined) && isInt(stu[itp]['finite'])) ? parseInt(stu[itp]['finite']) : 0;
+            s = ((stu[itp]['series'] !== undefined) && isInt(stu[itp]['series'])) ? parseInt(stu[itp]['series']) : 0;
+        } else { f = m = n = s = 0; }
+        if (n != 0) {
+            if (m > 0) {
+                if (s != 0) {
+                    do { suf += f; s -= 1; }
+                    while (s > 0);
+                } else { suf += f; }
+                m -= 1; stu[itp]['amount'] = m;
+            } else { delete stu[itp]; }
+        } else {
+            if (s != 0) {
+                do { suf += f; s -= 1; }
+                while (s > 0);
+            } else { suf += f; }
+        } obj[usr] = suf;
         set('dominion.json', JSON.stringify(obj), true);
         sysDefPowersData.value = arrpack(obj,';',':');
     }
 }
 function dominate(usr, id, wep = '') {
     var obj = arrjob(sysDefPowersData.value,';',':');
-    var stu = jsonMarket(usr, 'weapon'), f = mu = ep = sc = 0;
+    var stu = jsonMarket(usr, 'weapon'), f = m = ep = sc = 0;
     var suf = (isInt(obj[usr])) ? parseInt(obj[usr]) : 0;
     var obf = (isInt(obj[id])) ? parseInt(obj[id]) : 0;
     if ((usr != id) && (suf >= 0)) {
         if ((stu[wep] !== undefined) && (typeof(stu[wep]) == 'object') && (stu[wep]['type'] == 'weapon')) {
-            mu = ((stu[wep]['amount'] !== undefined) && isInt(stu[wep]['amount'])) ? parseInt(stu[wep]['amount']) : 1;
-            f = ((stu[wep]['damage'] !== undefined) && isInt(stu[wep]['damage'])) ? parseInt(stu[wep]['damage']) : 1;
-            ep = ((stu[wep]['hasAmmo'] !== undefined) && isInt(stu[wep]['hasAmmo'])) ? parseInt(stu[wep]['hasAmmo']) : 0;
-            sc = ((stu[wep]['suck'] !== undefined) && isInt(stu[wep]['suck'])) ? parseInt(stu[wep]['suck']) : 0;
-        } else { mu = 1, f = 1, ep = 0, sk = 0; }
+            m = ((stu[wep]['amount'] !== undefined) && isInt(stu[wep]['amount'])) ? parseInt(stu[wep]['amount']) : 1;
+            f = ((stu[wep]['force'] !== undefined) && isInt(stu[wep]['force'])) ? parseInt(stu[wep]['force']) : 1;
+            n = ((stu[wep]['finite'] !== undefined) && isInt(stu[wep]['finite'])) ? parseInt(stu[wep]['finite']) : 0;
+            s = ((stu[wep]['series'] !== undefined) && isInt(stu[wep]['series'])) ? parseInt(stu[wep]['series']) : 0;
+        } else { m = f = 1, n = s = 0; }
         if (obf <= -666) { delete_user(id); } else {
-            if (ep != 0) {
-                if (mu > 0) {
-                    if (sc != 0) {
-                        do { suf += f; obf -= f; sc -= 1; }
-                        while (sc > 0);
+            if (n != 0) {
+                if (m > 0) {
+                    if (s != 0) {
+                        do { suf += f; obf -= f; s -= 1; }
+                        while (s > 0);
                     } else { suf += f; obf -= f; }
-                    mu -= 1; stu[wep]['amount'] = mu;
+                    m -= 1; stu[wep]['amount'] = m;
                 } else { delete stu[wep]; }
             } else {
-                if (sc != 0) {
-                    do { suf += f; obf -= f; sc -= 1; }
-                    while (sc > 0);
+                if (s != 0) {
+                    do { suf += f; obf -= f; s -= 1; }
+                    while (s > 0);
                 } else { suf += f; obf -= f; }
             } obj[usr] = suf; obj[id] = obf;
             set('./.store/'+usr+'_store.json', encodeURIComponent(JSON.stringify(stu)), true);
