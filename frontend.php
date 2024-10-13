@@ -389,9 +389,12 @@ function sell_item(art, dat = '') {
     var dap = arrjob(dat,'; ',': ');
     if (obj[sysDefSessionID.value] >= 0) {
         var qu = ((tabS[art] !== undefined) && (typeof(tabS[art]) == 'object') && (tabS[art]['amount'] !== undefined) && isInt(tabS[art]['amount']) && (tabS[art]['amount'] >= 0)) ? parseInt(tabS[art]['amount'])+1 : 1; tabS[art] = { "amount": qu };
-        for (iu in dap) { tabS[art][iu] = dap[iu]; }
-        if ((typ == 'account') || (typ == 'password')) {
-            tabS[art]['password'] = CryptoJS.SHA256(dat).toString();
+        for (iu in dap) {
+            if (iu == 'password') {
+                tabS[art][iu] = CryptoJS.SHA256(dap[iu]).toString();
+            } else {
+                tabS[art][iu] = dap[iu];
+            }
         } set('./.store/'+sysDefSessionID.value+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
     }
 }
