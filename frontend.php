@@ -458,7 +458,7 @@ function charge(usr, itp = '') {
             f = (isInt(itp)) ? parseInt(itp) : (((stu[itp]['force'] !== undefined) && isInt(stu[itp]['force'])) ? parseInt(stu[itp]['force']) : 0);
             n = ((stu[itp]['finite'] !== undefined) && isInt(stu[itp]['finite'])) ? parseInt(stu[itp]['finite']) : 0;
             s = ((stu[itp]['series'] !== undefined) && isInt(stu[itp]['series'])) ? parseInt(stu[itp]['series']) : 0;
-        } else { f = m = n = s = 0; }
+        } else { m = f = 1, n = s = 0; }
         if (n != 0) {
             if (m > 0) {
                 if (s != 0) {
