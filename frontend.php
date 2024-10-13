@@ -209,7 +209,8 @@ function jsonListUsers(ob) {
 }
 function jsonStore(id) {
     var arr = jsonstr(openJournal(id, sysDefStoreList, sysDefStoreJSONs));
-    var ard = '', arl = '', eld = {}, fuc = '', fut = ''; for (el in arr) {
+    var ard = '', arl = '', eld = {}, fu0 = '', fu1 = '';
+    for (el in arr) {
         if ((arr[el] !== undefined) && (typeof(arr[el]) == 'object')) {
             eld = arr[el], arl = '<tr>';
             fu0 = "buy_item(&#34;"+el+"&#34;,&#34;"+id+"&#34;);";
