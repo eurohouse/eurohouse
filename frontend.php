@@ -394,7 +394,7 @@ function sell_item(xi, typ, art, prix, dat = '', ttl = '') {
         } else {
             tabS[art]['force'] = (dat.includes('*')) ? parseInt(dat.split('*')[0]) : parseInt(dat);
             tabS[art]['finite'] = (xi) ? 1 : 0;
-            tabS[art]['sequence'] = (dat.includes('*')) ? parseInt(dat.split('*')[1]) : 0;
+            tabS[art]['series'] = (dat.includes('*')) ? parseInt(dat.split('*')[1]) : 0;
         } set('./.store/'+sysDefSessionID.value+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
     }
 }
