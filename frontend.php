@@ -473,6 +473,7 @@ function charge(usr, itp = '') {
                 while (s > 0);
             } else { suf += f; }
         } obj[usr] = suf;
+        set('./.store/'+usr+'_store.json', encodeURIComponent(JSON.stringify(stu)), true);
         set('dominion.json', JSON.stringify(obj), true);
         sysDefPowersData.value = arrpack(obj,';',':');
     }
