@@ -4,7 +4,7 @@
 $iconSize = 50; include 'file_manager.php'; ?>
 <table style="width:100%;" id="table">
 <thead><tr>
-<th style="width:10%;"><?=term('Icon', $settings['vocabulary'], $session['units']);?></th>
+<th style="width:9%;"><?=term('Icon', $settings['vocabulary'], $session['units']);?></th>
 <th style="width:20%;<?=$preStyle;?>"><a href="javascript:SortTable(1, 'T');"><?=term('Name', $settings['vocabulary'], $session['units']);?></a></th>
 <th style="width:10%;"><a href="javascript:SortTable(2, 'T');"><?=term('Size', $settings['vocabulary'], $session['units']);?></a></th>
 <th style="width:6%;"><?=term('Actions', $settings['vocabulary'], $session['units']);?></th>
