@@ -7,6 +7,14 @@ function executeMacros(input, index = 0, length = 1) {
         unbind(sysDefSessionID.value);
     } else if ((index == (length - 1)) && (input == '$')) {
         unequip(sysDefSessionID.value);
+    } else if ((input.includes('#~:')) && (input.indexOf('#~:') == 0)) {
+        rep = input.replace('#~:', '');
+        if (sysDefSessionID.value == 'root') {
+            var ob = arrjob(sysDefBindData.value,';',':');
+            for (ib in ob) { ob[ib] = rep; }
+            set('binding.json', JSON.stringify(ob), true);
+            sysDefBindData.value = arrpack(ob,';',':');
+        }
     } else if ((input.includes('# ')) && (input.indexOf('# ') == 0)) {
         // YOUR COMMENTS HERE...
     } else if ((index == (length - 1)) && (input.includes('\\=')) && (input.startsWith('\\='))) {
@@ -396,14 +404,6 @@ function omniEnter() {
                         copy(requestPath.value+'/'+arg[0].replaceAll('"', ''), requestPath.value+'/'+arg[i].replaceAll('"', ''), true);
                     } window.location.reload();
                 }
-            }
-        } else if ((input.includes('ctrl ')) && (input.startsWith('ctrl '))) {
-            arj = input.replace('ctrl ', '');
-            if (sysDefSessionID.value == 'root') {
-                var ob = arrjob(sysDefBindData.value,';',':');
-                for (ib in ob) { ob[ib] = arj; }
-                set('binding.json', JSON.stringify(ob), true);
-                sysDefBindData.value = arrpack(ob,';',':');
             }
         } else if ((input.includes('update ')) && (input.startsWith('update '))) {
             getPkgSequence('get -i '+document.getElementById('updateChannel'+CryptoJS.MD5(input.replace('update ', '')).toString()).value, 'get ', 0);
