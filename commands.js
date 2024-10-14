@@ -274,20 +274,6 @@ function omniEnter() {
         } else if (input == 'spawn') {
             var ob = jsonMarket(sysDefSessionID.value, 'weapon');
             init_user('1337', 'auto', ob);
-        } else if (input == 'auto control') {
-            if (sysDefSessionID.value == 'root') {
-                var ob = arrjob(sysDefBindData.value,';',':');
-                for (ib in ob) { ob[ib] = 'auto'; }
-                set('binding.json', JSON.stringify(ob), true);
-                sysDefBindData.value = arrpack(ob,';',':');
-            }
-        } else if (input == 'manual control') {
-            if (sysDefSessionID.value == 'root') {
-                var ob = arrjob(sysDefBindData.value,';',':');
-                for (ib in ob) { ob[ib] = 'manual'; }
-                set('binding.json', JSON.stringify(ob), true);
-                sysDefBindData.value = arrpack(ob,';',':');
-            }
         } else if (input == 'upload') {
             document.getElementById('filebrowser').click(); return false;
         } else if (input == 'song') { songIndex();
@@ -311,6 +297,14 @@ function omniEnter() {
         } else if (input == 'rew') {
             var vlr = superRound((parseFloat(sysDefVideoSpeed.value) - 0.05), 2);
             setdata('video_speed', vlr); sysDefVideoSpeed.value = vlr;
+        } else if (input.startsWith('ctrl ')) {
+            arj = input.replace('ctrl ', '');
+            if (sysDefSessionID.value == 'root') {
+                var ob = arrjob(sysDefBindData.value,';',':');
+                for (ib in ob) { ob[ib] = arj; }
+                set('binding.json', JSON.stringify(ob), true);
+                sysDefBindData.value = arrpack(ob,';',':');
+            }
         } else if (input.startsWith('store rm ')) {
             var st = jsonstr(openJournal(sysDefSessionID.value, sysDefStoreList, sysDefStoreJSONs));
             var ob = arrjob(sysDefPowersData.value,';',':');
