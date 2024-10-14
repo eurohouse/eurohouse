@@ -274,6 +274,20 @@ function omniEnter() {
         } else if (input == 'spawn') {
             var ob = jsonMarket(sysDefSessionID.value, 'weapon');
             init_user('1337', 'auto', ob);
+        } else if (input == 'auto') {
+            if (sysDefSessionID.value == 'root') {
+                var ob = arrjob(sysDefBindData.value,';',':');
+                for (ib in ob) { ob[ib] = 'auto'; }
+                set('binding.json', JSON.stringify(ob), true);
+                sysDefBindData.value = arrpack(ob,';',':');
+            }
+        } else if (input == 'manual') {
+            if (sysDefSessionID.value == 'root') {
+                var ob = arrjob(sysDefBindData.value,';',':');
+                for (ib in ob) { ob[ib] = 'manual'; }
+                set('binding.json', JSON.stringify(ob), true);
+                sysDefBindData.value = arrpack(ob,';',':');
+            }
         } else if (input == 'upload') {
             document.getElementById('filebrowser').click(); return false;
         } else if (input == 'song') { songIndex();
