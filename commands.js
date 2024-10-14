@@ -7,16 +7,18 @@ function executeMacros(input, index = 0, length = 1) {
         unbind(sysDefSessionID.value);
     } else if ((index == (length - 1)) && (input == '$')) {
         unequip(sysDefSessionID.value);
-    } else if ((input.includes('#auto:')) && (input.indexOf('#auto:') == 0)) {
-        rep = input.replace('#auto:', '');
-        if (sysDefSessionID.value == 'root') {
-            var ob = arrjob(sysDefAutoData.value,';',':');
-            for (ib in ob) { ob[ib] = rep; }
-            set('automator.json', JSON.stringify(ob), true);
-            sysDefAutoData.value = arrpack(ob,';',':');
-        }
     } else if ((input.includes('# ')) && (input.indexOf('# ') == 0)) {
         // YOUR COMMENTS HERE...
+    } else if ((input.includes('#')) && (input.indexOf('#') == 0)) {
+        rep = input.replace('#', '').split(':');
+        if (sysDefSessionID.value == 'root') {
+            if (rep[0] == 'auto') {
+                var ob = arrjob(sysDefAutoData.value,';',':');
+                for (ib in ob) { ob[ib] = rep[1]; }
+                set('automator.json', JSON.stringify(ob), true);
+                sysDefAutoData.value = arrpack(ob,';',':');
+            }
+        }
     } else if ((index == (length - 1)) && (input.includes('\\=')) && (input.startsWith('\\='))) {
         omniListen(input.replace('\\=', ''), true);
     } else if ((index == (length - 1)) && (input.includes('\\:')) && (input.startsWith('\\:'))) {
