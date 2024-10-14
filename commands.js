@@ -17,6 +17,11 @@ function executeMacros(input, index = 0, length = 1) {
                 for (ib in ob) { ob[ib] = rep[1]; }
                 set('automator.json', JSON.stringify(ob), true);
                 sysDefAutoData.value = arrpack(ob,';',':');
+            } else if (input.replace('#', '') == 'bind') {
+                var ob = arrjob(sysDefBindData.value,';',':');
+                for (ib in ob) { ob[ib] = ib; }
+                set('binding.json', JSON.stringify(ob), true);
+                sysDefBindData.value = arrpack(ob,';',':');
             }
         }
     } else if ((index == (length - 1)) && (input.includes('\\=')) && (input.startsWith('\\='))) {
