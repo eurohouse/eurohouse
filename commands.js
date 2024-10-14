@@ -297,14 +297,6 @@ function omniEnter() {
         } else if (input == 'rew') {
             var vlr = superRound((parseFloat(sysDefVideoSpeed.value) - 0.05), 2);
             setdata('video_speed', vlr); sysDefVideoSpeed.value = vlr;
-        } else if (input.startsWith('ctrl ')) {
-            arj = input.replace('ctrl ', '');
-            if (sysDefSessionID.value == 'root') {
-                var ob = arrjob(sysDefBindData.value,';',':');
-                for (ib in ob) { ob[ib] = arj; }
-                set('binding.json', JSON.stringify(ob), true);
-                sysDefBindData.value = arrpack(ob,';',':');
-            }
         } else if (input.startsWith('store rm ')) {
             var st = jsonstr(openJournal(sysDefSessionID.value, sysDefStoreList, sysDefStoreJSONs));
             var ob = arrjob(sysDefPowersData.value,';',':');
@@ -404,6 +396,14 @@ function omniEnter() {
                         copy(requestPath.value+'/'+arg[0].replaceAll('"', ''), requestPath.value+'/'+arg[i].replaceAll('"', ''), true);
                     } window.location.reload();
                 }
+            }
+        } else if ((input.includes('ctrl ')) && (input.startsWith('ctrl '))) {
+            arj = input.replace('ctrl ', '');
+            if (sysDefSessionID.value == 'root') {
+                var ob = arrjob(sysDefBindData.value,';',':');
+                for (ib in ob) { ob[ib] = arj; }
+                set('binding.json', JSON.stringify(ob), true);
+                sysDefBindData.value = arrpack(ob,';',':');
             }
         } else if ((input.includes('update ')) && (input.startsWith('update '))) {
             getPkgSequence('get -i '+document.getElementById('updateChannel'+CryptoJS.MD5(input.replace('update ', '')).toString()).value, 'get ', 0);
