@@ -22,6 +22,11 @@ function executeMacros(input, index = 0, length = 1) {
                 for (ib in ob) { ob[ib] = ib; }
                 set('binding.json', JSON.stringify(ob), true);
                 sysDefBindData.value = arrpack(ob,';',':');
+            } else if (input.replace('#', '') == 'frnd') {
+                var ob = arrjob(sysDefFriendData.value,';',':');
+                for (ib in ob) { ob[ib] = ''; }
+                set('friendship.json', JSON.stringify(ob), true);
+                sysDefFriendData.value = arrpack(ob,';',':');
             }
         }
     } else if ((index == (length - 1)) && (input.includes('\\=')) && (input.startsWith('\\='))) {
