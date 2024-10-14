@@ -7,13 +7,13 @@ function executeMacros(input, index = 0, length = 1) {
         unbind(sysDefSessionID.value);
     } else if ((index == (length - 1)) && (input == '$')) {
         unequip(sysDefSessionID.value);
-    } else if ((input.includes('#~:')) && (input.indexOf('#~:') == 0)) {
-        rep = input.replace('#~:', '');
+    } else if ((input.includes('#auto:')) && (input.indexOf('#auto:') == 0)) {
+        rep = input.replace('#auto:', '');
         if (sysDefSessionID.value == 'root') {
-            var ob = arrjob(sysDefBindData.value,';',':');
+            var ob = arrjob(sysDefAutoData.value,';',':');
             for (ib in ob) { ob[ib] = rep; }
-            set('binding.json', JSON.stringify(ob), true);
-            sysDefBindData.value = arrpack(ob,';',':');
+            set('automator.json', JSON.stringify(ob), true);
+            sysDefAutoData.value = arrpack(ob,';',':');
         }
     } else if ((input.includes('# ')) && (input.indexOf('# ') == 0)) {
         // YOUR COMMENTS HERE...
