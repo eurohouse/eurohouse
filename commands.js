@@ -274,14 +274,14 @@ function omniEnter() {
         } else if (input == 'spawn') {
             var ob = jsonMarket(sysDefSessionID.value, 'weapon');
             init_user('1337', 'auto', ob);
-        } else if (input == 'auto') {
+        } else if (input == 'auto control') {
             if (sysDefSessionID.value == 'root') {
                 var ob = arrjob(sysDefBindData.value,';',':');
                 for (ib in ob) { ob[ib] = 'auto'; }
                 set('binding.json', JSON.stringify(ob), true);
                 sysDefBindData.value = arrpack(ob,';',':');
             }
-        } else if (input == 'manual') {
+        } else if (input == 'manual control') {
             if (sysDefSessionID.value == 'root') {
                 var ob = arrjob(sysDefBindData.value,';',':');
                 for (ib in ob) { ob[ib] = 'manual'; }
