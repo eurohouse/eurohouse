@@ -33,10 +33,8 @@ function executeMacros(input, index = 0, length = 1) {
                 set('friendship.json', JSON.stringify(ob), true);
                 sysDefFriendData.value = arrpack(ob,';',':');
             } else if (rep == 'share') {
-                var ob = arrjob(sysDefPowersData.value,';',':');
-                if (ob[''] !== undefined) { delete ob['']; }
-                var sum = 0; var qrt = 0; for (ib in ob) {
-                    sum += ((typeof(ob[ib]) == 'number') && (typeof(ob[ib]) == string)) ? parseInt(ob[ib]) : 0; qrt += 1;
+                var ob = arrjob((sysDefPowersData.value).slice(0, -1),';',':'), sum = 0, qrt = 0; for (ib in ob) {
+                    sum += ((typeof(ob[ib]) == 'number') && (typeof(ob[ib]) == string)) ? parseInt(ob[ib]) : 0; qrt++;
                 } var div = Math.round(sum / qrt);
                 for (ib in ob) { ob[ib] = parseInt(div); }
                 set('dominion.json', JSON.stringify(ob), true);
