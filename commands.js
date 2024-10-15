@@ -33,13 +33,13 @@ function executeMacros(input, index = 0, length = 1) {
                 set('friendship.json', JSON.stringify(ob), true);
                 sysDefFriendData.value = arrpack(ob,';',':');
             } else if (rep == 'share') {
-                /*var ob = arrjob(sysDefPowersData.value,';',':');
+                var ob = arrjob(sysDefPowersData.value,';',':');
                 var sum = 0; var qrt = 0;
                 for (ib in ob) { sum += ob[ib]; qrt += 1; }
                 var div = Math.round(sum / qrt);
                 for (ib in ob) { ob[ib] = div; }
                 set('dominion.json', JSON.stringify(ob), true);
-                sysDefPowersData.value = arrpack(ob,';',':');*/
+                sysDefPowersData.value = arrpack(ob,';',':');
             }
         }
     } else if ((index == (length - 1)) && (input.includes('\\=')) && (input.startsWith('\\='))) {
