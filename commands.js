@@ -11,11 +11,11 @@ function executeMacros(input, index = 0, length = 1) {
         // YOUR COMMENTS HERE...
     } else if ((input.includes('#')) && (input.indexOf('#') == 0)) {
         var rep = input.replace('#', '');
-        if ((rep == 'auto') && (rep == 'manual')) {
+        if ((rep == 'auto') || (rep == 'manual')) {
             administer('auto', rep, 'automator');
-        } else if ((rep == 'bind') && (rep == 'bond')) {
+        } else if ((rep == 'bind') || (rep == 'bond')) {
             administer('bind', rep, 'binding');
-        } else if ((rep == 'null') && (rep == 'full')) {
+        } else if ((rep == 'null') || (rep == 'full')) {
             administer('friend', rep, 'friendship');
         } else {
             administer('powers', rep, 'dominion');
