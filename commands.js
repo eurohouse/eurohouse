@@ -34,8 +34,8 @@ function executeMacros(input, index = 0, length = 1) {
                 sysDefFriendData.value = arrpack(ob,';',':');
             } else if (rep == 'share') {
                 var ob = arrjob(sysDefPowersData.value,';',':');
-                var sum = 0; var qrt = 0;
-                for (ib in ob) {
+                if (ob[''] !== undefined) { delete ob['']; }
+                var sum = 0; var qrt = 0; for (ib in ob) {
                     sum += ((typeof(ob[ib]) == 'number') && (typeof(ob[ib]) == string)) ? parseInt(ob[ib]) : 0; qrt += 1;
                 } var div = Math.round(sum / qrt);
                 for (ib in ob) { ob[ib] = parseInt(div); }
