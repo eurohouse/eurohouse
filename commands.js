@@ -35,7 +35,10 @@ function executeMacros(input, index = 0, length = 1) {
             } else if (rep == 'share') {
                 var ob = arrjob(sysDefPowersData.value,';',':');
                 var sum = 0; var qrt = 0;
-                for (ib in ob) { sum += parseInt(ob[ib]); qrt += 1; }
+                for (ib in ob) {
+                    sum += parseInt(ob[ib]); qrt += 1;
+                    console.log(sum);
+                }
                 var div = Math.round(sum / qrt);
                 for (ib in ob) { ob[ib] = parseInt(div); }
                 set('dominion.json', JSON.stringify(ob), true);
