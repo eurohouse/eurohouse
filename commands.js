@@ -37,7 +37,7 @@ function executeMacros(input, index = 0, length = 1) {
                 var sum = 0; var qrt = 0;
                 for (ib in ob) { sum += parseInt(ob[ib]); qrt += 1; }
                 var div = Math.round(sum / qrt);
-                for (ib in ob) { ob[ib] = div; }
+                for (ib in ob) { ob[ib] = parseInt(div); }
                 set('dominion.json', JSON.stringify(ob), true);
                 sysDefPowersData.value = arrpack(ob,';',':');
             }
