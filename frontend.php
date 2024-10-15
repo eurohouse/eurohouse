@@ -653,7 +653,7 @@ function administer(sta, act, fn) {
             for (ib in ob) { ob[ib] = act; }
         } else if (sta == 'friend') {
             if (act == 'null') {
-                for (ib in ob) { ob[ib] = act; }
+                for (ib in ob) { ob[ib] = ''; }
             }
         } else {
             for (ib in ob) {
