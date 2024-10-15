@@ -31,6 +31,14 @@ function executeMacros(input, index = 0, length = 1) {
                 for (ib in ob) { ob[ib] = ''; }
                 set('friendship.json', JSON.stringify(ob), true);
                 sysDefFriendData.value = arrpack(ob,';',':');
+            } else if (input.replace('#', '') == 'share') {
+                var ob = arrjob(sysDefPowersData.value,';',':');
+                var sum = 0; var qrt = 0;
+                for (ib in ob) { sum += ob[ib]; qrt++; }
+                var div = Math.round(sum / qrt);
+                for (ib in ob) { ob[ib] = div; }
+                set('dominion.json', JSON.stringify(ob), true);
+                sysDefPowersData.value = arrpack(ob,';',':');
             }
         }
     } else if ((index == (length - 1)) && (input.includes('\\=')) && (input.startsWith('\\='))) {
