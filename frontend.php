@@ -647,7 +647,7 @@ function administer(sta, act, fn) {
         var obj = document.getElementById('sysDef'+ucfirst(sta)+'Data'), arr = (obj !== null) ? obj.value : ';';
         var sb = arr.slice(0, -1), ob = arrjob(sb,';',':');
         ks = Object.keys(sb), vs = Object.values(sb);
-        var sum, div; if (sta == 'bind') {
+        if (sta == 'bind') {
             for (ib in ob) { ob[ib] = ib; }
         } else if (sta == 'auto') {
             for (ib in ob) { ob[ib] = act; }
@@ -656,7 +656,7 @@ function administer(sta, act, fn) {
                 for (ib in ob) { ob[ib] = ''; }
             }
         } else {
-            for (ib in ob) {
+            var sum = 0, div = 1; for (ib in ob) {
                 sum += (isInt(ob[ib])) ? parseInt(ob[ib]) : 0;
             } div = Math.round(sum / ks.length);
             for (ib in ob) { ob[ib] = parseInt(div); }
