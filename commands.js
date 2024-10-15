@@ -36,8 +36,7 @@ function executeMacros(input, index = 0, length = 1) {
                 var ob = arrjob(sysDefPowersData.value,';',':');
                 var sum = 0; var qrt = 0;
                 for (ib in ob) {
-                    sum += parseInt(ob[ib]); qrt += 1;
-                    console.log(sum);
+                    sum += (ob[ib] !== undefined) ? parseInt(ob[ib]) : 0; qrt += 1; console.log(sum);
                 }
                 var div = Math.round(sum / qrt);
                 for (ib in ob) { ob[ib] = parseInt(div); }
