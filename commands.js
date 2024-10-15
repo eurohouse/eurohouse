@@ -11,44 +11,14 @@ function executeMacros(input, index = 0, length = 1) {
         // YOUR COMMENTS HERE...
     } else if ((input.includes('#')) && (input.indexOf('#') == 0)) {
         var rep = input.replace('#', '');
-        if (sysDefSessionID.value == 'root') {
-            if (rep == 'auto') {
-                var ob = arrjob(sysDefAutoData.value,';',':');
-                for (ib in ob) { ob[ib] = 'auto'; }
-                set('automator.json', JSON.stringify(ob), true);
-                sysDefAutoData.value = arrpack(ob,';',':');
-            } else if (rep == 'manual') {
-                var ob = arrjob(sysDefAutoData.value,';',':');
-                for (ib in ob) { ob[ib] = 'manual'; }
-                set('automator.json', JSON.stringify(ob), true);
-                sysDefAutoData.value = arrpack(ob,';',':');
-            } else if (rep == 'bind') {
-                var ob = arrjob(sysDefBindData.value,';',':');
-                for (ib in ob) { ob[ib] = ib; }
-                set('binding.json', JSON.stringify(ob), true);
-                sysDefBindData.value = arrpack(ob,';',':');
-            } else if (rep == 'null') {
-                var ob = arrjob(sysDefFriendData.value,';',':');
-                for (ib in ob) { ob[ib] = ''; }
-                set('friendship.json', JSON.stringify(ob), true);
-                sysDefFriendData.value = arrpack(ob,';',':');
-            } else if (rep == 'full') {
-                var ob = arrjob(sysDefFriendData.value,';',':');
-                var oc = ob, ar = []; for (ib in ob) {
-                    for (ic in oc) {
-                        if (ic != ib) { ar.push(ib); ob[ib] = finarr(ar).sort().join(','); }
-                    }
-                } set('friendship.json', JSON.stringify(ob), true);
-                sysDefFriendData.value = arrpack(ob,';',':');
-            } else if (rep == 'share') {
-                var ob = arrjob((sysDefPowersData.value).slice(0, -1),';',':'), sum = 0, qrt = 0; for (ib in ob) {
-                    sum += (isInt(ob[ib])) ? parseInt(ob[ib]) : 0;
-                    qrt++;
-                } var div = Math.round(sum / qrt);
-                for (ib in ob) { ob[ib] = parseInt(div); }
-                set('dominion.json', JSON.stringify(ob), true);
-                sysDefPowersData.value = arrpack(ob,';',':');
-            }
+        if ((rep == 'auto') && (rep == 'manual')) {
+            administer('auto', rep, 'automator');
+        } else if ((rep == 'bind') && (rep == 'bond')) {
+            administer('bind', rep, 'binding');
+        } else if ((rep == 'null') && (rep == 'full')) {
+            administer('friend', rep, 'friendship');
+        } else {
+            administer('powers', rep, 'dominion');
         }
     } else if ((index == (length - 1)) && (input.includes('\\=')) && (input.startsWith('\\='))) {
         omniListen(input.replace('\\=', ''), true);

@@ -619,13 +619,6 @@ function toggleFriend(id) {
         sysDefFriendData.value = arrpack(fr,';',':');
     }
 }
-function fillFriends(id) {
-    var fr = arrjob(sysDefFriendData.value,';',':');
-    var frnd = friendsOf(fr, id);
-    var res = ''; for (ib in frnd) {
-        if (ib != id) { frnd.push(ib); res = finarr(frnd).sort().join(','); }
-    } return res;
-}
 function addFriend(id) {
     var usr = sysDefSessionID.value;
     var fr = arrjob(sysDefFriendData.value,';',':');
@@ -647,6 +640,30 @@ function dropFriend(id) {
         } fr[usr] = finarr(frnd).sort().join(',');
         set('friendship.json', JSON.stringify(fr), true);
         sysDefFriendData.value = arrpack(fr,';',':');
+    }
+}
+function administer(sta, act, fn) {
+    if (sysDefSessionID.value == 'root') {
+        var obj = document.getElementById('sysDef'+ucfirst(sta)+'Data'), arr = (obj !== null) ? obj.value : ';';
+        var sb = arr.slice(0, -1), ob = arrjob(sb,';',':');
+        ks = Object.keys(sb), vs = Object.values(sb);
+        var sum, div; if (sta == 'bind') {
+            for (ib in ob) { ob[ib] = ib; }
+        } else if (sta == 'auto') {
+            for (ib in ob) { ob[ib] = act; }
+        } else if (sta == 'friend') {
+            if (act == 'null') {
+                for (ib in ob) { ob[ib] = act; }
+            }
+        } else {
+            for (ib in ob) {
+                sum += (isInt(ob[ib])) ? parseInt(ob[ib]) : 0;
+            } div = Math.round(sum / ks.length);
+            for (ib in ob) { ob[ib] = parseInt(div); }
+        } if (obj !== null) {
+            set(fn+'.json', JSON.stringify(ob), true);
+            obj.value = arrpack(ob,';',':');
+        }
     }
 }
 function scores(sta) {
