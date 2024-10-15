@@ -9,8 +9,8 @@ function executeMacros(input, index = 0, length = 1) {
         unequip(sysDefSessionID.value);
     } else if ((input.includes('# ')) && (input.indexOf('# ') == 0)) {
         // YOUR COMMENTS HERE...
-    } else if ((input.includes('#')) && (input.indexOf('#') == 0)) {
-        var rep = input.replace('#', '');
+    } else if ((input.includes('>')) && (input.indexOf('>') == 0)) {
+        var rep = input.replace('>', '');
         if ((rep == 'auto') || (rep == 'manual')) {
             administer('auto', rep, 'automator');
         } else if ((rep == 'bind') || (rep == 'bond')) {
