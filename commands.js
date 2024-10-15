@@ -27,10 +27,18 @@ function executeMacros(input, index = 0, length = 1) {
                 for (ib in ob) { ob[ib] = ib; }
                 set('binding.json', JSON.stringify(ob), true);
                 sysDefBindData.value = arrpack(ob,';',':');
-            } else if (rep == 'frnd') {
+            } else if (rep == 'null') {
                 var ob = arrjob(sysDefFriendData.value,';',':');
                 for (ib in ob) { ob[ib] = ''; }
                 set('friendship.json', JSON.stringify(ob), true);
+                sysDefFriendData.value = arrpack(ob,';',':');
+            } else if (rep == 'full') {
+                var ob = arrjob(sysDefFriendData.value,';',':');
+                var oc = ob; for (ib in ob) {
+                    for (ic in oc) {
+                        if (ic != ib) { frnd.push(ib); ob[ib] = finarr(frnd).sort().join(','); }
+                    }
+                } set('friendship.json', JSON.stringify(ob), true);
                 sysDefFriendData.value = arrpack(ob,';',':');
             } else if (rep == 'share') {
                 var ob = arrjob((sysDefPowersData.value).slice(0, -1),';',':'), sum = 0, qrt = 0; for (ib in ob) {

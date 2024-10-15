@@ -619,6 +619,13 @@ function toggleFriend(id) {
         sysDefFriendData.value = arrpack(fr,';',':');
     }
 }
+function fillFriends(id) {
+    var fr = arrjob(sysDefFriendData.value,';',':');
+    var frnd = friendsOf(fr, id);
+    var res = ''; for (ib in frnd) {
+        if (ib != id) { frnd.push(ib); res = finarr(frnd).sort().join(','); }
+    } return res;
+}
 function addFriend(id) {
     var usr = sysDefSessionID.value;
     var fr = arrjob(sysDefFriendData.value,';',':');
