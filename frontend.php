@@ -646,10 +646,8 @@ function administer(sta, act, fn) {
     if (sysDefSessionID.value == 'root') {
         var obj = document.getElementById('sysDef'+ucfirst(sta)+'Data'), arr = (obj !== null) ? obj.value : ';';
         var sb = arr.slice(0, -1), ob = arrjob(sb,';',':');
-        var sum = arrsum(Object.values(sb));
-        console.log(sum);
-        var qua = Object.keys(sb).length;
-        console.log(qua);
+        var sum = arrsum(Object.values(ob));
+        var qua = Object.keys(ob).length;
         if (sta == 'bind') {
             for (ib in ob) { ob[ib] = ib; }
         } else if (sta == 'auto') {
