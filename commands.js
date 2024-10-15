@@ -34,9 +34,9 @@ function executeMacros(input, index = 0, length = 1) {
                 sysDefFriendData.value = arrpack(ob,';',':');
             } else if (rep == 'full') {
                 var ob = arrjob(sysDefFriendData.value,';',':');
-                var oc = ob; for (ib in ob) {
+                var oc = ob, ar = []; for (ib in ob) {
                     for (ic in oc) {
-                        if (ic != ib) { frnd.push(ib); ob[ib] = finarr(frnd).sort().join(','); }
+                        if (ic != ib) { ar.push(ib); ob[ib] = finarr(ar).sort().join(','); }
                     }
                 } set('friendship.json', JSON.stringify(ob), true);
                 sysDefFriendData.value = arrpack(ob,';',':');
