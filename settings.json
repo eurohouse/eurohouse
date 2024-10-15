@@ -41,7 +41,7 @@
         "video": ".mp4,.mkv,.webm,.3gp",
         "movie": ".mov,.qt,.wmv,.avi",
         "midi": ".mid,.midi,.rmi",
-        "data": ".json,.xml,.yaml,.yml",
+        "data": ".json,.xml,.yaml,.yml,.bak",
         "font": ".ttf,.ttc,.otf,.woff2,.fon",
         "script": ".js,.css,.ts,.csv,.htm,.html,.php,.cs,.ps1,.cpp,.sh",
         "image": ".bmp,.dib,.gif,.ico,.cur,.ani,.jpg,.jpeg,.psd,.svg,.webp,.png,.tif,.tiff", "archive": ".zip,.7z,.rar,.bz2,.bin,.cue",
@@ -398,12 +398,14 @@
         }
     },
     "pangram": {
-        "default": "ascii",
-        "GR": "greek", "CY": "greek",
-        "RU": "cyril", "UA": "cyril", "RS": "cyril",
-        "CN": "china", "JP": "china", "KR": "korea",
-        "SA": "arabi", "AE": "arabi", "IL": "arabi",
-        "IN": "other", "LK": "other", "NP": "other"
+        "default": "ascii", "FR": "latin", "BE": "latin",
+        "DE": "latin", "AT": "latin", "IT": "latin", "ES": "latin", "MX": "latin",
+        "RO": "latin", "MD": "latin", "HU": "latin", "CZ": "latin", "PL": "latin",
+        "GR": "greek", "CY": "greek", "NO": "latin", "SE": "latin", "FI": "latin",
+        "RU": "cyril", "UA": "cyril", "RS": "cyril", "BG": "cyril", "BY": "cyril",
+        "CN": "china", "JP": "china", "KR": "korea", "VN": "latin", "GE": "other",
+        "SA": "arabi", "AE": "arabi", "IL": "arabi", "QT": "arabi", "KW": "arabi",
+        "IN": "other", "LK": "other", "NP": "other", "TH": "other", "AM": "phone"
     },
     "vocabulary": {
         "CH": {
