@@ -10,35 +10,36 @@ function executeMacros(input, index = 0, length = 1) {
     } else if ((input.includes('# ')) && (input.indexOf('# ') == 0)) {
         // YOUR COMMENTS HERE...
     } else if ((input.includes('#')) && (input.indexOf('#') == 0)) {
+        var rep = input.replace('#', '');
         if (sysDefSessionID.value == 'root') {
-            if (input.replace('#', '') == 'auto') {
+            if (rep == 'auto') {
                 var ob = arrjob(sysDefAutoData.value,';',':');
                 for (ib in ob) { ob[ib] = 'auto'; }
                 set('automator.json', JSON.stringify(ob), true);
                 sysDefAutoData.value = arrpack(ob,';',':');
-            } else if (input.replace('#', '') == 'manual') {
+            } else if (rep == 'manual') {
                 var ob = arrjob(sysDefAutoData.value,';',':');
                 for (ib in ob) { ob[ib] = 'manual'; }
                 set('automator.json', JSON.stringify(ob), true);
                 sysDefAutoData.value = arrpack(ob,';',':');
-            } else if (input.replace('#', '') == 'bind') {
+            } else if (rep == 'bind') {
                 var ob = arrjob(sysDefBindData.value,';',':');
                 for (ib in ob) { ob[ib] = ib; }
                 set('binding.json', JSON.stringify(ob), true);
                 sysDefBindData.value = arrpack(ob,';',':');
-            } else if (input.replace('#', '') == 'frnd') {
+            } else if (rep == 'frnd') {
                 var ob = arrjob(sysDefFriendData.value,';',':');
                 for (ib in ob) { ob[ib] = ''; }
                 set('friendship.json', JSON.stringify(ob), true);
                 sysDefFriendData.value = arrpack(ob,';',':');
-            } else if (input.replace('#', '') == 'share') {
-                var ob = arrjob(sysDefPowersData.value,';',':');
+            } else if (rep == 'share') {
+                /*var ob = arrjob(sysDefPowersData.value,';',':');
                 var sum = 0; var qrt = 0;
                 for (ib in ob) { sum += ob[ib]; qrt += 1; }
                 var div = Math.round(sum / qrt);
                 for (ib in ob) { ob[ib] = div; }
                 set('dominion.json', JSON.stringify(ob), true);
-                sysDefPowersData.value = arrpack(ob,';',':');
+                sysDefPowersData.value = arrpack(ob,';',':');*/
             }
         }
     } else if ((index == (length - 1)) && (input.includes('\\=')) && (input.startsWith('\\='))) {
