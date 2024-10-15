@@ -10,11 +10,15 @@ function executeMacros(input, index = 0, length = 1) {
     } else if ((input.includes('# ')) && (input.indexOf('# ') == 0)) {
         // YOUR COMMENTS HERE...
     } else if ((input.includes('#')) && (input.indexOf('#') == 0)) {
-        rep = input.replace('#', '').split(':');
         if (sysDefSessionID.value == 'root') {
-            if (rep[0] == 'auto') {
+            if (input.replace('#', '') == 'auto') {
                 var ob = arrjob(sysDefAutoData.value,';',':');
-                for (ib in ob) { ob[ib] = rep[1]; }
+                for (ib in ob) { ob[ib] = 'auto'; }
+                set('automator.json', JSON.stringify(ob), true);
+                sysDefAutoData.value = arrpack(ob,';',':');
+            } else if (input.replace('#', '') == 'manual') {
+                var ob = arrjob(sysDefAutoData.value,';',':');
+                for (ib in ob) { ob[ib] = 'manual'; }
                 set('automator.json', JSON.stringify(ob), true);
                 sysDefAutoData.value = arrpack(ob,';',':');
             } else if (input.replace('#', '') == 'bind') {
