@@ -43,6 +43,7 @@ foreach ($settings['libraries']['domestic'] as $val) { ?>
 <input type='hidden' id="sysDefAutoState" value="<?=$automateData[$sessionID];?>">
 <input type='hidden' id="sysDefFriendData" value="<?=valstr($friendData,';',':');?>">
 <input type='hidden' id="sysDefToolData" value="<?=valstr($toolboxData,';',':');?>">
+<input type='hidden' id="sysDefCallData" value="<?=valstr($callData,';',':');?>">
 <input type='hidden' id="sysDefMetaData" value="<?=$metaJSON;?>">
 <input type='hidden' id="sysDefMetaList" value="<?=$metaList;?>">
 <input type='hidden' id="sysDefBookKeep" value=""><input type='hidden' id="sysDefMsgData" value="">

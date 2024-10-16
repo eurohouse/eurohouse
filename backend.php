@@ -26,6 +26,7 @@ $powersData = arropen('dominion.json', "{\"root\":0}");
 $automateData = arropen('automator.json', "{\"root\":\"manual\"}");
 $friendData = arropen('friendship.json', "{\"root\":\"\"}");
 $toolboxData = arropen('toolbox.json', "{\"root\":\"\"}");
+$callData = arropen('calling.json', "{\"root\":\"root\"}");
 $timezone = dec_tz($session['timezone']); date_default_timezone_set($timezone);
 $prefix = 'iso.'; $request = []; $postRequest = [];
 foreach ($settings['initialize']['GET'] as $requestID=>$requestValue) {

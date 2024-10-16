@@ -1,5 +1,6 @@
 function executeMacros(input, index = 0, length = 1) {
-    var output = input, rep, san, atr, atd, atx, plu, np, inc, np1, np2, mil; if ((index == (length - 1)) && (input == '_')) {
+    var output = input, rep, san, atr, atd, atx, plu, np, inc, np1, np2, mil;
+    if ((index == (length - 1)) && (input == '_')) {
         omniBack(sysDefParent.value);
     } else if ((index == (length - 1)) && (input == '\\=')) {
         output = '\\='+dtw(userdata()['melody'], sysDefSessionID.value, 'あいうえおかがきぎぐけげこごさざしじすずせぜそぞただちぢづてでとどなにぬねのはばぱひびぴふぶぷべぺほぼぽまみむめもやゆよらりるれろわゐゑをんゔゟ');
@@ -107,6 +108,11 @@ function executeMacros(input, index = 0, length = 1) {
             var atr = rep[1].split('?rev=')[1];
             setdata(rep[0], rep[1].replace(atr, '').replace('?rev=', ''));
         } else { setdata(rep[0], rep[1]); }
+    } else if ((index == (length - 1)) && (input.includes(':')) && (input.startsWith(':'))) {
+        var cald = arrjob(sysDefCallData.value,';',':');
+        cald[input.replace(':', '')] = sysDefSessionID.value;
+        set('calling.json', JSON.stringify(cald), true);
+        sysDefCallData.value = arrpack(cald,';',':');
     } else if ((index == (length - 1)) && (input.includes('_')) && (input.startsWith('_'))) {
         omniGo(input.replace('_', ''));
     } else if ((index == (length - 1)) && (input.includes('=')) && (input.startsWith('='))) {

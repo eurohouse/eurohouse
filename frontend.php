@@ -523,6 +523,7 @@ function delete_user(id) {
     remove_entry(id, sysDefAutoData, 'automator.json');
     remove_entry(id, sysDefFriendData, 'friendship.json');
     remove_entry(id, sysDefToolData, 'toolbox.json');
+    remove_entry(id, sysDefCallData, 'calling.json');
     del(id+'_session.json', true);
     del(id+'_session.json.bak', true);
     del(id+'_password', true);
@@ -542,18 +543,19 @@ function transfer_entry(id, obj, name, seb = false) {
     objData[id] = (seb !== false) ? id : objData[sysDefSessionID.value];
     if (sysDefSessionID.value != id) {
         delete objData[sysDefSessionID.value];
-    } set(name, JSON.stringify(objData), true);
+    } set(name+'.json', JSON.stringify(objData), true);
     obj.value = arrpack(objData,';',':');
 }
 function rename_user(username, password) {
     unbind(sysDefSessionID.value);
     change(sysDefSessionID.value, username, CryptoJS.SHA256(password).toString(), true);
     if (sysDefSessionID.value != username) {
-        transfer_entry(username, sysDefBindData, 'binding.json', true);
-        transfer_entry(username, sysDefPowersData, 'dominion.json');
-        transfer_entry(username, sysDefAutoData, 'automator.json');
-        transfer_entry(username, sysDefFriendData, 'friendship.json');
-        transfer_entry(username, sysDefToolData, 'toolbox.json');
+        transfer_entry(username, sysDefBindData, 'binding', true);
+        transfer_entry(username, sysDefPowersData, 'dominion');
+        transfer_entry(username, sysDefAutoData, 'automator');
+        transfer_entry(username, sysDefFriendData, 'friendship');
+        transfer_entry(username, sysDefToolData, 'toolbox');
+        transfer_entry(username, sysDefCallData, 'calling');
     }
 }
 function init_user(id, au = 'manual', ob) {
@@ -562,6 +564,7 @@ function init_user(id, au = 'manual', ob) {
     var ad = arrjob(sysDefAutoData.value,';',':');
     var fd = arrjob(sysDefFriendData.value,';',':');
     var td = arrjob(sysDefToolData.value,';',':');
+    var cd = arrjob(sysDefCallData.value,';',':');
     var usl = (sysDefUsersList.value).split(',');
     var bkl = (sysDefBooksList.value).split(',');
     var stl = (sysDefStoreList.value).split(',');
@@ -591,6 +594,10 @@ function init_user(id, au = 'manual', ob) {
         td[id] = '';
         set('toolbox.json', JSON.stringify(td), true);
         sysDefToolData.value = arrpack(td,';',':');
+    } if (!(id in cd)) {
+        cd[id] = id;
+        set('calling.json', JSON.stringify(cd), true);
+        sysDefCallData.value = arrpack(cd,';',':');
     }
 }
 function friendsOf(obj, id) {

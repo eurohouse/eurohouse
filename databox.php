@@ -8,6 +8,7 @@ $poweredData = arropen('dominion.json', "{\"root\":0}");
 $autoData = arropen('automator.json', "{\"root\":\"manual\"}");
 $frndData = arropen('friendship.json', "{\"root\":\"\"}");
 $toolData = arropen('toolbox.json', "{\"root\":\"\"}");
+$callData = arropen('calling.json', "{\"root\":\"root\"}");
 $binded = $bindingData[$cookie];
 $otherData = arropen($binded.'_session.json', json_encode($userSettings['defaults']), 'DEFAULT');
 $otherTimezone = dec_tz($otherData['timezone']); date_default_timezone_set($otherTimezone);
@@ -37,12 +38,13 @@ valstr($poweredData,';',':')."\r\n\r\n". // Read Line 2
 valstr($autoData,';',':')."\r\n\r\n". // Read Line 3
 valstr($frndData,';',':')."\r\n\r\n". // Read Line 4
 valstr($toolData,';',':')."\r\n\r\n". // Read Line 5
-$newsFeed."\r\n\r\n". // Read Line 6
-$userBook."\r\n\r\n". // Read Line 7
-$userStore."\r\n\r\n". // Read Line 8
-implode('//', $musicBox)."\\\\".implode('//', $soundBox)."\r\n\r\n". // Read Line 9
-implode('//', $codexBoxArr)."\\\\".implode('//', $speechBoxArr)."\r\n\r\n". // Read Line 10
-$usersList.";".$booksList.";".$storeList."\r\n\r\n". // Read Line 11
-$notesList."\r\n\r\n". // Read Line 12
-$notesJSON."\r\n\r\n". // Read Line 13
-$isActiveHow; // Read Line 14
+valstr($callData,';',':')."\r\n\r\n". // Read Line 6
+$newsFeed."\r\n\r\n". // Read Line 7
+$userBook."\r\n\r\n". // Read Line 8
+$userStore."\r\n\r\n". // Read Line 9
+implode('//', $musicBox)."\\\\".implode('//', $soundBox)."\r\n\r\n". // Read Line 10
+implode('//', $codexBoxArr)."\\\\".implode('//', $speechBoxArr)."\r\n\r\n". // Read Line 11
+$usersList.";".$booksList.";".$storeList."\r\n\r\n". // Read Line 12
+$notesList."\r\n\r\n". // Read Line 13
+$notesJSON."\r\n\r\n". // Read Line 14
+$isActiveHow; // Read Line 15

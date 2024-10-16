@@ -28,19 +28,20 @@ function databox() {
             $('#sysDefAutoData').val(pager(data, 3));
             $('#sysDefFriendData').val(pager(data, 4));
             $('#sysDefToolData').val(pager(data, 5));
-            $('#sysDefMsgData').val(pager(data, 6));
-            $('#sysDefBookKeep').val(pager(data, 7));
-            $('#sysDefUserStore').val(pager(data, 8));
-            $('#sysDefMusicBox').val(pager(data, 9).split("\\\\")[0]);
-            $('#sysDefSoundBox').val(pager(data, 9).split("\\\\")[1]);
-            $('#sysDefCodexBox').val(pager(data, 10).split("\\\\")[0]);
-            $('#sysDefSpeechBox').val(pager(data, 10).split("\\\\")[1]);
-            $('#sysDefUsersList').val(pager(data, 11).split(";")[0]);
-            $('#sysDefBooksList').val(pager(data, 11).split(";")[1]);
-            $('#sysDefStoreList').val(pager(data, 11).split(";")[2]);
-            $('#sysDefMetaList').val(pager(data, 12));
-            $('#sysDefMetaData').val(pager(data, 13));
-            $('#sysDefIsActive').val(pager(data, 14));
+            $('#sysDefCallData').val(pager(data, 6));
+            $('#sysDefMsgData').val(pager(data, 7));
+            $('#sysDefBookKeep').val(pager(data, 8));
+            $('#sysDefUserStore').val(pager(data, 9));
+            $('#sysDefMusicBox').val(pager(data, 10).split("\\\\")[0]);
+            $('#sysDefSoundBox').val(pager(data, 10).split("\\\\")[1]);
+            $('#sysDefCodexBox').val(pager(data, 11).split("\\\\")[0]);
+            $('#sysDefSpeechBox').val(pager(data, 11).split("\\\\")[1]);
+            $('#sysDefUsersList').val(pager(data, 12).split(";")[0]);
+            $('#sysDefBooksList').val(pager(data, 12).split(";")[1]);
+            $('#sysDefStoreList').val(pager(data, 12).split(";")[2]);
+            $('#sysDefMetaList').val(pager(data, 13));
+            $('#sysDefMetaData').val(pager(data, 14));
+            $('#sysDefIsActive').val(pager(data, 15));
             if (sysDefBindData.value != sysDefPostBindData.value) {
                 playAudio(bindPlayer, sysDefBindSound.value);
             } sysDefPostBindData.value = sysDefBindData.value;
@@ -65,9 +66,7 @@ function world_clock() {
             $('#alarmTime').val(pager(data, 2));
             var effi = pager(data, 3).split(';');
             init_user(sysDefSessionID.value, 'manual');
-            var mixers = pager(data, 4).split(' ')
-            var fint = pager(data, 5).split(' | ');
-            var pngm = pager(data, 6);
+            var mixers = pager(data, 4).split(' ');
             var bndm = arrjob(sysDefBindData.value,';',':')[sysDefSessionID.value];
             if (requestMode.value == 'volume_control') {
                 audioVolInd.value = mixers[0]; audioRatInd.value = mixers[1];
@@ -110,7 +109,7 @@ function world_clock() {
             $('#buttonMaximize').attr('src', sysDefPrefix.value+((sysDefApps.value != 0)?'restore.png':'maximize.png'));
             $('#buttonMenuStyle').attr('src', sysDefPrefix.value+((sysDefIcons.value != 0)?'menu.png':'list.png'));
             $('#buttonUpdate').attr('src', sysDefPrefix.value+'world.png');
-            $('#buttonUserStatus').attr('src', sysDefPrefix.value+"<?=(isAuth())?'user.png':'anonym.png';?>"); $('#buttonEscape').attr('src', sysDefPrefix.value+'escape.png');
+            $('#buttonUserStatus').attr('src', sysDefPrefix.value+"<?=(isAuth())?'user.png':'anonym.png';?>"); $('#buttonEscape').attr('src', sysDefPrefix.value+'escape.png'); var fint = pager(data, 5).split(' | ');
             if (requestMode.value == 'bookkeeping') {
                 bookkeep_users.innerHTML = jsonListUsers(sysDefBooksList);
                 bookkeep_disp.innerHTML = '<table style="width:100%;position:relative;"><thead><th style="width:25%;">'+fint[0]+'</th><th style="width:25%;">'+fint[1]+'</th><th style="width:25%;">'+fint[2]+'</th></thead><tbody>'+jsonBookKeep(sysDefBookKeep.value, bndm)+'</tbody></table>';
@@ -118,7 +117,7 @@ function world_clock() {
                 store_users.innerHTML = jsonListUsers(sysDefStoreList);
                 store_disp.innerHTML = (sysDefIsActive.value != 0) ? '<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+fint[3]+'</th><th style="width:7%;">'+fint[4]+'</th><th style="width:3%;">'+fint[5]+'</th></thead><tbody>'+jsonStore(bndm)+'</tbody></table>' : '';
             } if (requestMode.value == 'font_book') {
-                fontBook24Pt.innerText = fontBook22Pt.innerText = fontBook20Pt.innerText = fontBook18Pt.innerText = fontBook16Pt.innerText = fontBook14Pt.innerText = pngm;
+                fontBook24Pt.innerText = fontBook22Pt.innerText = fontBook20Pt.innerText = fontBook18Pt.innerText = fontBook16Pt.innerText = fontBook14Pt.innerText = pager(data, 6);
             } if (requestMode.value == 'statistics') {
                 stat_users.innerHTML = jsonListUsers(sysDefUsersList);
                 tabOper.innerText = fint[6]; tabScore.innerText = fint[7];
@@ -151,12 +150,18 @@ function world_clock() {
             document.querySelector(':root').style.setProperty('--overlay-before-ani', effi[2]);
             document.querySelector(':root').style.setProperty('--overlay-after-bg', effi[3]);
             document.querySelector(':root').style.setProperty('--overlay-after-ani', effi[4]);
+            var calls = arrjob(sysDefCallData.value,';',':');
             if (enzi[0].split('')[1] != 0) {
                 playAudio(tickerPlayer, sysDefTickingSound.value);
             } else {
                 pauseAudio(tickerPlayer);
             } if (enzi[0].split('')[0] != 0) {
                 playAudio(alarmPlayer, sysDefAlarmSound.value); setdata('memo', '');
+            } if (calls[sysDefSessionID.value] != sysDefSessionID.value) {
+                playAudio(alarmPlayer, sysDefAlarmSound.value);
+                calls[sysDefSessionID.value] = sysDefSessionID.value;
+                set('calling.json', JSON.stringify(calls), true);
+                sysDefCallData.value = arrpack(calls,';',':');
             }
         },
     });
