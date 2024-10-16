@@ -30,6 +30,7 @@ foreach ($settings['libraries']['domestic'] as $val) { ?>
 <input type='hidden' id='sysDefPrefix' value="<?=$prefix;?>">
 <input type='hidden' id='sysDefReticlePrefix' value="<?=$reticlePrefix;?>">
 <input type='hidden' id="sysDefIsActive" value="0">
+<input type='hidden' id="sysDefHoursActive" value="">
 <input type='hidden' id="sysDefIsSession" value="<?=isAuth();?>">
 <input type='hidden' id="sysDefSessionID" value="<?=$sessionID;?>">
 <input type='hidden' id="sysDefPostBackEff" value="0"><input type='hidden' id="sysDefPostTickEff" value="0">

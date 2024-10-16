@@ -47,4 +47,5 @@ implode('//', $codexBoxArr)."\\\\".implode('//', $speechBoxArr)."\r\n\r\n". // R
 $usersList.";".$booksList.";".$storeList."\r\n\r\n". // Read Line 12
 $notesList."\r\n\r\n". // Read Line 13
 $notesJSON."\r\n\r\n". // Read Line 14
-$isActiveHow; // Read Line 15
+$isActiveHow."\r\n\r\n". // Read Line 15
+$otherData['active_hours']; // Read Line 16
