@@ -210,7 +210,7 @@ function jsonListUsers(ob) {
 function obramBtn(str) {
     var arr = str.split(',');
     var arl = ''; for (el in arr) {
-        arl = "<input type='button' value='"+arr[el]+"'>";
+        arl += "<input type='button' value='"+arr[el]+"'>";
     } return arl;
 }
 function jsonStore(id) {
