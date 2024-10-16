@@ -214,11 +214,8 @@ function jsonStore(id) {
         if ((arr[el] !== undefined) && (typeof(arr[el]) == 'object')) {
             eld = arr[el], arl = '<tr>';
             fu0 = "buy_item(&#34;"+el+"&#34;,&#34;"+id+"&#34;);";
-            if (isInt(el)) {
-                fu1 = "charge(&#34;"+id+"&#34;,&#34;"+el+"&#34;);";
-            } else {
-                fu1 = "equip(&#34;"+id+"&#34;,&#34;"+el+"&#34;);";
-            } arl += "<td><input type='button' style='width:100%;' onclick='"+((id != sysDefSessionID.value) ? fu0 : fu1)+"' value='"+el+"'></td><td>"+eld['amount']+"</td><td>"+eld['price']+"</td>"; ard = arl+"</tr>"+ard;
+            fu1 = (isInt(el)) ? "charge(&#34;"+id+"&#34;,&#34;"+el+"&#34;);" : ((eld['type'] == 'weapon') ? "equip(&#34;"+id+"&#34;,&#34;"+el+"&#34;);" : "charge(&#34;"+id+"&#34;,&#34;"+el+"&#34;);");
+            arl += "<td><input type='button' style='width:100%;' onclick='"+((id != sysDefSessionID.value) ? fu0 : fu1)+"' value='"+el+"'></td><td>"+eld['amount']+"</td><td>"+eld['price']+"</td>"; ard = arl+"</tr>"+ard;
         }
     } return ard;
 }
