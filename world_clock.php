@@ -32,7 +32,7 @@ $termQua = (isset($voc[$uni]['Amount'])) ? $voc[$uni]['Amount'] : 'Amount';
 $termPri = (isset($voc[$uni]['Price'])) ? $voc[$uni]['Price'] : 'Price';
 $termOper = (isset($voc[$uni]['User Operation:'])) ? $voc[$uni]['User Operation:'] : 'User Opeation:';
 $termScore = (isset($voc[$uni]['User Score Tab:'])) ? $voc[$uni]['User Score Tab:'] : 'User Score Tab:';
-$termClosed = (isset($voc[$uni]["'s market is closed."])) ? $voc[$uni]["'s market is closed."] : "'s market is closed.";
+$termClosed = (isset($voc[$uni]["The market is closed."])) ? $voc[$uni]["The market is closed."] : "The market is closed.";
 $termActive = (isset($voc[$uni]['Active Hours:'])) ? $voc[$uni]['Active Hours:'] : 'Active Hours:';
 echo $dateTimeStr."\r\n\r\n". // Read Line 0
 $dateTimeCode." ".$userData['observe'].$userData['spectate']." ".rgbap($userData['back_color'], $userData['opacity'])."\r\n\r\n". // Read Line 1
