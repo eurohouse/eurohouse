@@ -207,6 +207,12 @@ function jsonListUsers(ob) {
         }
     } arl += "</p>"; return arl;
 }
+function obramBtn(str) {
+    var arr = str.split(',');
+    var arl = ''; for (el in arr) {
+        arl = "<input type='button' value='"+arr[el]+"'>";
+    } return arl;
+}
 function jsonStore(id) {
     var arr = jsonstr(openJournal(id, sysDefStoreList, sysDefStoreJSONs));
     var ard = '', arl = '', eld = {}, fu0 = '', fu1 = '';
