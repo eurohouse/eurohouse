@@ -40,6 +40,7 @@ function databox() {
             $('#sysDefStoreList').val(pager(data, 11).split(";")[2]);
             $('#sysDefMetaList').val(pager(data, 12));
             $('#sysDefMetaData').val(pager(data, 13));
+            $('#sysDefIsActive').val(pager(data, 14));
             if (sysDefBindData.value != sysDefPostBindData.value) {
                 playAudio(bindPlayer, sysDefBindSound.value);
             } sysDefPostBindData.value = sysDefBindData.value;
@@ -115,7 +116,7 @@ function world_clock() {
                 bookkeep_disp.innerHTML = '<table style="width:100%;position:relative;"><thead><th style="width:25%;">'+fint[0]+'</th><th style="width:25%;">'+fint[1]+'</th><th style="width:25%;">'+fint[2]+'</th></thead><tbody>'+jsonBookKeep(sysDefBookKeep.value, bndm)+'</tbody></table>';
             } if (requestMode.value == 'play_store') {
                 store_users.innerHTML = jsonListUsers(sysDefStoreList);
-                store_disp.innerHTML = '<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+fint[3]+'</th><th style="width:7%;">'+fint[4]+'</th><th style="width:3%;">'+fint[5]+'</th></thead><tbody>'+jsonStore(bndm)+'</tbody></table>';
+                store_disp.innerHTML = (sysDefIsActive.value != 0) ? '<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+fint[3]+'</th><th style="width:7%;">'+fint[4]+'</th><th style="width:3%;">'+fint[5]+'</th></thead><tbody>'+jsonStore(bndm)+'</tbody></table>' : '';
             } if (requestMode.value == 'font_book') {
                 fontBook24Pt.innerText = fontBook22Pt.innerText = fontBook20Pt.innerText = fontBook18Pt.innerText = fontBook16Pt.innerText = fontBook14Pt.innerText = pngm;
             } if (requestMode.value == 'statistics') {

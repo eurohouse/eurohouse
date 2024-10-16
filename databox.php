@@ -7,7 +7,11 @@ $bindingData = arropen('binding.json', "{\"root\":\"root\"}");
 $poweredData = arropen('dominion.json', "{\"root\":0}");
 $autoData = arropen('automator.json', "{\"root\":\"manual\"}");
 $frndData = arropen('friendship.json', "{\"root\":\"\"}");
-$toolData = arropen('toolbox.json', "{\"root\":\"\"}");
+$toolData = arropen('toolbox.json', "{\"root\":\"\"}"); $binded = $bindingData[$cookie];
+$otherData = arropen($binded.'_session.json', json_encode($userSettings['defaults']), 'DEFAULT');
+$otherTimezone = dec_tz($otherData['timezone']); date_default_timezone_set($otherTimezone);
+$otherLocalTime = date('H'); $otherHours = explode(',', $otherData['active_hours']);
+$isActiveHow = intval(in_array($otherLocalTime, $otherHours));
 $musicBoxArr = str_replace('./','',(glob('./*.{'.duplex($userSettings['collections']['music'], true).'}', GLOB_BRACE)));
 $soundBoxArr = str_replace('./','',(glob('./*.{'.duplex($userSettings['collections']['audio'], true).'}', GLOB_BRACE)));
 $locksArr = arropen($cookie.'_lock.json', json_encode($userSettings['locks']), 'DEFAULT');
@@ -39,3 +43,4 @@ implode('//', $codexBoxArr)."\\\\".implode('//', $speechBoxArr)."\r\n\r\n". // R
 $usersList.";".$booksList.";".$storeList."\r\n\r\n". // Read Line 11
 $notesList."\r\n\r\n". // Read Line 12
 $notesJSON; // Read Line 13
+$isActiveHow; // Read Line 14
