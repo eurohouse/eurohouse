@@ -42,5 +42,5 @@ implode('//', $musicBox)."\\\\".implode('//', $soundBox)."\r\n\r\n". // Read Lin
 implode('//', $codexBoxArr)."\\\\".implode('//', $speechBoxArr)."\r\n\r\n". // Read Line 10
 $usersList.";".$booksList.";".$storeList."\r\n\r\n". // Read Line 11
 $notesList."\r\n\r\n". // Read Line 12
-$notesJSON; // Read Line 13
+$notesJSON."\r\n\r\n". // Read Line 13
 $isActiveHow; // Read Line 14
