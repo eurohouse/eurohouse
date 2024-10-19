@@ -46,7 +46,7 @@ $iconSize = 50; include 'file_manager.php'; ?>
         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'true');" src="<?=$prefix.'info.png';?>">
     <?php } ?>
     </p></td>
-<?php } elseif (in_array($mediaFileExtension, duplex($settings['collections']['audio']))) {
+<?php } elseif (in_array($mediaFileExtension, duplex($settings['collections']['sound']))) {
         $mediaFileFavicon = $themePrefix.'audio.png'; ?>
     <td><a href="<?=$mediaFileFavicon;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$mediaFileFavicon;?>" loading="lazy" onmouseover="soundButton();"></a></td><td><a style="<?=$preStyle;?>" href="javascript:omniListen(%22<?=$mediaFilename;?>%22, true);"><?=$mediaFileTitle;?></a></td><td><?=$mediaFileSizeStr;?></td>
     <td><p align='center' class='block'>

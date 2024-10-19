@@ -37,7 +37,7 @@
     },
     "collections": {
         "music": ".mp3,.aac,.ogg,.flac,.wma,.mka",
-        "audio": ".wav,.snd,.ac3,.au,.m4a,.oga,.wma",
+        "sound": ".wav,.snd,.ac3,.au,.m4a,.oga,.wma",
         "video": ".mp4,.mkv,.webm,.3gp",
         "movie": ".mov,.qt,.wmv,.avi",
         "midi": ".mid,.midi,.rmi",

@@ -2,7 +2,7 @@
     <p align='center' class='block'>
     <input type="image" onmouseover="soundButton();" id="buttonRandom" class="power" onclick="songIndex('random');" src="<?=$prefix.'dice.png';?>">
     <select id="ErotoOlympus" style="width:30%;" onchange="setdata('background', ErotoOlympus.options[ErotoOlympus.selectedIndex].id);">
-    <?php foreach (categories($olympus, $locks['background']) as $key=>$val) { ?>
+    <?php foreach ($userLocks['background'] as $key=>$val) { ?>
     <option disabled><?=titled($val, $session['units']);?></option>
     <?php foreach (categoryList($key) as $value) { ?>
     <option id="<?=$value;?>" <?php if ((explode('.', $value)[0] == explode('.', $background)[0]) && (explode('.', $value)[1] == explode('.', $background)[1])) { ?> selected="selected" <?php } ?>><?=titler($value, $settings, $session['title'], $session['units']);?></option>
@@ -77,7 +77,7 @@
     } else { omniListen(dtw(sysDefMelody.value, sysDefSessionID.value, 'あいうえおかがきぎぐけげこごさざしじすずせぜそぞただちぢづてでとどなにぬねのはばぱひびぴふぶぷべぺほぼぽまみむめもやゆよらりるれろわゐゑをんゔゟ')); }" src="<?=$prefix.'play.png';?>">
     <input type="image" onmouseover="soundButton();" id="buttonPitched" class="power" onclick="setdata('pitch_lock', flip(sysDefPitchLock.value));" src="<?=$prefix.(($session['pitch_lock'] != 0)?'midi.png':'volume.png');?>">
     <select id="avatarPicker" style="width:18%;" onchange="setdata('avatar', avatarPicker.options[avatarPicker.selectedIndex].id); if (sysDefReload.value != 0) { window.location.reload(); }">
-    <?php foreach (excpkg($kaiser, $locks['avatar']) as $key=>$value) { ?>
+    <?php foreach ($userLocks['avatar'] as $key=>$value) { ?>
     <option id="<?=explode('.', $value)[1];?>" <?php if ($session['avatar'] == explode('.', $value)[1]) { ?> selected <?php } ?>>
         <?=explode('.', $value)[1];?>
     </option><?php } ?></select>

@@ -9,23 +9,19 @@ $autoData = arropen('automator.json', "{\"root\":\"manual\"}");
 $frndData = arropen('friendship.json', "{\"root\":\"\"}");
 $toolData = arropen('toolbox.json', "{\"root\":\"\"}");
 $callData = arropen('calling.json', "{\"root\":\"root\"}");
+$avaPref = (lux($userData['back_text_color'])) ? 'ava.' : 'abc.';
 $binded = $bindingData[$cookie];
 $otherData = arropen($binded.'_session.json', json_encode($userSettings['defaults']), 'DEFAULT');
 $otherTimezone = dec_tz($otherData['timezone']); date_default_timezone_set($otherTimezone);
 $otherLocalTime = date('H');
 $otherHours = explode(',', $otherData['active_hours']);
 $isActiveHow = ($binded != $cookie) ? intval(in_array($otherLocalTime, $otherHours)) : 1;
-$musicBoxArr = str_replace('./','',(glob('./*.{'.duplex($userSettings['collections']['music'], true).'}', GLOB_BRACE)));
-$soundBoxArr = str_replace('./','',(glob('./*.{'.duplex($userSettings['collections']['audio'], true).'}', GLOB_BRACE)));
 $locksArr = arropen($cookie.'_lock.json', json_encode($userSettings['locks']), 'DEFAULT');
 $notesArr = arropen($cookie.'_metadata.json', json_encode($userSettings['metadata']), 'CUSTOM');
 $notesList = implode(' | ', array_keys($notesArr));
 $notesJSON = file_get_contents($cookie.'_metadata.json');
-$musicBox = excpkg($musicBoxArr, $locksArr['music']);
-$soundBox = excpkg($soundBoxArr, $locksArr['sound']);
-natcasesort($musicBox); array_unique($musicBox);
-natcasesort($soundBox); array_unique($soundBox);
-$codexBoxArr = str_replace('./','',(glob('./*.mac'))); $speechBoxArr = str_replace('./','',(glob('./*.pro')));
+$codexBoxArr = str_replace('./','',(glob('./*.mac')));
+$speechBoxArr = str_replace('./','',(glob('./*.pro')));
 $usersList = implode(',',str_replace('_msgbox.json','',str_replace('./.msgbox/','',(glob('./.msgbox/*_msgbox.json')))));
 $booksList = implode(',',str_replace('_book.json','',str_replace('./.book/','',(glob('./.book/*_book.json')))));
 $storeList = implode(',',str_replace('_store.json','',str_replace('./.store/','',(glob('./.store/*_store.json')))));
@@ -42,7 +38,7 @@ valstr($callData,';',':')."\r\n\r\n". // Read Line 6
 $newsFeed."\r\n\r\n". // Read Line 7
 $userBook."\r\n\r\n". // Read Line 8
 $userStore."\r\n\r\n". // Read Line 9
-implode('//', $musicBox)."\\\\".implode('//', $soundBox)."\r\n\r\n". // Read Line 10
+json_encode(userlocks($locksArr, $userSettings['collections'], $avaPref), JSON_UNESCAPED_UNICODE)."\r\n\r\n". // Read Line 10
 implode('//', $codexBoxArr)."\\\\".implode('//', $speechBoxArr)."\r\n\r\n". // Read Line 11
 $usersList.";".$booksList.";".$storeList."\r\n\r\n". // Read Line 12
 $notesList."\r\n\r\n". // Read Line 13

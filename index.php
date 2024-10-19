@@ -24,6 +24,7 @@ foreach ($settings['libraries']['domestic'] as $val) { ?>
     <input type='hidden' id="<?='sysDef'.camel($key);?>" value="<?=$value;?>">
 <?php } foreach ($locks as $key=>$value) { ?>
     <input type='hidden' id="<?='lock'.camel($key);?>" value="<?=$value;?>">
+    <input type='hidden' id="<?='sysDef'.camel($key).'LockData';?>" value="">
 <?php } foreach ($updateChannel as $key=>$value) { ?>
     <input type='hidden' id='<?='updateChannel'.md5($key);?>' value="<?=$value;?>">
 <?php } ?><input type='hidden' id='sysDefBackload' value="<?=$backloadString;?>">
@@ -31,6 +32,7 @@ foreach ($settings['libraries']['domestic'] as $val) { ?>
 <input type='hidden' id='sysDefReticlePrefix' value="<?=$reticlePrefix;?>">
 <input type='hidden' id="sysDefIsActive" value="0">
 <input type='hidden' id="sysDefHoursActive" value="">
+<input type='hidden' id="sysDefLockData" value="">
 <input type='hidden' id="sysDefIsSession" value="<?=isAuth();?>">
 <input type='hidden' id="sysDefSessionID" value="<?=$sessionID;?>">
 <input type='hidden' id="sysDefPostBackEff" value="0"><input type='hidden' id="sysDefPostTickEff" value="0">
@@ -49,8 +51,6 @@ foreach ($settings['libraries']['domestic'] as $val) { ?>
 <input type='hidden' id="sysDefMetaList" value="<?=$metaList;?>">
 <input type='hidden' id="sysDefBookKeep" value=""><input type='hidden' id="sysDefMsgData" value="">
 <input type='hidden' id="sysDefUserStore" value=""><input type='hidden' id="sysDefMsgCounter" value="0">
-<input type='hidden' id="sysDefMusicBox" value="<?=implode('//', $musicBox);?>">
-<input type='hidden' id="sysDefSoundBox" value="<?=implode('//', $orpheus);?>">
 <input type='hidden' id="sysDefCodexBox" value="<?=implode('//', $codexBox);?>">
 <input type='hidden' id="sysDefSpeechBox" value="<?=implode('//', $speechBox);?>">
 <input type='hidden' id="sysDefPostBindData" value="<?=valstr($bindData,';',':');?>">

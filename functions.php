@@ -8,23 +8,35 @@ function pkgf($pkg, $ar = false) {
     } $pkgr = ($ar !== false) ? explode(';', $pkgl) : $pkgl;
     return $pkgr;
 }
-function excpkg(array $arr, $exc = ''): array {
-    $new = []; $fin = [];
-    if ($exc != '') {
-        if (strpos($exc, ',') !== false) {
-            foreach (explode(',', $exc) as $iter=>$pkg) {
-                $new = ($iter == 0) ? pkgf($pkg, true) : array_merge($new, pkgf($pkg, true));
-            }
-        } else {
-            $new = pkgf($exc, true);
-        }
+function userlocks($arr, $col, $ava) {
+    $res = []; foreach ($arr as $key=>$val) {
+        $lib = ($key == 'avatar') ? str_replace('./','',(glob('./'.$ava.'*.png'))) : (($key == 'background') ? str_replace('./','',(glob('./*.*.00.png'))) : str_replace('./','',(glob('./*.{'.duplex($col[$key], true).'}', GLOB_BRACE))));
+        $res[$key] = excpkg($lib, $arr[$key]);
+        natcasesort($res[$key]); array_unique($res[$key]);
+    } return $res;
+}
+function excpkg(array $arr, $exc = '', $cats = false): array {
+    $new = $fin = $sup = $res = [];
+    if ($cats !== false) {
+        foreach ($arr as $exem) {
+            $el = explode('.', $exem)[0];
+            if ($exc != '') {
+                if (strpos($exc, ',') !== false) {
+                    if (in_array($el, explode(',', $exc))) { $new[$el] = $exem; }
+                } else { if ($el == $exc) { $new[$el] = $exem; }}
+            } else { $new[$el] = $exem; } $sup[$el] = $exem;
+        } $res = (!empty($new)) ? $new : $sup;
     } else {
-        $new = $arr;
-    } foreach ($new as $val) {
-        if (in_array($val, $arr) !== false) {
-            $fin[] = $val;
-        }
-    } return ((!empty($fin)) ? array_unique($fin) : array_unique($arr));
+        if ($exc != '') {
+            if (strpos($exc, ',') !== false) {
+                foreach (explode(',', $exc) as $iter=>$pkg) {
+                    $new = ($iter == 0) ? pkgf($pkg, true) : array_merge($new, pkgf($pkg, true));
+                }
+            } else { $new = pkgf($exc, true); }
+        } else { $new = $arr; } foreach ($new as $val) {
+            if (in_array($val, $arr) !== false) { $fin[] = $val; }
+        } $res = (!empty($fin)) ? array_unique($fin) : array_unique($arr);
+    } return $res;
 }
 function dir_size($path) {
     $bytestotal = 0;
@@ -124,26 +136,6 @@ function exemplar(array $arr): array {
             $new[$key] = $val;
         }
     } return $new;
-}
-function categories(array $arr, $exc = ''): array {
-    $new = []; $sup = [];
-    foreach ($arr as $exem) {
-        $el = explode('.', $exem)[0];
-        if ($exc != '') {
-            if (strpos($exc, ',') !== false) {
-                $delim = explode(',', $exc);
-                if (in_array($el, $delim)) {
-                    $new[$el] = $exem;
-                }
-            } else {
-                if ($el == $exc) {
-                    $new[$el] = $exem;
-                }
-            }
-        } else {
-            $new[$el] = $exem;
-        } $sup[$el] = $exem;
-    } return ((!empty($new)) ? $new : $sup);
 }
 function categoryList($cat): array {
     return str_replace('./','',(glob('./'.$cat.'.*.00.png')));

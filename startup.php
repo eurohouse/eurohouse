@@ -32,8 +32,9 @@ function databox() {
             $('#sysDefMsgData').val(pager(data, 7));
             $('#sysDefBookKeep').val(pager(data, 8));
             $('#sysDefUserStore').val(pager(data, 9));
-            $('#sysDefMusicBox').val(pager(data, 10).split("\\\\")[0]);
-            $('#sysDefSoundBox').val(pager(data, 10).split("\\\\")[1]);
+            $('#sysDefLockData').val(pager(data, 10));
+            var lockdt = sysDefLockData.value;
+            for (eldt in lockdt) { $('#sysDef'+ucfirst(eldt)+'LockData').val(lockdt[eldt]); }
             $('#sysDefCodexBox').val(pager(data, 11).split("\\\\")[0]);
             $('#sysDefSpeechBox').val(pager(data, 11).split("\\\\")[1]);
             $('#sysDefUsersList').val(pager(data, 12).split(";")[0]);

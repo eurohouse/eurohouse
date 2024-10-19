@@ -19,7 +19,7 @@ include 'file_manager.php'; foreach ($index as $key=>$value) {
         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name, '', 'true');" src="<?=$prefix.'info.png';?>">
     <?php } ?>
 <?php } else {
-    if ((in_array($mediaFileExtension, duplex($settings['collections']['music']))) || (in_array($mediaFileExtension, duplex($settings['collections']['audio'])))) { ?>
+    if ((in_array($mediaFileExtension, duplex($settings['collections']['music']))) || (in_array($mediaFileExtension, duplex($settings['collections']['sound'])))) { ?>
     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" src="<?=$prefix.'audio.png';?>">
     <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFileTitle;?>" style="width:<?=$line1Size;?>%;" onmouseover="soundButton();" onclick="omniListen(this.name, true);">
     <input type="button" name="<?=$mediaFilename;?>" value="<?=$mediaFileSizeStr;?>" style="width:<?=$line2Size;?>%;" onmouseover="soundButton();">
