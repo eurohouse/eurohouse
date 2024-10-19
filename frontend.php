@@ -66,7 +66,9 @@ function lockdata() {
         } $iter = 0; ?>
     }; return obj;
 }
-function lockvals(ind) { return jsonstr(sysDefLockData.value)[ind]; }
+function lockvals(ind) {
+    return jsonstr(sysDefLockData.value)[ind];
+}
 function metadata() { return jsonstr(sysDefMetaData.value); }
 function userdata() {
     var obj = {

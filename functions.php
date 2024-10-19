@@ -11,7 +11,7 @@ function pkgf($pkg, $ar = false) {
 function userlocks($arr, $col, $ava) {
     $res = []; foreach ($arr as $key=>$val) {
         $lib = ($key == 'avatar') ? str_replace('./','',(glob('./'.$ava.'*.png'))) : (($key == 'background') ? str_replace('./','',(glob('./*.*.00.png'))) : str_replace('./','',(glob('./*.{'.duplex($col[$key], true).'}', GLOB_BRACE))));
-        $res[$key] = excpkg($lib, $arr[$key]);
+        $res[$key] = excpkg($lib, $arr[$key], ($key == 'background'));
         natcasesort($res[$key]); array_unique($res[$key]);
     } return $res;
 }
