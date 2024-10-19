@@ -13,7 +13,6 @@ function userlocks($arr, $col, $ava) {
         $lib = ($key == 'avatar') ? str_replace('./','',(glob('./'.$ava.'*.png'))) : (($key == 'background') ? str_replace('./','',(glob('./*.*.00.png'))) : str_replace('./','',(glob('./*.{'.duplex($col[$key], true).'}', GLOB_BRACE))));
         if ($key == 'background') {
             $res[$key] = excpkg($lib, $arr[$key], 'COLLECTION');
-            $res[$key] = excpkg($lib, $arr[$key], 'SERIES');
         } else {
             $res[$key] = excpkg($lib, $arr[$key]);
         } natcasesort($res[$key]); array_unique($res[$key]);
