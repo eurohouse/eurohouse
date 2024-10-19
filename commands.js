@@ -143,9 +143,9 @@ function executeMacros(input, index = 0, length = 1) {
         if (input.startsWith('lock_')) {
             output = input + ': ' + lockdata()[input.replace('lock_', '')];
         } else if (input.startsWith('lock_items_')) {
-            output = input + ': ' + lockvals(input.replace('lock_items_', '')).join(',');
+            output = input + ': ' + lockvals(input.replace('lock_items_', ''));
         } else if (input.startsWith('lock_count_')) {
-            output = input + ': ' + lockvals(input.replace('lock_count_', '')).length;
+            output = input + ': ' + lockvals(input.replace('lock_count_', ''), true);
         } else if ((input == 'melody')) {
             output = input + ': ' + dtw(userdata()[input], sysDefSessionID.value, 'あいうえおかがきぎぐけげこごさざしじすずせぜそぞただちぢづてでとどなにぬねのはばぱひびぴふぶぷべぺほぼぽまみむめもやゆよらりるれろわゐゑをんゔゟ');
         } else {
