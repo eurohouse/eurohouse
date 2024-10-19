@@ -11,13 +11,19 @@ function pkgf($pkg, $ar = false) {
 function userlocks($arr, $col, $ava) {
     $res = []; foreach ($arr as $key=>$val) {
         $lib = ($key == 'avatar') ? str_replace('./','',(glob('./'.$ava.'*.png'))) : (($key == 'background') ? str_replace('./','',(glob('./*.*.00.png'))) : str_replace('./','',(glob('./*.{'.duplex($col[$key], true).'}', GLOB_BRACE))));
-        $res[$key] = excpkg($lib, $arr[$key], ($key == 'background'));
-        natcasesort($res[$key]); array_unique($res[$key]);
+        if ($key == 'background') {
+            $res[$key.'_collection'] = excpkg($lib, $arr[$key], 'COLLECTION'); $res[$key.'_series'] = excpkg($lib, $arr[$key], 'SERIES');
+        } else {
+            $res[$key] = excpkg($lib, $arr[$key]);
+        } natcasesort($res[$key]); array_unique($res[$key]);
     } return $res;
 }
-function excpkg(array $arr, $exc = '', $cats = false): array {
-    $new = $fin = $sup = $res = [];
-    if ($cats !== false) {
+function catlist($cat): array {
+    return str_replace('./','',(glob('./'.$cat.'.*.00.png')));
+}
+function excpkg(array $arr, $exc = '', $flg = ''): array {
+    $new = $fin = $prt = $sup = $res = [];
+    if ($flg == 'COLLECTION') {
         foreach ($arr as $exem) {
             $el = explode('.', $exem)[0];
             if ($exc != '') {
@@ -26,6 +32,18 @@ function excpkg(array $arr, $exc = '', $cats = false): array {
                 } else { if ($el == $exc) { $new[$el] = $exem; }}
             } else { $new[$el] = $exem; } $sup[$el] = $exem;
         } $res = (!empty($new)) ? $new : $sup;
+    } elseif ($flg == 'SERIES') {
+        foreach ($arr as $exem) {
+            $el = explode('.', $exem)[0];
+            if ($exc != '') {
+                if (strpos($exc, ',') !== false) {
+                    if (in_array($el, explode(',', $exc))) { $new[$el] = $exem; }
+                } else { if ($el == $exc) { $new[$el] = $exem; }}
+            } else { $new[$el] = $exem; } $sup[$el] = $exem;
+        } $prt = (!empty($new)) ? $new : $sup;
+        foreach ($prt as $key=>$val) {
+            foreach (catlist($key) as $value) { $fin[] = $value; }
+        } $res = (!empty($fin)) ? $fin : $sup;
     } else {
         if ($exc != '') {
             if (strpos($exc, ',') !== false) {
@@ -136,9 +154,6 @@ function exemplar(array $arr): array {
             $new[$key] = $val;
         }
     } return $new;
-}
-function categoryList($cat): array {
-    return str_replace('./','',(glob('./'.$cat.'.*.00.png')));
 }
 function sizestr(string $val, array $voc, $units = 'EU') {
     $unitB = (isset($voc['B'][$units]['sign'])) ? $voc['B'][$units]['sign'] : 'B';
