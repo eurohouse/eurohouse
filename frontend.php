@@ -15,9 +15,8 @@ function omniListen(input, scratch = false) {
     setdata('audio_speed', sysDefAudioSpeed.value);
 }
 function songIndex(mode = '') {
-    var museLint = (sysDefMusicLockData.value).split('//');
-    var museMelo = dtw(sysDefMelody.value, sysDefSessionID.value, 'あいうえおかがきぎぐけげこごさざしじすずせぜそぞただちぢづてでとどなにぬねのはばぱひびぴふぶぷべぺほぼぽまみむめもやゆよらりるれろわゐゑをんゔゟ');
-    var museInd = arraySearch(((museMelo.startsWith(requestPath.value+'/')) ? museMelo.replace(requestPath.value+'/','') : museMelo), museLint); omniListen(((mode == 'next') ? (((museInd >= (museLint.length-1)) || (museInd === false)) ? museLint[0] : museLint[parseInt(museInd)+1]) : ((mode == 'prev') ? (((museInd <= 0) || (museInd === false)) ? museLint[museLint.length-1] : museLint[parseInt(museInd)-1]) : ((mode == 'random') ? museLint[rand(0, museLint.length)] : museMelo))), true);
+    var museLint = (jsonstr(sysDefLockData.value)['music']);
+    var museMelo = dtw(sysDefMelody.value, sysDefSessionID.value, 'あいうえおかがきぎぐけげこごさざしじすずせぜそぞただちぢづてでとどなにぬねのはばぱひびぴふぶぷべぺほぼぽまみむめもやゆよらりるれろわゐゑをんゔゟ'), museInd = arraySearch(((museMelo.startsWith(requestPath.value+'/')) ? museMelo.replace(requestPath.value+'/','') : museMelo), museLint); omniListen(((mode == 'next') ? (((museInd >= (museLint.length-1)) || (museInd === false)) ? museLint[0] : museLint[parseInt(museInd)+1]) : ((mode == 'prev') ? (((museInd <= 0) || (museInd === false)) ? museLint[museLint.length-1] : museLint[parseInt(museInd)-1]) : ((mode == 'random') ? museLint[rand(0, museLint.length)] : museMelo))), true);
 }
 function omniPause() { pauseAudio(audioPlayer); }
 function audioPosition(sec) {
@@ -67,7 +66,6 @@ function lockdata() {
         } $iter = 0; ?>
     }; return obj;
 }
-function lockvals() { return jsonstr(sysDefLockData.value); }
 function metadata() { return jsonstr(sysDefMetaData.value); }
 function userdata() {
     var obj = {

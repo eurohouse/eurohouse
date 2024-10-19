@@ -29,7 +29,7 @@ function executeMacros(input, index = 0, length = 1) {
     } else if ((index == (length - 1)) && (input.includes("\\")) && (input.startsWith('\\'))) {
         np = input.replace("\\", ''), inc = 0;
         var np1 = (np.includes(':')) ? np.split(':')[0] : np; var np2 = (np.includes(':')) ? np.split(':')[1] : 0;
-        var mil = (sysDefMusicLockData.value).split('//');
+        var mil = (jsonstr(sysDefLockData.value)['music']);
         for (i = 0; i < mil.length; i++) {
             if (mil[i].toLowerCase().includes(np1.toLowerCase())) {
                 if (inc >= np2) { omniListen(mil[i], true); break; } inc++;
@@ -143,9 +143,9 @@ function executeMacros(input, index = 0, length = 1) {
         if (input.startsWith('lock_')) {
             output = input + ': ' + lockdata()[input.replace('lock_', '')];
         } else if (input.startsWith('lock_items_')) {
-            output = input + ': ' + lockvals()[input.replace('lock_items_', '')];
+            output = input + ': ' + jsonstr(sysDefLockData.value)[input.replace('lock_items_', '')];
         } else if (input.startsWith('lock_count_')) {
-            output = input + ': ' + lockvals()[input.replace('lock_count_', '')].length;
+            output = input + ': ' + jsonstr(sysDefLockData.value)[input.replace('lock_count_', '')].length;
         } else if ((input == 'melody')) {
             output = input + ': ' + dtw(userdata()[input], sysDefSessionID.value, 'あいうえおかがきぎぐけげこごさざしじすずせぜそぞただちぢづてでとどなにぬねのはばぱひびぴふぶぷべぺほぼぽまみむめもやゆよらりるれろわゐゑをんゔゟ');
         } else {

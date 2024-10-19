@@ -24,7 +24,6 @@ foreach ($settings['libraries']['domestic'] as $val) { ?>
     <input type='hidden' id="<?='sysDef'.camel($key);?>" value="<?=$value;?>">
 <?php } foreach ($locks as $key=>$value) { ?>
     <input type='hidden' id="<?='lock'.camel($key);?>" value="<?=$value;?>">
-    <input type='hidden' id="<?='sysDef'.camel($key).'LockData';?>" value="">
 <?php } foreach ($updateChannel as $key=>$value) { ?>
     <input type='hidden' id='<?='updateChannel'.md5($key);?>' value="<?=$value;?>">
 <?php } ?><input type='hidden' id='sysDefBackload' value="<?=$backloadString;?>">
