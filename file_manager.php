@@ -101,4 +101,5 @@ usort($index, function ($a, $b) {
     } else {
         return 1;
     }
-});
+}); $searchFilesCount = count($index); ?>
+<input type='hidden' id='sysDefFilesCount' value="<?=$searchFilesCount;?>">
