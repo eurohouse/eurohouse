@@ -180,6 +180,16 @@
 } else if (event.keyCode == 27) { this.value = 'E5E5E5';
 } else if (event.keyCode == 8) { handleInput(this.value);
 } else if (event.keyCode == 46) { handleInput(this.value); }" oninput="handleInput(this.value, true);">
+<input type="text" id="setArcForeColor" style="width:15%;" value="<?=$session['arc_fore_color'];?>" onkeydown="if (event.keyCode == 13) {
+    setdata('arc_fore_color', this.value);
+} else if (event.keyCode == 27) { this.value = '403F40';
+} else if (event.keyCode == 8) { handleInput(this.value);
+} else if (event.keyCode == 46) { handleInput(this.value); }" oninput="handleInput(this.value, true);">
+<input type="text" id="setArcInputColor" style="width:15%;" value="<?=$session['arc_input_color'];?>" onkeydown="if (event.keyCode == 13) {
+    setdata('arc_input_color', this.value);
+} else if (event.keyCode == 27) { this.value = 'D5D5D5';
+} else if (event.keyCode == 8) { handleInput(this.value);
+} else if (event.keyCode == 46) { handleInput(this.value); }" oninput="handleInput(this.value, true);"><br>
 <input type="text" id="setBackTextColor" style="width:15%;" value="<?=$session['back_text_color'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('back_text_color', this.value);
 } else if (event.keyCode == 27) { this.value = 'FFFFFF';
@@ -189,7 +199,7 @@
     setdata('fore_text_color', this.value);
 } else if (event.keyCode == 27) { this.value = 'FFFFFF';
 } else if (event.keyCode == 8) { handleInput(this.value);
-} else if (event.keyCode == 46) { handleInput(this.value); }" oninput="handleInput(this.value, true);"><br>
+} else if (event.keyCode == 46) { handleInput(this.value); }" oninput="handleInput(this.value, true);">
 <input type="text" id="setInputTextColor" style="width:15%;" value="<?=$session['input_text_color'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('input_text_color', this.value);
 } else if (event.keyCode == 27) { this.value = '000000';
@@ -203,16 +213,6 @@
 <input type="text" id="setBlankTextColor" style="width:15%;" value="<?=$session['blank_text_color'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('blank_text_color', this.value);
 } else if (event.keyCode == 27) { this.value = '000000';
-} else if (event.keyCode == 8) { handleInput(this.value);
-} else if (event.keyCode == 46) { handleInput(this.value); }" oninput="handleInput(this.value, true);">
-<input type="text" id="setArcForeColor" style="width:15%;" value="<?=$session['arc_fore_color'];?>" onkeydown="if (event.keyCode == 13) {
-    setdata('arc_fore_color', this.value);
-} else if (event.keyCode == 27) { this.value = '403F40';
-} else if (event.keyCode == 8) { handleInput(this.value);
-} else if (event.keyCode == 46) { handleInput(this.value); }" oninput="handleInput(this.value, true);">
-<input type="text" id="setArcInputColor" style="width:15%;" value="<?=$session['arc_input_color'];?>" onkeydown="if (event.keyCode == 13) {
-    setdata('arc_input_color', this.value);
-} else if (event.keyCode == 27) { this.value = 'D5D5D5';
 } else if (event.keyCode == 8) { handleInput(this.value);
 } else if (event.keyCode == 46) { handleInput(this.value); }" oninput="handleInput(this.value, true);"><br>
 <label><?=term('Update Password:', $settings['vocabulary'], $session['units']);?></label><br>
