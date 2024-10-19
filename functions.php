@@ -11,11 +11,13 @@ function pkgf($pkg, $ar = false) {
 function userlocks($arr, $col, $ava) {
     $res = []; foreach ($arr as $key=>$val) {
         $lib = ($key == 'avatar') ? str_replace('./','',(glob('./'.$ava.'*.png'))) : (($key == 'background') ? str_replace('./','',(glob('./*.*.00.png'))) : str_replace('./','',(glob('./*.{'.duplex($col[$key], true).'}', GLOB_BRACE))));
-        if ($key == 'background') {
+        /*if ($key == 'background') {
             $res[$key.'_collection'] = excpkg($lib, $arr[$key], 'COLLECTION'); $res[$key.'_series'] = excpkg($lib, $arr[$key], 'SERIES');
         } else {
             $res[$key] = excpkg($lib, $arr[$key]);
-        } natcasesort($res[$key]); array_unique($res[$key]);
+        }*/
+        $res[$key] = excpkg($lib, $arr[$key]);
+        natcasesort($res[$key]); array_unique($res[$key]);
     } return $res;
 }
 function catlist($cat): array {
