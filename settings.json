@@ -301,30 +301,37 @@
             "https://github.com/infofintech/i18n",
             "https://github.com/eurohouse/eurohouse"
         ],
-        "unix": [
+        "enhanced": [
+            "https://github.com/infofintech/system",
+            "https://github.com/infofintech/unix",
+            "https://github.com/infofintech/dos",
             "https://github.com/infofintech/game",
-            "https://github.com/infofintech/retro",
-            "https://github.com/infofintech/aughts"
+            "https://github.com/infofintech/avatar",
+            "https://github.com/infofintech/iso",
+            "https://github.com/infofintech/i18n",
+            "https://github.com/eurohouse/eurohouse"
         ],
         "dos": [
-            "https://github.com/infofintech/dos",
             "https://github.com/infofintech/memphis",
             "https://github.com/infofintech/redmond",
             "https://github.com/infofintech/fluent",
             "https://github.com/infofintech/metro",
-            "https://github.com/infofintech/xp",
-            "https://github.com/eurohouse/orchestra"
+            "https://github.com/infofintech/xp"
         ],
-        "mac": [
-            "https://github.com/infofintech/cupertino",
-            "https://github.com/infofintech/osx",
-            "https://github.com/eurohouse/botticelli"
-        ],
-        "linux": [
+        "unix": [
             "https://github.com/infofintech/gnome",
             "https://github.com/infofintech/tango",
             "https://github.com/infofintech/antu",
+            "https://github.com/infofintech/cupertino",
+            "https://github.com/infofintech/osx",
             "https://github.com/infofintech/distro"
+        ],
+        "music": [
+            "https://github.com/eurohouse/botticelli",
+            "https://github.com/eurohouse/orchestra",
+            "https://github.com/infofintech/classic",
+            "https://github.com/infofintech/retro",
+            "https://github.com/infofintech/aughts"
         ],
         "eurohouse": [
             "https://github.com/eurohouse/baron",
