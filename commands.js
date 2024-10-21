@@ -281,7 +281,7 @@ function pipeExec(input) {
     }
 }
 function omniEnter() {
-    var input = omniBox.value, arj = '', arg = [];
+    var input = omniBox.value, arb = arj = '', arg = [];
     if (sysDefChat.value != 0) { compose(input);
     } else {
         if ((input == 'reload') || (input == 'refresh')) {
@@ -314,26 +314,31 @@ function omniEnter() {
         } else if (input == 'rew') {
             var vlr = superRound((parseFloat(sysDefVideoSpeed.value) - 0.05), 2);
             setdata('video_speed', vlr); sysDefVideoSpeed.value = vlr;
-        } else if (input.startsWith('store rm ')) {
-            var st = jsonstr(openJournal(sysDefSessionID.value, sysDefStoreList, sysDefStoreJSONs));
-            var ob = arrjob(sysDefPowersData.value,';',':');
+        } else if (input.startsWith('store ')) {
+            var st = jsonstr(openJournal(sysDefSessionID.value, sysDefStoreList, sysDefStoreJSONs))
+            var ob = arrjob(sysDefPowersData.value,';',':'), arb = input.replace('store ', '');
             if (ob[sysDefSessionID.value] >= 0) {
-                arj = input.replace('store rm ', '');
-                arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
-                if (arg.length > 0) {
-                    for (i = 0; i < arg.length; i++) {
-                        if (st[arg[i]] !== undefined) { delete st[arg[i]]; }
-                    } set('./.store/'+sysDefSessionID.value+'_store.json', encodeURIComponent(JSON.stringify(st)), true);
-                }
-            }
-        } else if (input.startsWith('store mv ')) {
-            var st = jsonstr(openJournal(sysDefSessionID.value, sysDefStoreList, sysDefStoreJSONs));
-            var ob = arrjob(sysDefPowersData.value,';',':');
-            if (ob[sysDefSessionID.value] >= 0) {
-                arj = input.replace('store mv ', '');
-                arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
-                if (st[arg[0]] !== undefined) { st[arg[1]] = st[arg[0]]; delete st[arg[0]]; }
-                set('./.store/'+sysDefSessionID.value+'_store.json', encodeURIComponent(JSON.stringify(st)), true);
+                if (arb.startsWith('rm ')) {
+                    arj = arb.replace('rm ', ''), arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
+                    if (arg.length > 0) {
+                        for (i = 0; i < arg.length; i++) {
+                            if (st[arg[i].replaceAll('"', '')] !== undefined) {
+                                delete st[arg[i].replaceAll('"', '')];
+                            }
+                        }
+                    }
+                } else if (arb.startsWith('mv ')) {
+                    arj = arb.replace('mv ', ''), arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
+                    if (st[arg[0].replaceAll('"', '')] !== undefined) {
+                        st[arg[1].replaceAll('"', '')] = st[arg[0].replaceAll('"', '')];
+                        delete st[arg[0].replaceAll('"', '')];
+                    }
+                } else if (arb.startsWith('cp ')) {
+                    arj = arb.replace('cp ', ''), arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
+                    if ((st[arg[0].replaceAll('"', '')] !== undefined) && (typeof(st[arg[0].replaceAll('"', '')]) == 'object') && (st[arg[0].replaceAll('"', '')]['amount'] !== 'undefined')) {
+                        var itm = (isInt(st[arg[0].replaceAll('"', '')]['amount']) && (st[arg[0].replaceAll('"', '')]['amount'] >= 0)) ? parseInt(st[arg[0].replaceAll('"', '')]['amount'])+1 : 1; st[arg[0].replaceAll('"', '')]['amount'] = itm;
+                    }
+                } set('./.store/'+sysDefSessionID.value+'_store.json', encodeURIComponent(JSON.stringify(st)), true);
             }
         } else if (input.startsWith('sell ')) {
             arj = input.replace('sell ', '');
