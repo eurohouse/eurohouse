@@ -725,9 +725,9 @@ function scores(sta) {
         ); for (indi in ordered) {
             if ((ordered[indi] !== undefined) || (indi != '')) {
                 dat = jsonstr(openJournal(indi, sysDefStoreList, sysDefStoreJSONs));
-                amo = ((dat[ordered[indi]] !== undefined) && (typeof(dat[ordered[indi]]) == 'object') && (dat[ordered[indi]]['amount'] !== undefined) && (isInt(dat[ordered[indi]]['amount']))) ? dat[ordered[indi]]['amount'] : 0; if ((ordered[indi] != '') && (ordered[indi] != 'null') && (ordered[indi] != 'undefined')) {
+                amo = ((dat[ordered[indi]] !== undefined) && (typeof(dat[ordered[indi]]) == 'object') && (dat[ordered[indi]]['amount'] !== undefined) && (isInt(dat[ordered[indi]]['amount']))) ? dat[ordered[indi]]['amount'] : 0; if (ordered[indi] != '') {
                     res += '@'+indi+' <'+ordered[indi]+'> '+amo+'\n';
-                } else { res += '@'+indi+' <NULL>\n'; }
+                }
             }
         }
     } else {
