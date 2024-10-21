@@ -123,7 +123,8 @@ function world_clock() {
                 stat_users.innerHTML = jsonListUsers(sysDefUsersList);
                 tabOper.innerText = fint[6]; tabScore.innerText = fint[7];
                 $('#switchBtnAuto').attr('src', sysDefPrefix.value+'steer.png');
-                $('#switchBtnFrnd').attr('src', sysDefPrefix.value+'dial.png');
+                $('#switchBtnCall').attr('src', sysDefPrefix.value+'dial.png');
+                $('#switchBtnFrnd').attr('src', sysDefPrefix.value+'user.png');
                 $('#switchBtnBind').attr('src', sysDefPrefix.value+'chain.png');
                 $('#switchBtnTool').attr('src', sysDefPrefix.value+'parfum.png');
                 $('#switchBtnScore').attr('src', sysDefPrefix.value+'money.png');

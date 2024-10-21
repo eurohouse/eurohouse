@@ -674,70 +674,60 @@ function administer(sta, act, fn) {
     }
 }
 function scores(sta) {
-    var sto = ['bind', 'auto', 'friend', 'tool'];
-    var arr = (arraySearch(sta, sto) !== false) ? document.getElementById('sysDef'+ucfirst(sta)+'Data').value : document.getElementById('sysDefPowersData').value; var obj = arrjob(arr, ';', ':');
+    var sto = ['bind', 'call', 'auto', 'friend', 'tool'];
+    var arr = (arraySearch(sta, sto) !== false) ? document.getElementById('sysDef'+ucfirst(sta)+'Data').value : document.getElementById('sysDefPowersData').value;
+    var obj = arrjob(arr, ';', ':');
     var keys = Object.keys(obj), vals = Object.values(obj);
     var res = '', sortable = {}, ordered = {};
     var dat = {}, amo = 0; if (sta == 'bind') {
         ordered = Object.keys(obj).sort().reduce(
-            (obd, key) => { 
-                obd[key] = obj[key]; 
-                return obd;
-            }, {}
+            (obd, key) => { obd[key] = obj[key]; return obd; }, {}
         ); for (indi in ordered) {
             if ((ordered[indi] !== undefined) || (indi != '')) {
                 if (ordered[indi] != indi) {
                     res += '@'+indi+' :: @'+ordered[indi]+'\n';
-                } else {
-                    res += '@'+indi+' :: SELF\n';
-                }
+                } else { res += '@'+indi+' :: SELF\n'; }
+            }
+        }
+    } else if (sta == 'call') {
+        ordered = Object.keys(obj).sort().reduce(
+            (obd, key) => { obd[key] = obj[key]; return obd; }, {}
+        ); for (indi in ordered) {
+            if ((ordered[indi] !== undefined) || (indi != '')) {
+                if (ordered[indi] != indi) {
+                    res += '@'+indi+' INCOMING\n';
+                } else { res += '@'+indi+' OUTGOING\n'; }
             }
         }
     } else if (sta == 'auto') {
         ordered = Object.keys(obj).sort().reduce(
-            (obd, key) => { 
-                obd[key] = obj[key]; 
-                return obd;
-            }, {}
+            (obd, key) => { obd[key] = obj[key]; return obd; }, {}
         ); for (indi in ordered) {
             if ((ordered[indi] !== undefined) || (indi != '')) {
                 if (ordered[indi] == 'auto') {
                     res += '@'+indi+' AUTO\n';
-                } else {
-                    res += '@'+indi+' MANUAL\n';
-                }
+                } else { res += '@'+indi+' MANUAL\n'; }
             }
         }
     } else if (sta == 'friend') {
         ordered = Object.keys(obj).sort().reduce(
-            (obd, key) => { 
-                obd[key] = obj[key]; 
-                return obd;
-            }, {}
+            (obd, key) => { obd[key] = obj[key]; return obd; }, {}
         ); for (indi in ordered) {
             if ((ordered[indi] !== undefined) || (indi != '')) {
                 if (ordered[indi] != '') {
                     res += '@'+indi+' ['+ordered[indi]+']\n';
-                } else {
-                    res += '@'+indi+' [NULL]\n';
-                }
+                } else { res += '@'+indi+' [NULL]\n'; }
             }
         }
     } else if (sta == 'tool') {
         ordered = Object.keys(obj).sort().reduce(
-            (obd, key) => { 
-                obd[key] = obj[key]; 
-                return obd;
-            }, {}
+            (obd, key) => { obd[key] = obj[key]; return obd; }, {}
         ); for (indi in ordered) {
             if ((ordered[indi] !== undefined) || (indi != '')) {
                 dat = jsonstr(openJournal(indi, sysDefStoreList, sysDefStoreJSONs));
-                amo = ((dat[ordered[indi]] !== undefined) && (typeof(dat[ordered[indi]]) == 'object') && (dat[ordered[indi]]['amount'] !== undefined) && (isInt(dat[ordered[indi]]['amount']))) ? dat[ordered[indi]]['amount'] : 0;
-                if (ordered[indi] != '') {
+                amo = ((dat[ordered[indi]] !== undefined) && (typeof(dat[ordered[indi]]) == 'object') && (dat[ordered[indi]]['amount'] !== undefined) && (isInt(dat[ordered[indi]]['amount']))) ? dat[ordered[indi]]['amount'] : 0; if (ordered[indi] != '') {
                     res += '@'+indi+' <'+ordered[indi]+'> '+amo+'\n';
-                } else {
-                    res += '@'+indi+' <NULL>\n';
-                }
+                } else { res += '@'+indi+' <NULL>\n'; }
             }
         }
     } else {

@@ -318,8 +318,8 @@ function omniEnter() {
             var st = jsonstr(openJournal(sysDefSessionID.value, sysDefStoreList, sysDefStoreJSONs))
             var ob = arrjob(sysDefPowersData.value,';',':'), arb = input.replace('store ', '');
             if (ob[sysDefSessionID.value] >= 0) {
-                if (arb.startsWith('rm ')) {
-                    arj = arb.replace('rm ', ''), arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
+                if (arb.startsWith('delete ')) {
+                    arj = arb.replace('delete ', ''), arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
                     if (arg.length > 0) {
                         for (i = 0; i < arg.length; i++) {
                             if (st[arg[i].replaceAll('"', '')] !== undefined) {
@@ -327,16 +327,23 @@ function omniEnter() {
                             }
                         }
                     }
-                } else if (arb.startsWith('mv ')) {
-                    arj = arb.replace('mv ', ''), arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
+                } else if (arb.startsWith('rename ')) {
+                    arj = arb.replace('rename ', ''), arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
                     if (st[arg[0].replaceAll('"', '')] !== undefined) {
                         st[arg[1].replaceAll('"', '')] = st[arg[0].replaceAll('"', '')];
                         delete st[arg[0].replaceAll('"', '')];
                     }
-                } else if (arb.startsWith('cp ')) {
-                    arj = arb.replace('cp ', ''), arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
+                } else if (arb.startsWith('produce ')) {
+                    arj = arb.replace('produce ', ''), arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
                     if ((st[arg[0].replaceAll('"', '')] !== undefined) && (typeof(st[arg[0].replaceAll('"', '')]) == 'object') && (st[arg[0].replaceAll('"', '')]['amount'] !== 'undefined')) {
-                        var itm = (isInt(st[arg[0].replaceAll('"', '')]['amount']) && (st[arg[0].replaceAll('"', '')]['amount'] >= 0)) ? parseInt(st[arg[0].replaceAll('"', '')]['amount'])+1 : 1; st[arg[0].replaceAll('"', '')]['amount'] = itm;
+                        var itm = (isInt(st[arg[0].replaceAll('"', '')]['amount']) && (st[arg[0].replaceAll('"', '')]['amount'] >= 0)) ? parseInt(st[arg[0].replaceAll('"', '')]['amount'])+1 : 1;
+                        st[arg[0].replaceAll('"', '')]['amount'] = itm;
+                    }
+                } else if (arb.includes('price ')) {
+                    arj = arb.replace('price ', ''), arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
+                    if ((st[arg[0].replaceAll('"', '')] !== undefined) && (typeof(st[arg[0].replaceAll('"', '')]) == 'object') && (st[arg[0].replaceAll('"', '')]['price'] !== 'undefined')) {
+                        var prx = (isInt(arg[1].replaceAll('"', ''))) ? parseInt(arg[1].replaceAll('"', '')) : arg[1].replaceAll('"', '');
+                        st[arg[0].replaceAll('"', '')]['price'] = prx;
                     }
                 } set('./.store/'+sysDefSessionID.value+'_store.json', encodeURIComponent(JSON.stringify(st)), true);
             }

@@ -5,7 +5,8 @@
 <div class='customPanel' id='stat_disp' style="width:100%;height:75%;left:0px;top:0px;overflow-y:scroll;">
 <p align='center'>
 <input type='image' id='switchBtnAuto' onmouseover="soundButton();" class="power" onclick="setdata('stats', 'auto');" src="<?=$prefix.'steer.png';?>">
-<input type='image' id='switchBtnFrnd' onmouseover="soundButton();" class="power" onclick="setdata('stats', 'friend');" src="<?=$prefix.'dial.png';?>">
+<input type='image' id='switchBtnCall' onmouseover="soundButton();" class="power" onclick="setdata('stats', 'call');" src="<?=$prefix.'dial.png';?>">
+<input type='image' id='switchBtnFrnd' onmouseover="soundButton();" class="power" onclick="setdata('stats', 'friend');" src="<?=$prefix.'user.png';?>">
 <input type='image' id='switchBtnBind' onmouseover="soundButton();" class="power" onclick="setdata('stats', 'bind');" src="<?=$prefix.'chain.png';?>">
 <input type='image' id='switchBtnTool' onmouseover="soundButton();" class="power" onclick="setdata('stats', 'tool');" src="<?=$prefix.'parfum.png';?>">
 <input type='image' id='switchBtnScore' onmouseover="soundButton();" class="power" onclick="setdata('stats', 'score');" src="<?=$prefix.'money.png';?>">
