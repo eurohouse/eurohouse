@@ -726,10 +726,10 @@ function scores(sta) {
             if ((ordered[indi] !== undefined) || (indi != '')) {
                 dat = jsonstr(openJournal(indi, sysDefStoreList, sysDefStoreJSONs));
                 if ((dat[ordered[indi]] !== undefined) && (typeof(dat[ordered[indi]]) == 'object') && (ordered[indi] != '')) {
-                    am = ((dat[ordered[indi]]['amount'] !== undefined) && (isInt(dat[ordered[indi]]['amount']))) ? parseInt(dat[ordered[indi]]['amount']) : 0;
-                    se = ((dat[ordered[indi]]['series'] !== undefined) && (isInt(dat[ordered[indi]]['series']))) ? parseInt(dat[ordered[indi]]['series']) : 0;
-                    fo = ((dat[ordered[indi]]['force'] !== undefined) && (isInt(dat[ordered[indi]]['force']))) ? parseInt(dat[ordered[indi]]['force']) : 0;
-                    res += '@'+indi+' <+ '+ordered[indi]+' +> ['+am+'/'+se+'] ('+fo+')\n';
+                    am = ((dat[ordered[indi]]['amount'] !== undefined) && (isInt(dat[ordered[indi]]['amount'])) && (dat[ordered[indi]]['amount'] > 0)) ? parseInt(dat[ordered[indi]]['amount']) : 0;
+                    se = ((dat[ordered[indi]]['series'] !== undefined) && (isInt(dat[ordered[indi]]['series'])) && (dat[ordered[indi]]['series'] > 1)) ? parseInt(dat[ordered[indi]]['series'])+'x' : 'x';
+                    fo = ((dat[ordered[indi]]['force'] !== undefined) && (isInt(dat[ordered[indi]]['force'])) && (dat[ordered[indi]]['force'] > 0)) ? parseInt(dat[ordered[indi]]['force']) : 0;
+                    res += '@'+indi+' <'+ordered[indi]+'> ['+am+'/'+se+fo+']\n';
                 }
             }
         }
