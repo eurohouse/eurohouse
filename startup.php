@@ -279,15 +279,23 @@ function automator() {
     var objName = userList[rand(0, userList.length)];
     var handle = userList[rand(0, userList.length)];
     var subFrnd = friendsOf(frndPower, subName);
-    var arms = Object.keys(jsonMarket(subName, 'weapon')), wep = '';
+    var objt = jsonMarket(subName, '!account,password');
+    var arms = Object.keys(objt), wep = '';
     if (requestMode.value == 'statistics') {
         userStats.innerText = scores(sysDefStats.value);
         userStatsAuto.innerText = (subName == 'root') ? CryptoJS.MD5(status+'@'+subName+'#'+objName+'&'+handle).toString() : CryptoJS.MD5(status+'@'+subName+'$'+objName+'&'+handle).toString();
     } if ((subName != '') && (objName != '') && (subName != objName) && (isInt(tabPower[subName])) && (tabPower[subName] >= 0) && (autoPower[subName] == 'auto')) {
         bind(subName, handle);
         if ((objName == handle) && (!(subFrnd.includes(objName)))) {
-            wep = arms[rand(0, arms.length-1)]; equip(subName, wep);
-            dominate(subName, objName, wep);
+            wep = arms[rand(0, arms.length-1)];
+            if (objt[wep]['type'] !== undefined) {
+                if (objt[wep]['type'] == 'weapon') {
+                    equip(subName, wep);
+                    dominate(subName, objName, wep);
+                } else {
+                    charge(subName, wep);
+                }
+            }
         }
     }
 }

@@ -191,16 +191,38 @@ function jsonHTML(str, mask) {
     } return ard;
 }
 function jsonMarket(id, typ = '') {
-    var arr = jsonstr(openJournal(id, sysDefStoreList, sysDefStoreJSONs));
-    var res = {}; if (typ != '') {
-        for (el in arr) {
-            if ((arr[el] !== undefined) && (typeof(arr[el]) == 'object') && (arr[el]['type'] == typ)) {
-                res[el] = arr[el];
+    var arr = jsonstr(openJournal(id, sysDefStoreList, sysDefStoreJSONs)), res = {}, typs = [], elm = '';
+    if (typ != '') {
+        if (typ.startsWith('!')) {
+            elm = typ.replace('!', ''); if (elm.includes(',')) {
+                typs = elm.split(','); for (el in arr) {
+                    for (i = 0; i < typs.length; i++) {
+                        if ((arr[el] !== undefined) && (typeof(arr[el]) == 'object') && !(arr[el]['type'] == typs[i])) { res[el] = arr[el]; }
+                    }
+                }
+            } else {
+                for (el in arr) {
+                    if ((arr[el] !== undefined) && (typeof(arr[el]) == 'object') && !(arr[el]['type'] == elm)) {
+                        res[el] = arr[el];
+                    }
+                }
+            }
+        } else {
+            if (typ.includes(',')) {
+                typs = typ.split(','); for (el in arr) {
+                    for (i = 0; i < typs.length; i++) {
+                        if ((arr[el] !== undefined) && (typeof(arr[el]) == 'object') && (arr[el]['type'] == typs[i])) { res[el] = arr[el]; }
+                    }
+                }
+            } else {
+                for (el in arr) {
+                    if ((arr[el] !== undefined) && (typeof(arr[el]) == 'object') && (arr[el]['type'] == typ)) {
+                        res[el] = arr[el];
+                    }
+                }
             }
         }
-    } else {
-        res = arr;
-    } return res;
+    } else { res = arr; } return res;
 }
 function jsonListUsers(ob) {
     var arr = (ob.value).split(',');
@@ -656,7 +678,7 @@ function administer(sta, act, fn) {
         var sb = arr.slice(0, -1), ob = arrjob(sb,';',':');
         var sum = arrsum(Object.values(ob));
         var qua = Object.keys(ob).length;
-        if (sta == 'bind') {
+        if ((sta == 'bind') || (sta == 'call')) {
             for (ib in ob) { ob[ib] = ib; }
         } else if (sta == 'auto') {
             for (ib in ob) { ob[ib] = act; }

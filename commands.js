@@ -14,8 +14,8 @@ function executeMacros(input, index = 0, length = 1) {
         var rep = input.replace('>', '');
         if ((rep == 'auto') || (rep == 'manual')) {
             administer('auto', rep, 'automator');
-        } else if ((rep == 'bind') || (rep == 'bond')) {
-            administer('bind', rep, 'binding');
+        } else if ((rep == 'bind') || (rep == 'call')) {
+            administer(rep, rep, rep+'ing');
         } else if ((rep == 'null') || (rep == 'full')) {
             administer('friend', rep, 'friendship');
         } else {
