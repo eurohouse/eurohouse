@@ -676,10 +676,10 @@ function administer(sta, act, fn) {
 function scores(sta) {
     var sto = ['bind', 'call', 'auto', 'friend', 'tool'];
     var arr = (arraySearch(sta, sto) !== false) ? document.getElementById('sysDef'+ucfirst(sta)+'Data').value : document.getElementById('sysDefPowersData').value;
-    var obj = arrjob(arr, ';', ':');
+    var obj = arrjob(arr, ';', ':'), em = '';
     var keys = Object.keys(obj), vals = Object.values(obj);
     var res = '', sortable = {}, ordered = {};
-    var dat = {}, am = se = fo = 0; if (sta == 'bind') {
+    var dat = {}, am = se = fo = ex = 0; if (sta == 'bind') {
         ordered = Object.keys(obj).sort().reduce(
             (obd, key) => { obd[key] = obj[key]; return obd; }, {}
         ); for (indi in ordered) {
@@ -726,10 +726,12 @@ function scores(sta) {
             if ((ordered[indi] !== undefined) || (indi != '')) {
                 dat = jsonstr(openJournal(indi, sysDefStoreList, sysDefStoreJSONs));
                 if ((dat[ordered[indi]] !== undefined) && (typeof(dat[ordered[indi]]) == 'object') && (ordered[indi] != '')) {
+                    ex = ((dat[ordered[indi]]['finite'] !== undefined) && (isInt(dat[ordered[indi]]['finite'])) && (dat[ordered[indi]]['finite'] == 1)) ? 1 : 0;
                     am = ((dat[ordered[indi]]['amount'] !== undefined) && (isInt(dat[ordered[indi]]['amount'])) && (dat[ordered[indi]]['amount'] > 0)) ? parseInt(dat[ordered[indi]]['amount']) : 0;
                     se = ((dat[ordered[indi]]['series'] !== undefined) && (isInt(dat[ordered[indi]]['series'])) && (dat[ordered[indi]]['series'] > 1)) ? parseInt(dat[ordered[indi]]['series'])+'x' : 'x';
                     fo = ((dat[ordered[indi]]['force'] !== undefined) && (isInt(dat[ordered[indi]]['force'])) && (dat[ordered[indi]]['force'] > 0)) ? parseInt(dat[ordered[indi]]['force']) : 0;
-                    res += '@'+indi+' <'+ordered[indi]+'> ['+am+'/'+se+fo+']\n';
+                    em = (ex != 0) ? am+'/'+se+fo : se+fo;
+                    res += '@'+indi+' <'+ordered[indi]+'> ['+em+']\n';
                 }
             }
         }
