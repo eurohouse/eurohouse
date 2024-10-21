@@ -286,7 +286,7 @@ function automator() {
     } if ((subName != '') && (objName != '') && (subName != objName) && (isInt(tabPower[subName])) && (tabPower[subName] >= 0) && (autoPower[subName] == 'auto')) {
         bind(subName, handle);
         if ((objName == handle) && (!(subFrnd.includes(objName)))) {
-            wep = arms[rand(0, arms.length)]; equip(subName, wep);
+            wep = arms[rand(0, arms.length-1)]; equip(subName, wep);
             dominate(subName, objName, wep);
         }
     }
