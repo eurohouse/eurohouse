@@ -679,7 +679,7 @@ function scores(sta) {
     var obj = arrjob(arr, ';', ':');
     var keys = Object.keys(obj), vals = Object.values(obj);
     var res = '', sortable = {}, ordered = {};
-    var dat = {}, amo = 0; if (sta == 'bind') {
+    var dat = {}, am = se = fo = 0; if (sta == 'bind') {
         ordered = Object.keys(obj).sort().reduce(
             (obd, key) => { obd[key] = obj[key]; return obd; }, {}
         ); for (indi in ordered) {
@@ -725,9 +725,12 @@ function scores(sta) {
         ); for (indi in ordered) {
             if ((ordered[indi] !== undefined) || (indi != '')) {
                 dat = jsonstr(openJournal(indi, sysDefStoreList, sysDefStoreJSONs));
-                amo = ((dat[ordered[indi]] !== undefined) && (typeof(dat[ordered[indi]]) == 'object') && (dat[ordered[indi]]['amount'] !== undefined) && (isInt(dat[ordered[indi]]['amount']))) ? dat[ordered[indi]]['amount'] : 0; if (ordered[indi] != '') {
-                    res += '@'+indi+' <'+ordered[indi]+'> '+amo+'\n';
-                }
+                if ((dat[ordered[indi]] !== undefined) && (typeof(dat[ordered[indi]]) == 'object') && (ordered[indi] != '')) {
+                    am = ((dat[ordered[indi]]['amount'] !== undefined) && (isInt(dat[ordered[indi]]['amount']))) ? parseInt(dat[ordered[indi]]['amount']) : 0;
+                    se = ((dat[ordered[indi]]['series'] !== undefined) && (isInt(dat[ordered[indi]]['series']))) ? parseInt(dat[ordered[indi]]['series']) : 0;
+                    fo = ((dat[ordered[indi]]['force'] !== undefined) && (isInt(dat[ordered[indi]]['force']))) ? parseInt(dat[ordered[indi]]['force']) : 0;
+                    res += '@'+indi+' <+ '+ordered[indi]+' +> ['+am+'/'+se+'] ('+fo+')\n';
+                } else { res += '@'+indi+' <- ->\n'; }
             }
         }
     } else {
