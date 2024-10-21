@@ -730,7 +730,7 @@ function scores(sta) {
                     se = ((dat[ordered[indi]]['series'] !== undefined) && (isInt(dat[ordered[indi]]['series']))) ? parseInt(dat[ordered[indi]]['series']) : 0;
                     fo = ((dat[ordered[indi]]['force'] !== undefined) && (isInt(dat[ordered[indi]]['force']))) ? parseInt(dat[ordered[indi]]['force']) : 0;
                     res += '@'+indi+' <+ '+ordered[indi]+' +> ['+am+'/'+se+'] ('+fo+')\n';
-                } else { res += '@'+indi+' <- ->\n'; }
+                }
             }
         }
     } else {
