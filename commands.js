@@ -281,7 +281,7 @@ function pipeExec(input) {
     }
 }
 function omniEnter() {
-    var input = omniBox.value, arb = arj = '', arg = [];
+    var input = omniBox.value, arb = arj = '', arg = [], itm, prx, qy;
     if (sysDefChat.value != 0) { compose(input);
     } else {
         if ((input == 'reload') || (input == 'refresh')) {
@@ -336,13 +336,14 @@ function omniEnter() {
                 } else if (arb.startsWith('produce ')) {
                     arj = arb.replace('produce ', ''), arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
                     if ((st[arg[0].replaceAll('"', '')] !== undefined) && (typeof(st[arg[0].replaceAll('"', '')]) == 'object') && (st[arg[0].replaceAll('"', '')]['amount'] !== 'undefined')) {
-                        var itm = (isInt(st[arg[0].replaceAll('"', '')]['amount']) && (st[arg[0].replaceAll('"', '')]['amount'] >= 0)) ? parseInt(st[arg[0].replaceAll('"', '')]['amount'])+1 : 1;
+                        qy = (isInt(arg[1].replaceAll('"', ''))) ? parseInt(arg[1].replaceAll('"', '')) : 1;
+                        itm = (isInt(st[arg[0].replaceAll('"', '')]['amount']) && (st[arg[0].replaceAll('"', '')]['amount'] >= 0)) ? parseInt(st[arg[0].replaceAll('"', '')]['amount']) + qy : qy;
                         st[arg[0].replaceAll('"', '')]['amount'] = itm;
                     }
                 } else if (arb.includes('price ')) {
                     arj = arb.replace('price ', ''), arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
                     if ((st[arg[0].replaceAll('"', '')] !== undefined) && (typeof(st[arg[0].replaceAll('"', '')]) == 'object') && (st[arg[0].replaceAll('"', '')]['price'] !== 'undefined')) {
-                        var prx = (isInt(arg[1].replaceAll('"', ''))) ? parseInt(arg[1].replaceAll('"', '')) : arg[1].replaceAll('"', '');
+                        prx = (isInt(arg[1].replaceAll('"', ''))) ? parseInt(arg[1].replaceAll('"', '')) : arg[1].replaceAll('"', '');
                         st[arg[0].replaceAll('"', '')]['price'] = prx;
                     }
                 } set('./.store/'+sysDefSessionID.value+'_store.json', encodeURIComponent(JSON.stringify(st)), true);
