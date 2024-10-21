@@ -458,27 +458,22 @@ function fixPrice(sen, rec, deb, cre) {
 }
 function charge(usr, itp = '') {
     var obj = arrjob(sysDefPowersData.value,';',':');
-    var stu = jsonMarket(usr); f = m = 0;
-    var suf = (isInt(obj[usr])) ? parseInt(obj[usr]) : 0;
-    if (suf >= 0) {
-        if ((stu[itp] !== undefined) && (typeof(stu[itp]) == 'object') && (stu[itp]['type'] == 'gift')) {
+    var stu = jsonMarket(usr), f = m = s = n = 0;
+    var suf = (isInt(obj[usr])) ? parseInt(obj[usr]) : 0; if (suf >= 0) {
+        if ((stu[itp] !== undefined) && (typeof(stu[itp]) == 'object') && (stu[itp]['type'] != 'account') && (stu[itp]['type'] != 'password') && (stu[itp]['type'] != 'weapon')) {
             m = ((stu[itp]['amount'] !== undefined) && isInt(stu[itp]['amount'])) ? parseInt(stu[itp]['amount']) : 1;
             f = (isInt(itp)) ? parseInt(itp) : (((stu[itp]['force'] !== undefined) && isInt(stu[itp]['force'])) ? parseInt(stu[itp]['force']) : 1);
             n = ((stu[itp]['finite'] !== undefined) && isInt(stu[itp]['finite'])) ? parseInt(stu[itp]['finite']) : 0;
             s = ((stu[itp]['series'] !== undefined) && isInt(stu[itp]['series'])) ? parseInt(stu[itp]['series']) : 0;
         } else { m = f = 1, n = s = 0; }
         if (n != 0) {
-            if (m > 0) {
-                if (s != 0) {
-                    do { suf += f; s -= 1; }
-                    while (s > 0);
-                } else { suf += f; }
-                m -= 1; stu[itp]['amount'] = m;
+            if (m > 0) { if (s != 0) {
+                    do { suf += f; s -= 1; } while (s > 0);
+                } else { suf += f; } m -= 1; stu[itp]['amount'] = m;
             } else { delete stu[itp]; }
         } else {
             if (s != 0) {
-                do { suf += f; s -= 1; }
-                while (s > 0);
+                do { suf += f; s -= 1; } while (s > 0);
             } else { suf += f; }
         } obj[usr] = suf;
         set('./.store/'+usr+'_store.json', encodeURIComponent(JSON.stringify(stu)), true);
@@ -488,29 +483,27 @@ function charge(usr, itp = '') {
 }
 function dominate(usr, id, wep = '') {
     var obj = arrjob(sysDefPowersData.value,';',':');
-    var stu = jsonMarket(usr); f = m = ep = sc = 0;
+    var stu = jsonMarket(usr), f = m = s = n = 0;
     var suf = (isInt(obj[usr])) ? parseInt(obj[usr]) : 0;
-    var obf = (isInt(obj[id])) ? parseInt(obj[id]) : 0;
-    if ((usr != id) && (suf >= 0)) {
+    var obf = (isInt(obj[id])) ? parseInt(obj[id]) : 0; if ((usr != id) && (suf >= 0)) {
         if ((stu[wep] !== undefined) && (typeof(stu[wep]) == 'object') && (stu[wep]['type'] == 'weapon')) {
             m = ((stu[wep]['amount'] !== undefined) && isInt(stu[wep]['amount'])) ? parseInt(stu[wep]['amount']) : 1;
             f = ((stu[wep]['force'] !== undefined) && isInt(stu[wep]['force'])) ? parseInt(stu[wep]['force']) : 1;
             n = ((stu[wep]['finite'] !== undefined) && isInt(stu[wep]['finite'])) ? parseInt(stu[wep]['finite']) : 0;
             s = ((stu[wep]['series'] !== undefined) && isInt(stu[wep]['series'])) ? parseInt(stu[wep]['series']) : 0;
         } else { m = f = 1, n = s = 0; }
-        if (obf <= -666) { delete_user(id); } else {
+        if (obf <= -666) {
+            delete_user(id);
+        } else {
             if (n != 0) {
                 if (m > 0) {
                     if (s != 0) {
-                        do { suf += f; obf -= f; s -= 1; }
-                        while (s > 0);
-                    } else { suf += f; obf -= f; }
-                    m -= 1; stu[wep]['amount'] = m;
+                        do { suf += f; obf -= f; s -= 1; } while (s > 0);
+                    } else { suf += f; obf -= f; } m -= 1; stu[wep]['amount'] = m;
                 } else { delete stu[wep]; }
             } else {
                 if (s != 0) {
-                    do { suf += f; obf -= f; s -= 1; }
-                    while (s > 0);
+                    do { suf += f; obf -= f; s -= 1; } while (s > 0);
                 } else { suf += f; obf -= f; }
             } obj[usr] = suf; obj[id] = obf;
             set('./.store/'+usr+'_store.json', encodeURIComponent(JSON.stringify(stu)), true);
