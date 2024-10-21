@@ -336,14 +336,14 @@ function omniEnter() {
                 } else if (arb.startsWith('produce ')) {
                     arj = arb.replace('produce ', ''), arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
                     if ((st[arg[0].replaceAll('"', '')] !== undefined) && (typeof(st[arg[0].replaceAll('"', '')]) == 'object') && (st[arg[0].replaceAll('"', '')]['amount'] !== 'undefined')) {
-                        qy = (isInt(arg[1].replaceAll('"', ''))) ? parseInt(arg[1].replaceAll('"', '')) : 1;
+                        qy = (arg.length > 1) ? ((isInt(arg[1].replaceAll('"', ''))) ? parseInt(arg[1].replaceAll('"', '')) : 1) : 1;
                         itm = (isInt(st[arg[0].replaceAll('"', '')]['amount']) && (st[arg[0].replaceAll('"', '')]['amount'] >= 0)) ? parseInt(st[arg[0].replaceAll('"', '')]['amount']) + qy : qy;
                         st[arg[0].replaceAll('"', '')]['amount'] = itm;
                     }
                 } else if (arb.includes('price ')) {
                     arj = arb.replace('price ', ''), arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
                     if ((st[arg[0].replaceAll('"', '')] !== undefined) && (typeof(st[arg[0].replaceAll('"', '')]) == 'object') && (st[arg[0].replaceAll('"', '')]['price'] !== 'undefined')) {
-                        prx = (isInt(arg[1].replaceAll('"', ''))) ? parseInt(arg[1].replaceAll('"', '')) : arg[1].replaceAll('"', '');
+                        prx = (arg.length > 1) ? ((isInt(arg[1].replaceAll('"', ''))) ? parseInt(arg[1].replaceAll('"', '')) : arg[1].replaceAll('"', '')) : '';
                         st[arg[0].replaceAll('"', '')]['price'] = prx;
                     }
                 } set('./.store/'+sysDefSessionID.value+'_store.json', encodeURIComponent(JSON.stringify(st)), true);
