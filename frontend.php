@@ -676,21 +676,21 @@ function dropFriend(id) {
 }
 function administer(sta, act, fn) {
     if (sysDefSessionID.value == 'root') {
-        var obj = document.getElementById('sysDef'+ucfirst(sta)+'Data'), arr = (obj !== null) ? obj.value : ';';
-        var sb = arr.slice(0, -1), ob = arrjob(sb,';',':');
-        var sum = arrsum(Object.values(ob));
-        var qua = Object.keys(ob).length;
+        var obj = document.getElementById('sysDef'+ucfirst(sta)+'Data'), arr = (obj !== null) ? obj.value : ';', sb = arr.slice(0, -1), ob = arrjob(sb,';',':');
+        var sum = arrsum(Object.values(ob)), qua = Object.keys(ob).length;
         if ((sta == 'bind') || (sta == 'call')) {
             for (ib in ob) { ob[ib] = ib; }
         } else if (sta == 'auto') {
             for (ib in ob) { ob[ib] = act; }
         } else if (sta == 'friend') {
-            if (act == 'null') {
-                for (ib in ob) { ob[ib] = ''; }
-            }
+            for (ib in ob) { ob[ib] = ''; }
         } else {
-            div = Math.round(sum / qua);
-            for (ib in ob) { ob[ib] = parseInt(div); }
+            if ((act == 'equal') || (act == 'share')) {
+                div = Math.round(sum / qua);
+                for (ib in ob) { ob[ib] = parseInt(div); }
+            } else if ((act == 'total') || (act == 'sum')) {
+                for (ib in ob) { ob[ib] = parseInt(sum); }
+            }
         } if (obj !== null) {
             set(fn+'.json', JSON.stringify(ob), true);
             obj.value = arrpack(ob,';',':');

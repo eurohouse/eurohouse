@@ -16,7 +16,7 @@ function executeMacros(input, index = 0, length = 1) {
             administer('auto', rep, 'automator');
         } else if ((rep == 'bind') || (rep == 'call')) {
             administer(rep, rep, rep+'ing');
-        } else if ((rep == 'null') || (rep == 'full')) {
+        } else if ((rep == 'null') || (rep == 'empty')) {
             administer('friend', rep, 'friendship');
         } else {
             administer('powers', rep, 'dominion');
