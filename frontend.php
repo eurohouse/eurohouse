@@ -24,7 +24,9 @@ function audioPosition(sec) {
         audioPlayer.currentTime = (sec.includes('-')) ? (audioPlayer.duration - parseInt(sec.replace('-',''))) : (((sec.includes('+'))) ? (parseInt(sec.replace('+',''))) : (parseInt(sec)));
     }
 }
-function savePlayState() { setdata('current', audioPlayer.currentTime); }
+function savePlayState() {
+    setdata('current', audioPlayer.currentTime);
+}
 function arrangePlay() {
     var dp = arrjob(sysDefPowersData.value,';',':');
     var db = arrjob(sysDefBindData.value,';',':');
