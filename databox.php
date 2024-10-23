@@ -41,5 +41,5 @@ json_encode(userlocks($locksArr, $userSettings['collections'], $avaPref), JSON_U
 implode('//', $codexBoxArr)."\\\\".implode('//', $speechBoxArr)."\r\n\r\n". // Read Line 11
 $usersList.";".$booksList.";".$storeList."\r\n\r\n". // Read Line 12
 $notesList."\r\n\r\n". // Read Line 13
-$notesJSON."\r\n\r\n"; // Read Line 14
+$notesJSON."\r\n\r\n". // Read Line 14
 $othCT; // Read Line 15
