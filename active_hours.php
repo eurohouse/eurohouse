@@ -1,7 +1,8 @@
 <?php
 include 'functions.php';
+$userSettings = fileopen('settings.json');
 $usersList = str_replace('./.store/','',(glob('./.store/*_store.json')));
 $allContent = ""; foreach ($usersList as $key=>$value) {
-    $jsonTestArr = jsonopen($value.'_session.json', true);
-    $allContent .= $jsonTestArr."\r\n\r\n";
+    $jsonTestArr = arropen($value.'_session.json', $userSettings, 'DEFAULT');
+    $allContent .= $jsonTestArr['active_hours']."\r\n\r\n";
 } echo $allContent; // Read All Lines At Once
