@@ -22,7 +22,7 @@ $storeList = implode(',',str_replace('_store.json','',str_replace('./.store/',''
 $newsFeed = jsonopen('./.msgbox/'.$cookie.'_msgbox.json', true);
 $userBook = jsonopen('./.book/'.$cookie.'_book.json', true);
 $userStore = jsonopen('./.store/'.$cookie.'_store.json', true);
-$activeHoursPage = $localHoursNow = ""; foreach ($usersList as $key=>$val) {
+foreach ($usersList as $key=>$val) {
     $otherData = arropen($val.'_session.json', json_encode($userSettings['defaults']), 'DEFAULT');
     $otherTimezone = dec_tz($otherData['timezone']); date_default_timezone_set($otherTimezone);
     $otherHours = explode(',', $otherData['active_hours']);
