@@ -26,7 +26,7 @@ $othCT = ''; foreach ($usersList as $key=>$value) {
     $testArr = arropen($value, json_encode($userSettings['defaults']), 'DEFAULT');
     $othTZ = dec_tz($testArr['timezone']);
     date_default_timezone_set($othTZ);
-    $othCT = $othCT.date('H').' ';
+    $othCT .= date('H').' ';
 } echo $cookie."\r\n\r\n". // Read Line 0
 valstr($bindingData,';',':')."\r\n\r\n". // Read Line 1
 valstr($poweredData,';',':')."\r\n\r\n". // Read Line 2
@@ -42,4 +42,4 @@ implode('//', $codexBoxArr)."\\\\".implode('//', $speechBoxArr)."\r\n\r\n". // R
 $usersList.";".$booksList.";".$storeList."\r\n\r\n". // Read Line 12
 $notesList."\r\n\r\n". // Read Line 13
 $notesJSON."\r\n\r\n". // Read Line 14
-rtrim($othCT); // Read Line 15
+$othCT; // Read Line 15
