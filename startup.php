@@ -40,7 +40,7 @@ function databox() {
             $('#sysDefStoreList').val(pager(data, 12).split(";")[2]);
             $('#sysDefMetaList').val(pager(data, 13));
             $('#sysDefMetaData').val(pager(data, 14));
-            $('#sysDefIsActive').val(pager(data, 15));
+            $('#sysDefHoursNow').val(pager(data, 15));
             $('#sysDefHoursActive').val(pager(data, 16));
             if (sysDefBindData.value != sysDefPostBindData.value) {
                 playAudio(bindPlayer, sysDefBindSound.value);
@@ -116,7 +116,7 @@ function world_clock() {
             } if (requestMode.value == 'play_store') {
                 var stoInf = "<p align='center'>"+fint[8]+"</p><p align='center'>"+fint[9]+"</p><p align='center'>"+obramBtn(sysDefHoursActive.value)+"</p>";
                 store_users.innerHTML = jsonListUsers(sysDefStoreList);
-                store_disp.innerHTML = (sysDefIsActive.value != 0) ? '<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+fint[3]+'</th><th style="width:7%;">'+fint[4]+'</th><th style="width:3%;">'+fint[5]+'</th></thead><tbody>'+jsonStore(bndm)+'</tbody></table>' : stoInf;
+                store_disp.innerHTML = (isStoreOpen(bndm)) ? '<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+fint[3]+'</th><th style="width:7%;">'+fint[4]+'</th><th style="width:3%;">'+fint[5]+'</th></thead><tbody>'+jsonStore(bndm)+'</tbody></table>' : stoInf;
             } if (requestMode.value == 'font_book') {
                 fontBook24Pt.innerText = fontBook22Pt.innerText = fontBook20Pt.innerText = fontBook18Pt.innerText = fontBook16Pt.innerText = fontBook14Pt.innerText = pager(data, 6);
             } if (requestMode.value == 'statistics') {

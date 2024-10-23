@@ -244,13 +244,13 @@ function obramBtn(str) {
 }
 function jsonStore(id) {
     var arr = jsonstr(openJournal(id, sysDefStoreList, sysDefStoreJSONs));
-    var ard = '', arl = '', eld = {}, fu0 = '', fu1 = '';
-    for (el in arr) {
+    var ard = arl = '', eld = {}, fu0 = fu1 = '';
+    var usr = sysDefSessionID.value; for (el in arr) {
         if ((arr[el] !== undefined) && (typeof(arr[el]) == 'object')) {
             eld = arr[el], arl = '<tr>';
-            fu0 = "buy_item(&#34;"+el+"&#34;,&#34;"+id+"&#34;);";
+            fu0 = "buy_item(&#34;"+usr+"&#34;,&#34;"+el+"&#34;,&#34;"+id+"&#34;);";
             fu1 = (isInt(el)) ? "charge(&#34;"+id+"&#34;,&#34;"+el+"&#34;);" : ((eld['type'] == 'weapon') ? "equip(&#34;"+id+"&#34;,&#34;"+el+"&#34;);" : "charge(&#34;"+id+"&#34;,&#34;"+el+"&#34;);");
-            arl += "<td><input type='button' style='width:100%;' onclick='"+((id != sysDefSessionID.value) ? fu0 : fu1)+"' value='"+el+"'></td><td>"+eld['amount']+"</td><td>"+eld['price']+"</td>"; ard = arl+"</tr>"+ard;
+            arl += "<td><input type='button' style='width:100%;' onclick='"+((id != usr) ? fu0 : fu1)+"' value='"+el+"'></td><td>"+eld['amount']+"</td><td>"+eld['price']+"</td>"; ard = arl+"</tr>"+ard;
         }
     } return ard;
 }
@@ -281,11 +281,18 @@ function noteBook(str) {
         ard = ard+arl+'<br>';
     } return ard;
 }
-function openJournal(id, ob, oj, cr = false) {
+function openJournal(id, ob, oj, mi = false) {
     var users = ob.value, jours = oj.value;
-    var userArr = users.split(',');
-    var userNum = arraySearch(id, userArr);
-    return pager(jours, userNum);
+    var userArr = users.split(','), userNum = arraySearch(id, userArr);
+    return (mi) ? miniPager(jours, userNum) : pager(jours, userNum);
+}
+function isStoreOpen(id) {
+    var ob = sysDefUsersList, oj = sysDefHoursActive, od = sysDefHoursNow;
+    var users = ob.value, jours = oj.value, hours = od.value;
+    var userArr = users.split(','), userNum = arraySearch(id, userArr);
+    var jou = openJournal(id, ob, oj, true);
+    var nou = hours.split(' ')[userNum];
+    return ((jou.split(' ')).includes(nou));
 }
 function clearJournal(num, obj, kw) {
     var msgarr = jsonstr(obj.value), nur, ras;
@@ -318,11 +325,11 @@ function isoformat(num) {
     var ob = new Date(num);
     return (ob.getUTCFullYear())+'-'+pad((ob.getUTCMonth()+1), 2)+'-'+pad((ob.getUTCDate()), 2)+' '+pad((ob.getUTCHours()), 2)+':'+pad((ob.getUTCMinutes()), 2)+':'+pad((ob.getUTCSeconds()), 2)+'.'+pad((ob.getUTCMilliseconds()), 3);
 }
-function etw(msg, usr = '', hx = '.-') {
-    return bin2hex(msg, obfstr(CryptoJS.SHA256(usr).toString()), hx);
+function etw(msg, usr = '', abc = '.-') {
+    return bin2hex(msg, obfstr(CryptoJS.SHA256(usr).toString()), abc);
 }
-function dtw(msg, usr = '', hx = '.-') {
-    return hex2bin(msg, obfstr(CryptoJS.SHA256(usr).toString()), hx);
+function dtw(msg, usr = '', abc = '.-') {
+    return hex2bin(msg, obfstr(CryptoJS.SHA256(usr).toString()), abc);
 }
 function compose(msg) {
     var addr = (msg !== undefined) ? msg.match(/(@\w*)/g) : '';
@@ -379,8 +386,8 @@ function storeq(tabS, tabB, art) {
         }
     }
 }
-function buy_item(art, sel) {
-    var bye = sysDefSessionID.value; if (sel != bye) {
+function buy_item(bye, art, sel) {
+    if (sel != bye) {
         var tabS = jsonstr(openJournal(sel, sysDefStoreList, sysDefStoreJSONs));
         var tabB = jsonstr(openJournal(bye, sysDefStoreList, sysDefStoreJSONs));
         var prix, pass, obj = arrjob(sysDefPowersData.value,';',':');
@@ -415,19 +422,14 @@ function buy_item(art, sel) {
         }
     }
 }
-function sell_item(art, dat = '') {
-    var tabS = jsonstr(openJournal(sysDefSessionID.value, sysDefStoreList, sysDefStoreJSONs));
-    var obj = arrjob(sysDefPowersData.value,';',':');
-    var dap = arrjob(dat,'; ',': ');
-    if (obj[sysDefSessionID.value] >= 0) {
+function sell_item(usr, art, dat = '') {
+    var tabS = jsonstr(openJournal(usr, sysDefStoreList, sysDefStoreJSONs));
+    var obj = arrjob(sysDefPowersData.value,';',':'), dap = arrjob(dat,'; ',': ');
+    if (obj[usr] >= 0) {
         var qu = ((tabS[art] !== undefined) && (typeof(tabS[art]) == 'object') && (tabS[art]['amount'] !== undefined) && isInt(tabS[art]['amount']) && (tabS[art]['amount'] >= 0)) ? parseInt(tabS[art]['amount'])+1 : 1; tabS[art] = { "amount": qu };
         for (iu in dap) {
-            if (iu == 'password') {
-                tabS[art][iu] = CryptoJS.SHA256(dap[iu]).toString();
-            } else {
-                tabS[art][iu] = dap[iu];
-            }
-        } set('./.store/'+sysDefSessionID.value+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
+            tabS[art][iu] = (iu == 'password') ? CryptoJS.SHA256(dap[iu]).toString() : dap[iu];
+        } set('./.store/'+usr+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
     }
 }
 function fixPrice(sen, rec, deb, cre) {
@@ -438,18 +440,8 @@ function fixPrice(sen, rec, deb, cre) {
     var statD = (isInt(stat[sen])) ? parseInt(stat[sen]) : 0;
     var statC = (isInt(stat[rec])) ? parseInt(stat[rec]) : 0;
     var statDr = parseInt(statD); var statCr = parseInt(statC);
-    var lsTr1, lsTr2, bal1, bal2;
-    if (tran1 == '{}') {
-        bal1 = statDr;
-    } else {
-        lsTr1 = trans1[Object.keys(trans1)[Object.keys(trans1).length - 1]];
-        bal1 = lsTr1.split(' | ')[4];
-    } if (tran2 == '{}') {
-        bal2 = statCr;
-    } else {
-        lsTr2 = trans2[Object.keys(trans2)[Object.keys(trans2).length - 1]];
-        bal2 = lsTr2.split(' | ')[4];
-    } var statDt, statCt, statK, statV, statDi, statCi, statDn, statCn, statT;
+    var bal1 = (tran1 == '{}') ? statDr : (trans1[Object.keys(trans1)[Object.keys(trans1).length - 1]]).split(' | ')[4]; var bal2 = (tran2 == '{}') ? statCr : (trans2[Object.keys(trans2)[Object.keys(trans2).length - 1]]).split(' | ')[4];
+    var statDt, statCt, statK, statV, statDi, statCi, statDn, statCn, statT;
     var statDv = statDr - parseInt(bal1), statCv = statCr - parseInt(bal2);
     if ((isInt(deb)) && !(isInt(cre))) {
         statV = parseInt(deb); statK = cre; statT = cre;

@@ -29,16 +29,15 @@ foreach ($settings['libraries']['domestic'] as $val) { ?>
 <?php } ?><input type='hidden' id='sysDefBackload' value="<?=$backloadString;?>">
 <input type='hidden' id='sysDefPrefix' value="<?=$prefix;?>">
 <input type='hidden' id='sysDefReticlePrefix' value="<?=$reticlePrefix;?>">
-<input type='hidden' id="sysDefIsActive" value="0">
+<input type='hidden' id="sysDefHoursNow" value="">
 <input type='hidden' id="sysDefHoursActive" value="">
 <input type='hidden' id="sysDefLockData" value="">
 <input type='hidden' id="sysDefIsSession" value="<?=isAuth();?>">
 <input type='hidden' id="sysDefSessionID" value="<?=$sessionID;?>">
-<input type='hidden' id="sysDefPostBackEff" value="0"><input type='hidden' id="sysDefPostTickEff" value="0">
-<input type='hidden' id="sysDefVarsArr" value=""><input type='hidden' id="sysDefUsersList" value="">
-<input type='hidden' id="sysDefBooksList" value=""><input type='hidden' id="sysDefStoreList" value="">
-<input type='hidden' id="sysDefMailingJSONs" value=""><input type='hidden' id="sysDefBookKeepJSONs" value="">
-<input type='hidden' id="sysDefStoreJSONs" value="">
+<input type='hidden' id="sysDefPostBackEff" value="0">
+<input type='hidden' id="sysDefPostTickEff" value="0">
+<input type='hidden' id="sysDefVarsArr" value=""><input type='hidden' id="sysDefUsersList" value=""><input type='hidden' id="sysDefBooksList" value=""><input type='hidden' id="sysDefStoreList" value="">
+<input type='hidden' id="sysDefMailingJSONs" value=""><input type='hidden' id="sysDefBookKeepJSONs" value=""><input type='hidden' id="sysDefStoreJSONs" value="">
 <input type='hidden' id="sysDefBindData" value="<?=valstr($bindData,';',':');?>">
 <input type='hidden' id="sysDefPowersData" value="<?=valstr($powersData,';',':');?>">
 <input type='hidden' id="sysDefAutoData" value="<?=valstr($automateData,';',':');?>">
