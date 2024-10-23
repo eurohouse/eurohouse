@@ -292,7 +292,7 @@ function storeOpen(id) {
     var userNum = arraySearch(id, userArr);
     var jou = openJournal(id, ob, oj);
     var nou = od.value.split(',')[userNum];
-    console.log(od.value);
+    console.log(userNum);
     return arraySearch(nou, jou.split(' '));
 }
 function clearJournal(num, obj, kw) {
