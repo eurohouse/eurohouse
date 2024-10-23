@@ -116,7 +116,7 @@ function world_clock() {
                 var stoInf = "<p align='center'>"+fint[8]+"</p><p align='center'>"+fint[9]+"</p><p align='center'>"+obramBtn(bndm)+"</p>";
                 store_users.innerHTML = jsonListUsers(sysDefStoreList);
                 var stoDop = '<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+fint[3]+'</th><th style="width:7%;">'+fint[4]+'</th><th style="width:3%;">'+fint[5]+'</th></thead><tbody>'+jsonStore(bndm)+'</tbody></table>';
-                store_disp.innerHTML = (sysDefSessionID.value != bndm) ? ((storeOpen(bndm)) ? stoDop : stoInf) : stoDop; console.log(storeOpen(bndm));
+                store_disp.innerHTML = (sysDefSessionID.value != bndm) ? ((storeOpen(bndm)) ? stoDop : stoInf) : stoDop;
             } if (requestMode.value == 'font_book') {
                 fontBook24Pt.innerText = fontBook22Pt.innerText = fontBook20Pt.innerText = fontBook18Pt.innerText = fontBook16Pt.innerText = fontBook14Pt.innerText = pager(data, 6);
             } if (requestMode.value == 'statistics') {
