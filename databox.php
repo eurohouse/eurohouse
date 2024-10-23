@@ -40,6 +40,6 @@ $userStore."\r\n\r\n". // Read Line 9
 json_encode(userlocks($locksArr, $userSettings['collections'], $avaPref), JSON_UNESCAPED_UNICODE)."\r\n\r\n". // Read Line 10
 implode('//', $codexBoxArr)."\\\\".implode('//', $speechBoxArr)."\r\n\r\n". // Read Line 11
 $usersList.";".$booksList.";".$storeList."\r\n\r\n". // Read Line 12
-$othCT."\r\n\r\n". // Read Line 13
+$othCT."\r\n". // Read Line 13
 $notesList."\r\n\r\n". // Read Line 14
 $notesJSON; // Read Line 15
