@@ -305,7 +305,9 @@ function automator() {
                     }
                 } else { charge(subName, sch); }
             } var rnd = rand(0, 1); if (rnd == 0) {
-                buy_item(subName, och, objName);
+                if (storeOpen(objName)) {
+                    buy_item(subName, och, objName);
+                }
             } else {
                 // HELLO WORLD
             }
