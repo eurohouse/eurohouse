@@ -288,14 +288,17 @@ function openJournal(id, ob, oj) {
     return pager(jours, userNum);
 }
 function storeOpen(id) {
-    var userArr = sysDefUsersList.value.split(',');
+    var userArr = (sysDefUsersList.value).split(',');
     var userNum = arraySearch(id, userArr);
-    var jou = storeHours(id); console.log(jou);
-    var nou = (sysDefHoursNow.value)[userNum];
-    return (arraySearch(nou, jou));
+    var hours = storeHours(id).split(',');
+}
+function userTimeNow(id) {
+    var userArr = (sysDefUsersList.value).split(',');
+    var userNum = arraySearch(id, userArr);
+    return (sysDefHoursNow.value).split(' ')[userNum];
 }
 function storeHours(id) {
-    var userArr = sysDefUsersList.value.split(',');
+    var userArr = (sysDefUsersList.value).split(',');
     var userNum = arraySearch(id, userArr);
     return pager(sysDefHoursActive.value, userNum);
 }
