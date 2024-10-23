@@ -295,6 +295,11 @@ function storeOpen(id) {
     var nou = (sysDefHoursNow.value)[userNum];
     return (arraySearch(nou, jou));
 }
+function storeHours(id) {
+    var userArr = sysDefUsersList.value.split(',');
+    var userNum = arraySearch(id, userArr);
+    return pager(sysDefHoursActive.value, userNum);
+}
 function clearJournal(num, obj, kw) {
     var msgarr = jsonstr(obj.value), nur, ras;
     var las = Object.keys(msgarr).length - 1;
