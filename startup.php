@@ -40,6 +40,7 @@ function databox() {
             $('#sysDefStoreList').val(pager(data, 12).split(";")[2]);
             $('#sysDefMetaList').val(pager(data, 13));
             $('#sysDefMetaData').val(pager(data, 14));
+            $('#sysDefHoursNow').val(pager(data, 15));
             if (sysDefBindData.value != sysDefPostBindData.value) {
                 playAudio(bindPlayer, sysDefBindSound.value);
             } sysDefPostBindData.value = sysDefBindData.value;
@@ -252,8 +253,7 @@ function active_hours() {
     $.ajax({
         url: 'active_hours.php',
         success: function(data) {
-            $('#sysDefHoursNow').val(pager(data, 0));
-            $('#sysDefHoursActive').val(pager(data, 1));
+            $('#sysDefHoursActive').val(data);
         }
     });
 }

@@ -22,7 +22,12 @@ $storeList = implode(',',str_replace('_store.json','',str_replace('./.store/',''
 $newsFeed = jsonopen('./.msgbox/'.$cookie.'_msgbox.json', true);
 $userBook = jsonopen('./.book/'.$cookie.'_book.json', true);
 $userStore = jsonopen('./.store/'.$cookie.'_store.json', true);
-echo $cookie."\r\n\r\n". // Read Line 0
+$othCT = ""; foreach ($usersList as $key=>$value) {
+    $testArr = arropen($value, json_encode($userSettings['defaults']), 'DEFAULT');
+    $othTZ = dec_tz($testArr['timezone']);
+    date_default_timezone_set($othTZ);
+    $othCT .= date('H')." ";
+} echo $cookie."\r\n\r\n". // Read Line 0
 valstr($bindingData,';',':')."\r\n\r\n". // Read Line 1
 valstr($poweredData,';',':')."\r\n\r\n". // Read Line 2
 valstr($autoData,';',':')."\r\n\r\n". // Read Line 3
@@ -36,4 +41,5 @@ json_encode(userlocks($locksArr, $userSettings['collections'], $avaPref), JSON_U
 implode('//', $codexBoxArr)."\\\\".implode('//', $speechBoxArr)."\r\n\r\n". // Read Line 11
 $usersList.";".$booksList.";".$storeList."\r\n\r\n". // Read Line 12
 $notesList."\r\n\r\n". // Read Line 13
-$notesJSON; // Read Line 14
+$notesJSON."\r\n\r\n"; // Read Line 14
+$othCT; // Read Line 15
