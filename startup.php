@@ -287,27 +287,34 @@ function automator() {
     var objName = userList[rand(0, userList.length)];
     var handle = userList[rand(0, userList.length)];
     var subFrnd = friendsOf(frndPower, subName);
-    var objt = jsonMarket(subName, '!account,password');
-    var arms = Object.keys(objt);
-    var wep = arms[rand(0, arms.length-1)];
+    var sut = obt = {}, sch = och = '', rnd = 0;
     if (requestMode.value == 'statistics') {
         userStats.innerText = scores(sysDefStats.value);
         userStatsAuto.innerText = (subName == 'root') ? CryptoJS.MD5(status+'@'+subName+'#'+objName+'&'+handle).toString() : CryptoJS.MD5(status+'@'+subName+'$'+objName+'&'+handle).toString();
     } if ((subName != '') && (objName != '') && (isInt(tabPower[subName])) && (tabPower[subName] >= 0) && (autoPower[subName] == 'auto')) {
-        bind(subName, handle);
+        sut = jsonMarket(subName, '!account,password');
+        sch = Object.keys(sut)[rand(0, Object.keys(sut).length-1)];
+        bind(subName, handle); equip(subName, sch);
         if ((subName != objName) && (objName == handle)) {
-            if (!(subFrnd.includes(objName))) {
-                if (objt[wep]['type'] !== undefined) {
-                    if (objt[wep]['type'] == 'weapon') {
-                        equip(subName, wep);
-                        dominate(subName, objName, wep);
-                    } else {
-                        charge(subName, wep);
+            obt = jsonMarket(objName, '!account,password');
+            och = Object.keys(obt)[rand(0, Object.keys(obt).length-1)];
+            if (sut[sch]['type'] !== undefined) {
+                if (sut[sch]['type'] == 'weapon') {
+                    if (!(subFrnd.includes(objName))) {
+                        dominate(subName, objName, sch);
                     }
-                }
+                } else { charge(subName, sch); }
+            } var rnd = rand(0, 1); if (rnd == 0) {
+                buy_item(subName, och, objName);
+            } else {
+                // HELLO WORLD
             }
         } else {
-            bind(subName, handle);
+            if (sut[sch]['type'] !== undefined) {
+                if (sut[sch]['type'] == '!weapon,account,password') {
+                    charge(subName, sch);
+                }
+            }
         }
     }
 }
