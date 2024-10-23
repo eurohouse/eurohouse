@@ -22,7 +22,8 @@ $storeList = implode(',',str_replace('_store.json','',str_replace('./.store/',''
 $newsFeed = jsonopen('./.msgbox/'.$cookie.'_msgbox.json', true);
 $userBook = jsonopen('./.book/'.$cookie.'_book.json', true);
 $userStore = jsonopen('./.store/'.$cookie.'_store.json', true);
-$othCT = ''; foreach ($usersList as $key=>$value) {
+$sessList = implode(',',str_replace('_session.json','',str_replace('./','',(glob('./*_session.json')))));
+$othCT = ''; foreach ($sessList as $key=>$value) {
     $testArr = arropen($value, json_encode($userSettings['defaults']), 'DEFAULT');
     $othTZ = dec_tz($testArr['timezone']);
     date_default_timezone_set($othTZ);
