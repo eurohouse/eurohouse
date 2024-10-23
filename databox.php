@@ -22,13 +22,7 @@ $storeList = implode(',',str_replace('_store.json','',str_replace('./.store/',''
 $newsFeed = jsonopen('./.msgbox/'.$cookie.'_msgbox.json', true);
 $userBook = jsonopen('./.book/'.$cookie.'_book.json', true);
 $userStore = jsonopen('./.store/'.$cookie.'_store.json', true);
-foreach ($usersList as $key=>$val) {
-    $otherData = arropen($val.'_session.json', json_encode($userSettings['defaults']), 'DEFAULT');
-    $otherTimezone = dec_tz($otherData['timezone']); date_default_timezone_set($otherTimezone);
-    $otherHours = explode(',', $otherData['active_hours']);
-    $activeHoursPage = implode(' ', $otherHours)."\r\n";
-    $localHoursNow = date('H')." ";
-} echo $cookie."\r\n\r\n". // Read Line 0
+echo $cookie."\r\n\r\n". // Read Line 0
 valstr($bindingData,';',':')."\r\n\r\n". // Read Line 1
 valstr($poweredData,';',':')."\r\n\r\n". // Read Line 2
 valstr($autoData,';',':')."\r\n\r\n". // Read Line 3
@@ -42,6 +36,4 @@ json_encode(userlocks($locksArr, $userSettings['collections'], $avaPref), JSON_U
 implode('//', $codexBoxArr)."\\\\".implode('//', $speechBoxArr)."\r\n\r\n". // Read Line 11
 $usersList.";".$booksList.";".$storeList."\r\n\r\n". // Read Line 12
 $notesList."\r\n\r\n". // Read Line 13
-$notesJSON."\r\n\r\n". // Read Line 14
-$localHoursNow."\r\n\r\n". // Read Line 15
-$activeHoursPage; // Read Line 16
+$notesJSON; // Read Line 14
