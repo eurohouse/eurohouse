@@ -1,8 +1,7 @@
 <?php
 include 'functions.php';
-$userSettings = fileopen('settings.json');
 $usersList = str_replace('./.store/','',(glob('./.store/*_store.json'))); $allContent = ""; foreach ($usersList as $key=>$value) {
-    $otherData = arropen($value.'_session.json', json_encode($userSettings['defaults']), 'DEFAULT');
+    $otherData = fileopen($value.'_session.json');
     $otherTimezone = dec_tz($otherData['timezone']); date_default_timezone_set($otherTimezone);
     $hoursAct = $otherData['active_hours']." ";
     $hoursNow = date('H')." ";
