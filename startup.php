@@ -38,9 +38,9 @@ function databox() {
             $('#sysDefUsersList').val(pager(data, 12).split(";")[0]);
             $('#sysDefBooksList').val(pager(data, 12).split(";")[1]);
             $('#sysDefStoreList').val(pager(data, 12).split(";")[2]);
-            $('#sysDefMetaList').val(pager(data, 13));
-            $('#sysDefMetaData').val(pager(data, 14));
-            $('#sysDefHoursNow').val(pager(data, 15));
+            $('#sysDefHoursNow').val(pager(data, 13));
+            $('#sysDefMetaList').val(pager(data, 14));
+            $('#sysDefMetaData').val(pager(data, 15));
             if (sysDefBindData.value != sysDefPostBindData.value) {
                 playAudio(bindPlayer, sysDefBindSound.value);
             } sysDefPostBindData.value = sysDefBindData.value;
