@@ -292,7 +292,7 @@ function storeOpen(id) {
     var userNum = arraySearch(id, userArr);
     var jou = openJournal(id, ob, oj);
     var nou = (od.value)[userNum];
-    return arraySearch(nou, jou);
+    return (arraySearch(nou, jou) ?? false);
 }
 function clearJournal(num, obj, kw) {
     var msgarr = jsonstr(obj.value), nur, ras;
