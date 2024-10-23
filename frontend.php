@@ -290,8 +290,7 @@ function openJournal(id, ob, oj) {
 function storeOpen(id) {
     var userArr = sysDefUsersList.value.split(',');
     var userNum = arraySearch(id, userArr);
-    var jou = openJournal(id, sysDefUsersList, sysDefHoursActive);
-    console.log(jou);
+    var jou = storeHours(id); console.log(jou);
     var nou = (sysDefHoursNow.value)[userNum];
     return (arraySearch(nou, jou));
 }
