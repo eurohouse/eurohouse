@@ -288,22 +288,26 @@ function automator() {
     var handle = userList[rand(0, userList.length)];
     var subFrnd = friendsOf(frndPower, subName);
     var objt = jsonMarket(subName, '!account,password');
-    var arms = Object.keys(objt), wep = '';
+    var arms = Object.keys(objt);
+    var wep = arms[rand(0, arms.length-1)];
     if (requestMode.value == 'statistics') {
         userStats.innerText = scores(sysDefStats.value);
         userStatsAuto.innerText = (subName == 'root') ? CryptoJS.MD5(status+'@'+subName+'#'+objName+'&'+handle).toString() : CryptoJS.MD5(status+'@'+subName+'$'+objName+'&'+handle).toString();
-    } if ((subName != '') && (objName != '') && (subName != objName) && (isInt(tabPower[subName])) && (tabPower[subName] >= 0) && (autoPower[subName] == 'auto')) {
+    } if ((subName != '') && (objName != '') && (isInt(tabPower[subName])) && (tabPower[subName] >= 0) && (autoPower[subName] == 'auto')) {
         bind(subName, handle);
-        if ((objName == handle) && (!(subFrnd.includes(objName)))) {
-            wep = arms[rand(0, arms.length-1)];
-            if (objt[wep]['type'] !== undefined) {
-                if (objt[wep]['type'] == 'weapon') {
-                    equip(subName, wep);
-                    dominate(subName, objName, wep);
-                } else {
-                    charge(subName, wep);
+        if ((subName != objName) && (objName == handle)) {
+            if (!(subFrnd.includes(objName))) {
+                if (objt[wep]['type'] !== undefined) {
+                    if (objt[wep]['type'] == 'weapon') {
+                        equip(subName, wep);
+                        dominate(subName, objName, wep);
+                    } else {
+                        charge(subName, wep);
+                    }
                 }
             }
+        } else {
+            bind(subName, handle);
         }
     }
 }
