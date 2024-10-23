@@ -286,10 +286,13 @@ function openJournal(id, ob, oj) {
     var userArr = users.split(','), userNum = arraySearch(id, userArr); return pager(jours, userNum);
 }
 function storeOpen(id) {
-    var ob = sysDefUsersList, oj = sysDefHoursActive, od = sysDefHoursNow;
-    var users = ob.value, jours = oj.value, hours = od.value;
-    var userArr = users.split(','), userNum = arraySearch(id, userArr), jou = openJournal(id, ob, oj);
-    var nou = hours.split(' ')[userNum];
+    var ob = sysDefUsersList, oj = sysDefHoursActive;
+    var od = sysDefHoursNow;
+    var userArr = ob.value.split(',');
+    var userNum = arraySearch(id, userArr);
+    var jou = openJournal(id, ob, oj);
+    console.log(jou);
+    var nou = od.value.split(' ')[userNum];
     return arraySearch(nou, jou.split(' '));
 }
 function clearJournal(num, obj, kw) {
