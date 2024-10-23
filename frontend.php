@@ -281,18 +281,16 @@ function noteBook(str) {
         ard = ard+arl+'<br>';
     } return ard;
 }
-function openJournal(id, ob, oj, mi = false) {
+function openJournal(id, ob, oj) {
     var users = ob.value, jours = oj.value;
-    var userArr = users.split(','), userNum = arraySearch(id, userArr);
-    return (mi) ? miniPager(jours, userNum) : pager(jours, userNum);
+    var userArr = users.split(','), userNum = arraySearch(id, userArr); return pager(jours, userNum);
 }
-function isStoreOpen(id) {
+function storeOpen(id) {
     var ob = sysDefUsersList, oj = sysDefHoursActive, od = sysDefHoursNow;
     var users = ob.value, jours = oj.value, hours = od.value;
-    var userArr = users.split(','), userNum = arraySearch(id, userArr);
-    var jou = openJournal(id, ob, oj, true);
+    var userArr = users.split(','), userNum = arraySearch(id, userArr), jou = openJournal(id, ob, oj);
     var nou = hours.split(' ')[userNum];
-    return ((jou.split(' ')).includes(nou));
+    return arraySearch(nou, jou.split(' '));
 }
 function clearJournal(num, obj, kw) {
     var msgarr = jsonstr(obj.value), nur, ras;
