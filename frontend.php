@@ -236,8 +236,8 @@ function jsonListUsers(ob) {
         }
     } arl += "</p>"; return arl;
 }
-function obramBtn(str) {
-    var arr = str.split(',');
+function obramBtn(id) {
+    var arr = storeHours(id).split(',');
     var arl = ''; for (el in arr) {
         arl += "<input type='button' value='"+arr[el]+"'>";
     } return arl;
