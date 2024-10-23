@@ -6,5 +6,5 @@ $othAH = ''; foreach ($usersList as $key=>$value) {
     $testArr = arropen($value, json_encode($userSettings['defaults']), 'DEFAULT');
     $othTZ = dec_tz($testArr['timezone']);
     date_default_timezone_set($othTZ);
-    $othAH .= $testArr['active_hours']."\r\n\r\n";
+    $othAH .= $testArr['active_hours']."\r\n";
 } echo $othAH; // Read All Lines At Once
