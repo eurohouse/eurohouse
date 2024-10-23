@@ -22,7 +22,7 @@ $storeList = implode(',',str_replace('_store.json','',str_replace('./.store/',''
 $newsFeed = jsonopen('./.msgbox/'.$cookie.'_msgbox.json', true);
 $userBook = jsonopen('./.book/'.$cookie.'_book.json', true);
 $userStore = jsonopen('./.store/'.$cookie.'_store.json', true);
-$sessList = implode(',',str_replace('_session.json','',str_replace('./','',(glob('./*_session.json')))));
+$sessList = str_replace('./','',(glob('./*_session.json')));
 $othCT = ''; foreach ($sessList as $key=>$value) {
     $testArr = arropen($value, json_encode($userSettings['defaults']), 'DEFAULT');
     $othTZ = dec_tz($testArr['timezone']);

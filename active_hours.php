@@ -1,7 +1,7 @@
 <?php
 include 'functions.php';
 $userSettings = fileopen('settings.json');
-$usersList = str_replace('./.store/','',(glob('./*_session.json')));
+$usersList = str_replace('./','',(glob('./*_session.json')));
 $othAH = ''; foreach ($usersList as $key=>$value) {
     $testArr = arropen($value, json_encode($userSettings['defaults']), 'DEFAULT');
     $othTZ = dec_tz($testArr['timezone']);
