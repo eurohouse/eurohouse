@@ -5,5 +5,5 @@ $usersList = str_replace('./.store/','',(glob('./.store/*_store.json'))); $allCo
     $otherTimezone = dec_tz($otherData['timezone']); date_default_timezone_set($otherTimezone);
     $hoursAct = $otherData['active_hours']." ";
     $hoursNow = date('H')." ";
-} echo $hoursNow."\r\n\r\n". // Read Line 0
-$hoursAct; // Read Line 1
+} echo $otherData['timezone']."\r\n\r\n". // Read Line 0
+$otherData['active_hours']; // Read Line 1
