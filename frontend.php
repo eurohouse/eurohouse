@@ -291,6 +291,7 @@ function storeOpen(id) {
     var userArr = (sysDefUsersList.value).split(',');
     var userNum = arraySearch(id, userArr);
     var hours = storeHours(id).split(',');
+    return (userTimeNow(id) in hours);
 }
 function userTimeNow(id) {
     var userArr = (sysDefUsersList.value).split(',');
