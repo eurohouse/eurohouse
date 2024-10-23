@@ -283,15 +283,16 @@ function noteBook(str) {
 }
 function openJournal(id, ob, oj) {
     var users = ob.value, jours = oj.value;
-    var userArr = users.split(','), userNum = arraySearch(id, userArr); return pager(jours, userNum);
+    var userArr = users.split(',');
+    var userNum = arraySearch(id, userArr);
+    return pager(jours, userNum);
 }
 function storeOpen(id) {
-    var ob = sysDefUsersList, oj = sysDefHoursActive;
-    var od = sysDefHoursNow;
-    var userArr = ob.value.split(',');
+    var userArr = sysDefUsersList.value.split(',');
     var userNum = arraySearch(id, userArr);
-    var jou = openJournal(id, ob, oj);
-    var nou = (od.value)[userNum];
+    var jou = openJournal(id, sysDefUsersList, sysDefHoursActive);
+    console.log(jou);
+    var nou = (sysDefHoursNow.value)[userNum];
     return (arraySearch(nou, jou));
 }
 function clearJournal(num, obj, kw) {
