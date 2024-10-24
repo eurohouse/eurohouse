@@ -5,31 +5,84 @@ $exemplarArr = exemplar(str_replace('./','',(glob('./*.models.json'))));
 $contentsArr = exemplar(str_replace('./','',(glob('./*.contents.json'))));
 if ($request['group'] != '') {
     foreach ($contentsArr as $key=>$value) {
-        if ($value != $request['group']) { unset($contentsArr[$key]); }
-    } ?><p align='center' class='block'>
-<?php foreach ($contentsArr as $key=>$value) { ?>
-    <a href="<?=$key;?>"><img style="width:90%;display:block;object-fit: contain;" loading="lazy" src="<?=$key?>" onmouseover="soundButton();"></a>
-<?php } ?></p><?php } else {
+        if ($value != $request['group']) {
+            unset($contentsArr[$key]);
+        }
+    }
+    ?>
+    <p align='center' class='block'>
+    <?php foreach ($contentsArr as $key=>$value) { ?>
+        <a href="<?=$key;?>">
+            <img style="width:90%;display:block;object-fit: contain;" loading="lazy" src="<?=$key?>" onmouseover="soundButton();">
+        </a>
+    <?php } ?>
+    </p>
+<?php
+} else {
     $preStyle = "white-space:pre-wrap;word-wrap:break-word;";
-    $showLocale = $settings['locale']; foreach ($exemplarArr as $key=>$value) {
+    $ssLC = $settings['locale']; $ssUN = $ssUN;
+    foreach ($exemplarArr as $key=>$value) {
         if ($session['censor'] != 0) {
             if (isset($value['nsfw'])) { unset($exemplarArr[$key]); }
         } else {
             if (!isset($value['nsfw'])) { unset($exemplarArr[$key]); }
         }
-    } ?><table style="width:98%;" id="table"><thead><tr>
-    <th style="width:5%;<?=$preStyle;?>"><?=term('Flag', $settings['vocabulary'], $session['units']);?></th>
-    <th style="width:12%;<?=$preStyle;?>"><a href="javascript:SortTable(1, 'T');"><?=term('Name', $settings['vocabulary'], $session['units']);?></a></th>
-    <th style="width:6%;<?=$preStyle;?>"><a href="javascript:SortTable(2, 'N');"><?=term('Height', $settings['vocabulary'], $session['units']);?></a></th>
-    <th style="width:6%;<?=$preStyle;?>"><a href="javascript:SortTable(3, 'N');"><?=term('Weight', $settings['vocabulary'], $session['units']);?></a></th>
-    <th style="width:4%;<?=$preStyle;?>"><a href="javascript:SortTable(4, 'N');"><?=term('Shoe Size', $settings['vocabulary'], $session['units']);?></a></th></tr></thead><tbody>
-    <?php foreach ($exemplarArr as $key=>$value) {
-        $countryFL = (isset($value['country'])) ? $value['country'] : 'UN';
-        $countryAva = (file_exists('Flag.'.$value['country'].'.png')) ? 'Flag.'.$value['country'].'.png' : 'Flag.UN.png'; $letModelIMG = array_search($key, $contentsArr);
-        $letModelTitle = (isset($exemplarArr[$key]['language'][$session['units']]['title'])) ? $exemplarArr[$key]['language'][$session['units']]['title'] : $key; ?>
-    <tr><td><img style="width:60%;" src="<?=$countryAva;?>"></td>
-    <td><a href="javascript:omniSwitch(%22<?=$key;?>%22);"><?=$letModelTitle;?></a></td>
-    <td><?=(isset($value['height'])) ? ((isset($showLocale['length'][$session['units']])) ? ((isset($showLocale['length'][$session['units']]['inch'])) ? incher($value['height']) : (round(($value['height'] * $showLocale['length'][$session['units']]['coefficient']), 2)).' '.$showLocale['length'][$session['units']]['sign']) : (round(($value['height'] * $showLocale['length']['default']['coefficient']), 2)).' '.$showLocale['length'][$session['units']]['sign']) : '';?></td>
-    <td><?=(isset($value['weight'])) ? ((isset($showLocale['mass'][$session['units']])) ? (round($value['weight'] * $showLocale['mass'][$session['units']]['coefficient'])).' '.$showLocale['mass'][$session['units']]['sign'] : (round($value['weight'] * $showLocale['mass']['default']['coefficient'])).' '.$showLocale['mass'][$session['units']]['sign']) : '';?></td>
-    <td><?=(isset($value['shoe_size'])) ? ((isset($showLocale['shoe_size'][$session['units']])) ? ($value['shoe_size'] + $showLocale['shoe_size'][$session['units']]).' '.$countryFL : ($value['shoe_size'] + $showLocale['shoe_size']['default']).' '.$countryFL) : '';?></td></tr>
-<?php } ?></tbody></table><?php } ?>
+    } ?>
+    <table style="width:98%;" id="table">
+    <thead>
+    <tr>
+        <th style="width:5%;<?=$preStyle;?>">
+            <?=term('Flag', $settings['vocabulary'], $ssUN);?>
+        </th>
+        <th style="width:12%;<?=$preStyle;?>">
+            <a href="javascript:SortTable(1, 'T');">
+                <?=term('Name', $settings['vocabulary'], $ssUN);?>
+            </a>
+        </th>
+        <th style="width:6%;<?=$preStyle;?>">
+            <a href="javascript:SortTable(2, 'N');">
+                <?=term('Height', $settings['vocabulary'], $ssUN);?>
+            </a>
+        </th>
+        <th style="width:6%;<?=$preStyle;?>">
+            <a href="javascript:SortTable(3, 'N');">
+                <?=term('Weight', $settings['vocabulary'], $ssUN);?>
+            </a>
+        </th>
+        <th style="width:4%;<?=$preStyle;?>">
+            <a href="javascript:SortTable(4, 'N');">
+                <?=term('Shoe Size', $settings['vocabulary'], $ssUN);?>
+            </a>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php
+    foreach ($exemplarArr as $key=>$value) {
+        $ccFL = (isset($value['country'])) ? $value['country'] : 'UN';
+        $ccAV = (file_exists('Flag.'.$value['country'].'.png')) ? 'Flag.'.$value['country'].'.png' : 'Flag.UN.png';
+        $mmTL = (isset($exemplarArr[$key]['language'][$ssUN]['title'])) ? $exemplarArr[$key]['language'][$ssUN]['title'] : $key;
+    ?>
+    <tr>
+        <td>
+            <img style="width:60%;" src="<?=$ccAV;?>">
+        </td>
+        <td>
+            <a href="javascript:omniSwitch(%22<?=$key;?>%22);">
+                <?=$mmTL;?>
+            </a>
+        </td>
+        <td>
+            <?=(isset($value['height'])) ? ((isset($ssLC['length'][$ssUN])) ? ((isset($ssLC['length'][$ssUN]['inch'])) ? incher($value['height']) : (round(($value['height'] * $ssLC['length'][$ssUN]['coefficient']), 2)).' '.$ssLC['length'][$ssUN]['sign']) : (round(($value['height'] * $ssLC['length']['default']['coefficient']), 2)).' '.$ssLC['length']['default']['sign']) : '';?>
+        </td>
+        <td>
+            <?=(isset($value['weight'])) ? ((isset($ssLC['mass'][$ssUN])) ? (round($value['weight'] * $ssLC['mass'][$ssUN]['coefficient'])).' '.$ssLC['mass'][$ssUN]['sign'] : (round($value['weight'] * $ssLC['mass']['default']['coefficient'])).' '.$ssLC['mass']['default']['sign']) : '';?>
+        </td>
+        <td>
+            <?=(isset($value['shoe_size'])) ? ((isset($ssLC['shoe_size'][$ssUN])) ? ($value['shoe_size'] + $ssLC['shoe_size'][$ssUN]).' '.$countryFL : ($value['shoe_size'] + $ssLC['shoe_size']['default']).' '.$ccFL) : '';?>
+        </td>
+    </tr>
+    <?php } ?>
+</tbody>
+</table>
+<?php } ?>
