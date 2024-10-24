@@ -39,6 +39,13 @@ if ($request['group'] != '') {
                 <?=term('Name', $settings['vocabulary'], $ssUN);?>
             </a>
         </th>
+        <?php if ($session['censor'] != 0) { ?>
+        <th style="width:20%;<?=$preStyle;?>">
+            <a href="javascript:SortTable(2, 'T');">
+                <?=term('Description', $settings['vocabulary'], $ssUN);?>
+            </a>
+        </th>
+        <?php } else { ?>
         <th style="width:6%;<?=$preStyle;?>">
             <a href="javascript:SortTable(2, 'N');">
                 <?=term('Height', $settings['vocabulary'], $ssUN);?>
@@ -54,6 +61,7 @@ if ($request['group'] != '') {
                 <?=term('Shoe Size', $settings['vocabulary'], $ssUN);?>
             </a>
         </th>
+        <?php } ?>
     </tr>
     </thead>
     <tbody>
@@ -72,6 +80,11 @@ if ($request['group'] != '') {
                 <?=$mmTL;?>
             </a>
         </td>
+        <?php if ($session['censor'] != 0) { ?>
+        <td>
+            <?=(isset($value['language'][$ccUN]['memoir'])) ? $value['language'][$ccUN]['memoir'] : (($value['memoir']) ? $value['memoir'] : '');?>
+        </td>
+        <?php } else { ?>
         <td>
             <?=(isset($value['height'])) ? ((isset($ssLC['length'][$ssUN])) ? ((isset($ssLC['length'][$ssUN]['inch'])) ? incher($value['height']) : (round(($value['height'] * $ssLC['length'][$ssUN]['coefficient']), 2)).' '.$ssLC['length'][$ssUN]['sign']) : (round(($value['height'] * $ssLC['length']['default']['coefficient']), 2)).' '.$ssLC['length']['default']['sign']) : '';?>
         </td>
@@ -81,6 +94,7 @@ if ($request['group'] != '') {
         <td>
             <?=(isset($value['shoe_size'])) ? ((isset($ssLC['shoe_size'][$ssUN])) ? ($value['shoe_size'] + $ssLC['shoe_size'][$ssUN]).' '.$countryFL : ($value['shoe_size'] + $ssLC['shoe_size']['default']).' '.$ccFL) : '';?>
         </td>
+        <?php } ?>
     </tr>
     <?php } ?>
 </tbody>
