@@ -100,7 +100,7 @@ if ($request['group'] != '') {
             <?=(isset($value['weight'])) ? ((isset($ssLC['mass'][$ssUN])) ? (round($value['weight'] * $ssLC['mass'][$ssUN]['coefficient'])).' '.$ssLC['mass'][$ssUN]['sign'] : (round($value['weight'] * $ssLC['mass']['default']['coefficient'])).' '.$ssLC['mass']['default']['sign']) : '';?>
         </td>
         <td>
-            <?=(isset($value['shoe_size'])) ? ((isset($ssLC['shoe_size'][$ssUN])) ? ($value['shoe_size'] + $ssLC['shoe_size'][$ssUN]).' '.$countryFL : ($value['shoe_size'] + $ssLC['shoe_size']['default']).' '.$ssUN) : '';?>
+            <?=(isset($value['shoe_size'])) ? ((isset($ssLC['shoe_size'][$ssUN])) ? ($value['shoe_size'] + $ssLC['shoe_size'][$ssUN]).' '.$ssUN : ($value['shoe_size'] + $ssLC['shoe_size']['default']).' '.$ssUN) : '';?>
         </td>
         <?php } ?>
     </tr>
