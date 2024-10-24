@@ -18,15 +18,18 @@ if ($request['group'] != '') {
             if (!isset($value['nsfw'])) { unset($exemplarArr[$key]); }
         }
     } ?><table style="width:98%;" id="table"><thead><tr>
-    <th style="width:12%;<?=$preStyle;?>"><a href="javascript:SortTable(0, 'T');"><?=term('Name', $settings['vocabulary'], $session['units']);?></a></th>
-    <th style="width:6%;<?=$preStyle;?>"><a href="javascript:SortTable(1, 'N');"><?=term('Height', $settings['vocabulary'], $session['units']);?></a></th>
-    <th style="width:6%;<?=$preStyle;?>"><a href="javascript:SortTable(2, 'N');"><?=term('Weight', $settings['vocabulary'], $session['units']);?></a></th>
-    <th style="width:6%;<?=$preStyle;?>"><a href="javascript:SortTable(3, 'N');"><?=term('Shoe Size', $settings['vocabulary'], $session['units']);?></a></th></tr></thead><tbody>
+    <th style="width:5%;<?=$preStyle;?>"><?=term('Flag', $settings['vocabulary'], $session['units']);?></th>
+    <th style="width:12%;<?=$preStyle;?>"><a href="javascript:SortTable(1, 'T');"><?=term('Name', $settings['vocabulary'], $session['units']);?></a></th>
+    <th style="width:6%;<?=$preStyle;?>"><a href="javascript:SortTable(2, 'N');"><?=term('Height', $settings['vocabulary'], $session['units']);?></a></th>
+    <th style="width:6%;<?=$preStyle;?>"><a href="javascript:SortTable(3, 'N');"><?=term('Weight', $settings['vocabulary'], $session['units']);?></a></th>
+    <th style="width:6%;<?=$preStyle;?>"><a href="javascript:SortTable(4, 'N');"><?=term('Shoe Size', $settings['vocabulary'], $session['units']);?></a></th></tr></thead><tbody>
     <?php foreach ($exemplarArr as $key=>$value) {
+        $countryFL = (isset($value['country'])) ? $value['country'] : 'UN';
         $countryAva = (file_exists('Flag.'.$value['country'].'.png')) ? 'Flag.'.$value['country'].'.png' : 'Flag.UN.png'; $letModelIMG = array_search($key, $contentsArr);
         $letModelTitle = (isset($exemplarArr[$key]['language'][$session['units']]['title'])) ? $exemplarArr[$key]['language'][$session['units']]['title'] : $key; ?>
-    <tr><td><a href="javascript:omniSwitch(%22<?=$key;?>%22);"><?=$letModelTitle;?></a></td>
+    <tr><td><img style="width:100%;" src="<?=$countryAva;?>"></td>
+    <td><a href="javascript:omniSwitch(%22<?=$key;?>%22);"><?=$letModelTitle;?></a></td>
     <td><?=(isset($value['height'])) ? ((isset($showLocale['length'][$session['units']])) ? ((isset($showLocale['length'][$session['units']]['inch'])) ? incher($value['height']) : (round(($value['height'] * $showLocale['length'][$session['units']]['coefficient']), 2))) : (round(($value['height'] * $showLocale['length']['default']['coefficient']), 2))) : '';?></td>
     <td><?=(isset($value['weight'])) ? ((isset($showLocale['mass'][$session['units']])) ? (round($value['weight'] * $showLocale['mass'][$session['units']]['coefficient'])) : (round($value['weight'] * $showLocale['mass']['default']['coefficient']))) : '';?></td>
-    <td><?=(isset($value['shoe_size'])) ? ((isset($showLocale['shoe_size'][$session['units']])) ? ($value['shoe_size'] + $showLocale['shoe_size'][$session['units']]) : ($value['shoe_size'] + $showLocale['shoe_size']['default'])) : '';?></td></tr>
+    <td><?=(isset($value['shoe_size'])) ? ((isset($showLocale['shoe_size'][$session['units']])) ? ($value['shoe_size'] + $showLocale['shoe_size'][$session['units']]).' '.$countryFL : ($value['shoe_size'] + $showLocale['shoe_size']['default']).' '.$countryFL) : '';?></td></tr>
 <?php } ?></tbody></table><?php } ?>
