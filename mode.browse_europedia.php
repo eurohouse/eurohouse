@@ -27,7 +27,7 @@ if ($request['group'] != '') {
         $countryFL = (isset($value['country'])) ? $value['country'] : 'UN';
         $countryAva = (file_exists('Flag.'.$value['country'].'.png')) ? 'Flag.'.$value['country'].'.png' : 'Flag.UN.png'; $letModelIMG = array_search($key, $contentsArr);
         $letModelTitle = (isset($exemplarArr[$key]['language'][$session['units']]['title'])) ? $exemplarArr[$key]['language'][$session['units']]['title'] : $key; ?>
-    <tr><td><img style="width:100%;" src="<?=$countryAva;?>"></td>
+    <tr><td><img style="width:60%;" src="<?=$countryAva;?>"></td>
     <td><a href="javascript:omniSwitch(%22<?=$key;?>%22);"><?=$letModelTitle;?></a></td>
     <td><?=(isset($value['height'])) ? ((isset($showLocale['length'][$session['units']])) ? ((isset($showLocale['length'][$session['units']]['inch'])) ? incher($value['height']) : (round(($value['height'] * $showLocale['length'][$session['units']]['coefficient']), 2))) : (round(($value['height'] * $showLocale['length']['default']['coefficient']), 2))) : '';?></td>
     <td><?=(isset($value['weight'])) ? ((isset($showLocale['mass'][$session['units']])) ? (round($value['weight'] * $showLocale['mass'][$session['units']]['coefficient'])) : (round($value['weight'] * $showLocale['mass']['default']['coefficient']))) : '';?></td>
