@@ -70,7 +70,8 @@ if ($request['group'] != '') {
     foreach ($exemplarArr as $key=>$value) {
         $ccFL = (isset($value['country'])) ? $value['country'] : 'UN';
         $ccAV = (file_exists('Flag.'.$value['country'].'.png')) ? 'Flag.'.$value['country'].'.png' : 'Flag.UN.png';
-        $mmTL = (isset($exemplarArr[$key]['language'][$ssUN]['title'])) ? $exemplarArr[$key]['language'][$ssUN]['title'] : $key;
+        $mmTL = (isset($value['language'][$ssUN]['title'])) ? $value['language'][$ssUN]['title'] : $key;
+        $mmDC = (isset($value['language'][$ssUN]['memoir'])) ? $value['language'][$ssUN]['memoir'] : $value['memoir'];
     ?>
     <tr>
         <td>
@@ -86,7 +87,7 @@ if ($request['group'] != '') {
             <?php if (isset($value['maison'])) { ?>
             <a href="<?=$value['maison'];?>">
             <?php } ?>
-                <?=(isset($value['language'][$ccUN]['memoir'])) ? $value['language'][$ccUN]['memoir'] : (($value['memoir']) ? $value['memoir'] : '');?>
+                <?=$mmDC;?>
             <?php if (isset($value['maison'])) { ?>
             </a>
             <?php } ?>
