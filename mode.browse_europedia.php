@@ -20,7 +20,8 @@ if ($request['group'] != '') {
 <?php
 } else {
     $preStyle = "white-space:pre-wrap;word-wrap:break-word;";
-    $ssLC = $settings['locale']; $ssUN = $ssUN;
+    $ssLC = $settings['locale']; $ssVC = $settings['vocabulary'];
+    $ssUN = $session['units'];
     foreach ($exemplarArr as $key=>$value) {
         if ($session['censor'] != 0) {
             if (isset($value['nsfw'])) { unset($exemplarArr[$key]); }
@@ -32,33 +33,33 @@ if ($request['group'] != '') {
     <thead>
     <tr>
         <th style="width:5%;<?=$preStyle;?>">
-            <?=term('Flag', $settings['vocabulary'], $ssUN);?>
+            <?=term('Flag', $ssVC, $ssUN);?>
         </th>
         <th style="width:12%;<?=$preStyle;?>">
             <a href="javascript:SortTable(1, 'T');">
-                <?=term('Name', $settings['vocabulary'], $ssUN);?>
+                <?=term('Name', $ssVC, $ssUN);?>
             </a>
         </th>
         <?php if ($session['censor'] != 0) { ?>
         <th style="width:20%;<?=$preStyle;?>">
             <a href="javascript:SortTable(2, 'T');">
-                <?=term('Description', $settings['vocabulary'], $ssUN);?>
+                <?=term('Description', $ssVC, $ssUN);?>
             </a>
         </th>
         <?php } else { ?>
         <th style="width:6%;<?=$preStyle;?>">
             <a href="javascript:SortTable(2, 'N');">
-                <?=term('Height', $settings['vocabulary'], $ssUN);?>
+                <?=term('Height', $ssVC, $ssUN);?>
             </a>
         </th>
         <th style="width:6%;<?=$preStyle;?>">
             <a href="javascript:SortTable(3, 'N');">
-                <?=term('Weight', $settings['vocabulary'], $ssUN);?>
+                <?=term('Weight', $ssVC, $ssUN);?>
             </a>
         </th>
         <th style="width:4%;<?=$preStyle;?>">
             <a href="javascript:SortTable(4, 'N');">
-                <?=term('Shoe Size', $settings['vocabulary'], $ssUN);?>
+                <?=term('Shoe Size', $ssVC, $ssUN);?>
             </a>
         </th>
         <?php } ?>
