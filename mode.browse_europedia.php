@@ -82,7 +82,13 @@ if ($request['group'] != '') {
         </td>
         <?php if ($session['censor'] != 0) { ?>
         <td>
-            <?=(isset($value['language'][$ccUN]['memoir'])) ? $value['language'][$ccUN]['memoir'] : (($value['memoir']) ? $value['memoir'] : '');?>
+            <?php if (isset($value['maison'])) { ?>
+            <a href="<?=$value['maison'];?>">
+            <?php } ?>
+                <?=(isset($value['language'][$ccUN]['memoir'])) ? $value['language'][$ccUN]['memoir'] : (($value['memoir']) ? $value['memoir'] : '');?>
+            <?php if (isset($value['maison'])) { ?>
+            </a>
+            <?php } ?>
         </td>
         <?php } else { ?>
         <td>
