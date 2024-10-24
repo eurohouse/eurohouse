@@ -71,7 +71,7 @@ if ($request['group'] != '') {
         $ccFL = (isset($value['country'])) ? $value['country'] : 'UN';
         $ccAV = (file_exists('Flag.'.$value['country'].'.png')) ? 'Flag.'.$value['country'].'.png' : 'Flag.UN.png';
         $mmTL = (isset($value['language'][$ssUN]['title'])) ? $value['language'][$ssUN]['title'] : $key;
-        $mmDC = (isset($value['language'][$ssUN]['memoir'])) ? $value['language'][$ssUN]['memoir'] : $value['memoir'];
+        $mmDC = (isset($value['language'][$ssUN]['memoir'])) ? $value['language'][$ssUN]['memoir'] : ((isset($value['memoir'])) ? $value['memoir'] : '');
     ?>
     <tr>
         <td>
