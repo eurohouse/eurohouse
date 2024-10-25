@@ -346,6 +346,11 @@ function omniEnter() {
                         prx = (arg.length > 1) ? ((isInt(arg[1].replaceAll('"', ''))) ? parseInt(arg[1].replaceAll('"', '')) : arg[1].replaceAll('"', '')) : '';
                         st[arg[0].replaceAll('"', '')]['price'] = prx;
                     }
+                } else if (arb.includes('finite ')) {
+                    arj = arb.replace('finite ', ''), arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
+                    if ((st[arg[0].replaceAll('"', '')] !== undefined) && (typeof(st[arg[0].replaceAll('"', '')]) == 'object') && (st[arg[0].replaceAll('"', '')]['finite'] !== 'undefined')) {
+                        st[arg[0].replaceAll('"', '')]['finite'] = flip(st[arg[0].replaceAll('"', '')]['finite']);
+                    }
                 } set('./.store/'+sysDefSessionID.value+'_store.json', encodeURIComponent(JSON.stringify(st)), true);
             }
         } else if (input.startsWith('sell ')) {
