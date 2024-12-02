@@ -388,7 +388,7 @@ function omniEnter() {
             arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
             sell_item(sysDefSessionID.value, arg[0].replaceAll('"', ''), arg[1].replaceAll('"', ''));
         } else if (input.startsWith('savefrom ')) {
-            arj = input.replace('savefrom ');
+            arj = input.replace('savefrom ', '');
             if (arj.startsWith('mp3 ')) {
                 arb = arj.replace('mp3 ', ''); arc = 'mp3';
             } else if (arj.startsWith('mp4 ')) {
