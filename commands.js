@@ -310,8 +310,8 @@ function pipeExec(input) {
 }
 function omniEnter() {
     var input = omniBox.value, arb = arc = arj = '', arg = [];
-    var itm, prx, qy;
-    if (sysDefChat.value != 0) { compose(input);
+    var itm, prx, qy; if (sysDefChat.value != 0) {
+        compose(input);
     } else {
         if ((input == 'reload') || (input == 'refresh')) {
             window.location.reload();
@@ -387,13 +387,9 @@ function omniEnter() {
             arj = input.replace('sell ', '');
             arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
             sell_item(sysDefSessionID.value, arg[0].replaceAll('"', ''), arg[1].replaceAll('"', ''));
-        } else if (input.startsWith('savefrom ')) {
-            arj = input.replace('savefrom ', '');
-            if (arj.startsWith('mp3 ')) {
-                arb = arj.replace('mp3 ', ''); arc = 'mp3';
-            } else if (arj.startsWith('mp4 ')) {
-                arb = arj.replace('mp4 ', ''); arc = 'mp4';
-            } $('.lowerGap').html('<iframe style="width:100%;height:60px;border:0;overflow:hidden;" scrolling="no" src="https://loader.to/api/button/?url='+arb+'&f='+arc+'"></iframe>');
+        } else if (input.startsWith('loader ')) {
+            arj = input.replace('loader ', ''); arg = arj.split(' ');
+            $('.lowerGap').html('<iframe style="width:100%;height:60px;border:0;overflow:hidden;" scrolling="no" src="https://loader.to/api/button/?url='+arg[1]+'&f='+arg[0]+'"></iframe>');
         } else if (input.startsWith('mkdir ')) {
             if (sysDefSessionID.value == 'root') {
                 arj = input.replace('mkdir ', '');
