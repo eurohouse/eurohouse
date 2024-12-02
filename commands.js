@@ -387,10 +387,12 @@ function omniEnter() {
             arj = input.replace('sell ', '');
             arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
             sell_item(sysDefSessionID.value, arg[0].replaceAll('"', ''), arg[1].replaceAll('"', ''));
-        } else if (input.startsWith('savefrom ')) {
-            arj = input.replace('savefrom ', '');
-            arg = arj.split(' ');
-            $('.lowerGap').html('<iframe style="width:100%;height:60px;border:0;overflow:hidden;" scrolling="no" src="https://loader.to/api/button/?url='+arg[1]+'&f='+arg[0]+'"></iframe>');
+        } else if (input.startsWith('ytmp3 ')) {
+            arj = input.replace('ytmp3 ', '');
+            $('.lowerGap').html('<iframe style="width:100%;height:60px;border:0;overflow:hidden;" scrolling="no" src="https://loader.to/api/button/?url='+arj+'&f=mp3"></iframe>');
+        } else if (input.startsWith('ytmp4 ')) {
+            arj = input.replace('ytmp4 ', '');
+            $('.lowerGap').html('<iframe style="width:100%;height:60px;border:0;overflow:hidden;" scrolling="no" src="https://loader.to/api/button/?url='+arj+'&f=720"></iframe>');
         } else if (input.startsWith('mkdir ')) {
             if (sysDefSessionID.value == 'root') {
                 arj = input.replace('mkdir ', '');
