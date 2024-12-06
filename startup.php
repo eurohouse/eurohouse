@@ -113,7 +113,7 @@ function world_clock() {
                 bookkeep_users.innerHTML = jsonListUsers(sysDefBooksList);
                 bookkeep_disp.innerHTML = '<table style="width:100%;position:relative;"><thead><th style="width:25%;">'+fint[0]+'</th><th style="width:25%;">'+fint[1]+'</th><th style="width:25%;">'+fint[2]+'</th></thead><tbody>'+jsonBookKeep(sysDefBookKeep.value, bndm)+'</tbody></table>';
             } if (requestMode.value == 'play_store') {
-                var stoInf = "<p align='center'>"+fint[8]+"</p><p align='center'>"+fint[9]+"</p><p align='center'>"+obramBtn(bndm)+"</p>";
+                var stoInf = "<p align='center'>"+fint[7]+"</p><p align='center'>"+fint[8]+"</p><p align='center'>"+obramBtn(bndm)+"</p>";
                 store_users.innerHTML = jsonListUsers(sysDefStoreList);
                 var stoDop = '<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+fint[3]+'</th><th style="width:7%;">'+fint[4]+'</th><th style="width:3%;">'+fint[5]+'</th></thead><tbody>'+jsonStore(bndm)+'</tbody></table>';
                 store_disp.innerHTML = (sysDefSessionID.value != bndm) ? ((storeOpen(bndm)) ? stoDop : stoInf) : stoDop;
@@ -121,7 +121,7 @@ function world_clock() {
                 fontBook24Pt.innerText = fontBook22Pt.innerText = fontBook20Pt.innerText = fontBook18Pt.innerText = fontBook16Pt.innerText = fontBook14Pt.innerText = pager(data, 6);
             } if (requestMode.value == 'statistics') {
                 stat_users.innerHTML = jsonListUsers(sysDefUsersList);
-                tabOper.innerText = fint[6]; tabScore.innerText = fint[7];
+                tabScore.innerText = fint[6];
                 $('#switchBtnAuto').attr('src', sysDefPrefix.value+'steer.png');
                 $('#switchBtnCall').attr('src', sysDefPrefix.value+'dial.png');
                 $('#switchBtnFrnd').attr('src', sysDefPrefix.value+'user.png');
@@ -285,23 +285,26 @@ function automator() {
     var userList = (sysDefUsersList.value).split(',');
     var subName = userList[rand(0, userList.length)];
     var objName = userList[rand(0, userList.length)];
-    var handle = userList[rand(0, userList.length)];
     var subFrnd = friendsOf(frndPower, subName);
     var sut = obt = {}, sch = och = '', rnd = 0;
     if (requestMode.value == 'statistics') {
         userStats.innerText = scores(sysDefStats.value);
-        userStatsAuto.innerText = (subName == 'root') ? CryptoJS.MD5(status+'@'+subName+'#'+objName+'&'+handle).toString() : CryptoJS.MD5(status+'@'+subName+'$'+objName+'&'+handle).toString();
     } if ((subName != '') && (objName != '') && (isInt(tabPower[subName])) && (tabPower[subName] >= 0) && (autoPower[subName] == 'auto')) {
         sut = jsonMarket(subName, '!account,password');
         sch = Object.keys(sut)[rand(0, Object.keys(sut).length-1)];
-        bind(subName, handle); equip(subName, sch);
-        if ((sut[sch]['type'] !== undefined) && (sut[sch]['type'] != 'weapon') && (sut[sch]['force'] !== undefined) && (isInt(sut[sch]['force']))) {
-            charge(subName, sch);
-        } if ((subName != objName) && (objName == handle)) {
+        bind(subName, objName); equip(subName, sch);
+        if (subName != objName) {
             obt = jsonMarket(objName, '!account,password');
             och = Object.keys(obt)[rand(0, Object.keys(obt).length-1)];
-            if (storeOpen(objName)) { buy_item(subName, och, objName); }
-            if ((sut[sch]['type'] !== undefined) && (sut[sch]['type'] == 'weapon') && (!(subFrnd.includes(objName)))) { dominate(subName, objName, sch); }
+            if (storeOpen(objName)) {
+                buy_item(subName, och, objName);
+            } if ((sut[sch]['type'] !== undefined) && (sut[sch]['type'] == 'weapon') && (!(subFrnd.includes(objName)))) {
+                dominate(subName, objName, sch);
+            }
+        } else {
+            if ((sut[sch]['type'] !== undefined) && (sut[sch]['type'] != 'weapon') && (sut[sch]['force'] !== undefined) && (isInt(sut[sch]['force']))) {
+                charge(subName, sch);
+            }
         }
     }
 }

@@ -11,6 +11,5 @@
 <input type='image' id='switchBtnTool' onmouseover="soundButton();" class="power" onclick="setdata('stats', 'tool');" src="<?=$prefix.'parfum.png';?>">
 <input type='image' id='switchBtnScore' onmouseover="soundButton();" class="power" onclick="setdata('stats', 'score');" src="<?=$prefix.'money.png';?>">
 </p>
-<p align='center' id='tabOper'><?=term('User Operation:', $settings['vocabulary'], $session['units']);?></p><p align='center' id='userStatsAuto'></p>
 <p align='center' id='tabScore'><?=term('User Score Tab:', $settings['vocabulary'], $session['units']);?></p><p align='center' id='userStats'></p>
 </div>
