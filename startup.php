@@ -77,7 +77,7 @@ function world_clock() {
             sysDefMsgCounter.value = (sysDefMsgCounter.value <= 0) ? (Object.keys(jsonFilter(sysDefMsgData.value, sysDefFind.value)).length - 1) : (sysDefMsgCounter.value - 1);
             $('#showUsUrgent').text(Object.values(jsonFilter(sysDefMsgData.value, sysDefFind.value, 'msg'))[sysDefMsgCounter.value]);
             if (sysDefMute.value != sysDefPostBackEff.value) {
-                if (sysDefMute.value != 0) { playAudio(backgroundPlayer, sysDefBackgroundSound.value); } else { pauseAudio(backgroundPlayer); }
+                if (sysDefMute.value == 0) { playAudio(backgroundPlayer, sysDefBackgroundSound.value); } else { pauseAudio(backgroundPlayer); }
             } sysDefPostBackEff.value = sysDefMute.value;
             if (requestMode.value == 'news_feed') { msgBox.innerHTML = '<p>'+jsonHTML(sysDefMsgData.value, sysDefFind.value)+'</p>'; }
             $('#powerButton').attr('src', sysDefPrefix.value+'power.png');
