@@ -399,7 +399,9 @@ function wordfx($word, $sup, array $voc, $title, $units = 'EU') {
             case '[year]':
                 $res = date('Y'); break;
             case '[years]':
-                $res = date('Y').'/'.(date('Y')+1); break;
+                $qN = date('n') - 1;
+                $qM = intval(($qN > 1) && ($qN < 8));
+                $res = ($qM != 0) ? date('Y') : date('Y').'/'.(date('Y')+1); break;
             case '[newyear]':
                 $res = (date('m') < 12) ? date('Y') : (date('Y')+1); break;
             case '[id]':
