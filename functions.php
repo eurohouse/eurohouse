@@ -398,6 +398,10 @@ function wordfx($word, $sup, array $voc, $title, $units = 'EU') {
         $full = $matches[0][$i]; switch ($full) {
             case '[year]':
                 $res = date('Y'); break;
+            case '[years]':
+                $res = date('Y').'/'.(date('Y')+1); break;
+            case '[newyear]':
+                $res = (date('m') < 12) ? date('Y') : (date('Y')+1); break;
             case '[id]':
                 $res = $sup; break;
             case '[uname -a]':
