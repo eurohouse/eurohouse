@@ -62,10 +62,9 @@ function excpkg(array $arr, $exc = '', $flg = ''): array {
     } return $res;
 }
 function dir_size($path) {
-    $bytestotal = 0;
-    $path = realpath($path);
+    $bytestotal = 0; $path = realpath($path);
     if (($path !== false) && ($path != '') && file_exists($path)) {
-        foreach(new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path, FilesystemIterator::SKIP_DOTS)) as $object){
+        foreach(new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path, FilesystemIterator::UNIX_PATHS)) as $object) {
             $bytestotal += $object->getSize();
         }
     } return $bytestotal;
