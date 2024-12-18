@@ -412,7 +412,8 @@
     },
     "vocabulary": {
         "CH": {
-            "Name/Position:": "Nomen et locum ostentus:",
+            "Titles:": "Inscriptiones:",
+            "Localized Titles:": "Inscriptiones Locales:",
             "Description:": "Descriptio:", "&": "et",
             "What's on your mind...": "Quid in animo tuo est...",
             "Menu Items List:": "Index Menu:", "Height": "Altitudo",
@@ -442,7 +443,8 @@
             "Sell": "Vendite", "Buy": "Emptum"
         },
         "GR": {
-            "Name/Position:": "Όνομα και θέση:",
+            "Titles:": "Επιγραφές:",
+            "Localized Titles:": "Τοπικές επιγραφές:",
             "Description:": "Περιγραφή:", "&": "και",
             "What's on your mind...": "Αυτό που έχεις στο μυαλό σου...", "The market is closed.": "Η αγορά είναι κλειστή",
             "Menu Items List:": "Λίστα ειδών μενού:", "Height": "Υψος", "Active Hours:": "Ενεργές Ώρες",
@@ -473,8 +475,8 @@
             "Sell": "Πουλώ", "Buy": "Ψώνιο"
         },
         "RU": {
-            "Titles/Position:": "Имена/Позиция дисплея:",
-            "Localized Titles:": "Имена на других языках:",
+            "Titles:": "Названия:",
+            "Localized Titles:": "Названия на других языках:",
             "Description:": "Описание:", "&": "и",
             "What's on your mind...": "Напишите пожалуйста о себе...",
             "Menu Items List:": "Список элементов меню:", "Height": "Рост", "The market is closed.": "Наш магазин не работает.", "Active Hours:": "Режим работы:",
@@ -505,7 +507,8 @@
             "Sell": "Продать", "Buy": "Купить"
         },
         "CN": {
-            "Name/Position:": "名称及显示位置:",
+            "Titles:": "铭文列表:",
+            "Localized Titles:": "本地化铭文列表:",
             "Description:": "描述您的个人资料:", "&": "和",
             "What's on your mind...": "你的想法是什么...",
             "Menu Items List:": "菜单项列表:", "Height": "高度",
@@ -534,7 +537,8 @@
             "Sell": "卖方", "Buy": "顾客"
         },
         "KR": {
-            "Name/Position:": "이름 및 표시 위치:",
+            "Titles:": "비문 목록:",
+            "Localized Titles:": "지역화된 비문 목록:",
             "Description:": "프로필을 설명하세요:", "&": "또",
             "What's on your mind...": "당신의 생각은 무엇입니까...",
             "Menu Items List:": "메뉴 항목 목록:", "Height": "높은",
@@ -563,7 +567,8 @@
             "Sell": "파는 사람", "Buy": "고객"
         },
         "JP": {
-            "Name/Position:": "名称と展示場所:",
+            "Titles:": "碑文リスト:",
+            "Localized Titles:": "ローカライズされた碑文のリスト:",
             "Description:": "あなたのプロフィールを説明してください:", "&": "と", "The market is closed.": "市場は現在閉まっています。", "Active Hours:": "活動時間:",
             "What's on your mind...": "あなたの考えは何ですか...",
             "Menu Items List:": "メニュー項目一覧:", "Height": "高い",

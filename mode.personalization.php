@@ -6,12 +6,12 @@
 <img style="height:11%;" id="chooseReticle3" name="<?=$session['reticle_choice_3'];?>" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_3'].'.png';?>" onclick="setdata('reticle', chooseReticle3.name);">
 <img style="height:11%;" id="chooseReticle4" name="<?=$session['reticle_choice_4'];?>" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_4'].'.png';?>" onclick="setdata('reticle', chooseReticle4.name);">
 <img style="height:11%;" id="chooseReticle5" name="<?=$session['reticle_choice_5'];?>" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_5'].'.png';?>" onclick="setdata('reticle', chooseReticle5.name);"><br>
-<input type="button" onmouseover="soundButton();" onclick="setdata('date_format', setDateFormat.value); setdata('time_format', setTimeFormat.value); setdata('position', setImagePosition.value); setdata('title', encodeURIComponent(setTitle.value)); setdata('project', encodeURIComponent(setProjectTitle.value));" value="<?=term('Apply', $settings['vocabulary'], $session['units']);?>">
-<input type="button" onmouseover="soundButton();" onclick="setdata('units_list', setLanguages.value); setdata('menu', setMenuItems.value); setdata('titles', setLocalizedTitles.value); setdata('projects', setLocalizedProjectTitles.value); window.location.reload();" value="<?=term('Update', $settings['vocabulary'], $session['units']);?>">
-<input type="button" onmouseover="soundButton();" onclick="setDateFormat.value = 'Y-m-d'; setdata('date_format', setDateFormat.value); setTimeFormat.value = 'H:i:s'; setdata('time_format', setTimeFormat.value); setImagePosition.value = '50% 25%'; setdata('position', setImagePosition.value);" value="<?=term('Reset', $settings['vocabulary'], $session['units']);?>">
+<input type="button" onmouseover="soundButton();" onclick="setdata('date_format', setDateFormat.value); setdata('time_format', setTimeFormat.value); setdata('title', encodeURIComponent(setTitle.value)); setdata('project', encodeURIComponent(setProjectTitle.value));" value="<?=term('Apply', $settings['vocabulary'], $session['units']);?>">
+<input type="button" onmouseover="soundButton();" onclick="setdata('units_list', setLanguages.value); setdata('menu', setMenuItems.value); setdata('title', encodeURIComponent(setTitle.value)); setdata('project', encodeURIComponent(setProjectTitle.value)); setdata('titles', setLocalizedTitles.value); setdata('projects', setLocalizedProjectTitles.value); window.location.reload();" value="<?=term('Update', $settings['vocabulary'], $session['units']);?>">
+<input type="button" onmouseover="soundButton();" onclick="setDateFormat.value = 'Y-m-d'; setdata('date_format', setDateFormat.value); setTimeFormat.value = 'H:i:s'; setdata('time_format', setTimeFormat.value);" value="<?=term('Reset', $settings['vocabulary'], $session['units']);?>">
 <input type="button" onmouseover="soundButton();" onclick="setLanguages.value = 'EU,US'; setdata('units_list', setLanguages.value); window.location.reload();" value="<?=term('Clear', $settings['vocabulary'], $session['units']);?>"><br>
-<label><?=term('Titles/Position:', $settings['vocabulary'], $session['units']);?></label><br>
-<input type="text" id="setTitle" style="width:30%;" value="<?=$session['title'];?>" onkeydown="if (event.keyCode == 13) {
+<label><?=term('Titles:', $settings['vocabulary'], $session['units']);?></label><br>
+<input type="text" id="setTitle" style="width:40%;" value="<?=$session['title'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('title', encodeURIComponent(this.value));
 } else if (event.keyCode == 27) {
     this.value = ''; setdata('title', this.value);
@@ -20,7 +20,7 @@
 } else if (event.keyCode == 46) {
     handleInput(this.value);
 }" oninput="handleInput(this.value, true);">
-<input type="text" id="setProjectTitle" style="width:30%;" value="<?=$session['project'];?>" onkeydown="if (event.keyCode == 13) {
+<input type="text" id="setProjectTitle" style="width:40%;" value="<?=$session['project'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('project', encodeURIComponent(this.value));
 } else if (event.keyCode == 27) {
     this.value = ''; setdata('project', this.value);
@@ -28,17 +28,25 @@
     handleInput(this.value);
 } else if (event.keyCode == 46) {
     handleInput(this.value);
-}" oninput="handleInput(this.value, true);">
-<input type="text" id="setImagePosition" style="width:30%;" value="<?=$session['position'];?>" onkeydown="if (event.keyCode == 13) {
-    setdata('position', this.value);
+}" oninput="handleInput(this.value, true);"><br>
+<input type="text" id="setLocalizedTitles" style="width:40%;" value="<?=$session['titles'];?>" onkeydown="if (event.keyCode == 13) {
+    setdata('titles', setLocalizedTitles.value); window.location.reload();
 } else if (event.keyCode == 27) {
-    this.value = '50% 25%';
-    setdata('position', this.value);
+    this.value = ''; setdata('titles', this.value); window.location.reload();
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
     handleInput(this.value);
-}" oninput="soundButton(true);"><br>
+}" oninput="handleInput(this.value, true);">
+<input type="text" id="setLocalizedProjectTitles" style="width:40%;" value="<?=$session['projects'];?>" onkeydown="if (event.keyCode == 13) {
+    setdata('projects', this.value); window.location.reload();
+} else if (event.keyCode == 27) {
+    this.value = ''; setdata('projects', this.value); window.location.reload();
+} else if (event.keyCode == 8) {
+    handleInput(this.value);
+} else if (event.keyCode == 46) {
+    handleInput(this.value);
+}" oninput="handleInput(this.value, true);"><br>
 <label><a href="https://www.php.net/manual/en/datetime.format.php">ISO 8601</a> <?=term('&', $settings['vocabulary'], $session['units']);?> <a href="https://www.iso.org/obp/ui/#iso:pub:PUB500001:en">ISO 3166</a></label><br>
 <input type="text" id="setDateFormat" style="width:25%;" value="<?=$session['date_format'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('date_format', setDateFormat.value);
@@ -106,23 +114,5 @@
 <?php foreach ($amour as $key=>$value) { ?>
 <option id="<?=explode('.', $value)[1];?>" <?php if ($session['reticle_choice_5'] == explode('.', $value)[1]) { ?> selected <?php } ?>>
 <?=explode('.', $value)[1];?></option><?php } ?></select><br>
-<label><?=term('Localized Titles:', $settings['vocabulary'], $session['units']);?></label><br>
-<input type="text" id="setLocalizedTitles" style="width:40%;" value="<?=$session['titles'];?>" onkeydown="if (event.keyCode == 13) {
-    setdata('titles', setLocalizedTitles.value); window.location.reload();
-} else if (event.keyCode == 27) {
-    this.value = ''; setdata('titles', this.value); window.location.reload();
-} else if (event.keyCode == 8) {
-    handleInput(this.value);
-} else if (event.keyCode == 46) {
-    handleInput(this.value);
-}" oninput="handleInput(this.value, true);">
-<input type="text" id="setLocalizedProjectTitles" style="width:40%;" value="<?=$session['projects'];?>" onkeydown="if (event.keyCode == 13) {
-    setdata('projects', this.value); window.location.reload();
-} else if (event.keyCode == 27) {
-    this.value = ''; setdata('projects', this.value); window.location.reload();
-} else if (event.keyCode == 8) {
-    handleInput(this.value);
-} else if (event.keyCode == 46) {
-    handleInput(this.value);
-}" oninput="handleInput(this.value, true);">
+<label><?=term('Localized Titles:', $settings['vocabulary'], $session['units']);?></label>
 </p>
