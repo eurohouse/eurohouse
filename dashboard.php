@@ -5,7 +5,7 @@
     <?php foreach ($userLocks['background'] as $key=>$val) { ?>
     <option disabled><?=titled($val, $session['units']);?></option>
     <?php foreach (catlist($key) as $value) { ?>
-    <option id="<?=$value;?>" <?php if ((explode('.', $value)[0] == explode('.', $background)[0]) && (explode('.', $value)[1] == explode('.', $background)[1])) { ?> selected="selected" <?php } ?>><?=titler($value, $settings, $session['title'], $session['units']);?></option>
+    <option id="<?=$value;?>" <?php if ((explode('.', $value)[0] == explode('.', $background)[0]) && (explode('.', $value)[1] == explode('.', $background)[1])) { ?> selected="selected" <?php } ?>><?=titler($value, $settings, $session);?></option>
     <?php }} ?>
     </select><input type="number" min='-11' max='12' step='1' id="setTimeZone" style="width:8%;" value="<?=$session['timezone'];?>" oninput="setdata('timezone', pad(setTimeZone.value, 2)); handleInput(this.value, true);" onkeydown="if (event.keyCode == 27) {
         setTimeZone.value = 0; setdata('timezone', setTimeZone.value);

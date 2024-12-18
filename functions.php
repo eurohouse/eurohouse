@@ -391,7 +391,7 @@ function express(array $for) {
         }
     }
 }
-function wordfx($word, $sup, array $voc, $title, $units = 'EU') {
+function wordfx($word, $sup, array $voc, array $ses) {
     $preg = preg_match_all('/\[[^\]]*\]/', $word, $matches);
     for ($i = 0; $i < count($matches[0]); $i++) {
         $full = $matches[0][$i]; switch ($full) {
@@ -418,26 +418,28 @@ function wordfx($word, $sup, array $voc, $title, $units = 'EU') {
             case '[uname -m]':
                 $res = php_uname('m'); break;
             case '[french]':
-                $res = french($voc, $units); break;
+                $res = french($voc, $ses['units']); break;
             case '[month]':
-                $res = (isset($voc['locale']['month'][$units][date('n')-1])) ? $voc['locale']['month'][$units][date('n')-1] : $voc['locale']['month']['default'][date('n')-1]; break;
+                $res = (isset($voc['locale']['month'][$ses['units']][date('n')-1])) ? $voc['locale']['month'][$ses['units']][date('n')-1] : $voc['locale']['month']['default'][date('n')-1]; break;
             case '[semester]':
                 $qN = date('n') - 1;
                 $qM = intval(($qN > 1) && ($qN < 8));
-                $res = (isset($voc['locale']['semester'][$units][$qM])) ? $voc['locale']['semester'][$units][$qM] : $voc['locale']['semester']['default'][$qM]; break;
+                $res = (isset($voc['locale']['semester'][$ses['units']][$qM])) ? $voc['locale']['semester'][$ses['units']][$qM] : $voc['locale']['semester']['default'][$qM]; break;
             case '[quarter]':
                 $qN = date('n') - 1;
                 (($qN > 1) && ($qN < 5)) ? 1 : ((($qN > 4) && ($qN < 8)) ? 2 : ((($qN > 7) && ($qN < 11)) ? 3 : 0));
-                $res = (isset($voc['locale']['quarter'][$units][$qM])) ? $voc['locale']['quarter'][$units][$qM] : $voc['locale']['quarter']['default'][$qM]; break;
-            case '[title]':
-                $res = $title; break;
+                $res = (isset($voc['locale']['quarter'][$ses['units']][$qM])) ? $voc['locale']['quarter'][$ses['units']][$qM] : $voc['locale']['quarter']['default'][$qM]; break;
+            default:
+                $entl = str_replace(']', '', str_replace('[', '', $full));
+                $entr = valarr($ses[$entl.'s'], '. ', ' - ');
+                $res = (isset($entr[$ses['units']])) ? $entr[$ses['units']] : $ses['title']; break;
         } $word = str_replace($full, $res, $word);
     } return $word;
 }
-function titler($name, array $voc, $title, $units = 'EU') {
+function titler($name, array $voc, array $ses) {
     $domain = explode('.', $name)[0]; $volume = explode('.', $name)[1];
     $collection = fileopen($domain.'.collection.json', '{}');
-    return (isset($collection[$volume]['language'][$units])) ? wordfx($collection[$volume]['language'][$units], $volume, $voc, $title, $units) : ((isset($collection[$volume]['title'])) ? wordfx($collection[$volume]['title'], $volume, $voc, $title, $units) : $name);
+    return (isset($collection[$volume]['language'][$ses['units']])) ? wordfx($collection[$volume]['language'][$ses['units']], $volume, $voc, $ses) : ((isset($collection[$volume]['title'])) ? wordfx($collection[$volume]['title'], $volume, $voc, $ses) : $name);
 }
 function titled($name, $units = 'EU') {
     $domain = explode('.', $name)[0];
