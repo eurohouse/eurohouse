@@ -347,7 +347,7 @@
         "bardot": 0, "face": 1, "timedisp": 0, "benchmark": 0,
         "pitch_lock": 0, "chat": 0, "lock": 0, "icons": 0,
         "mute": 1, "gloss": 1, "observe": 0, "spectate": 0,
-        "vintage": 0, "reload": 0, "censor": 1,
+        "vintage": 0, "reload": 0, "censor": 1, "loop": 0,
         "magnitude": 5, "title": "", "user_type": "person",
         "avatar": "Eurohouse", "reticle": "reticle",
         "reticle_choice_1": "reticle", "reticle_choice_2": "musket",
