@@ -432,7 +432,7 @@ function wordfx($word, $sup, array $voc, array $ses) {
             default:
                 $entl = str_replace(']', '', str_replace('[', '', $full));
                 $entr = valarr($ses[$entl.'s'], '. ', ' - ');
-                $res = (isset($entr[$ses['units']])) ? $entr[$ses['units']] : $ses['title']; break;
+                $res = (isset($entr[$ses['units']])) ? $entr[$ses['units']] : $ses[$entl]; break;
         } $word = str_replace($full, $res, $word);
     } return $word;
 }
