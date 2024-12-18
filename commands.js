@@ -39,7 +39,7 @@ function executeMacros(input, index = 0, length = 1) {
                         omniListen(ml[i], true); break;
                     }
                 } else if (np2 == '*') {
-                    omniListen(ml[rand(0, mr.length)]); break;
+                    omniListen(mr[rand(0, mr.length)]); break;
                 } inc++;
             } omniPause();
         }
