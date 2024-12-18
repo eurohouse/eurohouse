@@ -1,5 +1,5 @@
 function executeMacros(input, index = 0, length = 1) {
-    var output = input, rep, san, atr, atd, atx, plu, np, inc, np1, np2, mil;
+    var output = input, rep, san, atr, atd, atx, plu, np, inc, np1, np2, ml, mr;
     if ((index == (length - 1)) && (input == '_')) {
         omniBack(sysDefParent.value);
     } else if ((index == (length - 1)) && (input == '\\=')) {
@@ -24,12 +24,23 @@ function executeMacros(input, index = 0, length = 1) {
     } else if ((index == (length - 1)) && (input.includes('\\=')) && (input.startsWith('\\='))) {
         omniListen(input.replace('\\=', ''), true);
     } else if ((index == (length - 1)) && (input.includes("\\")) && (input.startsWith('\\'))) {
-        np = input.replace("\\", ''), inc = 0;
-        var np1 = (np.includes(':')) ? np.split(':')[0] : np; var np2 = (np.includes(':')) ? np.split(':')[1] : 0;
-        var mil = lockarr('music');
-        for (i = 0; i < mil.length; i++) {
-            if (mil[i].toLowerCase().includes(np1.toLowerCase())) {
-                if (inc >= np2) { omniListen(mil[i], true); break; } inc++;
+        np = input.replace("\\", ''), inc = 0, ml = lockarr('music'), mr = [];
+        np1 = (np.includes(':')) ? np.split(':')[0] : np;
+        np2 = (np.includes(':')) ? np.split(':')[1] : 0;
+        for (i = 0; i < ml.length; i++) {
+            if (ml[i].toLowerCase().includes(np1.toLowerCase())) {
+                mr.push(ml[i]);
+            }
+        }
+        for (i = 0; i < ml.length; i++) {
+            if (ml[i].toLowerCase().includes(np1.toLowerCase())) {
+                if (isInt(np2)) {
+                    if (inc >= np2) {
+                        omniListen(ml[i], true); break;
+                    }
+                } else if (np2 == '*') {
+                    omniListen(ml[rand(0, mr.length)]);
+                } inc++;
             } omniPause();
         }
     } else if ((index == (length - 1)) && (input.includes('./')) && (input.startsWith('./'))) {
