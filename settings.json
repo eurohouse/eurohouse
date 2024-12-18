@@ -65,7 +65,7 @@
         "entity": {
             "default": "Entity",
             "RU": "Юридическое лицо", "UA": "Юридична особа",
-            "GR": "Νομικό πρόσωπο", "CY": "Νομικό πρόσωπο",
+            "GR": "πρόσωπο", "CY": "Πρόσωπο",
             "CN": "法人实体", "KR": "법인", "JP": "法人",
             "CH": "Legal Entitatem", "FR": "Entité Juridique",
             "BE": "Entité Juridique", "IT": "Persona Giuridica",
