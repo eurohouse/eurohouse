@@ -473,7 +473,8 @@
             "Sell": "Πουλώ", "Buy": "Ψώνιο"
         },
         "RU": {
-            "Name/Position:": "Имя/Позиция дисплея:",
+            "Titles/Position:": "Имена/Позиция дисплея:",
+            "Localized Titles:": "Имена на других языках:",
             "Description:": "Описание:", "&": "и",
             "What's on your mind...": "Напишите пожалуйста о себе...",
             "Menu Items List:": "Список элементов меню:", "Height": "Рост", "The market is closed.": "Наш магазин не работает.", "Active Hours:": "Режим работы:",
