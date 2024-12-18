@@ -29,6 +29,7 @@
 } else if (event.keyCode == 46) {
     handleInput(this.value);
 }" oninput="handleInput(this.value, true);"><br>
+<label><?=term('Localized Titles:', $settings['vocabulary'], $session['units']);?></label><br>
 <input type="text" id="setLocalizedTitles" style="width:40%;" value="<?=$session['titles'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('titles', setLocalizedTitles.value); window.location.reload();
 } else if (event.keyCode == 27) {
@@ -113,6 +114,5 @@
 <select id="setReticle5" style="width:15%;" onchange="setdata('reticle_choice_5', setReticle5.options[setReticle5.selectedIndex].id);">
 <?php foreach ($amour as $key=>$value) { ?>
 <option id="<?=explode('.', $value)[1];?>" <?php if ($session['reticle_choice_5'] == explode('.', $value)[1]) { ?> selected <?php } ?>>
-<?=explode('.', $value)[1];?></option><?php } ?></select><br>
-<label><?=term('Localized Titles:', $settings['vocabulary'], $session['units']);?></label>
+<?=explode('.', $value)[1];?></option><?php } ?></select>
 </p>
