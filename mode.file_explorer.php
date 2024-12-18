@@ -7,7 +7,7 @@ foreach ($index as $key=>$value) {
     $mediaFileExtension = pathinfo($value, PATHINFO_EXTENSION);
     $mediaFileBasename = basename($value, '.'.$mediaFileExtension);
     $mediaFilename = $request['path'].'/'.$value; $mediaFileTitle = $value;
-    $mediaFileSize = filesize($mediaFilename);
+    $mediaFileSize = (is_dir($mediaFilename)) ? dir_size($mediaFilename) : filesize($mediaFilename);
     $mediaFileSizeStr = sizestr($mediaFileSize, $settings['locale']['size'], $session['units']);
     ?>
     <p align='center' class='block'>
