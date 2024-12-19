@@ -6,8 +6,8 @@
 <img style="height:11%;" id="chooseReticle3" name="<?=$session['reticle_choice_3'];?>" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_3'].'.png';?>" onclick="setdata('reticle', chooseReticle3.name);">
 <img style="height:11%;" id="chooseReticle4" name="<?=$session['reticle_choice_4'];?>" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_4'].'.png';?>" onclick="setdata('reticle', chooseReticle4.name);">
 <img style="height:11%;" id="chooseReticle5" name="<?=$session['reticle_choice_5'];?>" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_5'].'.png';?>" onclick="setdata('reticle', chooseReticle5.name);"><br>
-<input type="button" onmouseover="soundButton();" onclick="setdata('date_format', setDateFormat.value); setdata('time_format', setTimeFormat.value); setdata('title', encodeURIComponent(setTitle.value)); setdata('project', encodeURIComponent(setProjectTitle.value));" value="<?=term('Apply', $settings['vocabulary'], $session['units']);?>">
-<input type="button" onmouseover="soundButton();" onclick="setdata('units_list', setLanguages.value); setdata('menu', setMenuItems.value); setdata('titles', encodeURIComponent(setLocalizedTitles.value)); setdata('projects', encodeURIComponent(setLocalizedProjectTitles.value)); window.location.reload();" value="<?=term('Update', $settings['vocabulary'], $session['units']);?>">
+<input type="button" onmouseover="soundButton();" onclick="setdata('date_format', setDateFormat.value); setdata('time_format', setTimeFormat.value); setdata('active_hours', setActiveHours.value); setdata('title', encodeURIComponent(setTitle.value));" value="<?=term('Apply', $settings['vocabulary'], $session['units']);?>">
+<input type="button" onmouseover="soundButton();" onclick="setdata('units_list', setLanguages.value); setdata('menu', setMenuItems.value); setdata('title', encodeURIComponent(setTitle.value)); setdata('project', encodeURIComponent(setProjectTitle.value)); setdata('titles', encodeURIComponent(setLocalizedTitles.value)); setdata('projects', encodeURIComponent(setLocalizedProjectTitles.value)); window.location.reload();" value="<?=term('Update', $settings['vocabulary'], $session['units']);?>">
 <input type="button" onmouseover="soundButton();" onclick="setDateFormat.value = 'Y-m-d'; setdata('date_format', setDateFormat.value); setTimeFormat.value = 'H:i:s'; setdata('time_format', setTimeFormat.value);" value="<?=term('Reset', $settings['vocabulary'], $session['units']);?>">
 <input type="button" onmouseover="soundButton();" onclick="setLanguages.value = 'EU,US'; setdata('units_list', setLanguages.value); window.location.reload();" value="<?=term('Clear', $settings['vocabulary'], $session['units']);?>"><br>
 <label><?=term('Titles:', $settings['vocabulary'], $session['units']);?></label><br>
@@ -79,12 +79,19 @@
     handleInput(this.value);
 }" oninput="handleInput(this.value, true);"><br>
 <label><?=term('Menu Items List:', $settings['vocabulary'], $session['units']);?></label><br>
-<input type="text" id="setMenuItems" style="width:46%;" value="<?=$session['menu'];?>" onkeydown="if (event.keyCode == 13) {
-    setdata('menu', setMenuItems.value); window.location.reload();
+<input type="text" id="setMenuItems" style="width:30%;" value="<?=$session['menu'];?>" onkeydown="if (event.keyCode == 13) {
+    setdata('menu', this.value); window.location.reload();
 } else if (event.keyCode == 27) {
-    this.value = 'file_finder,preferences';
-    setdata('menu', this.value);
-    window.location.reload();
+    this.value = 'file_finder,preferences'; setdata('menu', this.value); window.location.reload();
+} else if (event.keyCode == 8) {
+    handleInput(this.value);
+} else if (event.keyCode == 46) {
+    handleInput(this.value);
+}" oninput="handleInput(this.value, true);">
+<input type="text" id="setActiveHours" style="width:30%;" value="<?=$session['active_hours'];?>" onkeydown="if (event.keyCode == 13) {
+    setdata('active_hours', this.value); window.location.reload();
+} else if (event.keyCode == 27) {
+    this.value = ''; setdata('active_hours', this.value); window.location.reload();
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
