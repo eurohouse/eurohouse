@@ -76,7 +76,7 @@
 } else if (event.keyCode == 46) {
     handleInput(this.value);
 }" oninput="handleInput(this.value, true);"><br>
-<label><?=term('Menu Items List:', $settings['vocabulary'], $session['units']);?></label><br>
+<label><?=term('Functional Elements:', $settings['vocabulary'], $session['units']);?></label><br>
 <input type="text" id="setMenuItems" style="width:25%;" value="<?=$session['menu'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('menu', this.value); window.location.reload();
 } else if (event.keyCode == 27) {
