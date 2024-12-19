@@ -12,7 +12,7 @@
 <input type="button" onmouseover="soundButton();" onclick="setLanguages.value = 'EU,US'; setdata('units_list', setLanguages.value); window.location.reload();" value="<?=term('Clear', $settings['vocabulary'], $session['units']);?>"><br>
 <label><?=term('Titles:', $settings['vocabulary'], $session['units']);?></label><br>
 <input type="text" id="setTitle" style="width:40%;" value="<?=$session['title'];?>" onkeydown="if (event.keyCode == 13) {
-    setdata('title', encodeURIComponent(this.value));
+    setdata('title', encodeURIComponent(this.value)); window.location.reload();
 } else if (event.keyCode == 27) {
     this.value = ''; setdata('title', this.value);
 } else if (event.keyCode == 8) {
@@ -21,7 +21,7 @@
     handleInput(this.value);
 }" oninput="handleInput(this.value, true);">
 <input type="text" id="setProjectTitle" style="width:40%;" value="<?=$session['project'];?>" onkeydown="if (event.keyCode == 13) {
-    setdata('project', encodeURIComponent(this.value));
+    setdata('project', encodeURIComponent(this.value)); window.location.reload();
 } else if (event.keyCode == 27) {
     this.value = ''; setdata('project', this.value);
 } else if (event.keyCode == 8) {
@@ -33,7 +33,7 @@
 <input type="text" id="setLocalizedTitles" style="width:40%;" value="<?=$session['titles'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('titles', setLocalizedTitles.value); window.location.reload();
 } else if (event.keyCode == 27) {
-    this.value = ''; setdata('titles', this.value); window.location.reload();
+    this.value = ''; setdata('titles', this.value);
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
@@ -42,7 +42,7 @@
 <input type="text" id="setLocalizedProjectTitles" style="width:40%;" value="<?=$session['projects'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('projects', this.value); window.location.reload();
 } else if (event.keyCode == 27) {
-    this.value = ''; setdata('projects', this.value); window.location.reload();
+    this.value = ''; setdata('projects', this.value);
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
@@ -70,9 +70,7 @@
 <input type="text" id="setLanguages" style="width:25%;" value="<?=$session['units_list'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('units_list', setLanguages.value); window.location.reload();
 } else if (event.keyCode == 27) {
-    this.value = 'EU,US';
-    setdata('units_list', this.value);
-    window.location.reload();
+    this.value = 'EU,US'; setdata('units_list', this.value);
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
@@ -82,16 +80,16 @@
 <input type="text" id="setMenuItems" style="width:30%;" value="<?=$session['menu'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('menu', this.value); window.location.reload();
 } else if (event.keyCode == 27) {
-    this.value = 'file_finder,preferences'; setdata('menu', this.value); window.location.reload();
+    this.value = 'file_finder,preferences'; setdata('menu', this.value);
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
     handleInput(this.value);
 }" oninput="handleInput(this.value, true);">
 <input type="text" id="setActiveHours" style="width:30%;" value="<?=$session['active_hours'];?>" onkeydown="if (event.keyCode == 13) {
-    setdata('active_hours', this.value); window.location.reload();
+    setdata('active_hours', this.value);
 } else if (event.keyCode == 27) {
-    this.value = ''; setdata('active_hours', this.value); window.location.reload();
+    this.value = ''; setdata('active_hours', this.value);
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
