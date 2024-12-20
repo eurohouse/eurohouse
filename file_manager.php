@@ -1,6 +1,7 @@
 <?php
 if (strpos($request['output'], ',') !== false) {
-    $outputArr = explode(',', $request['output']); $index = [];
+    $outputArr = explode(',', $request['output']);
+    $index = []; $bytes = 0;
     foreach ($outputArr as $outputValue) {
         if (strpos($outputValue, ':') !== false) {
             $strposIndex = explode(':', $outputValue);
@@ -20,33 +21,46 @@ if (strpos($request['output'], ',') !== false) {
                             if ($outputArg !== null) {
                                 if ($indexFileParts[1] == $outputArg) {
                                     $index[] = $pkgOneFile;
+                                    $bytes += filesize($request['path'].'/'.$val);
                                 }
                             } else {
                                 $index[] = $pkgOneFile;
+                                $bytes += filesize($request['path'].'/'.$val);
                             }
                         }
                     }
                 }
             } else {
-                foreach ($pkgFileArr as $pkgOneFile) { $index[] = $pkgOneFile; }
+                foreach ($pkgFileArr as $pkgOneFile) {
+                    $index[] = $pkgOneFile;
+                    $bytes += filesize($request['path'].'/'.$val);
+                }
             }
         } elseif (isset($settings['collections'][$outputVal])) {
             $indexArr = str_replace($request['path'].'/','',(glob($request['path'].'/*{'.$settings['collections'][$outputVal].'}*', GLOB_BRACE)));
-            foreach ($indexArr as $indexFile) { $index[] = $indexFile; }
+            foreach ($indexArr as $indexFile) {
+                $index[] = $indexFile;
+                $bytes += filesize($request['path'].'/'.$val);
+            }
         } elseif ($outputVal == '/') {
             $indexArr = str_replace($request['path'].'/','',(glob($request['path'].'/*', GLOB_ONLYDIR)));
-            foreach ($indexArr as $indexFile) { $index[] = $indexFile; }
+            foreach ($indexArr as $indexFile) {
+                $index[] = $indexFile;
+                $bytes += filesize($request['path'].'/'.$val);
+            }
         } else {
             $indexArr = str_replace($request['path'].'/','',(glob($request['path'].'/*')));
             foreach ($indexArr as $key=>$val) {
                 if (strpos(strtolower($val), strtolower($outputVal)) !== false) {
                     $index[] = $val;
+                    $bytes += filesize($request['path'].'/'.$val);
                 }
             }
         }
     }
 } else {
     $outputValue = $request['output'];
+    $index = []; $bytes = 0;
     if (strpos($outputValue, ':') !== false) {
         $strposIndex = explode(':', $outputValue);
         $outputVal = $strposIndex[0]; $outputArg = $strposIndex[1];
@@ -64,27 +78,39 @@ if (strpos($request['output'], ',') !== false) {
                         if ($outputArg !== null) {
                             if ($indexFileParts[1] == $outputArg) {
                                 $index[] = $pkgOneFile;
+                                $bytes += filesize($request['path'].'/'.$val);
                             }
                         } else {
                             $index[] = $pkgOneFile;
+                            $bytes += filesize($request['path'].'/'.$val);
                         }
                     }
                 }
             }
         } else {
-            foreach ($pkgFileArr as $pkgOneFile) { $index[] = $pkgOneFile; }
+            foreach ($pkgFileArr as $pkgOneFile) {
+                $index[] = $pkgOneFile;
+                $bytes += filesize($request['path'].'/'.$val);
+            }
         }
     } elseif (isset($settings['collections'][$outputVal])) {
         $indexArr = str_replace($request['path'].'/','',(glob($request['path'].'/*{'.$settings['collections'][$outputVal].'}*', GLOB_BRACE)));
-        foreach ($indexArr as $indexFile) { $index[] = $indexFile; }
+        foreach ($indexArr as $indexFile) {
+            $index[] = $indexFile;
+            $bytes += filesize($request['path'].'/'.$val);
+        }
     } elseif ($outputVal == '/') {
         $indexArr = str_replace($request['path'].'/','',(glob($request['path'].'/*', GLOB_ONLYDIR)));
-        foreach ($indexArr as $indexFile) { $index[] = $indexFile; }
+        foreach ($indexArr as $indexFile) {
+            $index[] = $indexFile;
+            $bytes += filesize($request['path'].'/'.$val);
+        }
     } else {
         $indexArr = str_replace($request['path'].'/','',(glob($request['path'].'/*')));
         foreach ($indexArr as $key=>$val) {
             if (strpos(strtolower($val), strtolower($outputVal)) !== false) {
                 $index[] = $val;
+                $bytes += filesize($request['path'].'/'.$val);
             }
         }
     }
@@ -98,5 +124,7 @@ if (strpos($request['output'], ',') !== false) {
             return strcmp($a, $b);
         } elseif (is_dir($a)) { return -1; } else { return 1; }
     });
-} $searchFilesCount = (!empty($index)) ? count($index) : 0; ?>
+} $searchFilesCount = (!empty($index)) ? count($index) : 0;
+$searchFilesSize = sizestr($bytes, $settings['locale']['size'], $session['units']); ?>
 <input type='hidden' id='sysDefFilesCount' value="<?=$searchFilesCount;?>">
+<input type='hidden' id='sysDefFilesSize' value="<?=$searchFilesSize;?>">
