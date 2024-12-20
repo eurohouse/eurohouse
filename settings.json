@@ -189,7 +189,7 @@
             "MM": { "sign": "lb", "coefficient": 2.20462 }
         },
         "shoe_size": {
-            "default": 30, "US": 0, "GB": -2.5, "JP": 16, "CN": 31
+            "default": 31, "US": 0, "GB": -2, "JP": 16, "CN": 31
         },
         "angle": {
             "default": {
