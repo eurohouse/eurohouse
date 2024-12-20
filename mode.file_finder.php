@@ -5,7 +5,7 @@ $iconSize = 50;
 include 'file_manager.php';
 ?>
 <table style="width:100%;" id="table">
-<thead style="position:sticky;top:0px;">
+<thead>
     <tr>
         <th style="width:9%;">
             <?=term('Icon', $settings['vocabulary'], $session['units']);?>
@@ -25,7 +25,7 @@ include 'file_manager.php';
         </th>
     </tr>
 </thead>
-<tbody style="position:sticky;top:32px;">
+<tbody>
 <?php
 foreach ($index as $key=>$value) {
     $mediaFileTitle = $value;
