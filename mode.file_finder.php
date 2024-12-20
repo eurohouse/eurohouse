@@ -5,7 +5,7 @@ $iconSize = 50;
 include 'file_manager.php';
 ?>
 <table style="width:100%;" id="table">
-<thead>
+<thead style="position:sticky;top:0px;">
     <tr>
         <th style="width:9%;">
             <?=term('Icon', $settings['vocabulary'], $session['units']);?>
