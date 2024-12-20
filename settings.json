@@ -412,6 +412,7 @@
     },
     "vocabulary": {
         "CH": {
+            "Total elements:": "Quantitas Elementorum:",
             "Titles:": "Inscriptiones:",
             "Localized Titles:": "Inscriptiones Locales:",
             "Description:": "Descriptio:", "&": "et",
@@ -443,6 +444,7 @@
             "Sell": "Vendite", "Buy": "Emptum"
         },
         "GR": {
+            "Total elements:": "Αριθμός αρχείων:",
             "Titles:": "Επιγραφές:",
             "Localized Titles:": "Τοπικές επιγραφές:",
             "Description:": "Περιγραφή:", "&": "και",
@@ -475,6 +477,7 @@
             "Sell": "Πουλώ", "Buy": "Ψώνιο"
         },
         "RU": {
+            "Total elements:": "Всего элементов:",
             "Titles:": "Названия:",
             "Localized Titles:": "Названия на других языках:",
             "Description:": "Описание:", "&": "и",
@@ -507,6 +510,7 @@
             "Sell": "Продать", "Buy": "Купить"
         },
         "CN": {
+            "Total elements:": "元素数量:",
             "Titles:": "铭文列表:",
             "Localized Titles:": "本地化铭文列表:",
             "Description:": "描述您的个人资料:", "&": "和",
@@ -537,6 +541,7 @@
             "Sell": "卖方", "Buy": "顾客"
         },
         "KR": {
+            "Total elements:": "원소의 양:",
             "Titles:": "비문 목록:",
             "Localized Titles:": "지역화된 비문 목록:",
             "Description:": "프로필을 설명하세요:", "&": "또",
@@ -567,6 +572,7 @@
             "Sell": "파는 사람", "Buy": "고객"
         },
         "JP": {
+            "Total elements:": "要素の量:",
             "Titles:": "碑文リスト:",
             "Localized Titles:": "ローカライズされた碑文のリスト:",
             "Description:": "あなたのプロフィールを説明してください:", "&": "と", "The market is closed.": "市場は現在閉まっています。", "Active Hours:": "活動時間:",
