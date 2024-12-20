@@ -25,7 +25,7 @@ include 'file_manager.php';
         </th>
     </tr>
 </thead>
-<tbody>
+<tbody style="position:relative;top:0px;">
 <?php
 foreach ($index as $key=>$value) {
     $mediaFileTitle = $value;
