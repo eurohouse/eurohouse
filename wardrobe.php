@@ -207,16 +207,17 @@ a, p, b, i, span {
     color: var(--backtextcolor);
     font-family: "euro"; font-size: var(--backsize);
 }
-.tables {
+table, tr, td, th {
     color: var(--backtextcolor);
     font-family: "euro"; font-weight: normal;
     font-size: var(--backsize); text-align: center;
-}
-table, tr, td, th {
-    @extend .tables; border-collapse: separate; border-spacing: 0;
+    border-collapse: separate; border-spacing: 0;
 }
 thead {
-    @extend .tables; position: sticky; top: 0;
+    color: var(--backtextcolor);
+    font-family: "euro"; font-weight: normal;
+    font-size: var(--backsize); text-align: center;
+    position: sticky; top: 0;
 }
 img { position: relative; }
 input[type=button], input[type=image], button {
