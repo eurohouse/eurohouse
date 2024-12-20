@@ -484,7 +484,7 @@
             "Alarm Volume": "Ένταση συναγερμού", "Timer Volume": "Ένταση χρονοδιακόπτη", 
             "Loop Volume": "Ένταση βρόχου", "Rest Volume": "Ένταση ηρεμίας",
             "Sell": "Πουλώ", "Buy": "Ψώνιο", "Sender": "Πομπός", "Recipient": "Δέκτης",
-            "Debit": "Αποκτώ", "Credit": "Δίνω", "Balance": "Ισορροπία",
+            "Debit": "Αποκτώ", "Credit": "Δίνω", "Balance": "Ισορροπία"
         },
         "RU": {
             "Total elements:": "Всего элементов:", "Titles:": "Названия:",
