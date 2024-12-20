@@ -173,9 +173,9 @@
             "CN": { "sign": "米", "coefficient": 1 },
             "KR": { "sign": "미터", "coefficient": 1 },
             "JP": { "sign": "米", "coefficient": 1 },
-            "US": { "sign": "ft", "inch": "true", "coefficient": 0.393701 },
-            "LR": { "sign": "ft", "inch": "true", "coefficient": 0.393701 },
-            "MM": { "sign": "ft", "inch": "true", "coefficient": 0.393701 }
+            "US": { "sign": "ft", "inch": "true", "coefficient": 3.28084 },
+            "LR": { "sign": "ft", "inch": "true", "coefficient": 3.28084 },
+            "MM": { "sign": "ft", "inch": "true", "coefficient": 3.28084 }
         },
         "mass": {
             "default": { "sign": "kg", "coefficient": 1 },
