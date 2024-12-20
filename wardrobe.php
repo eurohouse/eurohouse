@@ -225,6 +225,12 @@ tbody {
     font-size: var(--backsize); text-align: center;
     position: relative; z-index: 0;
 }
+tfoot {
+    color: var(--backtextcolor);
+    font-family: "euro"; font-weight: normal;
+    font-size: var(--backsize); text-align: center;
+    position: sticky; top: 1; z-index: 1;
+}
 img { position: relative; }
 input[type=button], input[type=image], button {
     background: var(--gradient-fore); background-size: 100%;

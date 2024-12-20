@@ -520,4 +520,24 @@ foreach ($index as $key=>$value) {
     </tr>
 <?php } ?>
 </tbody>
+<tfoot>
+    <tr>
+        <th style="width:9%;">
+            <?=term('Icon', $settings['vocabulary'], $session['units']);?>
+        </th>
+        <th style="width:20%;">
+            <a href="javascript:SortTable(1, 'T');">
+                <?=term('Name', $settings['vocabulary'], $session['units']);?>
+            </a>
+        </th>
+        <th style="width:10%;">
+            <a href="javascript:SortTable(2, 'T');">
+                <?=term('Size', $settings['vocabulary'], $session['units']);?>
+            </a>
+        </th>
+        <th style="width:6%;">
+            <?=term('Actions', $settings['vocabulary'], $session['units']);?>
+        </th>
+    </tr>
+</tfoot>
 </table>
