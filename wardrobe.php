@@ -223,7 +223,7 @@ tbody {
     color: var(--backtextcolor);
     font-family: "euro"; font-weight: normal;
     font-size: var(--backsize); text-align: center;
-    position: relative; z-index: -1;
+    position: relative; z-index: 0;
 }
 img { position: relative; }
 input[type=button], input[type=image], button {
