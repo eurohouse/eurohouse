@@ -267,8 +267,9 @@ function jsonBookKeep(str, bd) {
     } for (el in arf) {
         eld = arr[el].split(' | ');
         arl = (eld[5] == 'ERR') ? '<tr style="text-decoration:line-through;">' : '<tr>';
-        arl += '<td>'+eld[2]+'</td>'; arl += '<td>'+eld[3]+'</td>';
-        arl += '<td>'+eld[4]+'</td>'; ard = arl+'</tr>'+ard;
+        arl += '<td>'+eld[1]+'</td>'; arl += '<td>'+eld[2]+'</td>';
+        arl += '<td>'+eld[3]+'</td>'; arl += '<td>'+eld[4]+'</td>';
+        ard = arl+'</tr>'+ard;
     } return ard;
 }
 function noteBook(str) {

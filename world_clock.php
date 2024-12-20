@@ -33,10 +33,11 @@ $termPri = (isset($voc[$uni]['Price'])) ? $voc[$uni]['Price'] : 'Price';
 $termScore = (isset($voc[$uni]['User Score Tab:'])) ? $voc[$uni]['User Score Tab:'] : 'User Score Tab:';
 $termClosed = (isset($voc[$uni]["The market is closed."])) ? $voc[$uni]["The market is closed."] : "The market is closed.";
 $termActive = (isset($voc[$uni]['Active Hours:'])) ? $voc[$uni]['Active Hours:'] : 'Active Hours:';
+$termAgent = (isset($voc[$uni]['Agent'])) ? $voc[$uni]['Agent'] : 'Agent';
 echo $dateTimeStr."\r\n\r\n". // Read Line 0
 $dateTimeCode." ".$userData['observe'].$userData['spectate']." ".rgbap($userData['back_color'], $userData['opacity'])."\r\n\r\n". // Read Line 1
 hHmMsS($alarmInTime)."\r\n\r\n". // Read Line 2
 $vintageBackdropFilter.";".$overlayBeforeBackground.";".$overlayBeforeAnimation.";".$overlayAfterBackground.";".$overlayAfterAnimation."\r\n\r\n". // Read Line 3
 $userData['audio_volume'].' '.$userData['audio_speed'].' '.$userData['video_volume'].' '.$userData['video_speed'].' '.$userData['alarm_volume'].' '.$userData['timer_volume'].' '.$userData['loop_volume'].' '.$userData['rest_volume']."\r\n\r\n". // Read Line 4
-$termDeb.' | '.$termCre.' | '.$termBal.' | '.$termNom.' | '.$termQua.' | '.$termPri.' | '.$termScore.' | '.$termClosed.' | '.$termActive."\r\n\r\n". // Read Line 5
+$termDeb.' | '.$termCre.' | '.$termBal.' | '.$termNom.' | '.$termQua.' | '.$termPri.' | '.$termScore.' | '.$termClosed.' | '.$termActive.' | '.$termAgent."\r\n\r\n". // Read Line 5
 $userData['pangram_'.(($userSettings['pangram'][$uni]) ? $userSettings['pangram'][$uni] : $userSettings['pangram']['default'])]; // Read Line 6
