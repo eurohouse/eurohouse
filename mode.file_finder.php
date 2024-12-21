@@ -522,8 +522,8 @@ foreach ($index as $key=>$value) {
 </tbody>
 <tfoot>
     <tr>
-        <th style="width:25%;"><?=term('Total elements:', $settings['vocabulary'], $session['units']).' '.$searchFilesCount;?></th>
-        <th style="width:25%;"><?=$searchFilesSize;?></th>
+        <th style="width:25%;" colspan="2"><?=term('Total elements:', $settings['vocabulary'], $session['units']).' '.$searchFilesCount;?></th>
+        <th style="width:25%;" colspan="2"><?=$searchFilesSize;?></th>
     </tr>
 </tfoot>
 </table>
