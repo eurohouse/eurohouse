@@ -7,7 +7,7 @@ include 'file_manager.php';
 <table style="width:100%;" id="table">
 <thead>
     <tr>
-        <th style="width:9%;">
+        <th style="width:10%;">
             <?=term('Icon', $settings['vocabulary'], $session['units']);?>
         </th>
         <th style="width:20%;">
@@ -20,7 +20,7 @@ include 'file_manager.php';
                 <?=term('Size', $settings['vocabulary'], $session['units']);?>
             </a>
         </th>
-        <th style="width:6%;">
+        <th style="width:10%;">
             <?=term('Actions', $settings['vocabulary'], $session['units']);?>
         </th>
     </tr>
@@ -522,8 +522,8 @@ foreach ($index as $key=>$value) {
 </tbody>
 <tfoot>
     <tr>
-        <th style="width:20%;"><?=term('Total elements:', $settings['vocabulary'], $session['units']).' '.$searchFilesCount;?></th>
-        <th style="width:10%;"><?=$searchFilesSize;?></th>
+        <th style="width:25%;"><?=term('Total elements:', $settings['vocabulary'], $session['units']).' '.$searchFilesCount;?></th>
+        <th style="width:25%;"><?=$searchFilesSize;?></th>
     </tr>
 </tfoot>
 </table>
