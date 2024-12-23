@@ -895,6 +895,7 @@ function yearDay(y, m, d) {
     return day;
 }
 function frenchRep(y, m, d) {
+    console.log(y, m, d);
     var leap = +(leapYear(y));
     var yearQ = 365+leap, startD = 262+leap, endD = 261+leap;
     var yearD = yearDay(y, m, d) - 1;
