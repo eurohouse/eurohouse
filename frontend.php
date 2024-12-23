@@ -883,4 +883,25 @@ function handleInput(val, bulk = false) {
         }
     }
 }
+function leapYear(year) {
+    return ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
+}
+function yearDay(y, m, d) {
+    var now = new Date(y, m, d);
+    var start = new Date(y, 0, 0);
+    var diff = now - start;
+    var oneDay = 1000 * 60 * 60 * 24;
+    var day = Math.floor(diff / oneDay);
+    return day;
+}
+function frenchRep(y, m, d) {
+    var leap = +(leapYear(y));
+    var yearQ = 365+leap, startD = 262+leap, endD = 261+leap;
+    var yearD = yearDay(y, m, d) - 1;
+    var posD = (yearD < startD) ? (yearD+(yearQ-startD)) : (yearD-endD);
+    var curD = Math.round(360*(posD/yearQ));
+    var showD = ((curD % 30) > 0) ? (curD % 30) : 30;
+    var frArr = [ "Vendémiaire", "Brumaire", "Frimaire", "Nivôse", "Pluviôse", "Ventôse", "Germinal", "Floréal", "Prairial", "Messidor", "Thermidor", "Fructidor" ];
+    return showD+' '+frArr[Math.ceil(curD/30)-1];
+}
 </script>
