@@ -33,7 +33,7 @@
             "nerdamer.js", "algebra.js", "calculus.js", "solve.js"
         ],
         "foreign": [
-            "http://www.midijs.net/lib/midi.js"
+            "https://www.midijs.net/lib/midi.js"
         ]
     },
     "collections": {
