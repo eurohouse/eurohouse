@@ -68,7 +68,7 @@
         <input type='hidden' id="sysDefLockData" value="">
         <input type='hidden' id="sysDefIsSession" value="<?=isAuth();?>">
         <input type='hidden' id="sysDefSessionID" value="<?=$sessionID;?>">
-        <input type='hidden' id="sysDefPostBackEff" value="1">
+        <input type='hidden' id="sysDefPostBackEff" value="0">
         <input type='hidden' id="sysDefPostTickEff" value="0">
         <input type='hidden' id="sysDefVarsArr" value="">
         <input type='hidden' id="sysDefUsersList" value="">
