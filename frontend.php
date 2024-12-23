@@ -883,24 +883,12 @@ function handleInput(val, bulk = false) {
         }
     }
 }
-function leap(yr) {
-    return ((yr % 4 == 0) && (yr % 100 != 0)) || (yr % 400 == 0);
-}
-function day(tx) {
-    var sep = tx.split('-');
-    var now = new Date(sep[0], (sep[1]-1), (sep[2]-1));
-    var start = new Date(sep[0], 0, 0);
-    var diff = now - start;
-    var oneDay = 1000 * 60 * 60 * 24;
-    var day = Math.floor(diff / oneDay);
-    return day;
-}
 function french(tx) {
-    var sep = tx.split('-'), leapY = +(leap(sep[0])), yearD = day(tx);
-    console.log(yearD);
-    var yearQ = 365 + leapY, startD = 262 + leapY, endD = 261 + leapY;
-    var posD = (yearD < startD) ? (yearD + (yearQ - startD)) : (yearD - endD);
-    var curD = Math.round(360 * (posD / yearQ));
+    var sep = tx.split('-'), lep = +(leap(sep[0])), dia = day(tx);
+    var aly = 364 + lep, nwy = 264 + lep;
+    var pos = (dia < nwy) ? (dia+(aly-nwy)) : (dia-(nwy-1));
+
+    var cur = Math.round(360 * (pos / aly));
     var showD = ((curD % 30) > 0) ? (curD % 30) : 30;
     var frArr = [ "Vendémiaire", "Brumaire", "Frimaire", "Nivôse", "Pluviôse", "Ventôse", "Germinal", "Floréal", "Prairial", "Messidor", "Thermidor", "Fructidor" ];
     return showD+' '+frArr[Math.ceil(curD/30)-1];
