@@ -131,7 +131,7 @@ function offnum($pos = 0, $all = 360, $off = 90) {
 function french(array $voc, $units = 'EU'): string {
     $allYear = 365+date('L'); $newYear = 263+date('L');
     $curDate = offnum(date('z'), $allYear, $newYear);
-    $curMonth = ($curDate <= 0) ? (count($voc['locale']['french']['default'])-1) : ceil($curDate/30)-1;
+    $curMonth = ($curDate <= 0) ? 12 : ceil($curDate/30)-1;
     $showDate = ($curDate <= 0) ? (5+date('L')) : (($curDate%30) > 0) ? ($curDate%30) : 30;
     if (isset($voc['locale']['french'][$units][$curMonth])) {
         $showMonth = $voc['locale']['french'][$units][$curMonth];
