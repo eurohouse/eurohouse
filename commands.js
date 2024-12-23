@@ -126,9 +126,9 @@ function executeMacros(input, index = 0, length = 1) {
     } else if ((index == (length - 1)) && (input.includes('_'))) {
         if (input.startsWith('_')) {
             omniGo(input.replace('_', ''));
-        } else {
-            rep = input.split('_'); if (rep.length == 3) {
-                output = (input.replaceAll('_', '-'))+' '+frenchRep(rep[0], rep[1], rep[2]);
+        } else if (input.endsWith('_')) {
+            rep = input.replace('_'); if (rep.length >= 8) {
+                output = frenchRep(parseInt(rep.slice(0, 4)), parseInt(rep.slice(2, 2)), parseInt(rep.slice(4)));
             }
         }
     } else if ((index == (length - 1)) && (input.includes('=')) && (input.startsWith('='))) {
