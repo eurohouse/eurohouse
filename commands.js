@@ -123,8 +123,14 @@ function executeMacros(input, index = 0, length = 1) {
         cald[input.replace(':', '')] = sysDefSessionID.value;
         set('calling.json', JSON.stringify(cald), true);
         sysDefCallData.value = arrpack(cald,';',':');
-    } else if ((index == (length - 1)) && (input.includes('_')) && (input.startsWith('_'))) {
-        omniGo(input.replace('_', ''));
+    } else if ((index == (length - 1)) && (input.includes('_'))) {
+        if (input.startsWith('_')) {
+            omniGo(input.replace('_', ''));
+        } else {
+            rep = input.split('_'); if (rep.length == 3) {
+                output = (input.replaceAll('_', '-'))+' '+frenchRep(rep[0], rep[1], rep[2]);
+            }
+        }
     } else if ((index == (length - 1)) && (input.includes('=')) && (input.startsWith('='))) {
         window.location.href = input.replace('=', '');
     } else if ((index == (length - 1)) && (input.includes('+')) && (input.startsWith('+'))) {
@@ -141,8 +147,6 @@ function executeMacros(input, index = 0, length = 1) {
             plu = parseInt(input.replace('+', '').replace('s', ''));
             setdata('memo', (Math.round(Date.now() / 1000) + parseInt(plu)));
         } else { audioPosition(input.replace('+', '')); }
-    } else if ((index == (length - 1)) && (input.includes('-')) && !(input.startsWith('-')) && !(input.endsWith('-'))) {
-        rep = input.split('-'); if (rep.length == 3) { frenchRep(rep[0], rep[1], rep[2]); }
     } else if ((index == (length - 1)) && (input.includes('.'))) {
         if (input.startsWith('.')) {
             addFriend(input.replace('.', ''));
