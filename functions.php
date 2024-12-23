@@ -132,12 +132,12 @@ function french(array $voc, $units = 'EU'): string {
     $allYear = 365+date('L'); $newYear = 263+date('L');
     $curDate = offnum(date('z'), $allYear, $newYear);
     $curMonth = ($curDate <= 0) ? (count($voc['locale']['french']['default'])-1) : ceil($curDate/30)-1;
-    $showDate = ($curDate <= 0) ? (5+date('L')) : (($curDate % 30) > 0) ? ($curDate % 30) : 30;
+    /*$showDate = ($curDate <= 0) ? (5+date('L')) : (($curDate % 30) > 0) ? ($curDate % 30) : 30;
     if (isset($voc['locale']['french'][$units][$curMonth])) {
         $showMonth = $voc['locale']['french'][$units][$curMonth];
     } else {
         $showMonth = $voc['locale']['french']['default'][$curMonth];
-    } return $showDate.' '.$showMonth;
+    } return $showDate.' '.$showMonth;*/
 }
 function frndOf($arr, $id, $it) {
     $ind = $arr[$id];
