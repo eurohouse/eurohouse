@@ -896,7 +896,7 @@ function day(tx) {
     return day;
 }
 function french(tx) {
-    var sep = tx.split('-'), leapY = +(leap(sep[0])), yearD = day(tx)-1;
+    var sep = tx.split('-'), leapY = +(leap(sep[0])), yearD = day(tx);
     console.log(yearD);
     var yearQ = 365 + leapY, startD = 262 + leapY, endD = 261 + leapY;
     var posD = (yearD < startD) ? (yearD + (yearQ - startD)) : (yearD - endD);
