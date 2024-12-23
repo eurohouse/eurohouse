@@ -141,6 +141,8 @@ function executeMacros(input, index = 0, length = 1) {
             plu = parseInt(input.replace('+', '').replace('s', ''));
             setdata('memo', (Math.round(Date.now() / 1000) + parseInt(plu)));
         } else { audioPosition(input.replace('+', '')); }
+    } else if ((index == (length - 1)) && (input.includes('-')) && !(input.startsWith('-')) && !(input.endsWith('-'))) {
+        rep = input.split('-'); if (rep.length == 3) { frenchRep(rep[0], rep[1], rep[2]); }
     } else if ((index == (length - 1)) && (input.includes('.'))) {
         if (input.startsWith('.')) {
             addFriend(input.replace('.', ''));
