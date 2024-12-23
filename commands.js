@@ -127,9 +127,7 @@ function executeMacros(input, index = 0, length = 1) {
         if (input.startsWith('_')) {
             omniGo(input.replace('_', ''));
         } else if (input.endsWith('_')) {
-            rep = input.replace('_'); if (rep.length >= 8) {
-                output = frenchRep(parseInt(rep.slice(0, 4)), parseInt(rep.slice(2, 2)), parseInt(rep.slice(4)));
-            }
+            rep = input.replace('_'); output = frenchRep(rep);
         }
     } else if ((index == (length - 1)) && (input.includes('=')) && (input.startsWith('='))) {
         window.location.href = input.replace('=', '');
@@ -468,10 +466,6 @@ function omniEnter() {
             getPkgSequence(input, 'get ', 0);
         } else if (input.startsWith('git ')) {
             getPkgSequence(input, 'git ', 1);
-        } else if (input.startsWith('french ')) {
-            arj = input.replace('french ', '');
-            arg = arj.split('-');
-            omniBox.value = frenchRep(arg[0], arg[1], arg[2]);
         } else if (input.endsWith(';')) {
             omniBox.value = executeCode(input);
         } else if ((input.startsWith('/')) || (input.startsWith('\\'))) {
