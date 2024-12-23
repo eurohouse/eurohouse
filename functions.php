@@ -126,8 +126,8 @@ function dec_tz($tz): string {
     return ($tz == 0) ? 'Etc/GMT' : (($tz < 0) ? 'Etc/GMT'.'+'.abs($tz) : 'Etc/GMT'.'-'.abs($tz));
 }
 function french(array $voc, $units = 'EU'): string {
-    $yearQ = 365+date('L'); $startD = 264+date('L'); $endD = 263+date('L');
-    $posD = (date('z') < $startD) ? (date('z')+($yearQ-$startD)) : (date('z') - $endD);
+    $yearQ = 365+date('L'); $startD = 264+date('L'); $endD = 265+date('L');
+    $posD = (date('z') < $startD) ? (date('z')+($yearQ-$startD)) : (date('z')-$endD);
     $curD = round(360*($posD/$yearQ));
     $showD = (($curD % 30) > 0) ? ($curD % 30) : 30;
     if (isset($voc['locale']['french'][$units][ceil($curD / 30) - 1])) {
