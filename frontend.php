@@ -883,23 +883,21 @@ function handleInput(val, bulk = false) {
         }
     }
 }
-function leapYear(year) {
-    return ((year % 4 == 0) && (year % 100 != 0)) || (year % 400 == 0);
+function leap(yr) {
+    return ((yr % 4 == 0) && (yr % 100 != 0)) || (yr % 400 == 0);
 }
-function yearDay(tx) {
+function day(tx) {
     var sep = tx.split('-');
-    var now = new Date(sep[0], sep[1], sep[2]);
+    var now = new Date(sep[0], (sep[1]-1), (sep[2]-1));
     var start = new Date(sep[0], 0, 0);
     var diff = now - start;
     var oneDay = 1000 * 60 * 60 * 24;
     var day = Math.floor(diff / oneDay);
     return day;
 }
-function frenchRep(tx) {
-    var sep = tx.split('-');
-    var leap = +(leapYear(sep[0]));
+function french(tx) {
+    var sep = tx.split('-'), leap = +(leap(sep[0])), yearD = day(tx)-1;
     var yearQ = 365+leap, startD = 262+leap, endD = 261+leap;
-    var yearD = yearDay(tx)-1;
     var posD = (yearD < startD) ? (yearD+(yearQ-startD)) : (yearD-endD);
     var curD = Math.round(360*(posD/yearQ));
     var showD = ((curD % 30) > 0) ? (curD % 30) : 30;

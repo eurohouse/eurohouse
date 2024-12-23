@@ -123,12 +123,8 @@ function executeMacros(input, index = 0, length = 1) {
         cald[input.replace(':', '')] = sysDefSessionID.value;
         set('calling.json', JSON.stringify(cald), true);
         sysDefCallData.value = arrpack(cald,';',':');
-    } else if ((index == (length - 1)) && (input.includes('_'))) {
-        if (input.startsWith('_')) {
-            omniGo(input.replace('_', ''));
-        } else if (input.endsWith('_')) {
-            rep = input.replace('_'); output = frenchRep(rep);
-        }
+    } else if ((index == (length - 1)) && (input.includes('_')) && (input.startsWith('_'))) {
+        omniGo(input.replace('_', ''));
     } else if ((index == (length - 1)) && (input.includes('=')) && (input.startsWith('='))) {
         window.location.href = input.replace('=', '');
     } else if ((index == (length - 1)) && (input.includes('+')) && (input.startsWith('+'))) {
