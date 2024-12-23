@@ -125,16 +125,25 @@ function enc_tz($tz): string {
 function dec_tz($tz): string {
     return ($tz == 0) ? 'Etc/GMT' : (($tz < 0) ? 'Etc/GMT'.'+'.abs($tz) : 'Etc/GMT'.'-'.abs($tz));
 }
+function offnum($pos = 0, $all = 360, $off = 90) {
+    return abs(($pos + $all - abs($off)) % $all);
+}
 function french(array $voc, $units = 'EU'): string {
-    $allYear = 364+date('L'); $newYear = 264+date('L');
-    $posD = (date('z') < $newYear) ? (date('z')+($allYear-$newYear)) : (date('z')-($newYear-1));
-    $curD = round(360*($posD/$allYear));
-    $showD = (($curD % 30) > 0) ? ($curD % 30) : 30;
-    if (isset($voc['locale']['french'][$units][ceil($curD / 30) - 1])) {
-        $showM = $voc['locale']['french'][$units][ceil($curD / 30) - 1];
+    $allYear = 365+date('L'); $newYear = 264+date('L');
+    $curDate = offnum(date('z'), $allYear, $newYear);
+    $ceilMonth = (ceil($curDate/30)-1);
+    $curMonth = ($ceilMonth > 11) ? 11 : $ceilMonth;
+    if ($curDate < (($allYear-1)-(5+date('L')))) {
+        $showDate = (($curDate % 30) > 0) ? ($curDate % 30) : 30;
     } else {
-        $showM = $voc['locale']['french']['default'][ceil($curD / 30) - 1];
-    } return $showD.' '.$showM;
+        $showDate = (($curDate % 30) > 0) ? ($curDate % 30) : 30;
+    }
+    if (isset($voc['locale']['french'][$units][$curMonth])) {
+        $showMonth = $voc['locale']['french'][$units][$curMonth];
+    } else {
+        $showMonth = $voc['locale']['french']['default'][$curMonth];
+    }
+    return $showDate.' '.$showMonth;
 }
 function frndOf($arr, $id, $it) {
     $ind = $arr[$id];

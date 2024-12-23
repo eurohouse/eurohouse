@@ -883,14 +883,4 @@ function handleInput(val, bulk = false) {
         }
     }
 }
-function french(tx) {
-    var sep = tx.split('-'), lep = +(leap(sep[0])), dia = day(tx);
-    var aly = 364 + lep, nwy = 264 + lep;
-    var pos = (dia < nwy) ? (dia+(aly-nwy)) : (dia-(nwy-1));
-
-    var cur = Math.round(360 * (pos / aly));
-    var showD = ((curD % 30) > 0) ? (curD % 30) : 30;
-    var frArr = [ "Vendémiaire", "Brumaire", "Frimaire", "Nivôse", "Pluviôse", "Ventôse", "Germinal", "Floréal", "Prairial", "Messidor", "Thermidor", "Fructidor" ];
-    return showD+' '+frArr[Math.ceil(curD/30)-1];
-}
 </script>
