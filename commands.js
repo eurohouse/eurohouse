@@ -468,6 +468,10 @@ function omniEnter() {
             getPkgSequence(input, 'get ', 0);
         } else if (input.startsWith('git ')) {
             getPkgSequence(input, 'git ', 1);
+        } else if (input.startsWith('french ')) {
+            arj = input.replace('french ', '');
+            arg = arj.split('-');
+            omniBox.value = frenchRep(arg[0], arg[1], arg[2]);
         } else if (input.endsWith(';')) {
             omniBox.value = executeCode(input);
         } else if ((input.startsWith('/')) || (input.startsWith('\\'))) {
