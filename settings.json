@@ -92,66 +92,56 @@
             "GR": "έτη", "CY": "έτη", "NL": "jaar", "ZA": "Jare", "KH": "ឆ្នាំ",
             "DK": "år", "NO": "år", "SE": "år", "GE": "წლები", "AL": "vjet",
             "CN": "岁", "KR": "나이", "JP": "岁", "AM": "տարի", "HR": "godina",
-            "SA": "سنين", "AE": "سنين", "IQ": "سنين", "IR": "سال", "MY": "tahun",
+            "SA": "سنين", "AE": "سنين", "IQ": "سنين", "IR": "سنين", "MY": "tahun",
             "LT": "metų", "LV": "gadiem", "EE": "aastat", "FI": "vuotta", "IS": "ár",
             "MM": "နှစ်များ", "LU": "Joer", "AD": "Años", "MC": "Années", "MG": "taona",
             "SK": "rokov", "SI": "leta", "TJ": "сол", "KG": "жыл", "LA": "ປີ",
             "KW": "سنين", "QA": "سنين"
         },
         "anno_ind": {
-            "space": [ "RU", "UA", "BG", "BY", "KZ", "KG", "ES", "MX", "AR", "FR", "BE", "TR", "PT", "BR", "RO", "MD", "IT", "MK", "RS", "SE", "NO", "DE", "AT", "LI", "LU", "ZA", "HU", "LT", "LV", "DK", "GE", "AM", "AZ", "AL", "IL", "CZ", "EE", "IS", "FI", "IE", "HR", "MY", "ID", "NL", "GR", "CY", "PH", "PL", "DE", "AT" ],
+            "space": [ "RU", "UA", "BG", "BY", "KZ", "KG", "ES", "MX", "AR", "FR", "BE", "TR", "PT", "BR", "RO", "MD", "IT", "MK", "RS", "SE", "NO", "DE", "AT", "LI", "LU", "ZA", "HU", "LT", "LV", "DK", "GE", "AM", "AZ", "AL", "IL", "CZ", "EE", "IS", "FI", "IE", "HR", "MY", "ID", "NL", "GR", "CY", "PH", "PL", "TH" ],
             "concat": [ "CN", "JP", "KR", "AE", "SA", "IQ", "IR", "KW", "QA", "LA", "MM", "KH" ]
         },
         "continent": {
             "CH": {
-                "Worldwide": "Orbis Terrarum",
-                "Europe": "Europa", "Oceania": "Australia"
+                "Worldwide": "Orbis Terrarum", "Antarctica": "Terra Antarctica",
+                "Europe": "Terra Europa", "Asia": "Terra Asiae", "Africa": "Terra Africa",
+                "America": "Terra Americae", "Oceania": "Terra Australis"
             },
             "RU": {
-                "Worldwide": "Международный",
-                "Europe": "Европа", "Asia": "Азия",
-                "Africa": "Африка", "America": "Америка",
-                "Oceania": "Австралия и Океания",
-                "Antarctica": "Антарктида"
+                "Worldwide": "Международный", "Antarctica": "Антарктида",
+                "Europe": "Европа", "Asia": "Азия", "Africa": "Африка",
+                "America": "Америка", "Oceania": "Австралия и Океания"
             },
             "UA": {
-                "Worldwide": "По всьому світу",
-                "Europe": "Європа", "Asia": "Азії",
-                "Africa": "Африка", "America": "Америка",
-                "Oceania": "Австралії та Океанії",
-                "Antarctica": "Антарктида"
+                "Worldwide": "По всьому світу", "Antarctica": "Антарктида",
+                "Europe": "Європа", "Asia": "Азії", "Africa": "Африка",
+                "America": "Америка", "Oceania": "Австралії та Океанії"
             },
             "GR": {
-                "Worldwide": "Παγκόσμιος",
-                "Europe": "Ευρώπη", "Asia": "Ασία",
-                "Africa": "Αφρική", "America": "Αμερική",
-                "Oceania": "Αυστραλία και Ωκεανία",
-                "Antarctica": "Ανταρκτική"
+                "Worldwide": "Παγκόσμιος", "Antarctica": "Ανταρκτική",
+                "Europe": "Ευρώπη", "Asia": "Ασία", "Africa": "Αφρική",
+                "America": "Αμερική", "Oceania": "Αυστραλία και Ωκεανία"
             },
             "CY": {
-                "Worldwide": "Παγκόσμιος",
-                "Europe": "Ευρώπη", "Asia": "Ασία",
-                "Africa": "Αφρική", "America": "Αμερική",
-                "Oceania": "Αυστραλία και Ωκεανία",
-                "Antarctica": "Ανταρκτική"
+                "Worldwide": "Παγκόσμιος", "Antarctica": "Ανταρκτική",
+                "Europe": "Ευρώπη", "Asia": "Ασία", "Africa": "Αφρική",
+                "America": "Αμερική", "Oceania": "Αυστραλία και Ωκεανία"
             },
             "CN": {
-                "Worldwide": "全世界",
-                "Europe": "欧洲", "Asia": "亚洲",
-                "Africa": "非洲", "America": "美洲",
-                "Oceania": "大洋洲", "Antarctica": "南极洲"
+                "Worldwide": "全世界", "Antarctica": "南极洲",
+                "Europe": "欧洲", "Asia": "亚洲", "Africa": "非洲",
+                "America": "美洲", "Oceania": "大洋洲"
             },
             "JP": {
-                "Worldwide": "全世界",
-                "Europe": "ヨーロッパ", "Asia": "アジア",
-                "Africa": "アフリカ", "America": "アメリカ",
-                "Oceania": "オセアニア", "Antarctica": "南極大陸"
+                "Worldwide": "全世界", "Antarctica": "南極大陸",
+                "Europe": "ヨーロッパ", "Asia": "アジア", "Africa": "アフリカ",
+                "America": "アメリカ", "Oceania": "オセアニア"
             },
             "KR": {
-                "Worldwide": "세계적인",
-                "Europe": "유럽", "Asia": "아시아",
-                "Africa": "아프리카", "America": "아메리카",
-                "Oceania": "오세아니아", "Antarctica": "남극대륙"
+                "Worldwide": "세계적인", "Antarctica": "남극대륙",
+                "Europe": "유럽", "Asia": "아시아", "Africa": "아프리카",
+                "America": "아메리카", "Oceania": "오세아니아"
             }
         },
         "size": {
@@ -167,25 +157,29 @@
         },
         "length": {
             "default": { "sign": "m", "coefficient": 1 },
-            "RU": { "sign": "м", "coefficient": 1 },
-            "UA": { "sign": "м", "coefficient": 1 },
-            "CN": { "sign": "米", "coefficient": 1 },
-            "KR": { "sign": "미터", "coefficient": 1 },
-            "JP": { "sign": "米", "coefficient": 1 },
-            "US": { "sign": "ft", "inch": "true", "coefficient": 3.28084 },
-            "LR": { "sign": "ft", "inch": "true", "coefficient": 3.28084 },
-            "MM": { "sign": "ft", "inch": "true", "coefficient": 3.28084 }
+            "GR": { "sign": "μέτρα", "coefficient": 1 }, "CY": { "sign": "μέτρα", "coefficient": 1 },
+            "RU": { "sign": "м", "coefficient": 1 }, "UA": { "sign": "м", "coefficient": 1 },
+            "BY": { "sign": "м", "coefficient": 1 }, "BG": { "sign": "м", "coefficient": 1 },
+            "RS": { "sign": "м", "coefficient": 1 }, "MK": { "sign": "м", "coefficient": 1 },
+            "CN": { "sign": "米", "coefficient": 1 }, "KR": { "sign": "미터", "coefficient": 1 }, "JP": { "sign": "米", "coefficient": 1 },
+            "AE": { "sign": "متر", "coefficient": 1 }, "SA": { "sign": "متر", "coefficient": 1 },
+            "IQ": { "sign": "متر", "coefficient": 1 }, "IR": { "sign": "متر", "coefficient": 1 },
+            "KW": { "sign": "متر", "coefficient": 1 }, "QA": { "sign": "متر", "coefficient": 1 },
+            "GB": { "sign": "ft", "inch": "true", "coefficient": 3.28084 }, "US": { "sign": "ft", "inch": "true", "coefficient": 3.28084 },
+            "LR": { "sign": "ft", "inch": "true", "coefficient": 3.28084 }, "MM": { "sign": "ft", "inch": "true", "coefficient": 3.28084 }
         },
         "mass": {
             "default": { "sign": "kg", "coefficient": 1 },
-            "RU": { "sign": "кг", "coefficient": 1 },
-            "UA": { "sign": "кг", "coefficient": 1 },
-            "CN": { "sign": "千克", "coefficient": 1 },
-            "KR": { "sign": "킬로그램", "coefficient": 1 },
-            "JP": { "sign": "千克", "coefficient": 1 },
-            "US": { "sign": "lb", "coefficient": 2.20462 },
-            "LR": { "sign": "lb", "coefficient": 2.20462 },
-            "MM": { "sign": "lb", "coefficient": 2.20462 }
+            "GR": { "sign": "κιλά", "coefficient": 1 }, "CY": { "sign": "κιλά", "coefficient": 1 },
+            "RU": { "sign": "кг", "coefficient": 1 }, "UA": { "sign": "кг", "coefficient": 1 },
+            "BY": { "sign": "кг", "coefficient": 1 }, "BG": { "sign": "кг", "coefficient": 1 },
+            "RS": { "sign": "кг", "coefficient": 1 }, "MK": { "sign": "кг", "coefficient": 1 },
+            "CN": { "sign": "千克", "coefficient": 1 }, "KR": { "sign": "킬로그램", "coefficient": 1 }, "JP": { "sign": "千克", "coefficient": 1 },
+            "AE": { "sign": "كجم", "coefficient": 1 }, "SA": { "sign": "كجم", "coefficient": 1 },
+            "IQ": { "sign": "كجم", "coefficient": 1 }, "IR": { "sign": "كجم", "coefficient": 1 },
+            "KW": { "sign": "كجم", "coefficient": 1 }, "QA": { "sign": "كجم", "coefficient": 1 },
+            "GB": { "sign": "lb", "coefficient": 2.20462 }, "US": { "sign": "lb", "coefficient": 2.20462 },
+            "LR": { "sign": "lb", "coefficient": 2.20462 }, "MM": { "sign": "lb", "coefficient": 2.20462 }
         },
         "shoe_size": {
             "default": 31, "US": 0, "GB": -2, "JP": 16, "CN": 31
