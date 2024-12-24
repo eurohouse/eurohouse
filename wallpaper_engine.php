@@ -43,9 +43,7 @@ if (isset($cont[$showFilename])) {
         $showBirthCake = (($showBirthDay == date('j')) && ($showBirthMonth == date('n'))) ? "🎂" : "";
         if (in_array($uni, $loc['anno_ind']['space'])) {
             $showBirthAgeDisp = $showBirthAge.' '.$anno;
-        } elseif (in_array($uni, $loc['anno_ind']['concat']['trail'])) {
-            $showBirthAgeDisp = $showBirthAge.$anno;
-        } elseif (in_array($uni, $loc['anno_ind']['concat']['trail'])) {
+        } elseif (in_array($uni, $loc['anno_ind']['concat'])) {
             $showBirthAgeDisp = $anno.$showBirthAge;
         } else {
             $showBirthAgeDisp = $anno.' '.$showBirthAge;

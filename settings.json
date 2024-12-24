@@ -79,7 +79,7 @@
     },
     "locale": {
         "anno": {
-            "default": "Anno", "US": "Age", "TM": "ýyllar", "UZ": "yillar",
+            "default": "Age", "CH": "Anno", "TM": "ýyllar", "UZ": "yillar",
             "ES": "Años", "MX": "Años", "AR": "Años", "KZ": "жылдар",
             "IN": "साल", "LK": "वर्षाः", "NP": "ལོ", "TR": "yıllar", "MN": "жил",
             "GB": "Age", "AU": "Age", "NZ": "Age", "ID": "tahun", "TH": "ปี",
@@ -95,13 +95,12 @@
             "SA": "سنين", "AE": "سنين", "IQ": "سنين", "IR": "سال", "MY": "tahun",
             "LT": "metų", "LV": "gadiem", "EE": "aastat", "FI": "vuotta", "IS": "ár",
             "MM": "နှစ်များ", "LU": "Joer", "AD": "Años", "MC": "Années", "MG": "taona",
-            "SK": "rokov", "SI": "leta", "TJ": "сол", "KG": "жыл", "LA": "ປີ"
+            "SK": "rokov", "SI": "leta", "TJ": "сол", "KG": "жыл", "LA": "ປີ",
+            "KW": "سنين", "QA": "سنين"
         },
         "anno_ind": {
             "space": [ "RU", "UA", "BG", "BY", "KZ", "KG", "ES", "MX", "AR", "FR", "BE", "TR", "PT", "BR", "RO", "MD", "IT", "MK", "RS", "SE", "NO", "DE", "AT", "LI", "LU", "ZA", "HU", "LT", "LV", "DK", "GE", "AM", "AZ", "AL", "IL", "CZ", "EE", "IS", "FI", "IE", "HR", "MY", "ID", "NL", "GR", "CY", "PH", "PL", "DE", "AT" ],
-            "concat": {
-                "trail": [ "CN", "JP", "KR", "AE", "SA", "IQ", "IR", "LA", "MM", "KH" ]
-            }
+            "concat": [ "CN", "JP", "KR", "AE", "SA", "IQ", "IR", "KW", "QA", "LA", "MM", "KH" ]
         },
         "continent": {
             "CH": {
