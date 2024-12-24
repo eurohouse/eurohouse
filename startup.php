@@ -141,8 +141,8 @@ function world_clock() {
                 $('#prefsBtnUpdate').attr('src', sysDefPrefix.value+'lock.png');
                 $('#prefsBtnReset').attr('src', sysDefPrefix.value+'backspace.png');
                 $('#prefsBtnClear').attr('src', sysDefPrefix.value+'error.png');
-                $('#prefsBtnUpdateTitle').attr('src', sysDefPrefix.value+'new.png');
-                $('#prefsBtnUpdateTitles').attr('src', sysDefPrefix.value+'copy.png');
+                $('#prefsBtnUpdateTitle').attr('src', sysDefPrefix.value+'keyboard.png');
+                $('#prefsBtnUpdateTitles').attr('src', sysDefPrefix.value+'movie.png');
             } if (requestMode.value == 'sticky_notes') {
                 $('#myNotesNewBtn').attr('src', sysDefPrefix.value+'new.png'); $('#myNotesOpenBtn').attr('src', sysDefPrefix.value+'open.png'); $('#myNotesSaveBtn').attr('src', sysDefPrefix.value+'save.png');
                 notesMenu.innerHTML = '<p align="center" class="block">'+noteBook(sysDefMetaList.value)+'</p>';
