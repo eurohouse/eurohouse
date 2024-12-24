@@ -23,11 +23,11 @@ if (isset($cont[$showFilename])) {
         $showLengthLine = '';
     } if (isset($ent['weight'])) {
         $showMass = (isset($loc['mass'][$uni])) ? (round($ent['weight'] * $loc['mass'][$uni]['coefficient']).' '.$loc['mass'][$uni]['sign']) : round($ent['weight'] * $loc['mass']['default']['coefficient']).' '.$loc['mass']['default']['sign'];
-        $showMassLine = ' '.$showMass;
+        $showMassLine = $showMass;
     } else {
         $showMassLine = '';
     } if (isset($ent['sizes'])) {
-        $showSizes = (isset($loc['length'][$uni]['inch'])) ? (round(explode('-', $ent['sizes'])[0] * $loc['length'][$uni]['coefficient']).'-'.round(explode('-', $ent['sizes'])[1] * $loc['length'][$uni]['coefficient']).'-'.round(explode('-', $ent['sizes'])[2] * $loc['length'][$uni]['coefficient'])) : (explode('-', $ent['sizes'])[0].'-'.explode('-', $ent['sizes'])[1].'-'.explode('-', $ent['sizes'])[2]); $showSizesLine = ' ('.$showSizes.') ';
+        $showSizes = (isset($loc['length'][$uni]['inch'])) ? (round(explode('-', $ent['sizes'])[0] * $loc['length'][$uni]['coefficient']).'-'.round(explode('-', $ent['sizes'])[1] * $loc['length'][$uni]['coefficient']).'-'.round(explode('-', $ent['sizes'])[2] * $loc['length'][$uni]['coefficient'])) : (explode('-', $ent['sizes'])[0].'-'.explode('-', $ent['sizes'])[1].'-'.explode('-', $ent['sizes'])[2]); $showSizesLine = '('.$showSizes.')';
     } else {
         $showSizesLine = '';
     } if (isset($ent['shoe_size'])) {
@@ -49,10 +49,10 @@ if (isset($cont[$showFilename])) {
             $showBirthAgeDisp = $anno.$showBirthAge;
         } else {
             $showBirthAgeDisp = $anno.' '.$showBirthAge;
-        } $showBdayLine = ' '.zodiacSign($showBirthCycle).' '.$showBirthAgeDisp.' '.$showBirthCake;
+        } $showBdayLine = zodiacSign($showBirthCycle).' '.$showBirthAgeDisp.' '.$showBirthCake;
     } else {
         $showBdayLine = '';
-    } $showLine = $showHead.$showBdayLine.$showLengthLine.$showMassLine.$showSizesLine.$showShoeSize;
+    } $showLine = $showHead.' '.$showBdayLine.' '.$showLengthLine.' '.$showMassLine.' '.$showSizesLine.' '.$showShoeSize;
     $showBody = (isset($ent['language'][$uni]['memoir'])) ? $ent['language'][$uni]['memoir'] : ((isset($ent['memoir'])) ? $ent['memoir'] : $showLine);
     $showURLMaison = (isset($ent['maison'])) ? $ent['maison'] : "";
     if (isset($ent['insignia'])) {
