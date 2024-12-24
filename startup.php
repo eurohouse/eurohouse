@@ -139,10 +139,10 @@ function world_clock() {
             } if (requestMode.value == 'personalization') {
                 $('#prefsBtnApply').attr('src', sysDefPrefix.value+'return.png');
                 $('#prefsBtnUpdate').attr('src', sysDefPrefix.value+'lock.png');
-                $('#prefsBtnRename').attr('src', sysDefPrefix.value+'new.png');
-                $('#prefsBtnRetitle').attr('src', sysDefPrefix.value+'copy.png');
                 $('#prefsBtnReset').attr('src', sysDefPrefix.value+'backspace.png');
                 $('#prefsBtnClear').attr('src', sysDefPrefix.value+'error.png');
+                $('#prefsBtnUpdateTitle').attr('src', sysDefPrefix.value+'new.png');
+                $('#prefsBtnUpdateTitles').attr('src', sysDefPrefix.value+'copy.png');
             } if (requestMode.value == 'sticky_notes') {
                 $('#myNotesNewBtn').attr('src', sysDefPrefix.value+'new.png'); $('#myNotesOpenBtn').attr('src', sysDefPrefix.value+'open.png'); $('#myNotesSaveBtn').attr('src', sysDefPrefix.value+'save.png');
                 notesMenu.innerHTML = '<p align="center" class="block">'+noteBook(sysDefMetaList.value)+'</p>';
