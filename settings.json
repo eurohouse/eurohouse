@@ -17,10 +17,8 @@
     },
     "viewport":
     {
-        "width": "device-width",
-        "initial-scale": "1.0",
-        "maximum-scale": "1.0",
-        "user-scalable": "0"
+        "width": "device-width", "initial-scale": "1.0",
+        "maximum-scale": "1.0", "user-scalable": "0"
     },
     "locks": {
         "background": "", "avatar": "", "music": "", "font": "", "sound": ""
@@ -181,9 +179,7 @@
             "GB": { "sign": "lb", "coefficient": 2.20462 }, "US": { "sign": "lb", "coefficient": 2.20462 },
             "LR": { "sign": "lb", "coefficient": 2.20462 }, "MM": { "sign": "lb", "coefficient": 2.20462 }
         },
-        "shoe_size": {
-            "default": 31, "US": 0, "GB": -2, "JP": 16, "CN": 31
-        },
+        "shoe_size": { "default": 31, "US": 0, "GB": -2, "JP": 16, "CN": 31 },
         "angle": {
             "default": {
                 "sign": { "pre": "", "post": "°" }, "coefficient": 1
@@ -384,14 +380,8 @@
         "date_format": "Y-m-d", "time_format": "H:i:s"
     },
     "initialize": {
-        "GET": {
-            "mode": "", "sort": "", "group": "", "angle": 0,
-            "input": "", "output": "", "args": "",
-            "lock": "true", "ref": "menu", "path": "."
-        },
-        "POST": {
-            "auth": "", "login": "", "password": ""
-        }
+        "GET": { "mode": "", "sort": "", "group": "", "angle": 0, "input": "", "output": "", "args": "", "lock": "true", "ref": "menu", "path": "." },
+        "POST": { "auth": "", "login": "", "password": "" }
     },
     "pangram": {
         "default": "ascii", "FR": "latin", "BE": "latin",
