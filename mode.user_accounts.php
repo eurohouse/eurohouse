@@ -4,7 +4,7 @@
 $iconSize = 50;
 $indexUsers = str_replace('_session.json', '', $allUsers);
 ?>
-<table style="width:98%;" id="table">
+<table style="width:100%;" id="table">
 <thead>
     <tr>
         <th style="width:10%;">

@@ -1,6 +1,7 @@
 <!-- world -->
 <!-- CH: Explorare Europedia; DE: Entdecken Sie Europedia; AT: Entdecken Sie Europedia; GR: Εξερευνήστε Ευρωπαιδεία; CY: Εξερευνήστε Ευρωπαιδεία; FR: Parcourir Europedia; BE: Parcourir Europedia; IT: Sfoglia Europadia; ES: Explora Europadia; MX: Explora Europadia; BR: Explorar a Europadia; PT: Explorar a Europadia; RO: Explorați Europedia; MD: Explorați Europedia; TR: Europedia'yı keşfedin; IN: यूरोपियाडिया का अन्वेषण करें; LK: यूरोपडिया अन्वेषणं कुर्वन्तु; NP: ཡོ་རོབ་གླིང་ལ་མྱུལ་ཞིང༌།; RU: Просмотр Европедии; UA: Досліджуйте Europedia; CN: 浏览元素 Europedia; KR: 요소 찾아보기 Europedia; JP: 要素の閲覧 Europedia; AE: تصفح عناصر Europedia -->
 <?php
+$iconSize = 50;
 $exemplarArr = exemplar(str_replace('./','',(glob('./*.models.json'))));
 $contentsArr = exemplar(str_replace('./','',(glob('./*.contents.json'))));
 if ($request['group'] != '') {
@@ -40,35 +41,35 @@ if ($request['group'] != '') {
         }
     }
     ?>
-    <table style="width:98%;" id="table">
+    <table style="width:100%;" id="table">
     <thead>
     <tr>
         <th style="width:5%;">
             <?=term('Flag', $ssVC, $ssUN);?>
         </th>
-        <th style="width:12%;">
+        <th style="width:20%;">
             <a href="javascript:SortTable(1, 'T');">
                 <?=term('Name', $ssVC, $ssUN);?>
             </a>
         </th>
         <?php if ($session['censor'] != 0) { ?>
-        <th style="width:20%;">
+        <th style="width:25%;">
             <a href="javascript:SortTable(2, 'T');">
                 <?=term('Description', $ssVC, $ssUN);?>
             </a>
         </th>
         <?php } else { ?>
-        <th style="width:6%;">
+        <th style="width:8%;">
             <a href="javascript:SortTable(2, 'N');">
                 <?=term('Height', $ssVC, $ssUN);?>
             </a>
         </th>
-        <th style="width:6%;">
+        <th style="width:8%;">
             <a href="javascript:SortTable(3, 'N');">
                 <?=term('Weight', $ssVC, $ssUN);?>
             </a>
         </th>
-        <th style="width:4%;">
+        <th style="width:9%;">
             <a href="javascript:SortTable(4, 'N');">
                 <?=term('Shoe Size', $ssVC, $ssUN);?>
             </a>
@@ -86,7 +87,7 @@ if ($request['group'] != '') {
     <tr>
         <td>
             <a href="<?=$ccAV;?>">
-                <img style="width:60%;" src="<?=$ccAV;?>" loading="lazy" onmouseover="soundButton();">
+                <img style="width:<?=$iconSize;?>%;" src="<?=$ccAV;?>" loading="lazy" onmouseover="soundButton();">
             </a>
         </td>
         <td>
@@ -118,5 +119,10 @@ if ($request['group'] != '') {
     </tr>
     <?php } ?>
 </tbody>
+<tfoot>
+    <tr>
+        <th style="width:25%;" colspan="5"><?=term('Total elements:', $settings['vocabulary'], $session['units']).' '.count($exemplarArr);?></th>
+    </tr>
+</tfoot>
 </table>
 <?php } ?>
