@@ -63,7 +63,7 @@ foreach ($indexUsers as $key=>$value) {
 </tbody>
 <tfoot>
     <tr>
-        <th style="width:50%;" colspan="2"><?=term('Total elements:', $settings['vocabulary'], $session['units']).' '.count($indexUsers);?></th>
+        <th style="width:50%;" colspan="4"><?=term('Total elements:', $settings['vocabulary'], $session['units']).' '.count($indexUsers);?></th>
     </tr>
 </tfoot>
 </table>
