@@ -684,7 +684,7 @@ function administer(sta, act, fn) {
             for (ib in ob) { ob[ib] = ib; }
         } else if (sta == 'auto') {
             for (ib in ob) { ob[ib] = act; }
-        } else if (sta == 'friend') {
+        } else if ((sta == 'friend') || (sta == 'tool')) {
             for (ib in ob) { ob[ib] = ''; }
         } else {
             if ((act == 'equal') || (act == 'share')) {
@@ -693,7 +693,8 @@ function administer(sta, act, fn) {
             } else if ((act == 'total') || (act == 'sum')) {
                 for (ib in ob) { ob[ib] = parseInt(sum); }
             }
-        } if (obj !== null) {
+        }
+        if (obj !== null) {
             set(fn+'.json', JSON.stringify(ob), true);
             obj.value = arrpack(ob,';',':');
         }
@@ -705,7 +706,8 @@ function scores(sta) {
     var obj = arrjob(arr, ';', ':'), em = '';
     var keys = Object.keys(obj), vals = Object.values(obj);
     var res = '', sortable = {}, ordered = {};
-    var dat = {}, am = se = fo = ex = 0; if (sta == 'bind') {
+    var dat = {}, am = se = fo = ex = 0;
+    if (sta == 'bind') {
         ordered = Object.keys(obj).sort().reduce(
             (obd, key) => { obd[key] = obj[key]; return obd; }, {}
         ); for (indi in ordered) {
