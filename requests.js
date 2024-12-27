@@ -50,7 +50,7 @@ function omniBack(mode) {
     var currentPath = requestPath.value;
     var currentGroup = requestGroup.value;
     var changeMode = '', args = '', path = ''; group = '';
-    if (currentMode == 'file_explorer' || currentMode == 'file_finder') {
+    if (currentMode == 'file_manager') {
         args = currentArgs, path = '', group = currentGroup;
         changeMode = ((currentPath == '') || (currentPath == '.')) ? mode : currentMode;
     } else if (currentMode == 'object_info') {
