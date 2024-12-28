@@ -282,14 +282,15 @@ function noteBook(str) {
         ard = ard+arl+'<br>';
     } return ard;
 }
-function helpBook(jsn) {
-    var arr = jsonstr(jsn);
+function helpBook() {
+    var arr = (sysDefTutorData.value).split(' | ');
+    var obj = jsonstr(sysDefTutorJSON.value);
     var ard = '', arl = '', eld = '';
     var elc = sysDefUnits.value, elt = '';
-    var epr = sysDefPrefix.value; for (el in arr) {
-        eld = arr[el];
-        elt = (arr[el]['language'][elc]['title'] !== undefined) ? arr[el]['language'][elc]['title'] : arr[el]['title'];
-        arl = "<input type='button' style='width:80%;' onclick='openHelpPage(&#34;"+eld+"&#34;,&#34;"+elc+"&#34;);' value='"+elt+"'>";
+    for (el in arr) {
+        eld = obj[el];
+        elt = (eld['language'][elc]['title'] !== undefined) ? eld['language'][elc]['title'] : eld['title'];
+        arl = "<input type='button' style='width:80%;' onclick='openHelpPage(&#34;"+el+"&#34;);' value='"+elt+"'>";
         ard = ard+arl+'<br>';
     } return ard;
 }
