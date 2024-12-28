@@ -11,7 +11,7 @@ function openHelpPage(id) {
         } else {
             tutm = '';
         }
-    } helpContent.value = tutm;
+    } helpContent.innerText = tutm;
 }
 </script>
 <div class="notesRow">
