@@ -381,7 +381,14 @@ function omniEnter() {
                     arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
                     if ((st[qt(arg[0])] !== undefined) && (typeof(st[qt(arg[0])]) == 'object') && (st[qt(arg[0])]['finite'] !== 'undefined')) {
                         qy = (arg.length > 1) ? ((isInt(qt(arg[1]))) ? parseInt(qt(arg[1])) : 1) : 1;
-                        itm = (isInt(st[qt(arg[0])]['amount']) && (st[qt(arg[0])]['amount'] >= 0)) ? parseInt(st[qt(arg[0])]['amount']) + qy : qy; st[qt(arg[0])]['amount'] = itm;
+                        itm = (isInt(st[qt(arg[0])]['amount']) && (st[qt(arg[0])]['amount'] >= 0)) ? (parseInt(st[qt(arg[0])]['amount']) + qy) : qy; st[qt(arg[0])]['amount'] = itm;
+                    }
+                } else if (arb.startsWith('reduce ')) {
+                    arj = arb.replace('reduce ', '');
+                    arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
+                    if ((st[qt(arg[0])] !== undefined) && (typeof(st[qt(arg[0])]) == 'object') && (st[qt(arg[0])]['finite'] !== 'undefined')) {
+                        qy = (arg.length > 1) ? ((isInt(qt(arg[1]))) ? parseInt(qt(arg[1])) : 1) : 1;
+                        itm = (isInt(st[qt(arg[0])]['amount']) && (st[qt(arg[0])]['amount'] >= 0)) ? (parseInt(st[qt(arg[0])]['amount']) - qy) : qy; st[qt(arg[0])]['amount'] = itm;
                     }
                 } else if (arb.includes('finite ')) {
                     arj = arb.replace('finite ', '');
