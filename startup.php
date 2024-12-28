@@ -149,7 +149,7 @@ function world_clock() {
                 $('#myNotesNewBtn').attr('src', sysDefPrefix.value+'new.png'); $('#myNotesOpenBtn').attr('src', sysDefPrefix.value+'open.png'); $('#myNotesSaveBtn').attr('src', sysDefPrefix.value+'save.png');
                 notesMenu.innerHTML = '<p align="center" class="block">'+noteBook(sysDefMetaList.value)+'</p>';
             } if (requestMode.value == 'user_tutorial') {
-                helpMenu.innerHTML = '<p align="center" class="block">'+helpBook(sysDefTutorList.value, sysDefTutorData.value)+'</p>';
+                helpMenu.innerHTML = '<p align="center" class="block">'+helpBook(sysDefTutorData.value)+'</p>';
             } if (requestMode.value == 'text_editor') {
                 $('#textEdRep').attr('src', sysDefPrefix.value+'new.png'); $('#textEdRepAll').attr('src', sysDefPrefix.value+'copy.png');
             } if (((obs == 1) && (spe == 1)) || ((obs == 1) && (spe == 0))) {
