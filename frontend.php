@@ -33,33 +33,25 @@ function arrangePlay() {
     var da = arrjob(sysDefAutoData.value,';',':');
     sysDefAutoState.value = da[sysDefSessionID.value];
     $('#buttonAutomator').attr('src', sysDefPrefix.value+((sysDefAutoState.value == 'auto')?'wheel.png':'steer.png'));
-    var my = dp[sysDefSessionID.value]; var th, jh, bl, pl;
+    var my = dp[sysDefSessionID.value], bl = pl = lp = rp = '', ch = 'chain';
     if (my <= -666) {
         delete_user(sysDefSessionID.value);
         omniAuthRequest('signout', '', '');
     } if (arraySearch(sysDefSessionID.value, db) != false) {
-        jh = dp[arraySearch(sysDefSessionID.value, db)];
         if (db[sysDefSessionID.value] != sysDefSessionID.value) {
-            th = dp[db[sysDefSessionID.value]];
-            bl = (jh != th) ? jh+'?'+my+':'+th : jh+'?'+my;
-            pl = '+@'+sysDefSessionID.value+'+';
-            $('#buttonBroke').attr('src', sysDefPrefix.value+'broke.png');
+            /* ELSE BINDED TO USER BINDED TO OTHER */ lp = '+', rp = '+', ch = 'broke';
         } else {
-            th = dp[sysDefSessionID.value]; bl = jh+'?'+my;
-            pl = '+@'+sysDefSessionID.value;
-            $('#buttonBroke').attr('src', sysDefPrefix.value+'broke.png');
+            /* OTHER BINDED TO USER */ lp = '+', rp = '', ch = 'broke';
         }
     } else {
         if (db[sysDefSessionID.value] != sysDefSessionID.value) {
-            th = dp[db[sysDefSessionID.value]]; bl = my+':'+th;
-            pl = '@'+sysDefSessionID.value+'+';
-            $('#buttonBroke').attr('src', sysDefPrefix.value+'broke.png');
+            /* USER BINDED TO OTHER */ lp = '', rp = '+', ch = 'broke';
         } else {
-            th = dp[sysDefSessionID.value]; bl = my;
-            pl = '@'+sysDefSessionID.value;
-            $('#buttonBroke').attr('src', sysDefPrefix.value+'chain.png');
+            /* USER BINDED TO SELF */ lp = '', rp = '', ch = 'chain';
         }
-    } $('#showUsInfoPower').val(bl); $('#showUsInfoBond').val(pl);
+    } pl = lp+'$'+my+rp, bl = lp+'@'+sysDefSessionID.value+rp;
+    $('#buttonBroke').attr('src', sysDefPrefix.value+ch+'.png');
+    $('#showUsInfoPower').val(pl); $('#showUsInfoBond').val(bl);
 }
 function lockdata() {
     var obj = {
