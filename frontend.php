@@ -284,13 +284,13 @@ function noteBook(str) {
 }
 function helpBook() {
     var obj = jsonstr(sysDefTutorData.value);
-    var ard = '', arl = '', eld = '', elt = '';
+    var ard = '', arl = '', elt = '';
     for (el in obj) {
-        eld = obj[el]; if (eld['language'][sysDefUnits.value]['title'] !== undefined) {
-            elt = eld['language'][sysDefUnits.value]['title'];
+        if ((obj[el]['language'] !== undefined) && (obj[el]['language'][sysDefUnits.value]['title'] !== undefined)) {
+            elt = obj[el]['language'][sysDefUnits.value]['title'];
         } else {
-            if (eld['title'] !== undefined) {
-                elt = eld['title'];
+            if (obj[el]['title'] !== undefined) {
+                elt = obj[el]['title'];
             } else {
                 elt = '';
             }
