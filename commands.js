@@ -366,38 +366,34 @@ function omniEnter() {
                     arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
                     if (arg.length > 0) {
                         for (i = 0; i < arg.length; i++) {
-                            if (st[arg[i].replaceAll('"', '')] !== undefined) {
-                                delete st[arg[i].replaceAll('"', '')];
-                            }
+                            if (st[qt(arg[i])] !== undefined) { delete st[qt(arg[i])]; }
                         }
                     }
                 } else if (arb.startsWith('rename ')) {
                     arj = arb.replace('rename ', '');
                     arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
-                    if (st[arg[0].replaceAll('"', '')] !== undefined) {
-                        st[arg[1].replaceAll('"', '')] = st[arg[0].replaceAll('"', '')];
-                        delete st[arg[0].replaceAll('"', '')];
+                    if (st[qt(arg[0])] !== undefined) {
+                        st[qt(arg[1])] = st[qt(arg[0])];
+                        delete st[qt(arg[0])];
                     }
                 } else if (arb.startsWith('produce ')) {
                     arj = arb.replace('produce ', '');
                     arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
-                    if ((st[arg[0].replaceAll('"', '')] !== undefined) && (typeof(st[arg[0].replaceAll('"', '')]) == 'object') && (st[arg[0].replaceAll('"', '')]['amount'] !== 'undefined')) {
-                        qy = (arg.length > 1) ? ((isInt(arg[1].replaceAll('"', ''))) ? parseInt(arg[1].replaceAll('"', '')) : 1) : 1;
-                        itm = (isInt(st[arg[0].replaceAll('"', '')]['amount']) && (st[arg[0].replaceAll('"', '')]['amount'] >= 0)) ? parseInt(st[arg[0].replaceAll('"', '')]['amount']) + qy : qy;
-                        st[arg[0].replaceAll('"', '')]['amount'] = itm;
-                    }
-                } else if (arb.includes('price ')) {
-                    arj = arb.replace('price ', '');
-                    arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
-                    if ((st[arg[0].replaceAll('"', '')] !== undefined) && (typeof(st[arg[0].replaceAll('"', '')]) == 'object') && (st[arg[0].replaceAll('"', '')]['price'] !== 'undefined')) {
-                        prx = (arg.length > 1) ? ((isInt(arg[1].replaceAll('"', ''))) ? parseInt(arg[1].replaceAll('"', '')) : arg[1].replaceAll('"', '')) : '';
-                        st[arg[0].replaceAll('"', '')]['price'] = prx;
+                    if ((st[qt(arg[0])] !== undefined) && (typeof(st[qt(arg[0])]) == 'object') && (st[qt(arg[0])]['finite'] !== 'undefined')) {
+                        qy = (arg.length > 1) ? ((isInt(qt(arg[1]))) ? parseInt(qt(arg[1])) : 1) : 1;
+                        itm = (isInt(st[qt(arg[0])]['amount']) && (st[qt(arg[0])]['amount'] >= 0)) ? parseInt(st[qt(arg[0])]['amount']) + qy : qy; st[qt(arg[0])]['amount'] = itm;
                     }
                 } else if (arb.includes('finite ')) {
                     arj = arb.replace('finite ', '');
                     arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
-                    if ((st[arg[0].replaceAll('"', '')] !== undefined) && (typeof(st[arg[0].replaceAll('"', '')]) == 'object') && (st[arg[0].replaceAll('"', '')]['finite'] !== 'undefined')) {
-                        st[arg[0].replaceAll('"', '')]['finite'] = flip(st[arg[0].replaceAll('"', '')]['finite']);
+                    if ((st[qt(arg[0])] !== undefined) && (typeof(st[qt(arg[0])]) == 'object') && (st[qt(arg[0])]['finite'] !== 'undefined')) {
+                        st[qt(arg[0])]['finite'] = flip(st[qt(arg[0])]['finite']);
+                    }
+                } else {
+                    arg = arb.match(/\"([^\"]+)\"|(\w+)/g);
+                    if ((st[qt(arg[1])] !== undefined) && (typeof(st[qt(arg[1])]) == 'object') && (st[qt(arg[1])][qt(arg[0])] !== 'undefined') && (qt(arg[0]) != 'amount')) {
+                        prx = (arg.length > 1) ? ((isInt(qt(arg[2]))) ? parseInt(qt(arg[2])) : qt(arg[2])) : '';
+                        st[qt(arg[1])][qt(arg[0])] = prx;
                     }
                 } set('./.store/'+sysDefSessionID.value+'_store.json', encodeURIComponent(JSON.stringify(st)), true);
             }

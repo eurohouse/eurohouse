@@ -696,8 +696,7 @@ function administer(sta, act, fn) {
             } else if ((act == 'total') || (act == 'sum')) {
                 for (ib in ob) { ob[ib] = parseInt(sum); }
             }
-        }
-        if (obj !== null) {
+        } if (obj !== null) {
             set(fn+'.json', JSON.stringify(ob), true);
             obj.value = arrpack(ob,';',':');
         }
