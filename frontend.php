@@ -232,11 +232,11 @@ function jsonListUsers(ob) {
     var eld = '', elt = ''; for (el in arr) {
         if (arr[el] !== undefined) {
             eld = arr[el], elt = sysDefSessionID.value;
-            arl += "<input type='button' onclick='bind(&#34;"+elt+"&#34;,&#34;"+eld+"&#34;);' value='"+eld+"'>";
+            arl += "<input type='button' onclick='bind(&#34;"+elt+"&#34;,&#34;"+eld+"&#34;);' value='"+el+"'>";
         }
     } arl += "</p>"; return arl;
 }
-function obramBtn(id) {
+function activeHrsBtn(id) {
     var arr = storeHours(id).split(',');
     var arl = ''; for (el in arr) {
         arl += "<input type='button' value='"+arr[el]+"'>";
