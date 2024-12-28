@@ -18,7 +18,7 @@ function openHelpPage(id) {
 <div class="notesMenu" id="helpMenu"></div>
 <div class="notesContent">
 <p align='center'>
-    <label id="helpContent" style="width:100%;height:100%;"></label>
+    <span id="helpContent" style="width:100%;height:100%;"></span>
 </p>
 </div>
 </div>
