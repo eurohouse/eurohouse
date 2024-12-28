@@ -11,14 +11,15 @@ function openHelpPage(id) {
         } else {
             tutm = '';
         }
-    } helpContent.innerText = tutm;
+    } helpContent.value = tutm;
 }
 </script>
 <div class="notesRow">
 <div class="notesMenu" id="helpMenu"></div>
 <div class="notesContent">
 <p align='center'>
-    <span id="helpContent" style="width:100%;height:100%;"></span>
+    <textarea id="helpContent" style="width:100%;height:100%;" disabled>
+    </textares>
 </p>
 </div>
 </div>
