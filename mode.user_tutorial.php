@@ -11,12 +11,14 @@ function openHelpPage(id) {
         } else {
             tutm = '';
         }
-    } helpContent.innerText = tutm;
+    } helpContent.value = tutm;
 }
 </script>
 <div class="notesRow">
 <div class="notesMenu" id="helpMenu"></div>
 <div class="notesContent">
-<p align='center' id='helpContent'></p>
+<p align='center'>
+    <label id="helpContent" style="width:100%;height:100%;"></label>
+</p>
 </div>
 </div>
