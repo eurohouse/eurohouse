@@ -1,12 +1,12 @@
 {
     "sample_text": {
-        "title": "Example Text",
-        "memoir": "Your content starts here...",
-        "language": {
-            "RU": {
-                "title": "Образец текста",
-                "memoir": "Ваш контент начинается здесь..."
-            }
+        "default": {
+            "title": "Example Text",
+            "memoir": "Your content starts here..."
+        },
+        "RU": {
+            "title": "Образец текста",
+            "memoir": "Ваш контент начинается здесь..."
         }
     }
 }

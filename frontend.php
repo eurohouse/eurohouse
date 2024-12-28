@@ -286,11 +286,11 @@ function helpBook() {
     var obj = jsonstr(sysDefTutorData.value);
     var ard = '', arl = '', elt = '';
     for (el in obj) {
-        if ((obj[el]['language'] !== undefined) && (obj[el]['language'][sysDefUnits.value]['title'] !== undefined)) {
-            elt = obj[el]['language'][sysDefUnits.value]['title'];
+        if ((obj[el] !== undefined) && (obj[el][sysDefUnits.value] !== undefined) && (obj[el][sysDefUnits.value]['title'] !== undefined)) {
+            elt = obj[el][sysDefUnits.value]['title'];
         } else {
-            if (obj[el]['title'] !== undefined) {
-                elt = obj[el]['title'];
+            if (obj[el]['default']['title'] !== undefined) {
+                elt = obj[el]['default']['title'];
             } else {
                 elt = '';
             }
