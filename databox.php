@@ -46,6 +46,6 @@ implode('//', $codexBoxArr)."\\\\".implode('//', $speechBoxArr)."\r\n\r\n". // R
 $usersList.";".$booksList.";".$storeList."\r\n\r\n". // Read Line 12
 implode(' ', $othCT)."\r\n\r\n". // Read Line 13
 $notesList."\r\n\r\n". // Read Line 14
-$notesJSON. // Read Line 15
+$notesJSON."\r\n\r\n". // Read Line 15
 $tutorList."\r\n\r\n". // Read Line 16
 $tutorJSON; // Read Line 17
