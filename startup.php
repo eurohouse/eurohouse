@@ -114,7 +114,7 @@ function world_clock() {
             $('#buttonUserStatus').attr('src', sysDefPrefix.value+"<?=(isAuth())?'user.png':'anonym.png';?>"); $('#buttonEscape').attr('src', sysDefPrefix.value+'escape.png'); var fint = pager(data, 5).split(' | ');
             if (requestMode.value == 'bookkeeping') {
                 bookkeep_users.innerHTML = jsonListUsers(sysDefBooksList);
-                bookkeep_disp.innerHTML = '<table style="width:100%;position:relative;"><thead><th style="width:25%;">'+fint[9]+'</th><th style="width:25%;">'+fint[0]+'</th><th style="width:25%;">'+fint[1]+'</th><th style="width:25%;">'+fint[2]+'</th></thead><tbody>'+jsonBookKeep(sysDefBookKeep.value, bndm)+'</tbody></table>';
+                bookkeep_disp.innerHTML = '<table style="width:100%;position:relative;"><thead><th style="width:25%;">'+fint[9]+'</th><th style="width:25%;">'+fint[0]+'</th><th style="width:25%;">'+fint[1]+'</th><th style="width:25%;">'+fint[2]+'</th></thead><tbody>'+jsonBookKeep(sysDefBookKeep.value)+'</tbody></table>';
             } if (requestMode.value == 'play_store') {
                 var stoInf = "<p align='center'>"+fint[7]+"</p><p align='center'>"+fint[8]+"</p><p align='center'>"+obramBtn(bndm)+"</p>";
                 store_users.innerHTML = jsonListUsers(sysDefStoreList);

@@ -254,14 +254,11 @@ function jsonStore(id) {
         }
     } return ard;
 }
-function jsonBookKeep(str, bd) {
+function jsonBookKeep(str) {
     var arr = jsonstr(str);
     var ard = '', arl = '', arf = {}, eld = [];
     for (el in arr) {
-        eld = arr[el].split(' | ');
-        if (bd != sysDefSessionID.value) {
-            if (bd == (eld[1].replace('@',''))) { arf[el] = arr[el]; }
-        } else { arf[el] = arr[el]; }
+        eld = arr[el].split(' | '); arf[el] = arr[el];
     } for (el in arf) {
         eld = arr[el].split(' | ');
         arl = (eld[4] == 'ERR') ? '<tr style="text-decoration:line-through;">' : '<tr>';
