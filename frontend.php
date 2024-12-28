@@ -287,7 +287,7 @@ function helpBook() {
     var obj = jsonstr(sysDefTutorData.value);
     var ard = '', arl = '', eld = '';
     var elc = sysDefUnits.value, elt = '';
-    for (el in arr) {
+    for (el in obj) {
         eld = obj[el];
         elt = (eld['language'][elc]['title'] !== undefined) ? eld['language'][elc]['title'] : eld['title'];
         arl = "<input type='button' style='width:80%;' onclick='openHelpPage(&#34;"+el+"&#34;);' value='"+elt+"'>";
