@@ -283,13 +283,12 @@ function noteBook(str) {
     } return ard;
 }
 function helpBook() {
-    var arr = (sysDefTutorList.value).split(' | ');
     var obj = jsonstr(sysDefTutorData.value);
     var ard = '', arl = '', eld = '';
     var elc = sysDefUnits.value, elt = '';
     for (el in obj) {
         eld = obj[el];
-        elt = (eld['language'][elc]['title'] !== undefined) ? eld['language'][elc]['title'] : eld['title'];
+        elt = (eld['language'][elc]['title'] !== undefined) ? eld['language'][elc]['title'] : ((eld['title'] !== undefined) ? eld['title'] : '');
         arl = "<input type='button' style='width:80%;' onclick='openHelpPage(&#34;"+el+"&#34;);' value='"+elt+"'>";
         ard = ard+arl+'<br>';
     } return ard;
