@@ -283,8 +283,8 @@ function noteBook(str) {
     } return ard;
 }
 function helpBook() {
-    var arr = (sysDefTutorData.value).split(' | ');
-    var obj = jsonstr(sysDefTutorJSON.value);
+    var arr = (sysDefTutorList.value).split(' | ');
+    var obj = jsonstr(sysDefTutorData.value);
     var ard = '', arl = '', eld = '';
     var elc = sysDefUnits.value, elt = '';
     for (el in arr) {
