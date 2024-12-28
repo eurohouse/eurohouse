@@ -288,7 +288,15 @@ function helpBook() {
     var elc = sysDefUnits.value, elt = '';
     for (el in obj) {
         eld = obj[el];
-        elt = (eld['language'][elc]['title'] !== undefined) ? eld['language'][elc]['title'] : ((eld['title'] !== undefined) ? eld['title'] : '');
+        if (eld['language'][elc]['title'] !== undefined) {
+            elt = eld['language'][elc]['title'];
+        } else {
+            if (eld['title'] !== undefined) {
+                elt = eld['title'];
+            } else {
+                elt = '';
+            }
+        }
         arl = "<input type='button' style='width:80%;' onclick='openHelpPage(&#34;"+el+"&#34;);' value='"+elt+"'>";
         ard = ard+arl+'<br>';
     } return ard;
