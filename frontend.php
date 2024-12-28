@@ -284,20 +284,17 @@ function noteBook(str) {
 }
 function helpBook() {
     var obj = jsonstr(sysDefTutorData.value);
-    var ard = '', arl = '', eld = '';
-    var elc = sysDefUnits.value, elt = '';
+    var ard = '', arl = '', eld = '', elt = '';
     for (el in obj) {
-        eld = obj[el];
-        if (eld['language'][elc]['title'] !== undefined) {
-            elt = eld['language'][elc]['title'];
+        eld = obj[el]; if (eld['language'][sysDefUnits.value]['title'] !== undefined) {
+            elt = eld['language'][sysDefUnits.value]['title'];
         } else {
             if (eld['title'] !== undefined) {
                 elt = eld['title'];
             } else {
                 elt = '';
             }
-        }
-        arl = "<input type='button' style='width:80%;' onclick='openHelpPage(&#34;"+el+"&#34;);' value='"+elt+"'>";
+        } arl = "<input type='button' style='width:80%;' onclick='openHelpPage(&#34;"+el+"&#34;);' value='"+elt+"'>";
         ard = ard+arl+'<br>';
     } return ard;
 }
