@@ -3,7 +3,8 @@
 <script>
 function openHelpPage(id) {
     var tutd = jsonstr(sysDefTutorData.value);
-    var tutm = (tutd[id]['language'][sysDefUnits.value]['memoir'] !== undefined) ? tutd[id]['language'][sysDefUnits.value]['memoir'] : tutd[id]['memoir']; helpContent.value = tutm;
+    var tutm = (tutd[id]['language'][sysDefUnits.value]['memoir'] !== undefined) ? tutd[id]['language'][sysDefUnits.value]['memoir'] : tutd[id]['memoir'];
+    helpContent.innerText = tutm;
 }
 </script>
 <div class="notesRow">
