@@ -14,6 +14,9 @@ $locksArr = arropen($cookie.'_lock.json', json_encode($userSettings['locks']), '
 $notesArr = arropen($cookie.'_metadata.json', json_encode($userSettings['metadata']), 'CUSTOM');
 $notesList = implode(' | ', array_keys($notesArr));
 $notesJSON = file_get_contents($cookie.'_metadata.json');
+$tutorArr = arropen('tutorial.json', "{\"\":\"\"}", 'CUSTOM');
+$tutorList = implode(' | ', array_keys($tutorArr));
+$tutorJSON = file_get_contents('tutorial.json');
 $codexBoxArr = str_replace('./','',(glob('./*.mac')));
 $speechBoxArr = str_replace('./','',(glob('./*.pro')));
 $usersList = implode(',',str_replace('_msgbox.json','',str_replace('./.msgbox/','',(glob('./.msgbox/*_msgbox.json')))));
@@ -43,4 +46,6 @@ implode('//', $codexBoxArr)."\\\\".implode('//', $speechBoxArr)."\r\n\r\n". // R
 $usersList.";".$booksList.";".$storeList."\r\n\r\n". // Read Line 12
 implode(' ', $othCT)."\r\n\r\n". // Read Line 13
 $notesList."\r\n\r\n". // Read Line 14
-$notesJSON; // Read Line 15
+$notesJSON. // Read Line 15
+$tutorList."\r\n\r\n". // Read Line 16
+$tutorJSON; // Read Line 17

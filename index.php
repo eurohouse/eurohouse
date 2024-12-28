@@ -86,6 +86,8 @@
         <input type='hidden' id="sysDefCallData" value="<?=valstr($callData,';',':');?>">
         <input type='hidden' id="sysDefMetaData" value="<?=$metaJSON;?>">
         <input type='hidden' id="sysDefMetaList" value="<?=$metaList;?>">
+        <input type='hidden' id="sysDefTutorData" value="<?=$tutorJSON;?>">
+        <input type='hidden' id="sysDefTutorList" value="<?=$tutorList;?>">
         <input type='hidden' id="sysDefBookKeep" value=""><input type='hidden' id="sysDefMsgData" value="">
         <input type='hidden' id="sysDefUserStore" value=""><input type='hidden' id="sysDefMsgCounter" value="0">
         <input type='hidden' id="sysDefCodexBox" value="<?=implode('//', $codexBox);?>">

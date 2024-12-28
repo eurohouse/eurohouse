@@ -282,6 +282,16 @@ function noteBook(str) {
         ard = ard+arl+'<br>';
     } return ard;
 }
+function helpBook(str, jsn) {
+    var arr = str.split(' | '), jsr = jsonstr(jsn);
+    var ard = '', arl = '', eld = '', elc = sysDefUnits.value, elt = '';
+    var epr = sysDefPrefix.value; for (el in arr) {
+        eld = arr[el];
+        elt = (jsr[el]['language'][elc]['title'] !== undefined) ? jsr[el]['language'][elc]['title'] : jsr[el]['title'];
+        arl = "<input type='button' style='width:80%;' onclick='openHelpPage(&#34;"+eld+"&#34;,&#34;"+elc+"&#34;);' value='"+elt+"'>";
+        ard = ard+arl+'<br>';
+    } return ard;
+}
 function openJournal(id, ob, oj) {
     var users = ob.value, jours = oj.value;
     var userArr = users.split(',');
