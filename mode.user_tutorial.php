@@ -3,11 +3,11 @@
 <script>
 function openHelpPage(id) {
     var tutd = jsonstr(sysDefTutorData.value), tutm = '';
-    if ((tutd[id] !== undefined) && (tutd[id][sysDefUnits.value] !== undefined) && (tutd[id][sysDefUnits.value]['title'] !== undefined)) {
-        tutm = tutd[id][sysDefUnits.value]['title'];
+    if ((tutd[id] !== undefined) && (tutd[id][sysDefUnits.value] !== undefined) && (tutd[id][sysDefUnits.value]['memoir'] !== undefined)) {
+        tutm = tutd[id][sysDefUnits.value]['memoir'];
     } else {
-        if (tutd[id]['default']['title'] !== undefined) {
-            tutm = tutd[id]['default']['title'];
+        if (tutd[id]['default']['memoir'] !== undefined) {
+            tutm = tutd[id]['default']['memoir'];
         } else {
             tutm = '';
         }
