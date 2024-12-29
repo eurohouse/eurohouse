@@ -185,12 +185,7 @@ function jsonHTML(str, mask) {
     } return ard;
 }
 function jsonMarket(id) {
-    var arr = jsonstr(openJournal(id, sysDefStoreList, sysDefStoreJSONs));
-    var res = {}; for (el in arr) {
-        if (arr[el]['password'] === undefined) {
-            res[el] = arr[el];
-        }
-    } return res;
+    return jsonstr(openJournal(id, sysDefStoreList, sysDefStoreJSONs));
 }
 function activeHrsBtn(id) {
     var arr = storeHours(id).split(',');
