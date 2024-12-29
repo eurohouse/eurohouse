@@ -325,7 +325,7 @@ function automator() {
         } else {
             och = Object.keys(obt)[rand(0, obc-1)];
         } console.log('OBJECT @'+objName+': '+och);
-        if ((subName != objName) && (storeOpen(objName))) {
+        if ((subName != objName) && (obc <= 0) && (storeOpen(objName))) {
             buy_item(subName, och, objName);
         } if ((subName != objName) && (sut[sch]['type'] !== undefined) && (sut[sch]['type'] == 'weapon') && (!(subFrnd.includes(objName)))) {
             dominate(subName, objName, sch);
