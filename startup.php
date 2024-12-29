@@ -46,15 +46,15 @@ function databox() {
             if (sysDefBindData.value != sysDefPostBindData.value) {
                 playAudio(bindPlayer, sysDefBindSound.value);
             } sysDefPostBindData.value = sysDefBindData.value;
+            if (sysDefPowersData.value != sysDefPostPowersData.value) {
+                playAudio(sufferPlayer, sysDefSufferSound.value);
+            } sysDefPostPowersData.value = sysDefPowersData.value;
             if (sysDefToolData.value != sysDefPostToolData.value) {
                 playAudio(bindPlayer, sysDefBindSound.value);
             } sysDefPostToolData.value = sysDefToolData.value;
             if (sysDefMsgData.value != sysDefPostMsgData.value) {
                 playAudio(notifyPlayer, sysDefNotifySound.value);
             } sysDefPostMsgData.value = sysDefMsgData.value;
-            if (sysDefBookKeep.value != sysDefPostBookKeep.value) {
-                playAudio(sufferPlayer, sysDefSufferSound.value);
-            } sysDefPostBookKeep.value = sysDefBookKeep.value;
         }
     });
 }
