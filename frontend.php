@@ -184,39 +184,13 @@ function jsonHTML(str, mask) {
         ard = el+'<br>'+arr[el]+'<br>'+ard;
     } return ard;
 }
-function jsonMarket(id, typ = '') {
-    var arr = jsonstr(openJournal(id, sysDefStoreList, sysDefStoreJSONs)), res = {}, typs = [], elm = '';
-    if (typ != '') {
-        if (typ.startsWith('!')) {
-            elm = typ.replace('!', ''); if (elm.includes(',')) {
-                typs = elm.split(','); for (el in arr) {
-                    for (i = 0; i < typs.length; i++) {
-                        if ((arr[el] !== undefined) && (typeof(arr[el]) == 'object') && !(arr[el]['type'] == typs[i])) { res[el] = arr[el]; }
-                    }
-                }
-            } else {
-                for (el in arr) {
-                    if ((arr[el] !== undefined) && (typeof(arr[el]) == 'object') && !(arr[el]['type'] == elm)) {
-                        res[el] = arr[el];
-                    }
-                }
-            }
-        } else {
-            if (typ.includes(',')) {
-                typs = typ.split(','); for (el in arr) {
-                    for (i = 0; i < typs.length; i++) {
-                        if ((arr[el] !== undefined) && (typeof(arr[el]) == 'object') && (arr[el]['type'] == typs[i])) { res[el] = arr[el]; }
-                    }
-                }
-            } else {
-                for (el in arr) {
-                    if ((arr[el] !== undefined) && (typeof(arr[el]) == 'object') && (arr[el]['type'] == typ)) {
-                        res[el] = arr[el];
-                    }
-                }
-            }
+function jsonMarket(id) {
+    var arr = jsonstr(openJournal(id, sysDefStoreList, sysDefStoreJSONs));
+    var res = {}; for (el in arr) {
+        if (arr[el]['password'] === undefined) {
+            res[el] = arr[el];
         }
-    } else { res = arr; } return res;
+    } return res;
 }
 function activeHrsBtn(id) {
     var arr = storeHours(id).split(',');

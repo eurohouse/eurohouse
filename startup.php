@@ -306,7 +306,7 @@ function automator() {
     if (requestMode.value == 'statistics') {
         userStats.innerText = scores(sysDefStats.value);
     } if ((subName != '') && (objName != '') && (isInt(tabPower[subName])) && (tabPower[subName] >= 0) && (autoPower[subName] == 'auto')) {
-        sut = jsonMarket(subName, '!account,password');
+        sut = jsonMarket(subName);
         suc = Object.keys(sut).length;
         if (suc <= 0) {
             sch = '';
@@ -316,7 +316,7 @@ function automator() {
             sch = Object.keys(sut)[rand(0, suc-1)];
         } console.log('SUBJECT @'+subName+': '+sch);
         bind(subName, objName); equip(subName, sch);
-        obt = jsonMarket(objName, '!account,password');
+        obt = jsonMarket(objName);
         obc = Object.keys(obt).length;
         if (obc <= 0) {
             och = '';
