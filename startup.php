@@ -308,7 +308,7 @@ function automator() {
     } if ((subName != '') && (objName != '') && (isInt(tabPower[subName])) && (tabPower[subName] >= 0) && (autoPower[subName] == 'auto')) {
         sut = jsonMarket(subName), suc = Object.keys(sut).length;
         sch = (suc <= 0) ? '' : ((suc == 1) ? Object.keys(sut)[0] : Object.keys(sut)[rand(0, suc)]);
-        // bind(subName, objName); equip(subName, sch);
+        bind(subName, objName); equip(subName, sch);
         obt = jsonMarket(objName), obc = Object.keys(obt).length;
         och = (obc <= 0) ? '' : ((obc == 1) ? Object.keys(obt)[0] : Object.keys(obt)[rand(0, obc)]);
         if ((subName != objName) && (obc > 0) && (obt[och]['type'] !== undefined) && (obt[och]['password'] !== undefined) && (storeOpen(objName))) {
