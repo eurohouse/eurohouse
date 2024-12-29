@@ -60,6 +60,9 @@ function executeMacros(input, index = 0, length = 1) {
                 omniAuthRequest('signup', atd[0], atx);
             } else if (atr[1].includes('rename')) {
                 rename_user(atd[0], atd[1]); omniAuthRequest('signin', atd[0], atx);
+            } else if (atr[1].includes('create')) {
+                set(atd[0]+'_password', atx, true);
+                omniAuthRequest('signin', atd[0], atx);
             }
         } else {
             atx = CryptoJS.SHA256('').toString(); if (atr[1].includes('signin')) {
@@ -68,6 +71,9 @@ function executeMacros(input, index = 0, length = 1) {
                 omniAuthRequest('signup', atr[0], atx);
             } else if (atr[1].includes('rename')) {
                 rename_user(atr[0], ''); omniAuthRequest('signin', atr[0], atx);
+            } else if (atr[1].includes('create')) {
+                set(atr[0]+'_password', atx, true);
+                omniAuthRequest('signin', atr[0], atx);
             }
         }
     } else if ((index == (length - 1)) && (input.includes('--')) && (input.startsWith('--'))) {
