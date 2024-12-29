@@ -208,7 +208,7 @@ function jsonStore(id) {
             fu1 = (isInt(el)) ? "charge(&#34;"+id+"&#34;,&#34;"+el+"&#34;);" : ((eld['type'] == 'weapon') ? "equip(&#34;"+id+"&#34;,&#34;"+el+"&#34;);" : "charge(&#34;"+id+"&#34;,&#34;"+el+"&#34;);");
             arl += "<td><input type='button' style='width:80%;' onclick='"+((id != usr) ? fu0 : fu1)+"' value='"+el+"'>";
             arl += "<input type='image' class='power' src='"+epr+"info.png"+"' onclick='omniPath(&#34;./.store/"+usr+"_store.json&#34;,&#34;"+el+"&#34;,&#34;false&#34;);'>";
-            arl += "</td><td>"+eld['amount']+"</td><td>"+eld['price']+"</td>";
+            arl += "</td><td>"+eld['amount']+"</td><td>$"+eld['price']+"</td>";
             ard = arl+"</tr>"+ard;
         }
     } return ard;
