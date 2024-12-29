@@ -344,13 +344,6 @@ function wasAuth() {
             }
         } elseif ($auth == 'signout') {
             unset($_SESSION['user']);
-        } else if ($auth == 'create') {
-            if (!file_exists($login.'_password')) {
-                file_put_contents($login.'_password', $pass);
-                chmod($login.'_password', 0777);
-            } if ($pass == $logpass) {
-                $_SESSION['user'] = $login;
-            }
         }
     }
 }
