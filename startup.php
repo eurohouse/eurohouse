@@ -113,17 +113,14 @@ function world_clock() {
             $('#buttonUpdate').attr('src', sysDefPrefix.value+'world.png');
             $('#buttonUserStatus').attr('src', sysDefPrefix.value+"<?=(isAuth())?'user.png':'anonym.png';?>"); $('#buttonEscape').attr('src', sysDefPrefix.value+'escape.png'); var fint = pager(data, 5).split(' | ');
             if (requestMode.value == 'bookkeeping') {
-                bookkeep_users.innerHTML = jsonListUsers(sysDefBooksList);
                 bookkeep_disp.innerHTML = '<table style="width:100%;position:relative;"><thead><th style="width:25%;">'+fint[9]+'</th><th style="width:25%;">'+fint[0]+'</th><th style="width:25%;">'+fint[1]+'</th><th style="width:25%;">'+fint[2]+'</th></thead><tbody>'+jsonBookKeep(sysDefBookKeep.value)+'</tbody></table>';
             } if (requestMode.value == 'play_store') {
                 var stoInf = "<p align='center'>"+fint[7]+"</p><p align='center'>"+fint[8]+"</p><p align='center'>"+activeHrsBtn(bndm)+"</p>";
-                store_users.innerHTML = jsonListUsers(sysDefStoreList);
                 var stoDop = '<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+fint[3]+'</th><th style="width:7%;">'+fint[4]+'</th><th style="width:3%;">'+fint[5]+'</th></thead><tbody>'+jsonStore(bndm)+'</tbody></table>';
                 store_disp.innerHTML = (sysDefSessionID.value != bndm) ? ((storeOpen(bndm)) ? stoDop : stoInf) : stoDop;
             } if (requestMode.value == 'font_book') {
                 fontBook24Pt.innerText = fontBook22Pt.innerText = fontBook20Pt.innerText = fontBook18Pt.innerText = fontBook16Pt.innerText = fontBook14Pt.innerText = pager(data, 6);
             } if (requestMode.value == 'statistics') {
-                stat_users.innerHTML = jsonListUsers(sysDefUsersList);
                 tabScore.innerText = fint[6];
                 $('#switchBtnAuto').attr('src', sysDefPrefix.value+'steer.png');
                 $('#switchBtnCall').attr('src', sysDefPrefix.value+'dial.png');

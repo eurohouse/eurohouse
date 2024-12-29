@@ -218,16 +218,6 @@ function jsonMarket(id, typ = '') {
         }
     } else { res = arr; } return res;
 }
-function jsonListUsers(ob) {
-    var arr = (ob.value).split(',');
-    var arl = "<p align='center' class='block'>";
-    var eld = '', elt = ''; for (el in arr) {
-        if (arr[el] !== undefined) {
-            eld = arr[el], elt = sysDefSessionID.value;
-            arl += "<input type='button' onclick='bind(&#34;"+elt+"&#34;,&#34;"+eld+"&#34;);' value='"+el+"'>";
-        }
-    } arl += "</p>"; return arl;
-}
 function activeHrsBtn(id) {
     var arr = storeHours(id).split(',');
     var arl = ''; for (el in arr) {
