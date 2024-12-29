@@ -9,7 +9,7 @@ $sizeRecBin = 0; foreach ($recycleList as $val) {
 } $sizeString = sizestr($sizeRecBin, $settings['locale']['size'], $session['units']);
 ?>
 <p align="center">
-    <?=$elemString;?><br><?=$sizeString;?><br><input type="button" value="<?=term('Clear', $settings['vocabulary'], $session['units']);?>" onmouseover="soundButton();" onclick="getdir('d','','.trash','from','','here',false);">
+    <?=$elemString;?><br><?=$sizeString;?> <input type="button" value="<?=term('Clear', $settings['vocabulary'], $session['units']);?>" onmouseover="soundButton();" onclick="getdir('d','','.trash','from','','here',false);">
 </p>
 <?php foreach ($recycleList as $val) { ?>
     <p align="center" class="block">
