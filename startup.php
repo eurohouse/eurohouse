@@ -302,7 +302,7 @@ function automator() {
     var frndPower = arrjob(sysDefFriendData.value,';',':');
     var toolPower = arrjob(sysDefToolData.value,';',':');
     var userList = (sysDefUsersList.value).split(',');
-    console.log(userList);
+    console.log(sysDefUsersList.value);
     var subName = userList[rand(0, userList.length)];
     var objName = userList[rand(0, userList.length)];
     var subFrnd = friendsOf(frndPower, subName);
