@@ -306,21 +306,19 @@ function automator() {
     if (requestMode.value == 'statistics') {
         userStats.innerText = scores(sysDefStats.value);
     } if ((subName != '') && (objName != '') && (isInt(tabPower[subName])) && (tabPower[subName] >= 0) && (autoPower[subName] == 'auto')) {
-        sut = jsonMarket(subName);
-        suc = Object.keys(sut).length;
+        sut = jsonMarket(subName), suc = Object.keys(sut).length;
         sch = (suc <= 0) ? '' : ((suc == 1) ? Object.keys(sut)[0] : Object.keys(sut)[rand(0, suc-1)]);
-        console.log('SUBJECT @'+subName+': '+sch);
         bind(subName, objName); equip(subName, sch);
-        obt = jsonMarket(objName);
-        obc = Object.keys(obt).length;
+        obt = jsonMarket(objName), obc = Object.keys(obt).length;
         och = (obc <= 0) ? '' : ((obc == 1) ? Object.keys(obt)[0] : Object.keys(obt)[rand(0, obc-1)]);
-        console.log('OBJECT @'+objName+': '+och);
         if ((subName != objName) && (obc > 0) && (storeOpen(objName))) {
             buy_item(subName, och, objName);
+            console.log('@'+subName+' '+och+'$ @'+objName);
         } if ((subName != objName) && (suc > 0) && (sut[sch]['type'] !== undefined) && (sut[sch]['type'] == 'weapon') && (!(subFrnd.includes(objName)))) {
             dominate(subName, objName, sch);
+            console.log('@'+subName+' -'+sch+' @'+objName);
         } if ((subName == objName) && (suc > 0) && (sut[sch]['type'] !== undefined) && (sut[sch]['type'] != 'weapon') && (sut[sch]['force'] !== undefined) && (isInt(sut[sch]['force']))) {
-            charge(subName, sch);
+            charge(subName, sch); console.log('@'+subName+' +'+sch);
         }
     }
 }
