@@ -323,7 +323,7 @@ function pipeExec(input) {
 }
 function omniEnter() {
     var input = omniBox.value, arb = arc = arj = '', arg = [];
-    var itm, prx, qy; if (sysDefChat.value != 0) {
+    var itm, prx, qy, atd, atr, atx; if (sysDefChat.value != 0) {
         compose(input);
     } else {
         if ((input == 'reload') || (input == 'refresh')) {
@@ -467,6 +467,25 @@ function omniEnter() {
             getPkgSequence(input, 'get ', 0);
         } else if (input.startsWith('git ')) {
             getPkgSequence(input, 'git ', 1);
+        } else if (input.includes('@')) {
+            atr = input.split('@'), atd, atx;
+            if (atr[0].includes(':')) {
+                atd = atr[0].split(':'); atx = CryptoJS.SHA256(atd[1]).toString(); if (atr[1].includes('signin')) {
+                    omniAuthRequest('signin', atd[0], atx);
+                } else if (atr[1].includes('signup')) {
+                    omniAuthRequest('signup', atd[0], atx);
+                } else if (atr[1].includes('rename')) {
+                    rename_user(atd[0], atd[1]); omniAuthRequest('signin', atd[0], atx);
+                }
+            } else {
+                atx = CryptoJS.SHA256('').toString(); if (atr[1].includes('signin')) {
+                    omniAuthRequest('signin', atr[0], atx);
+                } else if (atr[1].includes('signup')) {
+                    omniAuthRequest('signup', atr[0], atx);
+                } else if (atr[1].includes('rename')) {
+                    rename_user(atr[0], ''); omniAuthRequest('signin', atr[0], atx);
+                }
+            }
         } else if (input.endsWith(';')) {
             omniBox.value = executeCode(input);
         } else if ((input.startsWith('/')) || (input.startsWith('\\'))) {
