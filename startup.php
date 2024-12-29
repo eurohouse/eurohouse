@@ -311,7 +311,7 @@ function automator() {
         bind(subName, objName); equip(subName, sch);
         obt = jsonMarket(objName), obc = Object.keys(obt).length;
         och = (obc <= 0) ? '' : ((obc == 1) ? Object.keys(obt)[0] : Object.keys(obt)[rand(0, obc)]);
-        if ((subName != objName) && (obc > 0) && (obt[och]['type'] !== undefined) && (obt[och]['password'] !== undefined) && (storeOpen(objName))) {
+        if ((subName != objName) && (obc > 0) && (obt[och]['type'] !== undefined) && (obt[och]['password'] === undefined) && (storeOpen(objName))) {
             buy_item(subName, och, objName);
             console.log('@'+subName+' '+och+'$ @'+objName);
         } if ((subName != objName) && (suc > 0) && (sut[sch]['type'] !== undefined) && (sut[sch]['type'] == 'weapon') && (!(subFrnd.includes(objName)))) {
