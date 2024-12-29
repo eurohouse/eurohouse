@@ -302,17 +302,29 @@ function automator() {
     var subName = userList[rand(0, userList.length)];
     var objName = userList[rand(0, userList.length)];
     var subFrnd = friendsOf(frndPower, subName);
-    var sut = obt = {}, sch = och = '', rnd = 0;
+    var sut = obt = {}, sch = och = '', rnd = suc = obc = 0;
     if (requestMode.value == 'statistics') {
         userStats.innerText = scores(sysDefStats.value);
     } if ((subName != '') && (objName != '') && (isInt(tabPower[subName])) && (tabPower[subName] >= 0) && (autoPower[subName] == 'auto')) {
         sut = jsonMarket(subName, '!account,password');
-        sch = Object.keys(sut)[rand(0, Object.keys(sut).length)];
-        console.log('SUBJECT @'+subName+': '+sch);
+        suc = Object.keys(sut).length;
+        if (suc <= 0) {
+            sch = '';
+        } else if (suc == 1) {
+            sch = Object.keys(sut)[0];
+        } else {
+            sch = Object.keys(sut)[rand(0, suc-1)];
+        } console.log('SUBJECT @'+subName+': '+sch);
         bind(subName, objName); equip(subName, sch);
         obt = jsonMarket(objName, '!account,password');
-        och = Object.keys(obt)[rand(0, Object.keys(obt).length)];
-        console.log('OBJECT @'+objName+': '+och);
+        obc = Object.keys(obt).length;
+        if (obc <= 0) {
+            och = '';
+        } else if (obc == 1) {
+            och = Object.keys(obt)[0];
+        } else {
+            och = Object.keys(obt)[rand(0, obc-1)];
+        } console.log('OBJECT @'+objName+': '+och);
         if ((subName != objName) && (storeOpen(objName))) {
             buy_item(subName, och, objName);
         } if ((subName != objName) && (sut[sch]['type'] !== undefined) && (sut[sch]['type'] == 'weapon') && (!(subFrnd.includes(objName)))) {
