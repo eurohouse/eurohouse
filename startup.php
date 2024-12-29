@@ -311,9 +311,11 @@ function automator() {
     } if ((subName != '') && (objName != '') && (isInt(tabPower[subName])) && (tabPower[subName] >= 0) && (autoPower[subName] == 'auto')) {
         sut = jsonMarket(subName, '!account,password');
         sch = Object.keys(sut)[rand(0, Object.keys(sut).length-1)];
+        console.log(sch);
         bind(subName, objName); equip(subName, sch);
         obt = jsonMarket(objName, '!account,password');
         och = Object.keys(obt)[rand(0, Object.keys(obt).length-1)];
+        console.log(och);
         if ((subName != objName) && (storeOpen(objName))) {
             buy_item(subName, och, objName); console.log('buy');
         } if ((subName != objName) && (sut[sch]['type'] !== undefined) && (sut[sch]['type'] == 'weapon') && (!(subFrnd.includes(objName)))) {
