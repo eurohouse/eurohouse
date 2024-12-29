@@ -373,16 +373,17 @@ function buy_item(bye, art, sel) {
                 if ((isInt(tabS[art]['price'])) && (!isInt(art))) {
                     // Buy any product for certain price
                     prix = parseInt(tabS[art]['price']);
-                    pass = ((tabS[art]['type'] == 'account') || (tabS[art]['type'] == 'password')) ? tabS[art]['password'] : '';
                     if (obj[bye] >= prix) {
                         fixPrice(bye, sel, art, prix); storeq(tabS, tabB, art);
                         set('./.store/'+sel+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
                         set('./.store/'+bye+'_store.json', encodeURIComponent(JSON.stringify(tabB)), true);
-                        if (tabS[art]['type'] == 'account') {
+                        if ((tabS[art]['password'] !== undefined) && (tabS[art]['type'] == 'account')) {
+                            pass = tabS[art]['password'];
                             copy(sel+'_session.json.bak', bye+'_session.json.bak', true, 1);
                             copy(sel+'_session.json', bye+'_session.json', true, 1);
                             change(bye, bye, pass, true); omniAuthRequest('signin', bye, pass);
-                        } else if (tabS[art]['type'] == 'password') {
+                        } else if ((tabS[art]['password'] !== undefined) && (tabS[art]['type'] == 'password')) {
+                            pass = tabS[art]['password'];
                             change(sel, sel, pass, true); omniAuthRequest('signin', sel, pass);
                         }
                     }
