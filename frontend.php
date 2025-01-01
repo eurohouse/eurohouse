@@ -215,9 +215,9 @@ function jsonBookKeep(str) {
         eld = arr[el].split(' | '); arf[el] = arr[el];
     } for (el in arf) {
         eld = arr[el].split(' | ');
-        arl = (eld[4] == 'ERR') ? '<tr style="text-decoration:line-through;">' : '<tr>';
-        arl += '<td>@'+eld[0]+'</td>'; arl += (isInt(eld[1])) ? '<td>$'+eld[1]+'</td>' : '<td>'+eld[1]+'</td>';
-        arl += (isInt(eld[2])) ? '<td>$'+eld[2]+'</td>' : '<td>'+eld[2]+'</td>'; arl += '<td>$'+eld[3]+'</td>';
+        arl = (eld[5] == 'ERR') ? '<tr style="text-decoration:line-through;">' : '<tr>';
+        arl += '<td>@'+eld[1]+'</td>'; arl += (isInt(eld[2])) ? '<td>$'+eld[2]+'</td>' : '<td>'+eld[2]+'</td>';
+        arl += (isInt(eld[3])) ? '<td>$'+eld[3]+'</td>' : '<td>'+eld[3]+'</td>'; arl += '<td>$'+eld[4]+'</td>';
         ard = arl+'</tr>'+ard;
     } return ard;
 }
@@ -419,9 +419,11 @@ function fixPrice(sen, rec, deb, cre) {
     var statD = (isInt(stat[sen])) ? parseInt(stat[sen]) : 0;
     var statC = (isInt(stat[rec])) ? parseInt(stat[rec]) : 0;
     var statDr = parseInt(statD); var statCr = parseInt(statC);
-    var bal1 = (tran1 == '{}') ? statDr : (trans1[Object.keys(trans1)[Object.keys(trans1).length - 1]]).split(' | ')[4]; var bal2 = (tran2 == '{}') ? statCr : (trans2[Object.keys(trans2)[Object.keys(trans2).length - 1]]).split(' | ')[4];
+    var bal1 = (tran1 == '{}') ? statDr : (trans1[Object.keys(trans1)[Object.keys(trans1).length - 1]]).split(' | ')[4];
+    var bal2 = (tran2 == '{}') ? statCr : (trans2[Object.keys(trans2)[Object.keys(trans2).length - 1]]).split(' | ')[4];
     var statDt, statCt, statK, statV, statDi, statCi, statDn, statCn, statT;
-    var statDv = statDr - parseInt(bal1), statCv = statCr - parseInt(bal2);
+    var statDv = statDr - parseInt(bal1);
+    var statCv = statCr - parseInt(bal2);
     if ((isInt(deb)) && !(isInt(cre))) {
         statV = parseInt(deb); statK = cre; statT = cre;
         statD += statV; statC -= statV;
@@ -440,12 +442,12 @@ function fixPrice(sen, rec, deb, cre) {
     statCn = Math.abs(statCi - parseInt(bal2));
     statDt = (statDi == statD) ? 'OK' : 'ERR';
     statCt = (statCi == statC) ? 'OK' : 'ERR';
-    stat[sen] = parseInt(statD); stat[rec] = parseInt(statC);
-    trans1[isoformat(Date.now())+' UTC'] = (statDi < parseInt(bal1)) ? rec+' | '+statT+' | '+statDn+' | '+statDi+' | '+statDt : rec+' | '+statDn+' | '+statT+' | '+statDi+' | '+statDt;
-    trans2[isoformat(Date.now())+' UTC'] = (statCi < parseInt(bal2)) ? sen+' | '+statT+' | '+statCn+' | '+statCi+' | '+statCt : sen+' | '+statCn+' | '+statT+' | '+statCi+' | '+statCt;
+    stat[sen] = parseInt(statD), stat[rec] = parseInt(statC);
+    trans1[isoformat(Date.now())+' UTC'] = (statDi < parseInt(bal1)) ? sen+' | '+rec+' | '+statT+' | '+statDn+' | '+statDi+' | '+statDt : sen+' | '+rec+' | '+statDn+' | '+statT+' | '+statDi+' | '+statDt;
+    trans2[isoformat(Date.now())+' UTC'] = (statCi < parseInt(bal2)) ? rec+' | '+sen+' | '+statT+' | '+statCn+' | '+statCi+' | '+statCt : rec+' | '+sen+' | '+statCn+' | '+statT+' | '+statCi+' | '+statCt;
     if (!isInt(deb) && !isInt(cre)) {
-        trans1[isoformat(Date.now())+' UTC'] = rec+' | '+statT+' | '+statK+' | '+statDi+' | '+statDt;
-        trans2[isoformat(Date.now())+' UTC'] = sen+' | '+statK+' | '+statT+' | '+statCi+' | '+statCt;
+        trans1[isoformat(Date.now())+' UTC'] = sen+' | '+rec+' | '+statT+' | '+statK+' | '+statDi+' | '+statDt;
+        trans2[isoformat(Date.now())+' UTC'] = rec+' | '+sen+' | '+statK+' | '+statT+' | '+statCi+' | '+statCt;
     } set('./.book/'+sen+'_book.json', encodeURIComponent(JSON.stringify(trans1)), true);
     set('./.book/'+rec+'_book.json', encodeURIComponent(JSON.stringify(trans2)), true);
     set('dominion.json', JSON.stringify(stat), true);
