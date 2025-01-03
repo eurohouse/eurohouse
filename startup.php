@@ -164,10 +164,11 @@ function world_clock() {
                     $('.lowerGap').show(); $('.topbar').show();
                 }
             } document.querySelector(':root').style.setProperty('--backdrop-filter', effi[0]);
-            document.querySelector(':root').style.setProperty('--overlay-before-bg', effi[1]);
-            document.querySelector(':root').style.setProperty('--overlay-before-ani', effi[2]);
-            document.querySelector(':root').style.setProperty('--overlay-after-bg', effi[3]);
-            document.querySelector(':root').style.setProperty('--overlay-after-ani', effi[4]);
+            document.querySelector(':root').style.setProperty('--backdrop-opacity', effi[1]);
+            document.querySelector(':root').style.setProperty('--overlay-before-bg', effi[2]);
+            document.querySelector(':root').style.setProperty('--overlay-before-ani', effi[3]);
+            document.querySelector(':root').style.setProperty('--overlay-after-bg', effi[4]);
+            document.querySelector(':root').style.setProperty('--overlay-after-ani', effi[5]);
             var calls = arrjob(sysDefCallData.value,';',':');
             if (enzi[0].split('')[1] != 0) {
                 playAudio(tickerPlayer, sysDefTickingSound.value);
