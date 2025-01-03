@@ -205,16 +205,16 @@ body {
     90% { transform: translate(-3%, -3%); }
 }
 @keyframes snowfall {
-    0%, 100% { transform: translate(0%, 0%); }
-    10% { transform: translate(10%, -2%); }
-    20% { transform: translate(20%, 2%); }
-    30% { transform: translate(30%, -2%); }
-    40% { transform: translate(40%, 2%); }
-    50% { transform: translate(50%, -2%); }
-    60% { transform: translate(60%, 2%); }
-    70% { transform: translate(70%, -2%); }
-    80% { transform: translate(80%, 2%); }
-    90% { transform: translate(90%, -2%); }
+    0%, 100% { transform: scale(1%, 1%), translate(0%, 0%); }
+    10% { transform: scale(1%, 1%), translate(10%, -2%); }
+    20% { transform: scale(1%, 1%), translate(20%, 2%); }
+    30% { transform: scale(1%, 1%), translate(30%, -4%); }
+    40% { transform: scale(1%, 1%), translate(40%, 4%); }
+    50% { transform: scale(1%, 1%), translate(50%, -2%); }
+    60% { transform: scale(1%, 1%), translate(60%, 2%); }
+    70% { transform: scale(1%, 1%), translate(70%, -4%); }
+    80% { transform: scale(1%, 1%), translate(80%, 4%); }
+    90% { transform: scale(1%, 1%), translate(90%, -4%); }
 }
 a, p, b, i, span {
     color: var(--backtextcolor);

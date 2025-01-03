@@ -19,7 +19,7 @@ if ($userData['vintage'] != 0) {
     $vintageBackdropOpacity = "0.".round($userData['magnitude']/1.5);
     if ((date('n') < 2) || (date('n') > 11)) {
         $overlayBeforeBackground = "repeating-radial-gradient(ellipse at center, #000".$userData['magnitude'].", transparent ".round($userData['magnitude']/2.5)."px)";
-        $overlayBeforeAnimation = "showfall 0.45s steps(1) infinite";
+        $overlayBeforeAnimation = "showfall 10s steps(1) infinite";
         $overlayAfterBackground = "none";
         $overlayAfterAnimation = "none";
     } else {
