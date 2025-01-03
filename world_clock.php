@@ -17,24 +17,14 @@ $dateTimeStr = ($userData['timedisp'] != 0) ? date($userData['date_format']) : d
 if ($userData['vintage'] != 0) {
     $vintageBackdropFilter = "blur(0.".round($userData['magnitude']/1.5)."px)";
     $vintageBackdropOpacity = "0.".round($userData['magnitude']/1.5);
-    if ((date('n') < 2) || (date('n') > 11)) {
-        $overlayBeforeBackground = "repeating-radial-gradient(ellipse at center, #000".$userData['magnitude'].", transparent ".round($userData['magnitude']/2.5)."px 35vmin)";
-        $overlayBeforeAnimation = "showfall 10s steps(1) infinite";
-        $overlayAfterBackground = "repeating-radial-gradient(ellipse at center, #000".$userData['magnitude'].", transparent ".round($userData['magnitude']/2.5)."px 35vmin)";
-        $overlayAfterAnimation = "showfall 10s steps(1) infinite";
-    } else {
-        $overlayBeforeBackground = "repeating-linear-gradient(90deg, #000".$userData['magnitude']." 0 ".round($userData['magnitude']/2.5)."px, transparent ".round($userData['magnitude']/3.5)."px 35vmin)";
-        $overlayBeforeAnimation = "vlines 0.45s steps(1) infinite";
-        $overlayAfterBackground = "repeating-conic-gradient(#00000".$userData['magnitude']." 0%, transparent 0.00003%, transparent 0.0005%, transparent 0.00095%), repeating-conic-gradient(#00000".$userData['magnitude']." 0%, transparent 0.00005%, transparent 0.00015%, transparent 0.0009%)";
-        $overlayAfterAnimation = "grains 0.5s steps(1) infinite";
-    }
+    $overlayBeforeBackground = "repeating-linear-gradient(90deg, #000".$userData['magnitude']." 0 ".round($userData['magnitude']/2.5)."px, transparent ".round($userData['magnitude']/3.5)."px 35vmin)";
+    $overlayBeforeAnimation = "vlines 0.45s steps(1) infinite";
+    $overlayAfterBackground = "repeating-conic-gradient(#00000".$userData['magnitude']." 0%, transparent 0.00003%, transparent 0.0005%, transparent 0.00095%), repeating-conic-gradient(#00000".$userData['magnitude']." 0%, transparent 0.00005%, transparent 0.00015%, transparent 0.0009%)";
+    $overlayAfterAnimation = "grains 0.5s steps(1) infinite";
 } else {
-    $vintageBackdropFilter = "none";
-    $vintageBackdropOpacity = "none";
-    $overlayBeforeBackground = "none";
-    $overlayBeforeAnimation = "none";
-    $overlayAfterBackground = "none";
-    $overlayAfterAnimation = "none";
+    $vintageBackdropFilter = "none"; $vintageBackdropOpacity = "none";
+    $overlayBeforeBackground = "none"; $overlayBeforeAnimation = "none";
+    $overlayAfterBackground = "none"; $overlayAfterAnimation = "none";
 } $voc = $userSettings['vocabulary']; $uni = $userData['units'];
 $termDeb = (isset($voc[$uni]['Debit'])) ? $voc[$uni]['Debit'] : 'Debit';
 $termCre = (isset($voc[$uni]['Credit'])) ? $voc[$uni]['Credit'] : 'Credit';
@@ -46,10 +36,10 @@ $termScore = (isset($voc[$uni]['User Score Tab:'])) ? $voc[$uni]['User Score Tab
 $termClosed = (isset($voc[$uni]["The market is closed."])) ? $voc[$uni]["The market is closed."] : "The market is closed.";
 $termActive = (isset($voc[$uni]['Active Hours:'])) ? $voc[$uni]['Active Hours:'] : 'Active Hours:';
 $termAgent = (isset($voc[$uni]['Agent'])) ? $voc[$uni]['Agent'] : 'Agent';
-echo $dateTimeStr."\r\n\r\n". // Read Line 0
-$dateTimeCode." ".$userData['observe'].$userData['spectate']." ".rgbap($userData['back_color'], $userData['opacity'])."\r\n\r\n". // Read Line 1
-hHmMsS($alarmInTime)."\r\n\r\n". // Read Line 2
-$vintageBackdropFilter.";".$vintageBackdropOpacity.";".$overlayBeforeBackground.";".$overlayBeforeAnimation.";".$overlayAfterBackground.";".$overlayAfterAnimation."\r\n\r\n". // Read Line 3
-$userData['audio_volume'].' '.$userData['audio_speed'].' '.$userData['video_volume'].' '.$userData['video_speed'].' '.$userData['alarm_volume'].' '.$userData['timer_volume'].' '.$userData['loop_volume'].' '.$userData['rest_volume']."\r\n\r\n". // Read Line 4
-$termDeb.' | '.$termCre.' | '.$termBal.' | '.$termNom.' | '.$termQua.' | '.$termPri.' | '.$termScore.' | '.$termClosed.' | '.$termActive.' | '.$termAgent."\r\n\r\n". // Read Line 5
-$userData['pangram_'.(($userSettings['pangram'][$uni]) ? $userSettings['pangram'][$uni] : $userSettings['pangram']['default'])]; // Read Line 6
+/* ¶ 0 */ echo $dateTimeStr."\r\n\r\n".
+/* ¶ 1 */ $dateTimeCode." ".$userData['observe'].$userData['spectate']." ".rgbap($userData['back_color'], $userData['opacity'])."\r\n\r\n".
+/* ¶ 2 */ hHmMsS($alarmInTime)."\r\n\r\n".
+/* ¶ 3 */ $vintageBackdropFilter.";".$vintageBackdropOpacity.";".$overlayBeforeBackground.";".$overlayBeforeAnimation.";".$overlayAfterBackground.";".$overlayAfterAnimation."\r\n\r\n".
+/* ¶ 4 */ $userData['audio_volume'].' '.$userData['audio_speed'].' '.$userData['video_volume'].' '.$userData['video_speed'].' '.$userData['alarm_volume'].' '.$userData['timer_volume'].' '.$userData['loop_volume'].' '.$userData['rest_volume']."\r\n\r\n".
+/* ¶ 5 */ $termDeb.' | '.$termCre.' | '.$termBal.' | '.$termNom.' | '.$termQua.' | '.$termPri.' | '.$termScore.' | '.$termClosed.' | '.$termActive.' | '.$termAgent."\r\n\r\n". // Read Line 5
+/* ¶ 6 */ $userData['pangram_'.(($userSettings['pangram'][$uni]) ? $userSettings['pangram'][$uni] : $userSettings['pangram']['default'])];

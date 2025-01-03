@@ -19,24 +19,19 @@ if (isset($cont[$showFilename])) {
     $ent = $exem[$cont[$showFilename]];
     $showHead = (isset($ent['language'][$uni]['title'])) ? $ent['language'][$uni]['title'] : $cont[$showFilename]; if (isset($ent['height'])) {
         $showLength = (isset($loc['length'][$uni])) ? ((isset($loc['length'][$uni]['inch'])) ? incher($ent['height']) : round(($ent['height'] * $loc['length'][$uni]['coefficient']), 2).' '.$loc['length'][$uni]['sign']) : round(($ent['height'] * $loc['length']['default']['coefficient']), 2).' '.$loc['length']['default']['sign']; $showLengthLine = ' '.$showLength;
-    } else {
-        $showLengthLine = '';
-    } if (isset($ent['weight'])) {
+    } else { $showLengthLine = ''; }
+    if (isset($ent['weight'])) {
         $showMass = (isset($loc['mass'][$uni])) ? (round($ent['weight'] * $loc['mass'][$uni]['coefficient']).' '.$loc['mass'][$uni]['sign']) : round($ent['weight'] * $loc['mass']['default']['coefficient']).' '.$loc['mass']['default']['sign'];
         $showMassLine = $showMass;
-    } else {
-        $showMassLine = '';
-    } if (isset($ent['sizes'])) {
+    } else { $showMassLine = ''; }
+    if (isset($ent['sizes'])) {
         $showSizes = (isset($loc['length'][$uni]['inch'])) ? (round(explode('-', $ent['sizes'])[0] * $loc['length'][$uni]['coefficient']).'-'.round(explode('-', $ent['sizes'])[1] * $loc['length'][$uni]['coefficient']).'-'.round(explode('-', $ent['sizes'])[2] * $loc['length'][$uni]['coefficient'])) : (explode('-', $ent['sizes'])[0].'-'.explode('-', $ent['sizes'])[1].'-'.explode('-', $ent['sizes'])[2]); $showSizesLine = '('.$showSizes.')';
-    } else {
-        $showSizesLine = '';
-    } if (isset($ent['shoe_size'])) {
+    } else { $showSizesLine = ''; }
+    if (isset($ent['shoe_size'])) {
         $showShoeSize = (isset($loc['shoe_size'][$uni])) ? (($ent['shoe_size'] + $loc['shoe_size'][$uni]).' '.$uni) : ($ent['shoe_size'] + $loc['shoe_size']['default']).' '.$uni;
-    } else {
-        $showShoeSize = '';
-    } if (isset($ent['birthday'])) {
-        $bday = (isset($ent['birthday'])) ? $ent['birthday'] : 'January 1, 1970';
-        $showBirthAge = (round((time()-strtotime($bday))/(3600*24*365.25)));
+    } else { $showShoeSize = ''; }
+    if (isset($ent['birthday'])) {
+        $bday = (isset($ent['birthday'])) ? $ent['birthday'] : 'January 1, 1970'; $showBirthAge = (round((time()-strtotime($bday))/(3600*24*365.25)));
         $showBirthDay = date('j', strtotime($bday));
         $showBirthMonth = date('n', strtotime($bday));
         $showBirthCycle = date('z', strtotime($bday));
@@ -48,9 +43,8 @@ if (isset($cont[$showFilename])) {
         } else {
             $showBirthAgeDisp = $anno.' '.$showBirthAge;
         } $showBdayLine = zodiacSign($showBirthCycle).' '.$showBirthAgeDisp.' '.$showBirthCake;
-    } else {
-        $showBdayLine = '';
-    } $showLine = $showHead.' '.$showBdayLine.' '.$showLengthLine.' '.$showMassLine.' '.$showSizesLine.' '.$showShoeSize;
+    } else { $showBdayLine = ''; }
+    $showLine = $showHead.' '.$showBdayLine.' '.$showLengthLine.' '.$showMassLine.' '.$showSizesLine.' '.$showShoeSize;
     $showBody = (isset($ent['language'][$uni]['memoir'])) ? $ent['language'][$uni]['memoir'] : ((isset($ent['memoir'])) ? $ent['memoir'] : $showLine);
     $showURLMaison = (isset($ent['maison'])) ? $ent['maison'] : "";
     if (isset($ent['insignia'])) {
@@ -63,19 +57,18 @@ if (isset($cont[$showFilename])) {
 } else {
     $showHead = $userSettings['defaults']['title'];
     $showBody = ""; $showURLMaison = "";
-    $assignAvatar1 = $brightAvaFore.$userSettings['defaults']['avatar'].'.png';
-    $assignAvatar2 = $brightAvaBack.$userSettings['defaults']['avatar'].'.png';
+    $assignAvatar1 = $brightAvaFore.$userSettings['defaults']['avatar'].'.png'; $assignAvatar2 = $brightAvaBack.$userSettings['defaults']['avatar'].'.png';
 } $personAvatar1 = $brightAvaFore.$userData['avatar'].'.png';
 $personAvatar2 = $brightAvaBack.$userData['avatar'].'.png';
-echo $userData['title']."\r\n\r\n". // Read Line 0
-$showFilename."\r\n\r\n". // Read Line 1
-$assignAvatar1."\r\n\r\n". // Read Line 2
-$assignAvatar2."\r\n\r\n". // Read Line 3
-$userData['position']."\r\n\r\n". // Read Line 4
-$userData['censor'].":".$variations."\r\n\r\n". // Read Line 5
-$brightSysIcon.";".$brightRetIcon."\r\n\r\n". // Read Line 6
-$showHead."\r\n\r\n". // Read Line 7
-$showBody."\r\n\r\n". // Read Line 8
-$personAvatar1."\r\n\r\n". // Read Line 9
-$personAvatar2."\r\n\r\n". // Read Line 10
-$showURLMaison; // Read Line 11
+/* ¶ 0 */ echo $userData['title']."\r\n\r\n".
+/* ¶ 1 */ $showFilename."\r\n\r\n".
+/* ¶ 2 */ $assignAvatar1."\r\n\r\n".
+/* ¶ 3 */ $assignAvatar2."\r\n\r\n".
+/* ¶ 4 */ $userData['position']."\r\n\r\n".
+/* ¶ 5 */ $userData['censor'].":".$variations."\r\n\r\n".
+/* ¶ 6 */ $brightSysIcon.";".$brightRetIcon."\r\n\r\n".
+/* ¶ 7 */ $showHead."\r\n\r\n".
+/* ¶ 8 */ $showBody."\r\n\r\n".
+/* ¶ 9 */ $personAvatar1."\r\n\r\n".
+/* ¶ 10 */ $personAvatar2."\r\n\r\n".
+/* ¶ 11 */ $showURLMaison;

@@ -27,25 +27,23 @@ $userBook = jsonopen('./.book/'.$cookie.'_book.json', true);
 $userStore = jsonopen('./.store/'.$cookie.'_store.json', true);
 $sessList = str_replace('./','',(glob('./*_session.json')));
 $othCT = []; foreach ($sessList as $key=>$value) {
-    $testArr = arropen($value, json_encode($userSettings['defaults']), 'DEFAULT');
-    $othTZ = dec_tz($testArr['timezone']);
-    date_default_timezone_set($othTZ);
-    $othCT[] = date('H');
-} echo $cookie."\r\n\r\n". // Read Line 0
-valstr($bindingData,';',':')."\r\n\r\n". // Read Line 1
-valstr($poweredData,';',':')."\r\n\r\n". // Read Line 2
-valstr($autoData,';',':')."\r\n\r\n". // Read Line 3
-valstr($frndData,';',':')."\r\n\r\n". // Read Line 4
-valstr($toolData,';',':')."\r\n\r\n". // Read Line 5
-valstr($callData,';',':')."\r\n\r\n". // Read Line 6
-$newsFeed."\r\n\r\n". // Read Line 7
-$userBook."\r\n\r\n". // Read Line 8
-$userStore."\r\n\r\n". // Read Line 9
-json_encode(userlocks($locksArr, $userSettings['collections'], $avaPref), JSON_UNESCAPED_UNICODE)."\r\n\r\n". // Read Line 10
-implode('//', $codexBoxArr)."\\\\".implode('//', $speechBoxArr)."\r\n\r\n". // Read Line 11
-$usersList.";".$booksList.";".$storeList."\r\n\r\n". // Read Line 12
-implode(' ', $othCT)."\r\n\r\n". // Read Line 13
-$notesList."\r\n\r\n". // Read Line 14
-$notesJSON."\r\n\r\n". // Read Line 15
-$tutorList."\r\n\r\n". // Read Line 16
-$tutorJSON; // Read Line 17
+    $testArr = arropen($value, json_encode($userSettings['defaults']), 'DEFAULT'); $othTZ = dec_tz($testArr['timezone']);
+    date_default_timezone_set($othTZ); $othCT[] = date('H');
+} /* ¶ 0 */ echo $cookie."\r\n\r\n".
+/* ¶ 1 */ valstr($bindingData,';',':')."\r\n\r\n".
+/* ¶ 2 */ valstr($poweredData,';',':')."\r\n\r\n".
+/* ¶ 3 */ valstr($autoData,';',':')."\r\n\r\n".
+/* ¶ 4 */ valstr($frndData,';',':')."\r\n\r\n".
+/* ¶ 5 */ valstr($toolData,';',':')."\r\n\r\n".
+/* ¶ 6 */ valstr($callData,';',':')."\r\n\r\n".
+/* ¶ 7 */ $newsFeed."\r\n\r\n".
+/* ¶ 8 */ $userBook."\r\n\r\n".
+/* ¶ 9 */ $userStore."\r\n\r\n".
+/* ¶ 10 */ json_encode(userlocks($locksArr, $userSettings['collections'], $avaPref), JSON_UNESCAPED_UNICODE)."\r\n\r\n".
+/* ¶ 11 */ implode('//', $codexBoxArr)."\\\\".implode('//', $speechBoxArr)."\r\n\r\n".
+/* ¶ 12 */ $usersList.";".$booksList.";".$storeList."\r\n\r\n".
+/* ¶ 13 */ implode(' ', $othCT)."\r\n\r\n".
+/* ¶ 14 */ $notesList."\r\n\r\n".
+/* ¶ 15 */ $notesJSON."\r\n\r\n".
+/* ¶ 16 */ $tutorList."\r\n\r\n".
+/* ¶ 17 */ $tutorJSON;
