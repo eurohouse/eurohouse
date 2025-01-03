@@ -204,6 +204,18 @@ body {
     80% { transform: translate(2%, 2%); }
     90% { transform: translate(-3%, -3%); }
 }
+@keyframes snowfall {
+    0%, 100% { transform: translate(0%, 0%); }
+    10% { transform: translate(10%, -2%); }
+    20% { transform: translate(20%, 2%); }
+    30% { transform: translate(30%, -2%); }
+    40% { transform: translate(40%, 2%); }
+    50% { transform: translate(50%, -2%); }
+    60% { transform: translate(60%, 2%); }
+    70% { transform: translate(70%, -2%); }
+    80% { transform: translate(80%, 2%); }
+    90% { transform: translate(90%, -2%); }
+}
 a, p, b, i, span {
     color: var(--backtextcolor);
     font-family: "euro"; font-size: var(--backsize);
