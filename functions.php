@@ -415,9 +415,13 @@ function wordfx($word, $sup, array $voc, array $ses) {
             case '[year]':
                 $res = date('Y'); break;
             case '[years]':
-                $qN = date('n') - 1;
-                $qM = intval(($qN > 1) && ($qN < 8));
-                $res = ($qM != 0) ? date('Y') : date('Y').'/'.(date('Y')+1); break;
+                if (date('n') < 2) {
+                    $res = (date('Y')-1).'/'.date('Y');
+                } elseif (date('n') > 11) {
+                    $res = date('Y').'/'.(date('Y')+1);
+                } else {
+                    $res = date('Y');
+                } break;
             case '[newyear]':
                 $res = (date('m') < 12) ? date('Y') : (date('Y')+1); break;
             case '[id]':
