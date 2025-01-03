@@ -18,9 +18,9 @@ if ($userData['vintage'] != 0) {
     $vintageBackdropFilter = "blur(0.".round($userData['magnitude']/1.5)."px)";
     $vintageBackdropOpacity = "0.".round($userData['magnitude']/1.5);
     if ((date('n') < 2) || (date('n') > 11)) {
-        $overlayBeforeBackground = "repeating-radial-gradient(ellipse at center, #000".$userData['magnitude'].", transparent ".round($userData['magnitude']/2.5)."px)";
+        $overlayBeforeBackground = "repeating-radial-gradient(ellipse at center, #000".$userData['magnitude'].", transparent ".round($userData['magnitude']/2.5)."px 35vmin)";
         $overlayBeforeAnimation = "showfall 10s steps(1) infinite";
-        $overlayAfterBackground = "repeating-radial-gradient(ellipse at center, #000".$userData['magnitude'].", transparent ".round($userData['magnitude']/2.5)."px)";
+        $overlayAfterBackground = "repeating-radial-gradient(ellipse at center, #000".$userData['magnitude'].", transparent ".round($userData['magnitude']/2.5)."px 35vmin)";
         $overlayAfterAnimation = "showfall 10s steps(1) infinite";
     } else {
         $overlayBeforeBackground = "repeating-linear-gradient(90deg, #000".$userData['magnitude']." 0 ".round($userData['magnitude']/2.5)."px, transparent ".round($userData['magnitude']/3.5)."px 35vmin)";
