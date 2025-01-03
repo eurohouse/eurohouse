@@ -20,8 +20,8 @@ if ($userData['vintage'] != 0) {
     if ((date('n') < 2) || (date('n') > 11)) {
         $overlayBeforeBackground = "repeating-radial-gradient(ellipse at center, #000".$userData['magnitude'].", transparent ".round($userData['magnitude']/2.5)."px)";
         $overlayBeforeAnimation = "showfall 10s steps(1) infinite";
-        $overlayAfterBackground = "none";
-        $overlayAfterAnimation = "none";
+        $overlayAfterBackground = "repeating-radial-gradient(ellipse at center, #000".$userData['magnitude'].", transparent ".round($userData['magnitude']/2.5)."px)";
+        $overlayAfterAnimation = "showfall 10s steps(1) infinite";
     } else {
         $overlayBeforeBackground = "repeating-linear-gradient(90deg, #000".$userData['magnitude']." 0 ".round($userData['magnitude']/2.5)."px, transparent ".round($userData['magnitude']/3.5)."px 35vmin)";
         $overlayBeforeAnimation = "vlines 0.45s steps(1) infinite";
