@@ -204,18 +204,6 @@ body {
     80% { transform: translate(2%, 2%); }
     90% { transform: translate(-3%, -3%); }
 }
-@keyframes snowfall {
-    0%, 100% { transform: scale(1%, 1%), translate(0%, 0%); }
-    10% { transform: scale(1%, 1%), translate(10%, -2%); }
-    20% { transform: scale(1%, 1%), translate(20%, 2%); }
-    30% { transform: scale(1%, 1%), translate(30%, -4%); }
-    40% { transform: scale(1%, 1%), translate(40%, 4%); }
-    50% { transform: scale(1%, 1%), translate(50%, -2%); }
-    60% { transform: scale(1%, 1%), translate(60%, 2%); }
-    70% { transform: scale(1%, 1%), translate(70%, -4%); }
-    80% { transform: scale(1%, 1%), translate(80%, 4%); }
-    90% { transform: scale(1%, 1%), translate(90%, -4%); }
-}
 a, p, b, i, span {
     color: var(--backtextcolor);
     font-family: "euro"; font-size: var(--backsize);
