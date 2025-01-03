@@ -32,9 +32,8 @@
     --blur-filter: blur(<?=$session['blur'];?>px) brightness(<?=$session['brightness'];?>%) saturate(<?=$session['saturation'];?>%) contrast(<?=$session['contrast'];?>%) sepia(<?=$session['sepia'];?>%) grayscale(<?=$session['grayscale'];?>%) hue-rotate(<?=$session['hue'];?>deg);
     --gradient-fore: linear-gradient(180deg, var(--forecolor) 0%, var(--arcforecolor) 100%);
     --gradient-input: linear-gradient(180deg, var(--inputcolor) 0%, var(--arcinputcolor) 100%);
-    --gradient-power: linear-gradient(var(--graddeg), var(--forecolor) 0%, var(--arcforecolor) 100%);
-    --backdrop-filter: none; --overlay-before-bg: none;
-    --overlay-before-ani: none; --overlay-after-bg: none; --overlay-after-ani: none;
+    --gradient-power: linear-gradient(var(--graddeg), var(--forecolor) 0%, var(--arcforecolor) 100%); --backdrop-filter: none; --overlay-before-bg: none; --overlay-before-ani: none;
+    --overlay-after-bg: none; --overlay-after-ani: none;
 }
 @font-face {
     font-family: "euro";
@@ -168,10 +167,16 @@ body {
     filter: var(--backdrop-filter);
 }
 .overlay:before {
-    content: ''; position: absolute;
+    content: ''; position: absolute; opacity: 0.7;
     width: 100%; height: 100%; z-index: -1000; top: 0; left: 0;
     background: var(--overlay-before-bg);
     animation: var(--overlay-before-ani);
+}
+.overlay:after {
+    content: ''; position: absolute; opacity: 0.7;
+    width: 100%; height: 100%; z-index: -1000; top: 0; left: 0;
+    background: var(--overlay-after-bg);
+    animation: var(--overlay-after-ani);
 }
 @keyframes vlines {
     0%, 100% { transform: translateX(0%); opacity: 0.5; }
@@ -184,12 +189,6 @@ body {
     70% { transform: translateX(-3%); opacity: 0.5; }
     80% { transform: translateX(10%); opacity: 0.25; }
     90% { transform: translateX(-2%); }
-}
-.overlay:after {
-    content: ''; position: absolute;
-    width: 100%; height: 100%; z-index: -1000; top: 0; left: 0;
-    opacity: 0.2; background-image: var(--overlay-after-bg);
-    animation: var(--overlay-after-ani);
 }
 @keyframes grains {
     0%, 100% { transform: translate(0%, 0%); }
