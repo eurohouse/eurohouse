@@ -208,9 +208,7 @@ a, p, b, i, span {
     color: var(--backtextcolor);
     font-family: "euro"; font-size: var(--backsize);
     background: var(--backcolor);
-    padding: 0 10px;
-    -webkit-box-decoration-break: clone;
-	box-decoration-break: clone;
+    text-shadow: #FC0 1px 0 10px;
 }
 table, tr, td, th {
     color: var(--backtextcolor);
