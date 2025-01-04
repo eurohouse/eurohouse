@@ -111,11 +111,17 @@
 } else if (event.keyCode == 27) {
     this.value = 'inset 0px 0px #FFFFFF, inset 0px 0px #FFFFFF';
 } else if (event.keyCode == 8) { handleInput(this.value);
-} else if (event.keyCode == 46) { handleInput(this.value); }" oninput="handleInput(this.value, true);"><br>
+} else if (event.keyCode == 46) { handleInput(this.value); }" oninput="handleInput(this.value, true);">
 <input type="text" id="setTextBoxShadow" style="width:86%;" value="<?=$session['text_box_shadow'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('text_box_shadow', this.value);
 } else if (event.keyCode == 27) {
     this.value = 'inset 0px 0px #FFFFFF, inset 0px 0px #FFFFFF';
+} else if (event.keyCode == 8) { handleInput(this.value);
+} else if (event.keyCode == 46) { handleInput(this.value); }" oninput="handleInput(this.value, true);">
+<input type="text" id="setTextShadow" style="width:86%;" value="<?=$session['text_shadow'];?>" onkeydown="if (event.keyCode == 13) {
+    setdata('text_shadow', this.value);
+} else if (event.keyCode == 27) {
+    this.value = '#605F60 1px 0 10px';
 } else if (event.keyCode == 8) { handleInput(this.value);
 } else if (event.keyCode == 46) { handleInput(this.value); }" oninput="handleInput(this.value, true);"><br>
 <input type="text" id="setBorderRadius" style="width:15%;" value="<?=$session['radius'];?>" onkeydown="if (event.keyCode == 13) {

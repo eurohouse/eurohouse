@@ -27,6 +27,7 @@
     --radius: <?=$session['radius'];?>px;
     --box-shadow: <?=$session['box_shadow'];?>;
     --text-box-shadow: <?=$session['text_box_shadow'];?>;
+    --text-shadow: <?=$session['text_shadow'];?>;
     --position: <?=$session['position'];?>;
     --filter: brightness(<?=$session['brightness'];?>%) saturate(<?=$session['saturation'];?>%) contrast(<?=$session['contrast'];?>%) sepia(<?=$session['sepia'];?>%) grayscale(<?=$session['grayscale'];?>%) hue-rotate(<?=$session['hue'];?>deg);
     --blur-filter: blur(<?=$session['blur'];?>px) brightness(<?=$session['brightness'];?>%) saturate(<?=$session['saturation'];?>%) contrast(<?=$session['contrast'];?>%) sepia(<?=$session['sepia'];?>%) grayscale(<?=$session['grayscale'];?>%) hue-rotate(<?=$session['hue'];?>deg);

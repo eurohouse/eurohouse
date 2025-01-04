@@ -395,7 +395,7 @@
         "reticle_choice_3": "camera", "reticle_choice_4": "sniper", "reticle_choice_5": "german",
         "radius": 7, "gradient": 180, "magnitude": 5,
         "box_shadow": "inset 0px 0px #FFFFFF, inset 0px 0px #FFFFFF",
-        "text_box_shadow": "inset 0px 0px #FFFFFF, inset 0px 0px #FFFFFF",
+        "text_box_shadow": "inset 0px 0px #FFFFFF, inset 0px 0px #FFFFFF", "text_shadow": "#605F60 1px 0 10px",
         "back_size": 14, "fore_size": 14, "input_size": 14, "head1_size": 17, "head2_size": 16, "head3_size": 15, "disp_size": 18, "priv1_size": 14, "priv2_size": 14, "priv3_size": 14,
         "opacity": 64, "blur": 0, "brightness": 100, "saturation": 100,
         "contrast": 100, "sepia": 0, "grayscale": 0, "hue": 0,
