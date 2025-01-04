@@ -208,7 +208,7 @@ body {
 a, p, b, i, span {
     color: var(--backtextcolor);
     font-family: "euro"; font-size: var(--backsize);
-    text-shadow: #FC0 1px 0 10px;
+    text-shadow: var(--text-shadow);
 }
 table, tr, td, th {
     color: var(--backtextcolor);
