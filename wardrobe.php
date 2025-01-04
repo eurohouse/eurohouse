@@ -27,6 +27,7 @@
     --radius: <?=$session['radius'];?>px;
     --box-shadow: <?=$session['box_shadow'];?>;
     --text-box-shadow: <?=$session['text_box_shadow'];?>;
+    --pad-box-shadow: -10px 0 0 #<?=$session['back_color'];?>, 10px 0 0 #<?=$session['back_color'];?>;
     --position: <?=$session['position'];?>;
     --filter: brightness(<?=$session['brightness'];?>%) saturate(<?=$session['saturation'];?>%) contrast(<?=$session['contrast'];?>%) sepia(<?=$session['sepia'];?>%) grayscale(<?=$session['grayscale'];?>%) hue-rotate(<?=$session['hue'];?>deg);
     --blur-filter: blur(<?=$session['blur'];?>px) brightness(<?=$session['brightness'];?>%) saturate(<?=$session['saturation'];?>%) contrast(<?=$session['contrast'];?>%) sepia(<?=$session['sepia'];?>%) grayscale(<?=$session['grayscale'];?>%) hue-rotate(<?=$session['hue'];?>deg);
@@ -102,6 +103,7 @@ body {
     background-repeat: no-repeat; background-position: var(--position);
     background-color: var(--backcolor); color: var(--backtextcolor);
     font-family: "euro"; font-size: var(--backsize); overflow: hidden;
+    display: inline; box-shadow: var(--pad-box-shadow);
 }
 .topBarItem {
     border: none; border-radius: 0px; position: relative;
