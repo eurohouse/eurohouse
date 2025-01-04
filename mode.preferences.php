@@ -121,7 +121,7 @@
 <input type="text" id="setTextShadow" style="width:86%;" value="<?=$session['text_shadow'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('text_shadow', this.value);
 } else if (event.keyCode == 27) {
-    this.value = '#605F60 1px 0 10px';
+    this.value = '#000000 3px 3px 3px, #000000 -3px -3px 3px, #000000 3px -3px 3px, #000000 -3px 3px 3px';
 } else if (event.keyCode == 8) { handleInput(this.value);
 } else if (event.keyCode == 46) { handleInput(this.value); }" oninput="handleInput(this.value, true);"><br>
 <input type="text" id="setBorderRadius" style="width:15%;" value="<?=$session['radius'];?>" onkeydown="if (event.keyCode == 13) {
