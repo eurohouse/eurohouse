@@ -106,19 +106,19 @@
 <option id="<?=$value;?>" <?php if (withReq($session['suffer_sound']) == $value) { ?> selected <?php } ?>>
 <?=$value;?></option><?php } ?></select><br>
 <label><?=term('User Interface:', $settings['vocabulary'], $session['units']);?></label><br>
-<input type="text" id="setBoxShadow" style="width:25%;" value="<?=$session['box_shadow'];?>" onkeydown="if (event.keyCode == 13) {
+<input type="text" id="setBoxShadow" style="width:27%;" value="<?=$session['box_shadow'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('box_shadow', this.value);
 } else if (event.keyCode == 27) {
     this.value = 'inset 0px 0px #FFFFFF, inset 0px 0px #FFFFFF';
 } else if (event.keyCode == 8) { handleInput(this.value);
 } else if (event.keyCode == 46) { handleInput(this.value); }" oninput="handleInput(this.value, true);">
-<input type="text" id="setTextBoxShadow" style="width:25%;" value="<?=$session['text_box_shadow'];?>" onkeydown="if (event.keyCode == 13) {
+<input type="text" id="setTextBoxShadow" style="width:27%;" value="<?=$session['text_box_shadow'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('text_box_shadow', this.value);
 } else if (event.keyCode == 27) {
     this.value = 'inset 0px 0px #FFFFFF, inset 0px 0px #FFFFFF';
 } else if (event.keyCode == 8) { handleInput(this.value);
 } else if (event.keyCode == 46) { handleInput(this.value); }" oninput="handleInput(this.value, true);">
-<input type="text" id="setTextShadow" style="width:25%;" value="<?=$session['text_shadow'];?>" onkeydown="if (event.keyCode == 13) {
+<input type="text" id="setTextShadow" style="width:27%;" value="<?=$session['text_shadow'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('text_shadow', this.value);
 } else if (event.keyCode == 27) {
     this.value = '#000000 3px 3px 3px, #000000 -3px -3px 3px, #000000 3px -3px 3px, #000000 -3px 3px 3px';
