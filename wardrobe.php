@@ -27,7 +27,6 @@
     --radius: <?=$session['radius'];?>px;
     --box-shadow: <?=$session['box_shadow'];?>;
     --text-box-shadow: <?=$session['text_box_shadow'];?>;
-    --pad-box-shadow: -10px 0 0 #<?=$session['back_color'];?>, 10px 0 0 #<?=$session['back_color'];?>;
     --position: <?=$session['position'];?>;
     --filter: brightness(<?=$session['brightness'];?>%) saturate(<?=$session['saturation'];?>%) contrast(<?=$session['contrast'];?>%) sepia(<?=$session['sepia'];?>%) grayscale(<?=$session['grayscale'];?>%) hue-rotate(<?=$session['hue'];?>deg);
     --blur-filter: blur(<?=$session['blur'];?>px) brightness(<?=$session['brightness'];?>%) saturate(<?=$session['saturation'];?>%) contrast(<?=$session['contrast'];?>%) sepia(<?=$session['sepia'];?>%) grayscale(<?=$session['grayscale'];?>%) hue-rotate(<?=$session['hue'];?>deg);
@@ -215,7 +214,7 @@ table, tr, td, th {
     font-family: "euro"; font-weight: normal;
     font-size: var(--backsize); text-align: center;
     border-collapse: separate; border-spacing: 0;
-    box-shadow: var(--pad-box-shadow);
+    background: var(--backcolor);
 }
 table thead {
     color: var(--backtextcolor);
@@ -223,7 +222,7 @@ table thead {
     font-size: var(--backsize); text-align: center;
     position: sticky; z-index: 1;
     inset-block-start: 0;
-    box-shadow: var(--pad-box-shadow);
+    background: var(--backcolor);
 }
 table tfoot {
     color: var(--backtextcolor);
@@ -231,7 +230,7 @@ table tfoot {
     font-size: var(--backsize); text-align: center;
     position: sticky; z-index: 1;
     inset-block-end: 0;
-    box-shadow: var(--pad-box-shadow);
+    background: var(--backcolor);
 }
 img { position: relative; }
 input[type=button], input[type=image], button {
@@ -269,17 +268,17 @@ option { background-color: var(--inputcolor); color: var(--inputtextcolor); }
 h1 {
     color: var(--backtextcolor); font-family: "euro";
     font-size: var(--head1size); font-weight: normal;
-    box-shadow: var(--pad-box-shadow);
+    background: var(--backcolor);
 }
 h2 {
     color: var(--backtextcolor); font-family: "euro";
     font-size: var(--head2size); font-weight: normal;
-    box-shadow: var(--pad-box-shadow);
+    background: var(--backcolor);
 }
 h3 {
     color: var(--backtextcolor); font-family: "euro";
     font-size: var(--head3size); font-weight: normal;
-    box-shadow: var(--pad-box-shadow);
+    background: var(--backcolor);
 }
 .block { color: var(--backtextcolor); font-family: "euro"; font-size: 0.2em; top: 3px; }
 .userDefine {
