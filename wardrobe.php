@@ -208,6 +208,7 @@ a, p, b, i, span {
     color: var(--backtextcolor);
     font-family: "euro"; font-size: var(--backsize);
     background: var(--backcolor);
+    line-height: 56px;
     -webkit-box-decoration-break: clone;
 	box-decoration-break: clone;
 }
