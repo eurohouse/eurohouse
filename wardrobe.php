@@ -208,14 +208,14 @@ body {
 a, p, b, i, span {
     color: var(--backtextcolor);
     font-family: "euro"; font-size: var(--backsize);
-    display: inline; box-shadow: var(--pad-box-shadow);
+    box-shadow: var(--pad-box-shadow);
 }
 table, tr, td, th {
     color: var(--backtextcolor);
     font-family: "euro"; font-weight: normal;
     font-size: var(--backsize); text-align: center;
     border-collapse: separate; border-spacing: 0;
-    display: inline; box-shadow: var(--pad-box-shadow);
+    box-shadow: var(--pad-box-shadow);
 }
 table thead {
     color: var(--backtextcolor);
@@ -223,7 +223,7 @@ table thead {
     font-size: var(--backsize); text-align: center;
     position: sticky; z-index: 1;
     inset-block-start: 0;
-    display: inline; box-shadow: var(--pad-box-shadow);
+    box-shadow: var(--pad-box-shadow);
 }
 table tfoot {
     color: var(--backtextcolor);
@@ -231,7 +231,7 @@ table tfoot {
     font-size: var(--backsize); text-align: center;
     position: sticky; z-index: 1;
     inset-block-end: 0;
-    display: inline; box-shadow: var(--pad-box-shadow);
+    box-shadow: var(--pad-box-shadow);
 }
 img { position: relative; }
 input[type=button], input[type=image], button {
@@ -269,17 +269,17 @@ option { background-color: var(--inputcolor); color: var(--inputtextcolor); }
 h1 {
     color: var(--backtextcolor); font-family: "euro";
     font-size: var(--head1size); font-weight: normal;
-    display: inline; box-shadow: var(--pad-box-shadow);
+    box-shadow: var(--pad-box-shadow);
 }
 h2 {
     color: var(--backtextcolor); font-family: "euro";
     font-size: var(--head2size); font-weight: normal;
-    display: inline; box-shadow: var(--pad-box-shadow);
+    box-shadow: var(--pad-box-shadow);
 }
 h3 {
     color: var(--backtextcolor); font-family: "euro";
     font-size: var(--head3size); font-weight: normal;
-    display: inline; box-shadow: var(--pad-box-shadow);
+    box-shadow: var(--pad-box-shadow);
 }
 .block { color: var(--backtextcolor); font-family: "euro"; font-size: 0.2em; top: 3px; }
 .userDefine {
