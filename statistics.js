@@ -13,7 +13,7 @@ function scores(sta) {
         if (sti[sta]=='μ') { obj=arrjob(arr,';',':'); }
     } else { obj=jsonstr(arr); }
     var res='',sortable={},ordered={};
-    var dat={},am=se=fo=ex=0,epr=sysDefPrefix.value;
+    var dat=af={},am=se=fo=ex=em=0,epr=sysDefPrefix.value;
     if (sta=='bind') {
         ordered=Object.keys(obj).sort().reduce(
             (obd,key) => { obd[key]=obj[key]; return obd; }, {}
@@ -63,7 +63,7 @@ function scores(sta) {
             (obd,key) => { obd[key]=obj[key]; return obd; }, {}
         ); for (indi in ordered) {
             if ((ordered[indi]!==undefined)||(indi!='')) {
-                var af=(ordered[indi]!='')?ordered[indi]:"NULL";
+                af=(ordered[indi]!='')?ordered[indi]:"NULL";
                 res+="<input type='button' style='width:28%;' value='@"+indi+"'>";
                 res+="<input type='button' style='width:48%;' value='"+af+"'>";
                 res+="<input type='image' class='power' src='"+epr+"copy.png"+"' onclick='navigator.clipboard.writeText(&#34;"+indi+"&#34;);'>";
@@ -77,7 +77,7 @@ function scores(sta) {
             (obd,key) => { obd[key]=obj[key]; return obd; }, {}
         ); for (indi in ordered) {
             if ((ordered[indi]!==undefined)||(indi!='')) {
-                dat=jsonstr(openJournal(indi,sysDefStoreList,sysDefStoreJSONs)); var ex=am=se=fo=em=0;
+                dat=jsonstr(openJournal(indi,sysDefStoreList,sysDefStoreJSONs));
                 if ((dat[ordered[indi]]!==undefined)&&(typeof(dat[ordered[indi]])=='object')&&(ordered[indi]!='')) {
                     ex=((dat[ordered[indi]]['finite']!==undefined)&&(isInt(dat[ordered[indi]]['finite']))&&(dat[ordered[indi]]['finite']==1))?1:0;
                     am=((dat[ordered[indi]]['amount']!==undefined)&&(isInt(dat[ordered[indi]]['amount']))&&(dat[ordered[indi]]['amount']>0))?parseInt(dat[ordered[indi]]['amount']):0;
@@ -99,7 +99,7 @@ function scores(sta) {
             Object.entries(obj).sort(([,a],[,b])=>b['Country']-a['Country'])
         ); for (indi in sortable) {
             if ((sortable[indi]!==undefined)&&(indi!='')) {
-                var af=jsonstr(sysDefLocaleData.value);
+                af=jsonstr(sysDefLocaleData.value);
                 if (af[indi]!==undefined) {
                     res+="<input type='image' class='power' src='Flag."+sortable[indi]['Country']+".png"+"'>";
                 } else {
