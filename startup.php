@@ -228,13 +228,13 @@ function visual_effects() {
     document.querySelector(':root').style.setProperty('--blur-filter','blur('+sysDefBlur.value+'px) brightness('+sysDefBrightness.value+'%) saturate('+sysDefSaturation.value+'%) contrast('+sysDefContrast.value+'%) sepia('+sysDefSepia.value+'%) grayscale('+sysDefGrayscale.value+'%) hue-rotate('+sysDefHue.value+'deg)');
     document.querySelector(':root').style.setProperty('--filter','brightness('+sysDefBrightness.value+'%) saturate('+sysDefSaturation.value+'%) contrast('+sysDefContrast.value+'%) sepia('+sysDefSepia.value+'%) grayscale('+sysDefGrayscale.value+'%) hue-rotate('+sysDefHue.value+'deg)');
     if (sysDefGloss.value==1) {
-        $('.power').css('background','linear-gradient('+sysDefGradient.value+'deg, #'+sysDefForeColor.value+' 0%, #'+sysDefArcForeColor.value+' 100%)');
-        document.querySelector(':root').style.setProperty('--gradient-fore','linear-gradient(180deg, #'+sysDefForeColor.value+' 0%, #'+sysDefArcForeColor.value+' 100%)');
-        document.querySelector(':root').style.setProperty('--gradient-input','linear-gradient(180deg, #'+sysDefInputColor.value+' 0%, #'+sysDefArcInputColor.value+' 100%)');
+        $('.power').css('background','linear-gradient('+sysDefGradient.value+'deg, '+sysDefForeColor.value+' 0%, '+sysDefArcForeColor.value+' 100%)');
+        document.querySelector(':root').style.setProperty('--gradient-fore','linear-gradient(180deg, '+sysDefForeColor.value+' 0%, '+sysDefArcForeColor.value+' 100%)');
+        document.querySelector(':root').style.setProperty('--gradient-input','linear-gradient(180deg, '+sysDefInputColor.value+' 0%, '+sysDefArcInputColor.value+' 100%)');
     } else {
-        $('.power').css('background','linear-gradient('+sysDefGradient.value+'deg, #'+sysDefForeColor.value+' 0%, #'+sysDefForeColor.value+' 100%)');
-        document.querySelector(':root').style.setProperty('--gradient-fore','linear-gradient(180deg, #'+sysDefForeColor.value+' 0%, #'+sysDefForeColor.value+' 100%)');
-        document.querySelector(':root').style.setProperty('--gradient-input','linear-gradient(180deg, #'+sysDefInputColor.value+' 0%, #'+sysDefInputColor.value+' 100%)');
+        $('.power').css('background','linear-gradient('+sysDefGradient.value+'deg, '+sysDefForeColor.value+' 0%, '+sysDefForeColor.value+' 100%)');
+        document.querySelector(':root').style.setProperty('--gradient-fore','linear-gradient(180deg, '+sysDefForeColor.value+' 0%, '+sysDefForeColor.value+' 100%)');
+        document.querySelector(':root').style.setProperty('--gradient-input','linear-gradient(180deg, '+sysDefInputColor.value+' 0%, '+sysDefInputColor.value+' 100%)');
     } if (requestMode.value=='visual_effects') {
         opacityInd.value=sysDefOpacity.value;
         blurInd.value=sysDefBlur.value+'px';
