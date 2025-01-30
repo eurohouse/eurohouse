@@ -100,8 +100,7 @@ function scores(sta) {
         ); for (indi in sortable) {
             if ((sortable[indi]!==undefined)&&(indi!='')) {
                 af=jsonstr(sysDefLocaleData.value);
-                console.log(af);
-                if (af[indi]!==undefined) {
+                if (af[sortable[indi]['Country']]!==undefined) {
                     res+="<input type='image' class='power' src='Flag."+sortable[indi]['Country']+".png"+"'>";
                 } else {
                     res+="<input type='image' class='power' src='Flag.UN.png"+"'>";
