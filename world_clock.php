@@ -37,7 +37,7 @@ $termClosed = (isset($voc[$uni]["The market is closed."])) ? $voc[$uni]["The mar
 $termActive = (isset($voc[$uni]['Active Hours:'])) ? $voc[$uni]['Active Hours:'] : 'Active Hours:';
 $termAgent = (isset($voc[$uni]['Agent'])) ? $voc[$uni]['Agent'] : 'Agent';
 /* ¶ 0 */ echo $dateTimeStr."\r\n\r\n".
-/* ¶ 1 */ $dateTimeCode." ".$userData['observe'].$userData['spectate']." ".rgbap($userData['back_color'], $userData['opacity'])."\r\n\r\n".
+/* ¶ 1 */ $dateTimeCode." ".$userData['observe'].$userData['spectate']." ".rgbap($userData['back_color'],$userData['opacity'])."\r\n\r\n".
 /* ¶ 2 */ hHmMsS($alarmInTime)."\r\n\r\n".
 /* ¶ 3 */ $vintageBackdropFilter.";".$vintageBackdropOpacity.";".$overlayBeforeBackground.";".$overlayBeforeAnimation.";".$overlayAfterBackground.";".$overlayAfterAnimation."\r\n\r\n".
 /* ¶ 4 */ $userData['audio_volume'].' '.$userData['audio_speed'].' '.$userData['video_volume'].' '.$userData['video_speed'].' '.$userData['alarm_volume'].' '.$userData['timer_volume'].' '.$userData['loop_volume'].' '.$userData['rest_volume']."\r\n\r\n".

@@ -257,13 +257,18 @@ function incher($num,$koeff=3.28084,$denom=12) {
     return $nat."' ".$frac."\"";
 }
 function lux($hex): bool {
-    $r=hexdec(substr($hex,0,2));
-    $g=hexdec(substr($hex,2,2));
-    $b=hexdec(substr($hex,4,2));
-    return (($r+$g+$b)>382);
+    if (strlen($hex)<7) {
+        $r=hexdec(substr($hex,1,1).'F');
+        $g=hexdec(substr($hex,2,1).'F');
+        $b=hexdec(substr($hex,3,1).'F');
+    } else {
+        $r=hexdec(substr($hex,1,2));
+        $g=hexdec(substr($hex,3,2));
+        $b=hexdec(substr($hex,5,2));
+    } return (($r+$g+$b)>382);
 }
 function rgbap($hex,$opa) {
-    $fst=substr($hex,0,6);
+    $fst=substr($hex,0,7);
     $lst=($opa=='IF')?'00':(($opa=='FI')?'FF':dechex($opa));
     return strtoupper($fst.$lst);
 }
