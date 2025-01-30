@@ -133,7 +133,7 @@ function world_clock() {
                 $('#switchBtnBind').attr('src',sysDefPrefix.value+'chain.png');
                 $('#switchBtnTool').attr('src',sysDefPrefix.value+'parfum.png');
                 $('#switchBtnScore').attr('src',sysDefPrefix.value+'money.png');
-                $('#switchBtnLocale').attr('src',sysDefPrefix.value+'locale.png');
+                $('#switchBtnLocale').attr('src',sysDefPrefix.value+'character.png');
                 $('#switchBtnIP').attr('src',sysDefPrefix.value+'world.png');
             } if (requestMode.value=='preferences') {
                 $('#prefsBtnApply').attr('src',sysDefPrefix.value+'return.png');
