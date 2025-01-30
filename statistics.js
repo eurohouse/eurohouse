@@ -12,7 +12,7 @@ function scores(sta) {
     if (sti[sta]!==undefined) {
         if (sti[sta]=='μ') { obj=arrjob(arr,';',':'); }
     } else { obj=jsonstr(arr); }
-    var em=ef='',keys=Object.keys(obj),vals=Object.values(obj);
+    var em=ef,af={},keys=Object.keys(obj),vals=Object.values(obj);
     var res='',sortable={},ordered={};
     var dat={},am=se=fo=ex=0,epr=sysDefPrefix.value;
     if (sta=='bind') {
@@ -100,8 +100,12 @@ function scores(sta) {
             Object.entries(obj).sort(([,a],[,b])=>b['Country']-a['Country'])
         ); for (indi in sortable) {
             if ((sortable[indi]!==undefined)&&(indi!='')) {
-                res+="<input type='image' class='power' src='Flag."+sortable[indi]['Country']+".png"+"'>";
-                res+="<input type='button' style='width:42%;' value='"+indi+"'>";
+                af=jsonstr(sysDefLocaleData.value);
+                if (af[indi]!==undefined) {
+                    res+="<input type='image' class='power' src='Flag."+sortable[indi]['Country']+".png"+"'>";
+                } else {
+                    res+="<input type='image' class='power' src='Flag.UN.png"+"'>";
+                } res+="<input type='button' style='width:42%;' value='"+indi+"'>";
                 res+="<input type='button' style='width:28%;' value='@"+sortable[indi]['Username']+"'>";
                 res+="<input type='image' class='power' src='"+epr+"copy.png"+"' onclick='navigator.clipboard.writeText(&#34;"+indi+"&#34;);'>";
                 if (superuser()) {
