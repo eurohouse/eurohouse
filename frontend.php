@@ -203,22 +203,23 @@ function jsonStore(id) {
     } return ard;
 }
 function formCur(val,cur) {
-    var res=''; if (cur.length==3) {
+    var res='',x=delimNum(parseInt(val));
+    if (cur.length==3) {
         if ((cur.charCodeAt(0)==94)&&(cur.charCodeAt(2)==95)) {
-            res=cur.replaceAll('^','').replaceAll('_',' ')+parseInt(val);
+            res=cur.replaceAll('^','').replaceAll('_',' ')+x;
         } else if ((cur.charCodeAt(0)==95)&&(cur.charCodeAt(2)==94)) {
-            res=parseInt(val)+cur.replaceAll('^','').replaceAll('_',' ');
+            res=x+cur.replaceAll('^','').replaceAll('_',' ');
         }
     } else if (cur.length==2) {
         if ((cur.charCodeAt(0)==94)&&(cur.charCodeAt(1)!=94)) {
-            res=cur.replaceAll('^','')+parseInt(val);
+            res=cur.replaceAll('^','')+x;
         } else if ((cur.charCodeAt(0)!=94)&&(cur.charCodeAt(1)==94)) {
-            res=parseInt(val)+cur.replaceAll('^','');
+            res=x+cur.replaceAll('^','');
         } else {
-            res=String.fromCharCode(cur.charCodeAt(0))+parseInt(val)+String.fromCharCode(cur.charCodeAt(2));
+            res=String.fromCharCode(cur.charCodeAt(0))+x+String.fromCharCode(cur.charCodeAt(2));
         }
     } else {
-        res=cur+parseInt(val);
+        res=cur+x;
     } return res;
 }
 function jsonBookKeep(str,cur) {
