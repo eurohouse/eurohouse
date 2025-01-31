@@ -63,7 +63,7 @@ function scores(sta) {
             (obd,key) => { obd[key]=obj[key]; return obd; }, {}
         ); for (indi in ordered) {
             if ((ordered[indi]!==undefined)||(indi!='')) {
-                af=(ordered[indi]!='')?ordered[indi]:"NULL";
+                af=(ordered[indi]!='')?'@{'+ordered[indi]+'}':"NULL";
                 res+="<input type='button' style='width:28%;' value='@"+indi+"'>";
                 res+="<input type='button' style='width:48%;' value='"+af+"'>";
                 res+="<input type='image' class='power' src='"+epr+"copy.png"+"' onclick='navigator.clipboard.writeText(&#34;"+indi+"&#34;);'>";
