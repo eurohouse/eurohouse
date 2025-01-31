@@ -499,7 +499,7 @@
     },
     "vocabulary": {
         "CH": {
-            "HDI": "IHD", "Average": "Mediocris", "Expected": "Expectata",
+            "HDI": "IHD", "Average": "Mediocris", "Expected": "Expectata", "(": "(", ")": ")",
             "GNI PPP per capita": "CNR PAP capitarius",
             "Total elements:": "Quantitas Elementorum:",
             "Free disk space:": "Liberum Orbis Spatium:",
@@ -538,7 +538,7 @@
             "Debit": "Datum", "Credit": "Credit", "Balance": "Libra"
         },
         "GR": {
-            "HDI": "ΔΑΑ", "Average": "Διάμεσος", "Expected": "Αναμενόμενο",
+            "HDI": "ΔΑΑ", "Average": "Διάμεσος", "Expected": "Αναμενόμενο", "(": "(", ")": ")",
             "GNI PPP per capita": "ΑΕΕ ΙΑΔ κατά κεφαλήν",
             "Total elements:": "Αριθμός αρχείων:",
             "Free disk space:": "Ελεύθερος χώρος δίσκου:",
@@ -581,7 +581,7 @@
             "Debit": "Αποκτώ", "Credit": "Δίνω", "Balance": "Ισορροπία"
         },
         "RU": {
-            "HDI": "ИЧР", "Average": "лет потрачено", "Expected": "лет ожидаемо",
+            "HDI": "ИЧР", "Average": "лет потрачено", "Expected": "лет ожидаемо", "(": "(", ")": ")",
             "GNI PPP per capita": "ВНД на душу населения (ППС)",
             "Total elements:": "Всего элементов:",
             "Free disk space:": "Свободно места на диске:",
@@ -619,7 +619,7 @@
 
         },
         "CN": {
-            "HDI": "人类发展指数", "Average": "平均的", "Expected": "预期的",
+            "HDI": "人类发展指数", "Average": "平均的", "Expected": "预期的", "(": "（", ")": "）",
             "GNI PPP per capita": "人均国民总收入购买力平价",
             "Total elements:": "元素数量:",
             "Free disk space:": "可用磁盘空间:",
@@ -655,7 +655,7 @@
             "Debit": "借方", "Credit": "信用", "Balance": "平衡"
         },
         "KR": {
-            "HDI": "인간 개발 지수", "Average": "평균", "Expected": "예상되는",
+            "HDI": "인간 개발 지수", "Average": "평균", "Expected": "예상되는", "(": "(", ")": ")",
             "GNI PPP per capita": "1인당 GNI 구매력평가",
             "Total elements:": "원소의 양:",
             "Free disk space:": "디스크 여유 공간:",
@@ -691,7 +691,7 @@
             "Debit": "직불", "Credit": "신용 거래", "Balance": "균형"
         },
         "JP": {
-            "HDI": "人間開発指数", "Average": "平均", "Expected": "期待される",
+            "HDI": "人間開発指数", "Average": "平均", "Expected": "期待される", "(": "（", ")": "）",
             "GNI PPP per capita": "一人当たりGNI PPP",
             "Total elements:": "要素の量:",
             "Free disk space:": "空きディスク容量:",

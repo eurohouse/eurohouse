@@ -9,7 +9,7 @@ $sizeRecBin=0; foreach ($recycleList as $val) {
 } $sizeString=sizestr($sizeRecBin,$settings['locale']['size'],$session['units']); $diskSpace=term('Free disk space:',$settings['vocabulary'],$session['units']).' '.sizestr(disk_free_space('/'),$settings['locale'],$session['units']);
 ?>
 <p align="center">
-    <?=$elemString;?><br><?=$sizeString;?> <input type="button" value="<?=term('Clear', $settings['vocabulary'], $session['units']);?>" onmouseover="soundButton();" onclick="getdir('d','','.trash','from','','here',false);"><br><?=$diskSpace;?>
+    <?=$elemString;?> <?=term('(',$settings['vocabulary'],$session['units']).$sizeString.term(')',$settings['vocabulary'],$session['units']);?> <input type="button" value="<?=term('Clear', $settings['vocabulary'], $session['units']);?>" onmouseover="soundButton();" onclick="getdir('d','','.trash','from','','here',false);"><br><?=$diskSpace;?>
 </p>
 <?php foreach ($recycleList as $val) { ?>
     <p align="center" class="block">
