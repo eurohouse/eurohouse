@@ -6,7 +6,7 @@ $recycleList=str_replace($recycleDir,'',(glob($recycleDir.'*_fragment.json')));
 $elemString=term('Total elements:',$settings['vocabulary'],$session['units']).' '.count($recycleList);
 $sizeRecBin=0; foreach ($recycleList as $val) {
     $sizeRecBin+=filesize($val);
-} $sizeString=sizestr($sizeRecBin,$settings['locale']['size'],$session['units']); $diskSpace=sizestr(disk_free_space('/'),$settings['locale'],$session['units']);
+} $sizeString=sizestr($sizeRecBin,$settings['locale']['size'],$session['units']); term('Free disk space:',$settings['vocabulary'],$session['units']).' '.$diskSpace=sizestr(disk_free_space('/'),$settings['locale'],$session['units']);
 ?>
 <p align="center">
     <?=$elemString;?><br><?=$sizeString;?> <input type="button" value="<?=term('Clear', $settings['vocabulary'], $session['units']);?>" onmouseover="soundButton();" onclick="getdir('d','','.trash','from','','here',false);"><br><?=$diskSpace;?>

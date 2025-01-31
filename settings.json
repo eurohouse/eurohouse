@@ -502,6 +502,7 @@
             "HDI": "IHD", "Average": "Mediocris", "Expected": "Expectata",
             "GNI PPP per capita": "CNR PAP capitarius",
             "Total elements:": "Quantitas Elementorum:",
+            "Free disk space:": "Liberum Orbis Spatium:",
             "Titles:": "Inscriptiones:", ": ": ": ",
             "Localized Titles:": "Inscriptiones Locales:",
             "Description:": "Descriptio:", "&": "et",
@@ -539,7 +540,9 @@
         "GR": {
             "HDI": "ΔΑΑ", "Average": "Διάμεσος", "Expected": "Αναμενόμενο",
             "GNI PPP per capita": "ΑΕΕ ΙΑΔ κατά κεφαλήν",
-            "Total elements:": "Αριθμός αρχείων:", "Titles:": "Επιγραφές:",
+            "Total elements:": "Αριθμός αρχείων:",
+            "Free disk space:": "Ελεύθερος χώρος δίσκου:",
+            "Titles:": "Επιγραφές:",
             "Localized Titles:": "Τοπικές επιγραφές:", ": ": ": ",
             "Description:": "Περιγραφή:", "&": "και",
             "The market is closed.": "Η αγορά είναι κλειστή",
@@ -580,7 +583,9 @@
         "RU": {
             "HDI": "ИЧР", "Average": "лет потрачено", "Expected": "лет ожидаемо",
             "GNI PPP per capita": "ВНД на душу населения (ППС)",
-            "Total elements:": "Всего элементов:", "Titles:": "Названия:",
+            "Total elements:": "Всего элементов:",
+            "Free disk space:": "Свободно места на диске:",
+            "Titles:": "Названия:",
             "Localized Titles:": "Названия на других языках:", ": ": ": ",
             "Description:": "Описание:", "&": "и",
             "The market is closed.": "Наш магазин не работает.",
@@ -616,7 +621,9 @@
         "CN": {
             "HDI": "人类发展指数", "Average": "平均的", "Expected": "预期的",
             "GNI PPP per capita": "人均国民总收入购买力平价",
-            "Total elements:": "元素数量:", "Titles:": "铭文列表:",
+            "Total elements:": "元素数量:",
+            "Free disk space:": "可用磁盘空间:",
+            "Titles:": "铭文列表:",
             "Localized Titles:": "本地化铭文列表:", ": ": ":",
             "Description:": "描述您的个人资料:", "&": "和",
             "The market is closed.": "市场现在已经关闭。",
@@ -650,7 +657,9 @@
         "KR": {
             "HDI": "인간 개발 지수", "Average": "평균", "Expected": "예상되는",
             "GNI PPP per capita": "1인당 GNI 구매력평가",
-            "Total elements:": "원소의 양:", "Titles:": "비문 목록:",
+            "Total elements:": "원소의 양:",
+            "Free disk space:": "디스크 여유 공간:",
+            "Titles:": "비문 목록:",
             "Localized Titles:": "지역화된 비문 목록:", ": ": ":",
             "Description:": "프로필을 설명하세요:", "&": "또",
             "The market is closed.": "현재 시장은 문을 닫았습니다.",
@@ -684,7 +693,9 @@
         "JP": {
             "HDI": "人間開発指数", "Average": "平均", "Expected": "期待される",
             "GNI PPP per capita": "一人当たりGNI PPP",
-            "Total elements:": "要素の量:", "Titles:": "碑文リスト:",
+            "Total elements:": "要素の量:",
+            "Free disk space:": "空きディスク容量:",
+            "Titles:": "碑文リスト:",
             "Localized Titles:": "ローカライズされた碑文のリスト:", ": ": ":",
             "Description:": "あなたのプロフィールを説明してください:", "&": "と",
             "The market is closed.": "市場は現在閉まっています。",
@@ -716,7 +727,6 @@
             "Loop Volume": "ループボリューム", "Rest Volume": "休息時の音量",
             "Sell": "売り手", "Buy": "お客様", "Sender": "送信者", "Recipient": "受取人",
             "Debit": "デビット", "Credit": "クレジット", "Balance": "バランス"
-
         }
     }
 }
