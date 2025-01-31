@@ -114,11 +114,11 @@
     handleInput(this.value);
 } else if (event.keyCode == 46) {
     handleInput(this.value);
-}" oninput="handleInput(this.value, true);"><br>
+}" oninput="handleInput(this.value, true);">
 <select id="setUserType" style="width:25%;" onchange="setdata('user_type', setUserType.options[setUserType.selectedIndex].id); window.location.reload();">
 <?php foreach ($settings['user_types'] as $key=>$value) { ?>
 <option id="<?=$key;?>" <?php if ($session['user_type'] == $key) { ?> selected <?php } ?>>
-<?=(isset($value[$session['units']])) ? $value[$session['units']] : $value['default'];?></option><?php } ?></select>
+<?=(isset($value[$session['units']])) ? $value[$session['units']] : $value['default'];?></option><?php } ?></select><br>
 <input type="text" id="setCurrency" style="width:36%;" value="<?=$session['currency'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('currency', this.value);
 } else if (event.keyCode == 27) {
