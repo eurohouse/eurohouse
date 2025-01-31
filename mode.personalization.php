@@ -136,6 +136,7 @@ if (event.keyCode==13) {
 <?php foreach ($settings['user_types'] as $key=>$value) { ?>
 <option id="<?=$key;?>" <?php if ($session['user_type']==$key) { ?> selected <?php } ?>>
 <?=(isset($value[$session['units']]))?$value[$session['units']]:$value['default'];?></option><?php } ?></select><br>
+<label><?=term('Signature Elements:',$settings['vocabulary'],$session['units']);?></label><br>
 <input type="text" id="setCurrency" style="width:36%;" value="<?=$session['currency'];?>" placeholder="<?=term('Currency',$settings['vocabulary'],$session['units']);?>" onkeydown="
 if (event.keyCode==13) {
     setdata('currency',this.value);
