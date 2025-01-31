@@ -28,17 +28,17 @@ include 'file_manager.php';
 <tbody>
 <?php
 foreach ($index as $key=>$value) {
-    $mediaFileTitle = $value;
-    $mediaFileExtension = pathinfo($value, PATHINFO_EXTENSION);
-    $mediaFileBasename = basename($value, '.'.$mediaFileExtension);
-    $mediaFilename = $request['path'].'/'.$value;
-    $mediaFileSize = (is_dir($mediaFilename)) ? dir_size($mediaFilename) : filesize($mediaFilename);
-    $mediaFileSizeStr = sizestr($mediaFileSize, $settings['locale']['size'], $session['units']);
+    $mediaFileTitle=$value;
+    $mediaFileExtension=pathinfo($value,PATHINFO_EXTENSION);
+    $mediaFileBasename=basename($value,'.'.$mediaFileExtension);
+    $mediaFilename=$request['path'].'/'.$value;
+    $mediaFileSize=(is_dir($mediaFilename))?dir_size($mediaFilename):filesize($mediaFilename);
+    $mediaFileSizeStr=sizestr($mediaFileSize,$settings['locale']['size'],$session['units']);
     ?>
     <tr>
     <?php
     if (is_dir($mediaFilename)) {
-        $mediaFileFavicon = (file_exists($mediaFilename.'/favicon.png')) ? $mediaFilename.'/favicon.png' : $themePrefix.'directory.png';
+        $mediaFileFavicon=(file_exists($mediaFilename.'/favicon.png'))?$mediaFilename.'/favicon.png':$themePrefix.'directory.png';
         ?>
         <td>
             <a href="<?=$mediaFileFavicon;?>">
