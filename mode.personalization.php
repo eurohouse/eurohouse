@@ -12,150 +12,169 @@
 <input type='image' id='prefsBtnUpdateTitles' onmouseover="soundButton();" class="power" onclick="setdata('titles', encodeURIComponent(setLocalizedTitles.value)); setdata('codenames', encodeURIComponent(setLocalizedCodenameTitles.value)); setdata('projects', encodeURIComponent(setLocalizedProjectTitles.value)); window.location.reload();" src="<?=$prefix.'movie.png';?>">
 <input type='image' id='prefsBtnReset' onmouseover="soundButton();" class="power" onclick="setDateFormat.value = 'Y-m-d'; setdata('date_format', setDateFormat.value); setTimeFormat.value = 'H:i:s'; setdata('time_format', setTimeFormat.value);" src="<?=$prefix.'backspace.png';?>">
 <input type='image' id='prefsBtnClear' onmouseover="soundButton();" class="power" onclick="setLanguages.value = 'EU,US'; setdata('units_list', setLanguages.value); window.location.reload();" src="<?=$prefix.'error.png';?>"><br>
-<label><?=term('Titles:', $settings['vocabulary'], $session['units']);?></label><br>
-<input type="text" id="setTitle" style="width:25%;" value="<?=$session['title'];?>" onkeydown="if (event.keyCode == 13) {
-    setdata('title', encodeURIComponent(this.value)); window.location.reload();
-} else if (event.keyCode == 27) {
-    this.value = ''; setdata('title', this.value);
-} else if (event.keyCode == 8) {
+<label><?=term('Titles:',$settings['vocabulary'],$session['units']);?></label><br>
+<input type="text" id="setTitle" style="width:25%;" value="<?=$session['title'];?>" placeholder="<?=term('Title',$settings['vocabulary'],$session['units']);?>" onkeydown="if (event.keyCode==13) {
+    setdata('title',encodeURIComponent(this.value));
+    window.location.reload();
+} else if (event.keyCode==27) {
+    this.value=''; setdata('title',this.value);
+} else if (event.keyCode==8) {
     handleInput(this.value);
-} else if (event.keyCode == 46) {
+} else if (event.keyCode==46) {
     handleInput(this.value);
-}" oninput="handleInput(this.value, true);">
-<input type="text" id="setCodenameTitle" style="width:25%;" value="<?=$session['codename'];?>" onkeydown="if (event.keyCode == 13) {
-    setdata('codename', encodeURIComponent(this.value)); window.location.reload();
-} else if (event.keyCode == 27) {
-    this.value = ''; setdata('codename', this.value);
-} else if (event.keyCode == 8) {
+}" oninput="handleInput(this.value,true);">
+<input type="text" id="setCodenameTitle" style="width:25%;" value="<?=$session['codename'];?>" placeholder="<?=term('Codename',$settings['vocabulary'],$session['units']);?>" onkeydown="if (event.keyCode==13) {
+    setdata('codename',encodeURIComponent(this.value));
+    window.location.reload();
+} else if (event.keyCode==27) {
+    this.value=''; setdata('codename',this.value);
+} else if (event.keyCode==8) {
     handleInput(this.value);
-} else if (event.keyCode == 46) {
+} else if (event.keyCode==46) {
     handleInput(this.value);
-}" oninput="handleInput(this.value, true);">
-<input type="text" id="setProjectTitle" style="width:25%;" value="<?=$session['project'];?>" onkeydown="if (event.keyCode == 13) {
-    setdata('project', encodeURIComponent(this.value)); window.location.reload();
-} else if (event.keyCode == 27) {
-    this.value = ''; setdata('project', this.value);
-} else if (event.keyCode == 8) {
+}" oninput="handleInput(this.value,true);">
+<input type="text" id="setProjectTitle" style="width:25%;" value="<?=$session['project'];?>" placeholder="<?=term('Project Name',$settings['vocabulary'],$session['units']);?>" onkeydown="
+if (event.keyCode==13) {
+    setdata('project',encodeURIComponent(this.value));
+    window.location.reload();
+} else if (event.keyCode==27) {
+    this.value=''; setdata('project',this.value);
+} else if (event.keyCode==8) {
     handleInput(this.value);
-} else if (event.keyCode == 46) {
+} else if (event.keyCode==46) {
     handleInput(this.value);
-}" oninput="handleInput(this.value, true);"><br>
-<label><?=term('Localized Titles:', $settings['vocabulary'], $session['units']);?></label><br>
-<input type="text" id="setLocalizedTitles" style="width:25%;" value="<?=$session['titles'];?>" onkeydown="if (event.keyCode == 13) {
-    setdata('titles', this.value); window.location.reload();
-} else if (event.keyCode == 27) {
-    this.value = ''; setdata('titles', this.value);
-} else if (event.keyCode == 8) {
+}" oninput="handleInput(this.value,true);"><br>
+<label><?=term('Localized Titles:',$settings['vocabulary'],$session['units']);?></label><br>
+<input type="text" id="setLocalizedTitles" style="width:25%;" value="<?=$session['titles'];?>" placeholder="<?=term('Localized Titles',$settings['vocabulary'],$session['units']);?>" onkeydown="
+if (event.keyCode==13) {
+    setdata('titles',this.value);
+    window.location.reload();
+} else if (event.keyCode==27) {
+    this.value=''; setdata('titles',this.value);
+} else if (event.keyCode==8) {
     handleInput(this.value);
-} else if (event.keyCode == 46) {
+} else if (event.keyCode==46) {
     handleInput(this.value);
-}" oninput="handleInput(this.value, true);">
-<input type="text" id="setLocalizedCodenameTitles" style="width:25%;" value="<?=$session['codenames'];?>" onkeydown="if (event.keyCode == 13) {
-    setdata('codenames', this.value); window.location.reload();
-} else if (event.keyCode == 27) {
-    this.value = ''; setdata('codenames', this.value);
-} else if (event.keyCode == 8) {
+}" oninput="handleInput(this.value,true);">
+<input type="text" id="setLocalizedCodenameTitles" style="width:25%;" value="<?=$session['codenames'];?>" placeholder="<?=term('Localized Codenames',$settings['vocabulary'],$session['units']);?>" onkeydown="
+if (event.keyCode==13) {
+    setdata('codenames',this.value);
+    window.location.reload();
+} else if (event.keyCode==27) {
+    this.value=''; setdata('codenames',this.value);
+} else if (event.keyCode==8) {
     handleInput(this.value);
-} else if (event.keyCode == 46) {
+} else if (event.keyCode==46) {
     handleInput(this.value);
-}" oninput="handleInput(this.value, true);">
-<input type="text" id="setLocalizedProjectTitles" style="width:25%;" value="<?=$session['projects'];?>" onkeydown="if (event.keyCode == 13) {
-    setdata('projects', this.value); window.location.reload();
-} else if (event.keyCode == 27) {
-    this.value = ''; setdata('projects', this.value);
-} else if (event.keyCode == 8) {
+}" oninput="handleInput(this.value,true);">
+<input type="text" id="setLocalizedProjectTitles" style="width:25%;" value="<?=$session['projects'];?>" placeholder="<?=term('Localized Project Names',$settings['vocabulary'],$session['units']);?>" onkeydown="
+if (event.keyCode==13) {
+    setdata('projects',this.value);
+    window.location.reload();
+} else if (event.keyCode==27) {
+    this.value=''; setdata('projects',this.value);
+} else if (event.keyCode==8) {
     handleInput(this.value);
-} else if (event.keyCode == 46) {
+} else if (event.keyCode==46) {
     handleInput(this.value);
-}" oninput="handleInput(this.value, true);"><br>
+}" oninput="handleInput(this.value,true);"><br>
 <label><a href="https://www.php.net/manual/en/datetime.format.php"><?=localword('iso8601', $settings['standards'], $session['units']);?></a> <?=term('&', $settings['vocabulary'], $session['units']);?> <a href="https://www.iso.org/obp/ui/#iso:pub:PUB500001:en"><?=localword('iso3166', $settings['standards'], $session['units']);?></a></label><br>
-<input type="text" id="setDateFormat" style="width:25%;" value="<?=$session['date_format'];?>" onkeydown="if (event.keyCode == 13) {
-    setdata('date_format', setDateFormat.value);
-} else if (event.keyCode == 27) {
-    this.value = 'Y-m-d'; setdata('date_format', 'Y-m-d');
-} else if (event.keyCode == 8) {
+<input type="text" id="setDateFormat" style="width:25%;" value="<?=$session['date_format'];?>" placeholder="<?=term('Date Format',$settings['vocabulary'],$session['units']);?>" onkeydown="
+if (event.keyCode==13) {
+    setdata('date_format',setDateFormat.value);
+} else if (event.keyCode==27) {
+    this.value='Y-m-d'; setdata('date_format','Y-m-d');
+} else if (event.keyCode==8) {
     handleInput(this.value);
-} else if (event.keyCode == 46) {
+} else if (event.keyCode==46) {
     handleInput(this.value);
-}" oninput="handleInput(this.value, true);">
-<input type="text" id="setTimeFormat" style="width:25%;" value="<?=$session['time_format'];?>" onkeydown="if (event.keyCode == 13) {
-    setdata('time_format', setTimeFormat.value);
-} else if (event.keyCode == 27) {
-    this.value = 'H:i:s'; setdata('time_format', 'H:i:s');
-} else if (event.keyCode == 8) {
+}" oninput="handleInput(this.value,true);">
+<input type="text" id="setTimeFormat" style="width:25%;" value="<?=$session['time_format'];?>" placeholder="<?=term('Time Format',$settings['vocabulary'],$session['units']);?>" onkeydown="
+if (event.keyCode==13) {
+    setdata('time_format',setTimeFormat.value);
+} else if (event.keyCode==27) {
+    this.value='H:i:s'; setdata('time_format','H:i:s');
+} else if (event.keyCode==8) {
     handleInput(this.value);
-} else if (event.keyCode == 46) {
+} else if (event.keyCode==46) {
     handleInput(this.value);
-}" oninput="handleInput(this.value, true);">
-<input type="text" id="setLanguages" style="width:25%;" value="<?=$session['units_list'];?>" onkeydown="if (event.keyCode == 13) {
-    setdata('units_list', setLanguages.value); window.location.reload();
-} else if (event.keyCode == 27) {
-    this.value = 'EU,US'; setdata('units_list', this.value);
-} else if (event.keyCode == 8) {
+}" oninput="handleInput(this.value,true);">
+<input type="text" id="setLanguages" style="width:25%;" value="<?=$session['units_list'];?>" placeholder="<?=term('Localizations',$settings['vocabulary'],$session['units']);?>" onkeydown="
+if (event.keyCode==13) {
+    setdata('units_list',setLanguages.value);
+    window.location.reload();
+} else if (event.keyCode==27) {
+    this.value='EU,US'; setdata('units_list',this.value);
+} else if (event.keyCode==8) {
     handleInput(this.value);
-} else if (event.keyCode == 46) {
+} else if (event.keyCode==46) {
     handleInput(this.value);
-}" oninput="handleInput(this.value, true);"><br>
-<label><?=term('Functional Elements:', $settings['vocabulary'], $session['units']);?></label><br>
-<input type="text" id="setMenuItems" style="width:25%;" value="<?=$session['menu'];?>" onkeydown="if (event.keyCode == 13) {
-    setdata('menu', this.value); window.location.reload();
-} else if (event.keyCode == 27) {
-    this.value = 'file_finder,preferences'; setdata('menu', this.value);
-} else if (event.keyCode == 8) {
+}" oninput="handleInput(this.value,true);"><br>
+<label><?=term('Functional Elements:',$settings['vocabulary'],$session['units']);?></label><br>
+<input type="text" id="setMenuItems" style="width:25%;" value="<?=$session['menu'];?>" placeholder="<?=term('Menu Items',$settings['vocabulary'],$session['units']);?>" onkeydown="
+if (event.keyCode==13) {
+    setdata('menu',this.value); window.location.reload();
+} else if (event.keyCode==27) {
+    this.value='file_finder,preferences';
+    setdata('menu',this.value);
+} else if (event.keyCode==8) {
     handleInput(this.value);
-} else if (event.keyCode == 46) {
+} else if (event.keyCode==46) {
     handleInput(this.value);
-}" oninput="handleInput(this.value, true);">
-<input type="text" id="setActiveHours" style="width:25%;" value="<?=$session['active_hours'];?>" onkeydown="if (event.keyCode == 13) {
-    setdata('active_hours', this.value);
-} else if (event.keyCode == 27) {
-    this.value = ''; setdata('active_hours', this.value);
-} else if (event.keyCode == 8) {
+}" oninput="handleInput(this.value,true);">
+<input type="text" id="setActiveHours" style="width:25%;" value="<?=$session['active_hours'];?>" placeholder="<?=term('Active Hours',$settings['vocabulary'],$session['units']);?>" onkeydown="
+if (event.keyCode==13) {
+    setdata('active_hours',this.value);
+} else if (event.keyCode==27) {
+    this.value=''; setdata('active_hours',this.value);
+} else if (event.keyCode==8) {
     handleInput(this.value);
-} else if (event.keyCode == 46) {
+} else if (event.keyCode==46) {
     handleInput(this.value);
-}" oninput="handleInput(this.value, true);">
-<select id="setUserType" style="width:25%;" onchange="setdata('user_type', setUserType.options[setUserType.selectedIndex].id); window.location.reload();">
+}" oninput="handleInput(this.value,true);">
+<select id="setUserType" style="width:25%;" onchange="setdata('user_type',setUserType.options[setUserType.selectedIndex].id); window.location.reload();">
 <?php foreach ($settings['user_types'] as $key=>$value) { ?>
-<option id="<?=$key;?>" <?php if ($session['user_type'] == $key) { ?> selected <?php } ?>>
-<?=(isset($value[$session['units']])) ? $value[$session['units']] : $value['default'];?></option><?php } ?></select><br>
-<input type="text" id="setCurrency" style="width:36%;" value="<?=$session['currency'];?>" onkeydown="if (event.keyCode == 13) {
-    setdata('currency', this.value);
-} else if (event.keyCode == 27) {
-    this.value = ''; setdata('currency', this.value);
-} else if (event.keyCode == 8) {
+<option id="<?=$key;?>" <?php if ($session['user_type']==$key) { ?> selected <?php } ?>>
+<?=(isset($value[$session['units']]))?$value[$session['units']]:$value['default'];?></option><?php } ?></select><br>
+<input type="text" id="setCurrency" style="width:36%;" value="<?=$session['currency'];?>" placeholder="<?=term('Currency',$settings['vocabulary'],$session['units']);?>" onkeydown="
+if (event.keyCode==13) {
+    setdata('currency',this.value);
+} else if (event.keyCode==27) {
+    this.value=''; setdata('currency',this.value);
+} else if (event.keyCode==8) {
     handleInput(this.value);
-} else if (event.keyCode == 46) {
+} else if (event.keyCode==46) {
     handleInput(this.value);
-}" oninput="handleInput(this.value, true);">
-<input type="text" id="setDelimiter" style="width:36%;" value="<?=$session['delimiter'];?>" onkeydown="if (event.keyCode == 13) {
-    setdata('delimiter', this.value);
-} else if (event.keyCode == 27) {
-    this.value = ''; setdata('delimiter', this.value);
-} else if (event.keyCode == 8) {
+}" oninput="handleInput(this.value,true);">
+<input type="text" id="setDelimiter" style="width:36%;" value="<?=$session['delimiter'];?>" placeholder="<?=term('Delimiter',$settings['vocabulary'],$session['units']);?>" onkeydown="
+if (event.keyCode==13) {
+    setdata('delimiter',this.value);
+} else if (event.keyCode==27) {
+    this.value=''; setdata('delimiter',this.value);
+} else if (event.keyCode==8) {
     handleInput(this.value);
-} else if (event.keyCode == 46) {
+} else if (event.keyCode==46) {
     handleInput(this.value);
-}" oninput="handleInput(this.value, true);"><br>
-<label><?=term('Your Reticles:', $settings['vocabulary'], $session['units']);?></label><br>
-<select id="setReticle1" style="width:15%;" onchange="setdata('reticle_choice_1', setReticle1.options[setReticle1.selectedIndex].id);">
+}" oninput="handleInput(this.value,true);"><br>
+<label><?=term('Your Reticles:',$settings['vocabulary'],$session['units']);?></label><br>
+<select id="setReticle1" style="width:15%;" onchange="setdata('reticle_choice_1',setReticle1.options[setReticle1.selectedIndex].id);">
 <?php foreach ($amour as $key=>$value) { ?>
-<option id="<?=explode('.', $value)[1];?>" <?php if ($session['reticle_choice_1'] == explode('.', $value)[1]) { ?> selected <?php } ?>>
-<?=explode('.', $value)[1];?></option><?php } ?></select>
-<select id="setReticle2" style="width:15%;" onchange="setdata('reticle_choice_2', setReticle2.options[setReticle2.selectedIndex].id);">
+<option id="<?=explode('.',$value)[1];?>" <?php if ($session['reticle_choice_1']==explode('.',$value)[1]) { ?> selected <?php } ?>>
+<?=explode('.',$value)[1];?></option><?php } ?></select>
+<select id="setReticle2" style="width:15%;" onchange="setdata('reticle_choice_2',setReticle2.options[setReticle2.selectedIndex].id);">
 <?php foreach ($amour as $key=>$value) { ?>
-<option id="<?=explode('.', $value)[1];?>" <?php if ($session['reticle_choice_2'] == explode('.', $value)[1]) { ?> selected <?php } ?>>
-<?=explode('.', $value)[1];?></option><?php } ?></select>
-<select id="setReticle3" style="width:15%;" onchange="setdata('reticle_choice_3', setReticle3.options[setReticle3.selectedIndex].id);">
+<option id="<?=explode('.',$value)[1];?>" <?php if ($session['reticle_choice_2']==explode('.',$value)[1]) { ?> selected <?php } ?>>
+<?=explode('.',$value)[1];?></option><?php } ?></select>
+<select id="setReticle3" style="width:15%;" onchange="setdata('reticle_choice_3',setReticle3.options[setReticle3.selectedIndex].id);">
 <?php foreach ($amour as $key=>$value) { ?>
-<option id="<?=explode('.', $value)[1];?>" <?php if ($session['reticle_choice_3'] == explode('.', $value)[1]) { ?> selected <?php } ?>>
-<?=explode('.', $value)[1];?></option><?php } ?></select>
-<select id="setReticle4" style="width:15%;" onchange="setdata('reticle_choice_4', setReticle4.options[setReticle4.selectedIndex].id);">
+<option id="<?=explode('.',$value)[1];?>" <?php if ($session['reticle_choice_3']==explode('.',$value)[1]) { ?> selected <?php } ?>>
+<?=explode('.',$value)[1];?></option><?php } ?></select>
+<select id="setReticle4" style="width:15%;" onchange="setdata('reticle_choice_4',setReticle4.options[setReticle4.selectedIndex].id);">
 <?php foreach ($amour as $key=>$value) { ?>
-<option id="<?=explode('.', $value)[1];?>" <?php if ($session['reticle_choice_4'] == explode('.', $value)[1]) { ?> selected <?php } ?>>
-<?=explode('.', $value)[1];?></option><?php } ?></select>
-<select id="setReticle5" style="width:15%;" onchange="setdata('reticle_choice_5', setReticle5.options[setReticle5.selectedIndex].id);">
+<option id="<?=explode('.',$value)[1];?>" <?php if ($session['reticle_choice_4']==explode('.',$value)[1]) { ?> selected <?php } ?>>
+<?=explode('.',$value)[1];?></option><?php } ?></select>
+<select id="setReticle5" style="width:15%;" onchange="setdata('reticle_choice_5',setReticle5.options[setReticle5.selectedIndex].id);">
 <?php foreach ($amour as $key=>$value) { ?>
-<option id="<?=explode('.', $value)[1];?>" <?php if ($session['reticle_choice_5'] == explode('.', $value)[1]) { ?> selected <?php } ?>>
-<?=explode('.', $value)[1];?></option><?php } ?></select>
+<option id="<?=explode('.',$value)[1];?>" <?php if ($session['reticle_choice_5']==explode('.',$value)[1]) { ?> selected <?php } ?>>
+<?=explode('.',$value)[1];?></option><?php } ?></select>
 </p>
