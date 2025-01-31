@@ -32,7 +32,7 @@ function audioPosition(sec) {
 function savePlayState() {
     setdata('current',audioPlayer.currentTime);
 }
-function arrangePlay(cur) {
+function arrangePlay(cur,dl) {
     var dp=arrjob(sysDefPowersData.value,';',':');
     var db=arrjob(sysDefBindData.value,';',':');
     var da=arrjob(sysDefAutoData.value,';',':');
@@ -40,7 +40,7 @@ function arrangePlay(cur) {
     $('#buttonAutomator').attr('src',sysDefPrefix.value+((sysDefAutoState.value=='auto')?'wheel.png':'steer.png')); var my=dp[sysDefSessionID.value],bl=pl='',ch='chain';
     if (my<=-666) {
         delete_user(sysDefSessionID.value);omniAuthRequest('signout','','');
-    } ch=(arraySearch(sysDefSessionID.value,db)!=false)?((db[sysDefSessionID.value]!=sysDefSessionID.value)?'key':'lock'):((db[sysDefSessionID.value]!=sysDefSessionID.value)?'broke':'chain'),pl=formCur(my,cur),bl=sysDefSessionID.value;
+    } ch=(arraySearch(sysDefSessionID.value,db)!=false)?((db[sysDefSessionID.value]!=sysDefSessionID.value)?'key':'lock'):((db[sysDefSessionID.value]!=sysDefSessionID.value)?'broke':'chain'),pl=formCur(my,cur,dl),bl=sysDefSessionID.value;
     $('#buttonBroke').attr('src',sysDefPrefix.value+ch+'.png');
     $('#showUsInfoPower').val(pl); $('#showUsInfoBond').val(bl);
 }
@@ -202,8 +202,8 @@ function jsonStore(id) {
         }
     } return ard;
 }
-function formCur(val,cur) {
-    var res='',x=delimNum(parseInt(val));
+function formCur(val,cur,delim='') {
+    var res='',x=delimNum(parseInt(val),delim);
     if (cur.length==3) {
         if ((cur.charCodeAt(0)==94)&&(cur.charCodeAt(2)==95)) {
             res=cur.replaceAll('^','').replaceAll('_',' ')+x;
@@ -222,7 +222,7 @@ function formCur(val,cur) {
         res=cur+x;
     } return res;
 }
-function jsonBookKeep(str,cur) {
+function jsonBookKeep(str,cur,dl='') {
     var arr=jsonstr(str),ard=arl='',arf={},eld=[];
     for (el in arr) {
         eld=arr[el].split(' | ');arf[el]=arr[el];
@@ -230,9 +230,9 @@ function jsonBookKeep(str,cur) {
         eld=arr[el].split(' | ');
         arl=(eld[5]=='ERR')?'<tr style="text-decoration:line-through;">':'<tr>';
         arl+='<td>@'+eld[1]+'</td>';
-        arl+=(isInt(eld[2]))?'<td>'+formCur(eld[2],cur)+'</td>':'<td>'+eld[2]+'</td>';
-        arl+=(isInt(eld[3]))?'<td>'+formCur(eld[3],cur)+'</td>':'<td>'+eld[3]+'</td>';
-        arl+='<td>'+formCur(eld[4],cur)+'</td>';
+        arl+=(isInt(eld[2]))?'<td>'+formCur(eld[2],cur,dl)+'</td>':'<td>'+eld[2]+'</td>';
+        arl+=(isInt(eld[3]))?'<td>'+formCur(eld[3],cur,dl)+'</td>':'<td>'+eld[3]+'</td>';
+        arl+='<td>'+formCur(eld[4],cur,dl)+'</td>';
         ard=arl+'</tr>'+ard;
     } return ard;
 }
