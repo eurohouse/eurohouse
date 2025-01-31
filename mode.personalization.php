@@ -97,7 +97,7 @@
     handleInput(this.value);
 }" oninput="handleInput(this.value, true);"><br>
 <label><?=term('Functional Elements:', $settings['vocabulary'], $session['units']);?></label><br>
-<input type="text" id="setMenuItems" style="width:19%;" value="<?=$session['menu'];?>" onkeydown="if (event.keyCode == 13) {
+<input type="text" id="setMenuItems" style="width:25%;" value="<?=$session['menu'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('menu', this.value); window.location.reload();
 } else if (event.keyCode == 27) {
     this.value = 'file_finder,preferences'; setdata('menu', this.value);
@@ -106,7 +106,7 @@
 } else if (event.keyCode == 46) {
     handleInput(this.value);
 }" oninput="handleInput(this.value, true);">
-<input type="text" id="setActiveHours" style="width:19%;" value="<?=$session['active_hours'];?>" onkeydown="if (event.keyCode == 13) {
+<input type="text" id="setActiveHours" style="width:25%;" value="<?=$session['active_hours'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('active_hours', this.value);
 } else if (event.keyCode == 27) {
     this.value = ''; setdata('active_hours', this.value);
@@ -115,14 +115,23 @@
 } else if (event.keyCode == 46) {
     handleInput(this.value);
 }" oninput="handleInput(this.value, true);">
-<select id="setUserType" style="width:19%;" onchange="setdata('user_type', setUserType.options[setUserType.selectedIndex].id); window.location.reload();">
+<select id="setUserType" style="width:25%;" onchange="setdata('user_type', setUserType.options[setUserType.selectedIndex].id); window.location.reload();">
 <?php foreach ($settings['user_types'] as $key=>$value) { ?>
 <option id="<?=$key;?>" <?php if ($session['user_type'] == $key) { ?> selected <?php } ?>>
-<?=(isset($value[$session['units']])) ? $value[$session['units']] : $value['default'];?></option><?php } ?></select>
-<input type="text" id="setCurrency" style="width:19%;" value="<?=$session['currency'];?>" onkeydown="if (event.keyCode == 13) {
+<?=(isset($value[$session['units']])) ? $value[$session['units']] : $value['default'];?></option><?php } ?></select><br>
+<input type="text" id="setCurrency" style="width:36%;" value="<?=$session['currency'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('currency', this.value);
 } else if (event.keyCode == 27) {
     this.value = ''; setdata('currency', this.value);
+} else if (event.keyCode == 8) {
+    handleInput(this.value);
+} else if (event.keyCode == 46) {
+    handleInput(this.value);
+}" oninput="handleInput(this.value, true);">
+<input type="text" id="setDelimiter" style="width:36%;" value="<?=$session['delimiter'];?>" onkeydown="if (event.keyCode == 13) {
+    setdata('delimiter', this.value);
+} else if (event.keyCode == 27) {
+    this.value = ''; setdata('delimiter', this.value);
 } else if (event.keyCode == 8) {
     handleInput(this.value);
 } else if (event.keyCode == 46) {
