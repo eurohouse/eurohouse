@@ -142,7 +142,7 @@ function scores(sta) {
         ); for (indi in sortable) {
             if ((sortable[indi]!==undefined)&&(indi!='')) {
                 res+="<input type='image' class='power' src='Flag."+indi+".png"+"'>";
-                res+="<input type='button' style='width:18%;' value='"+indi+"'>";
+                res+="<input type='button' style='width:12%;' value='"+indi+"'>";
                 res+="<input type='button' style='width:24%;' value='"+sortable[indi]['Human Development Index']+"'>";
                 res+="<input type='button' style='width:36%;' value='$"+sortable[indi]['$DISP']['%G']+"'>";
                 res+="<input type='image' class='power' src='"+epr+"copy.png"+"' onclick='navigator.clipboard.writeText(&#34;"+indi+"&#34;);'>";
