@@ -1,0 +1,32 @@
+{
+    "welcome": {
+        "default": {
+            "title": "Welcome Page",
+            "memoir": "Welcome to the Eurohouse web app tutorial! Today, there are many different types of applications for different devices and platforms. Any computer program, video game or operating system is developed for specific platforms, which can be represented by both hardware and software. For operating systems, this is the hardware configuration of the target device, for programs and games, this is also the target operating system to which a particular program or game is ported. An application or game can have a web browser as a target platform, in which case it is a web application or browser game."
+        },
+        "RU": {
+            "title": "Приветствие",
+            "memoir": "Добро пожаловать на страницу приветствия в справочной системе веб-приложения Eurohouse! На сегодняшний день существует множество разных видов приложений на разные устройства и платформы. Любая компьютерная программа, видеоигра или операционная система разрабатывается для конкретных платформ, которые могут быть представлены как аппаратным, так и программным обеспечением. Для операционных систем это аппаратная конфигурация целевого устройства, для программ и игр это также целевая операционная система, на которую портирована та или иная программа или игра. Приложение или игра может иметь веб-браузер как целевую платформу, в таком случае это веб-приложение или браузерная игра."
+        }
+    },
+    "engine": {
+        "default": {
+            "title": "Software Engineering",
+            "memoir": "Basically it's easier to write an application source code than to enginner a complex machine using tools and materials. There is always a limit of how many materials you can use and how many tools you can really have at the moment. But writing a complex and working application and creating media content is limited only by your imagination. Eurohouse is an example of software artisanry, with more and more complex user functions and working models have their way here, making for almost perfect, state-of-the-art user experience. With this app crafted just for you, you won't need no standard tools and accessories which are pre-installed with your device and your current operating system."
+        },
+        "RU": {
+            "title": "Разработка программного обеспечения",
+            "memoir": "По сути, проще написать исходный код приложения, чем спроектировать сложную машину с использованием инструментов и материалов. Всегда есть предел тому, сколько материалов вы можете использовать и сколько инструментов у вас действительно может быть в данный момент. Но написание сложного и работающего приложения и создание медиаконтента ограничены только вашим воображением. Eurohouse — это пример программного ремесленничества, в котором все больше и больше сложных пользовательских функций и рабочих моделей прокладывают свой путь, создавая почти идеальный, современный пользовательский опыт. С этим приложением, созданным специально для вас, вам не понадобятся стандартные инструменты и аксессуары, которые предустановлены на вашем устройстве и вашей текущей операционной системе."
+        }
+    },
+    "deploy": {
+        "default": {
+            "title": "First Installation",
+            "memoir": "When you already have a web server in a UNIX-like environment like macOS, FreeBSD or Linux, with Apache, PHP and Git installed, change your current working directory to your Apache server directory as you set in the Apache config files, enter the \"git clone https://github.com/eurohouse/eurohouse\" command in Bash Terminal. Then move cloned files in eurohouse directory to the current working directory and delete the emptied eurohouse directory. Restart Apache web server on UNIX-like machine. If your UNIX-like machine is on VDS/VPS server and you have already registered a domain name for your website, try binding your server IP address to the nameservers of your domain name registrar and restart your website DNS lookup on your VDS/VPS website. Enter your website domain name in a web browser's address bar and wait until the web app download all needed packages and show up a welcome screen. To check if your website is accessible, try entering your website domain name and the path of any file on server after slash after domain name. If you can access the file then the website is working and accessible via Internet."
+        },
+        "RU": {
+            "title": "Первая установка",
+            "memoir": "Если у вас уже есть веб-сервер в среде UNIX, например macOS, FreeBSD или Linux, с установленными Apache, PHP и Git, измените текущий рабочий каталог на каталог сервера Apache, как указано в файлах конфигурации Apache, введите команду \"git clone https://github.com/eurohouse/eurohouse\" в терминале Bash. Затем переместите клонированные файлы в каталоге eurohouse в текущий рабочий каталог и удалите очищенный каталог eurohouse. Перезапустите веб-сервер Apache на машине UNIX. Если ваша машина UNIX находится на сервере VDS/VPS и вы уже зарегистрировали доменное имя для своего веб-сайта, попробуйте привязать IP-адрес вашего сервера к серверам имен вашего регистратора доменных имен и перезапустить DNS-поиск вашего веб-сайта на вашем веб-сайте VDS/VPS. Введите доменное имя вашего веб-сайта в адресную строку веб-браузера и дождитесь, пока веб-приложение загрузит все необходимые пакеты и отобразит экран приветствия. Чтобы проверить, доступен ли ваш веб-сайт, попробуйте ввести доменное имя вашего веб-сайта и путь к любому файлу на сервере после косой черты после доменного имени. Если вы можете получить доступ к файлу, значит сайт работает и доступен через Интернет."
+        }
+    }
+}
