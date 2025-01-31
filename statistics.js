@@ -145,11 +145,7 @@ function scores(sta) {
                 res+="<input type='button' style='width:18%;' value='"+indi+"'>";
                 res+="<input type='button' style='width:24%;' value='"+sortable[indi]['Human Development Index']+"'>";
                 res+="<input type='button' style='width:36%;' value='$"+sortable[indi]['$DISP']['%G']+"'>";
-                res+="<input type='image' class='power' src='"+epr+"copy.png"+"' onclick='navigator.clipboard.writeText(&#34;"+indi+"&#34;);'><br>";
-                res+="<input type='button' style='width:22%;' value='"+sortable[indi]['$DISP']['%M']+"'>";
-                res+="<input type='button' style='width:22%;' value='"+sortable[indi]['$DISP']['%F']+"'>";
-                res+="<input type='button' style='width:22%;' value='"+sortable[indi]['$DISP']['%A']+"'>";
-                res+="<input type='button' style='width:22%;' value='"+sortable[indi]['$DISP']['%E']+"'>";
+                res+="<input type='image' class='power' src='"+epr+"copy.png"+"' onclick='navigator.clipboard.writeText(&#34;"+indi+"&#34;);'>";
                 res+="<input type='image' class='power' src='"+epr+"info.png"+"' onclick='omniPath(&#34;i18n.json&#34;,&#34;"+indi+"&#34;,&#34;false&#34;);'><br>";
             }
         }
