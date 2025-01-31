@@ -143,7 +143,7 @@ function scores(sta) {
             if ((sortable[indi]!==undefined)&&(indi!='')) {
                 res+="<input type='image' class='power' src='Flag."+indi+".png"+"'>";
                 res+="<input type='button' style='width:12%;' value='"+indi+"'>";
-                res+="<input type='button' style='width:24%;' value='"+sortable[indi]['Human Development Index']+"'>";
+                res+="<input type='button' style='width:20%;' value='"+sortable[indi]['Human Development Index']+"'>";
                 res+="<input type='button' style='width:36%;' value='$"+sortable[indi]['$DISP']['%G']+"'>";
                 res+="<input type='image' class='power' src='"+epr+"copy.png"+"' onclick='navigator.clipboard.writeText(&#34;"+indi+"&#34;);'>";
                 res+="<input type='image' class='power' src='"+epr+"info.png"+"' onclick='omniPath(&#34;i18n.json&#34;,&#34;"+indi+"&#34;,&#34;false&#34;);'><br>";
