@@ -110,7 +110,7 @@ function scores(sta) {
                     res+="<input type='image' class='power' src='Flag."+sortable[indi]['Country']+".png"+"'>";
                 } else {
                     res+="<input type='image' class='power' src='Flag.UN.png"+"'>";
-                } res+="<input type='button' style='width:44%;' value='"+indi+"' onclick='navigator.clipboard.writeText(&#34;"+indi+"&#34;);'>";
+                } res+="<input type='button' style='width:46%;' value='"+indi+"' onclick='navigator.clipboard.writeText(&#34;"+indi+"&#34;);'>";
                 at=getUserAvatar(sortable[indi]['Username']);
                 res+="<input type='image' class='power' src='"+eax+at+".png"+"'>";
                 res+="<input type='button' style='width:24%;' value='@"+sortable[indi]['Username']+"'>";
