@@ -19,7 +19,7 @@
     <p align='center' class='block'>
     <?php if (isAuth()) { ?>
         <input type="image" onmouseover="soundButton();" id="buttonChat" class="power" onclick="setdata('chat',flip(sysDefChat.value)); omniBox.focus();" src="<?=$prefix.(($session['chat']!=0)?'book.png':'bash.png');?>">
-        <input type='text' id="omniBox" style="width:58%;" placeholder="<?=term('Type expression and press ENTER',$settings['vocabulary'],$session['units']);?>" value="" onkeydown="if (event.keyCode==13) { omniEnter();
+        <input type='text' id="omniBox" style="width:59%;" placeholder="<?=term('Type expression and press ENTER',$settings['vocabulary'],$session['units']);?>" value="" onkeydown="if (event.keyCode==13) { omniEnter();
         } else if (event.keyCode==27) {
             document.getElementById('omniBox').value='';
         } else if (event.keyCode==8) { handleInput(this.value);
