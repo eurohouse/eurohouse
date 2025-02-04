@@ -40,7 +40,7 @@ function scores(sta) {
                 at=getUserAvatar(indi);
                 res+="<input type='image' class='power' src='"+eax+at+".png"+"'>";
                 res+="<input type='button' style='width:24%;' value='@"+indi+"' onclick='navigator.clipboard.writeText(&#34;"+indi+"&#34;);'>";
-                res+="<input type='button' style='width:42%;' value='"+af+"' onclick='navigator.clipboard.writeText(&#34;"+af+"&#34;);'>";
+                res+="<input type='button' style='width:44%;' value='"+af+"' onclick='navigator.clipboard.writeText(&#34;"+af+"&#34;);'>";
                 res+="<input type='image' class='power' src='"+epr+"call.png"+"' onclick='call(&#34;"+rid+"&#34;,&#34;"+indi+"&#34;);'>";
                 if (superuser()) {
                     res+="<input type='image' class='power' src='"+epr+"delete.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;,true);'>";
