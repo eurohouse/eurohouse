@@ -13,13 +13,15 @@ function scores(sta) {
         if (sti[sta]=='μ') { obj=arrjob(arr,';',':'); }
     } else { obj=jsonstr(arr); }
     var res='',sortable={},ordered={};
-    var dat=af={},am=se=fo=ex=em=0,epr=sysDefPrefix.value;
-    if (sta=='bind') {
+    var dat=af={},at='',am=se=fo=ex=em=0;
+    epr=sysDefPrefix.value; if (sta=='bind') {
         ordered=Object.keys(obj).sort().reduce(
             (obd,key) => { obd[key]=obj[key]; return obd; }, {}
         ); for (indi in ordered) {
             if ((ordered[indi]!==undefined)||(indi!='')) {
                 af=(ordered[indi]!=indi)?"@"+ordered[indi]:"SELF";
+                at=getUserAvatar(indi);
+                res+="<input type='image' class='power' src='"+epr+at+".png"+"'>";
                 res+="<input type='button' style='width:34%;' value='@"+indi+"'>";
                 res+="<input type='button' style='width:32%;' value='"+af+"'>";
                 res+="<input type='image' class='power' src='"+epr+"chain.png"+"' onclick='bind(&#34;"+rid+"&#34;,&#34;"+indi+"&#34;);'>";
@@ -35,6 +37,8 @@ function scores(sta) {
         ); for (indi in ordered) {
             if ((ordered[indi]!==undefined)||(indi!='')) {
                 af=(ordered[indi]!=indi)?"INCOMING":"OUTGOING";
+                at=getUserAvatar(indi);
+                res+="<input type='image' class='power' src='"+epr+at+".png"+"'>";
                 res+="<input type='button' style='width:28%;' value='@"+indi+"'>";
                 res+="<input type='button' style='width:42%;' value='"+af+"'>";
                 res+="<input type='image' class='power' src='"+epr+"call.png"+"' onclick='call(&#34;"+rid+"&#34;,&#34;"+indi+"&#34;);'>";
@@ -50,6 +54,8 @@ function scores(sta) {
         ); for (indi in ordered) {
             if ((ordered[indi]!==undefined)||(indi!='')) {
                 af=(ordered[indi]=='auto')?"AUTO":"MANUAL";
+                at=getUserAvatar(indi);
+                res+="<input type='image' class='power' src='"+epr+at+".png"+"'>";
                 res+="<input type='button' style='width:34%;' value='@"+indi+"'>";
                 res+="<input type='button' style='width:42%;' value='"+af+"'>";
                 res+="<input type='image' class='power' src='"+epr+"copy.png"+"' onclick='navigator.clipboard.writeText(&#34;"+indi+"&#34;);'>";
@@ -64,6 +70,8 @@ function scores(sta) {
         ); for (indi in ordered) {
             if ((ordered[indi]!==undefined)||(indi!='')) {
                 af=(ordered[indi]!='')?'@{'+ordered[indi]+'}':"NULL";
+                at=getUserAvatar(indi);
+                res+="<input type='image' class='power' src='"+epr+at+".png"+"'>";
                 res+="<input type='button' style='width:28%;' value='@"+indi+"'>";
                 res+="<input type='button' style='width:48%;' value='"+af+"'>";
                 res+="<input type='image' class='power' src='"+epr+"copy.png"+"' onclick='navigator.clipboard.writeText(&#34;"+indi+"&#34;);'>";
@@ -84,6 +92,8 @@ function scores(sta) {
                     se=((dat[ordered[indi]]['series']!==undefined)&&(isInt(dat[ordered[indi]]['series']))&&(dat[ordered[indi]]['series']>1))?parseInt(dat[ordered[indi]]['series'])+'x':'x';
                     fo=((dat[ordered[indi]]['force']!==undefined)&&(isInt(dat[ordered[indi]]['force']))&&(dat[ordered[indi]]['force']>0))?parseInt(dat[ordered[indi]]['force']):0;
                     em=(ex!=0)?am+'/'+se+fo:se+fo;
+                    at=getUserAvatar(indi);
+                    res+="<input type='image' class='power' src='"+epr+at+".png"+"'>";
                     res+="<input type='button' style='width:26%;' value='@"+indi+"'>";
                     res+="<input type='button' style='width:30%;' value='"+ordered[indi]+"'>";
                     res+="<input type='button' style='width:20%;' value='"+em+"'>";
@@ -105,6 +115,8 @@ function scores(sta) {
                 } else {
                     res+="<input type='image' class='power' src='Flag.UN.png"+"'>";
                 } res+="<input type='button' style='width:42%;' value='"+indi+"'>";
+                at=getUserAvatar(sortable[indi]);
+                res+="<input type='image' class='power' src='"+epr+at+".png"+"'>";
                 res+="<input type='button' style='width:28%;' value='@"+sortable[indi]['Username']+"'>";
                 res+="<input type='image' class='power' src='"+epr+"copy.png"+"' onclick='navigator.clipboard.writeText(&#34;"+indi+"&#34;);'>";
                 if (superuser()) {
@@ -154,7 +166,8 @@ function scores(sta) {
             Object.entries(obj).sort(([,a],[,b])=>b-a)
         ); for (indi in sortable) {
             if ((sortable[indi]!==undefined)||(indi!='')) {
-                res+="<input type='image' class='power' src='"+epr+getUserAvatar(indi)+".png"+"'>";
+                at=getUserAvatar(indi);
+                res+="<input type='image' class='power' src='"+epr+at+".png"+"'>";
                 res+="<input type='button' style='width:28%;' value='@"+indi+"'>";
                 res+="<input type='button' style='width:48%;' value='"+sortable[indi]+"'>";
                 res+="<input type='image' class='power' src='"+epr+"copy.png"+"' onclick='navigator.clipboard.writeText(&#34;"+indi+"&#34;);'>";
