@@ -61,7 +61,7 @@
     <input type='button' id="currentTime" style="width:30%;" onclick="setdata('timedisp',flip(sysDefTimedisp.value));" value="00:00:00">
     <input type="image" id="buttonPrev" onmouseover="soundButton();" class="power" onclick="songIndex('prev');" src="<?=$prefix.'rew.png';?>">
     <input type="image" id="buttonNext" onmouseover="soundButton();" class="power" onclick="songIndex('next');" src="<?=$prefix.'ff.png';?>">
-    <input type="number" min='0' max='23' step='1' id="setTimeHour" style="width:8%;" value="<?=$session['hour'];?>" oninput="setdata('hour',pad(setTimeHour.value,-2));
+    <input type="number" min='0' max='23' step='1' id="setTimeHour" style="width:10%;" value="<?=$session['hour'];?>" oninput="setdata('hour',pad(setTimeHour.value,-2));
     handleInput(this.value,true);" onkeydown="if (event.keyCode==27) {
         setTimeHour.value=12; setdata('hour',setTimeHour.value);
     } else if (event.keyCode==8) { handleInput(this.value);
@@ -76,7 +76,7 @@
     <input type='button' id="alarmTime" style="width:30%;" onclick="setdata('memo',''); pauseAudio(alarmPlayer);" value="00:00:00"><input type="image" id="buttonPlay" onmouseover="soundButton();" class="power" onclick="if (sysDefPlaying.value==1) { omniPause(); } else { omniListen(dtw(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value)); }" src="<?=$prefix.'play.png';?>">
     <input type="image" id="buttonMuteBack" onmouseover="soundButton();" class="power" onclick="setdata('loop',flip(sysDefLoop.value));" src="<?=$prefix.'disk.png';?>">
     <input type="image" onmouseover="soundButton();" id="buttonPitched" class="power" onclick="setdata('pitch_lock',flip(sysDefPitchLock.value));" src="<?=$prefix.(($session['pitch_lock']!=0)?'midi.png':'volume.png');?>">
-    <select id="avatarPicker" style="width:8%;" onchange="setdata('avatar',avatarPicker.options[avatarPicker.selectedIndex].id); if (sysDefReload.value!=0) { window.location.reload(); }">
+    <select id="avatarPicker" style="width:10%;" onchange="setdata('avatar',avatarPicker.options[avatarPicker.selectedIndex].id); if (sysDefReload.value!=0) { window.location.reload(); }">
     <?php foreach ($userLocks['avatar'] as $key=>$value) { ?>
     <option id="<?=explode('.', $value)[1];?>" <?php if ($session['avatar']==explode('.',$value)[1]) { ?> selected <?php } ?>>
         <?=explode('.',$value)[1];?>
