@@ -102,7 +102,7 @@ function scores(sta) {
         }
     } else if (sta=='ip') {
         sortable=Object.fromEntries(
-            Object.entries(obj).sort(([,a],[,b])=>b['Country']-a['Country'])
+            Object.entries(obj).sort(([,a],[,b])=>b['Username']-a['Username'])
         ); for (indi in sortable) {
             if ((sortable[indi]!==undefined)&&(indi!='')) {
                 af=jsonstr(sysDefLocaleData.value);
