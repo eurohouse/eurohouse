@@ -1,11 +1,11 @@
 <div class='topBarItem'>
     <p align='center' class='block'>
     <input type="image" onmouseover="soundButton();" id="buttonRandom" class="power" onclick="songIndex('random');" src="<?=$prefix.'dice.png';?>">
-    <select id="ErotoOlympus" style="width:30%;" onchange="setdata('background',ErotoOlympus.options[ErotoOlympus.selectedIndex].id);"><?php foreach ($userLocks['background'] as $key=>$val) { ?>
+    <select id="ErotoOlympus" style="width:32%;" onchange="setdata('background',ErotoOlympus.options[ErotoOlympus.selectedIndex].id);"><?php foreach ($userLocks['background'] as $key=>$val) { ?>
     <option disabled><?=titled($val,$session['units']);?></option>
     <?php foreach (catlist($key) as $value) { ?>
     <option id="<?=$value;?>" <?php if ((explode('.',$value)[0]==explode('.',$background)[0])&&(explode('.',$value)[1]==explode('.',$background)[1])) { ?> selected="selected" <?php } ?>><?=titler($value,$settings,$session);?></option><?php }} ?>
-    </select><input type="number" min='-11' max='12' step='1' id="setTimeZone" style="width:8%;" value="<?=$session['timezone'];?>" oninput="setdata('timezone',pad(setTimeZone.value,-2)); handleInput(this.value,true);" onkeydown="if (event.keyCode==27) {
+    </select><input type="number" min='-11' max='12' step='1' id="setTimeZone" style="width:10%;" value="<?=$session['timezone'];?>" oninput="setdata('timezone',pad(setTimeZone.value,-2)); handleInput(this.value,true);" onkeydown="if (event.keyCode==27) {
         setTimeZone.value=0; setdata('timezone',setTimeZone.value);
     } else if (event.keyCode==8) { handleInput(this.value);
     } else if (event.keyCode==46) { handleInput(this.value);
