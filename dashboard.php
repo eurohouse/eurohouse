@@ -105,7 +105,7 @@
     <input type="image" id="userAvatarBadge" onmouseover="soundButton();" class="power" src="<?=$abcPrefix.$session['avatar'].'.png';?>" onclick="setdata('face',flip(sysDefFace.value)); window.location.reload();"><select id="setUnits" style="width:13%;" onchange="setdata('units',setUnits.options[setUnits.selectedIndex].id); if (sysDefReload.value!=0) { window.location.reload(); }">
     <?php foreach (explode(',',$session['units_list']) as $selID) { ?>
     <option id="<?=$selID;?>" <?php if ($session['units']==$selID) { ?> selected <?php } ?>><?=$selID;?></option><?php } ?></select>
-    <select id="setTheme" style="width:19%;" onchange="setdata('theme',setTheme.options[setTheme.selectedIndex].id); window.location.reload();"><?php foreach ($thematic as $key=>$value) { ?>
+    <select id="setTheme" style="width:20%;" onchange="setdata('theme',setTheme.options[setTheme.selectedIndex].id); window.location.reload();"><?php foreach ($thematic as $key=>$value) { ?>
         <option id="<?=explode('.',$value)[0];?>" <?php if ($session['theme']==explode('.',$value)[0]) { ?> selected <?php } ?>><?=explode('.',$value)[0];?></option>
     <?php } ?></select>
     <input type="image" onmouseover="soundButton();" id="buttonReqLock" class="power" onclick="if (requestLock.value=='true') { omniLock('false'); } else { omniLock('true'); }" src="<?=$prefix.(($request['lock']=='true')?'collapse.png':'expand.png');?>">
