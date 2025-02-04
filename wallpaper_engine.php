@@ -4,10 +4,10 @@ $cookie = (isset($_COOKIE['user'])) ? $_COOKIE['user'] : 'root';
 $userSettings = fileopen('settings.json');
 $userData = arropen($cookie.'_session.json', json_encode($userSettings['defaults']), 'DEFAULT');
 $timezone = dec_tz($userData['timezone']); date_default_timezone_set($timezone);
-$substitute = ($userData['lock']) ? sprintf("%02d", $userData['hour']) : ((($userData['benchmark'] > 0) && ($userData['benchmark'] < 5)) ? hourize(date('s'), date('i'), $userData['benchmark']) : date('H')); $brightSysIcon = ((lux($userData['fore_text_color'])) ? 'iso.' : 'iec.');
-$brightRetIcon = ((lux($userData['fore_text_color'])) ? 'rtd.' : 'rtc.');
-$brightAvaFore = ((lux($userData['fore_text_color'])) ? 'ava.' : 'abc.');
-$brightAvaBack = ((lux($userData['back_text_color'])) ? 'ava.' : 'abc.');
+$substitute=($userData['lock'])?sprintf("%02d", $userData['hour']):((($userData['benchmark']>0) && ($userData['benchmark']<5))?hourize(date('s'),date('i'),$userData['benchmark']):date('H')); $brightSysIcon=((lux($userData['fore_text_color']))?'iso.':'iec.');
+$brightRetIcon=((lux($userData['fore_text_color']))?'rtd.':'rtc.');
+$brightAvaFore=((lux($userData['fore_text_color']))?'ava.':'abc.');
+$brightAvaBack=((lux($userData['back_text_color']))?'ava.':'abc.');
 $showFilename = ($userData['banner'] != '') ? $userData['banner'] : daily($userData['background'], $userData['entry'], $substitute);
 $variations = ($userData['censor'] != 0) ? '' : implode(';', str_replace(explode('.', $showFilename)[0].'.'.explode('.', $showFilename)[1].'.'.substr(explode('.', $showFilename)[2], 0, 2), '', str_replace('.png', '', str_replace('./', '', (glob('./'.explode('.', $showFilename)[0].'.'.explode('.', $showFilename)[1].'.'.substr(explode('.', $showFilename)[2], 0, 2).'*.png'))))));
 $cont=exemplar(str_replace('./','',(glob('./*.contents.json'))));
@@ -37,7 +37,7 @@ $personAvatar2=$brightAvaBack.$userData['avatar'].'.png';
 /* ¶ 3 */ $assignAvatar2."\r\n\r\n".
 /* ¶ 4 */ $userData['position']."\r\n\r\n".
 /* ¶ 5 */ $userData['censor'].":".$variations."\r\n\r\n".
-/* ¶ 6 */ $brightSysIcon.";".$brightRetIcon."\r\n\r\n".
+/* ¶ 6 */ $brightSysIcon.";".$brightRetIcon.";".$brightAvaFore."\r\n\r\n".
 /* ¶ 7 */ $showHead."\r\n\r\n".
 /* ¶ 8 */ $showBody."\r\n\r\n".
 /* ¶ 9 */ $personAvatar1."\r\n\r\n".

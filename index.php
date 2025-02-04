@@ -40,6 +40,7 @@
         <?php } ?>
         <input type='hidden' id='sysDefBackload' value="<?=$backloadString;?>">
         <input type='hidden' id='sysDefPrefix' value="<?=$prefix;?>">
+        <input type='hidden' id='sysDefAvaPrefix' value="<?=$avaPrefix;?>">
         <input type='hidden' id='sysDefReticlePrefix' value="<?=$reticlePrefix;?>">
         <input type='hidden' id="sysDefIpData" value="<?=valstr($activeIPs,'; ',' ');?>">
         <input type='hidden' id="sysDefLocaleData" value="">

@@ -253,6 +253,7 @@ function wallpaper_engine() {
         success: function(data) {
             sysDefPrefix.value=pager(data,6).split(';')[0];
             sysDefReticlePrefix.value=pager(data,6).split(';')[1];
+            sysDefAvaPrefix.value=pager(data,6).split(';')[2];
             $('#buttonChild').attr('src',sysDefPrefix.value+((pager(data,5).split(':')[0]!=0)?'briefcase.png':'cabinet.png'));
             $('#sysDefVarsArr').val(pager(data,5).split(':')[1]);
             $('body').css('background-image','url('+((pager(data, 12)!='')?pager(data,12):pager(data,1))+')');
