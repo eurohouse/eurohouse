@@ -23,10 +23,9 @@ function scores(sta) {
                 af=(ordered[indi]!=indi)?"@"+ordered[indi]:"SELF";
                 at=getUserAvatar(indi);
                 res+="<input type='image' class='power' src='"+eax+at+".png"+"'>";
-                res+="<input type='button' style='width:34%;' value='@"+indi+"'>";
-                res+="<input type='button' style='width:32%;' value='"+af+"'>";
+                res+="<input type='button' style='width:34%;' value='@"+indi+"' onclick='navigator.clipboard.writeText(&#34;"+indi+"&#34;);'>";
+                res+="<input type='button' style='width:32%;' value='"+af+"' onclick='navigator.clipboard.writeText(&#34;"+af+"&#34;);'>";
                 res+="<input type='image' class='power' src='"+epr+"chain.png"+"' onclick='bind(&#34;"+rid+"&#34;,&#34;"+indi+"&#34;);'>";
-                res+="<input type='image' class='power' src='"+epr+"copy.png"+"' onclick='navigator.clipboard.writeText(&#34;"+indi+"&#34;);'>";
                 if (superuser()) {
                     res+="<input type='image' class='power' src='"+epr+"delete.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;,true);'>";
                 } res+="<br>";
@@ -40,10 +39,9 @@ function scores(sta) {
                 af=(ordered[indi]!=indi)?"INCOMING":"OUTGOING";
                 at=getUserAvatar(indi);
                 res+="<input type='image' class='power' src='"+eax+at+".png"+"'>";
-                res+="<input type='button' style='width:28%;' value='@"+indi+"'>";
-                res+="<input type='button' style='width:42%;' value='"+af+"'>";
+                res+="<input type='button' style='width:24%;' value='@"+indi+"' onclick='navigator.clipboard.writeText(&#34;"+indi+"&#34;);'>";
+                res+="<input type='button' style='width:42%;' value='"+af+"' onclick='navigator.clipboard.writeText(&#34;"+af+"&#34;);'>";
                 res+="<input type='image' class='power' src='"+epr+"call.png"+"' onclick='call(&#34;"+rid+"&#34;,&#34;"+indi+"&#34;);'>";
-                res+="<input type='image' class='power' src='"+epr+"copy.png"+"' onclick='navigator.clipboard.writeText(&#34;"+indi+"&#34;);'>";
                 if (superuser()) {
                     res+="<input type='image' class='power' src='"+epr+"delete.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;,true);'>";
                 } res+="<br>";
@@ -57,9 +55,8 @@ function scores(sta) {
                 af=(ordered[indi]=='auto')?"AUTO":"MANUAL";
                 at=getUserAvatar(indi);
                 res+="<input type='image' class='power' src='"+eax+at+".png"+"'>";
-                res+="<input type='button' style='width:34%;' value='@"+indi+"'>";
-                res+="<input type='button' style='width:42%;' value='"+af+"'>";
-                res+="<input type='image' class='power' src='"+epr+"copy.png"+"' onclick='navigator.clipboard.writeText(&#34;"+indi+"&#34;);'>";
+                res+="<input type='button' style='width:34%;' value='@"+indi+"' onclick='navigator.clipboard.writeText(&#34;"+indi+"&#34;);'>";
+                res+="<input type='button' style='width:42%;' value='"+af+"' onclick='navigator.clipboard.writeText(&#34;"+af+"&#34;);'>";
                 if (superuser()) {
                     res+="<input type='image' class='power' src='"+epr+"delete.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;,true);'>";
                 } res+="<br>";
@@ -73,9 +70,8 @@ function scores(sta) {
                 af=(ordered[indi]!='')?'@{'+ordered[indi]+'}':"NULL";
                 at=getUserAvatar(indi);
                 res+="<input type='image' class='power' src='"+eax+at+".png"+"'>";
-                res+="<input type='button' style='width:28%;' value='@"+indi+"'>";
-                res+="<input type='button' style='width:48%;' value='"+af+"'>";
-                res+="<input type='image' class='power' src='"+epr+"copy.png"+"' onclick='navigator.clipboard.writeText(&#34;"+indi+"&#34;);'>";
+                res+="<input type='button' style='width:24%;' value='@"+indi+"' onclick='navigator.clipboard.writeText(&#34;"+indi+"&#34;);'>";
+                res+="<input type='button' style='width:48%;' value='"+af+"' onclick='navigator.clipboard.writeText(&#34;"+af+"&#34;);'>";
                 if (superuser()) {
                     res+="<input type='image' class='power' src='"+epr+"delete.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;,true);'>";
                 } res+="<br>";
@@ -95,10 +91,9 @@ function scores(sta) {
                     em=(ex!=0)?am+'/'+se+fo:se+fo;
                     at=getUserAvatar(indi);
                     res+="<input type='image' class='power' src='"+eax+at+".png"+"'>";
-                    res+="<input type='button' style='width:26%;' value='@"+indi+"'>";
-                    res+="<input type='button' style='width:30%;' value='"+ordered[indi]+"'>";
-                    res+="<input type='button' style='width:20%;' value='"+em+"'>";
-                    res+="<input type='image' class='power' src='"+epr+"copy.png"+"' onclick='navigator.clipboard.writeText(&#34;"+indi+"&#34;);'>";
+                    res+="<input type='button' style='width:26%;' value='@"+indi+"' onclick='navigator.clipboard.writeText(&#34;"+indi+"&#34;);'>";
+                    res+="<input type='button' style='width:30%;' value='"+ordered[indi]+"' onclick='navigator.clipboard.writeText(&#34;"+sortable[indi]+"&#34;);'>";
+                    res+="<input type='button' style='width:20%;' value='"+em+"' onclick='navigator.clipboard.writeText(&#34;"+em+"&#34;);'>";
                     if (superuser()) {
                         res+="<input type='image' class='power' src='"+epr+"delete.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;,true);'>";
                     } res+="<br>";
@@ -154,10 +149,9 @@ function scores(sta) {
         ); for (indi in sortable) {
             if ((sortable[indi]!==undefined)&&(indi!='')) {
                 res+="<input type='image' class='power' src='Flag."+indi+".png"+"'>";
-                res+="<input type='button' style='width:14%;' value='"+indi+"'>";
-                res+="<input type='button' style='width:22%;' value='"+sortable[indi]['Human Development Index']+"'>";
-                res+="<input type='button' style='width:34%;' value='$"+sortable[indi]['$DISP']['%G']+"'>";
-                res+="<input type='image' class='power' src='"+epr+"copy.png"+"' onclick='navigator.clipboard.writeText(&#34;"+indi+"&#34;);'>";
+                res+="<input type='button' style='width:14%;' value='"+indi+"' onclick='navigator.clipboard.writeText(&#34;"+indi+"&#34;);'>";
+                res+="<input type='button' style='width:22%;' value='"+sortable[indi]['Human Development Index']+"' onclick='navigator.clipboard.writeText(&#34;"+sortable[indi]['Human Development Index']+"&#34;);'>";
+                res+="<input type='button' style='width:34%;' value='$"+sortable[indi]['$DISP']['%G']+"' onclick='navigator.clipboard.writeText(&#34;"+sortable[indi]['$DISP']['%G']+"&#34;);'>";
                 res+="<input type='image' class='power' src='"+epr+"info.png"+"' onclick='omniPath(&#34;i18n.json&#34;,&#34;"+indi+"&#34;,&#34;false&#34;);'><br>";
             }
         }
@@ -168,9 +162,8 @@ function scores(sta) {
             if ((sortable[indi]!==undefined)||(indi!='')) {
                 at=getUserAvatar(indi);
                 res+="<input type='image' class='power' src='"+eax+at+".png"+"'>";
-                res+="<input type='button' style='width:24%;' value='@"+indi+"'>";
-                res+="<input type='button' style='width:48%;' value='"+sortable[indi]+"'>";
-                res+="<input type='image' class='power' src='"+epr+"copy.png"+"' onclick='navigator.clipboard.writeText(&#34;"+indi+"&#34;);'>";
+                res+="<input type='button' style='width:24%;' value='@"+indi+"' onclick='navigator.clipboard.writeText(&#34;"+indi+"&#34;);'>";
+                res+="<input type='button' style='width:48%;' value='"+sortable[indi]+"' onclick='navigator.clipboard.writeText(&#34;"+soirtable[indi]+"&#34;);'>";
                 if (superuser()) {
                     res+="<input type='image' class='power' src='"+epr+"delete.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;,true);'>";
                 } res+="<br>";
