@@ -154,6 +154,7 @@ function scores(sta) {
             Object.entries(obj).sort(([,a],[,b])=>b-a)
         ); for (indi in sortable) {
             if ((sortable[indi]!==undefined)||(indi!='')) {
+                res+="<input type='image' class='power' src='"+epr+getUserAvatar(indi)+".png"+"'>";
                 res+="<input type='button' style='width:28%;' value='@"+indi+"'>";
                 res+="<input type='button' style='width:48%;' value='"+sortable[indi]+"'>";
                 res+="<input type='image' class='power' src='"+epr+"copy.png"+"' onclick='navigator.clipboard.writeText(&#34;"+indi+"&#34;);'>";

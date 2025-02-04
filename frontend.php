@@ -269,6 +269,11 @@ function userTimeNow(id) {
     var userNum=arraySearch(id,userArr);
     return (sysDefHoursNow.value).split(' ')[userNum];
 }
+function getUserAvatar(id) {
+    var userArr=(sysDefUsersList.value).split(',');
+    var userNum=arraySearch(id,userArr);
+    return (sysDefAvatarsNow.value).split(' ')[userNum];
+}
 function storeHours(id) {
     var userArr=(sysDefUsersList.value).split(',');
     var userNum=arraySearch(id,userArr);
