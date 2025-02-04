@@ -151,7 +151,7 @@ function scores(sta) {
                 res+="<input type='image' class='power' src='Flag."+indi+".png"+"'>";
                 res+="<input type='button' style='width:14%;' value='"+indi+"' onclick='navigator.clipboard.writeText(&#34;"+indi+"&#34;);'>";
                 res+="<input type='button' style='width:22%;' value='"+sortable[indi]['Human Development Index']+"' onclick='navigator.clipboard.writeText(&#34;"+sortable[indi]['Human Development Index']+"&#34;);'>";
-                res+="<input type='button' style='width:34%;' value='$"+sortable[indi]['$DISP']['%G']+"' onclick='navigator.clipboard.writeText(&#34;"+sortable[indi]['$DISP']['%G']+"&#34;);'>";
+                res+="<input type='button' style='width:38%;' value='$"+sortable[indi]['$DISP']['%G']+"' onclick='navigator.clipboard.writeText(&#34;"+sortable[indi]['$DISP']['%G']+"&#34;);'>";
                 res+="<input type='image' class='power' src='"+epr+"info.png"+"' onclick='omniPath(&#34;i18n.json&#34;,&#34;"+indi+"&#34;,&#34;false&#34;);'><br>";
             }
         }
