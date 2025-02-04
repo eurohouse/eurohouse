@@ -88,7 +88,7 @@
 </div>
 <div class='topBarItem'>
     <p align='center' class='block'>
-    <input type="image" onmouseover="soundButton();" id="buttonAutomator" class="power" onclick="automate();" src="<?=$prefix.(($automateData[$sessionID]=='auto')?'wheel.png':'steer.png');?>"><input type='button' id="showUsInfoPower" style="width:29%;" value="<?=intval($powersData[$sessionID]);?>">
+    <input type="image" onmouseover="soundButton();" id="buttonAutomator" class="power" onclick="automate();" src="<?=$prefix.(($automateData[$sessionID]=='auto')?'wheel.png':'steer.png');?>"><input type='button' id="showUsInfoPower" style="width:33%;" value="<?=intval($powersData[$sessionID]);?>">
     <input type="image" onmouseover="soundButton();" id="buttonBroke" class="power" onclick="var uli=(sysDefUsersList.value).split(',');
     var bdi=arrjob(sysDefBindData.value,';',':');
     if (bdi[sysDefSessionID.value]!=sysDefSessionID.value) {
