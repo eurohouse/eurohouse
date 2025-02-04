@@ -55,7 +55,7 @@ function scores(sta) {
                 af=(ordered[indi]=='auto')?"AUTO":"MANUAL";
                 at=getUserAvatar(indi);
                 res+="<input type='image' class='power' src='"+eax+at+".png"+"'>";
-                res+="<input type='button' style='width:36%;' value='@"+indi+"' onclick='navigator.clipboard.writeText(&#34;"+indi+"&#34;);'>";
+                res+="<input type='button' style='width:34%;' value='@"+indi+"' onclick='navigator.clipboard.writeText(&#34;"+indi+"&#34;);'>";
                 res+="<input type='button' style='width:45%;' value='"+af+"' onclick='navigator.clipboard.writeText(&#34;"+af+"&#34;);'>";
                 if (superuser()) {
                     res+="<input type='image' class='power' src='"+epr+"delete.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;,true);'>";
