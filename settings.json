@@ -31,9 +31,7 @@
             "nerdamer.js", "algebra.js",
             "calculus.js", "solve.js"
         ],
-        "foreign": [
-            "https://www.midijs.net/lib/midi.js"
-        ]
+        "foreign": [ "https://www.midijs.net/lib/midi.js" ]
     },
     "collections": {
         "music": ".mp3,.aac,.ogg,.flac,.alac,.cda,.wma,.m4a,.mka",
