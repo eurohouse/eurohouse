@@ -483,7 +483,7 @@
         "input_color": "#E5E5E5", "back_text_color": "#FFFFFF",
         "fore_text_color": "#FFFFFF", "input_text_color": "#000000",
         "blank_color": "#FFFFFF", "blank_text_color": "#000000",
-        "arc_fore_color": "403F40", "arc_input_color": "#D5D5D5",
+        "arc_fore_color": "#403F40", "arc_input_color": "#D5D5D5",
         "background": "baron.000.00.png", "theme": "iso",
         "menu": "file_finder,preferences,personalization,sticky_notes,user_accounts", "memo": "", "find": "#", "stats": "powers",
         "position": "50% 25%", "active_hours": "", "banner": "",
