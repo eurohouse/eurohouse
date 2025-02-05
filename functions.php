@@ -231,8 +231,12 @@ function vismark($name,$data='') {
     $test=arropen($name,'{}','');
     if ($data!='') {
         $isoCC=(unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip='.$_SERVER['REMOTE_ADDR'])))['geoplugin_countryCode'];
-        $test[$_SERVER['REMOTE_ADDR']]=["Username"=>$data,"Country"=>$isoCC];
-        file_put_contents($name,json_encode($test,JSON_UNESCAPED_UNICODE));chmod($name,0777);
+        $getWB=get_browser(null,true);$test[$_SERVER['REMOTE_ADDR']]=[
+            "Username"=>$data,"Country"=>$isoCC,
+            "Platform"=>$getWB['platform'],
+            "Browser"=>$getWB['browser']
+        ];file_put_contents($name,json_encode($test,JSON_UNESCAPED_UNICODE));
+        chmod($name,0777);
     } return arropen($name,'{}','');
 }
 function jsonline($name) {
