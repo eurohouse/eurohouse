@@ -147,7 +147,11 @@ function automate() {
 }
 function jsonstr(str) {
     var res={}; try { res=JSON.parse(str);
-    } catch (e) { res={}; } return res;
+    } catch(e) { res={}; } return res;
+}
+function jsonarr(arr) {
+    var res=''; try { res=JSON.stringify(arr);
+    } catch(e) { res=''; } return res;
 }
 function jsonFilter(str,mask) {
     var arr=jsonstr(str),sym='#',uni='L';
@@ -514,11 +518,12 @@ function dominate(usr,id,wep='') {
 }
 function unbind(id) { bind(id,id); }
 function unequip(id) { equip(id,''); }
-function remove_entry(id,obj,name,p=false,q=false,dy=';',dx=':') {
-    var objData=arrjob(((p)?obj:obj.value),dy,dx);
-    delete objData[id]; set(name,JSON.stringify(objData),true);
-    if (q) { del(id+'.json',true); del(id,true); }
-    obj.value=arrpack(objData,dy,dx);
+function remove_entry(id,obj,name,vl=false,cm=false,sp=false,dy=';',dx=':') {
+    var objData=(cm)?jsonstr(((vl)?obj:obj.value)):arrjob(((vl)?obj:obj.value),dy,dx);
+    delete objData[id];
+    set(name,JSON.stringify(objData),true);
+    if (sp) { del(id+'.json',true); del(id,true); }
+    if (!vl) { obj.value=(cm)?jsonarr(objData):arrpack(objData,dy,dx); }
 }
 function delete_user(id) {
     unbind(sysDefSessionID.value);
