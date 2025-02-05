@@ -27,9 +27,9 @@
         "domestic": [
             "backend.js", "frontend.js", "tablesort.js",
             "requests.js", "commands.js", "jquery.js",
-            "aframe.js", "crypto.js", "XRegExp.js",
-            "statistics.js",
-            "nerdamer.js", "algebra.js", "calculus.js", "solve.js"
+            "crypto.js", "XRegExp.js", "statistics.js",
+            "nerdamer.js",
+            "algebra.js", "calculus.js", "solve.js"
         ],
         "foreign": [
             "https://www.midijs.net/lib/midi.js"
