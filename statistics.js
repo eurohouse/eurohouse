@@ -107,13 +107,13 @@ function scores(sta) {
             if ((sortable[indi]!==undefined)&&(indi!='')) {
                 af=jsonstr(sysDefLocaleData.value);
                 if (af[sortable[indi]['Country']]!==undefined) {
-                    res+="<input type='image' class='power' src='Flag."+sortable[indi]['Country']+".png"+"'>";
+                    res+="<input type='image' class='power' src='Flag."+sortable[indi]['Country']+".png"+"' onclick='clp(&#34;"+sortable[indi]['Country']+"&#34;);'>";
                 } else {
-                    res+="<input type='image' class='power' src='Flag.UN.png"+"'>";
+                    res+="<input type='image' class='power' src='Flag.UN.png"+"' onclick='clp(&#34;"+sortable[indi]['Country']+"&#34;);'>";
                 } res+="<input type='button' style='width:46%;' value='"+indi+"' onclick='clp(&#34;"+indi+"&#34;);'>";
                 at=getUserAvatar(sortable[indi]['Username']);
                 res+="<input type='image' class='power' src='"+eax+at+".png"+"'>";
-                res+="<input type='button' style='width:24%;' value='@"+sortable[indi]['Username']+"' onclick='clp(&#34;"+sortable[indi]+"&#34;);'>";
+                res+="<input type='button' style='width:24%;' value='@"+sortable[indi]['Username']+"' onclick='clp(&#34;"+sortable[indi]['Username']+"&#34;);'>";
                 if (superuser()) {
                     res+="<input type='image' class='power' src='"+epr+"delete.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;visitors.json&#34;,true,true,&#34;; &#34;,&#34; &#34;);'>";
                 } res+="<br>";
