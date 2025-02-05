@@ -19,6 +19,16 @@
             "memoir": "По сути, проще написать исходный код приложения, чем спроектировать сложную машину с использованием инструментов и материалов. Всегда есть предел тому, сколько материалов вы можете использовать и сколько инструментов у вас действительно может быть в данный момент. Но написание сложного и работающего приложения и создание медиаконтента ограничены только вашим воображением. Eurohouse — это пример программного ремесленничества, в котором все больше и больше сложных пользовательских функций и рабочих моделей прокладывают свой путь, создавая почти идеальный, современный пользовательский опыт. С этим приложением, созданным специально для вас, вам не понадобятся стандартные инструменты и аксессуары, которые предустановлены на вашем устройстве и вашей текущей операционной системе."
         }
     },
+    "models": {
+        "default": {
+            "title": "Working Models",
+            "memoir": "Eurohouse offers you various working models and prototypes of systems and phenomena of the surrounding world, including commodity-money relations, the use of weapons in combat, communications, the modeling business, etc. In Eurohouse, you can immerse yourself in the processes of relationships and learn how various objects and phenomena of the surrounding world work. The models used in Eurohouse are so realistic and plausible that they can be used as a teaching and practical tool in various areas of human activity. And the universal command line, as well as a calculator of complex expressions and equations at the same time will help you solve any problem that arises in your path."
+        },
+        "RU": {
+            "title": "Рабочие модели",
+            "memoir": "Eurohouse предлагает вашему вниманию разные рабочие модели и прототипы систем и явлений окружающего мира, включая товарно-денежные отношения, использование оружия в бою, коммуникации, модельный бизнес, и т.п. В Eurohouse вы можете погрузиться в процессы взаимоотношений и узнать, как работают разные предметы и явления окружающего мира. Модели, используемые в Eurohouse, настолько реалистичны и правдопободны, что их можно использовать как учебное и практическое пособие в разных сферах деятельности людей. А универсальная командная строка, а также калькулятор сложных выражений и уравнений по совместительству поможет вам решить любую задачу, встающую у вас на пути."
+        }
+    },
     "deploy": {
         "default": {
             "title": "First Installation",
