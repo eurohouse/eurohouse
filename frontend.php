@@ -518,12 +518,14 @@ function dominate(usr,id,wep='') {
 }
 function unbind(id) { bind(id,id); }
 function unequip(id) { equip(id,''); }
-function remove_entry(id,obj,name,vl=false,cm=false,sp=false,dy=';',dx=':') {
-    var objData=(cm)?jsonstr(((vl)?obj:obj.value)):arrjob(((vl)?obj:obj.value),dy,dx);
-    delete objData[id];
-    set(name,JSON.stringify(objData),true);
+function remove_entry(id,obj,name,cm=false,sp=false,dy=';',dx=':') {
+    var dat={}; if (typeof(obj)=='object') {
+        dat=(cm)?jsonstr(obj.value):arrjob((obj.value),dy,dx);
+    } else {
+        dat=(cm)?jsonstr(obj):arrjob((obj),dy,dx);
+    } delete dat[id]; set(name,JSON.stringify(dat),true);
     if (sp) { del(id+'.json',true); del(id,true); }
-    if (!vl) { obj.value=(cm)?jsonarr(objData):arrpack(objData,dy,dx); }
+    obj.value=(cm)?jsonarr(dat):arrpack(dat,dy,dx);
 }
 function delete_user(id) {
     unbind(sysDefSessionID.value);

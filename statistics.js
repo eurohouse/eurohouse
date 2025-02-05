@@ -27,7 +27,7 @@ function scores(sta) {
                 res+="<input type='button' style='width:34%;' value='"+af+"' onclick='clp(&#34;"+af+"&#34;);'>";
                 res+="<input type='image' class='power' src='"+epr+"chain.png"+"' onclick='bind(&#34;"+rid+"&#34;,&#34;"+indi+"&#34;);'>";
                 if (superuser()) {
-                    res+="<input type='image' class='power' src='"+epr+"delete.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;,true);'>";
+                    res+="<input type='image' class='power' src='"+epr+"delete.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;);'>";
                 } res+="<br>";
             }
         }
@@ -43,7 +43,7 @@ function scores(sta) {
                 res+="<input type='button' style='width:45%;' value='"+af+"' onclick='clp(&#34;"+af+"&#34;);'>";
                 res+="<input type='image' class='power' src='"+epr+"call.png"+"' onclick='call(&#34;"+rid+"&#34;,&#34;"+indi+"&#34;);'>";
                 if (superuser()) {
-                    res+="<input type='image' class='power' src='"+epr+"delete.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;,true);'>";
+                    res+="<input type='image' class='power' src='"+epr+"delete.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;);'>";
                 } res+="<br>";
             }
         }
@@ -58,7 +58,7 @@ function scores(sta) {
                 res+="<input type='button' style='width:34%;' value='@"+indi+"' onclick='clp(&#34;"+indi+"&#34;);'>";
                 res+="<input type='button' style='width:45%;' value='"+af+"' onclick='clp(&#34;"+af+"&#34;);'>";
                 if (superuser()) {
-                    res+="<input type='image' class='power' src='"+epr+"delete.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;,true);'>";
+                    res+="<input type='image' class='power' src='"+epr+"delete.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;);'>";
                 } res+="<br>";
             }
         }
@@ -73,7 +73,7 @@ function scores(sta) {
                 res+="<input type='button' style='width:24%;' value='@"+indi+"' onclick='clp(&#34;"+indi+"&#34;);'>";
                 res+="<input type='button' style='width:54%;' value='"+af+"' onclick='clp(&#34;"+af+"&#34;);'>";
                 if (superuser()) {
-                    res+="<input type='image' class='power' src='"+epr+"delete.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;,true);'>";
+                    res+="<input type='image' class='power' src='"+epr+"delete.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;);'>";
                 } res+="<br>";
             }
         }
@@ -95,7 +95,7 @@ function scores(sta) {
                     res+="<input type='button' style='width:30%;' value='"+ordered[indi]+"' onclick='clp(&#34;"+ordered[indi]+"&#34;);'>";
                     res+="<input type='button' style='width:23%;' value='"+em+"' onclick='clp(&#34;"+em+"&#34;);'>";
                     if (superuser()) {
-                        res+="<input type='image' class='power' src='"+epr+"delete.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;,true);'>";
+                        res+="<input type='image' class='power' src='"+epr+"delete.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;);'>";
                     } res+="<br>";
                 }
             }
@@ -115,7 +115,7 @@ function scores(sta) {
                 res+="<input type='image' class='power' src='"+eax+at+".png"+"'>";
                 res+="<input type='button' style='width:24%;' value='@"+sortable[indi]['Username']+"' onclick='clp(&#34;"+sortable[indi]['Username']+"&#34;);'>";
                 if (superuser()) {
-                    res+="<input type='image' class='power' src='"+epr+"delete.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;,true,true,true);'>";
+                    res+="<input type='image' class='power' src='"+epr+"delete.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;,true,true);'>";
                 } res+="<br>";
             }
         }
@@ -165,7 +165,7 @@ function scores(sta) {
                 res+="<input type='button' style='width:24%;' value='@"+indi+"' onclick='clp(&#34;"+indi+"&#34;);'>";
                 res+="<input type='button' style='width:54%;' value='"+sortable[indi]+"' onclick='clp(&#34;"+sortable[indi]+"&#34;);'>";
                 if (superuser()) {
-                    res+="<input type='image' class='power' src='"+epr+"delete.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;,true);'>";
+                    res+="<input type='image' class='power' src='"+epr+"delete.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;);'>";
                 } res+="<br>";
             }
         }
