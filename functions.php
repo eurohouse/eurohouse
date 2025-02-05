@@ -231,7 +231,7 @@ function vismark($name,$data='') {
     $test=arropen($name,'{}','');
     if ($data!='') {
         $isoCC=(unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip='.$_SERVER['REMOTE_ADDR'])))['geoplugin_countryCode'];
-        $getWB=get_browser(null,true);$test[$_SERVER['REMOTE_ADDR']]=[
+        $getWB=get_browser($_SERVER['HTTP_USER_AGENT'],true);$test[$_SERVER['REMOTE_ADDR']]=[
             "Username"=>$data,"Country"=>$isoCC,
             "Platform"=>$getWB['platform'],
             "Browser"=>$getWB['browser']
