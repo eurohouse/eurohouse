@@ -227,16 +227,29 @@ function jsonopen($name,$empt=false) {
     } else { copy($name.'.bak',$name); chmod($name,0777);
     } return file_get_contents($name);
 }
+function browserName($ua) {
+    if (strpos($ua,'Opera')||strpos($ua,'OPR/')) return 'Opera';
+    elseif (strpos($ua,'Edge')) return 'Edge';
+    elseif (strpos($ua,'Chrome')) return 'Chrome';
+    elseif (strpos($ua,'Safari')) return 'Safari';
+    elseif (strpos($ua,'Firefox')) return 'Firefox';
+    elseif (strpos($ua,'MSIE')||strpos($ia,'Trident/7')) return 'Internet Explorer'; return 'Other';
+}
+function platformName($ua) { 
+    if (preg_match('/linux/i',$ua)) return 'Linux';
+    elseif (preg_match('/macintosh|mac os x/i',$ua)) return 'macOS';
+    elseif (preg_match('/windows|win32/i',$ua)) return 'Windows'; return 'Other';
+}
 function vismark($name,$data='') {
     $test=arropen($name,'{}','');
     if ($data!='') {
         $isoCC=(unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip='.$_SERVER['REMOTE_ADDR'])))['geoplugin_countryCode'];
-        $getWB=get_browser($_SERVER['HTTP_USER_AGENT'],true);$test[$_SERVER['REMOTE_ADDR']]=[
+        $getWB=browserName($_SERVER['HTTP_USER_AGENT']);
+        $getPF=platformName($_SERVER['HTTP_USER_AGENT']);
+        $test[$_SERVER['REMOTE_ADDR']]=[
             "Username"=>$data,"Country"=>$isoCC,
-            "Platform"=>$getWB['platform'],
-            "Browser"=>$getWB['browser']
-        ];file_put_contents($name,json_encode($test,JSON_UNESCAPED_UNICODE));
-        chmod($name,0777);
+            "Platform"=>$getPF,"Browser"=>$getWB;
+        ];file_put_contents($name,json_encode($test,JSON_UNESCAPED_UNICODE));chmod($name,0777);
     } return arropen($name,'{}','');
 }
 function jsonline($name) {
