@@ -228,17 +228,19 @@ function jsonopen($name,$empt=false) {
     } return file_get_contents($name);
 }
 function browserName($ua) {
-    if (strpos($ua,'Opera')||strpos($ua,'OPR/')) return 'Opera';
-    elseif (strpos($ua,'Edge')) return 'Edge';
-    elseif (strpos($ua,'Chrome')) return 'Chrome';
-    elseif (strpos($ua,'Safari')) return 'Safari';
-    elseif (strpos($ua,'Firefox')) return 'Firefox';
-    elseif (strpos($ua,'MSIE')||strpos($ia,'Trident/7')) return 'Internet Explorer'; return 'Other';
+    if (preg_match('/opera|opr/i',$ua)) return 'Opera';
+    elseif (preg_match('/edge/i',$ua)) return 'Edge';
+    elseif (preg_match('/chrome/i',$ua)) return 'Chrome';
+    elseif (preg_match('/safari/i',$ua)) return 'Safari';
+    elseif (preg_match('/firefox/i',$ua)) return 'Firefox';
+    elseif (preg_match('/msie|trident/i',$ua)) return 'IE';
+    return 'Other';
 }
 function platformName($ua) { 
     if (preg_match('/linux/i',$ua)) return 'Linux';
     elseif (preg_match('/macintosh|mac os x/i',$ua)) return 'macOS';
-    elseif (preg_match('/windows|win32/i',$ua)) return 'Windows'; return 'Other';
+    elseif (preg_match('/windows|win32/i',$ua)) return 'Windows';
+    return 'Other';
 }
 function vismark($name,$data='') {
     $test=arropen($name,'{}','');
@@ -246,7 +248,7 @@ function vismark($name,$data='') {
         $isoCC=(unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip='.$_SERVER['REMOTE_ADDR'])))['geoplugin_countryCode'];
         $getWB=browserName($_SERVER['HTTP_USER_AGENT']);
         $getPF=platformName($_SERVER['HTTP_USER_AGENT']);
-        $test[$_SERVER['REMOTE_ADDR'].' '.$getPF.' '.$getWB]=[
+        $test[$_SERVER['REMOTE_ADDR'].'/'.$getWB.'/'.$getPF]=[
             "Username"=>$data,"Country"=>$isoCC
         ];file_put_contents($name,json_encode($test,JSON_UNESCAPED_UNICODE));chmod($name,0777);
     } return arropen($name,'{}','');
