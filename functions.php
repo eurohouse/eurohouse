@@ -248,7 +248,7 @@ function vismark($name,$data='') {
         $getPF=platformName($_SERVER['HTTP_USER_AGENT']);
         $test[$_SERVER['REMOTE_ADDR']]=[
             "Username"=>$data,"Country"=>$isoCC,
-            "Platform"=>$getPF,"Browser"=>$getWB;
+            "Platform"=>$getPF,"Browser"=>$getWB
         ];file_put_contents($name,json_encode($test,JSON_UNESCAPED_UNICODE));chmod($name,0777);
     } return arropen($name,'{}','');
 }
