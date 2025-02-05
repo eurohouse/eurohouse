@@ -246,7 +246,7 @@ function vismark($name,$data='') {
         $isoCC=(unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip='.$_SERVER['REMOTE_ADDR'])))['geoplugin_countryCode'];
         $getWB=browserName($_SERVER['HTTP_USER_AGENT']);
         $getPF=platformName($_SERVER['HTTP_USER_AGENT']);
-        $test[$_SERVER['REMOTE_ADDR'].'/'.$getPF.'/'.$getWB]=[
+        $test[$_SERVER['REMOTE_ADDR'].' '.$getPF.' '.$getWB]=[
             "Username"=>$data,"Country"=>$isoCC
         ];file_put_contents($name,json_encode($test,JSON_UNESCAPED_UNICODE));chmod($name,0777);
     } return arropen($name,'{}','');
