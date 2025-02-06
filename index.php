@@ -110,13 +110,9 @@
             <audio id="audioPlayer" style="width:80%;position:relative;" preservesPitch="<?=boolval($session['pitch_lock']);?>" volume="<?=$session['audio_volume'];?>" playbackRate="<?=$session['audio_speed'];?>" onended="if (sysDefAutoplay.value != 0) { songIndex(sysDefSongIndex.value); }" ontimeupdate="savePlayState();" onpause="setdata('playing', 0); $('#buttonPlay').attr('src', sysDefPrefix.value+'play.png');" onplay="setdata('playing', 1); $('#buttonPlay').attr('src', sysDefPrefix.value+'pause.png');" onvolumechange="setdata('audio_volume', this.volume);" onratechange="setdata('audio_speed', this.playbackRate);">
         </div>
         <div class='panel'>
-            <?php
-            if (file_exists('mode.'.$request['mode'].'.php')) {
+            <?php if (file_exists('mode.'.$request['mode'].'.php')) {
                 include 'mode.'.$request['mode'].'.php';
-            } else {
-                include 'welcome.php';
-            }
-            ?>
+            } else { include 'welcome.php'; } ?>
         </div>
         <div class='lowerGap'>
             <span class="marquee" id='showUsText' onclick="navigator.clipboard.writeText(this.innerText);"></span>

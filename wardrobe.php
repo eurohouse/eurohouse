@@ -118,13 +118,13 @@ body {
     border: none; border-radius: 0px; position: relative;
     background-color: var(--bicolor); color: var(--backtextcolor);
     width: 100%; height: 50px; left: 0%; top: -2px;
-    text-align: center; overflow-y: hidden;
+    text-align: center; overflow: hidden;
 }
 .lowerGap {
     border: none; border-radius: 0px; position: relative;
     background-color: var(--bicolor); color: var(--backtextcolor);
     width: 100%; height: 150px; left: 0%; top: -5px;
-    text-align: center; overflow-y: hidden;
+    text-align: center; overflow: hidden;
 }
 @keyframes scrollMarquee {
     to { transform: translateX(-100%); }
