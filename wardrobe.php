@@ -130,8 +130,7 @@ body {
     to { transform: translateX(-100%); }
 }
 .urgent {
-    overflow: hidden; cursor: pointer;
-    display: inline-block;
+    overflow: hidden; cursor: pointer; display: inline-block;
 }
 .marquee {
     overflow: hidden; white-space: nowrap; cursor: pointer;
