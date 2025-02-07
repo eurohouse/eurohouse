@@ -142,7 +142,7 @@ function scores(sta) {
                 gnim=7.5; gnif=2.5;
             } var lei=((((lem+lef)/2)-20)/65);
             var ei=(((((mysm+mysf)/2)/15)+(((eysm+eysf)/2)/18))/2);
-            var ii=((Math.log((gnim+gnif)/2)-Math.log(0.1))/Math.log(0.75));
+            var ii=((Math.log((gnim+gnif)/2)-Math.log(100))/Math.log(750));
             console.log(lei+' '+ei+' '+ii);
             obj[et]['Human Development Index']=superRound((lei*ei*ii)**(1/3));
             obj[et]['Gross National Income']['Both']=superRound((gnim+gnif)/2);
@@ -153,7 +153,7 @@ function scores(sta) {
                 res+="<input type='image' class='power' src='Flag."+indi+".png"+"'>";
                 res+="<input type='button' style='width:15%;' value='"+indi+"' onclick='clp(&#34;"+indi+"&#34;);'>";
                 res+="<input type='button' style='width:24%;' value='"+sortable[indi]['Human Development Index']+"' onclick='clp(&#34;"+sortable[indi]['Human Development Index']+"&#34;);'>";
-                res+="<input type='button' style='width:40%;' value='$"+sortable[indi]['Gross National Income']['Both']+"K' onclick='clp(&#34;"+sortable[indi]['Gross National Income']['Both']+"&#34;);'>";
+                res+="<input type='button' style='width:40%;' value='"+sortable[indi]['Gross National Income']['Both']+"' onclick='clp(&#34;"+sortable[indi]['Gross National Income']['Both']+"&#34;);'>";
                 res+="<input type='image' class='power' src='"+epr+"info.png"+"' onclick='omniPath(&#34;i18n.json&#34;,&#34;"+indi+"&#34;,&#34;false&#34;);'><br>";
             }
         }
