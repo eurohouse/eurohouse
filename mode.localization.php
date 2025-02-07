@@ -30,7 +30,7 @@ function hdiadd(array $arr) {
     $res=[]; foreach ($arr as $key=>$val) {
         $rs1=(isset($val['Human Development Index']))?$val['Human Development Index']:0; $rs2=(isset($val['Continent']))?$val['Continent']:'Worldwide'; $res[$key]['Human Development Index']=$rs1; $res[$key]['Continent']=$rs2;
     } return $res;
-} $arr=hdiadd($arr); $dev=onlydev($arr);
+} /*$arr=hdiadd($arr); $dev=onlydev($arr);*/
 $fmar=($request['lock']!='false')?$dev:$arr;
 $fnar=($request['lock']!='false')?onlyhdi($dev):onlyhdi($arr);
 $fnar['UN']['Human Development Index']=round((hdisum($arr)/count($arr)),3);
