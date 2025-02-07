@@ -144,7 +144,7 @@ function scores(sta) {
             var ei=(((((mysm+mysf)/2)/15)+(((eysm+eysf)/2)/18))/2);
             var ii=((Math.log((gnim+gnif)/2)-Math.log(100))/Math.log(750));
             console.log(gnim+' '+gnif);
-            obj[et]['Human Development Index']=Math.round((lei*ei*ii)**(1/3));
+            obj[et]['Human Development Index']=superRound((lei*ei*ii)**(1/3));
             obj[et]['Gross National Income']['Both']=superRound((gnim+gnif)/2);
         } sortable=Object.fromEntries(
             Object.entries(obj).sort(([,a],[,b])=>b['Human Development Index']-a['Human Development Index'])
