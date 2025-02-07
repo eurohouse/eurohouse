@@ -105,7 +105,7 @@ function scores(sta) {
             Object.entries(obj).sort(([,a],[,b])=>(a['Username']<b['Username'])?-1:((a['Username']>b['Username'])?1:0))
         ); for (indi in sortable) {
             if ((sortable[indi]!==undefined)&&(indi!='')) {
-                af=jsonstr(sysDefLocaleData.value);
+                af=jsonstr(sysDefHdiData.value);
                 if (af[sortable[indi]['Country']]!==undefined) {
                     res+="<input type='image' class='power' src='Flag."+sortable[indi]['Country']+".png"+"' onclick='clp(&#34;"+sortable[indi]['Country']+"&#34;);'>";
                 } else {
