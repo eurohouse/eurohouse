@@ -1,10 +1,3 @@
-function hdiscore(lem,lef,mysm,mysf,eysm,eysf,gnim,gnif) {
-    console.log(gnim+' '+gnif);
-    var lei=((((lem+lef)/2)-20)/65);
-    var ei=(((((mysm+mysf)/2)/15)+(((eysm+eysf)/2)/18))/2);
-    var ii=((Math.log((gnim+gnif)/2)-Math.log(100))/Math.log(750));
-    return Math.round((lei*ei*ii)**(1/3));
-}
 function scores(sta) {
     var sto={'bind':'binding','call':'calling','auto':'automator','friend':'friendship','tool':'toolbox','ip':'visitors','powers':'dominion','hdi':'i18n'};
     var sti={'bind':'μ','call':'μ','auto':'μ','friend':'μ','tool':'μ','powers':'μ'},rid=sysDefSessionID.value;
@@ -144,8 +137,11 @@ function scores(sta) {
                 gnif=obj[et]['Gross National Income']['Female'];
             } else {
                 gnim=10/5+2.5; gnif=10/5-2.5;
-            } obj[et]['Human Development Index']=hdiscore(lem,lef,mysm,mysf,eysm,eysf,gnim,gnif);
-            obj[et]['Gross National Income']['Both']=(gnim+gnif)/2;
+            } var lei=((((lem+lef)/2)-20)/65);
+            var ei=(((((mysm+mysf)/2)/15)+(((eysm+eysf)/2)/18))/2);
+            var ii=((Math.log((gnim+gnif)/2)-Math.log(100))/Math.log(750));
+            obj[et]['Human Development Index']=superRound((lei*ei*ii)**(1/3));
+            obj[et]['Gross National Income']['Both']=superRound((gnim+gnif)/2);
         } sortable=Object.fromEntries(
             Object.entries(obj).sort(([,a],[,b])=>b['Human Development Index']-a['Human Development Index'])
         ); for (indi in sortable) {
