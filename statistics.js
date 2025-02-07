@@ -149,7 +149,7 @@ function scores(sta) {
                 res+="<input type='image' class='power' src='Flag."+indi+".png"+"'>";
                 res+="<input type='button' style='width:15%;' value='"+indi+"' onclick='clp(&#34;"+indi+"&#34;);'>";
                 res+="<input type='button' style='width:24%;' value='"+sortable[indi]['Human Development Index']+"' onclick='clp(&#34;"+sortable[indi]['Human Development Index']+"&#34;);'>";
-                res+="<input type='button' style='width:40%;' value='$"+sortable[indi]['Gross National Income']['Both']+"' onclick='clp(&#34;"+sortable[indi]['Gross National Income']['Both']+"&#34;);'>";
+                res+="<input type='button' style='width:40%;' value='$"+sortable[indi]['Gross National Income']['Both']+"K' onclick='clp(&#34;"+sortable[indi]['Gross National Income']['Both']+"&#34;);'>";
                 res+="<input type='image' class='power' src='"+epr+"info.png"+"' onclick='omniPath(&#34;i18n.json&#34;,&#34;"+indi+"&#34;,&#34;false&#34;);'><br>";
             }
         }
