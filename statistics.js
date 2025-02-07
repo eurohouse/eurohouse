@@ -1,5 +1,5 @@
 function hdiscore(lem,lef,mysm,mysf,eysm,eysf,gnim,gnif) {
-    console.log(mysm+' '+mysf);
+    console.log(gnim+' '+gnif);
     var lei=((((lem+lef)/2)-20)/65);
     var ei=(((((mysm+mysf)/2)/15)+(((eysm+eysf)/2)/18))/2);
     var ii=((Math.log((gnim+gnif)/2)-Math.log(100))/Math.log(750));
@@ -129,10 +129,13 @@ function scores(sta) {
             } else {
                 lem=70/2-2.5; lef=70/2+2.5;
             } if (obj[et]['School Years']!==undefined) {
-                mysm=obj[et]['School Years']['Average']['Male'];
-                mysf=obj[et]['School Years']['Average']['Female'];
-                eysm=obj[et]['School Years']['Expected']['Male'];
-                eysf=obj[et]['School Years']['Expected']['Female'];
+                if (obj[et]['School Years']['Average']!==undefined) {
+                    mysm=obj[et]['School Years']['Average']['Male'];
+                    mysf=obj[et]['School Years']['Average']['Female'];
+                } if (obj[et]['School Years']['Expected']!==undefined) {
+                    eysm=obj[et]['School Years']['Expected']['Male'];
+                    eysf=obj[et]['School Years']['Expected']['Female'];
+                }
             } else {
                 mysm=15/2+2.5; mysf=15/2-2.5;
                 eysm=18/2+2.5; eysf=18/2-2.5;
