@@ -1,5 +1,5 @@
 function hdiscore(lem,lef,mysm,mysf,eysm,eysf,gnim,gnif) {
-    console.log(lem+' '+lef);
+    console.log(mysm+' '+mysf);
     var lei=((((lem+lef)/2)-20)/65);
     var ei=(((((mysm+mysf)/2)/15)+(((eysm+eysf)/2)/18))/2);
     var ii=((Math.log((gnim+gnif)/2)-Math.log(100))/Math.log(750));
