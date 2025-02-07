@@ -9,11 +9,17 @@ function hdisum(array $arr) {
 }
 function hdiadd(array $arr) {
     foreach ($arr as $key=>$val) {
-        $lem=(isset($val['Life Expectancy']['Male']))?$val['Life Expectancy']['Male']:(65-2.5);
-        $lef=(isset($val['Life Expectancy']['Female']))?$val['Life Expectancy']['Female']:(65+2.5); $lei=(((($lem+$lef)/2)-20)/65);
-        $mys=(isset($val['School Years']['Average']))?$val['School Years']['Average']:(15/2);
-        $eys=(isset($val['School Years']['Expected']))?$val['School Years']['Expected']:(18/2); $ei=((($mys/15)+($eys/18))/2);
-        $gni=(isset($val['Gross National Income']))?$val['Gross National Income']:100; $ii=((log($gni)-log(100))/log(750));
+        $lem=(isset($val['Life Expectancy']['Male']))?$val['Life Expectancy']['Male']:32.5;
+        $lef=(isset($val['Life Expectancy']['Female']))?$val['Life Expectancy']['Female']:37.5;
+        $lei=(((($lem+$lef)/2)-20)/65);
+        $mysm=(isset($val['School Years']['Average']['Male']))?$val['School Years']['Average']['Male']:10;
+        $mysm=(isset($val['School Years']['Average']['Female']))?$val['School Years']['Average']['Female']:5;
+        $eysm=(isset($val['School Years']['Expected']['Male']))?$val['School Years']['Expected']['Male']:11.5;
+        $eysf=(isset($val['School Years']['Expected']['Female']))?$val['School Years']['Expected']['Female']:6.5;
+        $ei=((((($mysm+$mysf)/2)/15)+((($eysm+$eysf)/2)/18))/2);
+        $gnim=(isset($val['Gross National Income']['Male']))?$val['Gross National Income']['Male']:7500;
+        $gnim=(isset($val['Gross National Income']['Female']))?$val['Gross National Income']['Female']:2500;
+        $ii=((log(($gnim+$gnif)/2)-log(100))/log(750));
         $arr[$key]['Human Development Index']=round((($lei*$ei*$ii)**(1/3)),3);
     } return $arr;
 } function onlydev(array $arr) {
@@ -44,9 +50,10 @@ foreach ($fnar as $key=>$value) {
     $shtm=localword('male',$settings['sex_life'],$session['units']);
     $shtf=localword('female',$settings['sex_life'],$session['units']);
     $shr=(isset($fmar[$key]['Life Expectancy']['Male'])&&isset($fmar[$key]['Life Expectancy']['Female']))?$fmar[$key]['Life Expectancy']['Male'].' '.$shtm.' '.$fmar[$key]['Life Expectancy']['Female'].' '.$shtf:'';
-    $she=(isset($fmar[$key]['School Years']['Average'])&&isset($fmar[$key]['School Years']['Expected']))?$fmar[$key]['School Years']['Average'].' '.$shta.' '.$fmar[$key]['School Years']['Expected'].' '.$shte:'';
-    $shg=(isset($fmar[$key]['Gross National Income']))?$shtg.' $'.$fmar[$key]['Gross National Income']:'';
-    $shdh=$key.' ('.$shc.') '.$shth.' '.$shh."\r\n".$shr."\r\n".$she."\r\n".$shg;
+    $shem=(isset($fmar[$key]['School Years']['Average']['Male'])&&isset($fmar[$key]['School Years']['Expected']['Male']))?$fmar[$key]['School Years']['Average']['Male'].' '.$shta.' '.$fmar[$key]['School Years']['Expected']['Male'].' '.$shte.' '.$shtm:'';
+    $shef=(isset($fmar[$key]['School Years']['Average']['Female'])&&isset($fmar[$key]['School Years']['Expected']['Female']))?$fmar[$key]['School Years']['Average']['Female'].' '.$shta.' '.$fmar[$key]['School Years']['Expected']['Female'].' '.$shte.' '.$shtf:'';
+    $shg=(isset($fmar[$key]['Gross National Income']['Male'])&&isset($fmar[$key]['Gross National Income']['Female']))?$shtg.' '.$fmar[$key]['Gross National Income']['Male'].' '.$shtm.' '.$fmar[$key]['Gross National Income']['Female'].' '.$shtf:'';
+    $shdh=$key.' ('.$shc.') '.$shth.' '.$shh."\r\n".$shr."\r\n".$shem."\r\n".$shef."\r\n".$shg;
 ?>
 <img name="<?=$key;?>" style="height:17%;opacity:<?=(in_array($key,explode(',',$session['units_list'])))?1:0.5;?>;" title="<?=$shdh;?>" src="<?='Flag.'.$key.'.png';?>" onclick="setdata('units_list',arrangeMenu(sysDefUnitsList.value,this.name)); if (this.style.opacity==0.5) { this.style.setProperty('opacity',1); } else { this.style.setProperty('opacity',0.5); }">
 <?php } ?>
