@@ -87,6 +87,7 @@ function camel($str) {
     return $result;
 }
 function wordfx($word,$sup,array $voc,array $ses) {
+    $uni=$ses['units'];$vom=$voc['vocabulary'];$loc=$voc['locale'];
     $preg=preg_match_all('/\[[^\]]*\]/',$word,$matches);
     for ($i=0; $i<count($matches[0]); $i++) {
         $full=$matches[0][$i]; switch ($full) {
@@ -115,29 +116,27 @@ function wordfx($word,$sup,array $voc,array $ses) {
             case '[uname -m]': $res=php_uname('m'); break;
             case '[free_disk_space]':
                 // Get free disk space on web server
-                $res=sizestr(disk_free_space('/'),$voc['locale'],$ses['units']); break;
+                $res=sizestr(disk_free_space('/'),$loc,$uni); break;
             case '[french]':
                 // Display date in French Republican Calendar format
-                $res=french($voc,$ses['units']); break;
+                $res=french($voc,$uni); break;
             case '[month]':
                 // Get current month
-                $res=(isset($voc['locale']['month'][$ses['units']][date('n')-1]))?$voc['locale']['month'][$ses['units']][date('n')-1]:$voc['locale']['month']['default'][date('n')-1]; break;
+                $res=(isset($loc['month'][$uni][date('n')-1]))?$loc['month'][$uni][date('n')-1]:$loc['month']['default'][date('n')-1]; break;
             case '[semester]':
                 // Get current range of two seasons, namely Fall/Winter and Spring/Summer
                 $qN=date('n')-1;$qM=intval(($qN>1)&&($qN<8));
-                $res=(isset($voc['locale']['semester'][$ses['units']][$qM]))?$voc['locale']['semester'][$ses['units']][$qM]:$voc['locale']['semester']['default'][$qM]; break;
+                $res=(isset($loc['semester'][$uni][$qM]))?$loc['semester'][$uni][$qM]:$loc['semester']['default'][$qM]; break;
             case '[quarter]':
                 // Get current season, namely Winter, Spring, Summer and Fall
                 $qN=date('n')-1;$qM=(($qN>1)&&($qN<5))?1:((($qN>4)&&($qN<8))?2:((($qN>7)&&($qN<11))?3:0));
-                $res=(isset($voc['locale']['quarter'][$ses['units']][$qM]))?$voc['locale']['quarter'][$ses['units']][$qM]:$voc['locale']['quarter']['default'][$qM]; break;
+                $res=(isset($loc['quarter'][$uni][$qM]))?$loc['quarter'][$uni][$qM]:$loc['quarter']['default'][$qM]; break;
             default:
                 // Get arbitrary user profile property
-                $uni=$ses['units'];$vom=$voc['vocabulary'];
                 $entl=(strpos($full,':')!==false)?str_replace(':','',str_replace(']','',str_replace('[','',$full))):str_replace(']','',str_replace('[','',$full));
                 $entr=valarr($ses[$entl.'s'],' | ',' - ');
-                $itl=(isset($entr[$ses['units']]))?$entr[$uni]:(($ses[$entl])?$ses[$entl]:'');
-                $vun=(strpos($full,':')!==false)?(($itl!='')?((isset($vom[$uni][': ']))?$vom[$uni][': ']:': '):''):'';
-                $res=(in_array($uni,$voc['locale']['colon_ind']))?$vun.$itl:$itl.$vun; break;
+                $itl=(isset($entr[$uni]))?$entr[$uni]:(($ses[$entl]!='')?$ses[$entl]:strtoupper($entl));
+                $vun=(strpos($full,':')!==false)?(($itl!='')?((isset($vom[$uni][': ']))?$vom[$uni][': ']:': '):''):''; $res=(in_array($uni,$loc['colon_ind']))?$vun.$itl:$itl.$vun; break;
         } $word=str_replace($full,$res,$word);
     } return $word;
 }
