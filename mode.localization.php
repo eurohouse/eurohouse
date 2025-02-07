@@ -30,7 +30,7 @@ function hdiadd(array $arr) {
     $res=[]; foreach ($arr as $key=>$val) {
         $rs1=(isset($val['Human Development Index']))?$val['Human Development Index']:0; $rs2=(isset($val['Continent']))?$val['Continent']:'Worldwide'; $res[$key]['Human Development Index']=$rs1; $res[$key]['Continent']=$rs2;
     } return $res;
-} $arr=hdiadd($arr); $dev=onlydev($arr);
+} /*$arr=hdiadd($arr); $dev=onlydev($arr);
 $fmar=($request['lock']!='false')?$dev:$arr;
 $fnar=($request['lock']!='false')?onlyhdi($dev):onlyhdi($arr);
 $fnar['UN']['Human Development Index']=round((hdisum($arr)/count($arr)),3);
@@ -44,7 +44,7 @@ foreach ($fnar as $key=>$value) {
     $shh=$value['Human Development Index'];
     $shth=term('HDI',$settings['vocabulary'],$session['units']);
     $shdh=$key.' ('.$shc.') '.$shth.' '.$shh;
-?>
+*/ ?>
 <img name="<?=$key;?>" style="height:17%;opacity:<?=(in_array($key,explode(',',$session['units_list'])))?1:0.5;?>;" title="<?=$shdh;?>" src="<?='Flag.'.$key.'.png';?>" onclick="setdata('units_list',arrangeMenu(sysDefUnitsList.value,this.name)); if (this.style.opacity==0.5) { this.style.setProperty('opacity',1); } else { this.style.setProperty('opacity',0.5); }">
 <?php } ?>
 </p>
