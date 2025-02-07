@@ -1,8 +1,7 @@
 <?php
 error_reporting(0); $websiteID=basename(__DIR__);
 include 'functions.php'; $viewportStr='';
-include 'namefunc.php'; include 'requests.php';
-include 'dataload.php'; $settings=fileopen('settings.json');
+$settings=fileopen('settings.json');
 $backloadString=implode(' ',$settings['payload']['backward']);
 $forloadString=implode(',',$settings['payload']['forward']);
 $updateChannel=[];$viewportArr=$settings['viewport'];
