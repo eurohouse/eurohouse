@@ -43,7 +43,7 @@ function databox() {
             $('#sysDefTutorList').val(pager(data,16));
             $('#sysDefTutorData').val(pager(data,17));
             $('#sysDefIpData').val(pager(data,18));
-            $('#sysDefLocaleData').val(pager(data,19));
+            $('#sysDefHdiData').val(pager(data,19));
             $('#sysDefAvatarsNow').val(pager(data,20));
             if (sysDefBindData.value!=sysDefPostBindData.value) {
                 playAudio(bindPlayer,sysDefBindSound.value);
