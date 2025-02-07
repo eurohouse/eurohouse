@@ -44,16 +44,7 @@ foreach ($fnar as $key=>$value) {
     $shc=((isset($settings['locale']['continent'][$session['units']][$value['Continent']]))?$settings['locale']['continent'][$session['units']][$value['Continent']]:$value['Continent']);
     $shh=$value['Human Development Index'];
     $shth=term('HDI',$settings['vocabulary'],$session['units']);
-    $shta=term('Average',$settings['vocabulary'],$session['units']);
-    $shte=term('Expected',$settings['vocabulary'],$session['units']);
-    $shtg=term('GNI PPP per capita',$settings['vocabulary'],$session['units']);
-    $shtm=localword('male',$settings['sex_life'],$session['units']);
-    $shtf=localword('female',$settings['sex_life'],$session['units']);
-    $shr=(isset($fmar[$key]['Life Expectancy']['Male'])&&isset($fmar[$key]['Life Expectancy']['Female']))?$fmar[$key]['Life Expectancy']['Male'].' '.$shtm.' '.$fmar[$key]['Life Expectancy']['Female'].' '.$shtf:'';
-    $shem=(isset($fmar[$key]['School Years']['Average']['Male'])&&isset($fmar[$key]['School Years']['Expected']['Male']))?$fmar[$key]['School Years']['Average']['Male'].' '.$shta.' '.$fmar[$key]['School Years']['Expected']['Male'].' '.$shte.' '.$shtm:'';
-    $shef=(isset($fmar[$key]['School Years']['Average']['Female'])&&isset($fmar[$key]['School Years']['Expected']['Female']))?$fmar[$key]['School Years']['Average']['Female'].' '.$shta.' '.$fmar[$key]['School Years']['Expected']['Female'].' '.$shte.' '.$shtf:'';
-    $shg=(isset($fmar[$key]['Gross National Income']['Male'])&&isset($fmar[$key]['Gross National Income']['Female']))?$shtg.' '.$fmar[$key]['Gross National Income']['Male'].' '.$shtm.' '.$fmar[$key]['Gross National Income']['Female'].' '.$shtf:'';
-    $shdh=$key.' ('.$shc.') '.$shth.' '.$shh."\r\n".$shr."\r\n".$shem."\r\n".$shef."\r\n".$shg;
+    $shdh=$key.' ('.$shc.') '.$shth.' '.$shh;
 ?>
 <img name="<?=$key;?>" style="height:17%;opacity:<?=(in_array($key,explode(',',$session['units_list'])))?1:0.5;?>;" title="<?=$shdh;?>" src="<?='Flag.'.$key.'.png';?>" onclick="setdata('units_list',arrangeMenu(sysDefUnitsList.value,this.name)); if (this.style.opacity==0.5) { this.style.setProperty('opacity',1); } else { this.style.setProperty('opacity',0.5); }">
 <?php } ?>
