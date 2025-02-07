@@ -8,7 +8,7 @@
         <input type='image' id='switchBtnBind' onmouseover="soundButton();" class="power" onclick="setdata('stats','bind');" src="<?=$prefix.'chain.png';?>">
         <input type='image' id='switchBtnTool' onmouseover="soundButton();" class="power" onclick="setdata('stats','tool');" src="<?=$prefix.'parfum.png';?>">
         <input type='image' id='switchBtnScore' onmouseover="soundButton();" class="power" onclick="setdata('stats','powers');" src="<?=$prefix.'money.png';?>">
-        <input type='image' id='switchBtnLocale' onmouseover="soundButton();" class="power" onclick="setdata('stats','locale');" src="<?=$prefix.'character.png';?>">
+        <input type='image' id='switchBtnHDI' onmouseover="soundButton();" class="power" onclick="setdata('stats','hdi');" src="<?=$prefix.'heart.png';?>">
         <input type='image' id='switchBtnIP' onmouseover="soundButton();" class="power" onclick="setdata('stats','ip');" src="<?=$prefix.'world.png';?>">
     </p>
     <p align='center' id='tabScore'><?=term('Server-Wide User Statistics:', $settings['vocabulary'], $session['units']);?></p>
