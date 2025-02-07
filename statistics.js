@@ -143,7 +143,7 @@ function scores(sta) {
             } var lei=((((lem+lef)/2)-20)/65);
             var ei=(((((mysm+mysf)/2)/15)+(((eysm+eysf)/2)/18))/2);
             var ii=((Math.log((gnim+gnif)/2)-Math.log(100))/Math.log(750));
-            console.log(lem+' '+lef+' '+mysm+' '+mysf+' '+eysm+' '+eysf+' '+gnim+' '+gnif);
+            console.log(lei+' '+ei+' '+ii);
             obj[et]['Human Development Index']=superRound((lei*ei*ii)**(1/3));
             obj[et]['Gross National Income']['Both']=superRound((gnim+gnif)/2);
         } sortable=Object.fromEntries(
