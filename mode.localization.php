@@ -9,7 +9,7 @@ function hdisum(array $arr) {
 }
 function hdiadd(array $arr) {
     foreach ($arr as $key=>$val) {
-        /*$lem=(isset($val['Life Expectancy']['Male']))?$val['Life Expectancy']['Male']:32.5;
+        $lem=(isset($val['Life Expectancy']['Male']))?$val['Life Expectancy']['Male']:32.5;
         $lef=(isset($val['Life Expectancy']['Female']))?$val['Life Expectancy']['Female']:37.5;
         $lei=(((($lem+$lef)/2)-20)/65);
         $mysm=(isset($val['School Years']['Average']['Male']))?$val['School Years']['Average']['Male']:10;
@@ -21,7 +21,7 @@ function hdiadd(array $arr) {
         $gnim=(isset($val['Gross National Income']['Female']))?$val['Gross National Income']['Female']:2500;
         $ii=((log(($gnim+$gnif)/2)-log(100))/log(750));
         $arr[$key]['Human Development Index']=round((($lei*$ei*$ii)**(1/3)),3);
-    */} return $arr;
+    } return $arr;
 } function onlydev(array $arr) {
     foreach ($arr as $key=>$val) {
         $res=(isset($val['Human Development Index']))?$val['Human Development Index']:0; if ($res<0.8) { unset($arr[$key]); }
@@ -30,7 +30,7 @@ function hdiadd(array $arr) {
     $res=[]; foreach ($arr as $key=>$val) {
         $rs1=(isset($val['Human Development Index']))?$val['Human Development Index']:0; $rs2=(isset($val['Continent']))?$val['Continent']:'Worldwide'; $res[$key]['Human Development Index']=$rs1; $res[$key]['Continent']=$rs2;
     } return $res;
-} /*$arr=hdiadd($arr); $dev=onlydev($arr);*/
+} $arr=hdiadd($arr); $dev=onlydev($arr);
 $fmar=($request['lock']!='false')?$dev:$arr;
 $fnar=($request['lock']!='false')?onlyhdi($dev):onlyhdi($arr);
 $fnar['UN']['Human Development Index']=round((hdisum($arr)/count($arr)),3);
