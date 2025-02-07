@@ -2,7 +2,7 @@
 error_reporting(0); $websiteID=basename(__DIR__);
 include 'functions.php'; $viewportStr='';
 $settings=fileopen('settings.json');
-for ($settings['workers'] as $key=>$val) {
+foreach ($settings['workers'] as $key=>$val) {
     include $val.'.func.php';
 } $backloadString=implode(' ',$settings['payload']['backward']);
 $forloadString=implode(',',$settings['payload']['forward']);
