@@ -113,7 +113,7 @@ function wordfx($word,$sup,array $voc,array $ses) {
             case '[uname -r]': $res=php_uname('r'); break;
             case '[uname -v]': $res=php_uname('v'); break;
             case '[uname -m]': $res=php_uname('m'); break;
-            case '[df]':
+            case '[free_disk_space]':
                 // Get free disk space on web server
                 $res=sizestr(disk_free_space('/'),$voc['locale'],$ses['units']); break;
             case '[french]':
