@@ -139,7 +139,7 @@ function scores(sta) {
                 gnim=obj[et]['Gross National Income']['Male'];
                 gnif=obj[et]['Gross National Income']['Female'];
             } else {
-                gnim=7.5; gnif=2.5;
+                gnim=7500; gnif=2500;
             } var lei=((((lem+lef)/2)-20)/65);
             var ei=(((((mysm+mysf)/2)/15)+(((eysm+eysf)/2)/18))/2);
             var ii=((Math.log((gnim+gnif)/2)-Math.log(100))/Math.log(750));
