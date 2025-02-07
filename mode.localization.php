@@ -28,8 +28,7 @@ function hdiadd(array $arr) {
     } return $arr;
 } function onlyhdi(array $arr) {
     $res=[]; foreach ($arr as $key=>$val) {
-        $rs1=(isset($val['Human Development Index']))?$val['Human Development Index']:0; $rs2=(isset($val['Continent']))?$val['Continent']:'Worldwide';
-        $res[$key]['Human Development Index']=$rs1; $res[$key]['Continent']=$rs2;
+        $rs1=(isset($val['Human Development Index']))?$val['Human Development Index']:0; $rs2=(isset($val['Continent']))?$val['Continent']:'Worldwide'; $res[$key]['Human Development Index']=$rs1; $res[$key]['Continent']=$rs2;
     } return $res;
 } $arr=hdiadd($arr); $dev=onlydev($arr);
 $fmar=($request['lock']!='false')?$dev:$arr;
