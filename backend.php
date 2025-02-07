@@ -2,7 +2,9 @@
 error_reporting(0); $websiteID=basename(__DIR__);
 include 'functions.php'; $viewportStr='';
 $settings=fileopen('settings.json');
-$backloadString=implode(' ',$settings['payload']['backward']);
+for ($settings['workers'] as $key=>$val) {
+    include $val.'.func.php';
+} $backloadString=implode(' ',$settings['payload']['backward']);
 $forloadString=implode(',',$settings['payload']['forward']);
 $updateChannel=[];$viewportArr=$settings['viewport'];
 foreach ($settings['payload'] as $key=>$val) {
