@@ -1,7 +1,7 @@
 <!-- locale -->
 <!-- GR: Γλωσσικά και περιφερειακά πρότυπα; CY: Γλωσσικά και περιφερειακά πρότυπα; DE: Lokalisierung; AT: Lokalisierung; CH: Eligere Lingua; FR: Normes linguistiques et régionales; BE: Normes linguistiques et régionales; IT: Lingua e standard regionali; ES: Idioma y estándares regionales; MX: Idioma y estándares regionales; RO: Localizare; MD: Localizare; RU: Язык и региональные стандарты; UA: Мова та регіональні стандарти; TR: Dil ve bölgesel standartlar; PT: Línguas e padrões regionais; BR: idiomas e padrões regionais; NP: སྐད་ཡིག་དང་ས་ཁུལ་གྱི་ཚད་གཞི།; TR: Dil ve bölgesel standartlar; LK: भाषा तथा क्षेत्रीय मानक; CN: 黄金十亿国家; KR: 황금십억나라; JP: 黄金十億の国; AE: المليار الذهبي -->
 <p align="center">
-<?php $arr=fileopen('i18n.json');
+<?php $arr=fileopen('i18n.json'); /*
 function hdisum(array $arr) {
     $res=0; foreach ($arr as $key=>$val) {
         $res+=(isset($val['Human Development Index']))?$val['Human Development Index']:0;
@@ -30,7 +30,7 @@ function hdiadd(array $arr) {
     $res=[]; foreach ($arr as $key=>$val) {
         $rs1=(isset($val['Human Development Index']))?$val['Human Development Index']:0; $rs2=(isset($val['Continent']))?$val['Continent']:'Worldwide'; $res[$key]['Human Development Index']=$rs1; $res[$key]['Continent']=$rs2;
     } return $res;
-} /*$arr=hdiadd($arr); $dev=onlydev($arr);
+} $arr=hdiadd($arr); $dev=onlydev($arr);
 $fmar=($request['lock']!='false')?$dev:$arr;
 $fnar=($request['lock']!='false')?onlyhdi($dev):onlyhdi($arr);
 $fnar['UN']['Human Development Index']=round((hdisum($arr)/count($arr)),3);
