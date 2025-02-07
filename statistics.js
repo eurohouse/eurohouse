@@ -116,23 +116,23 @@ function scores(sta) {
     } else if (sta=='hdi') {
         for (et in obj) {
             var lem,lef,mysm,mysf,eysm,eysf,gnim,gnif;
-            if (obj[et]['Life Expectancy']!==undefined) {
+            if ((obj[et]['Life Expectancy']!==undefined)&&(typeof(obj[et]['Life Expectancy'])=='object')) {
                 lem=obj[et]['Life Expectancy']['Male'];
                 lef=obj[et]['Life Expectancy']['Female'];
             } else {
                 lem=70/2-2.5; lef=70/2+2.5;
-            } if (obj[et]['School Years']!==undefined) {
-                if (obj[et]['School Years']['Average']!==undefined) {
+            } if ((obj[et]['School Years']!==undefined)&&(typeof(obj[et]['School Years'])=='object')) {
+                if ((obj[et]['School Years']['Average']!==undefined)&&(typeof(obj[et]['School Years']['Average'])=='object')) {
                     mysm=obj[et]['School Years']['Average']['Male'];
                     mysf=obj[et]['School Years']['Average']['Female'];
-                } if (obj[et]['School Years']['Expected']!==undefined) {
+                } if ((obj[et]['School Years']['Expected']!==undefined)&&(typeof(obj[et]['School Years']['Expected'])=='object')) {
                     eysm=obj[et]['School Years']['Expected']['Male'];
                     eysf=obj[et]['School Years']['Expected']['Female'];
                 }
             } else {
                 mysm=15/2+2.5; mysf=15/2-2.5;
                 eysm=18/2+2.5; eysf=18/2-2.5;
-            } if (obj[et]['Gross National Income']!==undefined) {
+            } if ((obj[et]['Gross National Income']!==undefined)&&(typeof(obj[et]['Gross National Income'])=='object')) {
                 gnim=obj[et]['Gross National Income']['Male'];
                 gnif=obj[et]['Gross National Income']['Female'];
             } else {
