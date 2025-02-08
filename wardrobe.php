@@ -51,7 +51,7 @@
 @font-face {
     font-family: "euro";
     src: url("<?=$session['font_phone'];?>");
-    unicode-range: U+0100-036F, U+0500-058F;
+    unicode-range: U+0100-036F, U+0500-052F;
 }
 @font-face {
     font-family: "euro";
@@ -81,7 +81,7 @@
 @font-face {
     font-family: "euro";
     src: url("<?=$session['font_other'];?>");
-    unicode-range: U+0590-05FF, U+0370-0385, U+03CF-03FF, U+0460-04FF, U+0780-10FF, U+1200-25FF, U+2700-2E7F, U+FB1D-FFFF, U+10000-1F2FF, U+1F650-1F67F, U+1F700-10FFFF;
+    unicode-range: U+0370-0385, U+0530-058F, U+0590-05FF, U+03CF-03FF, U+0460-04FF, U+0780-10FF, U+1200-25FF, U+2700-2E7F, U+FB1D-FFFF, U+10000-1F2FF, U+1F650-1F67F, U+1F700-10FFFF;
 }
 @font-face {
     font-family: "euro";
