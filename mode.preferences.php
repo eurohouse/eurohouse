@@ -5,13 +5,13 @@
 <input type='image' id='prefsBtnApplySizes' onmouseover="soundButton();" class="power" onclick="setdata('back_size', setBackSize.value); setdata('fore_size', setForeSize.value); setdata('input_size', setInputSize.value); setdata('head1_size', setHead1Size.value); setdata('head2_size', setHead2Size.value); setdata('head3_size', setHead3Size.value); setdata('disp_size', setDispSize.value);" src="<?=$prefix.'ruler.png';?>">
 <input type='image' id='prefsBtnApplyColors' onmouseover="soundButton();" class="power" onclick="setdata('back_color', setBackColor.value); setdata('fore_color', setForeColor.value); setdata('input_color', setInputColor.value); setdata('back_text_color', setBackTextColor.value); setdata('fore_text_color', setForeTextColor.value); setdata('input_text_color', setInputTextColor.value); setdata('blank_color', setBlankColor.value); setdata('blank_text_color', setBlankTextColor.value); setdata('arc_fore_color', setArcForeColor.value); setdata('arc_input_color', setArcInputColor.value);" src="<?=$prefix.'paint.png';?>">
 <input type='image' id='prefsBtnUpdate' onmouseover="soundButton();" class="power" onclick="rename_user(setUsername.value, setPassword.value); omniAuthRequest('signin', setUsername.value, CryptoJS.SHA256(setPassword.value).toString());" src="<?=$prefix.'lock.png';?>">
-<input type='image' id='prefsBtnReset' onmouseover="soundButton();" class="power" onclick="setSpecimen.value = 'Q F S H Æ Ø Ð Ñ ʒ ʊ ʎ ɸ Σ Φ Ω Θ Г З Х Б ظ ض ؤ ل 인 방 학 적 中 京 日 木 𐎁 𐎛 𐎍 𐎄 🍷 ☕️ 🍾 🍫'; setdata('specimen', setSpecimen.value);" src="<?=$prefix.'backspace.png';?>">
+<input type='image' id='prefsBtnReset' onmouseover="soundButton();" class="power" onclick="setSpecimen.value = 'Q F S H Æ Ø Ð Ñ ʒ ʊ ʎ ɸ Σ Φ Ω Θ Г З Х Б خالد 인 방 학 적 中 网 あ オ რ Ֆ ט भो 🍷 ☕️ 🍾 🍫'; setdata('specimen', setSpecimen.value);" src="<?=$prefix.'backspace.png';?>">
 <input type='image' id='prefsBtnClear' onmouseover="soundButton();" class="power" onclick="setdata('font_ascii', 'flexo.ttf'); setdata('font_latin', 'flexo.ttf'); setdata('font_phone', 'arialuni.ttf'); setdata('font_greek', 'ubuntu.ttf'); setdata('font_cyril', 'ubuntu.ttf'); setdata('font_arabi', 'arialuni.ttf'); setdata('font_korea', 'arialuni.ttf'); setdata('font_china', 'arialuni.ttf'); setdata('font_other', 'arialuni.ttf'); setdata('font_emoji', 'twemoji.ttf'); window.location.reload();" src="<?=$prefix.'error.png';?>"><br>
 <label><?=term('Specimen Text:', $settings['vocabulary'], $session['units']);?></label><br>
 <input type="text" id="setSpecimen" style="width:86%;" value="<?=$session['specimen'];?>" onkeydown="if (event.keyCode == 13) {
     setdata('specimen', encodeURIComponent(this.value));
 } else if (event.keyCode == 27) {
-    this.value = 'Q F S H Æ Ø Ð Ñ ʒ ʊ ʎ ɸ Σ Φ Ω Θ Г З Х Б ظ ض ؤ ل 인 방 학 적 中 京 日 木 𐎁 𐎛 𐎍 𐎄 🍷 ☕️ 🍾 🍫';
+    this.value = 'Q F S H Æ Ø Ð Ñ ʒ ʊ ʎ ɸ Σ Φ Ω Θ Г З Х Б خالد 인 방 학 적 中 网 あ オ რ Ֆ ט भो 🍷 ☕️ 🍾 🍫';
 } else if (event.keyCode == 8) { handleInput(this.value);
 } else if (event.keyCode == 46) { handleInput(this.value); }" oninput="handleInput(this.value, true);"><br>
 <label><?=term('Font Configuration:', $settings['vocabulary'], $session['units']);?></label><br>
