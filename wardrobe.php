@@ -76,12 +76,12 @@
 @font-face {
     font-family: "euro";
     src: url("<?=$session['font_china'];?>");
-    unicode-range: U+2E80-312F, U+3190-9FFF, U+D7A4-FFFF;
+    unicode-range: U+2E80-312F, U+3190-9FFF, U+D7A4-FB1C;
 }
 @font-face {
     font-family: "euro";
     src: url("<?=$session['font_other'];?>");
-    unicode-range: U+0590-05FF, U+0370-0385, U+03CF-03FF, U+0460-04FF, U+0780-10FF, U+1200-25FF, U+2700-2E7F, U+10000-1F2FF, U+1F650-1F67F, U+1F700-10FFFF;
+    unicode-range: U+0590-05FF, U+0370-0385, U+03CF-03FF, U+0460-04FF, U+0780-10FF, U+1200-25FF, U+2700-2E7F, U+FB1D-FFFF, U+10000-1F2FF, U+1F650-1F67F, U+1F700-10FFFF;
 }
 @font-face {
     font-family: "euro";
