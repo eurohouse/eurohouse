@@ -286,20 +286,16 @@ function pipeExec(input) {
                 } if (((it==1)&&(it==brd))||((it==1)&&(it<brd))) {
                     if ((isInt(np2))&&(isInt(np4))) {
                         omniListen(mr[np2],true,parseInt(np4));
-                        break;
                     } else if (np2=='*') {
                         omniListen(mr[rand(0,mr.length)],true,parseInt(np4));
-                        break;
                     }
                 } else if (((it>1)&&(it<brd))||((it>1)&&(it==brd))) {
                     if ((isInt(np2))&&(isInt(np4))) {
                         ard=arrangeMenu(sysDefUpNext.value,etw(mr[np2],sysDefSessionID.value,sysDefNumeric.value),'//');
                         setdata('up_next',ard);
-                        break;
                     } else if (np2=='*') {
                         ard=arrangeMenu(sysDefUpNext.value,etw(mr[rand(0,mr.length)],sysDefSessionID.value,sysDefNumeric.value),'//');
                         setdata('up_next',ard);
-                        break;
                     }
                 }
             }
