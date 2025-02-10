@@ -284,10 +284,10 @@ function pipeExec(input) {
                         mr.push(ml[i]);inc++;
                     }
                 } if (((it==1)&&(it==brd))||((it==1)&&(it<brd))) {
-                    for (j=0; j<mr.length; j++) {
-                        if ((mr[j].toLowerCase().includes(np3.toLowerCase()))&&(isInt(np4))) {
+                    for (j=0; j<ml.length; j++) {
+                        if ((ml[j].toLowerCase().includes(np3.toLowerCase()))&&(isInt(np4))) {
                             if ((isInt(np2))&&(inc>=np2)) {
-                                omniListen(mr[j],true,parseInt(np4));
+                                omniListen(ml[j],true,parseInt(np4));
                                 break;
                             } else if (np2=='*') {
                                 omniListen(mr[rand(0,mr.length)],true,parseInt(np4));
@@ -296,10 +296,10 @@ function pipeExec(input) {
                         } omniPause();
                     }
                 } else if (((it>1)&&(it<brd))||((it>1)&&(it==brd))) {
-                    for (j=0; j<mr.length; j++) {
-                        if ((mr[j].toLowerCase().includes(np3.toLowerCase()))&&(isInt(np4))) {
+                    for (j=0; j<ml.length; j++) {
+                        if ((ml[j].toLowerCase().includes(np3.toLowerCase()))&&(isInt(np4))) {
                             if ((isInt(np2))&&(inc>=np2)) {
-                                ard=arrangeMenu(sysDefUpNext.value,etw(mr[j],sysDefSessionID.value,sysDefNumeric.value),'//');
+                                ard=arrangeMenu(sysDefUpNext.value,etw(ml[j],sysDefSessionID.value,sysDefNumeric.value),'//');
                                 setdata('up_next',ard);
                                 break;
                             } else if (np2=='*') {
