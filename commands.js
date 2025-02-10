@@ -300,16 +300,18 @@ function pipeExec(input) {
                         if (ml[i].toLowerCase().includes(np3.toLowerCase())) {
                             if ((isInt(np2))&&(isInt(np4))&&(inc>=np2)) {
                                 ard=arrangeMenu(sysDefUpNext.value,etw(ml[i],sysDefSessionID.value,sysDefNumeric.value),'//');
+                                setdata('up_next',ard);
                                 break;
                             } else if (np2=='*') {
                                 ard=arrangeMenu(sysDefUpNext.value,etw(mr[rand(0,mr.length)],sysDefSessionID.value,sysDefNumeric.value),'//');
+                                setdata('up_next',ard);
                                 break;
                             } inc++;
                         }
                     }
                 }
             }
-        } setdata('up_next',ard);
+        }
     }
 }
 function omniEnter() {
