@@ -285,17 +285,23 @@ function pipeExec(input) {
                         if ((isInt(np2))&&(isInt(np4))&&(inc>=np2)) {
                             if (it==1) {
                                 omniListen(ml[i],true,parseInt(np4));
+                                if (it==brd) { break; }
                             } else {
                                 ard=(sysDefUpNext.value).split(' ');
-                                ard.push(etw(ml[i],sysDefSessionID.value,sysDefNumeric.value)); setdata('up_next',ard.join(' '));
-                            } if (it==brd) { break; }
+                                ard.push(etw(ml[i],sysDefSessionID.value,sysDefNumeric.value));
+                                setdata('up_next',ard.join(' '));
+                                if (it==brd) { break; }
+                            }
                         } else if (np2=='*') {
                             if (it==1) {
                                 omniListen(mr[rand(0,mr.length)],true,parseInt(np4));
+                                if (it==brd) { break; }
                             } else {
                                 ard=(sysDefUpNext.value).split(' ');
-                                ard.push(etw(mr[rand(0,mr.length)],sysDefSessionID.value,sysDefNumeric.value)); setdata('up_next',ard.join(' '));
-                            } if (it==brd) { break; }
+                                ard.push(etw(mr[rand(0,mr.length)],sysDefSessionID.value,sysDefNumeric.value));
+                                setdata('up_next',ard.join(' '));
+                                if (it==brd) { break; }
+                            }
                         } inc++;
                     } omniPause();
                 }
