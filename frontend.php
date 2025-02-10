@@ -30,7 +30,7 @@ function songIndex(mode='') {
         omniListen(nxt[0],true); delete nxt[0];
         nxp=nxt.join('//'); setdata('up_next',nxp);
     } else if ((nxp!='')&&(nxt[0]=='')) {
-        setdata('up_next','');
+        delete nxt[0]; nxp=nxt.join('//'); setdata('up_next',nxp);
     } else {
         if (mode=='next') {
             omniListen((((ind>=(lxn.length-1))||(ind===false))?lxn[0]:lxn[parseInt(ind)+1]),true);
