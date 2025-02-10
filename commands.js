@@ -238,7 +238,8 @@ function getPkgSequence(input,cmdword,isRepo=0,isDbg=0) {
     } if (isDbg==0) { window.location.reload(); }
 }
 function pipeExec(input) {
-    var exr,brd,ark,arv,lnt,inc=0,ml=lockarr('music'),mr=[],np,np1,np2,np3,np4,ard=[];
+    var exr,brd,ark,arv,lnt,inc=0,ml=lockarr('music'),mr=[];
+    var np,np1,np2,np3,np4,ard=[],arl='';
     if (input.includes('/')) {
         exr=(input.endsWith('/')),pipes=input.split('/');
         brd=(input.endsWith('/'))?(pipes.length-2):(pipes.length-1);
@@ -271,8 +272,8 @@ function pipeExec(input) {
         }
     } else if (input.includes('\\')) {
         exr=(input.endsWith('\\')),pipes=input.split('\\');
-        brd=(input.endsWith('\\'))?(pipes.length-2):(pipes.length-1);ard=(sysDefUpNext.value).split('//');
-        for (it in pipes) {
+        brd=(input.endsWith('\\'))?(pipes.length-2):(pipes.length-1);arl=sysDefUpNext.value;
+        ard=(arl.includes('//'))?arl.split('//'):((arl!='')?[arl]:[]); for (it in pipes) {
             np=pipes[it]; if ((it>=1)&&(it<=brd)) {
                 np1=(np.includes(':'))?np.split(':')[0]:np;
                 np2=(np.includes(':'))?np.split(':')[1]:0;
@@ -280,7 +281,7 @@ function pipeExec(input) {
                 np4=(np1.includes('~'))?np1.split('~')[1]:0;
                 for (i=0; i<ml.length; i++) {
                     if (ml[i].toLowerCase().includes(np3.toLowerCase())) { mr.push(ml[i]); }
-                } if ((it==1)&&(it==brd)) {
+                } if (((it==1)&&(it==brd))||((it==1)&&(it<brd))) {
                     for (i=0; i<ml.length; i++) {
                         if (ml[i].toLowerCase().includes(np3.toLowerCase())) {
                             if ((isInt(np2))&&(isInt(np4))&&(inc>=np2)) {
@@ -292,31 +293,7 @@ function pipeExec(input) {
                             } inc++;
                         } omniPause();
                     }
-                } else if ((it==1)&&(it<brd)) {
-                    for (i=0; i<ml.length; i++) {
-                        if (ml[i].toLowerCase().includes(np3.toLowerCase())) {
-                            if ((isInt(np2))&&(isInt(np4))&&(inc>=np2)) {
-                                omniListen(ml[i],true,parseInt(np4));
-                                break;
-                            } else if (np2=='*') {
-                                omniListen(mr[rand(0,mr.length)],true,parseInt(np4));
-                                break;
-                            } inc++;
-                        } omniPause();
-                    }
-                } else if ((it>1)&&(it<brd)) {
-                    for (i=0; i<ml.length; i++) {
-                        if (ml[i].toLowerCase().includes(np3.toLowerCase())) {
-                            if ((isInt(np2))&&(isInt(np4))&&(inc>=np2)) {
-                                ard.push(etw(ml[i],sysDefSessionID.value,sysDefNumeric.value));
-                                break;
-                            } else if (np2=='*') {
-                                ard.push(etw(mr[rand(0,mr.length)],sysDefSessionID.value,sysDefNumeric.value));
-                                break;
-                            } inc++;
-                        }
-                    }
-                } else if ((it>1)&&(it==brd)) {
+                } else if (((it>1)&&(it<brd))||((it>1)&&(it==brd))) {
                     for (i=0; i<ml.length; i++) {
                         if (ml[i].toLowerCase().includes(np3.toLowerCase())) {
                             if ((isInt(np2))&&(isInt(np4))&&(inc>=np2)) {
@@ -330,7 +307,13 @@ function pipeExec(input) {
                     }
                 }
             }
-        } setdata('up_next',ard.join('//'));
+        } if (ard.length>1) {
+            arl=ard.join('//'); setdata('up_next',arl);
+        } else if (ard.length==1) {
+            setdata('up_next',ard[0]);
+        } else {
+            setdata('up_next','');
+        }
     }
 }
 function omniEnter() {

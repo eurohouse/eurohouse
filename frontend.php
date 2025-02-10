@@ -23,14 +23,12 @@ function omniListen(input,scratch=false,pos=false) {
 function songIndex(mode='') {
     var lxn=lockarr('music');
     var nxp=sysDefUpNext.value;
-    var nxt=nxp.split('//');
+    var nxt=(nxp.includes('//'))?nxp.split('//'):((nxp!='')?[nxp]:[]);
     var mel=dtw(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value);
     var ind=arraySearch(((mel.startsWith(requestPath.value+'/'))?mel.replace(requestPath.value+'/',''):mel),lxn);
     if ((nxp!='')&&(nxt[0]!='')) {
-        omniListen(nxt[0],true);
-        delete nxt[0];
-        nxp=nxt.join('//');
-        setdata('up_next',nxp);
+        omniListen(nxt[0],true); delete nxt[0];
+        nxp=nxt.join('//'); setdata('up_next',nxp);
     } else if ((nxp!='')&&(nxt[0]=='')) {
         setdata('up_next','');
     } else {
