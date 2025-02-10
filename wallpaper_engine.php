@@ -22,13 +22,13 @@ if (isset($cont[$showFilename])) {
         $assignAvatar1=$brightAvaFore.$ent['insignia'].'.png';
         $assignAvatar2=$brightAvaBack.$ent['insignia'].'.png';
     } else {
-        $assignAvatar1=(isset($ent['nsfw']))?$brightAvaFore.'Lady.png':$brightAvaFore.$userSettings['defaults']['avatar'].'.png';
-        $assignAvatar2=(isset($ent['nsfw']))?$brightAvaBack.'Lady.png':$brightAvaBack.$userSettings['defaults']['avatar'].'.png';
+        $assignAvatar1=(isset($ent['nsfw']))?$brightAvaFore.'Lady.png':$brightAvaFore.$userData['avatar'].'.png';
+        $assignAvatar2=(isset($ent['nsfw']))?$brightAvaBack.'Lady.png':$brightAvaBack.$userData['avatar'].'.png';
     }
 } else {
-    $showHead=$userSettings['defaults']['title']; $showBody=""; $showURLMaison="";
-    $assignAvatar1=$brightAvaFore.$userSettings['defaults']['avatar'].'.png';
-    $assignAvatar2=$brightAvaBack.$userSettings['defaults']['avatar'].'.png';
+    $showHead=$userData['title'];$showBody="";$showURLMaison="";
+    $assignAvatar1=$brightAvaFore.$userData['avatar'].'.png';
+    $assignAvatar2=$brightAvaBack.$userData['avatar'].'.png';
 } $personAvatar1=$brightAvaFore.$userData['avatar'].'.png';
 $personAvatar2=$brightAvaBack.$userData['avatar'].'.png';
 /* ¶ 0 */ echo $userData['title']."\r\n\r\n".
