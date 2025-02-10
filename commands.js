@@ -280,29 +280,42 @@ function pipeExec(input) {
                 np4=(np1.includes('~'))?np1.split('~')[1]:0;
                 for (i=0; i<ml.length; i++) {
                     if (ml[i].toLowerCase().includes(np3.toLowerCase())) { mr.push(ml[i]); }
-                } if (it==1) {
+                } if ((it==1)&&(it==brd)) {
                     for (i=0; i<ml.length; i++) {
                         if (ml[i].toLowerCase().includes(np3.toLowerCase())) {
                             if ((isInt(np2))&&(isInt(np4))&&(inc>=np2)) {
                                 omniListen(ml[i],true,parseInt(np4));
-                                if (it==brd) { break; }
+                                break;
                             } else if (np2=='*') {
                                 omniListen(mr[rand(0,mr.length)],true,parseInt(np4));
-                                if (it==brd) { break; }
+                                break;
                             } inc++;
                         } omniPause();
                     }
-                } else {
+                } else if ((it==1)&&(it<brd)) {
                     for (i=0; i<ml.length; i++) {
                         if (ml[i].toLowerCase().includes(np3.toLowerCase())) {
                             if ((isInt(np2))&&(isInt(np4))&&(inc>=np2)) {
-                                ard.push(etw(ml[i],sysDefSessionID.value,sysDefNumeric.value));
+                                omniListen(ml[i],true,parseInt(np4));
+                            } else if (np2=='*') {
+                                omniListen(mr[rand(0,mr.length)],true,parseInt(np4));
+                            } inc++;
+                        } omniPause();
+                    }
+                }
+
+                    /*ard.push(etw(ml[i],sysDefSessionID.value,sysDefNumeric.value));
+
+                    for (i=0; i<ml.length; i++) {
+                        if (ml[i].toLowerCase().includes(np3.toLowerCase())) {
+                            if ((isInt(np2))&&(isInt(np4))&&(inc>=np2)) {
+                                
                             } else if (np2=='*') {
                                 ard.push(etw(mr[rand(0,mr.length)],sysDefSessionID.value,sysDefNumeric.value));
                             } inc++;
                         }
                     }
-                }
+                }*/
             }
         } setdata('up_next',ard.join(' '));
     }
