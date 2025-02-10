@@ -21,11 +21,18 @@ function omniListen(input,scratch=false,pos=false) {
     setdata('audio_speed',sysDefAudioSpeed.value);
 }
 function songIndex(mode='') {
-    var lxn=lockarr('music'),nxt=(sysDefUpNext.value).split('//'),mel=dtw(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value);
+    var lxn=lockarr('music');
+    var nxp=sysDefUpNext.value;
+    var nxt=nxp.split('//');
+    var mel=dtw(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value);
     var ind=arraySearch(((mel.startsWith(requestPath.value+'/'))?mel.replace(requestPath.value+'/',''):mel),lxn);
-    if (nxt.length>0) {
-        omniListen(nxt[0],true); delete nxt[0];
-        setdata('up_next',nxt.join('//'));
+    if ((nxp!='')&&(nxt[0]!='')) {
+        omniListen(nxt[0],true);
+        delete nxt[0];
+        nxp=nxt.join('//');
+        setdata('up_next',nxp);
+    } else if ((nxp!='')&&(nxt[0]=='')) {
+        setdata('up_next','');
     } else {
         if (mode=='next') {
             omniListen((((ind>=(lxn.length-1))||(ind===false))?lxn[0]:lxn[parseInt(ind)+1]),true);
