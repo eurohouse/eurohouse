@@ -273,15 +273,13 @@ function pipeExec(input) {
         exr=(input.endsWith('\\')),pipes=input.split('\\');
         brd=(input.endsWith('\\'))?(pipes.length-2):(pipes.length-1);
         for (it in pipes) {
-            if ((it>=1)&&(it<=brd)) {
+            np=pipes[it]; if ((it>=1)&&(it<=brd)) {
                 np1=(np.includes(':'))?np.split(':')[0]:np;
                 np2=(np.includes(':'))?np.split(':')[1]:0;
                 np3=(np1.includes('~'))?np1.split('~')[0]:np1;
                 np4=(np1.includes('~'))?np1.split('~')[1]:0;
                 for (i=0; i<ml.length; i++) {
-                    if (ml[i].toLowerCase().includes(np3.toLowerCase())) {
-                        mr.push(ml[i]);
-                    }
+                    if (ml[i].toLowerCase().includes(np3.toLowerCase())) { mr.push(ml[i]); }
                 } for (i=0; i<ml.length; i++) {
                     if (ml[i].toLowerCase().includes(np3.toLowerCase())) {
                         if ((isInt(np2))&&(isInt(np4))&&(inc>=np2)) {
