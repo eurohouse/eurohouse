@@ -21,7 +21,20 @@ function omniListen(input,scratch=false,pos=false) {
     setdata('audio_speed',sysDefAudioSpeed.value);
 }
 function songIndex(mode='') {
-    var lxn=lockarr('music'),mel=dtw(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value),ind=arraySearch(((mel.startsWith(requestPath.value+'/'))?mel.replace(requestPath.value+'/',''):mel),lxn); omniListen(((mode=='next')?(((ind>=(lxn.length-1))||(ind===false))?lxn[0]:lxn[parseInt(ind)+1]):((mode=='prev')?(((ind<=0)||(ind===false))?lxn[lxn.length-1]:lxn[parseInt(ind)-1]):((mode=='random')?lxn[rand(0,lxn.length)]:mel))),true);
+    var lxn=lockarr('music'),nxt=(sysDefUpNext.value).split(' ');
+    var mel=dtw(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value);
+    var ind=arraySearch(((mel.startsWith(requestPath.value+'/'))?mel.replace(requestPath.value+'/',''):mel),lxn); if (nxt.length>0) {
+        var mxl=dtw(nxt[0],sysDefSessionID.value,sysDefNumeric.value);
+        var ixd=arraySearch(((mxl.startsWith(requestPath.value+'/'))?mel.replace(requestPath.value+'/',''):mxl),lxn); delete nxt[0];
+        setdata('up_next',nxt.join(' ')); omniListen(mxl,true);
+    } else {
+        if (mode=='next') {
+            omniListen((((ind>=(lxn.length-1))||(ind===false))?lxn[0]:lxn[parseInt(ind)+1]),true);
+        } else if (mode=='prev') {
+            omniListen((((ind<=0)||(ind===false))?lxn[lxn.length-1]:lxn[parseInt(ind)-1]),true);
+        } else if (mode=='random') { omniListen(lxn[rand(0,lxn.length)],true);
+        } else { omniListen(mel,true); }
+    }
 }
 function omniPause() { pauseAudio(audioPlayer); }
 function audioPosition(sec) {
@@ -88,7 +101,8 @@ function delmeta(ent) {
 }
 function setdata(ent,val) {
     var obj=userdata(); obj[ent]=val;
-    set(sysDefSessionID.value+'_session.json',JSON.stringify(obj),true); <?php foreach ($settings['defaults'] as $key=>$value) {
+    set(sysDefSessionID.value+'_session.json',JSON.stringify(obj),true);
+    <?php foreach ($settings['defaults'] as $key=>$value) {
         echo "sysDef".camel($key).".value = obj['".$key."'];";
     } ?> if (ent=='audio_volume') { audioPlayer.volume = val; }
     if (ent=='audio_speed') { audioPlayer.playbackRate=val; }

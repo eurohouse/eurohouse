@@ -483,7 +483,7 @@
         "blank_color": "#FFFFFF", "blank_text_color": "#000000",
         "arc_fore_color": "#403F40", "arc_input_color": "#D5D5D5",
         "background": "baron.000.00.png", "theme": "iso",
-        "menu": "file_finder,preferences,personalization,sticky_notes,user_accounts", "memo": "", "find": "#", "stats": "powers",
+        "menu": "file_finder,preferences,personalization,sticky_notes,user_accounts", "memo": "", "find": "#", "stats": "powers", "up_next": "",
         "position": "50% 25%", "active_hours": "", "banner": "",
         "audio_volume": 1, "audio_speed": 1,
         "video_volume": 1, "video_speed": 1,
