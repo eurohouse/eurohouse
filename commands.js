@@ -287,7 +287,7 @@ function pipeExec(input) {
                     for (j=0; j<mr.length; j++) {
                         if ((mr[j].toLowerCase().includes(np3.toLowerCase()))&&(isInt(np4))) {
                             if ((isInt(np2))&&(inc>=np2)) {
-                                omniListen(mr[np2],true,parseInt(np4));
+                                omniListen(mr[j],true,parseInt(np4));
                                 break;
                             } else if (np2=='*') {
                                 omniListen(mr[rand(0,mr.length)],true,parseInt(np4));
@@ -299,7 +299,7 @@ function pipeExec(input) {
                     for (j=0; j<mr.length; j++) {
                         if ((mr[j].toLowerCase().includes(np3.toLowerCase()))&&(isInt(np4))) {
                             if ((isInt(np2))&&(inc>=np2)) {
-                                ard=arrangeMenu(sysDefUpNext.value,etw(mr[np2],sysDefSessionID.value,sysDefNumeric.value),'//');
+                                ard=arrangeMenu(sysDefUpNext.value,etw(mr[j],sysDefSessionID.value,sysDefNumeric.value),'//');
                                 setdata('up_next',ard);
                                 break;
                             } else if (np2=='*') {
