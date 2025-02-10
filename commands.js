@@ -281,9 +281,9 @@ function pipeExec(input) {
                 np4=(np1.includes('~'))?np1.split('~')[1]:0;
                 for (i=0; i<ml.length; i++) {
                     if (ml[i].toLowerCase().includes(np3.toLowerCase())) {
-                        mr.push(ml[i]);inc++;
+                        mr.push(ml[i]);
                     }
-                } if (((it==1)&&(it==brd))||((it==1)&&(it<brd))) {
+                } inc=0; if (((it==1)&&(it==brd))||((it==1)&&(it<brd))) {
                     for (j=0; j<ml.length; j++) {
                         if ((ml[j].toLowerCase().includes(np3.toLowerCase()))&&(isInt(np4))) {
                             if ((isInt(np2))&&(inc>=np2)) {
@@ -292,7 +292,7 @@ function pipeExec(input) {
                             } else if (np2=='*') {
                                 omniListen(mr[rand(0,mr.length)],true,parseInt(np4));
                                 break;
-                            }
+                            } inc++;
                         } omniPause();
                     }
                 } else if (((it>1)&&(it<brd))||((it>1)&&(it==brd))) {
@@ -306,7 +306,7 @@ function pipeExec(input) {
                                 ard=arrangeMenu(sysDefUpNext.value,etw(mr[rand(0,mr.length)],sysDefSessionID.value,sysDefNumeric.value),'//');
                                 setdata('up_next',ard);
                                 break;
-                            }
+                            } inc++;
                         }
                     }
                 }
