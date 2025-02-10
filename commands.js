@@ -297,10 +297,8 @@ function pipeExec(input) {
                         if (ml[i].toLowerCase().includes(np3.toLowerCase())) {
                             if ((isInt(np2))&&(isInt(np4))&&(inc>=np2)) {
                                 ard.push(etw(ml[i],sysDefSessionID.value,sysDefNumeric.value));
-                                if (it==brd) { break; }
                             } else if (np2=='*') {
                                 ard.push(etw(mr[rand(0,mr.length)],sysDefSessionID.value,sysDefNumeric.value));
-                                if (it==brd) { break; }
                             } inc++;
                         }
                     }
