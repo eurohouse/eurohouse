@@ -26,11 +26,18 @@ function songIndex(mode='') {
     var nxt=(nxp.includes('//'))?nxp.split('//'):((nxp!='')?[nxp]:[]);
     var mel=dtw(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value);
     var ind=arraySearch(((mel.startsWith(requestPath.value+'/'))?mel.replace(requestPath.value+'/',''):mel),lxn);
-    if ((nxp!='')&&(nxt[0]!='')) {
-        omniListen(nxt[0],true); delete nxt[0];
-        nxp=nxt.join('//'); setdata('up_next',nxp);
-    } else if ((nxp!='')&&(nxt[0]=='')) {
-        delete nxt[0]; nxp=nxt.join('//'); setdata('up_next',nxp);
+    if (nxp!='') {
+        if (nxt[0]!='') {
+            omniListen(nxt[0],true);
+        }
+        delete nxt[0];
+        if (nxt.length>1) {
+            nxp=nxt.join('//'); setdata('up_next',nxp);
+        } else if (nxp.length==1) {
+            setdata('up_next',nxt[0]);
+        } else {
+            setdata('up_next','');
+        }
     } else {
         if (mode=='next') {
             omniListen((((ind>=(lxn.length-1))||(ind===false))?lxn[0]:lxn[parseInt(ind)+1]),true);
