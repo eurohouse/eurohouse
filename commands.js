@@ -272,8 +272,7 @@ function pipeExec(input) {
         }
     } else if (input.includes('\\')) {
         exr=(input.endsWith('\\')),pipes=input.split('\\');
-        brd=(input.endsWith('\\'))?(pipes.length-2):(pipes.length-1);arl=sysDefUpNext.value;
-        ard=(arl.includes('//'))?arl.split('//'):((arl!='')?[arl]:[]); for (it in pipes) {
+        brd=(input.endsWith('\\'))?(pipes.length-2):(pipes.length-1); for (it in pipes) {
             np=pipes[it]; if ((it>=1)&&(it<=brd)) {
                 np1=(np.includes(':'))?np.split(':')[0]:np;
                 np2=(np.includes(':'))?np.split(':')[1]:0;
@@ -298,21 +297,16 @@ function pipeExec(input) {
                         if (ml[i].toLowerCase().includes(np3.toLowerCase())) {
                             if ((isInt(np2))&&(isInt(np4))&&(inc>=np2)) {
                                 ard.push(ml[i]);
+                                setdata('up_next',arrangeMenu(sysDefUpNext.value,ml[i],'//'));
                                 break;
                             } else if (np2=='*') {
-                                ard.push(mr[rand(0,mr.length)]);
+                                setdata('up_next',arrangeMenu(sysDefUpNext.value,mr[rand(0,mr.length)],'//'));
                                 break;
                             } inc++;
                         }
                     }
                 }
             }
-        } if (ard.length>1) {
-            arl=ard.join('//'); setdata('up_next',arl);
-        } else if (ard.length==1) {
-            setdata('up_next',ard[0]);
-        } else {
-            setdata('up_next','');
         }
     }
 }

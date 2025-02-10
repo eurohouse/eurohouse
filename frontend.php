@@ -29,15 +29,7 @@ function songIndex(mode='') {
     if (nxp!='') {
         if (nxt[0]!='') {
             omniListen(nxt[0],true);
-        }
-        delete nxt[0];
-        if (nxt.length>1) {
-            nxp=nxt.join('//'); setdata('up_next',nxp);
-        } else if (nxp.length==1) {
-            setdata('up_next',nxt[0]);
-        } else {
-            setdata('up_next','');
-        }
+        } setdata('up_next',arrangeMenu(sysDefUpNext.value,nxt[0],'//'));
     } else {
         if (mode=='next') {
             omniListen((((ind>=(lxn.length-1))||(ind===false))?lxn[0]:lxn[parseInt(ind)+1]),true);
@@ -772,8 +764,8 @@ function terminate(query) {
         getdir('d','',query.split(' ')[i],'from','','here',true);
     }
 }
-function arrangeMenu(list,item) {
-    var arr=list.toString('').split(',');
+function arrangeMenu(list,item,delim=',') {
+    var arr=list.toString('').split(delim);
     if (arr.indexOf('')>-1) {
         arr.splice(arr.indexOf(''),1);
     } if (arr.indexOf(' ')>-1) {
@@ -781,7 +773,7 @@ function arrangeMenu(list,item) {
     } if (arr.indexOf(item)>-1) {
         arr.splice(arr.indexOf(item),1);
     } else { arr.push(item); }
-    return finarr(arr).join(',');
+    return finarr(arr).join(delim);
 }
 function isInMenu(list,item) {
     var arr=list.toString('').split(',');
