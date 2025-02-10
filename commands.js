@@ -297,8 +297,10 @@ function pipeExec(input) {
                         if (ml[i].toLowerCase().includes(np3.toLowerCase())) {
                             if ((isInt(np2))&&(isInt(np4))&&(inc>=np2)) {
                                 omniListen(ml[i],true,parseInt(np4));
+                                break;
                             } else if (np2=='*') {
                                 omniListen(mr[rand(0,mr.length)],true,parseInt(np4));
+                                break;
                             } inc++;
                         } omniPause();
                     }
