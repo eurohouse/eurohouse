@@ -299,10 +299,10 @@ function pipeExec(input) {
                     for (i=0; i<ml.length; i++) {
                         if (ml[i].toLowerCase().includes(np3.toLowerCase())) {
                             if ((isInt(np2))&&(isInt(np4))&&(inc>=np2)) {
-                                ard=arrangeMenu(sysDefUpNext.value,encodeURIComponent(ml[i]),'//');
+                                ard=arrangeMenu(sysDefUpNext.value,etw(ml[i],sysDefSessionID.value,sysDefNumeric.value),'//');
                                 break;
                             } else if (np2=='*') {
-                                ard=arrangeMenu(sysDefUpNext.value,encodeURIComponent(mr[rand(0,mr.length)]),'//');
+                                ard=arrangeMenu(sysDefUpNext.value,etw(mr[rand(0,mr.length)],sysDefSessionID.value,sysDefNumeric.value),'//');
                                 break;
                             } inc++;
                         }

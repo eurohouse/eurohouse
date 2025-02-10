@@ -28,7 +28,7 @@ function songIndex(mode='') {
     var ind=arraySearch(((mel.startsWith(requestPath.value+'/'))?mel.replace(requestPath.value+'/',''):mel),lxn);
     if (nxp!='') {
         if (nxt[0]!='') {
-            omniListen(nxt[0],true);
+            omniListen(dtw(nxt[0],sysDefSessionID.value,sysDefNumeric.value),true);
         } setdata('up_next',arrangeMenu(sysDefUpNext.value,nxt[0],'//'));
     } else {
         if (mode=='next') {
