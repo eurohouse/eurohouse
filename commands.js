@@ -280,34 +280,27 @@ function pipeExec(input) {
                 np4=(np1.includes('~'))?np1.split('~')[1]:0;
                 for (i=0; i<ml.length; i++) {
                     if (ml[i].toLowerCase().includes(np3.toLowerCase())) { mr.push(ml[i]); }
-                } for (i=0; i<ml.length; i++) {
-                    if (ml[i].toLowerCase().includes(np3.toLowerCase())) {
-                        if ((isInt(np2))&&(isInt(np4))&&(inc>=np2)) {
-                            if ((it==1)&&(it==brd)) {
-                                omniListen(ml[i],true,parseInt(np4)); break;
-                            } else if ((it==1)&&(it<brd)) {
+                } if (it==1) {
+                    for (i=0; i<ml.length; i++) {
+                        if (ml[i].toLowerCase().includes(np3.toLowerCase())) {
+                            if ((isInt(np2))&&(isInt(np4))&&(inc>=np2)) {
                                 omniListen(ml[i],true,parseInt(np4));
-                            } else if ((it>1)&&(it<brd)) {
-                                ard.push(etw(ml[i],sysDefSessionID.value,sysDefNumeric.value));
-                            } else if ((it>1)&&(it==brd)) {
-                                ard.push(etw(ml[i],sysDefSessionID.value,sysDefNumeric.value));
-                                break;
-                            }
-                        } else if (np2=='*') {
-                            if ((it==1)&&(it==brd)) {
+                            } else if (np2=='*') {
                                 omniListen(mr[rand(0,mr.length)],true,parseInt(np4));
-                                break;
-                            } else if ((it==1)&&(it<brd)) {
-                                omniListen(mr[rand(0,mr.length)],true,parseInt(np4));
-                            } else if ((it>1)&&(it<brd)) {
+                            } inc++;
+                        } omniPause();
+                    }
+                } else {
+                    for (i=0; i<ml.length; i++) {
+                        if (ml[i].toLowerCase().includes(np3.toLowerCase())) {
+                            if ((isInt(np2))&&(isInt(np4))&&(inc>=np2)) {
+                                ard.push(etw(ml[i],sysDefSessionID.value,sysDefNumeric.value));
+                            } else if (np2=='*') {
                                 ard.push(etw(mr[rand(0,mr.length)],sysDefSessionID.value,sysDefNumeric.value));
-                            } else if ((it>1)&&(it==brd)) {
-                                ard.push(etw(mr[rand(0,mr.length)],sysDefSessionID.value,sysDefNumeric.value));
-                                break;
-                            }
-                        } inc++;
-                    } omniPause();
-                }
+                            } inc++;
+                        }
+                    }
+                } if (it==brd) { break; }
             }
         } setdata('up_next',ard.join(' '));
     }
