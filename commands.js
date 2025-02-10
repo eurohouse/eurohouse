@@ -304,20 +304,31 @@ function pipeExec(input) {
                             } inc++;
                         } omniPause();
                     }
-                }
-
-                    /*ard.push(etw(ml[i],sysDefSessionID.value,sysDefNumeric.value));
-
+                } else if ((it>1)&&(it<brd)) {
                     for (i=0; i<ml.length; i++) {
                         if (ml[i].toLowerCase().includes(np3.toLowerCase())) {
                             if ((isInt(np2))&&(isInt(np4))&&(inc>=np2)) {
-                                
+                                ard.push(etw(ml[i],sysDefSessionID.value,sysDefNumeric.value));
+                                break;
                             } else if (np2=='*') {
                                 ard.push(etw(mr[rand(0,mr.length)],sysDefSessionID.value,sysDefNumeric.value));
+                                break;
                             } inc++;
                         }
                     }
-                }*/
+                } else if ((it>1)&&(it==brd)) {
+                    for (i=0; i<ml.length; i++) {
+                        if (ml[i].toLowerCase().includes(np3.toLowerCase())) {
+                            if ((isInt(np2))&&(isInt(np4))&&(inc>=np2)) {
+                                ard.push(etw(ml[i],sysDefSessionID.value,sysDefNumeric.value));
+                                break;
+                            } else if (np2=='*') {
+                                ard.push(etw(mr[rand(0,mr.length)],sysDefSessionID.value,sysDefNumeric.value));
+                                break;
+                            } inc++;
+                        }
+                    }
+                }
             }
         } setdata('up_next',ard.join(' '));
     }
