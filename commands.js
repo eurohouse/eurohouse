@@ -271,7 +271,7 @@ function pipeExec(input) {
         }
     } else if (input.includes('\\')) {
         exr=(input.endsWith('\\')),pipes=input.split('\\');
-        brd=(input.endsWith('\\'))?(pipes.length-2):(pipes.length-1);ard=(sysDefUpNext.value).split(' ');
+        brd=(input.endsWith('\\'))?(pipes.length-2):(pipes.length-1);ard=(sysDefUpNext.value).split('//');
         for (it in pipes) {
             np=pipes[it]; if ((it>=1)&&(it<=brd)) {
                 np1=(np.includes(':'))?np.split(':')[0]:np;
@@ -330,7 +330,7 @@ function pipeExec(input) {
                     }
                 }
             }
-        } setdata('up_next',ard.join(' '));
+        } setdata('up_next',ard.join('//'));
     }
 }
 function omniEnter() {

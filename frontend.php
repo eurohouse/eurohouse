@@ -21,12 +21,11 @@ function omniListen(input,scratch=false,pos=false) {
     setdata('audio_speed',sysDefAudioSpeed.value);
 }
 function songIndex(mode='') {
-    var lxn=lockarr('music'),nxt=(sysDefUpNext.value).split(' ');
-    var mel=dtw(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value);
-    var ind=arraySearch(((mel.startsWith(requestPath.value+'/'))?mel.replace(requestPath.value+'/',''):mel),lxn); if (nxt.length>0) {
-        var mxl=dtw(nxt[0],sysDefSessionID.value,sysDefNumeric.value);
-        var ixd=arraySearch(((mxl.startsWith(requestPath.value+'/'))?mel.replace(requestPath.value+'/',''):mxl),lxn); delete nxt[0];
-        setdata('up_next',nxt.join(' ')); omniListen(mxl,true);
+    var lxn=lockarr('music'),nxt=(sysDefUpNext.value).split('//'),mel=dtw(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value);
+    var ind=arraySearch(((mel.startsWith(requestPath.value+'/'))?mel.replace(requestPath.value+'/',''):mel),lxn);
+    if (nxt.length>0) {
+        omniListen(nxt[0],true); delete nxt[0];
+        setdata('up_next',nxt.join('//'));
     } else {
         if (mode=='next') {
             omniListen((((ind>=(lxn.length-1))||(ind===false))?lxn[0]:lxn[parseInt(ind)+1]),true);
