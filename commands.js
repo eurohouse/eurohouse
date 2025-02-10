@@ -297,10 +297,10 @@ function pipeExec(input) {
                         if (ml[i].toLowerCase().includes(np3.toLowerCase())) {
                             if ((isInt(np2))&&(isInt(np4))&&(inc>=np2)) {
                                 ard.push(ml[i]);
-                                setdata('up_next',arrangeMenu(sysDefUpNext.value,ml[i],'//'));
+                                setdata('up_next',arrangeMenu(sysDefUpNext.value,encodeURIComponent(ml[i]),'//'));
                                 break;
                             } else if (np2=='*') {
-                                setdata('up_next',arrangeMenu(sysDefUpNext.value,mr[rand(0,mr.length)],'//'));
+                                setdata('up_next',arrangeMenu(sysDefUpNext.value,encodeURIComponent(mr[rand(0,mr.length)]),'//'));
                                 break;
                             } inc++;
                         }
