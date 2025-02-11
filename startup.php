@@ -46,15 +46,12 @@ function databox() {
             $('#sysDefHdiData').val(pager(data,19));
             $('#sysDefModelData').val(pager(data,20));
             $('#sysDefAvatarsNow').val(pager(data,21));
-            if (sysDefBindData.value!=sysDefPostBindData.value) {
-                playAudio(bindPlayer,sysDefBindSound.value);
-            } sysDefPostBindData.value=sysDefBindData.value;
-            if (sysDefPowersData.value!=sysDefPostPowersData.value) {
-                playAudio(sufferPlayer,sysDefSufferSound.value);
-            } sysDefPostPowersData.value=sysDefPowersData.value;
-            if (sysDefToolData.value!=sysDefPostToolData.value) {
-                playAudio(bindPlayer,sysDefBindSound.value);
-            } sysDefPostToolData.value=sysDefToolData.value;
+            if (sysDefBindData.value!=sysDefPostBindData.value) { playAudio(bindPlayer,sysDefBindSound.value); }
+            sysDefPostBindData.value=sysDefBindData.value;
+            if (sysDefPowersData.value!=sysDefPostPowersData.value) { playAudio(sufferPlayer,sysDefSufferSound.value); }
+            sysDefPostPowersData.value=sysDefPowersData.value;
+            if (sysDefToolData.value!=sysDefPostToolData.value) { playAudio(bindPlayer,sysDefBindSound.value); }
+            sysDefPostToolData.value=sysDefToolData.value;
             if (sysDefMsgData.value!=sysDefPostMsgData.value) {
                 playAudio(notifyPlayer,sysDefNotifySound.value);
             } sysDefPostMsgData.value=sysDefMsgData.value;
@@ -133,9 +130,10 @@ function world_clock() {
                 $('#switchBtnCall').attr('src',sysDefPrefix.value+'dial.png');
                 $('#switchBtnFrnd').attr('src',sysDefPrefix.value+'user.png');
                 $('#switchBtnBind').attr('src',sysDefPrefix.value+'chain.png');
-                $('#switchBtnTool').attr('src',sysDefPrefix.value+'parfum.png');
+                $('#switchBtnTool').attr('src',sysDefPrefix.value+'pick.png');
                 $('#switchBtnScore').attr('src',sysDefPrefix.value+'money.png');
                 $('#switchBtnHDI').attr('src',sysDefPrefix.value+'heart.png');
+                $('#switchBtnModel').attr('src',sysDefPrefix.value+'parfum.png');
                 $('#switchBtnIP').attr('src',sysDefPrefix.value+'world.png');
             } if (requestMode.value=='preferences') {
                 $('#prefsBtnApply').attr('src',sysDefPrefix.value+'return.png');
