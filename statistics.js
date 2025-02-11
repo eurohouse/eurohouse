@@ -120,14 +120,15 @@ function scores(sta) {
         } var lec,lea; for (et in obj){
             obj[et]['%cc']=(obj[et]['country'])?obj[et]['country']:'UN';
             obj[et]['%bd']=(obj[et]['birthday'])?timefrom(obj[et]['birthday']):0;
+            obj[et]['%zd']=zodiac(obj[et]['%bd']);
         } sortable=Object.fromEntries(
             Object.entries(obj).sort(([,a],[,b])=>b['%bd']-a['%bd'])
         ); for (indi in sortable) {
             if ((sortable[indi]!==undefined)&&(indi!='')) {
                 res+="<input type='image' class='power' src='Flag."+sortable[indi]['%cc']+".png"+"'>";
-                res+="<input type='button' style='width:48%;' value='"+indi+"' onclick='clp(&#34;"+indi+"&#34;);'>";
+                res+="<input type='button' style='width:30%;' value='"+indi+"' onclick='clp(&#34;"+indi+"&#34;);'>";
                 res+="<input type='button' style='width:24%;' value='"+timeto(sortable[indi]['%bd'])+"' onclick='clp(&#34;"+sortable[indi]['%bd']+"&#34;);'>";
-                res+="<input type='button' style='width:20%;' value='"+diffYears(now()-timeto(sortable[indi]['%bd']))+"' onclick='clp(&#34;"+sortable[indi]['%bd']+"&#34;);'>";
+                res+="<input type='button' style='width:20%;' value='"+sortable[indi]['%zd']+"' onclick='clp(&#34;"+sortable[indi]['%zd']+"&#34;);'>";
                 res+="<input type='image' class='power' src='"+epr+"chain.png"+"' onclick='omniReadGroup(&#34;browse_europedia&#34;,&#34;"+indi+"&#34;);'><br>";
             }
         }
