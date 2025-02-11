@@ -117,7 +117,7 @@ function scores(sta) {
             if (obj[et]['nsfw']===undefined) {
                 delete obj[et];
             }
-        } var lec,lea; for (et in obj){
+        } for (et in obj){
             obj[et]['%cc']=(obj[et]['country'])?obj[et]['country']:'UN';
             obj[et]['%bd']=(obj[et]['birthday'])?timefrom(obj[et]['birthday']):0;
             obj[et]['%zd']=zodiac(obj[et]['%bd']);

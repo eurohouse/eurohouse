@@ -42,10 +42,10 @@ function databox() {
             $('#sysDefMetaData').val(pager(data,15));
             $('#sysDefTutorList').val(pager(data,16));
             $('#sysDefTutorData').val(pager(data,17));
-            $('#sysDefIpData').val(pager(data,18));
-            $('#sysDefHdiData').val(pager(data,19));
-            $('#sysDefModelData').val(pager(data,20));
-            $('#sysDefAvatarsNow').val(pager(data,21));
+            $('#sysDefAvatarsNow').val(pager(data,18));
+            $('#sysDefIpData').val(pager(data,19));
+            $('#sysDefHdiData').val(pager(data,20));
+            $('#sysDefModelData').val(pager(data,21));
             if (sysDefBindData.value!=sysDefPostBindData.value) { playAudio(bindPlayer,sysDefBindSound.value); }
             sysDefPostBindData.value=sysDefBindData.value;
             if (sysDefPowersData.value!=sysDefPostPowersData.value) { playAudio(sufferPlayer,sysDefSufferSound.value); }

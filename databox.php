@@ -53,7 +53,7 @@ foreach ($sessList as $key=>$value) {
 /* ¶ 15 */ $notesJSON."\r\n\r\n".
 /* ¶ 16 */ $tutorList."\r\n\r\n".
 /* ¶ 17 */ $tutorJSON."\r\n\r\n".
-/* ¶ 18 */ json_encode($activeIPs)."\r\n\r\n".
-/* ¶ 19 */ $localesArr."\r\n\r\n".
-/* ¶ 20 */ json_encode($exem, JSON_UNESCAPED_UNICODE);
-/* ¶ 21 */ implode(' ',$currentAvatars);
+/* ¶ 18 */ implode(' ',$currentAvatars)."\r\n\r\n".
+/* ¶ 19 */ json_encode($activeIPs)."\r\n\r\n".
+/* ¶ 20 */ $localesArr."\r\n\r\n".
+/* ¶ 21 */ json_encode($exem, JSON_UNESCAPED_UNICODE);
