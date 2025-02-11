@@ -127,8 +127,8 @@ function scores(sta) {
         ); for (indi in sortable) {
             if ((sortable[indi]!==undefined)&&(indi!='')) {
                 res+="<input type='image' class='power' src='Flag."+sortable[indi]['%cc']+".png"+"'>";
-                res+="<input type='button' style='width:64%;' value='"+sortable[indi]['%zd']+" "+indi+"' onclick='omniReadGroup(&#34;browse_europedia&#34;,&#34;"+indi+"&#34;);'>";
-                res+="<input type='image' class='power' src='"+epr+"chain.png"+"' onclick='omniReadGroup(&#34;browse_europedia&#34;,&#34;"+indi+"&#34;);'><br>";
+                res+="<input type='button' style='width:68%;' value='"+sortable[indi]['%zd']+" "+indi+"' onclick='omniReadGroup(&#34;browse_europedia&#34;,&#34;"+indi+"&#34;);'>";
+                res+="<input type='image' class='power' src='"+epr+"chain.png"+"' onclick='clp(&#34;"+indi+"&#34;);'><br>";
             }
         }
     } else if (sta=='hdi') {
