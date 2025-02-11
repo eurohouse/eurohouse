@@ -73,6 +73,9 @@ function omniPathDir(path, mode) {
 function omniRead(mode, input, lock) {
     omniRequest(mode, requestSort.value, requestGroup.value, requestAngle.value, input, requestOutput.value, requestArgs.value, lock, omniRef(), requestPath.value);
 }
+function omniReadGroup(mode, group) {
+    omniRequest(mode, requestSort.value, group, requestAngle.value, requestInput.value, requestOutput.value, requestArgs.value, requestLock.value, omniRef(), requestPath.value);
+}
 function omniLock(lock) {
     omniRequest(requestMode.value, requestSort.value, requestGroup.value, requestAngle.value, requestInput.value, requestOutput.value, requestArgs.value, lock, omniRef(), requestPath.value);
 }
