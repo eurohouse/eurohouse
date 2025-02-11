@@ -28,6 +28,7 @@ $userStore=jsonopen('./.store/'.$cookie.'_store.json',true);
 $localesArr=jsonopen('./i18n.json',true);
 $sessList=str_replace('./','',(glob('./*_session.json')));
 $currentTimes=$currentAvatars=[];
+$exem=exemplar(str_replace('./','',(glob('./*.models.json'))));
 foreach ($sessList as $key=>$value) {
     $testArr=arropen($value,json_encode($userSettings['defaults']),'DEFAULT');
     $timeZones=dec_tz($testArr['timezone']);
@@ -54,4 +55,5 @@ foreach ($sessList as $key=>$value) {
 /* ¶ 17 */ $tutorJSON."\r\n\r\n".
 /* ¶ 18 */ json_encode($activeIPs)."\r\n\r\n".
 /* ¶ 19 */ $localesArr."\r\n\r\n".
-/* ¶ 20 */ implode(' ',$currentAvatars);
+/* ¶ 20 */ json_encode($exem, JSON_UNESCAPED_UNICODE);
+/* ¶ 21 */ implode(' ',$currentAvatars);

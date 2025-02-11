@@ -44,6 +44,7 @@
         <input type='hidden' id='sysDefReticlePrefix' value="<?=$reticlePrefix;?>">
         <input type='hidden' id="sysDefIpData" value="<?=valstr($activeIPs,'; ',' ');?>">
         <input type='hidden' id="sysDefHdiData" value="">
+        <input type='hidden' id="sysDefModelData" value="">
         <input type='hidden' id="sysDefAvatarsNow" value="">
         <input type='hidden' id="sysDefHoursNow" value="">
         <input type='hidden' id="sysDefHoursActive" value="">
