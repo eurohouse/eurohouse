@@ -121,7 +121,7 @@ function scores(sta) {
             obj[et]['%cc']=(obj[et]['country'])?obj[et]['country']:'UN';
             obj[et]['%bd']=(obj[et]['birthday'])?timefrom(obj[et]['birthday']):0;
             obj[et]['%zd']=zodiac(obj[et]['%bd']);
-            obj[et]['%fr']=french(obj[et]['%bd']);
+            obj[et]['%fr']=frenchDate(obj[et]['%bd']);
         } sortable=Object.fromEntries(
             Object.entries(obj).sort(([,a],[,b])=>b['%bd']-a['%bd'])
         ); for (indi in sortable) {
