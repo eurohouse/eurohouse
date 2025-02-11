@@ -17,23 +17,6 @@ function executeMacros(input,index=0,length=1) {
         rep=input.replace('::',''); setdata('banner',rep+'.png');
     } else if ((index==(length-1))&&(input.startsWith('\\='))) {
         omniListen(input.replace('\\=',''),true);
-    } else if ((index==(length-1))&&(input.startsWith('\\'))) {
-        np=input.replace("\\",''),inc=0,ml=lockarr('music'),mr=[];
-        np1=(np.includes(':'))?np.split(':')[0]:np;
-        np2=(np.includes(':'))?np.split(':')[1]:0;
-        np3=(np1.includes('~'))?np1.split('~')[0]:np1;
-        np4=(np1.includes('~'))?np1.split('~')[1]:0;
-        for (i=0; i<ml.length; i++) {
-            if (ml[i].toLowerCase().includes(np3.toLowerCase())) { mr.push(ml[i]); }
-        } for (i=0; i<ml.length; i++) {
-            if (ml[i].toLowerCase().includes(np3.toLowerCase())) {
-                if ((isInt(np2))&&(isInt(np4))&&(inc>=np2)) {
-                    omniListen(ml[i],true,parseInt(np4)); break;
-                } else if (np2=='*') {
-                    omniListen(mr[rand(0,mr.length)],true,parseInt(np4)); break;
-                } inc++;
-            } omniPause();
-        }
     } else if ((index==(length-1))&&(input.startsWith('./'))) {
         omniRead(requestMode.value,input.replace('./',''),requestLock.value);
     } else if ((index==(length-1))&&(!(input.includes('*')))&&(input.startsWith('/'))) {
