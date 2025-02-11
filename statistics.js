@@ -128,7 +128,7 @@ function scores(sta) {
                 res+="<input type='button' style='width:15%;' value='"+indi+"' onclick='clp(&#34;"+indi+"&#34;);'>";
                 res+="<input type='button' style='width:24%;' value='"+timeto(sortable[indi]['%bd'])+"' onclick='clp(&#34;"+sortable[indi]['%bd']+"&#34;);'>";
                 res+="<input type='button' style='width:48%;' value='"+diffYears(timeto(sortable[indi]['%bd']))+"' onclick='clp(&#34;"+sortable[indi]['%bd']+"&#34;);'>";
-                res+="<input type='image' class='power' src='"+epr+"link.png"+"' onclick='omniReadGroup(&#34;browse_europedia&#34;,&#34;indi&#34;);'><br>";
+                res+="<input type='image' class='power' src='"+epr+"chain.png"+"' onclick='omniReadGroup(&#34;browse_europedia&#34;,&#34;indi&#34;);'><br>";
             }
         }
     } else if (sta=='hdi') {
