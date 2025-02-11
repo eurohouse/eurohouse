@@ -25,11 +25,11 @@
     },
     "libraries": {
         "domestic": [
-            "backend.js", "frontend.js", "tablesort.js",
-            "requests.js", "commands.js", "jquery.js",
-            "crypto.js", "XRegExp.js", "statistics.js",
-            "nerdamer.js", "algebra.js",
-            "calculus.js", "solve.js"
+            "backend.js","frontend.js","tablesort.js",
+            "requests.js","commands.js","jquery.js",
+            "crypto.js","XRegExp.js","statistics.js",
+            "nerdamer.js","algebra.js","calculus.js","solve.js","e4system.js","e4media.js","e4users.js",
+            "e4transact.js"
         ],
         "foreign": [ "https://www.midijs.net/lib/midi.js" ]
     },
