@@ -125,9 +125,9 @@ function scores(sta) {
         ); for (indi in sortable) {
             if ((sortable[indi]!==undefined)&&(indi!='')) {
                 res+="<input type='image' class='power' src='Flag."+sortable[indi]['%cc']+".png"+"'>";
-                res+="<input type='button' style='width:15%;' value='"+indi+"' onclick='clp(&#34;"+indi+"&#34;);'>";
+                res+="<input type='button' style='width:48%;' value='"+indi+"' onclick='clp(&#34;"+indi+"&#34;);'>";
                 res+="<input type='button' style='width:24%;' value='"+timeto(sortable[indi]['%bd'])+"' onclick='clp(&#34;"+sortable[indi]['%bd']+"&#34;);'>";
-                res+="<input type='button' style='width:24%;' value='"+diffYears(now()-timeto(sortable[indi]['%bd']))+"' onclick='clp(&#34;"+sortable[indi]['%bd']+"&#34;);'>";
+                res+="<input type='button' style='width:20%;' value='"+diffYears(now()-timeto(sortable[indi]['%bd']))+"' onclick='clp(&#34;"+sortable[indi]['%bd']+"&#34;);'>";
                 res+="<input type='image' class='power' src='"+epr+"chain.png"+"' onclick='omniReadGroup(&#34;browse_europedia&#34;,&#34;"+indi+"&#34;);'><br>";
             }
         }
