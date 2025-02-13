@@ -1,4 +1,4 @@
-function arrangePlay(cur,dl) {
+function arrangePlay(cur) {
     var dp=arrjob(sysDefPowersData.value,';',':');
     var db=arrjob(sysDefBindData.value,';',':');
     var da=arrjob(sysDefAutoData.value,';',':');
@@ -6,7 +6,7 @@ function arrangePlay(cur,dl) {
     $('#buttonAutomator').attr('src',sysDefPrefix.value+((sysDefAutoState.value=='auto')?'wheel.png':'steer.png')); var my=dp[sysDefSessionID.value],bl=pl='',ch='chain';
     if (my<=-666) {
         delete_user(sysDefSessionID.value);omniAuthRequest('signout','','');
-    } ch=(arraySearch(sysDefSessionID.value,db)!=false)?((db[sysDefSessionID.value]!=sysDefSessionID.value)?'key':'lock'):((db[sysDefSessionID.value]!=sysDefSessionID.value)?'broke':'chain'),pl=formCur(my,cur,dl),bl=sysDefSessionID.value;
+    } ch=(arraySearch(sysDefSessionID.value,db)!=false)?((db[sysDefSessionID.value]!=sysDefSessionID.value)?'key':'lock'):((db[sysDefSessionID.value]!=sysDefSessionID.value)?'broke':'chain'),pl=formCur(my,cur),bl=sysDefSessionID.value;
     $('#buttonBroke').attr('src',sysDefPrefix.value+ch+'.png');
     $('#showUsInfoPower').val(pl); $('#showUsInfoBond').val(bl);
 }
