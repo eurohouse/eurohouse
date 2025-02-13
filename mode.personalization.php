@@ -79,72 +79,54 @@ if (event.keyCode==13) {
     handleInput(this.value);
 }" oninput="handleInput(this.value,true);"><br>
 <label><a href="https://www.php.net/manual/en/datetime.format.php"><?=localword('iso8601', $settings['standards'], $session['units']);?></a> <?=term('&', $settings['vocabulary'], $session['units']);?> <a href="https://www.iso.org/obp/ui/#iso:pub:PUB500001:en"><?=localword('iso3166', $settings['standards'], $session['units']);?></a></label><br>
-<input type="text" id="setDateFormat" style="width:25%;" value="<?=$session['date_format'];?>" placeholder="<?=term('Date Format',$settings['vocabulary'],$session['units']);?>" onkeydown="
-if (event.keyCode==13) {
+<input type="text" id="setDateFormat" style="width:25%;" value="<?=$session['date_format'];?>" placeholder="<?=term('Date Format',$settings['vocabulary'],$session['units']);?>" onkeydown="if (event.keyCode==13) {
     setdata('date_format',setDateFormat.value);
 } else if (event.keyCode==27) {
     this.value='Y-m-d'; setdata('date_format','Y-m-d');
-} else if (event.keyCode==8) {
-    handleInput(this.value);
-} else if (event.keyCode==46) {
-    handleInput(this.value);
+} else if (event.keyCode==8) { handleInput(this.value);
+} else if (event.keyCode==46) { handleInput(this.value);
 }" oninput="handleInput(this.value,true);">
-<input type="text" id="setTimeFormat" style="width:25%;" value="<?=$session['time_format'];?>" placeholder="<?=term('Time Format',$settings['vocabulary'],$session['units']);?>" onkeydown="
-if (event.keyCode==13) {
+<input type="text" id="setTimeFormat" style="width:25%;" value="<?=$session['time_format'];?>" placeholder="<?=term('Time Format',$settings['vocabulary'],$session['units']);?>" onkeydown="if (event.keyCode==13) {
     setdata('time_format',setTimeFormat.value);
 } else if (event.keyCode==27) {
     this.value='H:i:s'; setdata('time_format','H:i:s');
-} else if (event.keyCode==8) {
-    handleInput(this.value);
-} else if (event.keyCode==46) {
-    handleInput(this.value);
+} else if (event.keyCode==8) { handleInput(this.value);
+} else if (event.keyCode==46) { handleInput(this.value);
 }" oninput="handleInput(this.value,true);">
-<input type="text" id="setLanguages" style="width:25%;" value="<?=$session['units_list'];?>" placeholder="<?=term('Localizations',$settings['vocabulary'],$session['units']);?>" onkeydown="
-if (event.keyCode==13) {
+<input type="text" id="setLanguages" style="width:25%;" value="<?=$session['units_list'];?>" placeholder="<?=term('Localizations',$settings['vocabulary'],$session['units']);?>" onkeydown="if (event.keyCode==13) {
     setdata('units_list',setLanguages.value);
     window.location.reload();
 } else if (event.keyCode==27) {
     this.value='EU,US'; setdata('units_list',this.value);
-} else if (event.keyCode==8) {
-    handleInput(this.value);
-} else if (event.keyCode==46) {
-    handleInput(this.value);
+} else if (event.keyCode==8) { handleInput(this.value);
+} else if (event.keyCode==46) { handleInput(this.value);
 }" oninput="handleInput(this.value,true);"><br>
 <label><?=term('Functional Elements:',$settings['vocabulary'],$session['units']);?></label><br>
-<input type="text" id="setMenuItems" style="width:15%;" value="<?=$session['menu'];?>" placeholder="<?=term('Menu Items',$settings['vocabulary'],$session['units']);?>" onkeydown="
-if (event.keyCode==13) {
+<input type="text" id="setMenuItems" style="width:20%;" value="<?=$session['menu'];?>" placeholder="<?=term('Menu Items',$settings['vocabulary'],$session['units']);?>" onkeydown="if (event.keyCode==13) {
     setdata('menu',this.value); window.location.reload();
 } else if (event.keyCode==27) {
     this.value='file_finder,preferences';
     setdata('menu',this.value);
-} else if (event.keyCode==8) {
-    handleInput(this.value);
-} else if (event.keyCode==46) {
-    handleInput(this.value);
+} else if (event.keyCode==8) { handleInput(this.value);
+} else if (event.keyCode==46) { handleInput(this.value);
 }" oninput="handleInput(this.value,true);">
-<input type="text" id="setActiveHours" style="width:15%;" value="<?=$session['active_hours'];?>" placeholder="<?=term('Active Hours',$settings['vocabulary'],$session['units']);?>" onkeydown="
-if (event.keyCode==13) {
+<input type="text" id="setActiveHours" style="width:20%;" value="<?=$session['active_hours'];?>" placeholder="<?=term('Active Hours',$settings['vocabulary'],$session['units']);?>" onkeydown="if (event.keyCode==13) {
     setdata('active_hours',this.value);
 } else if (event.keyCode==27) {
     this.value=''; setdata('active_hours',this.value);
-} else if (event.keyCode==8) {
-    handleInput(this.value);
-} else if (event.keyCode==46) {
-    handleInput(this.value);
+} else if (event.keyCode==8) { handleInput(this.value);
+} else if (event.keyCode==46) { handleInput(this.value);
 }" oninput="handleInput(this.value,true);">
-<select id="setUserType" style="width:15%;" onchange="setdata('user_type',setUserType.options[setUserType.selectedIndex].id); window.location.reload();">
+<select id="setUserType" style="width:20%;" onchange="setdata('user_type',setUserType.options[setUserType.selectedIndex].id); window.location.reload();">
 <?php foreach ($settings['user_types'] as $key=>$value) { ?>
 <option id="<?=$key;?>" <?php if ($session['user_type']==$key) { ?> selected <?php } ?>>
 <?=(isset($value[$session['units']]))?$value[$session['units']]:$value['default'];?></option><?php } ?></select>
-<input type="text" id="setCurrency" style="width:15%;" value="<?=$session['currency'];?>" placeholder="<?=term('Currency',$settings['vocabulary'],$session['units']);?>" onkeydown="
-if (event.keyCode==13) {
-    setdata('currency',this.value);
+<input type="text" id="setCurrency" style="width:20%;" value="<?=$session['currency'];?>" placeholder="<?=term('Currency',$settings['vocabulary'],$session['units']);?>" onkeydown="
+if (event.keyCode==13) { setdata('currency',this.value);
 } else if (event.keyCode==27) {
     this.value=''; setdata('currency',this.value);
-} else if (event.keyCode==8) {
-    handleInput(this.value);
-} else if (event.keyCode==46) {
-    handleInput(this.value);
+} else if (event.keyCode==8) { handleInput(this.value);
+} else if (event.keyCode==46) { handleInput(this.value);
 }" oninput="handleInput(this.value,true);"><br>
 <label><?=term('Your Reticles:',$settings['vocabulary'],$session['units']);?></label><br>
 <select id="setReticle1" style="width:15%;" onchange="setdata('reticle_choice_1',setReticle1.options[setReticle1.selectedIndex].id);">
