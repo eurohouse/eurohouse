@@ -56,11 +56,11 @@ function formCur(val) {
     var res=alm=clm=dlm=x=c='';
     if (cur.length==7) {
         alm=(cur.charAt(1)!='x')?(cur.charAt(1)):'';
-        clm=(cur.charAt(4)!='y')?(cur.charAt(4)):'';
-        dlm=(cur.charAt(6)!=':')?(cur.charAt(6)):'';
+        clm=(cur.charAt(5)!='y')?(cur.charAt(5)):'';
+        dlm=(cur.charAt(3)!=':')?(cur.charAt(3)):'';
         x=(isInt(val))?delimNum(parseInt(val),dlm):val;
         c=(isInt(val))?alm:clm;
-        a=(isInt(val))?0:3,e=(isInt(val))?2:5;
+        a=(isInt(val))?0:4,e=(isInt(val))?2:6;
         if ((cur.charAt(a)=='^')&&(cur.charAt(e)=='_')) {
             res=c+' '+x;
         } else if ((cur.charAt(a)=='_')&&(cur.charAt(e)=='^')) {
