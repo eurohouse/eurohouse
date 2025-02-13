@@ -124,7 +124,7 @@ if (event.keyCode==13) {
 <input type="text" id="setCurrency" style="width:20%;" value="<?=$session['currency'];?>" placeholder="<?=term('Currency',$settings['vocabulary'],$session['units']);?>" onkeydown="
 if (event.keyCode==13) { setdata('currency',this.value);
 } else if (event.keyCode==27) {
-    this.value=''; setdata('currency',this.value);
+    this.value='^x::^y:'; setdata('currency',this.value);
 } else if (event.keyCode==8) { handleInput(this.value);
 } else if (event.keyCode==46) { handleInput(this.value);
 }" oninput="handleInput(this.value,true);"><br>
