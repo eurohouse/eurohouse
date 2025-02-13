@@ -453,7 +453,7 @@
         "radius": 7, "gradient": 180, "magnitude": 5,
         "box_shadow": "inset 0px 0px #FFFFFF, inset 0px 0px #FFFFFF",
         "text_box_shadow": "inset 0px 0px #FFFFFF, inset 0px 0px #FFFFFF", "text_shadow": "#DD4D76 3px 3px 3px, #DD4D76 -3px -3px 3px, #DD4D76 3px -3px 3px, #DD4D76 -3px 3px 3px",
-        "back_size": 14, "fore_size": 14, "input_size": 14, "head1_size": 17, "head2_size": 16, "head3_size": 15, "disp_size": 18, "priv1_size": 14, "priv2_size": 14, "priv3_size": 14, "opacity": 64, "blur": 0,
+        "back_size": 16, "fore_size": 16, "input_size": 16, "head1_size": 19, "head2_size": 18, "head3_size": 17, "disp_size": 20, "priv1_size": 16, "priv2_size": 16, "priv3_size": 16, "opacity": 32, "blur": 0,
         "brightness": 100, "saturation": 100,
         "contrast": 100, "sepia": 0, "grayscale": 0, "hue": 0,
         "specimen": "Q F S H Æ Ø Ð Ñ ʒ ʊ ʎ ɸ Σ Φ Ω Θ Г З Х Б خالد 인 방 학 적 中 网 あ オ რ Ֆ ט भो 🍷 ☕️ 🍾 🍫",
