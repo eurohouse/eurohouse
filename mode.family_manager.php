@@ -6,7 +6,6 @@ $maple=arropen($sessionID.'_maple.json');
 <table id="maple" style="width:100%;">
 <thead>
     <th>
-        <td>KEY</td>
         <?php foreach ($maple[array_key_first($maple)] as $eno=>$prp) { ?>
             <td><?=$eno;?></td>
         <?php } ?>
