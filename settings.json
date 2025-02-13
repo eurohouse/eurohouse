@@ -432,7 +432,7 @@
     "defaults": {
         "timezone": 0, "units": "EU", "units_list": "EU,US",
         "date_format": "Y-m-d", "time_format": "H:i:s",
-        "currency": "", "delimiter": "",
+        "currency": "",
         "melody": "", "current": 0, "playing": 0,
         "song_index": "", "hour": 12, "entry": "",
         "numeric": "0123456789ABCDEF", "user_type": "person",

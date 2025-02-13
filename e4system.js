@@ -51,25 +51,27 @@ function jsonStore(id) {
         }
     } return ard;
 }
-function formCur(val,cur,delim='') {
+function formCur(val,cur) {
+    var cve=(cur.includes('|'))?cur.split('|')[0]:cur;
+    var delim=(cur.includes('|'))?cur.split('|')[1]:'';
     var res='',x=delimNum(parseInt(val),delim);
-    if (cur.length==3) {
-        if ((cur.charCodeAt(0)==94)&&(cur.charCodeAt(2)==95)) {
-            res=cur.replaceAll('^','').replaceAll('_',' ')+x;
-        } else if ((cur.charCodeAt(0)==95)&&(cur.charCodeAt(2)==94)) {
-            res=x+cur.replaceAll('^','').replaceAll('_',' ');
+    if (cve.length==3) {
+        if ((cve.charCodeAt(0)==94)&&(cve.charCodeAt(2)==95)) {
+            res=cve.replaceAll('^','').replaceAll('_',' ')+x;
+        } else if ((cve.charCodeAt(0)==95)&&(cve.charCodeAt(2)==94)) {
+            res=x+cve.replaceAll('^','').replaceAll('_',' ');
         }
-    } else if (cur.length==2) {
-        if ((cur.charCodeAt(0)==94)&&(cur.charCodeAt(1)!=94)) {
-            res=cur.replaceAll('^','')+x;
-        } else if ((cur.charCodeAt(0)!=94)&&(cur.charCodeAt(1)==94)) {
-            res=x+cur.replaceAll('^','');
+    } else if (cve.length==2) {
+        if ((cve.charCodeAt(0)==94)&&(cve.charCodeAt(1)!=94)) {
+            res=cve.replaceAll('^','')+x;
+        } else if ((cve.charCodeAt(0)!=94)&&(cve.charCodeAt(1)==94)) {
+            res=x+cve.replaceAll('^','');
         } else {
-            res=String.fromCharCode(cur.charCodeAt(0))+x+String.fromCharCode(cur.charCodeAt(2));
+            res=String.fromCharCode(cve.charCodeAt(0))+x+String.fromCharCode(cve.charCodeAt(2));
         }
-    } else { res=cur+x; } return res;
+    } else { res=cve+x; } return res;
 }
-function jsonBookKeep(str,cur,dl='') {
+function jsonBookKeep(str,cur) {
     var arr=jsonstr(str),ard=arl='',arf={},eld=[];
     for (el in arr) {
         eld=arr[el].split(' | ');arf[el]=arr[el];
@@ -77,9 +79,9 @@ function jsonBookKeep(str,cur,dl='') {
         eld=arr[el].split(' | ');
         arl=(eld[5]=='ERR')?'<tr style="text-decoration:line-through;">':'<tr>';
         arl+='<td>@'+eld[1]+'</td>';
-        arl+=(isInt(eld[2]))?'<td>'+formCur(eld[2],cur,dl)+'</td>':'<td>'+eld[2]+'</td>';
-        arl+=(isInt(eld[3]))?'<td>'+formCur(eld[3],cur,dl)+'</td>':'<td>'+eld[3]+'</td>';
-        arl+='<td>'+formCur(eld[4],cur,dl)+'</td>';
+        arl+=(isInt(eld[2]))?'<td>'+formCur(eld[2],cur)+'</td>':'<td>'+eld[2]+'</td>';
+        arl+=(isInt(eld[3]))?'<td>'+formCur(eld[3],cur)+'</td>':'<td>'+eld[3]+'</td>';
+        arl+='<td>'+formCur(eld[4],cur)+'</td>';
         ard=arl+'</tr>'+ard;
     } return ard;
 }
