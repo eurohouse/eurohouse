@@ -7,7 +7,7 @@ function arrangePlay() {
     if (my<=-666) {
         delete_user(sysDefSessionID.value);omniAuthRequest('signout','','');
     } ch=(arraySearch(sysDefSessionID.value,db)!=false)?((db[sysDefSessionID.value]!=sysDefSessionID.value)?'key':'lock'):((db[sysDefSessionID.value]!=sysDefSessionID.value)?'broke':'chain');
-    var pl=formCur(my),bl=sysDefSessionID.value;
+    var pl=formCur(my),bl=formCur(sysDefSessionID.value);
     $('#buttonBroke').attr('src',sysDefPrefix.value+ch+'.png');
     $('#showUsInfoPower').val(pl); $('#showUsInfoBond').val(bl);
 }
