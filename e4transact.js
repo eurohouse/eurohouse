@@ -1,4 +1,5 @@
-function arrangePlay(cur) {
+function arrangePlay() {
+    var cur=sysDefCurrency.value;
     var dp=arrjob(sysDefPowersData.value,';',':');
     var db=arrjob(sysDefBindData.value,';',':');
     var da=arrjob(sysDefAutoData.value,';',':');

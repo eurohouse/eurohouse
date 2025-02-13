@@ -273,8 +273,7 @@ function wallpaper_engine() {
             $('#chooseReticle3').attr('src',sysDefReticlePrefix.value+sysDefReticleChoice3.value+'.png');
             $('#chooseReticle4').attr('src',sysDefReticlePrefix.value+sysDefReticleChoice4.value+'.png');
             $('#chooseReticle5').attr('src',sysDefReticlePrefix.value+sysDefReticleChoice5.value+'.png');
-            arrangePlay(sysDefCurrency.value);
-            <?php if (file_exists('mode.'.$request['mode'].'.php')) {
+            arrangePlay(); <?php if (file_exists('mode.'.$request['mode'].'.php')) {
                 if ($request['mode']=='main_menu') { ?>
                     $('#projectTitle').text(pager(data,0).toUpperCase());
                     $('#showingAvatarNow').attr('src',pager(data,10));
