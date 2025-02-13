@@ -13,7 +13,7 @@
         ]
     ]
 ];
-$maple=arropen($sessionID.'.maple.json',json_encode($std));
+$maple=arropen($sessionID.'_maple.json',json_encode($std));
 ?>
 <table id="maple" style="width:100%;">
 <tbody>
