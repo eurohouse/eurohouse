@@ -9,8 +9,7 @@ $maple=arropen($sessionID.'_maple.json');
     <tr>
         <td><?=$key;?></td>
         <?php foreach ($ent as $eno=>$val) { ?>
-            <td><?=$eno;?></td>
-            <td><?=$val;?></td>
+            <td><?=$eno.' '.$val;?></td>
         <?php } ?>
     </tr>
     <?php } ?>
