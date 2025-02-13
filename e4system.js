@@ -52,7 +52,8 @@ function jsonStore(id) {
     } return ard;
 }
 function formCur(val) {
-    var cur=sysDefCurrency.value,alm=clm=dlm=x=c='';
+    var cur=sysDefCurrency.value;
+    var res=alm=clm=dlm=x=c='';
     if (cur.length==5) {
         alm=(cur.charAt(1)!='x')?(cur.charAt(1)):'';
         clm=(cur.charAt(3)!='y')?(cur.charAt(3)):'';
