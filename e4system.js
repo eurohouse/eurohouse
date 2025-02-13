@@ -54,19 +54,20 @@ function jsonStore(id) {
 function formCur(val) {
     var cur=sysDefCurrency.value;
     var res=alm=clm=dlm=x=c='';
-    if (cur.length==5) {
+    if (cur.length==7) {
         alm=(cur.charAt(1)!='x')?(cur.charAt(1)):'';
-        clm=(cur.charAt(3)!='y')?(cur.charAt(3)):'';
-        dlm=(cur.charAt(4)!=':')?(cur.charAt(4)):'';
+        clm=(cur.charAt(4)!='y')?(cur.charAt(4)):'';
+        dlm=(cur.charAt(6)!=':')?(cur.charAt(6)):'';
         x=(isInt(val))?delimNum(parseInt(val),dlm):val;
         c=(isInt(val))?alm:clm;
-        if ((cur.charAt(0)=='^')&&(cur.charAt(2)=='_')) {
+        a=(isInt(val))?0:3,e=(isInt(val))?2:5;
+        if ((cur.charAt(a)=='^')&&(cur.charAt(e)=='_')) {
             res=c+' '+x;
-        } else if ((cur.charAt(0)=='_')&&(cur.charAt(2)=='^')) {
+        } else if ((cur.charAt(a)=='_')&&(cur.charAt(e)=='^')) {
             res=x+' '+c;
-        } else if ((cur.charAt(0)=='^')&&(cur.charAt(2)==':')) {
+        } else if ((cur.charAt(a)=='^')&&(cur.charAt(e)==':')) {
             res=c+x;
-        } else if ((cur.charAt(0)==':')&&(cur.charAt(2)=='^')) {
+        } else if ((cur.charAt(a)==':')&&(cur.charAt(e)=='^')) {
             res=x+c;
         }
     } return res;
