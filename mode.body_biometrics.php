@@ -29,7 +29,7 @@ function mapleDel(id) {
 <tbody>
     <?php foreach ($maple as $key=>$ent) { ?>
     <tr>
-        <td><a href="javascript:clp(this.innerText);"><?=$key;?></a> <input type="image" name="<?=$key;?>" onmouseover="soundButton();" class="power" onclick="mapleDel(this.name);" src="<?=$prefix.'delete.png';?>"></td>
+        <td><a href="javascript:clp(&#34;<?=$key;?>&#34;);"><?=$key;?></a> <input type="image" name="<?=$key;?>" onmouseover="soundButton();" class="power" onclick="mapleDel(this.name);" src="<?=$prefix.'delete.png';?>"></td>
         <?php foreach ($ent as $eno=>$val) { ?>
             <td><?=$val;?></td>
         <?php } ?>
