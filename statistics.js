@@ -15,7 +15,7 @@ function scores(sta) {
             if ((ordered[indi]!==undefined)||(indi!='')) {
                 af=(ordered[indi]!=indi)?"@"+ordered[indi]:"SELF";
                 at=getUserAvatar(indi);
-                res+="<input type='image' class='power' src='"+eax+at+".png"+"'>";
+                res+="<input type='image' class='power' src='"+eax+at+".png"+"' onclick='clp(&#34;"+at+"&#34;);'>";
                 res+="<input type='button' style='width:35%;' value='@"+indi+"' onclick='clp(&#34;"+indi+"&#34;);'>";
                 res+="<input type='button' style='width:34%;' value='"+af+"' onclick='clp(&#34;"+af+"&#34;);'>";
                 res+="<input type='image' class='power' src='"+epr+"chain.png"+"' onclick='bind(&#34;"+rid+"&#34;,&#34;"+indi+"&#34;);'>";
@@ -31,7 +31,7 @@ function scores(sta) {
             if ((ordered[indi]!==undefined)||(indi!='')) {
                 af=(ordered[indi]!=indi)?"INCOMING":"OUTGOING";
                 at=getUserAvatar(indi);
-                res+="<input type='image' class='power' src='"+eax+at+".png"+"'>";
+                res+="<input type='image' class='power' src='"+eax+at+".png"+"' onclick='clp(&#34;"+at+"&#34;);'>";
                 res+="<input type='button' style='width:25%;' value='@"+indi+"' onclick='clp(&#34;"+indi+"&#34;);'>";
                 res+="<input type='button' style='width:45%;' value='"+af+"' onclick='clp(&#34;"+af+"&#34;);'>";
                 res+="<input type='image' class='power' src='"+epr+"call.png"+"' onclick='call(&#34;"+rid+"&#34;,&#34;"+indi+"&#34;);'>";
@@ -47,7 +47,7 @@ function scores(sta) {
             if ((ordered[indi]!==undefined)||(indi!='')) {
                 af=(ordered[indi]=='auto')?"AUTO":"MANUAL";
                 at=getUserAvatar(indi);
-                res+="<input type='image' class='power' src='"+eax+at+".png"+"'>";
+                res+="<input type='image' class='power' src='"+eax+at+".png"+"' onclick='clp(&#34;"+at+"&#34;);'>";
                 res+="<input type='button' style='width:34%;' value='@"+indi+"' onclick='clp(&#34;"+indi+"&#34;);'>";
                 res+="<input type='button' style='width:45%;' value='"+af+"' onclick='clp(&#34;"+af+"&#34;);'>";
                 if (superuser()) {
@@ -62,7 +62,7 @@ function scores(sta) {
             if ((ordered[indi]!==undefined)||(indi!='')) {
                 af=(ordered[indi]!='')?'@{'+ordered[indi]+'}':"NULL";
                 at=getUserAvatar(indi);
-                res+="<input type='image' class='power' src='"+eax+at+".png"+"'>";
+                res+="<input type='image' class='power' src='"+eax+at+".png"+"' onclick='clp(&#34;"+at+"&#34;);'>";
                 res+="<input type='button' style='width:24%;' value='@"+indi+"' onclick='clp(&#34;"+indi+"&#34;);'>";
                 res+="<input type='button' style='width:54%;' value='"+af+"' onclick='clp(&#34;"+af+"&#34;);'>";
                 if (superuser()) {
@@ -83,7 +83,7 @@ function scores(sta) {
                     fo=((dat[ordered[indi]]['force']!==undefined)&&(isInt(dat[ordered[indi]]['force']))&&(dat[ordered[indi]]['force']>0))?parseInt(dat[ordered[indi]]['force']):0;
                     em=(ex!=0)?am+'/'+se+fo:se+fo;
                     at=getUserAvatar(indi);
-                    res+="<input type='image' class='power' src='"+eax+at+".png"+"'>";
+                    res+="<input type='image' class='power' src='"+eax+at+".png"+"' onclick='clp(&#34;"+at+"&#34;);'>";
                     res+="<input type='button' style='width:26%;' value='@"+indi+"' onclick='clp(&#34;"+indi+"&#34;);'>";
                     res+="<input type='button' style='width:30%;' value='"+ordered[indi]+"' onclick='clp(&#34;"+ordered[indi]+"&#34;);'>";
                     res+="<input type='button' style='width:23%;' value='"+em+"' onclick='clp(&#34;"+em+"&#34;);'>";
@@ -105,7 +105,7 @@ function scores(sta) {
                     res+="<input type='image' class='power' src='Flag.UN.png"+"' onclick='clp(&#34;"+sortable[indi]['Country']+"&#34;);'>";
                 } res+="<input type='button' style='width:46%;' value='"+indi+"' onclick='clp(&#34;"+indi+"&#34;);'>";
                 at=getUserAvatar(sortable[indi]['Username']);
-                res+="<input type='image' class='power' src='"+eax+at+".png"+"'>";
+                res+="<input type='image' class='power' src='"+eax+at+".png"+"' onclick='clp(&#34;"+indi+"&#34;);'>";
                 res+="<input type='button' style='width:24%;' value='@"+sortable[indi]['Username']+"' onclick='clp(&#34;"+sortable[indi]['Username']+"&#34;);'>";
                 if (superuser()) {
                     res+="<input type='image' class='power' src='"+epr+"delete.png"+"' onclick='remove_entry(&#39;"+indi+"&#39;,&#39;"+arr+"&#39;,&#39;"+eps+"&#39;,true,true);'>";
@@ -123,9 +123,8 @@ function scores(sta) {
             Object.entries(obj).sort(([,a],[,b])=>b['%bd']-a['%bd'])
         ); for (indi in sortable) {
             if ((sortable[indi]!==undefined)&&(indi!='')) {
-                res+="<input type='image' class='power' src='Flag."+sortable[indi]['%cc']+".png"+"'>";
-                res+="<input type='button' style='width:68%;' value='"+sortable[indi]['%zd']+" "+indi+"' onclick='omniReadGroup(&#34;browse_europedia&#34;,&#34;"+indi+"&#34;);'>";
-                res+="<input type='image' class='power' src='"+epr+"chain.png"+"' onclick='clp(&#34;"+indi+"&#34;);'><br>";
+                res+="<input type='image' class='power' src='Flag."+sortable[indi]['%cc']+".png"+"' onclick='clp(&#34;"+indi+"&#34;);'>";
+                res+="<input type='button' style='width:68%;' value='"+sortable[indi]['%zd']+" "+indi+"' onclick='omniReadGroup(&#34;browse_europedia&#34;,&#34;"+indi+"&#34;);'><br>";
             }
         }
     } else if (sta=='hdi') {
@@ -134,31 +133,22 @@ function scores(sta) {
             if ((obj[et]['Life Expectancy']!==undefined)&&(typeof(obj[et]['Life Expectancy'])=='object')) {
                 lem=obj[et]['Life Expectancy']['Male'];
                 lef=obj[et]['Life Expectancy']['Female'];
-            } else {
-                lem=32.5; lef=37.5;
-            } if ((obj[et]['School Years']!==undefined)&&(typeof(obj[et]['School Years'])=='object')) {
+            } else { lem=32.5; lef=37.5; }
+            if ((obj[et]['School Years']!==undefined)&&(typeof(obj[et]['School Years'])=='object')) {
                 if ((obj[et]['School Years']['Average']!==undefined)&&(typeof(obj[et]['School Years']['Average'])=='object')) {
                     mysm=obj[et]['School Years']['Average']['Male'];
                     mysf=obj[et]['School Years']['Average']['Female'];
-                } else {
-                    mysm=10; mysf=5;
-                } if ((obj[et]['School Years']['Expected']!==undefined)&&(typeof(obj[et]['School Years']['Expected'])=='object')) {
+                } else { mysm=10; mysf=5; }
+                if ((obj[et]['School Years']['Expected']!==undefined)&&(typeof(obj[et]['School Years']['Expected'])=='object')) {
                     eysm=obj[et]['School Years']['Expected']['Male'];
                     eysf=obj[et]['School Years']['Expected']['Female'];
-                } else {
-                    eysm=11.5; eysf=6.5;
-                }
-            } else {
-                mysm=10; mysf=5; eysm=11.5; eysf=6.5;
-            } if ((obj[et]['Gross National Income']!==undefined)&&(typeof(obj[et]['Gross National Income'])=='object')) {
+                } else { eysm=11.5; eysf=6.5; }
+            } else { mysm=10; mysf=5; eysm=11.5; eysf=6.5; }
+            if ((obj[et]['Gross National Income']!==undefined)&&(typeof(obj[et]['Gross National Income'])=='object')) {
                 gnim=obj[et]['Gross National Income']['Male'];
                 gnif=obj[et]['Gross National Income']['Female'];
-            } else {
-                gnim=7500; gnif=2500;
-            } var lei=((((lem+lef)/2)-20)/65);
-            var ei=(((((mysm+mysf)/2)/15)+(((eysm+eysf)/2)/18))/2);
-            var ii=((Math.log((gnim+gnif)/2)-Math.log(100))/Math.log(750));
-            console.log(lei+' '+ei+' '+ii);
+            } else { gnim=7500; gnif=2500; }
+            var lei=((((lem+lef)/2)-20)/65),ei=(((((mysm+mysf)/2)/15)+(((eysm+eysf)/2)/18))/2),ii=((Math.log((gnim+gnif)/2)-Math.log(100))/Math.log(750));
             obj[et]['Human Development Index']=superRound((lei*ei*ii)**(1/3));
             obj[et]['Gross National Income']['Both']=superRound((gnim+gnif)/2);
         } sortable=Object.fromEntries(
@@ -177,7 +167,7 @@ function scores(sta) {
         ); for (indi in sortable) {
             if ((sortable[indi]!==undefined)||(indi!='')) {
                 at=getUserAvatar(indi);
-                res+="<input type='image' class='power' src='"+eax+at+".png"+"'>";
+                res+="<input type='image' class='power' src='"+eax+at+".png"+"' onclick='clp(&#34;"+at+"&#34;);'>";
                 res+="<input type='button' style='width:24%;' value='@"+indi+"' onclick='clp(&#34;"+indi+"&#34;);'>";
                 res+="<input type='button' style='width:54%;' value='"+sortable[indi]+"' onclick='clp(&#34;"+sortable[indi]+"&#34;);'>";
                 if (superuser()) {
