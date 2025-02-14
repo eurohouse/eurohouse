@@ -114,14 +114,11 @@ function scores(sta) {
         }
     } else if (sta=='model') {
         for (et in obj) {
-            if (obj[et]['nsfw']===undefined) {
-                delete obj[et];
-            }
+            if (obj[et]['nsfw']===undefined) { delete obj[et]; }
         } for (et in obj){
             obj[et]['%cc']=(obj[et]['country'])?obj[et]['country']:'UN';
             obj[et]['%bd']=(obj[et]['birthday'])?timefrom(obj[et]['birthday']):0;
             obj[et]['%zd']=zodiac(obj[et]['%bd']);
-            obj[et]['%fr']=frenchDate(timeto(obj[et]['%bd']));
         } sortable=Object.fromEntries(
             Object.entries(obj).sort(([,a],[,b])=>b['%bd']-a['%bd'])
         ); for (indi in sortable) {
@@ -168,8 +165,7 @@ function scores(sta) {
             Object.entries(obj).sort(([,a],[,b])=>b['Human Development Index']-a['Human Development Index'])
         ); for (indi in sortable) {
             if ((sortable[indi]!==undefined)&&(indi!='')) {
-                res+="<input type='image' class='power' src='Flag."+indi+".png"+"'>";
-                res+="<input type='button' style='width:15%;' value='"+indi+"' onclick='clp(&#34;"+indi+"&#34;);'>";
+                res+="<input type='image' class='power' src='Flag."+indi+".png"+"' onclick='clp(&#34;"+indi+"&#34;);'>";
                 res+="<input type='button' style='width:24%;' value='"+sortable[indi]['Human Development Index']+"' onclick='clp(&#34;"+sortable[indi]['Human Development Index']+"&#34;);'>";
                 res+="<input type='button' style='width:40%;' value='"+sortable[indi]['Gross National Income']['Both']+"' onclick='clp(&#34;"+sortable[indi]['Gross National Income']['Both']+"&#34;);'>";
                 res+="<input type='image' class='power' src='"+epr+"info.png"+"' onclick='omniPath(&#34;i18n.json&#34;,&#34;"+indi+"&#34;,&#34;false&#34;);'><br>";
