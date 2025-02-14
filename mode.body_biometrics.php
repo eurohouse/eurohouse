@@ -6,6 +6,9 @@ function mapleExec(input) {
     var ma=mc[0],md=mc[1].split(' = ');
     ordarr(sysDefSessionID.value+'_maple.json','add',ma+'/'+md[0],md[1]); window.location.reload();
 }
+function mapleDel(id) {
+    ordarr(sysDefSessionID.value+'_maple.json','drop',id,''); window.location.reload();
+}
 </script>
 <?php $maple=arropen($sessionID.'_maple.json'); ?>
 <p align='center' class='block'>
@@ -30,6 +33,9 @@ function mapleExec(input) {
         <?php foreach ($ent as $eno=>$val) { ?>
             <td><?=$val;?></td>
         <?php } ?>
+        <td>
+        <input type="image" name="<?=$key;?>" onmouseover="soundButton();" class="power" onclick="mapleDel(this.name);" src="<?=$prefix.'delete.png';?>">
+        </td>
     </tr>
     <?php } ?>
 </tbody>
