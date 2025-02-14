@@ -24,6 +24,7 @@ function mapleDel(id) {
 <thead>
     <th>
         <?php foreach ($maple[array_key_first($maple)] as $eno=>$prp) { ?><td><?=$eno;?></td><?php } ?>
+        <td><?=term('Actions', $settings['vocabulary'], $session['units']);?></td>
     </th>
 </thead>
 <tbody>
