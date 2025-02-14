@@ -189,7 +189,7 @@ function terminate(query) {
         getdir('d','',query.split(' ')[i],'from','','here',true);
     }
 }
-function arrangeMenu(list,item,delim=',') {
+function arrangeMenu(list,item,delim=',',sort=false) {
     var arr=list.toString('').split(delim);
     if (arr.indexOf('')>-1) {
         arr.splice(arr.indexOf(''),1);
@@ -198,7 +198,7 @@ function arrangeMenu(list,item,delim=',') {
     } if (arr.indexOf(item)>-1) {
         arr.splice(arr.indexOf(item),1);
     } else { arr.push(item); }
-    return finarr(arr).join(delim);
+    return (sort)?finarr(arr).join(delim):arr.join(delim);
 }
 function isInMenu(list,item) {
     var arr=list.toString('').split(',');
