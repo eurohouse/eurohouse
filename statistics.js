@@ -108,7 +108,7 @@ function scores(sta) {
                 res+="<input type='image' class='power' src='"+eax+at+".png"+"'>";
                 res+="<input type='button' style='width:24%;' value='@"+sortable[indi]['Username']+"' onclick='clp(&#34;"+sortable[indi]['Username']+"&#34;);'>";
                 if (superuser()) {
-                    res+="<input type='image' class='power' src='"+epr+"delete.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;,true,true);'>";
+                    res+="<input type='image' class='power' src='"+epr+"delete.png"+"' onclick='remove_entry(&#39;"+indi+"&#39;,&#39;"+arr+"&#39;,&#39;"+eps+"&#39;,true,true);'>";
                 } res+="<br>";
             }
         }
