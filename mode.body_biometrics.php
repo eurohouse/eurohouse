@@ -24,19 +24,15 @@ function mapleDel(id) {
 <thead>
     <th>
         <?php foreach ($maple[array_key_first($maple)] as $eno=>$prp) { ?><td><?=$eno;?></td><?php } ?>
-        <td><?=term('Actions', $settings['vocabulary'], $session['units']);?></td>
     </th>
 </thead>
 <tbody>
     <?php foreach ($maple as $key=>$ent) { ?>
     <tr>
-        <td><?=$key;?></td>
+        <td><?=$key;?> <input type="image" name="<?=$key;?>" onmouseover="soundButton();" class="power" onclick="mapleDel(this.name);" src="<?=$prefix.'delete.png';?>"></td>
         <?php foreach ($ent as $eno=>$val) { ?>
             <td><?=$val;?></td>
         <?php } ?>
-        <td>
-        <input type="image" name="<?=$key;?>" onmouseover="soundButton();" class="power" onclick="mapleDel(this.name);" src="<?=$prefix.'delete.png';?>">
-        </td>
     </tr>
     <?php } ?>
 </tbody>
