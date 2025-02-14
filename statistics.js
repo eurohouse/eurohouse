@@ -105,7 +105,7 @@ function scores(sta) {
                     res+="<input type='image' class='power' src='Flag.UN.png"+"' onclick='clp(&#34;"+sortable[indi]['Country']+"&#34;);'>";
                 } res+="<input type='button' style='width:46%;' value='"+indi+"' onclick='clp(&#34;"+indi+"&#34;);'>";
                 at=getUserAvatar(sortable[indi]['Username']);
-                res+="<input type='image' class='power' src='"+eax+at+".png"+"' onclick='clp(&#34;"+indi+"&#34;);'>";
+                res+="<input type='image' class='power' src='"+eax+at+".png"+"' onclick='clp(&#34;"+at+"&#34;);'>";
                 res+="<input type='button' style='width:24%;' value='@"+sortable[indi]['Username']+"' onclick='clp(&#34;"+sortable[indi]['Username']+"&#34;);'>";
                 if (superuser()) {
                     res+="<input type='image' class='power' src='"+epr+"delete.png"+"' onclick='remove_entry(&#39;"+indi+"&#39;,&#39;"+arr+"&#39;,&#39;"+eps+"&#39;,true,true);'>";
