@@ -28,21 +28,18 @@
             "backend.js","frontend.js","tablesort.js",
             "requests.js","commands.js","jquery.js",
             "crypto.js","XRegExp.js","statistics.js",
-            "nerdamer.js","algebra.js","calculus.js","solve.js","e4system.js","e4media.js","e4users.js",
-            "e4transact.js"
+            "nerdamer.js","algebra.js","calculus.js","solve.js"
         ],
         "foreign": [ "https://www.midijs.net/lib/midi.js" ]
     },
     "collections": {
         "music": ".mp3,.aac,.ogg,.flac,.alac,.cda,.wma,.m4a,.mka",
-        "sound": ".wav,.ac3,.snd,.au,.aif,.aiff,.oga,.wma,.m4a,.mka",
-        "video": ".mp4,.mkv,.webm,.3gp",
-        "movie": ".mov,.qt,.wmv,.avi",
-        "midi": ".mid,.midi,.rmi",
+        "sound": ".wav,.ac3,.snd,.au,.aif,.aiff,.oga,.wma,.m4a,.mka","video": ".mp4,.mkv,.webm,.3gp",
+        "movie": ".mov,.qt,.wmv,.avi","midi": ".mid,.midi,.rmi",
         "data": ".json,.xml,.yaml,.yml,.bak",
         "font": ".ttf,.ttc,.otf,.woff2,.fon",
-        "script": ".js,.css,.ts,.csv,.htm,.html,.php,.cs,.ps1,.cpp,.sh",
-        "image": ".bmp,.dib,.gif,.ico,.cur,.ani,.jpg,.jpeg,.psd,.svg,.webp,.png,.tif,.tiff", "archive": ".zip,.7z,.rar,.bz2,.bin,.cue",
+        "script": ".js,.css,.ts,.csv,.htm,.html,.php,.cs,.ps1,.cpp,.sh","image": ".bmp,.dib,.gif,.ico,.cur,.ani,.jpg,.jpeg,.psd,.svg,.webp,.png,.tif,.tiff",
+        "archive": ".zip,.7z,.rar,.bz2,.bin,.cue",
         "book": ".pdf,.djvu,.epub,.fb2"
     },
     "user_types": {
@@ -405,6 +402,7 @@
             "https://github.com/infofintech/xp",
             "https://github.com/infofintech/osx",
             "https://github.com/infofintech/distro",
+            "https://github.com/eurohouse/nestor",
             "https://github.com/eurohouse/baron",
             "https://github.com/eurohouse/cappuccino",
             "https://github.com/eurohouse/epoque",
@@ -419,7 +417,6 @@
         "music": [
             "https://github.com/eurohouse/botticelli",
             "https://github.com/eurohouse/orchestra",
-            "https://github.com/infofintech/classic",
             "https://github.com/infofintech/oldies",
             "https://github.com/infofintech/aughts",
             "https://bitbucket.org/007game/2012",
