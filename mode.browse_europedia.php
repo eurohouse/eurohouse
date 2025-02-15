@@ -6,7 +6,8 @@
 $iconSize=50; $ssLC=$settings['locale'];
 $ssVC=$settings['vocabulary']; $ssUN = $session['units'];
 $exemplarArr=exemplar(str_replace('./','',(glob('./*.models.json'))));
-$contentsArr=exemplar(str_replace('./','',(glob('./*.contents.json')))); if ($request['group']!='') {
+$contentsArr=exemplar(str_replace('./','',(glob('./*.contents.json'))));
+if ($request['group']!='') {
     foreach ($contentsArr as $key=>$value) {
         if ($value!=$request['group']) {
             unset($contentsArr[$key]);
@@ -47,7 +48,9 @@ $contentsArr=exemplar(str_replace('./','',(glob('./*.contents.json')))); if ($re
 <?php
 } else {
     foreach ($contentsArr as $key=>$value) {
-        if (!in_array(explode('.',$key)[0],explode(',',$locks['background']))) { unset($contentsArr[$key]); }
+        if (!in_array(explode('.',$key)[0],explode(',',$locks['background']))) {
+            unset($contentsArr[$key]);
+        }
     } foreach ($exemplarArr as $key=>$value) {
         if (!in_array($key,$contentsArr)) {
             unset($exemplarArr[$key]);

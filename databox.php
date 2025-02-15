@@ -11,6 +11,7 @@ $toolData=arropen('toolbox.json',"{\"root\":\"\"}");
 $callData=arropen('calling.json',"{\"root\":\"root\"}");
 $avaPref=(lux($userData['back_text_color']))?'ava.':'abc.';
 $locksArr=arropen($cookie.'_lock.json',json_encode($userSettings['locks']),'DEFAULT');
+$userLocks=userlocks($locksArr,$userSettings['collections'],$avaPref);
 $notesArr=arropen($cookie.'_metadata.json',json_encode($userSettings['metadata']),'CUSTOM');
 $notesList=implode(' | ',array_keys($notesArr));
 $notesJSON=file_get_contents($cookie.'_metadata.json');
@@ -22,14 +23,24 @@ $speechBoxArr=str_replace('./','',(glob('./*.pro')));
 $usersList=implode(',',str_replace('_msgbox.json','',str_replace('./.msgbox/','',(glob('./.msgbox/*_msgbox.json')))));
 $booksList=implode(',',str_replace('_book.json','',str_replace('./.book/','',(glob('./.book/*_book.json')))));
 $storeList=implode(',',str_replace('_store.json','',str_replace('./.store/','',(glob('./.store/*_store.json')))));
-$newsFeed=jsonopen('./.msgbox/'.$cookie.'_msgbox.json',true);
+$listExem=exemplar(str_replace('./','',(glob('./*.models.json'))));
+$listCont=exemplar(str_replace('./','',(glob('./*.contents.json'))));
+foreach ($listCont as $key=>$value) {
+    if (!in_array(explode('.',$key)[0],explode(',',$userLocks['background']))) {
+        unset($listCont[$key]);
+    }
+} foreach ($listExem as $key=>$value) {
+    if (!in_array($key,$listCont)) {
+        unset($listExem[$key]);
+    }
+} foreach ($listExem as $key=>$value) {
+    if (!isset($value['nsfw'])) { unset($listExem[$key]); }
+} $newsFeed=jsonopen('./.msgbox/'.$cookie.'_msgbox.json',true);
 $userBook=jsonopen('./.book/'.$cookie.'_book.json',true);
 $userStore=jsonopen('./.store/'.$cookie.'_store.json',true);
 $localesArr=jsonopen('./i18n.json',true);
 $sessList=str_replace('./','',(glob('./*_session.json')));
-$currentTimes=$currentAvatars=[];
-$exem=exemplar(str_replace('./','',(glob('./*.models.json'))));
-foreach ($sessList as $key=>$value) {
+$currentTimes=$currentAvatars=[]; foreach ($sessList as $key=>$value) {
     $testArr=arropen($value,json_encode($userSettings['defaults']),'DEFAULT');
     $timeZones=dec_tz($testArr['timezone']);
     date_default_timezone_set($timeZones);$currentTimes[]=date('H');
@@ -45,7 +56,7 @@ foreach ($sessList as $key=>$value) {
 /* ¶ 7 */ $newsFeed."\r\n\r\n".
 /* ¶ 8 */ $userBook."\r\n\r\n".
 /* ¶ 9 */ $userStore."\r\n\r\n".
-/* ¶ 10 */ json_encode(userlocks($locksArr,$userSettings['collections'],$avaPref), JSON_UNESCAPED_UNICODE)."\r\n\r\n".
+/* ¶ 10 */ json_encode($userLocks)."\r\n\r\n".
 /* ¶ 11 */ implode('//',$codexBoxArr)."\\\\".implode('//',$speechBoxArr)."\r\n\r\n".
 /* ¶ 12 */ $usersList.";".$booksList.";".$storeList."\r\n\r\n".
 /* ¶ 13 */ implode(' ',$currentTimes)."\r\n\r\n".
@@ -56,4 +67,4 @@ foreach ($sessList as $key=>$value) {
 /* ¶ 18 */ implode(' ',$currentAvatars)."\r\n\r\n".
 /* ¶ 19 */ json_encode($activeIPs)."\r\n\r\n".
 /* ¶ 20 */ $localesArr."\r\n\r\n".
-/* ¶ 21 */ json_encode($exem, JSON_UNESCAPED_UNICODE);
+/* ¶ 21 */ json_encode($listExem);
