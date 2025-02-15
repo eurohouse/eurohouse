@@ -1,6 +1,6 @@
 <div class='topBarItem'>
     <p align='center' class='block'>
-    <input type="image" onmouseover="soundButton();" id="buttonRandom" class="power" onclick="songIndex('random');" src="<?=$prefix.'dice.png';?>">
+    <input type="image" onmouseover="soundButton();" id="buttonRandom" class="power" onclick="songIndex('random');" src="<?=$prefix.'dice.png';?>" title="<?=term('Random Track',$settings['vocabulary'],$session['units']);?>">
     <select id="ErotoOlympus" style="width:32%;" onchange="setdata('background',ErotoOlympus.options[ErotoOlympus.selectedIndex].id);"><?php foreach ($userLocks['background'] as $key=>$val) { ?>
     <option disabled><?=titled($val,$session['units']);?></option>
     <?php foreach (catlist($key) as $value) { ?>
