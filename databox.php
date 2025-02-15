@@ -24,8 +24,7 @@ $usersList=implode(',',str_replace('_msgbox.json','',str_replace('./.msgbox/',''
 $booksList=implode(',',str_replace('_book.json','',str_replace('./.book/','',(glob('./.book/*_book.json')))));
 $storeList=implode(',',str_replace('_store.json','',str_replace('./.store/','',(glob('./.store/*_store.json')))));
 $listExem=exemplar(str_replace('./','',(glob('./*.models.json'))));
-$listCont=exemplar(str_replace('./','',(glob('./*.contents.json'))));
-/*foreach ($listCont as $key=>$value) {
+$listCont=exemplar(str_replace('./','',(glob('./*.contents.json')))); foreach ($listCont as $key=>$value) {
     if (!in_array(explode('.',$key)[0],explode(',',$userLocks['background']))) {
         unset($listCont[$key]);
     }
@@ -33,7 +32,7 @@ $listCont=exemplar(str_replace('./','',(glob('./*.contents.json'))));
     if (!in_array($key,$listCont)) {
         unset($listExem[$key]);
     }
-} foreach ($listExem as $key=>$value) {
+} /*foreach ($listExem as $key=>$value) {
     if (!isset($value['nsfw'])) { unset($listExem[$key]); }
 }*/
 $newsFeed=jsonopen('./.msgbox/'.$cookie.'_msgbox.json',true);
