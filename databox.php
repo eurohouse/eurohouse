@@ -33,9 +33,9 @@ $listCont=exemplar(str_replace('./','',(glob('./*.contents.json'))));
     if (!in_array($key,$listCont)) {
         unset($listExem[$key]);
     }
-} foreach ($listExem as $key=>$value) {
+}*/ foreach ($listExem as $key=>$value) {
     if (!isset($value['nsfw'])) { unset($listExem[$key]); }
-}*/
+}
 $newsFeed=jsonopen('./.msgbox/'.$cookie.'_msgbox.json',true);
 $userBook=jsonopen('./.book/'.$cookie.'_book.json',true);
 $userStore=jsonopen('./.store/'.$cookie.'_store.json',true);
