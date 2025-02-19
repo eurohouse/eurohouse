@@ -358,7 +358,7 @@ function omniEnter() {
             }
         } else if (input.startsWith('./')) {
             omniRead(requestMode.value,input.replace('./',''),requestLock.value);
-        } else if (input.includes('*')) {
+        } else if (input.startsWith('*')) {
             omniDisp(requestMode.value,input.replace('*',''),requestLock.value);
         } else if (input.startsWith('~')) {
             arb=input.replace('~',''),mt=0; if (arb.includes(',')) {
