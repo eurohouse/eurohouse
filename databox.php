@@ -20,9 +20,6 @@ $tutorList=implode(' | ',array_keys($tutorArr));
 $tutorJSON=jsonline('tutorial.json');
 $codexBoxArr=str_replace('./','',(glob('./*.mac')));
 $speechBoxArr=str_replace('./','',(glob('./*.pro')));
-$users=[];$users[]=implode(',',str_replace('_msgbox.json','',str_replace('./.msgbox/','',(glob('./.msgbox/*_msgbox.json')))));$users[]=implode(',',str_replace('_book.json','',str_replace('./.book/','',(glob('./.book/*_book.json')))));$users[]=implode(',',str_replace('_store.json','',str_replace('./.store/','',(glob('./.store/*_store.json')))));$users[]=str_replace('_session.json','',str_replace('./','',(glob('./*_session.json'))));
-//usersList=array_merge($users[0],$users[1],$users[2],$user[3],array_keys($poweredData));
-$usersList=array_keys($poweredData);
 $listExem=exemplar(str_replace('./','',(glob('./*.models.json'))));
 foreach ($listExem as $key=>$value) {
     if (!isset($value['nsfw'])) { unset($listExem[$key]); }
@@ -30,9 +27,9 @@ foreach ($listExem as $key=>$value) {
 $userBook=jsonopen('./.book/'.$cookie.'_book.json',true);
 $userStore=jsonopen('./.store/'.$cookie.'_store.json',true);
 $localesArr=arropen('./i18n.json');
-$currentTimes=$currentAvatars=[]; foreach ($usersList as $key=>$value) {
-    if (file_exists($value.'_session.json')) {
-        $testArr=arropen($value.'_session.json',json_encode($userSettings['defaults']),'DEFAULT');
+$currentTimes=$currentAvatars=[]; foreach ($poweredData as $key=>$value) {
+    if (file_exists($key.'_session.json')) {
+        $testArr=arropen($key.'_session.json',json_encode($userSettings['defaults']),'DEFAULT');
     } else { $testArr=['timezone'=>0,'avatar'=>'NULL']; }
     $timeZones=dec_tz($testArr['timezone']);
     date_default_timezone_set($timeZones);$currentTimes[]=date('H');
@@ -50,7 +47,7 @@ $currentTimes=$currentAvatars=[]; foreach ($usersList as $key=>$value) {
 /* ¶ 9 */ $userStore."\r\n\r\n".
 /* ¶ 10 */ json_encode($userLocks,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
 /* ¶ 11 */ implode('//',$codexBoxArr)."\\\\".implode('//',$speechBoxArr)."\r\n\r\n".
-/* ¶ 12 */ implode(',', $usersList)."\r\n\r\n".
+/* ¶ 12 */ implode(',',array_keys($poweredData))."\r\n\r\n".
 /* ¶ 13 */ implode(' ',$currentTimes)."\r\n\r\n".
 /* ¶ 14 */ $notesList."\r\n\r\n".
 /* ¶ 15 */ $notesJSON."\r\n\r\n".

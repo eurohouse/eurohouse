@@ -28,9 +28,8 @@ $indexUsers = str_replace('_session.json', '', $allUsers);
 <tbody>
 <?php
 foreach ($indexUsers as $key=>$value) {
-    $profData = (@json_decode(file_get_contents($value.'_session.json'), true) != null) ? json_decode(file_get_contents($value.'_session.json'), true) : $settings['defaults'];
-    $profTitle = $profData['title'];
-    $profIcon = (file_exists($avaPrefix.$profData['avatar'].'.png')) ? $avaPrefix.$profData['avatar'].'.png' : $avaPrefix.$settings['defaults']['avatar'].'.png';
+    $profData=(@json_decode(file_get_contents($value.'_session.json'),true)!=null)?json_decode(file_get_contents($value.'_session.json'),true):$settings['defaults'];
+    $profTitle=$profData['title']; $profIcon=(file_exists($avaPrefix.$profData['avatar'].'.png'))?$avaPrefix.$profData['avatar'].'.png':$avaPrefix.$settings['defaults']['avatar'].'.png';
     ?>
     <tr>
         <td>
