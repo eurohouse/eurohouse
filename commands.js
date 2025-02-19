@@ -350,16 +350,16 @@ function omniEnter() {
         } else if (input.startsWith('->')) { omniSwitch(input.replace('->',''));
         } else if (input.startsWith('::')) { setdata('banner',input.replace('::','')+'.png');
         } else if (input.startsWith('\\=')) { omniListen(input.replace('\\=',''),true);
+        } else if ((input.startsWith('"'))&&(input.endsWith('"'))) {
+            omniDisp(requestMode.value,input.replaceAll('"',''),requestLock.value);
+        } else if (input.startsWith('./')) {
+            omniRead(requestMode.value,input.replace('./',''),requestLock.value);
         } else if (input.startsWith('>')) {
             arb=input.replace('>',''); if (arb.endsWith('-')) {
                 arc=arb.replace('-',''); administer(arc,'-');
             } else if (arb.endsWith('+')) {
                 arc=arb.replace('+',''); administer(arc,'+');
             }
-        } else if (input.startsWith('./')) {
-            omniRead(requestMode.value,input.replace('./',''),requestLock.value);
-        } else if (input.startsWith('*')) {
-            omniDisp(requestMode.value,input.replace('*',''),requestLock.value);
         } else if (input.startsWith('~')) {
             arb=input.replace('~',''),mt=0; if (arb.includes(',')) {
                 arj=arb.split(','); for (ir in arj) {
