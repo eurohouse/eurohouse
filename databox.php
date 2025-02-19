@@ -21,8 +21,8 @@ $tutorJSON=jsonline('tutorial.json');
 $codexBoxArr=str_replace('./','',(glob('./*.mac')));
 $speechBoxArr=str_replace('./','',(glob('./*.pro')));
 $users=[];$users[]=implode(',',str_replace('_msgbox.json','',str_replace('./.msgbox/','',(glob('./.msgbox/*_msgbox.json')))));$users[]=implode(',',str_replace('_book.json','',str_replace('./.book/','',(glob('./.book/*_book.json')))));$users[]=implode(',',str_replace('_store.json','',str_replace('./.store/','',(glob('./.store/*_store.json')))));$users[]=str_replace('_session.json','',str_replace('./','',(glob('./*_session.json'))));
-//$usersList=array_merge($users[0],$users[1],$users[2],$user[3],array_keys($poweredData));
-$usersList=array_keys($poweredData);
+$usersList=array_merge($users[0],$users[1],$users[2],$user[3],array_keys($poweredData));
+//$usersList=array_keys($poweredData);
 $listExem=exemplar(str_replace('./','',(glob('./*.models.json'))));
 foreach ($listExem as $key=>$value) {
     if (!isset($value['nsfw'])) { unset($listExem[$key]); }
@@ -50,7 +50,7 @@ $currentTimes=$currentAvatars=[]; foreach ($usersList as $key=>$value) {
 /* ¶ 9 */ $userStore."\r\n\r\n".
 /* ¶ 10 */ json_encode($userLocks,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
 /* ¶ 11 */ implode('//',$codexBoxArr)."\\\\".implode('//',$speechBoxArr)."\r\n\r\n".
-/* ¶ 12 */ $usersList."\r\n\r\n".
+/* ¶ 12 */ implode(',', $usersList)."\r\n\r\n".
 /* ¶ 13 */ implode(' ',$currentTimes)."\r\n\r\n".
 /* ¶ 14 */ $notesList."\r\n\r\n".
 /* ¶ 15 */ $notesJSON."\r\n\r\n".
