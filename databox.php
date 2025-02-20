@@ -47,7 +47,7 @@ $currentTimes=$currentAvatars=[]; foreach ($poweredData as $key=>$value) {
 /* ¶ 9 */ $userStore."\r\n\r\n".
 /* ¶ 10 */ json_encode($userLocks,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
 /* ¶ 11 */ implode('//',$codexBoxArr)."\\\\".implode('//',$speechBoxArr)."\r\n\r\n".
-/* ¶ 12 */ implode(',',array_keys($poweredData))."\r\n\r\n".
+/* ¶ 12 */ implode(',',sort(array_keys($poweredData)))."\r\n\r\n".
 /* ¶ 13 */ implode(' ',$currentTimes)."\r\n\r\n".
 /* ¶ 14 */ $notesList."\r\n\r\n".
 /* ¶ 15 */ $notesJSON."\r\n\r\n".
