@@ -48,8 +48,12 @@ foreach ($indexUsers as $key=>$value) {
             </a>
         </td>
         <td><?=locTitle($profData,'title');?></td>
-        <td><?=locTitle($profData,'codename');?></td>
-        <td><?=locTitle($profData,'project');?></td>
+        <?php if (locTitle($profData,'codename')!='') { ?>
+            <td><?=locTitle($profData,'codename');?></td>
+            <td><?=locTitle($profData,'project');?></td>
+        <?php } else { ?>
+            <td colspan="2"><?=locTitle($profData,'project');?></td>
+        <?php } ?>
         <td><?='@'.$value;?></td>
         <td>
         <p align='center' class='block'>
