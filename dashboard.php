@@ -61,7 +61,7 @@
 </div>
 <div class='topBarItem'>
     <p align='center' class='block'>
-    <input type="image" onmouseover="soundButton();" id="buttonTime" class="power" onclick="setdata('benchmark',nextImage('0;2',sysDefBenchmark.value));" src="<?=$prefix.'time.png';?>" title="<?=term('Go Through Daily Wallpaper Series',$settings['vocabulary'],$session['units']);?>">
+    <input type="image" onmouseover="soundButton();" id="buttonTime" class="power" onclick="setdata('benchmark',nextImage('0;2',sysDefBenchmark.value));" src="<?=$prefix.'time.png';?>" title="<?=term('Slideshow Wallpapers',$settings['vocabulary'],$session['units']);?>">
     <input type='button' id="currentTime" style="width:30%;" onclick="setdata('timedisp',flip(sysDefTimedisp.value));" value="00:00:00">
     <input type="image" id="buttonPrev" onmouseover="soundButton();" class="power" onclick="songIndex('prev');" src="<?=$prefix.'rew.png';?>" title="<?=term('Previous Track',$settings['vocabulary'],$session['units']);?>">
     <input type="image" id="buttonNext" onmouseover="soundButton();" class="power" onclick="songIndex('next');" src="<?=$prefix.'ff.png';?>" title="<?=term('Next Track',$settings['vocabulary'],$session['units']);?>">
@@ -80,7 +80,7 @@
     <input type="image" onmouseover="soundButton();" id="buttonAutoplay" class="power" onclick="setdata('autoplay',flip(sysDefAutoplay.value));" src="<?=$prefix.'autoplay.png';?>" title="<?=term('Enable Autoplay',$settings['vocabulary'],$session['units']);?>">
     <input type='button' id="alarmTime" style="width:30%;" onclick="setdata('memo',''); pauseAudio(alarmPlayer);" value="00:00:00"><input type="image" id="buttonPlay" onmouseover="soundButton();" class="power" onclick="if (sysDefPlaying.value==1) { omniPause(); } else { omniListen(dtw(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value)); }" src="<?=$prefix.'play.png';?>" title="<?=term('Audio Play/Pause',$settings['vocabulary'],$session['units']);?>">
     <input type="image" id="buttonMuteBack" onmouseover="soundButton();" class="power" onclick="setdata('loop',flip(sysDefLoop.value));" src="<?=$prefix.'disk.png';?>" title="<?=term('Enable Loop Music',$settings['vocabulary'],$session['units']);?>">
-    <input type="image" onmouseover="soundButton();" id="buttonPitched" class="power" onclick="setdata('pitch_lock',flip(sysDefPitchLock.value));" src="<?=$prefix.(($session['pitch_lock']!=0)?'midi.png':'volume.png');?>" title="<?=term('Audio Preserve Pitch',$settings['vocabulary'],$session['units']);?>">
+    <input type="image" onmouseover="soundButton();" id="buttonPitched" class="power" onclick="setdata('pitch_lock',flip(sysDefPitchLock.value));" src="<?=$prefix.(($session['pitch_lock']!=0)?'midi.png':'volume.png');?>" title="<?=term('Preserve Pitch',$settings['vocabulary'],$session['units']);?>">
     <select id="avatarPicker" style="width:12%;" onchange="setdata('avatar',avatarPicker.options[avatarPicker.selectedIndex].id); if (sysDefReload.value!=0) { window.location.reload(); }"><?php foreach ($userLocks['avatar'] as $key=>$value) { ?>
     <option id="<?=explode('.', $value)[1];?>" <?php if ($session['avatar']==explode('.',$value)[1]) { ?> selected <?php } ?>>
         <?=explode('.',$value)[1];?>
