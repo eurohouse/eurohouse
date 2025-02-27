@@ -800,4 +800,11 @@ function handleInput(val,bulk=false) {
         }
     }
 }
+function keyd() {
+    if (requestMode.value=='accessibility') {
+        pressedKeyCode.innerText=event.keyCode;
+        pressedCode.innerText=event.code;
+        pressedKey.innerText=event.key;
+    }
+}
 </script>
