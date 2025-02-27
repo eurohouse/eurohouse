@@ -338,11 +338,16 @@ function modelcard($id,$cont,$exem,$ses,$sti) {
         } else { $bl=''; } $dl=$hd.' '.$bl.' '.$len.' '.$mas.' '.$szs.' '.$shs;
     } else { $dl=''; } return $dl;
 }
-function userlocks($arr,$col,$ava) {
+function onlylocks($arr) {
     $res=[]; foreach ($arr as $key=>$val) {
-        $lib=($key=='avatar')?str_replace('./','',(glob('./'.$ava.'*.png'))):(($key=='background')?str_replace('./','',(glob('./*.*.00.png'))):str_replace('./','',(glob('./*.{'.duplex($col[$key],true).'}',GLOB_BRACE))));
-        if ($key=='background') { $res[$key]=excpkg($lib,$arr[$key],'COLLECTION');
-        } else { $res[$key]=excpkg($lib,$arr[$key]); }
+        if (str_starts_with($key,'lock_')!==false) { $res[$key]=$val; }
+    } return $res;
+}
+function userlocks($arr,$col,$ava) {
+    $res=[]; $prep=onlylocks($arr); foreach ($prep as $key=>$val) {
+        $lib=($key=='lock_avatar')?str_replace('./','',(glob('./'.$ava.'*.png'))):(($key=='lock_background')?str_replace('./','',(glob('./*.*.00.png'))):str_replace('./','',(glob('./*.{'.duplex($col[$key],true).'}',GLOB_BRACE))));
+        if ($key=='lock_background') { $res[$key]=excpkg($lib,$prep[$key],'COLLECTION');
+        } else { $res[$key]=excpkg($lib,$prep[$key]); }
         natcasesort($res[$key]); array_unique($res[$key]);
     } return $res;
 }

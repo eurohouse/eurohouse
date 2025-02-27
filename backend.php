@@ -55,16 +55,13 @@ $degKoeff=(isset($settings['locale']['angle'][$units]['coefficient']))?$settings
 $degPreSign=(isset($settings['locale']['angle'][$units]['sign']['pre']))?$settings['locale']['angle'][$units]['sign']['pre']:$settings['locale']['angle']['default']['sign']['pre'];
 $degSign=(isset($settings['locale']['angle'][$units]['sign']['post']))?$settings['locale']['angle'][$units]['sign']['post']:$settings['locale']['angle']['default']['sign']['post'];
 $sup=($session['lock'])?sprintf("%02d", $session['hour']):((($session['benchmark']>0)&&($session['benchmark']<5))?hourize(date('s'),date('i'),$session['benchmark']):date('H'));
-$background=($session['banner']!='')?$session['banner']:daily($session['background'],$session['entry'],$sup);
-$numeral=(isset($settings['locale']['numeral'][$session['units']]))?$settings['locale']['numeral'][$session['units']]:$settings['locale']['numeral']['default'];
+$background=($session['banner']!='')?$session['banner']:daily($session['background'],$session['entry'],$sup);$numeral=(isset($settings['locale']['numeral'][$session['units']]))?$settings['locale']['numeral'][$session['units']]:$settings['locale']['numeral']['default'];
 $olympus=str_replace('./','',(glob('./*.*.00.png')));
 $kaiser=str_replace('./','',(glob('./'.$avaPrefix.'*.png')));
 $amour=str_replace('./','',(glob('./'.$reticlePrefix.'*.png')));
 $homer=str_replace('./','',(glob('./*.{'.duplex($settings['collections']['font'],true).'}',GLOB_BRACE)));
 $orpheus=str_replace('./','',(glob('./*.{'.duplex($settings['collections']['audio'],true).'}',GLOB_BRACE)));
-$musicBox=str_replace('./','',(glob('./*.{'.duplex($settings['collections']['music'],true).'}',GLOB_BRACE)));
-$locks=arropen($sessionID.'_lock.json',json_encode($settings['locks']),'DEFAULT');
-$userLocks=userlocks($locks,$settings['collections'],$avaPrefix);
+$musicBox=str_replace('./','',(glob('./*.{'.duplex($settings['collections']['music'],true).'}',GLOB_BRACE)));$userLocks=userlocks($session,$settings['collections'],$avaPrefix);
 $codexBox=str_replace('./','',(glob('./*.mac')));
 $speechBox=str_replace('./','',(glob('./*.pro')));
 $thematic=str_replace('./','',(glob('./*.start.png')));

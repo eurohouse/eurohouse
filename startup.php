@@ -29,7 +29,7 @@ function databox() {
             $('#sysDefMsgData').val(pager(data,7));
             $('#sysDefBookKeep').val(pager(data,8));
             $('#sysDefUserStore').val(pager(data,9));
-            $('#sysDefLockData').val(pager(data,10));            
+            $('#sysDefLockData').val(pager(data,10));
             $('#sysDefCodexBox').val(pager(data,11).split("\\\\")[0]);
             $('#sysDefSpeechBox').val(pager(data,11).split("\\\\")[1]);
             $('#sysDefUsersList').val(pager(data,12));
