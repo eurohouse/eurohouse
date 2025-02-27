@@ -39,8 +39,7 @@ $fnar['EU']['Continent']='Europe';
 arsort($fnar); $fnar['AQ']['Human Development Index']='N/A';
 $fnar['AQ']['Continent']='Antarctica';
 foreach ($arr as $key=>$value) {
-    $shc=((isset($settings['locale']['continent'][$session['units']][$value['Continent']]))?$settings['locale']['continent'][$session['units']][$value['Continent']]:$value['Continent']);
-    $shh=$value['Human Development Index'];
+    $shc=term($value['Continent'],$settings['locale']['continent'],$session['units']);$shh=$value['Human Development Index'];
     $shth=term('HDI',$settings['vocabulary'],$session['units']);
     $shdh=$key.' ('.$shc.') '.$shth.' '.$shh;
 ?>
