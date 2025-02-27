@@ -1,9 +1,6 @@
 <!-- user -->
 <!-- GR: Λογαριασμοί χρηστών; CY: Λογαριασμοί χρηστών; DE: Benutzerkonten; AT: Benutzerkonten; FR: Comptes utilisateur; BE: Comptes utilisateur; CH: Explorare Usuarem; IT: Profili utente; LK: उपयोक्तृलेखाः; TR: Kullanıcı hesapları; IN: उपयोगकर्ता खाते; PT: Contas de utilizador; BR: Contas de usuário; ES: Cuentas de usuario; MX: Cuentas de usuario; RO: Conturi de utilizator; MD: Conturi de utilizator; UA: Облікові записи користувачів; NP: སྤྱོད་མཁན་གྱི་ཁ་བྱང་།; RU: Учётные записи пользователей; RS: Кориснички налози; CN: 用户账户经理; KR: 사용자 계정; JP: ユーザーアカウント; AE: حسابات المستخدمين -->
-<?php
-$iconSize = 50;
-$indexUsers = str_replace('_session.json', '', $allUsers);
-?>
+<?php $indexUsers=str_replace('_session.json', '', $allUsers); ?>
 <table style="width:100%;" id="table">
 <thead>
     <tr>
@@ -39,7 +36,7 @@ foreach ($indexUsers as $key=>$value) {
     <tr>
         <td>
             <a href="<?=$profIcon;?>">
-                <img style="width:<?=$iconSize;?>%;" src="<?=$profIcon;?>" loading="lazy" onmouseover="soundButton();">
+                <img style="width:50%;" src="<?=$profIcon;?>" loading="lazy" onmouseover="soundButton();">
             </a>
         </td>
         <td><?=locTitle($profData,'title');?></td>
@@ -68,7 +65,7 @@ foreach ($indexUsers as $key=>$value) {
 </tbody>
 <tfoot>
     <tr>
-        <th style="width:50%;" colspan="4"><?=term('Total elements:', $settings['vocabulary'], $session['units']).' '.count($indexUsers);?></th>
+        <th style="width:50%;" colspan="5"><?=term('Total elements:', $settings['vocabulary'], $session['units']).' '.count($indexUsers);?></th>
     </tr>
 </tfoot>
 </table>
