@@ -286,13 +286,12 @@ function jsonFilter(str,mask) {
     } return arf;
 }
 function jsonHTML(str,mask) {
-    var arr=jsonFilter(str,mask),ard=arl='',fu0=fu1='';
+    var arr=jsonFilter(str,mask),ard='',fu0=fu1='';
     var usr=sysDefSessionID.value,epr=sysDefPrefix.value;
     for (el in arr) {
         fu0="clearJournal(&#39;"+etw(el,usr)+"&#39;,&#39;"+sysDefMsgData.value+"&#39;,&#39;msgbox&#39;,);";
         fu1="clp(&#39;"+arr[el]+"&#39;);";
-        arl+=el+" <input type='image' class='power' src='"+epr+"delete.png"+"' onclick='"+fu0+"'><br>"+arr[el]+" <input type='image' class='power' src='"+epr+"copy.png"+"' onclick='"+fu1+"'>";
-        ard=arl+'<br>'+ard;
+        ard=el+" <input type='image' class='power' src='"+epr+"delete.png"+"' onclick='"+fu0+"'><br>"+arr[el]+" <input type='image' class='power' src='"+epr+"copy.png"+"' onclick='"+fu1+"'><br>"+ard;
     } return ard;
 }
 function jsonMarket(id) {
