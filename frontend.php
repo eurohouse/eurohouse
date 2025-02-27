@@ -286,10 +286,13 @@ function jsonFilter(str,mask) {
     } return arf;
 }
 function jsonHTML(str,mask) {
-    var arr=jsonFilter(str,mask),fu0='';
-    var ard=''; for (el in arr) {
+    var arr=jsonFilter(str,mask),ard=arl='',fu0=fu1='';
+    var usr=sysDefSessionID.value,epr=sysDefPrefix.value;
+    for (el in arr) {
         fu0="clearJournal(&#39;"+etw(el,sysDefSessionID.value)+"&#39;,&#39;"+sysDefMsgData.value+"&#39;,&#39;msgbox&#39;,);";
-        ard="<a href='javascript:"+fu0+"'>"+el+'</a><br>'+arr[el]+'<br>'+ard;
+        fu1="clp(&#39;"+arr[el]+"&#39;);";
+        arl+=el+="<input type='image' class='power' src='"+epr+"delete.png"+"' onclick='"+fu0+"'><br>";
+        arl+=arr[el]+"<input type='image' class='power' src='"+epr+"copy.png"+"' onclick='"+fu1+"'><br>";ard=arl+'<br>'+ard;
     } return ard;
 }
 function jsonMarket(id) {
