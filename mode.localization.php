@@ -30,14 +30,14 @@ function hdiadd(array $arr) {
     $res=[]; foreach ($arr as $key=>$val) {
         $rs1=(isset($val['Human Development Index']))?$val['Human Development Index']:0; $rs2=(isset($val['Continent']))?$val['Continent']:'Worldwide'; $res[$key]['Human Development Index']=$rs1; $res[$key]['Continent']=$rs2;
     } return $res;
-} $arr=hdiadd($arr); $dev=onlydev($arr);
+} /*$arr=hdiadd($arr); $dev=onlydev($arr);
 $fmar=($request['lock']!='false')?$dev:$arr;$fnar=onlyhdi($fmar);
 $fnar['UN']['Human Development Index']=round((hdisum($arr)/count($arr)),3);
 $fnar['UN']['Continent']='Worldwide';
 $fnar['EU']['Human Development Index']=round((hdisum($dev)/count($dev)),3);
 $fnar['EU']['Continent']='Europe';
 arsort($fnar); $fnar['AQ']['Human Development Index']='N/A';
-$fnar['AQ']['Continent']='Antarctica';
+$fnar['AQ']['Continent']='Antarctica';*/
 foreach ($arr as $key=>$value) {
     $shc=term($value['Continent'],$settings['locale']['continent'],$session['units']);$shh=$value['Human Development Index'];
     $shth=term('HDI',$settings['vocabulary'],$session['units']);
