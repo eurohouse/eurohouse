@@ -291,8 +291,8 @@ function jsonHTML(str,mask) {
     for (el in arr) {
         fu0="clearJournal(&#39;"+etw(el,usr)+"&#39;,&#39;"+sysDefMsgData.value+"&#39;,&#39;msgbox&#39;,);";
         fu1="clp(&#39;"+arr[el]+"&#39;);";
-        arl+=el+"<input type='image' class='power' src='"+epr+"delete.png"+"' onclick='"+fu0+"'><br>";
-        arl+=arr[el]+"<input type='image' class='power' src='"+epr+"copy.png"+"' onclick='"+fu1+"'><br>";ard=arl+'<br>'+ard;
+        arl+=el+" <input type='image' class='power' src='"+epr+"delete.png"+"' onclick='"+fu0+"'><br>";
+        arl+=arr[el]+" <input type='image' class='power' src='"+epr+"copy.png"+"' onclick='"+fu1+"'><br>";ard=arl+'<br>'+ard;
     } return ard;
 }
 function jsonMarket(id) {
