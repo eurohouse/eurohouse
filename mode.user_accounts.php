@@ -12,26 +12,21 @@ $indexUsers = str_replace('_session.json', '', $allUsers);
         </th>
         <th style="width:20%;">
             <a href="javascript:SortTable(1,'T');">
-                <?=term('Name', $settings['vocabulary'], $session['units']);?>
+                <?=term('Name',$settings['vocabulary'],$session['units']);?>
             </a>
         </th>
-        <th style="width:10%;">
+        <th style="width:20%;">
             <a href="javascript:SortTable(2,'T');">
-                <?=term('Codename', $settings['vocabulary'], $session['units']);?>
+                <?=term('Project Name',$settings['vocabulary'],$session['units']);?>
             </a>
         </th>
         <th style="width:20%;">
             <a href="javascript:SortTable(3,'T');">
-                <?=term('Project Name', $settings['vocabulary'], $session['units']);?>
+                <?=term('Username',$settings['vocabulary'],$session['units']);?>
             </a>
         </th>
         <th style="width:10%;">
-            <a href="javascript:SortTable(4,'T');">
-                <?=term('Username', $settings['vocabulary'], $session['units']);?>
-            </a>
-        </th>
-        <th style="width:10%;">
-            <?=term('Actions', $settings['vocabulary'], $session['units']);?>
+            <?=term('Actions',$settings['vocabulary'],$session['units']);?>
         </th>
     </tr>
 </thead>
@@ -48,12 +43,7 @@ foreach ($indexUsers as $key=>$value) {
             </a>
         </td>
         <td><?=locTitle($profData,'title');?></td>
-        <?php if (locTitle($profData,'codename')!='') { ?>
-            <td><?=locTitle($profData,'codename');?></td>
-            <td><?=locTitle($profData,'project');?></td>
-        <?php } else { ?>
-            <td colspan="2"><?=locTitle($profData,'project');?></td>
-        <?php } ?>
+        <td><?=titleColon(locTitle($profData,'codename'),true,$settings,$session).locTitle($profData,'project');?></td>
         <td><?='@'.$value;?></td>
         <td>
         <p align='center' class='block'>

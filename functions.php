@@ -454,9 +454,14 @@ function wordfx($word,$sup,array $voc,array $ses) {
             default:
                 // Get arbitrary user profile property
                 $entl=(strpos($full,':')!==false)?str_replace(':','',str_replace(']','',str_replace('[','',$full))):str_replace(']','',str_replace('[','',$full)); $itl=locTitle($ses,$entl);
-                $vun=(strpos($full,':')!==false)?(($itl!='')?((isset($vom[$uni][': ']))?$vom[$uni][': ']:': '):''):''; $res=(in_array($uni,$loc['colon_ind']))?$vun.$itl:$itl.$vun; break;
+                $res=titleColon($itl,(strpos($full,':')!==false),$voc,$ses);
+                break;
         } $word=str_replace($full,$res,$word);
     } return $word;
+}
+function titleColon($itl,bool $cln=false,array $voc,array $ses) {
+    $uni=$ses['units'];$vom=$voc['vocabulary'];$loc=$voc['locale'];
+    $vun=($cln)?(($itl!='')?((isset($vom[$uni][': ']))?$vom[$uni][': ']:': '):''):''; return (in_array($uni,$loc['colon_ind']))?$vun.$itl:$itl.$vun;
 }
 function locTitle(array $ses,$entl) {
     $uni=$ses['units']; $entr=valarr($ses[$entl.'s'],' | ',' - ');
