@@ -65,8 +65,7 @@ function world_clock() {
             $('#alarmTime').val((pager(data,2)!='00:00:00')?pager(data, 2):hhMmSs(audioPlayer.currentTime));
             var effi=pager(data,3).split(';');
             var mixers=pager(data,4).split(' ');
-            var bndm=arrjob(sysDefBindData.value,';',':')[sysDefSessionID.value];
-            var fint=pager(data,5).split(' | ');
+            var bndm=arrjob(sysDefBindData.value,';',':')[sysDefSessionID.value],fint=pager(data,5).split(' | ');
             if (requestMode.value=='volume_control') {
                 audioVolInd.value=mixers[0];
                 audioRatInd.value=mixers[1];
@@ -116,6 +115,8 @@ function world_clock() {
             $('#buttonUserStatus').attr('src',sysDefPrefix.value+"<?=(isAuth())?'user.png':'anonym.png';?>");
             $('#buttonEscape').attr('src',sysDefPrefix.value+'escape.png'); if (requestMode.value == 'bookkeeping') {
                 bookkeep_disp.innerHTML='<table style="width:100%;position:relative;"><thead><th style="width:25%;">'+fint[8]+'</th><th style="width:25%;">'+fint[0]+'</th><th style="width:25%;">'+fint[1]+'</th><th style="width:25%;">'+fint[2]+'</th></thead><tbody>'+jsonBookKeep(sysDefBookKeep.value)+'</tbody></table>';
+            } if (requestMode.value=='accessibility') {
+                pressedKeyInfo.innerText=fint[9];
             } if (requestMode.value=='play_store') {
                 var stoInf="<p align='center'>"+fint[6]+"</p><p align='center'>"+fint[7]+"</p><p align='center'>"+activeHrsBtn(bndm)+"</p>";
                 var stoDop='<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+fint[3]+'</th><th style="width:7%;">'+fint[4]+'</th><th style="width:3%;">'+fint[5]+'</th></thead><tbody>'+jsonStore(bndm)+'</tbody></table>';
