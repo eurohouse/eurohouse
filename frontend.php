@@ -1,11 +1,25 @@
 <script>
 // SYSTEM JS LOAD DATA (USES PHP)
+function lockdata() {
+    var obj={
+        <?php $iter=0; foreach ($locks as $key=>$value) {
+            echo "'".$key."': lock".camel($key).".value".((count($locks)==($iter-1))?'':','); $iter++;
+        } $iter=0; ?>
+    }; return obj;
+}
 function userdata() {
     var obj = {
         <?php $iter=0; foreach ($settings['defaults'] as $key=>$value) {
             echo "'".$key."': sysDef".camel($key).".value".((count($settings['defaults'])==($iter-1))?'':','); $iter++;
         } $iter=0; ?>
     }; return obj;
+}
+function setlock(ent,val) {
+    var obj=lockdata(); obj[ent]=val;
+    set(sysDefSessionID.value+'_lock.json',JSON.stringify(obj),true);
+    <?php foreach ($locks as $key=>$value) {
+        echo "lock".camel($key).".value = obj['".$key."'];";
+    } ?>
 }
 function setdata(ent,val) {
     var obj=userdata(); obj[ent]=val;
@@ -57,10 +71,10 @@ function trigUserDel() {
     sysDefPowersData.value=arrpack(dp,';',':');
 }
 function lockarr(ind) {
-    return Object.values(jsonstr(sysDefLockData.value)['lock_'+ind]);
+    return Object.values(jsonstr(sysDefLockData.value)[ind]);
 }
 function lockcount(ind) {
-    return Object.keys(jsonstr(sysDefLockData.value)['lock_'+ind]).length;
+    return Object.keys(jsonstr(sysDefLockData.value)[ind]).length;
 }
 function metadata() { return jsonstr(sysDefMetaData.value); }
 function setmeta(ent,val) {
@@ -743,7 +757,8 @@ function omniListen(input,scratch=false,pos=false) {
     setdata('audio_speed',sysDefAudioSpeed.value);
 }
 function songIndex(mode='') {
-    var lxn=lockarr('music'),nxp=sysDefUpNext.value;
+    var lxn=lockarr('music');
+    var nxp=sysDefUpNext.value;
     var nxt=(nxp.includes('//'))?nxp.split('//'):((nxp!='')?[nxp]:[]);
     var mel=dtw(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value);
     var ind=arraySearch(((mel.startsWith(requestPath.value+'/'))?mel.replace(requestPath.value+'/',''):mel),lxn);

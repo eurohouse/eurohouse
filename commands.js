@@ -27,13 +27,13 @@ function executeMacros(input) {
         } else if (rep[0]=='melody') { omniListen(rep[1],true);
         } else if (rep[0]=='current') {
             audioPosition((rep[1].startsWith('+'))?rep[1].replaceAll('+',''):rep[1]);
-        } else if (rep[0].startsWith('lock_')) { setdata(rep[0],rep[1]);
+        } else if (rep[0].startsWith('lock_')) { setlock(rep[0].replace('lock_',''), rep[1]);
         } else if (rep[1].includes('?rev=')) { atr=rep[1].split('?rev=')[1];
             setdata(rep[0],rep[1].replace(atr,'').replace('?rev=',''));
         } else { setdata(rep[0],rep[1]); }
     } else {
         if (input.startsWith('lock_')) {
-            output=input+': '+userdata()[input];
+            output=input+': '+lockdata()[input.replace('lock_','')];
         } else if ((input=='melody')) {
             output=input+': '+dtw(userdata()[input],sysDefSessionID.value,sysDefNumeric.value);
         } else { output=input+': '+userdata()[input]; }
