@@ -57,10 +57,10 @@ function trigUserDel() {
     sysDefPowersData.value=arrpack(dp,';',':');
 }
 function lockarr(ind) {
-    return Object.values(jsonstr(sysDefLockData.value)[ind]);
+    return Object.values(jsonstr(sysDefLockData.value)['lock_'+ind]);
 }
 function lockcount(ind) {
-    return Object.keys(jsonstr(sysDefLockData.value)[ind]).length;
+    return Object.keys(jsonstr(sysDefLockData.value)['lock_'+ind]).length;
 }
 function metadata() { return jsonstr(sysDefMetaData.value); }
 function setmeta(ent,val) {
