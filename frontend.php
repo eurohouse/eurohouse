@@ -61,19 +61,26 @@ function setdata(ent,val) {
 }
 // OTHER FRONTEND FUNCTIONS
 function superuser() {
+    /* CHECKS IF CURRENT USER IS A SUPERUSER AND IS AUTHORIZED AS SUCH */
     return ((sysDefIsSession.value!=false)&&(sysDefSessionID.value=='root'));
 }
-function authstate() { return (sysDefIsSession.value!=false); }
+function authstate() {
+    /* JUST CHECK IF THE APP SESSION IS AUTHORIZED WITH USER ACCOUNT */
+    return (sysDefIsSession.value!=false);
+}
 function trigUserDel() {
+    /* SETS CURRENT USER SCORE VALUE TO -666 TO TRIGGER ITS DELETION */
     var dp=arrjob(sysDefPowersData.value,';',':');
     dp[sysDefSessionID.value]=-666;
     set('dominion.json',JSON.stringify(dp),true);
     sysDefPowersData.value=arrpack(dp,';',':');
 }
 function lockarr(ind) {
+    /* GET ELEMENTS LOCKED AND ENCAPSULATED FOR ACCOUNT */
     return Object.values(jsonstr(sysDefLockData.value)[ind]);
 }
 function lockcount(ind) {
+    /* COUNT ELEMENTS LOCKED AND ENCAPSULATED FOR ACCOUNT */
     return Object.keys(jsonstr(sysDefLockData.value)[ind]).length;
 }
 function metadata() { return jsonstr(sysDefMetaData.value); }
@@ -85,7 +92,8 @@ function delmeta(ent) {
     var obj=metadata(); delete obj[ent];
     set(sysDefSessionID.value+'_metadata.json',JSON.stringify(obj),true);
 }
-function clearJournal(num,obj,name,sp=false) {
+function clearJournal(num,obj,name,anyFile=false) {
+    /* CLEAR ANY VALUE INSIDE JSON DATA FILE */
     var msgarr={}; if (typeof(obj)=='object') {
         msgarr=jsonstr(obj.value);
     } else { msgarr=jsonstr(obj); }
@@ -100,60 +108,63 @@ function clearJournal(num,obj,name,sp=false) {
                 if (msgarr[Object.keys(msgarr)[i]]!==undefined) { delete msgarr[Object.keys(msgarr)[i]]; }
             }
         }
-    } else {
+    } else { /* DELETE MESSAGE BY ITS KEY IN MESSAGE ARRAY */
         if (msgarr[num]!==undefined) { delete msgarr[num]; }
-    } if (sp) { set('./'+name+'.json',encodeURIComponent(JSON.stringify(msgarr)),true);
+    } if (anyFile) {
+        set('./'+name+'.json',encodeURIComponent(JSON.stringify(msgarr)),true);
     } else { set('./.'+name+'/'+sysDefSessionID.value+'_'+name+'.json',encodeURIComponent(JSON.stringify(msgarr)),true); }
 }
-function openJournal(id,ob,oj) {
-    var users=ob.value, jours=oj.value;
-    var userArr=users.split(',');
+function openJournal(id,usersObj,dataObj) {
+    /* OPEN ANY USER DATA JOURNAL */
+    var userArr=(usersObj.value).split(',');
     var userNum=arraySearch(id,userArr);
-    return pager(jours,userNum);
+    return pager((dataObj.value),userNum);
 }
 function storeOpen(id) {
+    /* IS ANOTHER USER STORE/INVENTORY OPEN */
     var userArr=(sysDefUsersList.value).split(',');
     var userNum=arraySearch(id,userArr);
     var hours=storeHours(id).split(',');
     return (hours.includes(userTimeNow(id)));
 }
 function userTimeNow(id) {
+    /* WHAT TIME IS IT IN ANOTHER USER ACCOUNT */
     var userArr=(sysDefUsersList.value).split(',');
     var userNum=arraySearch(id,userArr);
     return (sysDefHoursNow.value).split(' ')[userNum];
 }
 function getUserAvatar(id) {
+    /* WHAT AVATAR OTHER USER GOT */
     var avaArr=arrjob(sysDefAvatarsNow.value,';',':');
     return (avaArr[id]!==undefined)?avaArr[id]:'NULL';
 }
 function storeHours(id) {
+    /* GET ACTIVE HOURS OF ANOTHER USER */
     var userArr=(sysDefUsersList.value).split(',');
     var userNum=arraySearch(id,userArr);
     return pager(sysDefHoursActive.value,userNum);
 }
-function remove_entry(id,obj,name,cm=false,sp=false,dy=';',dx=':') {
+function remove_entry(id,obj,name,complex=false,helper=false,dy=';',dx=':') {
+    /* REMOVE CERTAIN ENTRY FROM CERTAIN DATA BANK */
     var dat={}; if (typeof(obj)=='object') {
-        dat=(cm)?jsonstr(obj.value):arrjob((obj.value),dy,dx);
-    } else {
-        dat=(cm)?jsonstr(obj):arrjob((obj),dy,dx);
-    } delete dat[id]; set(name,JSON.stringify(dat),true);
-    if (sp) { del(id+'.json',true); del(id,true); }
-    obj.value=(cm)?jsonarr(dat):arrpack(dat,dy,dx);
+        dat=(complex)?jsonstr(obj.value):arrjob((obj.value),dy,dx);
+    } else { dat=(complex)?jsonstr(obj):arrjob((obj),dy,dx); }
+    delete dat[id]; set(name,JSON.stringify(dat),true);
+    if (helper) { del(id+'.json',true); del(id,true); }
+    obj.value=(complex)?jsonarr(dat):arrpack(dat,dy,dx);
 }
 function delete_user(id) {
-    unbind(sysDefSessionID.value);
+    /* COMPLETELY REMOVES USER WITH ALL ITS DATA */
+    unbind(sysDefSessionID.value); unbind(id);
     remove_entry(id,sysDefBindData,'binding.json');
     remove_entry(id,sysDefPowersData,'dominion.json');
     remove_entry(id,sysDefAutoData,'automator.json');
     remove_entry(id,sysDefFriendData,'friendship.json');
     remove_entry(id,sysDefToolData,'toolbox.json');
     remove_entry(id,sysDefCallData,'calling.json');
-    del(id+'_session.json',true);
-    del(id+'_session.json.bak',true);
-    del(id+'_password',true);
-    del(id+'_lock.json',true);
-    del(id+'_lock.json.bak',true);
-    del(id+'_metadata.json',true);
+    del(id+'_session.json',true); del(id+'_session.json.bak',true);
+    del(id+'_password',true); del(id+'_lock.json',true);
+    del(id+'_lock.json.bak',true); del(id+'_metadata.json',true);
     del(id+'_metadata.json.bak',true);
     del('./.msgbox/'+id+'_msgbox.json',true);
     del('./.msgbox/'+id+'_msgbox.json.bak',true);
@@ -162,26 +173,30 @@ function delete_user(id) {
     del('./.store/'+id+'_store.json',true);
     del('./.store/'+id+'_store.json.bak',true);
 }
-function transfer_entry(id,obj,name,seb=false) {
+function transfer_entry(id,obj,name,onlyAssignID=false) {
+    /* TRANSFER ENTRY OF USER TO ANOTHER USER */
     var objData=arrjob(obj.value,';',':');
-    objData[id]=(seb!==false)?id:objData[sysDefSessionID.value];
-    if (sysDefSessionID.value!=id) {
-        delete objData[sysDefSessionID.value];
-    } set(name+'.json',JSON.stringify(objData),true);
+    /* CREATES ENTRY FOR ANOTHER USER AND TRANSFER CURRENT USER DATA */
+    objData[id]=(onlyAssignID!==false)?id:objData[sysDefSessionID.value];
+    /* REMOVES CURRENT USER TO FREE SERVER SPACE */
+    if (sysDefSessionID.value!=id) { delete objData[sysDefSessionID.value]; }
+    set(name+'.json',JSON.stringify(objData),true);
     obj.value=arrpack(objData,';',':');
 }
 function rename_user(username,password) {
-    unbind(sysDefSessionID.value);
+    /* CHANGES CURRENT USER ID AND TRANSFERS ITS DATA */
+    unbind(sysDefSessionID.value); unbind(id);
     change(sysDefSessionID.value,username,CryptoJS.SHA256(password).toString(),true); if (sysDefSessionID.value!=username) {
-        transfer_entry(username,sysDefBindData,'binding', true);
+        transfer_entry(username,sysDefBindData,'binding',true);
         transfer_entry(username,sysDefPowersData,'dominion');
         transfer_entry(username,sysDefAutoData,'automator');
         transfer_entry(username,sysDefFriendData,'friendship');
         transfer_entry(username,sysDefToolData,'toolbox');
-        transfer_entry(username,sysDefCallData,'calling');
+        transfer_entry(username,sysDefCallData,'calling',true);
     }
 }
-function init_user(id,au='manual') {
+function init_user(id,au='manual',helper=false) {
+    /* INITIALIZE NEW USER */
     var bd=arrjob(sysDefBindData.value,';',':');
     var pd=arrjob(sysDefPowersData.value,';',':');
     var ad=arrjob(sysDefAutoData.value,';',':');
@@ -215,7 +230,8 @@ function init_user(id,au='manual') {
     } if (!(id in cd)) {
         cd[id]=id; set('calling.json',JSON.stringify(cd),true);
         sysDefCallData.value=arrpack(cd,';',':');
-    } delete_user('');
+    } /* THIS HELPER REMOVES USER WITH EMPTY ID */
+    if (helper) { delete_user(''); }
 }
 function friendsOf(obj,id) {
     var res=(obj[id]!==undefined)?((obj[id].includes(','))?obj[id].split(','):[obj[id]]):[]; return res;

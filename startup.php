@@ -1,6 +1,6 @@
 <script>
 window.onload=function() {
-    init_user(sysDefSessionID.value,'manual');
+    init_user(sysDefSessionID.value,'manual',true);
     if (authstate()) { document.getElementById('omniBox').focus();
     } else { document.getElementById('omniBoxAuthLogin').focus(); }
     if (window.history.replaceState) {
