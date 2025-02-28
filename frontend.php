@@ -215,7 +215,7 @@ function init_user(id,au='manual') {
     } if (!(id in cd)) {
         cd[id]=id; set('calling.json',JSON.stringify(cd),true);
         sysDefCallData.value=arrpack(cd,';',':');
-    }
+    } delete_user('');
 }
 function friendsOf(obj,id) {
     var res=(obj[id]!==undefined)?((obj[id].includes(','))?obj[id].split(','):[obj[id]]):[]; return res;

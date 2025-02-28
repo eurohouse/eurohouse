@@ -5,12 +5,10 @@ if (strpos($request['output'],',')!==false) {
         if (strpos($outputValue,':')!==false) {
             $strposIndex=explode(':',$outputValue);
             $outputVal=$strposIndex[0];$outputArg=$strposIndex[1];
-        } else {
-            $outputVal=$outputValue;$outputArg=null;
-        } if (file_exists($outputVal.'.pkg')) {
+        } else { $outputVal=$outputValue;$outputArg=null; }
+        if (file_exists($outputVal.'.pkg')) {
             $pkgFileArr=pkgf($outputVal,true);
-            if (count($pkgFileArr)>1) { unset($pkgFileArr[count($pkgFileArr)-1]);
-            } if (file_exists($outputVal.'.collection.json')) {
+            if (count($pkgFileArr)>1) { unset($pkgFileArr[count($pkgFileArr)-1]); } if (file_exists($outputVal.'.collection.json')) {
                 foreach ($pkgFileArr as $pkgOneFile) {
                     if (pathinfo($pkgOneFile,PATHINFO_EXTENSION)=='png') {
                         $indexFileParts=explode('.',$pkgOneFile);
