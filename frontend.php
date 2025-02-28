@@ -185,7 +185,7 @@ function transfer_entry(id,obj,name,onlyAssignID=false) {
 }
 function rename_user(username,password) {
     /* CHANGES CURRENT USER ID AND TRANSFERS ITS DATA */
-    unbind(sysDefSessionID.value); unbind(id);
+    unbind(sysDefSessionID.value); unbind(username);
     change(sysDefSessionID.value,username,CryptoJS.SHA256(password).toString(),true); if (sysDefSessionID.value!=username) {
         transfer_entry(username,sysDefBindData,'binding',true);
         transfer_entry(username,sysDefPowersData,'dominion');
