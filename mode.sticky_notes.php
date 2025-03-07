@@ -18,9 +18,9 @@ function deleteNote(id) {
 function countNote() {
     var bitsCount=(document.getElementById('myNotesRad').value).length;
     var charsCount=(document.getElementById('myNotesDoc').value).length;
-    var omega=pagerCount(document.getElementById('myNotesDoc').value);
-    var micro=miniPagerCount(document.getElementById('myNotesDoc').value);
-    var statusBar='BITS = '+bitsCount+'; CHARS = '+charsCount+'; Ω ¶ = '+omega+'; μ ¶ = '+micro;
+    var linesCount=(document.getElementById('myNotesDoc').value).split(/\r?\n/).length;
+    var wordsCount=(document.getElementById('myNotesDoc').value).split(/ /).length;
+    var statusBar='BITS = '+bitsCount+'; CHARS = '+charsCount+'; LINES = '+linesCount+'; WORDS = '+wordsCount;
     document.getElementById('numBits').innerHTML=statusBar;
 }
 </script>
