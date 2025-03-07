@@ -93,7 +93,9 @@ function world_clock() {
             $('#buttonObserve').attr('src',sysDefPrefix.value+'power.png');
             $('#buttonSpectate').attr('src',sysDefPrefix.value+'camera.png');
             $('#buttonEnter').attr('src',sysDefPrefix.value+'return.png');
-            $('#buttonChat').attr('src',sysDefPrefix.value+((sysDefChat.value != 0)?'book.png':'bash.png'));
+            $('#buttonCommand').attr('src',sysDefPrefix.value+'bash.png');
+            $('#buttonChat').attr('src',sysDefPrefix.value+'news.png');
+            $('#buttonSearch').attr('src',sysDefPrefix.value+'search.png');
             $('#buttonKeyboard').attr('src',sysDefPrefix.value+'keyboard.png');
             $('#buttonBackspace').attr('src',sysDefPrefix.value+'backspace.png');
             $('#buttonLogin').attr('src',sysDefPrefix.value+'user.png');

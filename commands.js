@@ -225,7 +225,10 @@ function pipeExec(input) {
 function omniEnter() {
     var input=omniBox.value,arb=arc=arj='',ct=mt=0,arg=[];
     var itm,prx,qy,atd,atr,atx;
-    if (sysDefChat.value!=0) { compose(input); } else {
+    if (sysDefMode.value=='chat') { compose(input);
+    } else if (sysDefMode.value=='search') {
+        omniDisp(requestMode.value,input,requestLock.value);
+    } else if (sysDefMode.value=='command') {
         if ((input=='reload') || (input=='refresh')) {
             window.location.reload();
         } else if ((input=='backup')||(input=='save')) {
@@ -351,8 +354,6 @@ function omniEnter() {
             omniSwitch(input.replace('->',''));
         } else if (input.startsWith('\\=')) {
             omniListen(input.replace('\\=',''),true);
-        } else if ((input.startsWith('"'))&&(input.endsWith('"'))) {
-            omniDisp(requestMode.value,input.replaceAll('"',''),requestLock.value);
         } else if (input.startsWith('./')) {
             omniRead(requestMode.value,input.replace('./',''),requestLock.value);
         } else if (input.startsWith('>')) {
