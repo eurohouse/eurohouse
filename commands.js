@@ -347,8 +347,9 @@ function omniEnter() {
         } else if (input.startsWith('git ')) { getPkgSequence(input,'git ',1);
         } else if (input.startsWith('->')) {
             omniSwitch(input.replace('->',''));
-        } else if (input.startsWith('::')) {
-            setdata('banner',input.replace('::','')+'.png');
+        } else if (input.startsWith(':+')) {
+            setdata('banner',input.replace(':+','')+'.png');
+        } else if (input.startsWith(':-')) { setdata('banner','');
         } else if (input.startsWith('\\=')) {
             omniListen(input.replace('\\=',''),true);
         } else if ((input.startsWith('"'))&&(input.endsWith('"'))) {

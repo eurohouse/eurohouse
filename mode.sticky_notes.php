@@ -16,10 +16,12 @@ function deleteNote(id) {
     var cd=sysDefNumeric.value;delmeta(bin2hex(id,'',cd));
 }
 function countNote() {
-    var bitsCount=(document.getElementById('myNotesRad').value).length;
-    var charsCount=(document.getElementById('myNotesDoc').value).length;
-    var linesCount=(document.getElementById('myNotesDoc').value).split(/\r?\n/).length;
-    var wordsCount=(document.getElementById('myNotesDoc').value).split(/ /).length;
+    var sourceChars=document.getElementById('myNotesRad').value;
+    var sourceText=document.getElementById('myNotesDoc').value;
+    var bitsCount=sourceChars.length;
+    var charsCount=sourceText.length;
+    var linesCount=sourceText.split(/\r?\n/).length;
+    var wordsCount=sourceText.split(/ /).length;
     var statusBar='BITS = '+bitsCount+'; CHARS = '+charsCount+'; LINES = '+linesCount+'; WORDS = '+wordsCount;
     document.getElementById('numBits').innerHTML=statusBar;
 }

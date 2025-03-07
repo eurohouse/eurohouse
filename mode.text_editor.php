@@ -36,7 +36,8 @@ function countText() {
     var sourceText=document.getElementById('content').value;
     var charsCount=sourceText.length;
     var linesCount=sourceText.split(/\r?\n/).length;
-    document.getElementById('statusBar').innerHTML='CHARS = '+charsCount+'; LINES = '+linesCount;
+    var wordsCount=sourceText.split(/ /).length;
+    document.getElementById('statusBar').innerHTML='CHARS = '+charsCount+'; LINES = '+linesCount+'; WORDS = '+wordsCount;
 }
 </script>
 <?php if ($request['lock'] != 'true') {
