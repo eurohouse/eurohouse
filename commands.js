@@ -343,8 +343,13 @@ function omniEnter() {
             clearJournal(input.replace('erase ',''),sysDefBookKeep,'book');
         } else if (input.startsWith('purge ')) {
             clearJournal(input.replace('purge ',''),sysDefIpData,'visitors',true);
-        } else if (input.startsWith('get ')) { getPkgSequence(input,'get ',0);
-        } else if (input.startsWith('git ')) { getPkgSequence(input,'git ',1);
+        } else if (input.startsWith('get ')) {
+            getPkgSequence(input,'get ',0);
+        } else if (input.startsWith('git ')) {
+            getPkgSequence(input,'git ',1);
+        } else if (input.startsWith('::')) {
+            setdata('banner',input.replace('::','')+'.png');
+        } else if (input==':;') { setdata('banner','');
         } else if (input.startsWith('->')) {
             omniSwitch(input.replace('->',''));
         } else if (input.startsWith('\\=')) {
@@ -417,13 +422,8 @@ function omniEnter() {
                     }
                 }
             }
-        } else if (input.startsWith(':')) {
-            rep=input.replace(':',''); if (rep.startsWith('+')) {
-                setdata('banner',rep.replace('+','')+'.png');
-            } else if (rep.startsWith('-')) {
-                setdata('banner','');
-            }
-        } else if (input.endsWith(';')) { omniBox.value=executeCode(input);
+        } else if (input.endsWith(';')) {
+            omniBox.value=executeCode(input);
         } else if ((input.startsWith('/'))||(input.startsWith('\\'))||(input.startsWith('|'))) { pipeExec(input);
         } else if ((input.includes('|'))||(input.includes('&'))||(input.includes('~'))||(input.includes('^'))) { omniBox.value=finarr(arrmath(input)).join(';');
         } else { omniBox.value=calc(input); }
