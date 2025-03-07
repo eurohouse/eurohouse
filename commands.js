@@ -249,6 +249,8 @@ function omniEnter() {
             var vlr=superRound((parseFloat(sysDefVideoSpeed.value)-0.05),2);setdata('video_speed',vlr);sysDefVideoSpeed.value=vlr;
         } else if (input=='::::') { setdata('banner','none');
         } else if (input==':::') { setdata('banner','');
+        } else if (input=='\\=') {
+            omniBox.value='\\='+dtw(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value);
         } else if (input.startsWith('store ')) {
             var st=jsonstr(openJournal(sysDefSessionID.value,sysDefStoreList,sysDefStoreJSONs)), ob=arrjob(sysDefPowersData.value,';',':');
             arb=input.replace('store ',''); if (ob[sysDefSessionID.value]>=0) {
