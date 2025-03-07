@@ -347,9 +347,9 @@ function omniEnter() {
             getPkgSequence(input,'get ',0);
         } else if (input.startsWith('git ')) {
             getPkgSequence(input,'git ',1);
+        } else if (input==':::') { setdata('banner','');
         } else if (input.startsWith('::')) {
             setdata('banner',input.replace('::','')+'.png');
-        } else if (input==':;') { setdata('banner','');
         } else if (input.startsWith('->')) {
             omniSwitch(input.replace('->',''));
         } else if (input.startsWith('\\=')) {
