@@ -347,9 +347,6 @@ function omniEnter() {
         } else if (input.startsWith('git ')) { getPkgSequence(input,'git ',1);
         } else if (input.startsWith('->')) {
             omniSwitch(input.replace('->',''));
-        } else if (input.startsWith(':+')) {
-            setdata('banner',input.replace(':+','')+'.png');
-        } else if (input.startsWith(':-')) { setdata('banner','');
         } else if (input.startsWith('\\=')) {
             omniListen(input.replace('\\=',''),true);
         } else if ((input.startsWith('"'))&&(input.endsWith('"'))) {
@@ -419,6 +416,12 @@ function omniEnter() {
                         rename_user(atr[0],''); omniAuthRequest('signin',atr[0],atx);
                     }
                 }
+            }
+        } else if (input.startsWith(':')) {
+            rep=input.replace(':',''); if (rep.startsWith('+')) {
+                setdata('banner',rep.replace('+','')+'.png');
+            } else if (rep.startsWith('-')) {
+                setdata('banner','');
             }
         } else if (input.endsWith(';')) { omniBox.value=executeCode(input);
         } else if ((input.startsWith('/'))||(input.startsWith('\\'))||(input.startsWith('|'))) { pipeExec(input);
