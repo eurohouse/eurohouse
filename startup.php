@@ -65,7 +65,7 @@ function world_clock() {
             $('#alarmTime').val((pager(data,2)!='00:00:00')?pager(data, 2):hhMmSs(audioPlayer.currentTime));
             var effi=pager(data,3).split(';');
             var mixers=pager(data,4).split(' ');
-            var bndm=arrjob(sysDefBindData.value,';',':')[sysDefSessionID.value],fint=pager(data,5).split(' | ');
+            var bndm=arrjob(sysDefBindData.value,';',':')[sysDefSessionID.value],fint=pager(data,5).split(' | '); omniBox.placeholder=fint[10];
             if (requestMode.value=='volume_control') {
                 audioVolInd.value=mixers[0];
                 audioRatInd.value=mixers[1];

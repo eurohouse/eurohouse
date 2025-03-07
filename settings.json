@@ -120,6 +120,38 @@
         }
     },
     "locale": {
+        "cli": {
+            "command": {
+                "default": "Type expression and press ENTER",
+                "CH": "Intrare expressio et presso ENTER",
+                "GR": "Εισαγάγετε έκφραση και πατήστε ENTER",
+                "CY": "Εισαγάγετε έκφραση και πατήστε ENTER",
+                "RU": "Введите выражение и нажмите ENTER",
+                "CN": "输入表达式并按 ENTER 键",
+                "KR": "표현식을 입력하고 ENTER 키를 누르세요.",
+                "JP": "式を入力して ENTER キーを押します"
+            },
+            "chat": {
+                "default": "What's on your mind...",
+                "CH": "Quid in animo tuo est...",
+                "GR": "Αυτό που έχεις στο μυαλό σου...",
+                "CY": "Αυτό που έχεις στο μυαλό σου...",
+                "RU": "Напишите пожалуйста о себе...",
+                "CN": "你的想法是什么...",
+                "KR": "당신의 생각은 무엇입니까...",
+                "JP": "あなたの考えは何ですか..."
+            },
+            "search": {
+                "default": "Search files by keyword",
+                "CH": "Quaerere tabulas per keyword",
+                "GR": "Αναζήτηση αρχείων με λέξη-κλειδί",
+                "CY": "Αναζήτηση αρχείων με λέξη-κλειδί",
+                "RU": "Что вы сейчас хотите найти?",
+                "CN": "按关键字搜索文件",
+                "KR": "키워드로 파일 검색",
+                "JP": "キーワードでファイルを検索する"
+            }
+        },
         "anno": {
             "default": "Age", "CH": "Anno", "TM": "ýyllar", "UZ": "yillar",
             "ES": "Años", "MX": "Años", "AR": "Años", "KZ": "жылдар",
@@ -558,7 +590,7 @@
             "Bright": "Lumen", "Saturate": "Saturitas",
             "Contrast": "Diversitas", "Sepia": "Sepia",
             "Grayscale": "Nigrum et Album", "Hue": "Pigmentum",
-            "Change your current username...": "Novum Nomen Usoris...", "Set a password for your account...": "Novum Secretum...", "Type expression and press ENTER": "Intrare expressio et presso ENTER", "Custom Numeric Digits:": "Numerus Digitorum Arbitrarium:", "Server-Wide User Statistics:": "Nodus Usuari Statistica:",
+            "Change your current username...": "Novum Nomen Usoris...", "Set a password for your account...": "Novum Secretum...", "Custom Numeric Digits:": "Numerus Digitorum Arbitrarium:", "Server-Wide User Statistics:": "Nodus Usuari Statistica:",
             "Audio Volume": "Sonus Volumen", "Audio Speed": "Sonus Tempo",
             "Video Volume": "Video Volumen", "Video Speed": "Video Tempo",
             "Alarm Volume": "Terrorus Volumen",
@@ -623,7 +655,6 @@
             "Grayscale": "Μονόχρωμος", "Hue": "Απόχρωση",
             "Change your current username...": "Αλλαγή ονόματος χρήστη...",
             "Set a password for your account...": "Ορίστε κωδικό...",
-            "Type expression and press ENTER": "Εισαγάγετε έκφραση και πατήστε ENTER",
             "Custom Numeric Digits:": "Αυθαίρετα ψηφία αριθμών:",
             "Server-Wide User Statistics:": "Στατιστικά χρηστών σε επίπεδο διακομιστή:",
             "Audio Volume": "Ένταση ήχου",
@@ -695,7 +726,6 @@
             "Contrast": "Контраст", "Sepia": "Сепия", "Grayscale": "Чёрно-белый", "Hue": "Оттенок",
             "Change your current username...": "Ваше новое имя пользователя...",
             "Set a password for your account...": "Новый пароль для вашего аккаунта...",
-            "Type expression and press ENTER": "Введите выражение и нажмите ENTER",
             "Custom Numeric Digits:": "Цифры разрядов чисел:",
             "Server-Wide User Statistics:": "Статистика пользователей на сервере:",
             "Audio Volume": "Громкость аудио",
@@ -769,8 +799,7 @@
             "Article": "文章", "Amount": "数量", "Price": "价格",
             "Opacity": "不透明度", "Blur": "模糊", "Bright": "亮度", "Saturate": "饱和", "Contrast": "对比", "Sepia": "棕褐色", "Grayscale": "灰度", "Hue": "色调",
             "Change your current username...": "更改您当前的用户名...",
-            "Set a password for your account...": "您帐户的新密码...",
-            "Type expression and press ENTER": "输入表达式并按 ENTER 键", "Custom Numeric Digits:": "任意数字：",
+            "Set a password for your account...": "您帐户的新密码...", "Custom Numeric Digits:": "任意数字：",
             "Server-Wide User Statistics:": "全服务器用户统计：",
             "Audio Volume": "声音大小", "Audio Speed": "音频速度",
             "Video Volume": "视频音量", "Video Speed": "视频速度",
@@ -845,7 +874,6 @@
             "Opacity": "불투명", "Blur": "희미한", "Bright": "명도", "Saturate": "포화", "Contrast": "비교됨", "Sepia": "갈색", "Grayscale": "그레이스케일", "Hue": "음정",
             "Change your current username...": "현재 사용자 이름 변경...",
             "Set a password for your account...": "귀하의 계정에 대한 새로운 비밀번호...",
-            "Type expression and press ENTER": "표현식을 입력하고 ENTER 키를 누르세요.",
             "Custom Numeric Digits:": "임의의 숫자 자릿수:",
             "Server-Wide User Statistics:": "서버 전체 사용자 통계:",
             "Audio Volume": "사운드 볼륨", "Audio Speed": "오디오 속도", "Video Volume": "비디오 볼륨", "Video Speed": "비디오 속도", "Alarm Volume": "알람 볼륨", "Timer Volume": "타이머 볼륨", "Loop Volume": "루프 볼륨", "Rest Volume": "휴식 볼륨", "Sell": "파는 사람", "Buy": "고객", "Sender": "보내는 사람", "Recipient": "받는 사람",
@@ -883,7 +911,6 @@
             "Opacity": "不透明度", "Blur": "漠然", "Bright": "輝度", "Saturate": "飽和", "Contrast": "比較した", "Sepia": "茶色", "Grayscale": "グレースケール", "Hue": "トーン",
             "Change your current username...": "現在のユーザー名を変更する...",
             "Set a password for your account...": "アカウントの新しいパスワード...",
-            "Type expression and press ENTER": "式を入力して ENTER キーを押します",
             "Custom Numeric Digits:": "任意の数字の桁数:",
             "Server-Wide User Statistics:": "サーバー全体のユーザー統計:", "Audio Volume": "音量", "Audio Speed": "音声速度",
             "Video Volume": "ビデオの音量", "Video Speed": "ビデオ速度", "Alarm Volume": "アラーム音量", "Timer Volume": "タイマー音量", "Loop Volume": "ループボリューム", "Rest Volume": "休息時の音量", "Sell": "売り手", "Buy": "お客様", "Sender": "送信者", "Recipient": "受取人",

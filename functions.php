@@ -487,3 +487,6 @@ function term($word,array $voc,$units='EU') {
 function localword($word,array $voc,$units='EU') {
     return (isset($voc[$word][$units]))?$voc[$word][$units]:$voc[$word]['default'];
 }
+function termCmd($mod='command',array $voc,$units='EU') {
+    return (isset($voc[$mod][$units]))?$voc[$mod][$units]:$voc[$mod]['default'];
+}
