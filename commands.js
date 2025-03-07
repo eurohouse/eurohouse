@@ -237,17 +237,15 @@ function omniEnter() {
         } else if (input=='upload') {
             document.getElementById('filebrowser').click(); return false;
         } else if ((input=='fast')||(input=='spedup')) {
-            var vlr=superRound((parseFloat(sysDefAudioSpeed.value)+0.05),2);
-            setdata('audio_speed',vlr); sysDefAudioSpeed.value=vlr;
+            var vlr=superRound((parseFloat(sysDefAudioSpeed.value)+0.05),2);setdata('audio_speed',vlr);sysDefAudioSpeed.value=vlr;
         } else if ((input=='slow')||(input=='slowed')) {
-            var vlr=superRound((parseFloat(sysDefAudioSpeed.value)-0.05),2);
-            setdata('audio_speed',vlr); sysDefAudioSpeed.value=vlr;
+            var vlr=superRound((parseFloat(sysDefAudioSpeed.value)-0.05),2);setdata('audio_speed',vlr);sysDefAudioSpeed.value=vlr;
         } else if ((input=='ff')||(input=='fastmo')||(input=='fasmo')) {
-            var vlr=superRound((parseFloat(sysDefVideoSpeed.value)+0.05),2);
-            setdata('video_speed',vlr); sysDefVideoSpeed.value=vlr;
+            var vlr=superRound((parseFloat(sysDefVideoSpeed.value)+0.05),2);setdata('video_speed',vlr);sysDefVideoSpeed.value=vlr;
         } else if ((input=='rew')||(input=='slowmo')||(input=='slomo')) {
-            var vlr=superRound((parseFloat(sysDefVideoSpeed.value)-0.05),2);
-            setdata('video_speed',vlr); sysDefVideoSpeed.value=vlr;
+            var vlr=superRound((parseFloat(sysDefVideoSpeed.value)-0.05),2);setdata('video_speed',vlr);sysDefVideoSpeed.value=vlr;
+        } else if (input=='::::') { setdata('banner','none');
+        } else if (input==':::') { setdata('banner','');
         } else if (input.startsWith('store ')) {
             var st=jsonstr(openJournal(sysDefSessionID.value,sysDefStoreList,sysDefStoreJSONs)), ob=arrjob(sysDefPowersData.value,';',':');
             arb=input.replace('store ',''); if (ob[sysDefSessionID.value]>=0) {
@@ -347,7 +345,6 @@ function omniEnter() {
             getPkgSequence(input,'get ',0);
         } else if (input.startsWith('git ')) {
             getPkgSequence(input,'git ',1);
-        } else if (input==':::') { setdata('banner','');
         } else if (input.startsWith('::')) {
             setdata('banner',input.replace('::','')+'.png');
         } else if (input.startsWith('->')) {
