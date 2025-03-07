@@ -95,7 +95,7 @@ function world_clock() {
             $('#buttonEnter').attr('src',sysDefPrefix.value+'return.png');
             $('#buttonCommand').attr('src',sysDefPrefix.value+'bash.png');
             $('#buttonChat').attr('src',sysDefPrefix.value+'news.png');
-            $('#buttonSearch').attr('src',sysDefPrefix.value+'search.png');
+            $('#buttonSearch').attr('src',sysDefPrefix.value+'directory.png');
             $('#buttonKeyboard').attr('src',sysDefPrefix.value+'keyboard.png');
             $('#buttonBackspace').attr('src',sysDefPrefix.value+'backspace.png');
             $('#buttonLogin').attr('src',sysDefPrefix.value+'user.png');
