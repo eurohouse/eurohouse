@@ -27,26 +27,26 @@ function countNote() {
 }
 </script>
 <p align='center' class='block'>
-<input class="text" id="myNotesRad" style="width:65%;" type="text" value="<?=$session['numeric'];?>" onkeydown="if (event.keyCode == 13) {
-    setdata('numeric', myNotesRad.value);
-} else if (event.keyCode == 27) { myNotesRad.value=''; countNote();
-} else if (event.keyCode == 8) { handleInput(this.value);
-} else if (event.keyCode == 46) { handleInput(this.value);
-}" oninput="handleInput(this.value, true); countNote();">
+<input class="text" id="myNotesRad" style="width:65%;" type="text" placeholder="<?=term('Symbolic Digits',$settings['vocabulary'],$session['units']);?>" value="<?=$session['numeric'];?>" onkeydown="if (event.keyCode==13) {
+    setdata('numeric',myNotesRad.value);
+} else if (event.keyCode==27) { myNotesRad.value=''; countNote();
+} else if (event.keyCode==8) { handleInput(this.value);
+} else if (event.keyCode==46) { handleInput(this.value);
+}" oninput="handleInput(this.value,true); countNote();">
 <input type="image" id="myNotesApplyBtn" onmouseover="soundButton();" class="power" onclick="setdata('numeric', myNotesRad.value);" src="<?=$prefix.'return.png';?>">
 <input type="image" id="myNotesKbdBtn" onmouseover="soundButton();" class="power" onclick="myNotesRad.focus();" src="<?=$prefix.'keyboard.png';?>">
 <input type="image" id="myNotesResetBtn" onmouseover="soundButton();" class="power" onclick="myNotesRad.value=''; countNote();" src="<?=$prefix.'backspace.png';?>">
 </p>
 <p align='center' class='block'>
-<input class="text" id="myNotesEnt" style="width:34%;" type="text" value="" onkeydown="if (event.keyCode == 13) { myNotesEnc.focus();
-} else if (event.keyCode == 27) { this.value = '';
-} else if (event.keyCode == 8) { handleInput(this.value);
-} else if (event.keyCode == 46) { handleInput(this.value);
+<input class="text" id="myNotesEnt" style="width:34%;" type="text" placeholder="<?=term('Title',$settings['vocabulary'],$session['units']);?>" value="" onkeydown="if (event.keyCode==13) { myNotesEnc.focus();
+} else if (event.keyCode==27) { this.value='';
+} else if (event.keyCode==8) { handleInput(this.value);
+} else if (event.keyCode==46) { handleInput(this.value);
 }" oninput="handleInput(this.value, true);">
-<input class="text" id="myNotesEnc" style="width:32%;" type="password" value="" onkeydown="if (event.keyCode == 13) { openNote(myNotesEnt.value);
-} else if (event.keyCode == 27) { this.value=''; myNotesEnt.focus();
-} else if (event.keyCode == 8) { handleInput(this.value);
-} else if (event.keyCode == 46) { handleInput(this.value);
+<input class="text" id="myNotesEnc" style="width:32%;" type="password" placeholder="<?=term('Password',$settings['vocabulary'],$session['units']);?>" value="" onkeydown="if (event.keyCode==13) { openNote(myNotesEnt.value);
+} else if (event.keyCode==27) { this.value=''; myNotesEnt.focus();
+} else if (event.keyCode==8) { handleInput(this.value);
+} else if (event.keyCode==46) { handleInput(this.value);
 }" oninput="handleInput(this.value, true);">
 <input type="image" id="myNotesNewBtn" onmouseover="soundButton();" class="power" onclick="newNote();" src="<?=$prefix.'new.png';?>">
 <input type="image" id="myNotesOpenBtn" onmouseover="soundButton();" class="power" onclick="openNote(myNotesEnt.value);" src="<?=$prefix.'open.png';?>">
@@ -56,10 +56,11 @@ function countNote() {
 <div class="notesMenu" id="notesMenu"></div>
 <div class="notesContent">
 <p align='center'>
-<textarea id="myNotesDoc" style="width:100%;height:100%;" placeholder="<?=term('What\'s on your mind...', $settings['vocabulary'], $session['units']);?>" onkeydown="if (event.keyCode == 27) { newNote();
-} else if (event.keyCode == 8) { handleInput(this.value);
-} else if (event.keyCode == 46) { handleInput(this.value);
-}" oninput="handleInput(this.value, true); countNote();" onchange="countNote();">
+<textarea id="myNotesDoc" style="width:100%;height:100%;" placeholder="<?=termCmd('chat',$settings['locale']['cli'],$session['units']);?>" onkeydown="if (event.keyCode==27) {
+    newNote();
+} else if (event.keyCode==8) { handleInput(this.value);
+} else if (event.keyCode==46) { handleInput(this.value);
+}" oninput="handleInput(this.value,true); countNote();" onchange="countNote();">
 </textarea>
 </p>
 </div>

@@ -3,13 +3,13 @@
 <?php if (isset($_SESSION['user'])) { ?>
 <div class='customPanel'>
 <p align='center' class='block'>
-<input type="text" id="composeMessage" style="width:54%;" placeholder="<?=term('What\'s on your mind...', $settings['vocabulary'], $session['units']);?>" value="" onkeydown="if (event.keyCode == 13) {
+<input type="text" id="composeMessage" style="width:54%;" placeholder="<?=termCmd('chat',$settings['locale']['cli'],$session['units']);?>" value="" onkeydown="if (event.keyCode == 13) {
     compose(composeMessage.value);
-} else if (event.keyCode == 27) {
-    document.getElementById('composeMessage').value = '';
-} else if (event.keyCode == 8) {
+} else if (event.keyCode==27) {
+    document.getElementById('composeMessage').value='';
+} else if (event.keyCode==8) {
     handleInput(this.value);
-} else if (event.keyCode == 46) {
+} else if (event.keyCode==46) {
     handleInput(this.value);
 }" oninput="handleInput(this.value, true);">
 <input type="image" class="power" onmouseover="soundButton();" src="<?=$prefix.'return.png';?>" onclick="compose(composeMessage.value);">
