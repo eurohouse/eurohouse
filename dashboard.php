@@ -21,7 +21,7 @@
     <p align='center' class='block'>
     <?php if (isAuth()) { ?>
         <input type="image" onmouseover="soundButton();" id="buttonCommand" class="power" onclick="setdata('mode','command'); omniBox.focus();" src="<?=$prefix.'bash.png';?>" title="<?=term('Command Line Interface Mode',$settings['vocabulary'],$session['units']);?>">
-        <input type="image" onmouseover="soundButton();" id="buttonChat" class="power" onclick="setdata('mode','chat'); omniBox.focus();" src="<?=$prefix.'news.png';?>" title="<?=term('Instant Messaging Mode',$settings['vocabulary'],$session['units']);?>">
+        <input type="image" onmouseover="soundButton();" id="buttonChat" class="power" onclick="setdata('mode','chat'); omniBox.focus();" src="<?=$prefix.'mail.png';?>" title="<?=term('Instant Messaging Mode',$settings['vocabulary'],$session['units']);?>">
         <input type="image" onmouseover="soundButton();" id="buttonSearch" class="power" onclick="setdata('mode','search'); omniBox.focus();" src="<?=$prefix.'directory.png';?>" title="<?=term('File Search Mode',$settings['vocabulary'],$session['units']);?>">
         <input type='text' id="omniBox" style="width:43%;" placeholder="<?=termCmd($session['mode'],$settings['locale']['cli'],$session['units']);?>" value="" onkeydown="if (event.keyCode==13) { omniEnter(); } else if (event.keyCode==27) {
             document.getElementById('omniBox').value='';
