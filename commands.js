@@ -228,7 +228,7 @@ function omniEnter() {
     if (sysDefMode.value=='chat') { compose(input);
     } else if (sysDefMode.value=='search') {
         omniDisp(requestMode.value,input,requestLock.value);
-    } else if (sysDefMode.value=='command') {
+    } else if (sysDefMode.value=='start') {
         if ((input=='reload') || (input=='refresh')) {
             window.location.reload();
         } else if ((input=='backup')||(input=='save')) {

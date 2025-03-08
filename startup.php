@@ -86,13 +86,8 @@ function world_clock() {
             $('#buttonObserve').attr('src',sysDefPrefix.value+'power.png');
             $('#buttonSpectate').attr('src',sysDefPrefix.value+'camera.png');
             $('#buttonEnter').attr('src',sysDefPrefix.value+'return.png');
-            if (sysDefMode.value=='command') {
-                $('#buttonCommand').attr('src',sysDefPrefix.value+'start.png');
-            } else if (sysDefMode.value=='chat') {
-                $('#buttonCommand').attr('src',sysDefPrefix.value+'chat.png');
-            } else if (sysDefMode.value=='search') {
-                $('#buttonCommand').attr('src',sysDefPrefix.value+'search.png');
-            } $('#buttonChat').attr('src',sysDefPrefix.value+'mail.png');
+            $('#buttonCommand').attr('src',sysDefPrefix.value+sysDefMode.value+'.png');
+            $('#buttonChat').attr('src',sysDefPrefix.value+'mail.png');
             $('#buttonSearch').attr('src',sysDefPrefix.value+'directory.png');
             $('#buttonKeyboard').attr('src',sysDefPrefix.value+'keyboard.png');
             $('#buttonBackspace').attr('src',sysDefPrefix.value+'backspace.png');
