@@ -350,6 +350,10 @@ function omniEnter() {
             getPkgSequence(input,'get ',0);
         } else if (input.startsWith('git ')) {
             getPkgSequence(input,'git ',1);
+        } else if (input.startsWith('lock ')) {
+            omniBox.value=lockarr(input.replace('lock ','')).join(' | ');
+        } else if (input.startsWith('count ')) {
+            omniBox.value=lockarr(input.replace('count ','')).length;
         } else if (input.startsWith('::')) {
             setdata('banner',input.replace('::','')+'.png');
         } else if (input.startsWith('->')) {

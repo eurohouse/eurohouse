@@ -775,8 +775,7 @@ function omniListen(input,scratch=false,pos=false) {
     setdata('audio_speed',sysDefAudioSpeed.value);
 }
 function songIndex(mode='') {
-    var lxn=lockarr('music');
-    var nxp=sysDefUpNext.value;
+    var lxn=lockarr('music'),nxp=sysDefUpNext.value;
     var nxt=(nxp.includes(' | '))?nxp.split(' | '):((nxp!='')?[nxp]:[]);
     var mel=dtw(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value);
     var ind=arraySearch(((mel.startsWith(requestPath.value+'/'))?mel.replace(requestPath.value+'/',''):mel),lxn);
