@@ -89,7 +89,7 @@ function world_clock() {
             if (sysDefMode.value=='command') {
                 $('#buttonCommand').attr('src',sysDefPrefix.value+'start.png');
             } else if (sysDefMode.value=='chat') {
-                $('#buttonCommand').attr('src',sysDefPrefix.value+'mail.png');
+                $('#buttonCommand').attr('src',sysDefPrefix.value+'chat.png');
             } else if (sysDefMode.value=='search') {
                 $('#buttonCommand').attr('src',sysDefPrefix.value+'search.png');
             } $('#buttonChat').attr('src',sysDefPrefix.value+'mail.png');
