@@ -20,7 +20,7 @@
 <div class='topBarItem'>
     <p align='center' class='block'>
     <?php if (isAuth()) { ?>
-        <input type="image" onmouseover="soundButton();" id="buttonCommand" class="power" onclick="setdata('mode',nextImage('command;chat;search',sysDefMode.value)); omniBox.focus();" src="<?=$prefix.'bash.png';?>" title="<?=term('Command Line Interface Mode',$settings['vocabulary'],$session['units']);?>">
+        <input type="image" onmouseover="soundButton();" id="buttonCommand" class="power" onclick="setdata('mode',nextImage('command;chat;search',sysDefMode.value)); omniBox.focus();" src="<?=$prefix.'start.png';?>" title="<?=term('Command Line Interface Mode',$settings['vocabulary'],$session['units']);?>">
         <input type='text' id="omniBox" style="width:49%;" placeholder="<?=termCmd($session['mode'],$settings['locale']['cli'],$session['units']);?>" value="" onkeydown="if (event.keyCode==13) { omniEnter(); } else if (event.keyCode==27) {
             document.getElementById('omniBox').value='';
         } else if (event.keyCode==8) { handleInput(this.value);
