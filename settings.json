@@ -121,7 +121,7 @@
     },
     "locale": {
         "cli": {
-            "command": {
+            "start": {
                 "default": "Type command or expression and press ENTER",
                 "CH": "Intrare mandatum aut expressio et presso ENTER",
                 "GR": "Πληκτρολογήστε εντολή ή έκφραση και πατήστε ENTER",
