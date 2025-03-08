@@ -87,7 +87,7 @@ function world_clock() {
             $('#buttonSpectate').attr('src',sysDefPrefix.value+'camera.png');
             $('#buttonEnter').attr('src',sysDefPrefix.value+'return.png');
             if (sysDefMode.value=='command') {
-                $('#buttonCommand').attr('src',sysDefPrefix.value+'bash.png');
+                $('#buttonCommand').attr('src',sysDefPrefix.value+'start.png');
             } else if (sysDefMode.value=='chat') {
                 $('#buttonCommand').attr('src',sysDefPrefix.value+'mail.png');
             } else if (sysDefMode.value=='search') {
