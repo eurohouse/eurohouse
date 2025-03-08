@@ -88,9 +88,9 @@ function world_clock() {
             $('#buttonEnter').attr('src',sysDefPrefix.value+'return.png');
             if (sysDefMode.value=='command') {
                 $('#buttonCommand').attr('src',sysDefPrefix.value+'bash.png');
-            } else if (sysDefMode.value=='command') {
+            } else if (sysDefMode.value=='chat') {
                 $('#buttonCommand').attr('src',sysDefPrefix.value+'mail.png');
-            } else if (sysDefMode.value=='command') {
+            } else if (sysDefMode.value=='search') {
                 $('#buttonCommand').attr('src',sysDefPrefix.value+'files.png');
             } $('#buttonChat').attr('src',sysDefPrefix.value+'mail.png');
             $('#buttonSearch').attr('src',sysDefPrefix.value+'directory.png');
