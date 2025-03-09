@@ -63,20 +63,18 @@ function world_clock() {
             $('#alarmTime').val((pager(data,2)!='00:00:00')?pager(data, 2):hhMmSs(audioPlayer.currentTime));
             var effi=pager(data,3).split(';');
             var mixers=pager(data,4).split(' ');
-            var bndm=arrjob(sysDefBindData.value,';',':')[sysDefSessionID.value],fint=pager(data,5).split(' | '); omniBox.placeholder=fint[10];
-            if (requestMode.value=='volume_control') {
+            var bndm=arrjob(sysDefBindData.value,';',':')[sysDefSessionID.value],fint=pager(data,5).split(' | '); omniBox.placeholder=fint[10]; if (requestMode.value=='volume_control') {
                 audioVolInd.value=mixers[0]; audioRatInd.value=mixers[1];
                 videoVolInd.value=mixers[2]; videoRatInd.value=mixers[3];
                 alarmVolInd.value=mixers[4]; timerVolInd.value=mixers[5];
                 loopVolInd.value=mixers[6]; restVolInd.value=mixers[7];
-            } document.querySelector(':root').style.setProperty('--bicolor',enzi[2]);
-            var obs=enzi[1].split('')[0],spe=enzi[1].split('')[1];
+            } document.querySelector(':root').style.setProperty('--bicolor',enzi[2]); var obs=enzi[1].split('')[0],spe=enzi[1].split('')[1];
             sysDefMsgCounter.value=(sysDefMsgCounter.value<=0)?(Object.keys(jsonFilter(sysDefMsgData.value,sysDefFind.value)).length-1):(sysDefMsgCounter.value-1);
             $('#showUsUrgent').text(Object.values(jsonFilter(sysDefMsgData.value,sysDefFind.value,'msg'))[sysDefMsgCounter.value]);
             if (sysDefLoop.value!=sysDefPostBackEff.value) {
                 if (sysDefLoop.value!=0) { playAudio(backgroundPlayer,sysDefBackgroundSound.value); } else { pauseAudio(backgroundPlayer); }
             } sysDefPostBackEff.value=sysDefLoop.value;
-            if (requestMode.value=='messenger') { msgBox.innerHTML='<p>'+jsonHTML(sysDefMsgData.value,sysDefFind.value)+'</p>'; } if (requestMode.value=='news_feed') { newsBox.innerHTML='<p>'+jsonHTML(sysDefNewsData.value,'#')+'</p>'; }
+            if (requestMode.value=='messenger') { msgBox.innerHTML='<p>'+jsonHTML(sysDefMsgData.value,sysDefFind.value)+'</p>'; } if (requestMode.value=='news_feed') { newsBox.innerHTML='<p>'+jsonHTML(sysDefNewsData.value,'#',true)+'</p>'; }
             $('#powerButton').attr('src',sysDefPrefix.value+'power.png');
             $('#buttonPrev').attr('src',sysDefPrefix.value+'rew.png');
             $('#buttonNext').attr('src',sysDefPrefix.value+'ff.png');
