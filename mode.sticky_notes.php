@@ -60,8 +60,7 @@ function countNote() {
     newNote();
 } else if (event.keyCode==8) { handleInput(this.value);
 } else if (event.keyCode==46) { handleInput(this.value);
-}" oninput="handleInput(this.value,true); countNote();" onchange="countNote();">
-</textarea>
+}" oninput="handleInput(this.value,true); countNote();" onchange="countNote();"></textarea>
 </p>
 </div>
 </div><br>

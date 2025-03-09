@@ -41,9 +41,10 @@ function databox() {
             $('#sysDefTutorList').val(pager(data,16));
             $('#sysDefTutorData').val(pager(data,17));
             $('#sysDefAvatarsNow').val(pager(data,18));
-            $('#sysDefIpData').val(pager(data,19));
-            $('#sysDefHdiData').val(pager(data,20));
-            $('#sysDefModelData').val(pager(data,21));
+            $('#sysDefNewsData').val(pager(data,19));
+            $('#sysDefIpData').val(pager(data,20));
+            $('#sysDefHdiData').val(pager(data,21));
+            $('#sysDefModelData').val(pager(data,22));
             if (sysDefBindData.value!=sysDefPostBindData.value) { playAudio(bindPlayer,sysDefBindSound.value); } sysDefPostBindData.value=sysDefBindData.value;
             if (sysDefPowersData.value!=sysDefPostPowersData.value) { playAudio(sufferPlayer,sysDefSufferSound.value); } sysDefPostPowersData.value=sysDefPowersData.value;
             if (sysDefToolData.value!=sysDefPostToolData.value) { playAudio(bindPlayer,sysDefBindSound.value); } sysDefPostToolData.value=sysDefToolData.value;
@@ -75,7 +76,7 @@ function world_clock() {
             if (sysDefLoop.value!=sysDefPostBackEff.value) {
                 if (sysDefLoop.value!=0) { playAudio(backgroundPlayer,sysDefBackgroundSound.value); } else { pauseAudio(backgroundPlayer); }
             } sysDefPostBackEff.value=sysDefLoop.value;
-            if (requestMode.value=='messenger') { msgBox.innerHTML='<p>'+jsonHTML(sysDefMsgData.value,sysDefFind.value)+'</p>'; }
+            if (requestMode.value=='messenger') { msgBox.innerHTML='<p>'+jsonHTML(sysDefMsgData.value,sysDefFind.value)+'</p>'; } if (requestMode.value=='news_feed') { newsBox.innerHTML='<p>'+jsonHTML(sysDefNewsData.value,'#')+'</p>'; }
             $('#powerButton').attr('src',sysDefPrefix.value+'power.png');
             $('#buttonPrev').attr('src',sysDefPrefix.value+'rew.png');
             $('#buttonNext').attr('src',sysDefPrefix.value+'ff.png');

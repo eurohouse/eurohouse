@@ -18,8 +18,7 @@ function openHelpPage(id) {
 <div class="notesMenu" id="helpMenu"></div>
 <div class="notesContent">
 <p align='center'>
-    <textarea id="helpContent" style="width:100%;height:100%;" disabled>
-    </textarea>
+    <textarea id="helpContent" style="width:100%;height:100%;" disabled></textarea>
 </p>
 </div>
 </div>

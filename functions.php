@@ -219,12 +219,6 @@ function jsonopen($name,$empt=false) {
     } else { copy($name.'.bak',$name); chmod($name,0777);
     } return file_get_contents($name);
 }
-function jsonline($name) {
-    $test=file_get_contents($name); $res="{\"\":\"\"}";
-    if (@json_decode($test,true)!=null) {
-        $arr=json_decode($test,true);$res=json_encode($arr);
-    } return $res;
-}
 function equarr(array $src,array $des) {
     foreach ($src as $key=>$val) {
         if (!isset($des[$key])) { $des[$key]=$val; }
