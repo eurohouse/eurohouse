@@ -310,7 +310,7 @@ function jsonHTML(str,mask) {
     } return ard;
 }
 function jsonNews() {
-    var arr=jsonstr(sysDefNewsData.value);
+    var arr=jsonstr(sysDefNewsData.value),ard='';
     for (el in arr) {
         ard+=el+"<br>"+arr[el]+"<br>";
     } return ard;
