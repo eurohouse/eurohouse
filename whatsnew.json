@@ -1,4 +1,22 @@
 {
-    "Eurohouse Developer Team (@eurohouse) · 2025-03-09": "Latest fixes to our web app includes more minimalistic command line icons, more minified and less cluttery code, updated macroses, one button now displays current command line interface mode and switches between these modes.",
-    "Eurohouse Developer Team (@eurohouse) · 2025-03-08": "Happy 8th of March, our beautiful ladies! The Eurohouse Developer Team updated its web app on the International Women's Day to give you more pleasurable and comfortable experience with the app. Now there are 3 command line modes: command, chat and search. Each changes the logic of command line."
+    "2025-03-09": {
+        "default": {
+            "title": "Eurohouse Developer Team (@eurohouse)",
+            "body": "Latest fixes to our web app includes more minimalistic command line icons, more minified and less cluttery code, updated macroses, new menu entry called News Feed. One button now displays current command line interface mode and allows to easily switch between these modes."
+        },
+        "RU": {
+            "title": "Команда разработчиков Eurohouse (@eurohouse)",
+            "body": "Последние изменения в приложении Eurohouse включают более минималистичные иконки командной строки, более минифицированный и менее беспорядочный код, обновлённые макросы, новое меню Лента новостей. Одна кнопка теперь является индикатором текущего режима командной строки и позволяет переключаться между ними."
+        }
+    },
+    "2025-03-08": {
+        "default": {
+            "title": "Eurohouse Developer Team (@eurohouse)",
+            "body": "Happy 8th of March, our beautiful ladies! The Eurohouse Developer Team updated its web app on the International Women's Day to give you more pleasurable and comfortable experience with the app. Now there are 3 command line modes: command, chat and search. Each changes the logic of command line."
+        },
+        "RU": {
+            "title": "Команда разработчиков Eurohouse (@eurohouse)",
+            "body": "Поздравляем наших милых дам с 8 марта! Команда разработчиков Eurohouse подготовила им к Междуародному женскому дню приятный сюрприз в данном приложении. Теперь в нём 3 режима командной строки: command, chat и search. Каждый такой режим меняет логику работы командной строки."
+        }
+    }
 }

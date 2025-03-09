@@ -310,9 +310,11 @@ function jsonHTML(str,mask) {
     } return ard;
 }
 function jsonNews() {
-    var arr=jsonstr(sysDefNewsData.value),ard='';
+    var arr=jsonstr(sysDefNewsData.value),ard=abk=abl='';
     for (el in arr) {
-        ard+=el+"<br>"+arr[el]+"<br>";
+        abk=(arr[el][sysDefUnits.value]['title']!==undefined)?arr[el][sysDefUnits.value]['title']:arr[el]['default']['title'];
+        abl=(arr[el][sysDefUnits.value]['body']!==undefined)?arr[el][sysDefUnits.value]['body']:arr[el]['default']['body'];
+        ard+=abk+"<br>"+abl+"<br>";
     } return ard;
 }
 function jsonMarket(id) {
