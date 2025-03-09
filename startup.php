@@ -74,7 +74,7 @@ function world_clock() {
             if (sysDefLoop.value!=sysDefPostBackEff.value) {
                 if (sysDefLoop.value!=0) { playAudio(backgroundPlayer,sysDefBackgroundSound.value); } else { pauseAudio(backgroundPlayer); }
             } sysDefPostBackEff.value=sysDefLoop.value;
-            if (requestMode.value=='messenger') { msgBox.innerHTML='<p>'+jsonHTML(sysDefMsgData.value,sysDefFind.value)+'</p>'; } if (requestMode.value=='news_feed') { newsBox.innerHTML='<p>'+jsonHTML(sysDefNewsData.value,'#',true)+'</p>'; }
+            if (requestMode.value=='messenger') { msgBox.innerHTML='<p>'+jsonHTML(sysDefMsgData.value,sysDefFind.value)+'</p>'; } if (requestMode.value=='news_feed') { newsBox.innerHTML='<p>'+jsonNews()+'</p>'; }
             $('#powerButton').attr('src',sysDefPrefix.value+'power.png');
             $('#buttonPrev').attr('src',sysDefPrefix.value+'rew.png');
             $('#buttonNext').attr('src',sysDefPrefix.value+'ff.png');
