@@ -1,5 +1,5 @@
 <!-- mail -->
-<!-- GR: Αμεσα μηνύματα; CY: Αμεσα μηνύματα; IT: Messaggi istantanei; DE: Neuigkeiten; AT: Neuigkeiten; FR: Messaggi istantanei; BE: Messaggi istantanei; CH: Epistulae Momentum; ES: Mensajes instantáneos; MX: Mensajes instantáneos; IN: त्वरित संदेश; LK: तत्क्षणिकसन्देशाः; UA: Миттєві повідомлення; PT: Mensagens instantâneas; BR: Mensagens instantâneas; RO: Mesaje instant; MD: Mesaje instant; TR: Anlık mesajlar; RU: Мгновенные сообщения; NP: ལམ་སེང་འཕྲིན་འཕྲིན།; CN: 即时通讯聊天; KR: 커뮤니케이션 채팅; JP: 通信チャット; AE: رسالة فورية -->
+<!-- GR: Αμεσα μηνύματα; CY: Αμεσα μηνύματα; IT: Messaggi istantanei; DE: Sofortnachrichten; AT: Sofortnachrichten; FR: Messaggi istantanei; BE: Messaggi istantanei; CH: Epistulae Momentum; ES: Mensajes instantáneos; MX: Mensajes instantáneos; IN: त्वरित संदेश; LK: तत्क्षणिकसन्देशाः; UA: Миттєві повідомлення; PT: Mensagens instantâneas; BR: Mensagens instantâneas; RO: Mesaje instant; MD: Mesaje instant; TR: Anlık mesajlar; RU: Мгновенные сообщения; NP: ལམ་སེང་འཕྲིན་འཕྲིན།; CN: 即时通讯聊天; KR: 커뮤니케이션 채팅; JP: 通信チャット; AE: رسالة فورية -->
 <?php if (isAuth()) { ?>
 <div class='customPanel'>
 <p align='center' class='block'>
