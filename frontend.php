@@ -312,8 +312,8 @@ function jsonHTML(str,mask) {
 function jsonNews() {
     var arr=jsonstr(sysDefNewsData.value),ard=abk=abl='';
     for (el in arr) {
-        abk=(arr[el][sysDefUnits.value]['title']!==undefined)?arr[el][sysDefUnits.value]['title']:arr[el]['default']['title'];
-        abl=(arr[el][sysDefUnits.value]['body']!==undefined)?arr[el][sysDefUnits.value]['body']:arr[el]['default']['body'];
+        abk=((arr[el]!==undefined)&&(arr[el][sysDefUnits.value]!==undefined)&&(arr[el][sysDefUnits.value]['title']!==undefined))?arr[el][sysDefUnits.value]['title']:((arr[el]['default']['title']!==undefined)?arr[el]['default']['title']:'');
+        abl=((arr[el]!==undefined)&&(arr[el][sysDefUnits.value]!==undefined)&&(arr[el][sysDefUnits.value]['body']!==undefined))?arr[el][sysDefUnits.value]['body']:((arr[el]['default']['body']!==undefined)?arr[el]['default']['body']:'');
         ard+=abk+"<br>"+abl+"<br>";
     } return ard;
 }
