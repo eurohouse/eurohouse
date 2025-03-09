@@ -3,4 +3,3 @@
 <p align="center" id="pressedKeyInfo"><?=term('Press any key to continue...',$settings['vocabulary'],$session['units']);?></p>
 <h1 align="center" id="pressedKeyCode"></h1>
 <h1 align="center" id="pressedCode"></h1>
-<h1 align="center" id="pressedKey"></h1>
