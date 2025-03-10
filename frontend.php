@@ -314,7 +314,7 @@ function jsonNews() {
     for (el in arr) {
         abk=((arr[el]!==undefined)&&(arr[el][sysDefUnits.value]!==undefined)&&(arr[el][sysDefUnits.value]['title']!==undefined))?arr[el][sysDefUnits.value]['title']:((arr[el]['default']['title']!==undefined)?arr[el]['default']['title']:'');
         abl=((arr[el]!==undefined)&&(arr[el][sysDefUnits.value]!==undefined)&&(arr[el][sysDefUnits.value]['body']!==undefined))?arr[el][sysDefUnits.value]['body']:((arr[el]['default']['body']!==undefined)?arr[el]['default']['body']:'');
-        ard=ard+abk+' · '+el+" UTC<br>"+abl+"<br>";
+        ard=ard+abk+' · '+el+"<br>"+abl+"<br>";
     } return ard;
 }
 function jsonMarket(id) {
