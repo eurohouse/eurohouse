@@ -21,7 +21,7 @@ setcookie('user',$sessionID,time()+$settings['lifetime']['cookie_lengthen']);
 $session=arropen($sessionID.'_session.json',json_encode($settings['defaults']),'DEFAULT');
 $metadata=arropen($sessionID.'_metadata.json',json_encode($settings['metadata']),'CUSTOM');
 $tutorial=arropen('tutorial.json',"{\"\":\"\"}",'CUSTOM');
-$newsData=arropen('whatsnew.json',"{\"\":\"\"}",'CUSTOM');
+$newsData=arropen('changelog.json',"{\"\":\"\"}",'CUSTOM');
 $bindData=arropen('binding.json',"{\"root\":\"root\"}");
 $powersData=arropen('dominion.json',"{\"root\":0}");
 $automateData=arropen('automator.json',"{\"root\":\"manual\"}");
