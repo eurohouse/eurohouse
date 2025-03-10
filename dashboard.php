@@ -20,14 +20,9 @@
 <div class='topBarItem'>
     <p align='center' class='block'>
     <?php if (isAuth()) { ?>
+        <input type="image" onmouseover="soundButton();" id="buttonBackup" class="power" onclick="if (sysDefSessBackup.value!=0) { copy(sysDefSessionID.value+'_backup.json',sysDefSessionID.value+'_session.json',true,1); del(sysDefSessionID.value+'_backup.json',true); } else { copy(sysDefSessionID.value+'_session.json',sysDefSessionID.value+'_backup.json',true,1); }" src="<?=$prefix.'save.png';?>" title="<?=term('Save/Load User Session Backup',$settings['vocabulary'],$session['units']);?>">
         <input type="image" onmouseover="soundButton();" id="buttonCommand" class="power" onclick="setdata('mode',nextImage('start;chat;search',sysDefMode.value)); omniBox.focus();" src="<?=$prefix.'start.png';?>" title="<?=term('Command Line Interface Mode',$settings['vocabulary'],$session['units']);?>">
-        <input type="image" onmouseover="soundButton();" id="buttonBackup" class="power" onclick="if (sysDefSessBackup.value!=0) {
-            copy(sysDefSessionID.value+'_backup.json',sysDefSessionID.value+'_session.json',true,1);
-            del(sysDefSessionID.value+'_backup.json',true);
-        } else {
-            copy(sysDefSessionID.value+'_session.json',sysDefSessionID.value+'_backup.json',true,1);
-        }" src="<?=$prefix.'save.png';?>" title="<?=term('Save/Load User Session Backup',$settings['vocabulary'],$session['units']);?>">
-        <input type='text' id="omniBox" style="width:52%;" placeholder="<?=termCmd($session['mode'],$settings['locale']['cli'],$session['units']);?>" value="" onkeydown="if (event.keyCode==13) { omniEnter(); } else if (event.keyCode==27) {
+        <input type='text' id="omniBox" style="width:50%;" placeholder="<?=termCmd($session['mode'],$settings['locale']['cli'],$session['units']);?>" value="" onkeydown="if (event.keyCode==13) { omniEnter(); } else if (event.keyCode==27) {
             document.getElementById('omniBox').value='';
         } else if (event.keyCode==8) { handleInput(this.value);
         } else if (event.keyCode==46) { handleInput(this.value);
