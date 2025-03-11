@@ -1,21 +1,12 @@
-<?php /* INCLUDE PHP BACKEND FUNCTIONS */
-include 'functions.php';
-/* GET CURRENT USERNAME FROM BROWSER COOKIE */
+<?php include 'functions.php';
 $cookie=(isset($_COOKIE['user']))?$_COOKIE['user']:'root';
-/* GET APP-WIDE SETTINGS AND CONFIGURATION */
 $userSettings=fileopen('settings.json');
-/* GET USER SESSION PARAMETERS */
 $userData=arropen($cookie.'_session.json',json_encode($userSettings['defaults']),'DEFAULT');
-/* SET CURRENT TIMEZONE AS DEFAULT */
 date_default_timezone_set(dec_tz($userData['timezone']));
-/* COMPLEX CALCULATIONS TO GET BACKGROUND BASED ON SETTINGS */
 $showFilename=getback($userData);$variations=getways($showFilename,$userData);$brightAvaFore=((lux($userData['fore_text_color']))?'ava.':'abc.');$brightAvaBack=((lux($userData['back_text_color']))?'ava.':'abc.');
-/* GET TABLES OF CONTENTS MAP AND MODELS LIBRARY */
 $cont=exemplar(str_replace('./','',(glob('./*.contents.json'))));
 $exem=exemplar(str_replace('./','',(glob('./*.models.json'))));
-/* WITH ALIASES AND SHORTCUTS IT'S EASIER TO WORK WITH CODE */
 $uni=$userData['units'];$loc=$userSettings['locale'];
-/* IN CASE THE CONTENTS MAP HAS THE CURRENT BACKGROUND POSITION */
 if (isset($cont[$showFilename])) {
     $ent=$exem[$cont[$showFilename]];
     $showLine=modelcard($cont[$showFilename],$cont,$exem,$userData,$userSettings);
@@ -28,7 +19,7 @@ if (isset($cont[$showFilename])) {
         $assignAvatar1=(isset($ent['nsfw']))?$brightAvaFore.'Lady.png':$brightAvaFore.$userData['avatar'].'.png';
         $assignAvatar2=(isset($ent['nsfw']))?$brightAvaBack.'Lady.png':$brightAvaBack.$userData['avatar'].'.png';
     }
-/* WHERE CONTENT NOT FOUND, USER DATA IS SHOWN */ } else {
+} else {
     $showHead=locTitle($userData,'title');$showBody="";$showURLMaison="";
     $assignAvatar1=$brightAvaFore.$userData['avatar'].'.png';
     $assignAvatar2=$brightAvaBack.$userData['avatar'].'.png';

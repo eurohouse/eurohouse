@@ -1,5 +1,4 @@
-<?php
-include 'functions.php';
+<?php include 'functions.php';
 $cookie=(isset($_COOKIE['user']))?$_COOKIE['user']:'root';
 $userSettings=fileopen('settings.json');
 $userData=arropen($cookie.'_session.json',json_encode($userSettings['defaults']),'DEFAULT');
