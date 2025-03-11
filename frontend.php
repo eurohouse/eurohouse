@@ -143,12 +143,12 @@ function storeHours(id) {
     return pager(sysDefHoursActive.value,userNum);
 }
 function isInBackup(id) {
-    return (localStorage.getItem(id+'_is_backed_up')!=0);
+    return (localStorage.getItem(id+'_backed_up')!=0);
 }
 function userBackup(id) {
     with(localStorage) {
         var rf={}; if (isInBackup(id)) {
-            setItem(id+'_is_backed_up',0);
+            setItem(id+'_backed_up',0);
             copy(id+'_session_saved.json',id+'_session.json',true,1);
             copy(id+'_lock_saved.json',id+'_lock.json',true,1);
             readFile(id+'_session.json','read','',id+'_session_data');
@@ -161,7 +161,7 @@ function userBackup(id) {
                 setlock(iu,getItem(id+'_lock_'+iu));
             } omniListen(getItem(id+'_session_melody'),false,getItem(id+'_session_current'));
         } else {
-            setItem(id+'_is_backed_up',1);
+            setItem(id+'_backed_up',1);
             copy(id+'_session.json',id+'_session_saved.json',true,1);
             copy(id+'_lock.json',id+'_lock_saved.json',true,1);
             readFile(id+'_session_saved.json','read','',id+'_session_data');
