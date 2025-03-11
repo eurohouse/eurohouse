@@ -143,34 +143,34 @@ function storeHours(id) {
     return pager(sysDefHoursActive.value,userNum);
 }
 function isInBackup(id) {
-    return (localStorage.getItem(id+'_backedup')!=0);
+    return (localStorage.getItem(id+'_is_backed_up')!=0);
 }
 function userBackup(id) {
     with(localStorage) {
         var rf={}; if (isInBackup(id)) {
-            setItem(id+'_backedup',0);
+            setItem(id+'_is_backed_up',0);
             copy(id+'_session_saved.json',id+'_session.json',true,1);
             copy(id+'_lock_saved.json',id+'_lock.json',true,1);
-            readFile(id+'_session.json','read','',id+'_restored_data');
-            rf=jsonarr(getItem(id+'_restored_data'));
-            setItem(id+'_restored_current',parseInt(rf['current']));
-            setItem(id+'_restored_melody',dtw(rf['melody'],id,rf['numeric']));
-            readFile(id+'_lock.json','read','',id+'_restored_lockdata');
-            rf=jsonarr(getItem(id+'_restored_lockdata')); for (iu in rf) {
-                setItem('_restored_lock_'+iu,rf[iu]);
-                setlock(iu,getItem('_restored_lock_'+iu));
-            } omniListen(getItem(id+'_restored_melody'),false,getItem(id+'_restored_current'));
+            readFile(id+'_session.json','read','',id+'_session_data');
+            rf=jsonarr(getItem(id+'_session_data'));
+            setItem(id+'_session_current',parseInt(rf['current']));
+            setItem(id+'_session_melody',dtw(rf['melody'],id,rf['numeric']));
+            readFile(id+'_lock.json','read','',id+'_lock_data');
+            rf=jsonarr(getItem(id+'_lock_data')); for (iu in rf) {
+                setItem(id+'_lock_'+iu,rf[iu]);
+                setlock(iu,getItem(id+'_lock_'+iu));
+            } omniListen(getItem(id+'_session_melody'),false,getItem(id+'_session_current'));
         } else {
-            setItem(id+'_backedup',1);
+            setItem(id+'_is_backed_up',1);
             copy(id+'_session.json',id+'_session_saved.json',true,1);
             copy(id+'_lock.json',id+'_lock_saved.json',true,1);
-            readFile(id+'_session_saved.json','read','',id+'_restored_data');
-            rf=jsonarr(getItem(id+'_restored_data'));
-            setItem(id+'_restored_current',parseInt(rf['current']));
-            setItem(id+'_restored_melody',dtw(rf['melody'],id,rf['numeric']));
-            readFile(id+'_lock_saved.json','read','',id+'_restored_lockdata');
-            rf=jsonarr(getItem(id+'_restored_lockdata')); for (iu in rf) {
-                setItem('_restored_lock_'+iu,rf[iu]);
+            readFile(id+'_session_saved.json','read','',id+'_session_data');
+            rf=jsonarr(getItem(id+'_session_data'));
+            setItem(id+'_session_current',parseInt(rf['current']));
+            setItem(id+'_session_melody',dtw(rf['melody'],id,rf['numeric']));
+            readFile(id+'_lock_saved.json','read','',id+'_lock_data');
+            rf=jsonarr(getItem(id+'_lock_data')); for (iu in rf) {
+                setItem(id+'_lock_'+iu,rf[iu]);
             }
         }
     }
