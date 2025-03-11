@@ -116,28 +116,47 @@ function pkgf($pkg,$ar=false) {
     return $pkgr;
 }
 function excpkg(array $arr,$exc='',$flg=''): array {
-    $new=$fin=$prt=$sup=$res=[];
-    if ($flg=='COLLECTION') {
+    $new=$fin=$prt=$sup=$res=[]; if ($flg=='COLLECTION') {
         foreach ($arr as $exem) {
-            $el=explode('.', $exem)[0]; if ($exc!='') {
-                if (strpos($exc,',')!==false) {
-                    if (in_array($el,explode(',',$exc))) { $new[$el]=$exem; }
+            if ($exc!='') {
+                if (strpos($exc,'!')!==false) {
+                    $exr=str_replace('!','',$exc);
+                    $new[explode('.',$exem)[0]]=$exem;
+                    if (strpos($exr,',')!==false) {
+                        if (in_array(explode('.',$exem)[0],explode(',',$exr))) {
+                            unset($new[explode('.',$exem)[0]]);
+                        }
+                    } else {
+                        if (explode('.',$exem)[0]==$exr) {
+                            unset($new[explode('.',$exem)[0]]);
+                        }
+                    }
                 } else {
-                    if ($el==$exc) { $new[$el]=$exem; }
+                    if (strpos($exc,',')!==false) {
+                        if (in_array(explode('.',$exem)[0],explode(',',$exc))) {
+                            $new[explode('.',$exem)[0]]=$exem;
+                        }
+                    } else {
+                        if (explode('.',$exem)[0]==$exc) {
+                            $new[explode('.',$exem)[0]]=$exem;
+                        }
+                    }
                 }
-            } else { $new[$el]=$exem; } $sup[$el]=$exem;
+            } else { $new[explode('.',$exem)[0]]=$exem; }
+            $sup[explode('.',$exem)[0]]=$exem;
         } $res=(!empty($new))?$new:$sup;
     } elseif ($flg=='SERIES') {
         foreach ($arr as $exem) {
-            $el=explode('.',$exem)[0]; if ($exc!='') {
+            if ($exc!='') {
                 if (strpos($exc,',')!==false) {
-                    if (in_array($el,explode(',',$exc))) {
+                    if (in_array(explode('.',$exem)[0],explode(',',$exc))) {
                         $new[$exem]=$exem;
                     }
                 } else {
-                    if ($el==$exc) { $new[$exem]=$exem; }
+                    if (explode('.',$exem)[0]==$exc) { $new[$exem]=$exem; }
                 }
-            } else { $new[$exem]=$exem; } $sup[$exem]=$exem;
+            } else { $new[$exem]=$exem; }
+            $sup[$exem]=$exem;
         } $res=(!empty($new))?$new:$sup;
     } else {
         if ($exc!='') {
@@ -335,8 +354,8 @@ function modelcard($id,$cont,$exem,$ses,$sti) {
 }
 function userlocks($arr,$col,$ava) {
     $res=[]; foreach ($arr as $key=>$val) {
-        $lib=($key=='avatar')?str_replace('./','',(glob('./'.$ava.'*.png'))):(($key=='background')?str_replace('./','',(glob('./*.*.00.png'))):str_replace('./','',(glob('./*.{'.duplex($col[$key],true).'}',GLOB_BRACE))));
-        if ($key=='background') { $res[$key]=excpkg($lib,$arr[$key],'COLLECTION');
+        $lib=($key=='avatar')?str_replace('./','',(glob('./'.$ava.'*.png'))):(($key=='background')?str_replace('./','',(glob('./*.*.00.png'))):str_replace('./','',(glob('./*.{'.duplex($col[$key],true).'}',GLOB_BRACE)))); if ($key=='background') {
+            $res[$key]=excpkg($lib,$arr[$key],'COLLECTION');
         } else { $res[$key]=excpkg($lib,$arr[$key]); }
         natcasesort($res[$key]); array_unique($res[$key]);
     } return $res;
