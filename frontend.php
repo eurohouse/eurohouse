@@ -150,12 +150,13 @@ function userBackup(id) {
         copy(id+'_backup.json',id+'_session.json',true,1);
         readFile(id+'_session.json','read','',id+'_session');
         rf=jsonarr(localStorage.getItem(id+'_session'));
-        omniListen(dtw(rf['melody'],id,rf['numeric']),false,parseInt(rf['current'])); localStorage.removeItem(id+'_backup');
+        delete localStorage[id+'_backup'];
+        omniListen(dtw(rf['melody'],id,rf['numeric']),false,parseInt(rf['current']));
     } else {
         copy(id+'_session.json',id+'_backup.json',true,1);
         readFile(id+'_backup.json','read','',id+'_backup');
         rf=jsonarr(localStorage.getItem(id+'_backup'));
-        localStorage.removeItem(id+'_session');
+        delete localStorage[id+'_session'];
     }
 }
 function remove_entry(id,obj,name,complex=false,helper=false,dy=';',dx=':') {
