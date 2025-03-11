@@ -69,9 +69,10 @@ function readFile(name,opt='read',path='') {
                         }
                     } else { ob=arr[path]; }
                 } else { ob=arr; } if (typeof(ob)=='object') {
-                    console.log(JSON.stringify(ob));
-                } else { console.log(ob); }
-            } else { console.log(result); }
+                    localStorage.setItem('user_content',JSON.stringify(ob));
+                } else { localStorage.setItem('user_content',ob); }
+            } else { localStorage.setItem('user_content',result); }
+            console.log(localStorage.getItem('user_content'));
         }
     });
 }
