@@ -69,11 +69,11 @@ function readFile(name,opt='read',path='') {
                         }
                     } else { ob=arr[path]; }
                 } else { ob=arr; } if (typeof(ob)=='object') {
-                    omniBox.value=JSON.stringify(ob);
-                } else { omniBox.value=ob; }
-            } else { omniBox.value=result; }
+                    return JSON.stringify(ob);
+                } else { return ob; }
+            } else { return result; }
         }
-    });
+    }); return false;
 }
 function executeFile(name,str='',re=false,sp=false) {
     var dataString='name='+name+'&type=code&sign=&mode=multiline';

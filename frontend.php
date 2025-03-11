@@ -1,5 +1,4 @@
 <script>
-// SYSTEM JS LOAD DATA (USES PHP)
 function lockdata() {
     var obj={
         <?php $iter=0; foreach ($locks as $key=>$value) {
@@ -59,7 +58,6 @@ function setdata(ent,val) {
         if (ent=='hue') { hueRange.value=val; }
     }
 }
-// OTHER FRONTEND FUNCTIONS
 function superuser() {
     /* CHECKS IF CURRENT USER IS A SUPERUSER AND IS AUTHORIZED AS SUCH */
     return ((sysDefIsSession.value!=false)&&(sysDefSessionID.value=='root'));
@@ -277,7 +275,6 @@ function administer(sta,md='+') {
         }
     }
 }
-// BASIC DATA FUNCTIONS
 function jsonFilter(str,mask) {
     var arr=jsonarr(str),sym='#',uni='L';
     var arf={},cyp='.-',hbin=hkin='',hbio={};
@@ -494,7 +491,6 @@ function isInMenu(list,item) {
     var arr=list.toString('').split(',');
     return (arr.indexOf(item)>-1);
 }
-// EXECUTE VARIOUS TRANSACTIONS
 function arrangePlay() {
     var dp=arrjob(sysDefPowersData.value,';',':');
     var db=arrjob(sysDefBindData.value,';',':');
@@ -764,7 +760,6 @@ function dropFriend(id) {
         sysDefFriendData.value=arrpack(fr,';',':');
     }
 }
-// MULTIMEDIA AND MISCELLANEOUS FUNCTIONS
 function replayVideo(obj) {
     obj.pause(); obj.load(); obj.play();
     setdata('pitch_lock',sysDefPitchLock.value);
