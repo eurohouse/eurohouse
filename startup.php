@@ -111,15 +111,14 @@ function world_clock() {
             $('#buttonUserStatus').attr('src',sysDefPrefix.value+"<?=(isAuth())?'user.png':'anonym.png';?>"); $('#buttonEscape').attr('src',sysDefPrefix.value+'escape.png');
             if (requestMode.value == 'bookkeeping') {
                 bookkeep_disp.innerHTML='<table style="width:100%;position:relative;"><thead><th style="width:25%;">'+fint[8]+'</th><th style="width:25%;">'+fint[0]+'</th><th style="width:25%;">'+fint[1]+'</th><th style="width:25%;">'+fint[2]+'</th></thead><tbody>'+jsonBookKeep(sysDefBookKeep.value)+'</tbody></table>';
-            } if (requestMode.value=='accessibility') {
-                pressedKeyInfo.innerText=fint[9];
-            } if (requestMode.value=='point_of_sale') {
+            } else if (requestMode.value=='accessibility') { pressedKeyInfo.innerText=fint[9];
+            } else if ((requestMode.value=='point_of_sale')||(requestMode.value=='play_store')) {
                 var stoInf="<p align='center'>"+fint[6]+"</p><p align='center'>"+fint[7]+"</p><p align='center'>"+activeHrsBtn(bndm)+"</p>";
                 var stoDop='<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+fint[3]+'</th><th style="width:7%;">'+fint[4]+'</th><th style="width:3%;">'+fint[5]+'</th></thead><tbody>'+jsonStore(bndm)+'</tbody></table>';
                 store_disp.innerHTML=(sysDefSessionID.value!=bndm) ? ((storeOpen(bndm))?stoDop:stoInf):stoDop;
-            } if (requestMode.value=='font_book') {
+            } else if (requestMode.value=='font_book') {
                 fontBook24Pt.innerText=fontBook22Pt.innerText=fontBook20Pt.innerText=fontBook18Pt.innerText=fontBook16Pt.innerText=fontBook14Pt.innerText=pager(data,6);
-            } if (requestMode.value=='statistics') {
+            } else if (requestMode.value=='statistics') {
                 $('#switchBtnAuto').attr('src',sysDefPrefix.value+'steer.png');
                 $('#switchBtnCall').attr('src',sysDefPrefix.value+'dial.png');
                 $('#switchBtnFrnd').attr('src',sysDefPrefix.value+'user.png');
@@ -129,7 +128,7 @@ function world_clock() {
                 $('#switchBtnHDI').attr('src',sysDefPrefix.value+'heart.png');
                 $('#switchBtnModel').attr('src',sysDefPrefix.value+'parfum.png');
                 $('#switchBtnIP').attr('src',sysDefPrefix.value+'world.png');
-            } if (requestMode.value=='preferences') {
+            } else if (requestMode.value=='preferences') {
                 $('#prefsBtnApply').attr('src',sysDefPrefix.value+'return.png');
                 $('#prefsBtnUpdate').attr('src',sysDefPrefix.value+'lock.png');
                 $('#prefsBtnReset').attr('src',sysDefPrefix.value+'backspace.png');
@@ -137,7 +136,7 @@ function world_clock() {
                 $('#prefsBtnClear').attr('src',sysDefPrefix.value+'error.png');
                 $('#prefsBtnApplySizes').attr('src',sysDefPrefix.value+'ruler.png');
                 $('#prefsBtnApplyColors').attr('src',sysDefPrefix.value+'paint.png');
-            } if (requestMode.value=='personalization') {
+            } else if (requestMode.value=='personalization') {
                 $('#prefsBtnApply').attr('src',sysDefPrefix.value+'return.png');
                 $('#prefsBtnUpdate').attr('src',sysDefPrefix.value+'lock.png');
                 $('#prefsBtnReset').attr('src',sysDefPrefix.value+'backspace.png');
@@ -145,7 +144,7 @@ function world_clock() {
                 $('#prefsBtnClear').attr('src',sysDefPrefix.value+'error.png');
                 $('#prefsBtnUpdateTitle').attr('src',sysDefPrefix.value+'keyboard.png');
                 $('#prefsBtnUpdateTitles').attr('src',sysDefPrefix.value+'movie.png');
-            } if (requestMode.value=='sticky_notes') {
+            } else if (requestMode.value=='sticky_notes') {
                 $('#myNotesApplyBtn').attr('src',sysDefPrefix.value+'return.png');
                 $('#myNotesKbdBtn').attr('src',sysDefPrefix.value+'keyboard.png');
                 $('#myNotesResetBtn').attr('src',sysDefPrefix.value+'backspace.png');
@@ -153,9 +152,9 @@ function world_clock() {
                 $('#myNotesOpenBtn').attr('src',sysDefPrefix.value+'open.png');
                 $('#myNotesSaveBtn').attr('src',sysDefPrefix.value+'save.png');
                 notesMenu.innerHTML='<p align="center" class="block">'+noteBook(sysDefMetaList.value)+'</p>';
-            } if (requestMode.value=='user_tutorial') {
+            } else if (requestMode.value=='user_tutorial') {
                 helpMenu.innerHTML='<p align="center" class="block">'+helpBook()+'</p>';
-            } if (requestMode.value=='text_editor') {
+            } else if (requestMode.value=='text_editor') {
                 $('#textEdRep').attr('src',sysDefPrefix.value+'new.png');
                 $('#textEdRepAll').attr('src',sysDefPrefix.value+'copy.png');
             } if (((obs==1)&&(spe==1))||((obs==1)&&(spe==0))) {
