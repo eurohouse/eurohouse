@@ -143,7 +143,7 @@ function storeHours(id) {
     return pager(sysDefHoursActive.value,userNum);
 }
 function isInBackup() {
-    return ((localStorage.getItem(ss+'_backup')!==undefined)&&(localStorage.getItem(ss+'_storage')===undefined));
+    return ((localStorage.getItem(sysDefSessionID.value+'_backup')!==undefined)&&(localStorage.getItem(sysDefSessionID.value+'_storage')===undefined));
 }
 function userBackup() {
     var ss=sysDefSessionID.value,rf={};
