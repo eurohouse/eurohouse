@@ -69,9 +69,9 @@ function readFile(name,opt='read',path='') {
                         }
                     } else { ob=arr[path]; }
                 } else { ob=arr; } if (typeof(ob)=='object') {
-                    return JSON.stringify(ob);
-                } else { return ob; }
-            } else { return result; }
+                    console.log(JSON.stringify(ob));
+                } else { console.log(ob); }
+            } else { console.log(result); }
         }
     });
 }
