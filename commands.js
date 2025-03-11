@@ -231,12 +231,6 @@ function omniEnter() {
     } else if (sysDefMode.value=='start') {
         if ((input=='reload') || (input=='refresh')) {
             window.location.reload();
-        } else if ((input=='backup')||(input=='save')) {
-            copy(sysDefSessionID.value+'_session.json',sysDefSessionID.value+'_backup.json',true,1);
-        } else if ((input=='restore')||(input=='load')) {
-            copy(sysDefSessionID.value+'_backup.json',sysDefSessionID.value+'_session.json',true,1);
-            del(sysDefSessionID.value+'_backup.json',true);
-        } else if (input=='spawn') { init_user('1337','auto');
         } else if (input=='upload') {
             document.getElementById('filebrowser').click(); return false;
         } else if ((input=='fast')||(input=='spedup')) {
@@ -293,12 +287,10 @@ function omniEnter() {
                 } set('./.store/'+sysDefSessionID.value+'_store.json',encodeURIComponent(JSON.stringify(st)),true);
             }
         } else if (input.startsWith('sell ')) {
-            arj=input.replace('sell ',''),arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
-            sell_item(sysDefSessionID.value,arg[0].replaceAll('"',''),arg[1].replaceAll('"',''));
+            arj=input.replace('sell ',''),arg=arj.match(/\"([^\"]+)\"|(\w+)/g); sell_item(sysDefSessionID.value,arg[0].replaceAll('"',''),arg[1].replaceAll('"',''));
         } else if (input.startsWith('mkdir ')) {
             if (superuser()) {
-                arj=input.replace('mkdir ',''),arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
-                if (arg.length>0) {
+                arj=input.replace('mkdir ',''),arg=arj.match(/\"([^\"]+)\"|(\w+)/g); if (arg.length>0) {
                     for (i=0; i<arg.length; i++) {
                         mkdir(requestPath.value+'/'+arg[i].replaceAll('"',''),true);
                     } window.location.reload();
@@ -306,8 +298,7 @@ function omniEnter() {
             }
         } else if (input.startsWith('touch ')) {
             if (superuser()) {
-                arj=input.replace('touch ',''),arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
-                if (arg.length>0) {
+                arj=input.replace('touch ',''),arg=arj.match(/\"([^\"]+)\"|(\w+)/g); if (arg.length>0) {
                     for (i=0; i<arg.length; i++) {
                         set(requestPath.value+'/'+arg[i].replaceAll('"',''),'',true);
                     } window.location.reload();
@@ -315,8 +306,7 @@ function omniEnter() {
             }
         } else if (input.startsWith('rm ')) {
             if (superuser()) {
-                arj=input.replace('rm ',''),arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
-                if (arg.length>0) {
+                arj=input.replace('rm ',''),arg = arj.match(/\"([^\"]+)\"|(\w+)/g); if (arg.length>0) {
                     for (i=0; i<arg.length; i++) {
                         del(requestPath.value+'/'+arg[i].replaceAll('"',''),true);
                     } window.location.reload();
@@ -324,15 +314,13 @@ function omniEnter() {
             }
         } else if (input.startsWith('mv ')) {
             if (superuser()) {
-                arj=input.replace('mv ', ''),arg = arj.match(/\"([^\"]+)\"|(\w+)/g);
-                if (arg.length==2) {
+                arj=input.replace('mv ', ''),arg = arj.match(/\"([^\"]+)\"|(\w+)/g); if (arg.length==2) {
                     move(requestPath.value+'/'+arg[0].replaceAll('"',''),requestPath.value+'/'+arg[1].replaceAll('"',''),true); window.location.reload();
                 }
             }
         } else if (input.startsWith('cp ')) {
             if (superuser()) {
-                arj=input.replace('cp ', ''),arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
-                if (arg.length>1) {
+                arj=input.replace('cp ', ''),arg=arj.match(/\"([^\"]+)\"|(\w+)/g); if (arg.length>1) {
                     for (i=1; i<arg.length; i++) {
                         copy(requestPath.value+'/'+arg[0].replaceAll('"',''),requestPath.value+'/'+arg[i].replaceAll('"',''),true);
                     } window.location.reload();
@@ -421,7 +409,7 @@ function omniEnter() {
                         omniAuthRequest('signup',atd[0],atx);
                     } else if (atr[1].includes('rename')) {
                         rename_user(atd[0],atd[1]); omniAuthRequest('signin',atd[0],atx);
-                    }
+                    } else { init_user(atd[0],atx,atr[1]); }
                 } else {
                     atx=CryptoJS.SHA256('').toString(); if (atr[1].includes('signin')) {
                         omniAuthRequest('signin',atr[0],atx);
@@ -429,7 +417,7 @@ function omniEnter() {
                         omniAuthRequest('signup',atr[0],atx);
                     } else if (atr[1].includes('rename')) {
                         rename_user(atr[0],''); omniAuthRequest('signin',atr[0],atx);
-                    }
+                    } else { init_user(atr[0],atx,atr[1]); }
                 }
             }
         } else if (input.endsWith(';')) {

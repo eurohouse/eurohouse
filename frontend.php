@@ -195,7 +195,7 @@ function rename_user(username,password) {
         transfer_entry(username,sysDefCallData,'calling',true);
     }
 }
-function init_user(id,au='manual',helper=false) {
+function init_user(id,pass='',args='',helper=false) {
     /* INITIALIZE NEW USER */
     var bd=arrjob(sysDefBindData.value,';',':');
     var pd=arrjob(sysDefPowersData.value,';',':');
@@ -219,7 +219,8 @@ function init_user(id,au='manual',helper=false) {
         pd[id]=0; set('dominion.json',JSON.stringify(pd),true);
         sysDefPowersData.value=arrpack(pd,';',':');
     } if (!(id in ad)) {
-        ad[id]=au; set('automator.json',JSON.stringify(ad),true);
+        ad[id]=(args.includes('auto'))?'auto':'manual';
+        set('automator.json',JSON.stringify(ad),true);
         sysDefAutoData.value=arrpack(ad,';',':');
     } if (!(id in fd)) {
         fd[id]=''; set('friendship.json',JSON.stringify(fd),true);
@@ -230,7 +231,7 @@ function init_user(id,au='manual',helper=false) {
     } if (!(id in cd)) {
         cd[id]=id; set('calling.json',JSON.stringify(cd),true);
         sysDefCallData.value=arrpack(cd,';',':');
-    } /* THIS HELPER REMOVES USER WITH EMPTY ID */
+    } if (pass!='') { set(id+'_password',pass,true); }
     if (helper) { delete_user(''); }
 }
 function friendsOf(obj,id) {
