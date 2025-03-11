@@ -54,7 +54,7 @@ function executeCode(input) {
         } else { output+=executeMacros(query); } output=output+';';
     } return output;
 }
-function readFile(name,opt='read',path='') {
+function readFile(name,opt='read',path='',store='user_content') {
     var dataString='name='+name+'&type=code&sign=&mode=multiline';
     $.ajax({
         type: "POST", url: "read.php",
@@ -69,9 +69,9 @@ function readFile(name,opt='read',path='') {
                         }
                     } else { ob=arr[path]; }
                 } else { ob=arr; } if (typeof(ob)=='object') {
-                    localStorage.setItem('user_content',JSON.stringify(ob));
-                } else { localStorage.setItem('user_content',ob); }
-            } else { localStorage.setItem('user_content',result); }
+                    localStorage.setItem(store,JSON.stringify(ob));
+                } else { localStorage.setItem(store,ob); }
+            } else { localStorage.setItem(store,result); }
         }
     });
 }
