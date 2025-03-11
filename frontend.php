@@ -767,7 +767,8 @@ function replayVideo(obj) {
     setdata('video_speed',sysDefVideoSpeed.value);
 }
 function omniListen(input,scratch=false,pos=false) {
-    playAudio(audioPlayer,input); if (isInt(pos)) {
+    playAudio(audioPlayer,input);
+    if ((isInt(pos))&&(pos!==false)) {
         audioPlayer.currentTime=parseInt(pos);
     } else {
         if (scratch) { audioPlayer.currentTime=0;

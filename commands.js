@@ -72,7 +72,6 @@ function readFile(name,opt='read',path='') {
                     localStorage.setItem('user_content',JSON.stringify(ob));
                 } else { localStorage.setItem('user_content',ob); }
             } else { localStorage.setItem('user_content',result); }
-            console.log(localStorage.getItem('user_content'));
         }
     });
 }
