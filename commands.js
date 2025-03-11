@@ -181,26 +181,22 @@ function pipeExec(input) {
                         mr.push(ml[i]);
                     }
                 } inc=0; if (((it==1)&&(it==brd))||((it==1)&&(it<brd))) {
-                    if (input.endsWith('\\')) {
-                        for (j=0; j<ml.length; j++) {
-                            if ((ml[j].toLowerCase().includes(np3.toLowerCase()))&&(isInt(np4))) {
+                    for (j=0; j<ml.length; j++) {
+                        if ((ml[j].toLowerCase().includes(np3.toLowerCase()))&&(isInt(np4))) {
+                            if (input.endsWith('\\')) {
                                 if ((isInt(np2))&&(inc>=np2)) {
                                     omniListen(ml[j],true,parseInt(np4));break;
                                 } else if (np2=='*') {
                                     omniListen(mr[rand(0,mr.length)],true,parseInt(np4));break;
                                 }
-                            } inc++;
-                        } omniPause();
-                    } else {
-                        for (j=0; j<ml.length; j++) {
-                            if ((ml[j].toLowerCase().includes(np3.toLowerCase()))&&(isInt(np4))) {
+                            } else {
                                 if ((isInt(np2))&&(inc>=np2)) {
                                     ard=arrangeMenu(sysDefUpNext.value,etw(ml[j],sysDefSessionID.value,sysDefNumeric.value),' | '); setdata('up_next',ard); break;
                                 } else if (np2=='*') {
                                     ard=arrangeMenu(sysDefUpNext.value,etw(mr[rand(0,mr.length)],sysDefSessionID.value,sysDefNumeric.value),' | '); setdata('up_next',ard); break;
                                 }
                             } inc++;
-                        }
+                        } if (input.endsWith('\\')) { omniPause(); }
                     }
                 } else if (((it>1)&&(it<brd))||((it>1)&&(it==brd))) {
                     for (j=0; j<ml.length; j++) {
