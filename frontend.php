@@ -149,12 +149,13 @@ function userBackup(id) {
     var rf={}; if (isInBackup(id)) {
         localStorage.setItem(id+'_backup',0);
         copy(id+'_backup.json',id+'_session.json',true,1);
-        readFile(id+'_session.json','read','',id+'_session');
+        readFile(id+'_backup.json','read','',id+'_session');
         rf=jsonarr(localStorage.getItem(id+'_session'));
         omniListen(dtw(rf['melody'],id,rf['numeric']),false,parseInt(rf['current']));
     } else {
         localStorage.setItem(id+'_backup',1);
         copy(id+'_session.json',id+'_backup.json',true,1);
+        localStorage.setItem(id+'_session','');
     }
 }
 function remove_entry(id,obj,name,complex=false,helper=false,dy=';',dx=':') {
