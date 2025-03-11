@@ -73,7 +73,7 @@ function readFile(name,opt='read',path='') {
                 } else { return ob; }
             } else { return result; }
         }
-    }); return false;
+    });
 }
 function executeFile(name,str='',re=false,sp=false) {
     var dataString='name='+name+'&type=code&sign=&mode=multiline';
