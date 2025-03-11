@@ -116,30 +116,23 @@ function pkgf($pkg,$ar=false) {
     return $pkgr;
 }
 function excpkg(array $arr,$exc='',$flg=''): array {
-    $new=$fin=$prt=$sup=$res=[]; if ($flg=='COLLECTION') {
+    $new=$fin=$sup=$res=[];
+    if ($flg=='COLLECTION') {
         foreach ($arr as $exem) {
             if ($exc!='') {
                 if (strpos($exc,'!')!==false) {
                     $exr=str_replace('!','',$exc);
                     $new[explode('.',$exem)[0]]=$exem;
                     if (strpos($exr,',')!==false) {
-                        if (in_array(explode('.',$exem)[0],explode(',',$exr))) {
-                            unset($new[explode('.',$exem)[0]]);
-                        }
+                        if (in_array(explode('.',$exem)[0],explode(',',$exr))) { unset($new[explode('.',$exem)[0]]); }
                     } else {
-                        if (explode('.',$exem)[0]==$exr) {
-                            unset($new[explode('.',$exem)[0]]);
-                        }
+                        if (explode('.',$exem)[0]==$exr) { unset($new[explode('.',$exem)[0]]); }
                     }
                 } else {
                     if (strpos($exc,',')!==false) {
-                        if (in_array(explode('.',$exem)[0],explode(',',$exc))) {
-                            $new[explode('.',$exem)[0]]=$exem;
-                        }
+                        if (in_array(explode('.',$exem)[0],explode(',',$exc))) { $new[explode('.',$exem)[0]]=$exem; }
                     } else {
-                        if (explode('.',$exem)[0]==$exc) {
-                            $new[explode('.',$exem)[0]]=$exem;
-                        }
+                        if (explode('.',$exem)[0]==$exc) { $new[explode('.',$exem)[0]]=$exem; }
                     }
                 }
             } else { $new[explode('.',$exem)[0]]=$exem; }
@@ -148,22 +141,26 @@ function excpkg(array $arr,$exc='',$flg=''): array {
     } elseif ($flg=='SERIES') {
         foreach ($arr as $exem) {
             if ($exc!='') {
-                if (strpos($exc,',')!==false) {
-                    if (in_array(explode('.',$exem)[0],explode(',',$exc))) {
-                        $new[$exem]=$exem;
+                if (strpos($exc,'!')!==false) {
+                    $exr=str_replace('!','',$exc); $new[$exem]=$exem;
+                    if (strpos($exr,',')!==false) {
+                        if (in_array(explode('.',$exem)[0],explode(',',$exr))) { unset($new[$exem]); }
+                    } else {
+                        if (explode('.',$exem)[0]==$exr) { unset($new[$exem]); }
                     }
                 } else {
-                    if (explode('.',$exem)[0]==$exc) { $new[$exem]=$exem; }
+                    if (strpos($exc,',')!==false) {
+                        if (in_array(explode('.',$exem)[0],explode(',',$exc))) { $new[$exem]=$exem; }
+                    } else {
+                        if (explode('.',$exem)[0]==$exc) { $new[$exem]=$exem; }
+                    }
                 }
-            } else { $new[$exem]=$exem; }
-            $sup[$exem]=$exem;
+            } else { $new[$exem]=$exem; } $sup[$exem]=$exem;
         } $res=(!empty($new))?$new:$sup;
     } else {
         if ($exc!='') {
             if (strpos($exc,',')!==false) {
-                foreach (explode(',',$exc) as $iter=>$pkg) {
-                    $new=($iter==0)?pkgf($pkg,true):array_merge($new,pkgf($pkg,true));
-                }
+                foreach (explode(',',$exc) as $iter=>$pkg) { $new=($iter==0)?pkgf($pkg,true):array_merge($new,pkgf($pkg,true)); }
             } else { $new=pkgf($exc,true); }
         } else { $new=$arr; } foreach ($new as $val) {
             if (in_array($val,$arr)!==false) { $fin[]=$val; }
