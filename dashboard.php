@@ -20,7 +20,7 @@
 <div class='topBarItem'>
     <p align='center' class='block'>
     <?php if (isAuth()) { ?>
-        <input type="image" onmouseover="soundButton();" id="buttonBackup" class="power" onclick="var ss=sysDefSessionID.value; if (sysDefSessBackup.value!=0) { copy(ss+'_backup.json',ss+'_session.json',true,1); del(ss+'_backup.json',true); readFile(ss+'_session.json','read','',ss+'_session'); var rf=jsonarr(localStorage.getItem(ss+'_session')); omniListen(dtw(rf['melody'],ss,rf['numeric']),false,parseInt(rf['current'])); } else { copy(ss+'_session.json',ss+'_backup.json',true,1); localStorage.removeItem(ss+'_session'); }" src="<?=$prefix.'save.png';?>" title="<?=term('Save/Load User Session Backup',$settings['vocabulary'],$session['units']);?>">
+        <input type="image" onmouseover="soundButton();" id="buttonBackup" class="power" onclick="userBackup();" src="<?=$prefix.'save.png';?>" title="<?=term('Save/Load User Session Backup',$settings['vocabulary'],$session['units']);?>">
         <input type="image" onmouseover="soundButton();" id="buttonCommand" class="power" onclick="setdata('mode',nextImage('start;chat;search',sysDefMode.value)); omniBox.focus();" src="<?=$prefix.'start.png';?>" title="<?=term('Command Line Interface Mode',$settings['vocabulary'],$session['units']);?>">
         <input type='text' id="omniBox" style="width:50%;" placeholder="<?=termCmd($session['mode'],$settings['locale']['cli'],$session['units']);?>" value="" onkeydown="if (event.keyCode==13) { omniEnter(); } else if (event.keyCode==27) {
             document.getElementById('omniBox').value='';

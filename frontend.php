@@ -142,6 +142,19 @@ function storeHours(id) {
     var userNum=arraySearch(id,userArr);
     return pager(sysDefHoursActive.value,userNum);
 }
+function userBackup() {
+    var ss=sysDefSessionID.value,rf={};
+    if (localStorage.getItem(ss+'_backup')!==undefined) {
+        copy(ss+'_backup.json',ss+'_session.json',true,1);
+        readFile(ss+'_session.json','read','',ss+'_session');
+        rf=jsonarr(localStorage.getItem(ss+'_session'));
+        omniListen(dtw(rf['melody'],ss,rf['numeric']),false,parseInt(rf['current']));
+    } else {
+        copy(ss+'_session.json',ss+'_backup.json',true,1);
+        readFile(ss+'_backup.json','read','',ss+'_backup');
+        rf=jsonarr(localStorage.getItem(ss+'_backup'));
+    }
+}
 function remove_entry(id,obj,name,complex=false,helper=false,dy=';',dx=':') {
     /* REMOVE CERTAIN ENTRY FROM CERTAIN DATA BANK */
     var dat={}; if (typeof(obj)=='object') {

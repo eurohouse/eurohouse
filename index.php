@@ -52,7 +52,6 @@
         <input type='hidden' id="sysDefSessionID" value="<?=$sessionID;?>">
         <input type='hidden' id="sysDefPostBackEff" value="0">
         <input type='hidden' id="sysDefPostTickEff" value="0">
-        <input type='hidden' id="sysDefSessBackup" value="">
         <input type='hidden' id="sysDefVarsArr" value="">
         <input type='hidden' id="sysDefUsersList" value="">
         <input type='hidden' id="sysDefBooksList" value="">
