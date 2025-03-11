@@ -143,17 +143,19 @@ function storeHours(id) {
     return pager(sysDefHoursActive.value,userNum);
 }
 function isInBackup(id) {
-    return (localStorage.getItem(id+'_session_backup')=='');
+    return (localStorage.getItem(id+'_backedup')!=0);
 }
 function userBackup(id) {
     var rf={}; if (isInBackup(id)) {
+        localStorage.setItem(id+'_backedup',0);
         copy(id+'_backup.json',id+'_session.json',true,1);
-        readFile(id+'_session.json','read','',id+'_session_backup');
-        rf=jsonarr(localStorage.getItem(id+'_session_backup'));
+        readFile(id+'_session.json','read','',id+'_restored_data');
+        rf=jsonarr(localStorage.getItem(id+'_restored_data'));
         omniListen(dtw(rf['melody'],id,rf['numeric']),false,parseInt(rf['current']));
     } else {
+        localStorage.setItem(id+'_backedup',1);
         copy(id+'_session.json',id+'_backup.json',true,1);
-        localStorage.setItem(id+'_session_backup','');
+        localStorage.setItem(id+'_restored_data','');
     }
 }
 function remove_entry(id,obj,name,complex=false,helper=false,dy=';',dx=':') {
