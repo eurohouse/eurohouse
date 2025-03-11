@@ -17,5 +17,5 @@
     <img onmouseover="soundButton();" id="showingAvatarNow" name="" style="height:24%;" onclick="omniGo(this.name);" src="<?=$avaPrefix.$session['avatar'].'.png';?>">
     <h1 id="projectTitle" align='center' style="cursor:pointer;" onclick="navigator.clipboard.writeText(this.innerText);"></h1>
 </p></div>
-<div class='customPanel' style="width:100%;height:60%;left:0px;top:0px;overflow-y:scroll;"><?php include 'menu_items.php'; ?>
+<div class='customPanel' style="width:100%;height:54%;left:0px;top:0px;overflow-y:scroll;"><?php include 'menu_items.php'; ?>
 </div><?php } else { include 'menu_items.php'; }} ?>
