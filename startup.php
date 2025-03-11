@@ -64,7 +64,8 @@ function world_clock() {
             var effi=pager(data,3).split(';');
             var mixers=pager(data,4).split(' ');
             var bndm=arrjob(sysDefBindData.value,';',':')[sysDefSessionID.value],fint=pager(data,5).split(' | '); if (authstate()) {
-                $('#buttonBackup').attr('src',sysDefPrefix.value+((isInBackup())?'open.png':'save.png')); omniBox.placeholder=fint[10];
+                $('#buttonBackup').attr('src',sysDefPrefix.value+((isInBackup(sysDefSessionID.value)!=false)?'open.png':'save.png'));
+                omniBox.placeholder=fint[10];
             } if (requestMode.value=='volume_control') {
                 audioVolInd.value=mixers[0]; audioRatInd.value=mixers[1];
                 videoVolInd.value=mixers[2]; videoRatInd.value=mixers[3];
