@@ -1,5 +1,6 @@
 function executeMacros(input) {
-    var output=input,rep,san,atr;
+    var output=input,rep,san;
+    var ss=sysDefSessionID.value,nm=sysDefNumeric.value;
     if (input.startsWith('# ')) { /* SAY SOMETHING... */
     } else if (input.includes(': ')) {
         rep=input.split(': '); if (rep[0]=='memo') {
@@ -28,27 +29,24 @@ function executeMacros(input) {
         } else if (rep[0]=='up_next') { } else if (rep[0]=='current') {
             audioPosition((rep[1].startsWith('+'))?rep[1].replaceAll('+',''):rep[1]);
         } else if (rep[0].startsWith('lock_')) { setlock(rep[0].replace('lock_',''), rep[1]);
-        } else if (rep[1].includes('?rev=')) { atr=rep[1].split('?rev=')[1];
-            setdata(rep[0],rep[1].replace(atr,'').replace('?rev=',''));
+        } else if (rep[1].includes('?rev=')) { san=rep[1].split('?rev=')[1];
+            setdata(rep[0],rep[1].replace(san,'').replace('?rev=',''));
         } else { setdata(rep[0],rep[1]); }
     } else {
         if (input.startsWith('lock_')) {
             output=input+': '+lockdata()[input.replace('lock_','')];
         } else if ((input=='melody')) {
-            output=input+': '+dtw(userdata()[input],sysDefSessionID.value,sysDefNumeric.value);
+            output=input+': '+dtw(userdata()[input],ss,nm);
         } else if ((input=='up_next')) { rep=userdata()[input].split(' | '),san=[];
-            for (iu in rep) {
-                san.push(dtw(rep[iu],sysDefSessionID.value,sysDefNumeric.value));
-            } output=input+': '+san.join(' | ');
+            for (iu in rep) { san.push(dtw(rep[iu],ss,nm)); }
+            output=input+': '+san.join(' | ');
         } else { output=input+': '+userdata()[input]; }
     } return output;
 }
 function executeCode(input) {
     var output=''; if (input!==undefined) {
-        var query=input.slice(0,-1),querySep;
-        if (query.includes('; ')) {
-            querySep=query.split('; ');
-            for (i=0; i<querySep.length; i++) {
+        var query=input.slice(0,-1),querySep; if (query.includes('; ')) {
+            querySep=query.split('; '); for (i=0; i<querySep.length; i++) {
                 output+=executeMacros(querySep[i])+"; ";
             } output=output.slice(0,-2);
         } else { output+=executeMacros(query); } output=output+';';
@@ -56,20 +54,14 @@ function executeCode(input) {
 }
 function readFile(name,opt='read',path='',store='user_content') {
     var dataString='name='+name+'&type=code&sign=&mode=multiline';
-    $.ajax({
-        type: "POST", url: "read.php",
-        data: dataString, cache: false,
+    $.ajax({ type: "POST", url: "read.php", data: dataString, cache: false,
         success: function(result) {
             if (opt=='read') {
-                var arr=jsonarr(result),ob;
-                if (path!='') {
-                    if (path.includes('/')) {
-                        ob=arr; for (chk in path.split('/')) {
-                            ob=ob[path.split('/')[chk]];
-                        }
-                    } else { ob=arr[path]; }
-                } else { ob=arr; } if (typeof(ob)=='object') {
-                    localStorage.setItem(store,JSON.stringify(ob));
+                var arr=jsonarr(result),ob; if (path!='') {
+                    if (path.includes('/')) { ob=arr;
+                        for (chk in path.split('/')) { ob=ob[path.split('/')[chk]]; }
+                    } else { ob=arr[path]; }} else { ob=arr; }
+                if (typeof(ob)=='object') { localStorage.setItem(store,JSON.stringify(ob));
                 } else { localStorage.setItem(store,ob); }
             } else { localStorage.setItem(store,result); }
         }
@@ -77,12 +69,9 @@ function readFile(name,opt='read',path='',store='user_content') {
 }
 function executeFile(name,str='',re=false,sp=false) {
     var dataString='name='+name+'&type=code&sign=&mode=multiline';
-    $.ajax({
-        type: "POST", url: "read.php",
-        data: dataString, cache: false,
+    $.ajax({ type: "POST", url: "read.php", data: dataString, cache: false,
         success: function(result) {
-            var codeExt=result.split(/\r?\n/);
-            var strd=strl=[],strs='';
+            var codeExt=result.split(/\r?\n/),strd=strl=[],strs='';
             if (str.includes(',')) {
                 strl=str.split(','); for (il in strl) {
                     if (codeExt[strl[il]]!==undefined) {
@@ -102,8 +91,7 @@ function executeFile(name,str='',re=false,sp=false) {
             } else if (isInt(str)) {
                 if (sp!==false) { compose(codeExt[str]);
                 } else { executeCode(codeExt[str]); }
-            } else if (str=='') {
-                if (sp!==false) { compose(result);
+            } else if (str=='') { if (sp!==false) { compose(result);
                 } else { for (il in codeExt) { executeCode(codeExt[il]); }}
             } else {
                 for (il in codeExt) {
@@ -149,8 +137,7 @@ function getPkgSequence(input,cmdword,isRepo=0,isDbg=0) {
 }
 function pipeExec(input) {
     var exr,brd,ark,arv,lnt,ml=lockarr('music'),mr=[];
-    var np,np1,np2,np3,np4,ard='',inc=0;
-    if (input.includes('/')) {
+    var np,np1,np2,np3,np4,ard='',inc=0; if (input.includes('/')) {
         exr=(input.endsWith('/')),pipes=input.split('/');
         brd=(input.endsWith('/'))?(pipes.length-2):(pipes.length-1);
         for (it in pipes) {
@@ -209,11 +196,9 @@ function pipeExec(input) {
                     for (j=0; j<ml.length; j++) {
                         if ((ml[j].toLowerCase().includes(np3.toLowerCase()))&&(isInt(np4))) {
                             if ((isInt(np2))&&(inc>=np2)) {
-                                ard=arrangeMenu(sysDefUpNext.value,etw(ml[j],sysDefSessionID.value,sysDefNumeric.value),' | '); setdata('up_next',ard);
-                                break;
+                                ard=arrangeMenu(sysDefUpNext.value,etw(ml[j],sysDefSessionID.value,sysDefNumeric.value),' | '); setdata('up_next',ard); break;
                             } else if (np2=='*') {
-                                ard=arrangeMenu(sysDefUpNext.value,etw(mr[rand(0,mr.length)],sysDefSessionID.value,sysDefNumeric.value),' | '); setdata('up_next',ard);
-                                break;
+                                ard=arrangeMenu(sysDefUpNext.value,etw(mr[rand(0,mr.length)],sysDefSessionID.value,sysDefNumeric.value),' | '); setdata('up_next',ard); break;
                             } inc++;
                         }
                     }
@@ -223,14 +208,12 @@ function pipeExec(input) {
     }
 }
 function omniEnter() {
-    var input=omniBox.value,arb=arc=arj='',ct=mt=0,arg=[];
-    var itm,prx,qy,atd,atr,atx;
-    if (sysDefMode.value=='chat') { compose(input);
+    var input=omniBox.value,arb=arc=arj='',mt=0,arg=[];
+    var itm,prx,qy,atd,atr,atx; if (sysDefMode.value=='chat') { compose(input);
     } else if (sysDefMode.value=='search') {
         omniDisp(requestMode.value,input,requestLock.value);
     } else if (sysDefMode.value=='start') {
-        if ((input=='reload') || (input=='refresh')) {
-            window.location.reload();
+        if ((input=='reload') || (input=='refresh')) { window.location.reload();
         } else if (input=='upload') {
             document.getElementById('filebrowser').click(); return false;
         } else if ((input=='fast')||(input=='spedup')) {
@@ -249,33 +232,38 @@ function omniEnter() {
             var st=jsonarr(openJournal(sysDefSessionID.value,sysDefStoreList,sysDefStoreJSONs)), ob=arrjob(sysDefPowersData.value,';',':');
             arb=input.replace('store ',''); if (ob[sysDefSessionID.value]>=0) {
                 if (arb.startsWith('delete ')) {
-                    arj=arb.replace('delete ',''),arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
+                    arj=arb.replace('delete ','');
+                    arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
                     if (arg.length>0) {
                         for (i=0; i<arg.length; i++) {
                             if (st[quote(arg[i])]!==undefined) { delete st[quote(arg[i])]; }
                         }
                     }
                 } else if (arb.startsWith('rename ')) {
-                    arj=arb.replace('rename ',''),arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
+                    arj=arb.replace('rename ','');
+                    arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
                     if (st[quote(arg[0])]!==undefined) {
                         st[quote(arg[1])]=st[quote(arg[0])]; delete st[quote(arg[0])];
                     }
                 } else if (arb.startsWith('produce ')) {
-                    arj=arb.replace('produce ',''),arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
+                    arj=arb.replace('produce ','');
+                    arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
                     if ((st[quote(arg[0])]!==undefined)&&(typeof(st[quote(arg[0])])=='object')&&(st[quote(arg[0])]['finite']!=='undefined')) {
                         qy=(arg.length>1)?((isInt(quote(arg[1])))?parseInt(quote(arg[1])):1):1;
                         itm=(isInt(st[quote(arg[0])]['amount'])&&(st[quote(arg[0])]['amount']>=0))?(parseInt(st[quote(arg[0])]['amount'])+qy):qy;
                         st[quote(arg[0])]['amount']=itm;
                     }
                 } else if (arb.startsWith('reduce ')) {
-                    arj=arb.replace('reduce ',''),arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
+                    arj=arb.replace('reduce ','');
+                    arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
                     if ((st[quote(arg[0])]!==undefined)&&(typeof(st[quote(arg[0])])=='object')&&(st[quote(arg[0])]['finite']!=='undefined')) {
                         qy=(arg.length>1)?((isInt(quote(arg[1])))?parseInt(quote(arg[1])):1):1;
                         itm=(isInt(st[quote(arg[0])]['amount'])&&(st[quote(arg[0])]['amount']>=0))?(parseInt(st[quote(arg[0])]['amount'])-qy):qy;
                         st[quote(arg[0])]['amount']=itm;
                     }
                 } else if (arb.includes('finite ')) {
-                    arj=arb.replace('finite ',''),arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
+                    arj=arb.replace('finite ','');
+                    arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
                     if ((st[quote(arg[0])]!==undefined)&&(typeof(st[quote(arg[0])])=='object')&&(st[quote(arg[0])]['finite']!=='undefined')) {
                         st[quote(arg[0])]['finite']=flip(st[quote(arg[0])]['finite']);
                     }
@@ -290,7 +278,9 @@ function omniEnter() {
             arj=input.replace('sell ',''),arg=arj.match(/\"([^\"]+)\"|(\w+)/g); sell_item(sysDefSessionID.value,arg[0].replaceAll('"',''),arg[1].replaceAll('"',''));
         } else if (input.startsWith('mkdir ')) {
             if (superuser()) {
-                arj=input.replace('mkdir ',''),arg=arj.match(/\"([^\"]+)\"|(\w+)/g); if (arg.length>0) {
+                arj=input.replace('mkdir ','');
+                arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
+                if (arg.length>0) {
                     for (i=0; i<arg.length; i++) {
                         mkdir(requestPath.value+'/'+arg[i].replaceAll('"',''),true);
                     } window.location.reload();
@@ -298,7 +288,9 @@ function omniEnter() {
             }
         } else if (input.startsWith('touch ')) {
             if (superuser()) {
-                arj=input.replace('touch ',''),arg=arj.match(/\"([^\"]+)\"|(\w+)/g); if (arg.length>0) {
+                arj=input.replace('touch ','');
+                arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
+                if (arg.length>0) {
                     for (i=0; i<arg.length; i++) {
                         set(requestPath.value+'/'+arg[i].replaceAll('"',''),'',true);
                     } window.location.reload();
@@ -306,7 +298,9 @@ function omniEnter() {
             }
         } else if (input.startsWith('rm ')) {
             if (superuser()) {
-                arj=input.replace('rm ',''),arg = arj.match(/\"([^\"]+)\"|(\w+)/g); if (arg.length>0) {
+                arj=input.replace('rm ','');
+                arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
+                if (arg.length>0) {
                     for (i=0; i<arg.length; i++) {
                         del(requestPath.value+'/'+arg[i].replaceAll('"',''),true);
                     } window.location.reload();
@@ -314,13 +308,17 @@ function omniEnter() {
             }
         } else if (input.startsWith('mv ')) {
             if (superuser()) {
-                arj=input.replace('mv ', ''),arg = arj.match(/\"([^\"]+)\"|(\w+)/g); if (arg.length==2) {
+                arj=input.replace('mv ', '');
+                arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
+                if (arg.length==2) {
                     move(requestPath.value+'/'+arg[0].replaceAll('"',''),requestPath.value+'/'+arg[1].replaceAll('"',''),true); window.location.reload();
                 }
             }
         } else if (input.startsWith('cp ')) {
             if (superuser()) {
-                arj=input.replace('cp ', ''),arg=arj.match(/\"([^\"]+)\"|(\w+)/g); if (arg.length>1) {
+                arj=input.replace('cp ', '');
+                arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
+                if (arg.length>1) {
                     for (i=1; i<arg.length; i++) {
                         copy(requestPath.value+'/'+arg[0].replaceAll('"',''),requestPath.value+'/'+arg[i].replaceAll('"',''),true);
                     } window.location.reload();
@@ -334,10 +332,8 @@ function omniEnter() {
             clearJournal(input.replace('erase ',''),sysDefBookKeep,'book');
         } else if (input.startsWith('purge ')) {
             clearJournal(input.replace('purge ',''),sysDefIpData,'visitors',true);
-        } else if (input.startsWith('get ')) {
-            getPkgSequence(input,'get ',0);
-        } else if (input.startsWith('git ')) {
-            getPkgSequence(input,'git ',1);
+        } else if (input.startsWith('get ')) { getPkgSequence(input,'get ',0);
+        } else if (input.startsWith('git ')) { getPkgSequence(input,'git ',1);
         } else if (input.startsWith('lock ')) {
             omniBox.value=lockarr(input.replace('lock ','')).join(' | ');
         } else if (input.startsWith('count ')) {
@@ -350,10 +346,8 @@ function omniEnter() {
             omniBox.value=basedec(rep[0],rep[1]);
         } else if (input.startsWith('::')) {
             setdata('banner',input.replace('::','')+'.png');
-        } else if (input.startsWith('->')) {
-            omniSwitch(input.replace('->',''));
-        } else if (input.startsWith('\\=')) {
-            omniListen(input.replace('\\=',''),true);
+        } else if (input.startsWith('->')) { omniSwitch(input.replace('->',''));
+        } else if (input.startsWith('\\=')) { omniListen(input.replace('\\=',''),true);
         } else if (input.startsWith('./')) {
             omniRead(requestMode.value,input.replace('./',''),requestLock.value);
         } else if (input.startsWith('>')) {
@@ -367,17 +361,13 @@ function omniEnter() {
                 arj=arb.split(','); for (ir in arj) {
                     if (superuser()) { delete_user(arj[ir]);
                     } else {
-                        if (arj[ir]==sysDefSessionID.value) {
-                            mt++; delete_user(arj[ir]);
-                        }
+                        if (arj[ir]==sysDefSessionID.value) { mt++; delete_user(arj[ir]); }
                     }
                 }
             } else {
                 if (superuser()) { delete_user(arb);
                 } else {
-                    if (arb==sysDefSessionID.value) {
-                        mt++; delete_user(arb);
-                    }
+                    if (arb==sysDefSessionID.value) { mt++; delete_user(arb); }
                 }
             } if (mt>0) { omniAuthRequest('signout','',''); }
         } else if (input.startsWith('&')) {
@@ -389,7 +379,8 @@ function omniEnter() {
         } else if (input.startsWith('=')) { window.location.href=input.replace('=','');
         } else if (input.includes('@')) {
             if (input.startsWith('@')) {
-                atr=input.replace('@',''); if (atr.includes(':')) {
+                atr=input.replace('@','');
+                if (atr.includes(':')) {
                     atd=atr.split(':');
                     atx=CryptoJS.SHA256(atd[1]).toString();
                     omniAuthRequest('signin',atd[0],atx);
@@ -398,9 +389,10 @@ function omniEnter() {
                     omniAuthRequest('signin',atr,atx);
                 }
             } else if (input.endsWith('@')) {
-                atr=input.replace('@',''); call(sysDefSessionID.value,atr);
+                call(sysDefSessionID.value,input.replace('@',''));
             } else {
-                atr=input.split('@'),atd,atx; if (atr[0].includes(':')) {
+                atr=input.split('@'),atd,atx;
+                if (atr[0].includes(':')) {
                     atd=atr[0].split(':');
                     atx=CryptoJS.SHA256(atd[1]).toString();
                     if (atr[1].includes('signin')) {
@@ -408,21 +400,24 @@ function omniEnter() {
                     } else if (atr[1].includes('signup')) {
                         omniAuthRequest('signup',atd[0],atx);
                     } else if (atr[1].includes('rename')) {
-                        rename_user(atd[0],atd[1]); omniAuthRequest('signin',atd[0],atx);
+                        rename_user(atd[0],atd[1]);
+                        omniAuthRequest('signin',atd[0],atx);
                     } else { init_user(atd[0],atx,atr[1]); }
                 } else {
-                    atx=CryptoJS.SHA256('').toString(); if (atr[1].includes('signin')) {
+                    atx=CryptoJS.SHA256('').toString();
+                    if (atr[1].includes('signin')) {
                         omniAuthRequest('signin',atr[0],atx);
                     } else if (atr[1].includes('signup')) {
                         omniAuthRequest('signup',atr[0],atx);
                     } else if (atr[1].includes('rename')) {
-                        rename_user(atr[0],''); omniAuthRequest('signin',atr[0],atx);
+                        rename_user(atr[0],'');
+                        omniAuthRequest('signin',atr[0],atx);
                     } else { init_user(atr[0],atx,atr[1]); }
                 }
             }
-        } else if (input.endsWith(';')) {
-            omniBox.value=executeCode(input);
-        } else if ((input.startsWith('/'))||(input.startsWith('\\'))||(input.startsWith('|'))) { pipeExec(input);
+        } else if (input.endsWith(';')) { omniBox.value=executeCode(input);
+        } else if ((input.startsWith('/'))||(input.startsWith('\\'))||(input.startsWith('|'))) {
+            pipeExec(input);
         } else if ((input.includes('|'))||(input.includes('&'))||(input.includes('~'))||(input.includes('^'))) { omniBox.value=finarr(arrmath(input)).join(';');
         } else { omniBox.value=calc(input); }
     } omniBox.focus();

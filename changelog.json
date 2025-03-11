@@ -1,5 +1,5 @@
 {
-    "v7.816-b1808": {
+    "v7.816-b1820": {
         "default": {
             "title": "Eurohouse Developer Team (@eurohouse)",
             "body": "Congratulations to our lovely ladies on March 8! The Eurohouse development team has prepared a pleasant surprise for them in this application for the International Women's Day. Now it has 3 command line modes: start (command), chat and search. Each of these modes changes the logic of the command line, so when using it, pay attention to the icon on the left in front of the command line. The latest changes in the Eurohouse application include more minimalistic command line icons, more minified and less messy code, updated macros, a new News Feed menu that allows you to view the history of changes in this application for all time. One button is now an indicator of the current command line mode and allows you to switch between them. Many bugs in the application have been fixed."
