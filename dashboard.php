@@ -22,7 +22,7 @@
     <?php if (isAuth()) { ?>
         <input type="image" onmouseover="soundButton();" id="buttonBackup" class="power" onclick="userBackup(sysDefSessionID.value);" src="<?=$prefix.'save.png';?>" title="<?=term('Save/Load User Session Backup',$settings['vocabulary'],$session['units']);?>">
         <input type="image" onmouseover="soundButton();" id="buttonCommand" class="power" onclick="setdata('mode',nextImage('start;chat;search',sysDefMode.value)); omniBox.focus();" src="<?=$prefix.'start.png';?>" title="<?=term('Command Line Interface Mode',$settings['vocabulary'],$session['units']);?>">
-        <input type='text' id="omniBox" style="width:50%;" placeholder="<?=termCmd($session['mode'],$settings['locale']['cli'],$session['units']);?>" value="" onkeydown="if (event.keyCode==13) { omniEnter(); } else if (event.keyCode==27) {
+        <input type='text' id="omniBox" style="width:52%;" placeholder="<?=termCmd($session['mode'],$settings['locale']['cli'],$session['units']);?>" value="" onkeydown="if (event.keyCode==13) { omniEnter(); } else if (event.keyCode==27) {
             document.getElementById('omniBox').value='';
         } else if (event.keyCode==8) { handleInput(this.value);
         } else if (event.keyCode==46) { handleInput(this.value);
@@ -98,7 +98,7 @@
     <input type='button' id="showUsInfoPower" style="width:34%;" value="<?=intval($powersData[$sessionID]);?>">
     <input type="image" onmouseover="soundButton();" id="buttonBroke" class="power" onclick="var uli=(sysDefUsersList.value).split(','),bdi=arrjob(sysDefBindData.value,';',':'); delete uli[sysDefSessionID.value]; if (bdi[sysDefSessionID.value]!=sysDefSessionID.value) { unbind(sysDefSessionID.value); } else { bind(sysDefSessionID.value,uli[rand(0,(uli.length-1))]); }" src="<?=$prefix.'chain.png';?>" title="<?=term('Bind/Unbind Another User',$settings['vocabulary'],$session['units']);?>">
     <input type="image" onmouseover="soundButton();" id="buttonReticle" class="power" onclick="dominate(sysDefSessionID.value,arrjob(sysDefBindData.value,';',':')[sysDefSessionID.value],arrjob(sysDefToolData.value,';',':')[sysDefSessionID.value]); playAudio(hitPlayer,sysDefHitSound.value);" src="<?=$reticlePrefix.$session['reticle'].'.png';?>" title="<?=term('Hit Another User',$settings['vocabulary'],$session['units']);?>">
-    <input type='button' id="showUsInfoBond" style="width:24%;" value="<?=$sessionID;?>"><input type="image" onmouseover="soundButton();" id="buttonSpectate" class="power" onclick="setdata('spectate',flip(sysDefSpectate.value));" src="<?=$prefix.'camera.png';?>" title="<?=term('Spectate Mode',$settings['vocabulary'],$session['units']);?>">
+    <input type='button' id="showUsInfoBond" style="width:26%;" value="<?=$sessionID;?>"><input type="image" onmouseover="soundButton();" id="buttonSpectate" class="power" onclick="setdata('spectate',flip(sysDefSpectate.value));" src="<?=$prefix.'camera.png';?>" title="<?=term('Spectate Mode',$settings['vocabulary'],$session['units']);?>">
     </p>
 </div>
 <div class='topBarItem'>
@@ -106,7 +106,7 @@
     <input type="image" id="userAvatarBadge" onmouseover="soundButton();" class="power" src="<?=$abcPrefix.$session['avatar'].'.png';?>" onclick="setdata('face',flip(sysDefFace.value)); window.location.reload();" title="<?=term('Show/Hide User Avatar',$settings['vocabulary'],$session['units']);?>">
     <select id="setUnits" style="width:13%;" onchange="setdata('units',setUnits.options[setUnits.selectedIndex].id); if (sysDefReload.value!=0) { window.location.reload(); }"><?php foreach (explode(',',$session['units_list']) as $selID) { ?>
     <option id="<?=$selID;?>" <?php if ($session['units']==$selID) { ?> selected <?php } ?>><?=$selID;?></option><?php } ?></select>
-    <select id="setTheme" style="width:20%;" onchange="setdata('theme',setTheme.options[setTheme.selectedIndex].id); window.location.reload();"><?php foreach ((str_replace('./','',(glob('./*.start.png')))) as $key=>$value) { ?>
+    <select id="setTheme" style="width:18%;" onchange="setdata('theme',setTheme.options[setTheme.selectedIndex].id); window.location.reload();"><?php foreach ((str_replace('./','',(glob('./*.start.png')))) as $key=>$value) { ?>
         <option id="<?=explode('.',$value)[0];?>" <?php if ($session['theme']==explode('.',$value)[0]) { ?> selected <?php } ?>><?=explode('.',$value)[0];?></option>
     <?php } ?></select>
     <input type="image" onmouseover="soundButton();" id="buttonReqLock" class="power" onclick="if (requestLock.value=='true') { omniLock('false'); } else { omniLock('true'); }" src="<?=$prefix.(($request['lock']=='true')?'collapse.png':'expand.png');?>" title="<?=term('Expand/Collapse Enhanced View',$settings['vocabulary'],$session['units']);?>">
