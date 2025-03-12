@@ -156,12 +156,12 @@ function userBackup(id) {
             del(id+'_lock_saved.json',true);
             readFile(id+'_session.json','read','',id+'_session_data');
             rfs=jsonarr(getItem(id+'_session_data'));
-            setItem(id+'_session_current',parseInt(rf['current']));
-            setItem(id+'_session_melody',dtw(rf['melody'],id,rf['numeric']));
+            setItem(id+'_session_current',parseInt(rfs['current']));
+            setItem(id+'_session_melody',dtw(rfs['melody'],id,rfs['numeric']));
             readFile(id+'_lock.json','read','',id+'_lock_data');
             rfl=jsonarr(getItem(id+'_lock_data'));
             for (iu in rfl) {
-                setItem(id+'_lock_'+iu,rf[iu]);
+                setItem(id+'_lock_'+iu,rfl[iu]);
                 setlock(iu,getItem(id+'_lock_'+iu));
             } omniListen(getItem(id+'_session_melody'),false,getItem(id+'_session_current'));
         } else {
@@ -169,12 +169,12 @@ function userBackup(id) {
             copy(id+'_lock.json',id+'_lock_saved.json',true,1);
             readFile(id+'_session_saved.json','read','',id+'_session_data');
             rfs=jsonarr(getItem(id+'_session_data'));
-            setItem(id+'_session_current',parseInt(rf['current']));
-            setItem(id+'_session_melody',dtw(rf['melody'],id,rf['numeric']));
+            setItem(id+'_session_current',parseInt(rfs['current']));
+            setItem(id+'_session_melody',dtw(rfs['melody'],id,rfs['numeric']));
             readFile(id+'_lock_saved.json','read','',id+'_lock_data');
             rfl=jsonarr(getItem(id+'_lock_data'));
-            for (iu in rf) {
-                setItem(id+'_lock_'+iu,rf[iu]);
+            for (iu in rfl) {
+                setItem(id+'_lock_'+iu,rfl[iu]);
             }
         }
     }
