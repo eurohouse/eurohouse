@@ -138,8 +138,7 @@ function storeHours(id) {
     return pager(sysDefHoursActive.value,userNum);
 }
 function isInBackup(id) {
-    var rfs=rfl={};
-    with(localStorage) {
+    var rfs=rfl={}; with(localStorage) {
         readFile(id+'_session_saved.json','read','',id+'_session_data');
         rfs=jsonarr(getItem(id+'_session_data'));
         readFile(id+'_lock_saved.json','read','',id+'_lock_data');
@@ -147,34 +146,26 @@ function isInBackup(id) {
     } return ((rfs!==null)&&(rfl!==null)&&(Object.keys(rfs).length>0)&&(Object.keys(rfl).length>0));
 }
 function userBackup(id) {
-    var rfs=rfl={};
-    with(localStorage) {
+    var rfs=rfl={}; with(localStorage) {
         if (isInBackup(id)) {
             copy(id+'_session_saved.json',id+'_session.json',true,1);
             copy(id+'_lock_saved.json',id+'_lock.json',true,1);
-            del(id+'_session_saved.json',true);
-            del(id+'_lock_saved.json',true);
+            del(id+'_session_saved.json',true); del(id+'_lock_saved.json',true);
             readFile(id+'_session.json','read','',id+'_session_data');
-            rfs=jsonarr(getItem(id+'_session_data'));
-            for (iu in rfs) {
-                setItem(id+'_session_'+iu,rfs[iu]);
-                setdata(iu,getItem(id+'_session_'+iu));
+            rfs=jsonarr(getItem(id+'_session_data')); for (iu in rfs) {
+                setItem(id+'_session_'+iu,rfs[iu]); setdata(iu,getItem(id+'_session_'+iu));
             } readFile(id+'_lock.json','read','',id+'_lock_data');
-            rfl=jsonarr(getItem(id+'_lock_data'));
-            for (iu in rfl) {
-                setItem(id+'_lock_'+iu,rfl[iu]);
-                setlock(iu,getItem(id+'_lock_'+iu));
+            rfl=jsonarr(getItem(id+'_lock_data')); for (iu in rfl) {
+                setItem(id+'_lock_'+iu,rfl[iu]); setlock(iu,getItem(id+'_lock_'+iu));
             } omniListen(dtw(getItem(id+'_session_melody'),id,getItem(id+'_session_numeric')),false,parseInt(getItem(id+'_session_current')));
         } else {
             copy(id+'_session.json',id+'_session_saved.json',true,1);
             copy(id+'_lock.json',id+'_lock_saved.json',true,1);
             readFile(id+'_session_saved.json','read','',id+'_session_data');
-            rfs=jsonarr(getItem(id+'_session_data'));
-            for (iu in rfs) {
+            rfs=jsonarr(getItem(id+'_session_data')); for (iu in rfs) {
                 setItem(id+'_session_'+iu,rfs[iu]);
             } readFile(id+'_lock_saved.json','read','',id+'_lock_data');
-            rfl=jsonarr(getItem(id+'_lock_data'));
-            for (iu in rfl) {
+            rfl=jsonarr(getItem(id+'_lock_data')); for (iu in rfl) {
                 setItem(id+'_lock_'+iu,rfl[iu]);
             }
         }
@@ -618,37 +609,31 @@ function buy_item(bye,art,sel) {
             if ((tabS[art]!==undefined)&&(typeof(tabS[art])=='object')) {
                 if ((isInt(tabS[art]['price']))&&(!isInt(art))) {
                     // Buy any product for certain price
-                    prix=parseInt(tabS[art]['price']);
-                    if (obj[bye]>=prix) {
-                        fixPrice(bye,sel,art,prix);
-                        amounts(tabS,tabB,art);
+                    prix=parseInt(tabS[art]['price']); if (obj[bye]>=prix) {
+                        fixPrice(bye,sel,art,prix); amounts(tabS,tabB,art);
                         set('./.store/'+sel+'_store.json',encodeURIComponent(JSON.stringify(tabS)),true); set('./.store/'+bye+'_store.json',encodeURIComponent(JSON.stringify(tabB)),true); if ((tabS[art]['password']!==undefined)&&(tabS[art]['type']=='account')) {
-                            pass=tabS[art]['password'];
                             copy(sel+'_session.json.bak',bye+'_session.json.bak',true,1);
                             copy(sel+'_session.json',bye+'_session.json',true,1);
-                            change(bye,bye,pass,true);
-                            omniAuthRequest('signin',bye,pass);
+                            copy(sel+'_lock.json.bak',bye+'_lock.json.bak',true,1);
+                            copy(sel+'_lock.json',bye+'_lock.json',true,1);
+                            change(bye,bye,tabS[art]['password'],true);
+                            omniAuthRequest('signin',bye,tabS[art]['password']);
                         } else if ((tabS[art]['password']!==undefined)&&(tabS[art]['type']=='password')) {
-                            pass=tabS[art]['password'];
-                            change(sel,sel,pass,true);
-                            omniAuthRequest('signin',sel,pass);
+                            change(sel,sel,tabS[art]['password'],true);
+                            omniAuthRequest('signin',sel,tabS[art]['password']);
                         }
                     }
                 } else if ((!isInt(tabS[art]['price']))&&(!isInt(art))&&(tabB[tabS[art]['price']]!==undefined)&&(typeof(tabB[tabS[art]['price']])=='object')) {
                     // Exchange goods with other users
-                    prix=tabS[art]['price'];
-                    fixPrice(bye,sel,art,prix);
-                    amounts(tabB,tabS,prix);
-                    amounts(tabS,tabB,art);
-                    set('./.store/'+sel+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
-                    set('./.store/'+bye+'_store.json', encodeURIComponent(JSON.stringify(tabB)), true);
+                    prix=tabS[art]['price']; fixPrice(bye,sel,art,prix);
+                    amounts(tabB,tabS,prix); amounts(tabS,tabB,art);
+                    set('./.store/'+sel+'_store.json',encodeURIComponent(JSON.stringify(tabS)),true);
+                    set('./.store/'+bye+'_store.json',encodeURIComponent(JSON.stringify(tabB)),true);
                 } else if ((!isInt(tabS[art]['price']))&&(tabS[art]['price']=='')) {
                     // Get certain amount of money or good from user as a gift
-                    prix=tabS[art]['price'];
-                    fixPrice(bye,sel,art,prix);
-                    amounts(tabS,tabB,art);
-                    set('./.store/'+sel+'_store.json', encodeURIComponent(JSON.stringify(tabS)), true);
-                    set('./.store/'+bye+'_store.json', encodeURIComponent(JSON.stringify(tabB)), true);
+                    prix=tabS[art]['price']; fixPrice(bye,sel,art,prix); amounts(tabS,tabB,art);
+                    set('./.store/'+sel+'_store.json',encodeURIComponent(JSON.stringify(tabS)),true);
+                    set('./.store/'+bye+'_store.json',encodeURIComponent(JSON.stringify(tabB)),true);
                 }
             }
         }
