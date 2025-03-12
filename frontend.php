@@ -152,7 +152,8 @@ function userBackup(id) {
         if (isInBackup(id)) {
             copy(id+'_session_saved.json',id+'_session.json',true,1);
             copy(id+'_lock_saved.json',id+'_lock.json',true,1);
-            del(id+'_session_saved.json'); del(id+'_lock_saved.json');
+            del(id+'_session_saved.json',true);
+            del(id+'_lock_saved.json',true);
             readFile(id+'_session.json','read','',id+'_session_data');
             rfs=jsonarr(getItem(id+'_session_data'));
             setItem(id+'_session_current',parseInt(rf['current']));
