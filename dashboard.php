@@ -98,7 +98,8 @@
     <input type='button' id="showUsInfoPower" style="width:34%;" value="<?=intval($powersData[$sessionID]);?>">
     <input type="image" onmouseover="soundButton();" id="buttonBroke" class="power" onclick="var uli=(sysDefUsersList.value).split(','),bdi=arrjob(sysDefBindData.value,';',':'); delete uli[sysDefSessionID.value]; if (bdi[sysDefSessionID.value]!=sysDefSessionID.value) { unbind(sysDefSessionID.value); } else { bind(sysDefSessionID.value,uli[rand(0,(uli.length-1))]); }" src="<?=$prefix.'chain.png';?>" title="<?=term('Bind/Unbind Another User',$settings['vocabulary'],$session['units']);?>">
     <input type="image" onmouseover="soundButton();" id="buttonReticle" class="power" onclick="dominate(sysDefSessionID.value,arrjob(sysDefBindData.value,';',':')[sysDefSessionID.value],arrjob(sysDefToolData.value,';',':')[sysDefSessionID.value]); playAudio(hitPlayer,sysDefHitSound.value);" src="<?=$reticlePrefix.$session['reticle'].'.png';?>" title="<?=term('Hit Another User',$settings['vocabulary'],$session['units']);?>">
-    <input type='button' id="showUsInfoBond" style="width:26%;" value="<?=$sessionID;?>"><input type="image" onmouseover="soundButton();" id="buttonSpectate" class="power" onclick="setdata('spectate',flip(sysDefSpectate.value));" src="<?=$prefix.'camera.png';?>" title="<?=term('Spectate Mode',$settings['vocabulary'],$session['units']);?>">
+    <input type='button' id="showUsInfoBond" style="width:26%;" onclick="clip(sysDefSessionID.value);" value="<?=$sessionID;?>">
+    <input type="image" onmouseover="soundButton();" id="buttonSpectate" class="power" onclick="setdata('spectate',flip(sysDefSpectate.value));" src="<?=$prefix.'camera.png';?>" title="<?=term('Spectate Mode',$settings['vocabulary'],$session['units']);?>">
     </p>
 </div>
 <div class='topBarItem'>
