@@ -58,10 +58,14 @@ function readFile(name,opt='read',path='',store='user_content') {
         success: function(result) {
             if (opt=='read') {
                 var arr=jsonarr(result),ob; if (path!='') {
-                    if (path.includes('/')) { ob=arr;
-                        for (chk in path.split('/')) { ob=ob[path.split('/')[chk]]; }
-                    } else { ob=arr[path]; }} else { ob=arr; }
-                if (typeof(ob)=='object') { localStorage.setItem(store,JSON.stringify(ob));
+                    if (path.includes('/')) {
+                        ob=arr; for (chk in path.split('/')) {
+                            ob=ob[path.split('/')[chk]];
+                        }
+                    } else { ob=arr[path]; }
+                } else { ob=arr; }
+                if (typeof(ob)=='object') {
+                    localStorage.setItem(store,JSON.stringify(ob));
                 } else { localStorage.setItem(store,ob); }
             } else { localStorage.setItem(store,result); }
         }

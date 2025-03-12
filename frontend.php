@@ -59,26 +59,21 @@ function setdata(ent,val) {
     }
 }
 function superuser() {
-    /* CHECKS IF CURRENT USER IS A SUPERUSER AND IS AUTHORIZED AS SUCH */
     return ((sysDefIsSession.value!=false)&&(sysDefSessionID.value=='root'));
 }
 function authstate() {
-    /* JUST CHECK IF THE APP SESSION IS AUTHORIZED WITH USER ACCOUNT */
     return (sysDefIsSession.value!=false);
 }
 function trigUserDel() {
-    /* SETS CURRENT USER SCORE VALUE TO -666 TO TRIGGER ITS DELETION */
     var dp=arrjob(sysDefPowersData.value,';',':');
     dp[sysDefSessionID.value]=-666;
     set('dominion.json',JSON.stringify(dp),true);
     sysDefPowersData.value=arrpack(dp,';',':');
 }
 function lockarr(ind) {
-    /* GET ELEMENTS LOCKED AND ENCAPSULATED FOR ACCOUNT */
     return Object.values(jsonarr(sysDefLockData.value)[ind]);
 }
 function lockcount(ind) {
-    /* COUNT ELEMENTS LOCKED AND ENCAPSULATED FOR ACCOUNT */
     return Object.keys(jsonarr(sysDefLockData.value)[ind]).length;
 }
 function metadata() { return jsonarr(sysDefMetaData.value); }
@@ -91,85 +86,93 @@ function delmeta(ent) {
     set(sysDefSessionID.value+'_metadata.json',JSON.stringify(obj),true);
 }
 function clearJournal(num,obj,name,anyFile=false) {
-    /* CLEAR ANY VALUE INSIDE JSON DATA FILE */
     var msgarr={}; if (typeof(obj)=='object') {
         msgarr=jsonarr(obj.value);
     } else { msgarr=jsonarr(obj); }
     var nur,ras,las=Object.keys(msgarr).length-1;
     if (isInt(num)) {
         nur=Math.abs(num),ras=(las-nur); if (num<0) {
-            /* DELETE ENTRIES FROM START */ for (i=0; i<nur; i++) {
-                if (msgarr[Object.keys(msgarr)[0]]!==undefined) { delete msgarr[Object.keys(msgarr)[0]]; }
+            for (i=0; i<nur; i++) {
+                if (msgarr[Object.keys(msgarr)[0]]!==undefined) {
+                    delete msgarr[Object.keys(msgarr)[0]];
+                }
             }
         } else {
-            /* DELETE ENTRIES FROM END */ for (i=las; i>ras; i--) {
-                if (msgarr[Object.keys(msgarr)[i]]!==undefined) { delete msgarr[Object.keys(msgarr)[i]]; }
+            for (i=las; i>ras; i--) {
+                if (msgarr[Object.keys(msgarr)[i]]!==undefined) {
+                    delete msgarr[Object.keys(msgarr)[i]];
+                }
             }
         }
-    } else { /* DELETE MESSAGE BY ITS KEY IN MESSAGE ARRAY */
+    } else {
         if (msgarr[num]!==undefined) { delete msgarr[num]; }
     } if (anyFile) {
         set('./'+name+'.json',encodeURIComponent(JSON.stringify(msgarr)),true);
-    } else { set('./.'+name+'/'+sysDefSessionID.value+'_'+name+'.json',encodeURIComponent(JSON.stringify(msgarr)),true); }
+    } else {
+        set('./.'+name+'/'+sysDefSessionID.value+'_'+name+'.json',encodeURIComponent(JSON.stringify(msgarr)),true);
+    }
 }
 function openJournal(id,usersObj,dataObj) {
-    /* OPEN ANY USER DATA JOURNAL */
     var userArr=(usersObj.value).split(',');
     var userNum=arraySearch(id,userArr);
     return pager((dataObj.value),userNum);
 }
 function storeOpen(id) {
-    /* IS ANOTHER USER STORE/INVENTORY OPEN */
     var userArr=(sysDefUsersList.value).split(',');
     var userNum=arraySearch(id,userArr);
     var hours=storeHours(id).split(',');
     return (hours.includes(userTimeNow(id)));
 }
 function userTimeNow(id) {
-    /* WHAT TIME IS IT IN ANOTHER USER ACCOUNT */
     var userArr=(sysDefUsersList.value).split(',');
     var userNum=arraySearch(id,userArr);
     return (sysDefHoursNow.value).split(' ')[userNum];
 }
 function getUserAvatar(id) {
-    /* WHAT AVATAR OTHER USER GOT */
     var avaArr=arrjob(sysDefAvatarsNow.value,';',':');
     return (avaArr[id]!==undefined)?avaArr[id]:'NULL';
 }
 function storeHours(id) {
-    /* GET ACTIVE HOURS OF ANOTHER USER */
     var userArr=(sysDefUsersList.value).split(',');
     var userNum=arraySearch(id,userArr);
     return pager(sysDefHoursActive.value,userNum);
 }
 function isInBackup(id) {
-    return (localStorage.getItem(id+'_backed_up')!=0);
+    var rfs=rfl={};
+    with(localStorage) {
+        readFile(id+'_session_saved.json','read','',id+'_session_data');
+        rfs=jsonarr(getItem(id+'_session_data'));
+        readFile(id+'_lock_saved.json','read','',id+'_lock_data');
+        rfl=jsonarr(getItem(id+'_lock_data'));
+    } return ((rfs!==null)&&(rfl!==null)&&(Object.keys(rfs).length>0)&&(Object.keys(rfl).length>0));
 }
 function userBackup(id) {
+    var rfs=rfl={};
     with(localStorage) {
-        var rf={}; if (isInBackup(id)) {
-            setItem(id+'_backed_up',0);
+        if (isInBackup(id)) {
             copy(id+'_session_saved.json',id+'_session.json',true,1);
             copy(id+'_lock_saved.json',id+'_lock.json',true,1);
+            del(id+'_session_saved.json'); del(id+'_lock_saved.json');
             readFile(id+'_session.json','read','',id+'_session_data');
-            rf=jsonarr(getItem(id+'_session_data'));
+            rfs=jsonarr(getItem(id+'_session_data'));
             setItem(id+'_session_current',parseInt(rf['current']));
             setItem(id+'_session_melody',dtw(rf['melody'],id,rf['numeric']));
             readFile(id+'_lock.json','read','',id+'_lock_data');
-            rf=jsonarr(getItem(id+'_lock_data')); for (iu in rf) {
+            rfl=jsonarr(getItem(id+'_lock_data'));
+            for (iu in rfl) {
                 setItem(id+'_lock_'+iu,rf[iu]);
                 setlock(iu,getItem(id+'_lock_'+iu));
             } omniListen(getItem(id+'_session_melody'),false,getItem(id+'_session_current'));
         } else {
-            setItem(id+'_backed_up',1);
             copy(id+'_session.json',id+'_session_saved.json',true,1);
             copy(id+'_lock.json',id+'_lock_saved.json',true,1);
             readFile(id+'_session_saved.json','read','',id+'_session_data');
-            rf=jsonarr(getItem(id+'_session_data'));
+            rfs=jsonarr(getItem(id+'_session_data'));
             setItem(id+'_session_current',parseInt(rf['current']));
             setItem(id+'_session_melody',dtw(rf['melody'],id,rf['numeric']));
             readFile(id+'_lock_saved.json','read','',id+'_lock_data');
-            rf=jsonarr(getItem(id+'_lock_data')); for (iu in rf) {
+            rfl=jsonarr(getItem(id+'_lock_data'));
+            for (iu in rf) {
                 setItem(id+'_lock_'+iu,rf[iu]);
             }
         }
@@ -227,7 +230,6 @@ function rename_user(username,password) {
     }
 }
 function init_user(id,pass='',args='',helper=false) {
-    /* INITIALIZE NEW USER */
     var bd=arrjob(sysDefBindData.value,';',':');
     var pd=arrjob(sysDefPowersData.value,';',':');
     var ad=arrjob(sysDefAutoData.value,';',':');
