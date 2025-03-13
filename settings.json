@@ -177,7 +177,8 @@
             "https://github.com/infofintech/snake",
             "https://github.com/infofintech/tetris",
             "https://github.com/infofintech/pacman",
-            "https://github.com/infofintech/mario"
+            "https://github.com/infofintech/mario",
+            "https://github.com/infofintech/pong"
         ],
         "logical": [
             "https://github.com/infofintech/chess",
