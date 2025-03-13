@@ -2,7 +2,7 @@
     "lifetime": { "cookie_default": 0, "cookie_lengthen": 86400, "garbage_collector": 604800 },
     "intervals": { "databox": 1000, "world_clock": 1000, "visual_effects": 300, "wallpaper_engine": 1000, "active_hours": 1000, "mailing_list": 1000, "bookkeep_list": 1000, "store_list": 1000, "automator": 250 },
     "viewport": { "width": "device-width", "initial-scale": "1.0", "maximum-scale": "1.0", "user-scalable": "0" },
-    "locks": { "background": "baron,cappuccino,epoque,mascarpone", "avatar": "avatar", "music": "botticelli,orchestra", "font": "unix", "sound": "unix" },
+    "locks": { "background": "!metro,distro,osx,xp", "avatar": "avatar", "music": "botticelli,orchestra", "font": "unix", "sound": "unix" },
     "libraries": {
         "domestic": [ "backend.js","frontend.js","tablesort.js", "requests.js","commands.js","jquery.js", "crypto.js","XRegExp.js","statistics.js", "nerdamer.js","algebra.js","calculus.js","solve.js" ],
         "foreign": [ "https://www.midijs.net/lib/midi.js" ]
@@ -170,6 +170,25 @@
         }
     },
     "angles": [ 0, 90, 180, 270 ],
+    "get_games": {
+        "arcade": [
+            "https://github.com/infofintech/breakout",
+            "https://github.com/infofintech/bomberman",
+            "https://github.com/infofintech/snake",
+            "https://github.com/infofintech/tetris",
+            "https://github.com/infofintech/pacman",
+            "https://github.com/infofintech/mario"
+        ],
+        "logical": [
+            "https://github.com/infofintech/chess",
+            "https://github.com/infofintech/monopoly"
+        ],
+        "gambling": [
+            "https://github.com/infofintech/aisleriot",
+            "https://github.com/infofintech/dice",
+            "https://github.com/infofintech/pool"
+        ]
+    },
     "payload": {
         "backward": [
             "https://github.com/infofintech/system",

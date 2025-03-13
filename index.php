@@ -36,6 +36,9 @@
         <?php }
         foreach ($updateChannel as $key=>$value) { ?>
             <input type='hidden' id='<?='updateChannel'.md5($key);?>' value="<?=$value;?>">
+        <?php }
+        foreach ($gamesChannel as $key=>$value) { ?>
+            <input type='hidden' id='<?='gamesChannel'.md5($key);?>' value="<?=$value;?>">
         <?php } ?>
         <input type='hidden' id='sysDefBackload' value="<?=$backloadString;?>">
         <input type='hidden' id='sysDefPrefix' value="<?=$prefix;?>">
@@ -67,8 +70,15 @@
         <input type='hidden' id="sysDefToolData" value="<?=valstr($toolboxData,';',':');?>">
         <input type='hidden' id="sysDefCallData" value="<?=valstr($callData,';',':');?>">
         <input type='hidden' id="sysDefMetaData" value="<?=json_encode($metadata,JSON_UNESCAPED_UNICODE);?>"><input type='hidden' id="sysDefMetaList" value="<?=implode(' | ',array_keys($metadata));?>">
-        <input type='hidden' id="sysDefTutorData" value="<?=json_encode($tutorial,JSON_UNESCAPED_UNICODE);?>"><input type='hidden' id="sysDefTutorList" value="<?=implode(' | ',array_keys($tutorial));?>">
-        <input type='hidden' id="sysDefNewsData" value="<?=json_encode($newsData,JSON_UNESCAPED_UNICODE);?>"><input type='hidden' id="sysDefBookKeep" value=""><input type='hidden' id="sysDefMsgData" value=""><input type='hidden' id="sysDefUserStore" value=""><input type='hidden' id="sysDefMsgCounter" value="0"><input type='hidden' id="sysDefCodexBox" value="<?=implode('//',(str_replace('./','',(glob('./*.mac')))));?>"><input type='hidden' id="sysDefSpeechBox" value="<?=implode('//',(str_replace('./','',(glob('./*.pro')))));?>">
+        <input type='hidden' id="sysDefTutorData" value="<?=json_encode($tutorial,JSON_UNESCAPED_UNICODE);?>">
+        <input type='hidden' id="sysDefTutorList" value="<?=implode(' | ',array_keys($tutorial));?>">
+        <input type='hidden' id="sysDefNewsData" value="<?=json_encode($newsData,JSON_UNESCAPED_UNICODE);?>">
+        <input type='hidden' id="sysDefBookKeep" value="">
+        <input type='hidden' id="sysDefMsgData" value="">
+        <input type='hidden' id="sysDefUserStore" value="">
+        <input type='hidden' id="sysDefMsgCounter" value="0">
+        <input type='hidden' id="sysDefCodexBox" value="<?=implode('//',(str_replace('./','',(glob('./*.mac')))));?>">
+        <input type='hidden' id="sysDefSpeechBox" value="<?=implode('//',(str_replace('./','',(glob('./*.pro')))));?>">
         <input type='hidden' id="sysDefPostBindData" value="<?=valstr($bindData,';',':');?>">
         <input type='hidden' id="sysDefPostPowersData" value="<?=valstr($powersData,';',':');?>">
         <input type='hidden' id="sysDefPostToolData" value="<?=valstr($toolboxData,';',':');?>">

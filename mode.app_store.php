@@ -2,7 +2,7 @@
 <!-- CH: Emporium Programmata; FR: Boutique de logiciels; BE: Boutique de logiciels; RO: Magazin de software; MD: Magazin de software; BR: Loja de software; PT: Loja de software; LK: सॉफ्टवेयर स्टोर; IN: सॉफ्टवेयर स्टोर; TR: Yazılım Mağazası; ES: Tienda de software; MX: Tienda de software; IT: Negozio di software; DE: Softwaremarkt; AT: Softwaremarkt; GR: Εμπορείο λογισμικού; CY: Εμπορείο λογισμικού; RU: Магазин приложений; UA: Магазин додатків; CN: 应用商店; KR: 앱스토어; JP: アプリストア; AE: متجر التطبيقات -->
 <?php $line1Size=64; foreach ($settings['payload'] as $key=>$val) { ?>
 <p align='center' class='block'>
-    <a href="javascript:getPkgSequence('get -i '+updateChannel<?=md5($key);?>.value, 'get ', 0);"><?=$key;?></a><br>
+    <a href="javascript:getPkgSequence('get -i '+updateChannel<?=md5($key);?>.value,'get ',0);"><?=$key;?></a><br>
     <?php foreach ($val as $ch) {
         $pkgID=explode('/',$ch)[count(explode('/',$ch))-1]; ?>
         <input type="button" name="<?=$ch;?>" value="<?=$ch;?>" style="width:<?=$line1Size;?>%;" onmouseover="soundButton();" onclick="clip(this.name);">
