@@ -43,15 +43,7 @@ if ($request['group']!='') {
 </table>
 <?php
 } else {
-    foreach ($contentsArr as $key=>$value) {
-        if (!in_array(explode('.',$key)[0],explode(',',$userLocks['background']))) {
-            unset($contentsArr[$key]);
-        }
-    } foreach ($exemplarArr as $key=>$value) {
-        if (!in_array($key,$contentsArr)) {
-            unset($exemplarArr[$key]);
-        }
-    } foreach ($exemplarArr as $key=>$value) {
+    foreach ($exemplarArr as $key=>$value) {
         if ($session['censor']!=0) {
             if (isset($value['nsfw'])) { unset($exemplarArr[$key]); }
         } else {
