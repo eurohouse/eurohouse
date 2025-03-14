@@ -37,9 +37,8 @@ function executeMacros(input) {
             output=input+': '+lockdata()[input.replace('lock_','')];
         } else if ((input=='melody')) {
             output=input+': '+dtw(userdata()[input],ss,nm);
-        } else if ((input=='up_next')) { rep=userdata()[input].split(' | '),san=[];
-            for (iu in rep) { san.push(dtw(rep[iu],ss,nm)); }
-            output=input+': '+san.join(' | ');
+        } else if ((input=='up_next')) {
+            output=input+': '+decipher(userdata()[input],ss,nm);
         } else { output=input+': '+userdata()[input]; }
     } return output;
 }

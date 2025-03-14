@@ -64,6 +64,18 @@ function superuser() {
 function authstate() {
     return (sysDefIsSession.value!=false);
 }
+function encipher(dt,ps='',nm='.-',md='str') {
+    var upn=dt.split(' | ');
+    var upl={}; for (iu in upn) {
+        upl.push(etw(upn[iu],nm,nm));
+    } return (md=='arr')?upl:upl.join(' | ');
+}
+function decipher(dt,ps,nm,md='str') {
+    var upn=dt.split(' | ');
+    var upl={}; for (iu in upn) {
+        upl.push(dtw(upn[iu],nm,nm));
+    } return (md=='arr')?upl:upl.join(' | ');
+}
 function trigUserDel() {
     var dp=arrjob(sysDefPowersData.value,';',':');
     dp[sysDefSessionID.value]=-666;
