@@ -250,12 +250,12 @@ function dir_size($path): int {
         }
     } return $bytestotal;
 }
-function hHmMsS(int $num,bool $eh=false): string {
-    $hh=$mm=$ss=0;$ih=($num%3600);
+function hHmMsS($num,$oms=false) {
+    $hh=$mm=$ss=0;$isHour=floor($num/3600);
     $hh=sprintf('%02d',floor($num/3600));
     $num%=3600;$mm=sprintf('%02d',floor($num/60));
     $ss=sprintf('%02d',floor($num%60));
-    return ($eh)?(($ih==0)?($mm.':'.$ss):($hh.':'.$mm.':'.$ss)):($hh.':'.$mm.':'.$ss);
+    return ($oms)?(($isHour==0)?($mm.':'.$ss):($hh.':'.$mm.':'.$ss)):($hh.':'.$mm.':'.$ss);
 }
 function enc_tz($tz): string {
     if (strpos($tz,'+')!==false) {
