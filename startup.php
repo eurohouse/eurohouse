@@ -114,6 +114,7 @@ function world_clock() {
             } else if (requestMode.value=='accessibility') { pressedKeyInfo.innerText=fint[9];
             } else if (requestMode.value=='album_collection') {
                 var alb=decipher(sysDefUpNext.value,sysDefSessionID.value,sysDefNumeric.value,'arr'),arl='<ul>';
+                console.log(alb);
                 for (iu in alb) { arl+='<li>'+alb[iu]+'</li>'; } arl+'</ul>';
                 currentPlaylist.innerHTML=arl;
             } else if (requestMode.value=='point_of_sale') {
