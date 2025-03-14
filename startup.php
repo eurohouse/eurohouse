@@ -115,7 +115,7 @@ function world_clock() {
             } else if (requestMode.value=='album_collection') {
                 var alb=decipher(sysDefUpNext.value,sysDefSessionID.value,sysDefNumeric.value,'arr'),arl='<ul>';
                 for (iu in alb) { arl+='<li>'+alb[iu]+'</li>'; } arl+'</ul>';
-                currentPlaylist.innerText=arl;
+                currentPlaylist.innerHTML=arl;
             } else if (requestMode.value=='point_of_sale') {
                 var stoInf="<p align='center'>"+fint[6]+"</p><p align='center'>"+fint[7]+"</p><p align='center'>"+activeHrsBtn(bndm)+"</p>";
                 var stoDop='<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+fint[3]+'</th><th style="width:7%;">'+fint[4]+'</th><th style="width:3%;">'+fint[5]+'</th></thead><tbody>'+jsonStore(bndm)+'</tbody></table>';
