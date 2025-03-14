@@ -66,13 +66,13 @@ function authstate() {
 }
 function encipher(dt,ps='',nm='.-',md='str') {
     var upn=dt.split(' | ');
-    var upl={}; for (iu in upn) {
+    var upl=[]; for (iu in upn) {
         upl.push(etw(upn[iu],nm,nm));
     } return (md=='arr')?upl:upl.join(' | ');
 }
 function decipher(dt,ps,nm,md='str') {
     var upn=dt.split(' | ');
-    var upl={}; for (iu in upn) {
+    var upl=[]; for (iu in upn) {
         upl.push(dtw(upn[iu],nm,nm));
     } return (md=='arr')?upl:upl.join(' | ');
 }
