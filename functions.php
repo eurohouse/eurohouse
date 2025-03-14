@@ -29,6 +29,9 @@ function withReq($name) {
         $res=explode('?',$name)[0];
     } else { $res=$name; } return $res;
 }
+function isInBackup($id) {
+    return ((file_exists($id.'_session_saved.json'))&&(file_exists($id.'_lock_saved.json')));
+}
 function browserName($ua) {
     if (preg_match('/opera|opr/i',$ua)) return 'Opera';
     elseif (preg_match('/edge/i',$ua)) return 'Edge';
