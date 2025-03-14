@@ -113,10 +113,10 @@ function world_clock() {
                 bookkeep_disp.innerHTML='<table style="width:100%;position:relative;"><thead><th style="width:25%;">'+fint[8]+'</th><th style="width:25%;">'+fint[0]+'</th><th style="width:25%;">'+fint[1]+'</th><th style="width:25%;">'+fint[2]+'</th></thead><tbody>'+jsonBookKeep(sysDefBookKeep.value)+'</tbody></table>';
             } else if (requestMode.value=='accessibility') { pressedKeyInfo.innerText=fint[9];
             } else if (requestMode.value=='album_collection') {
-                var upn=decipher(sysDefUpNext.value,sysDefSessionID.value,sysDefNumeric.value,'arr'),arl='<ul>';
+                var upn=decipher(sysDefUpNext.value,sysDefSessionID.value,sysDefNumeric.value,'arr'),arl='<ul style="columns:2;-webkit-columns:2;-moz-columns:2;">';
                 for (iu in upn) { arl+='<li>'+upn[iu]+'</li>'; }
                 arl+'</ul>'; currentPlaylist.innerHTML=arl;
-                var alb=lockarr(sysDefAlbum.value),arl='<ol>';
+                var alb=lockarr(sysDefAlbum.value),arl='<ol style="columns:2;-webkit-columns:2;-moz-columns:2;">';
                 for (iu in alb) { arl+='<li>'+alb[iu]+'</li>'; }
                 arl+'</ol>'; currentAlbumList.innerHTML=arl;
             } else if (requestMode.value=='point_of_sale') {
