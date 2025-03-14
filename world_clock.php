@@ -13,7 +13,7 @@ $dateTimeStr=($userData['timedisp']!=0)?date($userData['date_format']):date($use
 $voc=$userSettings['vocabulary'];$uni=$userData['units'];
 /* ¶ 0 */ echo $dateTimeStr."\r\n\r\n".
 /* ¶ 1 */ $ongo.$inco.date('w')." ".$userData['observe'].$userData['spectate']." ".rgbap($userData['back_color'],$userData['opacity'])."\r\n\r\n".
-/* ¶ 2 */ hHmMsS($alarmInTime)."\r\n\r\n".
+/* ¶ 2 */ hHmMsS($alarmInTime,true)."\r\n\r\n".
 /* ¶ 3 */ $v00.";".$v01.";".$ol00.";".$ol01.";".$ol10.";".$ol11."\r\n\r\n".
 /* ¶ 4 */ $userData['audio_volume'].' '.$userData['audio_speed'].' '.$userData['video_volume'].' '.$userData['video_speed'].' '.$userData['alarm_volume'].' '.$userData['timer_volume'].' '.$userData['loop_volume'].' '.$userData['rest_volume']."\r\n\r\n".
 /* ¶ 5 */ term('Debit',$voc,$uni).' | '.term('Credit',$voc,$uni).' | '.term('Balance',$voc,$uni).' | '.term('Name',$voc,$uni).' | '.term('Amount',$voc,$uni).' | '.term('Price',$voc,$uni).' | '.term('The market is closed.',$voc,$uni).' | '.term('Active Hours:',$voc,$uni).' | '.term('Agent',$voc,$uni).' | '.term('Press any key to continue...',$voc,$uni).' | '.termCmd($userData['mode'],$userSettings['locale']['cli'],$uni)."\r\n\r\n".
