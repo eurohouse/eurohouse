@@ -242,7 +242,7 @@ function equarr(array $src,array $des) {
         if (!isset($src[$key])) { unset($des[$key]); }
     } return $des;
 }
-function dir_size($path) {
+function dir_size($path): int {
     $bytestotal=0;$path=realpath($path);
     if (($path!==false)&&($path!='')&&file_exists($path)) {
         foreach(new RecursiveIteratorIterator(new RecursiveDirectoryIterator($path, FilesystemIterator::UNIX_PATHS)) as $object) {
@@ -250,8 +250,12 @@ function dir_size($path) {
         }
     } return $bytestotal;
 }
-function hHmMsS(int $num): string {
-    return sprintf('%02d:%02d:%02d',(round($num)/3600),(round($num)/60%60),round($num)%60);
+function hHmMsS(int $num,bool $eh=false): string {
+    $hh=$mm=$ss=0;$ih=($num%3600);
+    $hh=sprintf('%02d',floor($num/3600));
+    $num%=3600;$mm=sprintf('%02d',floor($num/60));
+    $ss=sprintf('%02d',floor($num%60));
+    return ($eh)?(($ih==0)?($mm.':'.$ss):($hh.':'.$mm.':'.$ss)):($hh.':'.$mm.':'.$ss);
 }
 function enc_tz($tz): string {
     if (strpos($tz,'+')!==false) {

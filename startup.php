@@ -60,8 +60,7 @@ function world_clock() {
         success: function(data) {
             $('#currentTime').val(pager(data,0));
             var enzi=pager(data,1).split(' ');
-            $('#alarmTime').val((pager(data,2)!='00:00:00')?pager(data, 2):hhMmSs(audioPlayer.currentTime));
-            var effi=pager(data,3).split(';');
+            $('#alarmTime').val((pager(data,2)!='00:00:00')?pager(data,2):hhMmSs(audioPlayer.currentTime,true)); var effi=pager(data,3).split(';');
             var mixers=pager(data,4).split(' ');
             var bndm=arrjob(sysDefBindData.value,';',':')[sysDefSessionID.value],fint=pager(data,5).split(' | '); if (authstate()) {
                 $('#buttonBackup').attr('src',sysDefPrefix.value+((isInBackup(sysDefSessionID.value))?'open.png':'save.png'));
