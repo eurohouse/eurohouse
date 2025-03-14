@@ -114,7 +114,7 @@ function world_clock() {
             } else if (requestMode.value=='accessibility') { pressedKeyInfo.innerText=fint[9];
             } else if (requestMode.value=='album_collection') {
                 var upn=decipher(sysDefUpNext.value,sysDefSessionID.value,sysDefNumeric.value,'arr'),arl='<ul>';
-                for (iu in upn) { arl+='<li>'+alb[iu]+'</li>'; }
+                for (iu in upn) { arl+='<li>'+upn[iu]+'</li>'; }
                 arl+'</ul>'; currentPlaylist.innerHTML=arl;
                 var alb=lockarr(sysDefAlbum.value),arl='<ol>';
                 for (iu in alb) { arl+='<li>'+alb[iu]+'</li>'; }
