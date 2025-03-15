@@ -92,7 +92,8 @@ function lockarr(ind) {
 }
 function lockcount(ind) {
     var ob=((jsonarr(sysDefLockData.value)!==undefined)&&(jsonarr(sysDefLockData.value)!==null))?jsonarr(sysDefLockData.value):{};
-    return (isInt(Object.keys(ob[ind]).length))?(Object.keys(ob[ind]).length):0;
+    var ch=Object.keys(ob[ind]||{});
+    return (isInt(ch.length))?parseInt(ch.length):0;
 }
 function metadata() { return jsonarr(sysDefMetaData.value); }
 function setmeta(ent,val) {
