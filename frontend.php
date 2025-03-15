@@ -87,7 +87,7 @@ function trigUserDel() {
 }
 function lockarr(ind) {
     var ob=((jsonarr(sysDefLockData.value)!==undefined)&&(jsonarr(sysDefLockData.value)!==null))?jsonarr(sysDefLockData.value):{};
-    var ch=Object.values(ob[ind]);
+    var ch=Object.values(ob[ind]||{});
     return ((ch!==undefined)&&(ch!==null))?ch:[];
 }
 function lockcount(ind) {
