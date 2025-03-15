@@ -113,14 +113,14 @@ function world_clock() {
                 bookkeep_disp.innerHTML='<table style="width:100%;position:relative;"><thead><th style="width:25%;">'+fint[8]+'</th><th style="width:25%;">'+fint[0]+'</th><th style="width:25%;">'+fint[1]+'</th><th style="width:25%;">'+fint[2]+'</th></thead><tbody>'+jsonBookKeep(sysDefBookKeep.value)+'</tbody></table>';
             } else if (requestMode.value=='accessibility') { pressedKeyInfo.innerText=fint[9];
             } else if (requestMode.value=='album_collection') {
-                var upn=decipher(sysDefUpNext.value,sysDefSessionID.value,sysDefNumeric.value,'arr'),arl='<ul style="columns:2;-webkit-columns:2;-moz-columns:2;">';
-                for (iu in upn) {
+                var upn=decipher(sysDefUpNext.value,sysDefSessionID.value,sysDefNumeric.value,'arr'),arl='<ul id="albumPlayList">',col=sysDefColumns.value; for (iu in upn) {
                     arl+=(sysDefAlbum.value=='music')?"<li><a href='javascript:omniListen(%22"+upn[iu]+"%22,true);'>"+upn[iu]+"</a></li>":"<li>"+upn[iu]+"</li>";
                 } arl+'</ul>'; currentPlaylist.innerHTML=arl;
-                var alb=lockarr(sysDefAlbum.value),arl='<ol style="columns:2;-webkit-columns:2;-moz-columns:2;">';
-                for (iu in alb) {
+                albumPlayList.setAttribute('style','columns:'+col+';-webkit-columns:'+col+';-moz-columns:'+col+';');
+                var alb=lockarr(sysDefAlbum.value),arl='<ol id="albumCollection">'; for (iu in alb) {
                     arl+=(sysDefAlbum.value=='music')?"<li><a href='javascript:omniListen(%22"+alb[iu]+"%22,true);'>"+alb[iu]+"</a></li>":"<li>"+alb[iu]+"</li>";
                 } arl+'</ol>'; currentAlbumList.innerHTML=arl;
+                albumCollection.setAttribute('style','columns:'+col+';-webkit-columns:'+col+';-moz-columns:'+col+';');
             } else if (requestMode.value=='point_of_sale') {
                 var stoInf="<p align='center'>"+fint[6]+"</p><p align='center'>"+fint[7]+"</p><p align='center'>"+activeHrsBtn(bndm)+"</p>";
                 var stoDop='<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+fint[3]+'</th><th style="width:7%;">'+fint[4]+'</th><th style="width:3%;">'+fint[5]+'</th></thead><tbody>'+jsonStore(bndm)+'</tbody></table>';
