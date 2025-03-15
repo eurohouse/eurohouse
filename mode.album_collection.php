@@ -1,4 +1,4 @@
 <!-- disk -->
 <!-- GR: Συλλογή λευκώματος; DE: Albumsammlung; AT: Albumsammlung; CY: Συλλογή λευκώματος; ES: Colección de álbumes; MX: Colección de álbumes; FR: Collection d'albums; BE: Collection d'albums; TR: Albüm Koleksiyonu; IT: Raccolta di album; RO: Colecția de albume; MD: Colecția de albume; LK: एल्बम संग्रह; IN: एल्बम संग्रह; RU: Коллекция альбомов; RS: Колекција албума; NP: ཆེད་སྒྲིག་ཕྱོགས་བསྒྲིགས།; BR: Coleção de álbuns; PT: Coleção de álbuns; UA: Колекція альбомів; CN: 专辑收藏; KR: 앨범 컬렉션; JP: アルバムコレクション; AE: مجموعة الألبومات -->
-<p align="center" id="currentPlaylist"></p>
-<p align="center" id="currentAlbumList"></p>
+<p id="currentPlaylist"></p>
+<p id="currentAlbumList"></p>
