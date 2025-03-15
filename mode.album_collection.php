@@ -1,4 +1,4 @@
 <!-- disk -->
-<!-- GR: Προσιτότητα; DE: Zugänglichkeit; AT: Zugänglichkeit; CY: Προσιτότητα; CH: Accessibilitas; ES: Accesibilidad; MX: Accesibilidad; FR: Accessibilité; BE: Accessibilité; TR: Erişilebilirlik; IT: Accessibilità; RO: Accesibilitate; MD: Accesibilitate; LK: अभिगम्यता; IN: सरल उपयोग; RU: Специальные возможности; RS: Приступачност; NP: འགྲོ་འོང་ཐུབ་ཚད།; BR: Acessibilidade; PT: Acessibilidade; UA: Доступність; CN: 无障碍设施; KR: 접근성; JP: アクセシビリティ; AE: إمكانية الوصول -->
+<!-- GR: Συλλογή λευκώματος; DE: Albumsammlung; AT: Albumsammlung; CY: Συλλογή λευκώματος; ES: Colección de álbumes; MX: Colección de álbumes; FR: Collection d'albums; BE: Collection d'albums; TR: Albüm Koleksiyonu; IT: Raccolta di album; RO: Colecția de albume; MD: Colecția de albume; LK: एल्बम संग्रह; IN: एल्बम संग्रह; RU: Коллекция альбомов; RS: Колекција албума; NP: ཆེད་སྒྲིག་ཕྱོགས་བསྒྲིགས།; BR: Coleção de álbuns; PT: Coleção de álbuns; UA: Колекція альбомів; CN: 专辑收藏; KR: 앨범 컬렉션; JP: アルバムコレクション; AE: مجموعة الألبومات -->
 <p align="center" id="currentPlaylist"></p>
 <p align="center" id="currentAlbumList"></p>
