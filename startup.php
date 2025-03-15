@@ -114,10 +114,10 @@ function world_clock() {
             } else if (requestMode.value=='accessibility') { pressedKeyInfo.innerText=fint[9];
             } else if (requestMode.value=='album_collection') {
                 var upn=decipher(sysDefUpNext.value,sysDefSessionID.value,sysDefNumeric.value,'arr'),arl='<ul style="columns:2;-webkit-columns:2;-moz-columns:2;">';
-                for (iu in upn) { arl+="<li><a href='javascript:omniListen(%22"+upn[iu]+"%22);'>"+upn[iu]+"</a></li>"; }
+                for (iu in upn) { arl+="<li><a href='javascript:omniListen(%22"+upn[iu]+"%22,true);'>"+upn[iu]+"</a></li>"; }
                 arl+'</ul>'; currentPlaylist.innerHTML=arl;
                 var alb=lockarr(sysDefAlbum.value),arl='<ol style="columns:2;-webkit-columns:2;-moz-columns:2;">';
-                for (iu in alb) { arl+="<li><a href='javascript:omniListen(%22"+alb[iu]+"%22);'>"+alb[iu]+"</a></li>"; }
+                for (iu in alb) { arl+="<li><a href='javascript:omniListen(%22"+alb[iu]+"%22,true);'>"+alb[iu]+"</a></li>"; }
                 arl+'</ol>'; currentAlbumList.innerHTML=arl;
             } else if (requestMode.value=='point_of_sale') {
                 var stoInf="<p align='center'>"+fint[6]+"</p><p align='center'>"+fint[7]+"</p><p align='center'>"+activeHrsBtn(bndm)+"</p>";
