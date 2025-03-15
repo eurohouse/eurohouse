@@ -93,8 +93,8 @@ function world_clock() {
             $('#buttonSearch').attr('src',sysDefPrefix.value+'directory.png');
             $('#buttonKeyboard').attr('src',sysDefPrefix.value+'keyboard.png');
             $('#buttonBackspace').attr('src',sysDefPrefix.value+'backspace.png');
-            $('#buttonLogin').attr('src',sysDefPrefix.value+'user.png');
-            $('#buttonRegister').attr('src',sysDefPrefix.value+'book.png');
+            $('#buttonLogin').attr('src',sysDefPrefix.value+'go.png');
+            $('#buttonRegister').attr('src',sysDefPrefix.value+'plus.png');
             $('#buttonCancelSignin').attr('src',sysDefPrefix.value+'backspace.png');
             $('#buttonTime').attr('src',sysDefPrefix.value+((sysDefTimedisp.value!=0)?((sysDefBenchmark.value!=0)?'note.png':'calendar.png'):((sysDefBenchmark.value!=0)?'speed.png':'time.png')));
             $('#buttonAutoplay').attr('src',sysDefPrefix.value+((sysDefAutoplay.value!=0)?'autopause.png':'autoplay.png'));
@@ -108,7 +108,7 @@ function world_clock() {
             $('#buttonReqLock').attr('src',sysDefPrefix.value+((requestLock.value!='true')?'expand.png':'collapse.png'));
             $('#buttonMaximize').attr('src',sysDefPrefix.value+((sysDefApps.value!=0)?'restore.png':'maximize.png'));
             $('#buttonMenuStyle').attr('src',sysDefPrefix.value+((sysDefIcons.value!=0)?'menu.png':'list.png')); $('#buttonUpdate').attr('src',sysDefPrefix.value+'world.png');
-            $('#buttonUserStatus').attr('src',sysDefPrefix.value+"<?=(isAuth())?'user.png':'anonym.png';?>"); $('#buttonEscape').attr('src',sysDefPrefix.value+'escape.png');
+            $('#buttonUserStatus').attr('src',sysDefPrefix.value+"<?=(isAuth())?'logout.png':'anonym.png';?>"); $('#buttonEscape').attr('src',sysDefPrefix.value+'escape.png');
             if (requestMode.value == 'bookkeeping') {
                 bookkeep_disp.innerHTML='<table style="width:100%;position:relative;"><thead><th style="width:25%;">'+fint[8]+'</th><th style="width:25%;">'+fint[0]+'</th><th style="width:25%;">'+fint[1]+'</th><th style="width:25%;">'+fint[2]+'</th></thead><tbody>'+jsonBookKeep(sysDefBookKeep.value)+'</tbody></table>';
             } else if (requestMode.value=='accessibility') { pressedKeyInfo.innerText=fint[9];

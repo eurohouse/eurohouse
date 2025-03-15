@@ -52,8 +52,8 @@
         } else if (event.keyCode==113) {
             omniAuthRequest('signup',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString());
         } keyd();" oninput="handleInput(this.value,true);">
-        <input type="image" onmouseover="soundButton();" id="buttonLogin" class="power" onclick="omniAuthRequest('signin',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString());" src="<?=$prefix.'user.png';?>" title="<?=term('Sign In/Authenticate',$settings['vocabulary'],$session['units']);?>">
-        <input type="image" onmouseover="soundButton();" id="buttonRegister" class="power" onclick="omniAuthRequest('signup',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString());" src="<?=$prefix.'book.png';?>" title="<?=term('Sign Up/Create Account',$settings['vocabulary'],$session['units']);?>">
+        <input type="image" onmouseover="soundButton();" id="buttonLogin" class="power" onclick="omniAuthRequest('signin',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString());" src="<?=$prefix.'go.png';?>" title="<?=term('Sign In/Authenticate',$settings['vocabulary'],$session['units']);?>">
+        <input type="image" onmouseover="soundButton();" id="buttonRegister" class="power" onclick="omniAuthRequest('signup',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString());" src="<?=$prefix.'plus.png';?>" title="<?=term('Sign Up/Create Account',$settings['vocabulary'],$session['units']);?>">
         <input type="image" onmouseover="soundButton();" id="buttonCancelSignin" class="power" onclick="document.getElementById('omniBoxAuthPass').value='';
         document.getElementById('omniBoxAuthLogin').value='';
         document.getElementById('omniBoxAuthLogin').focus();" src="<?=$prefix.'backspace.png';?>" title="<?=term('Clear Sign In Form',$settings['vocabulary'],$session['units']);?>">
@@ -117,7 +117,7 @@
     <input type="image" onmouseover="soundButton();" id="buttonMaximize" class="power" onclick="setdata('apps',flip(sysDefApps.value)); window.location.reload();" src="<?=$prefix.(($session['apps']!=0)?'restore.png':'maximize.png');?>" title="<?=term('Show Third-Party Apps',$settings['vocabulary'],$session['units']);?>">
     <input type="image" onmouseover="soundButton();" id="buttonMenuStyle" class="power" onclick="setdata('icons',flip(sysDefIcons.value)); window.location.reload();" src="<?=$prefix.(($session['icons']!=0)?'menu.png':'list.png');?>" title="<?=term('Icons/List Menu View',$settings['vocabulary'],$session['units']);?>">
     <input type="image" onmouseover="soundButton();" id="buttonUpdate" class="power" onclick="systemUpdate(sysDefBackload.value); window.location.reload();" src="<?=$prefix.'world.png';?>" title="<?=term('Eurohouse Update',$settings['vocabulary'],$session['units']);?>">
-    <input type="image" onmouseover="soundButton();" id="buttonUserStatus" class="power" onclick="omniAuthRequest('signout','','');" src="<?=$prefix.((isAuth())?'user.png':'anonym.png');?>" title="<?=term('Sign Out',$settings['vocabulary'],$session['units']);?>">
+    <input type="image" onmouseover="soundButton();" id="buttonUserStatus" class="power" onclick="omniAuthRequest('signout','','');" src="<?=$prefix.((isAuth())?'logout.png':'anonym.png');?>" title="<?=term('Sign Out',$settings['vocabulary'],$session['units']);?>">
     <input type="image" onmouseover="soundButton();" id="buttonEscape" class="power" onclick="omniBack(sysDefParent.value);" src="<?=$prefix.'escape.png';?>" title="<?=term('Go Back',$settings['vocabulary'],$session['units']);?>">
     </p>
 </div>
