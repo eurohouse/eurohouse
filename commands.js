@@ -194,9 +194,9 @@ function pipeExec(input) {
                                 }
                             } else {
                                 if ((isInt(np2))&&(inc>=np2)) {
-                                    ard=arrangeMenu(sysDefUpNext.value,etw(ml[j],sysDefSessionID.value,sysDefNumeric.value),' | '); setdata('up_next',ard); break;
+                                    setdata('up_next',playlistNext(ml[j])); break;
                                 } else if (np2=='*') {
-                                    ard=arrangeMenu(sysDefUpNext.value,etw(mr[rand(0,mr.length)],sysDefSessionID.value,sysDefNumeric.value),' | '); setdata('up_next',ard); break;
+                                    setdata('up_next',playlistNext(mr[rand(0,mr.length)])); break;
                                 }
                             } inc++;
                         } if (input.endsWith('\\')) { omniPause(); }

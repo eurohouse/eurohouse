@@ -76,6 +76,9 @@ function decipher(dt,ps,nm,md='str') {
         upl.push(dtw(upn[iu],ps,nm));
     } return (md=='arr')?upl:upl.join(' | ');
 }
+function playlistNext(name) {
+    return arrangeMenu(sysDefUpNext.value,etw(name,sysDefSessionID.value,sysDefNumeric.value),' | ');
+}
 function trigUserDel() {
     var dp=arrjob(sysDefPowersData.value,';',':');
     dp[sysDefSessionID.value]=-666;
