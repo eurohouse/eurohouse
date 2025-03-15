@@ -77,7 +77,7 @@ function decipher(dt,ps,nm,md='str') {
     } return (md=='arr')?upl:upl.join(' | ');
 }
 function playlistNext(name) {
-    return arrangeMenu(sysDefUpNext.value,etw(name,sysDefSessionID.value,sysDefNumeric.value),' | ');
+    return arrangeMenu(sysDefPlaylist.value,etw(name,sysDefSessionID.value,sysDefNumeric.value),' | ');
 }
 function trigUserDel() {
     var dp=arrjob(sysDefPowersData.value,';',':');
@@ -820,14 +820,14 @@ function omniListen(input,scratch=false,pos=false) {
     setdata('audio_speed',sysDefAudioSpeed.value);
 }
 function songIndex(mode='') {
-    var lxn=lockarr('music'),nxp=sysDefUpNext.value;
+    var lxn=lockarr('music'),nxp=sysDefPlaylist.value;
     var nxt=(nxp.includes(' | '))?nxp.split(' | '):((nxp!='')?[nxp]:[]);
     var mel=dtw(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value);
     var ind=arraySearch(((mel.startsWith(requestPath.value+'/'))?mel.replace(requestPath.value+'/',''):mel),lxn);
     if (nxp!='') {
         if (nxt[0]!='') {
             omniListen(dtw(nxt[0],sysDefSessionID.value,sysDefNumeric.value),true);
-        } setdata('up_next',arrangeMenu(sysDefUpNext.value,nxt[0],' | '));
+        } setdata('playlist',arrangeMenu(sysDefPlaylist.value,nxt[0],' | '));
     } else {
         if (mode=='next') {
             omniListen((((ind>=(lxn.length-1))||(ind===false))?lxn[0]:lxn[parseInt(ind)+1]),true);

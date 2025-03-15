@@ -26,7 +26,7 @@ function executeMacros(input) {
                 setdata('memo',''); pauseAudio(alarmPlayer);
             } else { setdata('memo',rep[1]); }
         } else if (rep[0]=='melody') { omniListen(rep[1],true);
-        } else if (rep[0]=='up_next') { } else if (rep[0]=='current') {
+        } else if (rep[0]=='playlist') { } else if (rep[0]=='current') {
             audioPosition((rep[1].startsWith('+'))?rep[1].replaceAll('+',''):rep[1]);
         } else if (rep[0].startsWith('lock_')) { setlock(rep[0].replace('lock_',''), rep[1]);
         } else if (rep[1].includes('?rev=')) { san=rep[1].split('?rev=')[1];
@@ -37,7 +37,7 @@ function executeMacros(input) {
             output=input+': '+lockdata()[input.replace('lock_','')];
         } else if ((input=='melody')) {
             output=input+': '+dtw(userdata()[input],ss,nm);
-        } else if ((input=='up_next')) {
+        } else if ((input=='playlist')) {
             output=input+': '+decipher(userdata()[input],ss,nm);
         } else { output=input+': '+userdata()[input]; }
     } return output;
@@ -194,9 +194,9 @@ function pipeExec(input) {
                                 }
                             } else {
                                 if ((isInt(np2))&&(inc>=np2)) {
-                                    setdata('up_next',playlistNext(ml[j])); break;
+                                    setdata('playlist',playlistNext(ml[j])); break;
                                 } else if (np2=='*') {
-                                    setdata('up_next',playlistNext(mr[rand(0,mr.length)])); break;
+                                    setdata('playlist',playlistNext(mr[rand(0,mr.length)])); break;
                                 }
                             } inc++;
                         } if (input.endsWith('\\')) { omniPause(); }
@@ -205,9 +205,9 @@ function pipeExec(input) {
                     for (j=0; j<ml.length; j++) {
                         if ((ml[j].toLowerCase().includes(np3.toLowerCase()))&&(isInt(np4))) {
                             if ((isInt(np2))&&(inc>=np2)) {
-                                ard=arrangeMenu(sysDefUpNext.value,etw(ml[j],sysDefSessionID.value,sysDefNumeric.value),' | '); setdata('up_next',ard); break;
+                                ard=arrangeMenu(sysDefPlaylist.value,etw(ml[j],sysDefSessionID.value,sysDefNumeric.value),' | '); setdata('playlist',ard); break;
                             } else if (np2=='*') {
-                                ard=arrangeMenu(sysDefUpNext.value,etw(mr[rand(0,mr.length)],sysDefSessionID.value,sysDefNumeric.value),' | '); setdata('up_next',ard); break;
+                                ard=arrangeMenu(sysDefPlaylist.value,etw(mr[rand(0,mr.length)],sysDefSessionID.value,sysDefNumeric.value),' | '); setdata('playlist',ard); break;
                             } inc++;
                         }
                     }

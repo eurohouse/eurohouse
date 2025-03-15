@@ -113,11 +113,12 @@ function world_clock() {
                 bookkeep_disp.innerHTML='<table style="width:100%;position:relative;"><thead><th style="width:25%;">'+fint[8]+'</th><th style="width:25%;">'+fint[0]+'</th><th style="width:25%;">'+fint[1]+'</th><th style="width:25%;">'+fint[2]+'</th></thead><tbody>'+jsonBookKeep(sysDefBookKeep.value)+'</tbody></table>';
             } else if (requestMode.value=='accessibility') { pressedKeyInfo.innerText=fint[9];
             } else if (requestMode.value=='album_collection') {
-                var upn=decipher(sysDefUpNext.value,sysDefSessionID.value,sysDefNumeric.value,'arr'),arl='<ul id="albumPlayList">',col=sysDefColumns.value; for (iu in upn) {
+                var upn=decipher(sysDefPlaylist.value,sysDefSessionID.value,sysDefNumeric.value,'arr'),arl='<ul id="albumPlayList">',col=sysDefPlaylistColumns.value; for (iu in upn) {
                     arl+=(sysDefAlbum.value=='music')?"<li><a href='javascript:omniListen(%22"+rfc3986(upn[iu])+"%22,true);'>"+upn[iu]+"</a></li>":"<li>"+upn[iu]+"</li>";
                 } arl+'</ul>'; currentPlaylist.innerHTML=arl;
                 albumPlayList.setAttribute('style','columns:'+col+';-webkit-columns:'+col+';-moz-columns:'+col+';');
-                var alb=lockarr(sysDefAlbum.value),arl='<ol id="albumCollection">'; for (iu in alb) {
+                var alb=lockarr(sysDefAlbum.value),arl='<ol id="albumCollection">',col=sysDefAlbumColumns.value;
+                for (iu in alb) {
                     arl+=(sysDefAlbum.value=='music')?"<li><a href='javascript:setdata(%22up_next%22,playlistNext(%22"+rfc3986(alb[iu])+"%22));'>"+alb[iu]+"</a></li>":"<li>"+alb[iu]+"</li>";
                 } arl+'</ol>'; currentAlbumList.innerHTML=arl;
                 albumCollection.setAttribute('style','columns:'+col+';-webkit-columns:'+col+';-moz-columns:'+col+';');
