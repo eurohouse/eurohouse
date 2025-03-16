@@ -120,7 +120,7 @@ function world_clock() {
                 for (iu in upn) {
                     arl+="<a href='javascript:omniListen(%22"+rfc3986(upn[iu])+"%22,true);'>"+upn[iu]+"</a><br>";
                 } currentPlaylist.innerHTML=arl;
-                currentPlayList.setAttribute('style','columns:'+plCol+';-webkit-columns:'+plCol+';-moz-columns:'+plCol+';'); var alb=lockarr(sysDefAlbum.value),arl="";
+                currentPlaylist.setAttribute('style','columns:'+plCol+';-webkit-columns:'+plCol+';-moz-columns:'+plCol+';'); var alb=lockarr(sysDefAlbum.value),arl="";
                 var albCol=sysDefAlbumColumns.value;
                 if (sysDefAlbum.value=='music') {
                     for (iu in alb) {
