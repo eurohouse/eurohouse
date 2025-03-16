@@ -162,9 +162,20 @@ function excpkg(array $arr,$exc='',$flg=''): array {
         } $res=(!empty($new))?$new:$sup;
     } else {
         if ($exc!='') {
-            if (strpos($exc,',')!==false) {
-                foreach (explode(',',$exc) as $iter=>$pkg) { $new=($iter==0)?pkgf($pkg,true):array_merge($new,pkgf($pkg,true)); }
-            } else { $new=pkgf($exc,true); }
+            if (strpos($exc,'!')!==false) {
+                $exr=str_replace('!','',$exc); $new=$arr;
+                if (strpos($exr,',')!==false) {
+                    foreach (explode(',',$exr) as $iter=>$pkg) {
+                        $new=array_diff($new,pkgf($pkg,true));
+                    }
+                } else { $new=array_diff($new,pkgf($exr,true)); }
+            } else {
+                if (strpos($exc,',')!==false) {
+                    foreach (explode(',',$exc) as $iter=>$pkg) {
+                        $new=($iter==0)?pkgf($pkg,true):array_merge($new,pkgf($pkg,true));
+                    }
+                } else { $new=pkgf($exc,true); }
+            }
         } else { $new=$arr; } foreach ($new as $val) {
             if (in_array($val,$arr)!==false) { $fin[]=$val; }
         } $res=(!empty($fin))?array_unique($fin):array_unique($arr);
