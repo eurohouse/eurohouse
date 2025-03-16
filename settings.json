@@ -3,6 +3,7 @@
     "intervals": { "databox": 1000, "world_clock": 1000, "visual_effects": 300, "wallpaper_engine": 1000, "active_hours": 1000, "mailing_list": 1000, "bookkeep_list": 1000, "store_list": 1000, "automator": 250 },
     "viewport": { "width": "device-width", "initial-scale": "1.0", "maximum-scale": "1.0", "user-scalable": "0" },
     "locks": { "background": "!metro,distro,osx,xp", "avatar": "avatar", "music": "botticelli,orchestra", "font": "unix", "sound": "unix" },
+    "locks_icons": { "background": "image", "avatar": "user", "music": "music", "font": "font", "sound": "audio" },
     "libraries": {
         "domestic": [ "backend.js","frontend.js","tablesort.js", "requests.js","commands.js","jquery.js", "crypto.js","XRegExp.js","statistics.js", "nerdamer.js","algebra.js","calculus.js","solve.js" ],
         "foreign": [ "https://www.midijs.net/lib/midi.js" ]

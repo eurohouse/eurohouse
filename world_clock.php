@@ -16,4 +16,5 @@ $voc=$userSettings['vocabulary'];$uni=$userData['units'];
 /* ¶ 2 */ $v00.";".$v01.";".$ol00.";".$ol01.";".$ol10.";".$ol11."\r\n\r\n".
 /* ¶ 3 */ $userData['audio_volume'].' '.$userData['audio_speed'].' '.$userData['video_volume'].' '.$userData['video_speed'].' '.$userData['alarm_volume'].' '.$userData['timer_volume'].' '.$userData['loop_volume'].' '.$userData['rest_volume']."\r\n\r\n".
 /* ¶ 4 */ term('Debit',$voc,$uni).' | '.term('Credit',$voc,$uni).' | '.term('Balance',$voc,$uni).' | '.term('Name',$voc,$uni).' | '.term('Amount',$voc,$uni).' | '.term('Price',$voc,$uni).' | '.term('The market is closed.',$voc,$uni).' | '.term('Active Hours:',$voc,$uni).' | '.term('Agent',$voc,$uni).' | '.term('Press any key to continue...',$voc,$uni).' | '.termCmd($userData['mode'],$userSettings['locale']['cli'],$uni)."\r\n\r\n".
-/* ¶ 5 */ $userData['pangram_'.(($userSettings['pangram'][$uni]) ? $userSettings['pangram'][$uni] : $userSettings['pangram']['default'])];
+/* ¶ 5 */ $userData['pangram_'.(($userSettings['pangram'][$uni])?$userSettings['pangram'][$uni]:$userSettings['pangram']['default'])];
+/* ¶ 6 */ json_encode($userSettings['locks_icons'],JSON_UNESCAPED_UNICODE);

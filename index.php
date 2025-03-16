@@ -51,6 +51,7 @@
         <input type='hidden' id="sysDefHoursNow" value="">
         <input type='hidden' id="sysDefHoursActive" value="">
         <input type='hidden' id="sysDefLockData" value="">
+        <input type='hidden' id="sysDefLockIcons" value="">
         <input type='hidden' id="sysDefIsSession" value="<?=isAuth();?>">
         <input type='hidden' id="sysDefSessionID" value="<?=$sessionID;?>">
         <input type='hidden' id="sysDefPostBackEff" value="0">

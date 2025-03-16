@@ -63,7 +63,8 @@ function world_clock() {
             $('#alarmTime').val((enzi[0]!='00:00')?enzi[0]:hhMmSs(audioPlayer.currentTime,true));
             var effi=pager(data,2).split(';');
             var mixers=pager(data,3).split(' ');
-            var bndm=arrjob(sysDefBindData.value,';',':')[sysDefSessionID.value],fint=pager(data,4).split(' | '); if (authstate()) {
+            var bndm=arrjob(sysDefBindData.value,';',':')[sysDefSessionID.value],fint=pager(data,4).split(' | ');$('#sysDefLockIcons').val(pager(data,6));
+            if (authstate()) {
                 $('#buttonBackup').attr('src',sysDefPrefix.value+((isInBackup(sysDefSessionID.value))?'open.png':'save.png'));
                 omniBox.placeholder=fint[10];
             } if (requestMode.value=='volume_control') {
