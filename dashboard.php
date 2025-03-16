@@ -52,8 +52,8 @@
         } else if (event.keyCode==113) {
             omniAuthRequest('signup',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString());
         } keyd();" oninput="handleInput(this.value,true);">
-        <input type="image" onmouseover="soundButton();" id="buttonLogin" class="power" onclick="omniAuthRequest('signin',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString());" src="<?=$prefix.'login.png';?>" title="<?=term('Sign In/Authenticate',$settings['vocabulary'],$session['units']);?>">
-        <input type="image" onmouseover="soundButton();" id="buttonRegister" class="power" onclick="omniAuthRequest('signup',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString());" src="<?=$prefix.'mkdir.png';?>" title="<?=term('Sign Up/Create Account',$settings['vocabulary'],$session['units']);?>">
+        <input type="image" onmouseover="soundButton();" id="buttonLogin" class="power" onclick="omniAuthRequest('signin',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString());" src="<?=$prefix.'return.png';?>" title="<?=term('Sign In/Authenticate',$settings['vocabulary'],$session['units']);?>">
+        <input type="image" onmouseover="soundButton();" id="buttonRegister" class="power" onclick="omniAuthRequest('signup',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString());" src="<?=$prefix.'keyboard.png';?>" title="<?=term('Sign Up/Create Account',$settings['vocabulary'],$session['units']);?>">
         <input type="image" onmouseover="soundButton();" id="buttonCancelSignin" class="power" onclick="document.getElementById('omniBoxAuthPass').value='';
         document.getElementById('omniBoxAuthLogin').value='';
         document.getElementById('omniBoxAuthLogin').focus();" src="<?=$prefix.'backspace.png';?>" title="<?=term('Clear Sign In Form',$settings['vocabulary'],$session['units']);?>">
