@@ -115,7 +115,7 @@ function world_clock() {
             } else if (requestMode.value=='accessibility') { pressedKeyInfo.innerText=fint[9];
             } else if (requestMode.value=='album_collection') {
                 album_modes.innerHTML=showLockInd();
-                var epr=sysDefPrefix.value,alr=listAvatars();
+                var epr=sysDefAvaPrefix.value,alr=listAvatars();
                 var upn=decipher(sysDefPlaylist.value,sysDefSessionID.value,sysDefNumeric.value,'arr'),arl='<ul id="albumPlayList">';
                 var plCol=sysDefPlaylistColumns.value;
                 for (iu in upn) {
