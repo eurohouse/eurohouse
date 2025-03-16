@@ -131,7 +131,7 @@ function world_clock() {
                     currentAlbumList.setAttribute('style','columns:'+albCol+';-webkit-columns:'+albCol+';-moz-columns:'+albCol+';');
                 } else if (sysDefAlbum.value=='avatar') {
                     for (iu in alb) {
-                        arl+="<input type='image' class='power' src='"+alb[iu]+"' onclick='setdata(&#34;album&#34;,&#34;"+ch[iu]+"&#34;);'>";
+                        arl+="<input type='image' class='power' src='"+alb[iu]+"' onclick='setdata(&#34;avatar&#34;,&#34;"+alb[iu]+"&#34;);'>";
                     }
                 } currentAlbumList.innerHTML=arl;
             } else if (requestMode.value=='point_of_sale') {
