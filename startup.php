@@ -113,6 +113,7 @@ function world_clock() {
                 bookkeep_disp.innerHTML='<table style="width:100%;position:relative;"><thead><th style="width:25%;">'+fint[8]+'</th><th style="width:25%;">'+fint[0]+'</th><th style="width:25%;">'+fint[1]+'</th><th style="width:25%;">'+fint[2]+'</th></thead><tbody>'+jsonBookKeep(sysDefBookKeep.value)+'</tbody></table>';
             } else if (requestMode.value=='accessibility') { pressedKeyInfo.innerText=fint[9];
             } else if (requestMode.value=='album_collection') {
+                album_modes.innerHTML=showLockInd();
                 var upn=decipher(sysDefPlaylist.value,sysDefSessionID.value,sysDefNumeric.value,'arr'),arl='<ul id="albumPlayList">',col=sysDefPlaylistColumns.value; for (iu in upn) {
                     arl+=(sysDefAlbum.value=='music')?"<li><a href='javascript:omniListen(%22"+rfc3986(upn[iu])+"%22,true);'>"+upn[iu]+"</a></li>":"<li>"+upn[iu]+"</li>";
                 } arl+'</ul>'; currentPlaylist.innerHTML=arl;
@@ -125,7 +126,7 @@ function world_clock() {
             } else if (requestMode.value=='point_of_sale') {
                 var stoInf="<p align='center'>"+fint[6]+"</p><p align='center'>"+fint[7]+"</p><p align='center'>"+activeHrsBtn(bndm)+"</p>";
                 var stoDop='<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+fint[3]+'</th><th style="width:7%;">'+fint[4]+'</th><th style="width:3%;">'+fint[5]+'</th></thead><tbody>'+jsonStore(bndm)+'</tbody></table>';
-                store_disp.innerHTML=(sysDefSessionID.value!=bndm) ? ((storeOpen(bndm))?stoDop:stoInf):stoDop;
+                store_disp.innerHTML=(sysDefSessionID.value!=bndm)?((storeOpen(bndm))?stoDop:stoInf):stoDop;
             } else if (requestMode.value=='font_book') {
                 fontBook24Pt.innerText=fontBook22Pt.innerText=fontBook20Pt.innerText=fontBook18Pt.innerText=fontBook16Pt.innerText=fontBook14Pt.innerText=pager(data,5);
             } else if (requestMode.value=='statistics') {
