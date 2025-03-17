@@ -2,8 +2,9 @@
 <!-- CH: Explorare Europedia; DE: Entdecken Sie Europedia; AT: Entdecken Sie Europedia; GR: Εξερευνήστε Ευρωπαιδεία; CY: Εξερευνήστε Ευρωπαιδεία; FR: Parcourir Europedia; BE: Parcourir Europedia; IT: Sfoglia Europadia; ES: Explora Europadia; MX: Explora Europadia; BR: Explorar a Europadia; PT: Explorar a Europadia; RO: Explorați Europedia; MD: Explorați Europedia; TR: Europedia'yı keşfedin; IN: यूरोपियाडिया का अन्वेषण करें; LK: यूरोपडिया अन्वेषणं कुर्वन्तु; NP: ཡོ་རོབ་གླིང་ལ་མྱུལ་ཞིང༌།; RU: Просмотр Европедии; UA: Досліджуйте Europedia; CN: 浏览元素 Europedia; KR: 요소 찾아보기 Europedia; JP: 要素の閲覧 Europedia; AE: تصفح عناصر Europedia -->
 <!-- <ref> -->
 <!-- true -->
-<?php $iconSize=50; $ssLC=$settings['locale'];
-$ssVC=$settings['vocabulary']; $ssUN = $session['units'];
+<?php $iconSize=50;$flagSize=($session['censor'])?4:2;
+$ssLC=$settings['locale'];
+$ssVC=$settings['vocabulary'];$ssUN = $session['units'];
 $exemplarArr=exemplar(str_replace('./','',(glob('./*.models.json'))));
 $contentsArr=exemplar(str_replace('./','',(glob('./*.contents.json'))));
 if ($request['group']!='') {
@@ -54,7 +55,9 @@ if ($request['group']!='') {
 <table style="width:100%;" id="table">
 <thead>
     <tr>
-        <th style="width:4%;"><?=term('Flag',$ssVC,$ssUN);?></th>
+        <th style="width:<?=$flagSize;?>%;">
+            <?=term('Flag',$ssVC,$ssUN);?>
+        </th>
         <th style="width:8%;">
             <a href="javascript:SortTable(1,'T');">
                 <?=term('Name',$ssVC,$ssUN);?>
