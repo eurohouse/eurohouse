@@ -428,8 +428,7 @@ function french(array $voc,$units='EU'): string {
     } return $showDate.' '.$showMonth;
 }
 function fixedSize($str,$offs=0,$len=1000) {
-    $txr=(($offs<$len)&&($offs<strlen($str)))?substr($str,$offs,$len):'';
-    $stt=($offs>0)?'...':'';$edt=($len<strlen($str))?'...':'';
+    $txr=(($offs<$len)&&($offs<strlen($str))&&(strlen($str)<$len))?substr($str,$offs,$len):'';$stt=($offs>0)?'...':'';$edt=($len<strlen($str))?'...':'';
     return $stt.$txr.$edt;
 }
 function spaces($str) {
