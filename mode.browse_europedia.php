@@ -55,13 +55,13 @@ if ($request['group']!='') {
 <thead>
     <tr>
         <th style="width:5%;"><?=term('Flag', $ssVC, $ssUN);?></th>
-        <th style="width:20%;">
+        <th style="width:10%;">
             <a href="javascript:SortTable(1,'T');">
                 <?=term('Name',$ssVC,$ssUN);?>
             </a>
         </th>
         <?php if ($session['censor']!=0) { ?>
-        <th style="width:20%;">
+        <th style="width:10%;">
             <a href="javascript:SortTable(2,'T');">
                 <?=term('Description',$ssVC,$ssUN);?>
             </a>
