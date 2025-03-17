@@ -111,7 +111,7 @@ if ($request['group']!='') {
         <td>
             <?php if (isset($value['maison'])) { ?>
             <a href="<?=$value['maison'];?>">
-            <?php } ?><?=fixedSize($mmDC,30,300);?>
+            <?php } ?><?=fixedSize($mmDC,30,280);?>
             <?php if (isset($value['maison'])) { ?>
             </a><?php } ?>
         </td>
