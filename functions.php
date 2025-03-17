@@ -429,7 +429,7 @@ function french(array $voc,$units='EU'): string {
 }
 function fixedSize($str,$offs=0,$len=128) {
     $txr=substr($str,$offs,$len);
-    $stt=($offs>0)?'...':'';$edt=($offs>0)?'...':'';
+    $stt=($offs>0)?'...':'';$edt=($len<strlen($str))?'...':'';
     return $stt.$txr.$edt;
 }
 function spaces($str) {
