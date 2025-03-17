@@ -351,7 +351,7 @@ function jsonHTML(str,mask) {
     var usr=sysDefSessionID.value,epr=sysDefPrefix.value;
     for (el in arr) {
         fu0="clearJournal(&#39;"+etw(el,usr)+"&#39;,&#39;"+sysDefMsgData.value+"&#39;,&#39;msgbox&#39;,);"; fu1="clip(&#39;"+arr[el]+"&#39;);";
-        ard=el+" <input type='image' class='power' src='"+epr+"trash.png"+"' onclick='"+fu0+"'><br>"+arr[el]+" <input type='image' class='power' src='"+epr+"copy.png"+"' onclick='"+fu1+"'><br>"+ard;
+        ard=el+" <input type='image' class='power' onmouseover='soundButton();' src='"+epr+"trash.png"+"' onclick='"+fu0+"'><br>"+arr[el]+" <input type='image' class='power' onmouseover='soundButton();' src='"+epr+"copy.png"+"' onclick='"+fu1+"'><br>"+ard;
     } return ard;
 }
 function jsonNews() {
@@ -368,15 +368,14 @@ function jsonMarket(id) {
 function activeHrsBtn(id) {
     var arr=storeHours(id).split(',');
     var arl=''; for (el in arr) {
-        arl+="<input type='button' value='"+arr[el]+"'>";
+        arl+="<input type='button' onmouseover='soundButton();' value='"+arr[el]+"'>";
     } return arl;
 }
 function showLockInd() {
     var ob=((jsonarr(sysDefLockData.value)!==undefined)&&(jsonarr(sysDefLockData.value)!==null))?jsonarr(sysDefLockData.value):{},ch=Object.keys(ob||{});
     var lic=jsonarr(sysDefLockIcons.value);
-    var epr=sysDefPrefix.value;
-    var arl=""; for (iu in ch) {
-        arl+="<input type='image' class='power' onmouseover='soundButton();'' src='"+epr+lic[ch[iu]]+".png"+"' onclick='setdata(&#34;album&#34;,&#34;"+ch[iu]+"&#34;);'>";
+    var epr=sysDefPrefix.value,arl=""; for (iu in ch) {
+        arl+="<input type='image' class='power' onmouseover='soundButton();' onmouseover='soundButton();' src='"+epr+lic[ch[iu]]+".png"+"' onclick='setdata(&#34;album&#34;,&#34;"+ch[iu]+"&#34;);'>";
     } return arl;
 }
 function listlock(id) {
@@ -392,8 +391,8 @@ function jsonStore(id) {
         if ((arr[el]!==undefined)&&(typeof(arr[el])=='object')) {
             eld=arr[el],arl='<tr>';
             fu0="buy_item(&#34;"+usr+"&#34;,&#34;"+el+"&#34;,&#34;"+id+"&#34;);",fu1=(isInt(el))?"charge(&#34;"+id+"&#34;,&#34;"+el+"&#34;);":((eld['type']=='weapon')?"equip(&#34;"+id+"&#34;,&#34;"+el+"&#34;);":"charge(&#34;"+id+"&#34;,&#34;"+el+"&#34;);");
-            arl+="<td><input type='button' style='width:80%;' onclick='"+((id!=usr)?fu0:fu1)+"' value='"+el+"'>";
-            arl+="<input type='image' class='power' src='"+epr+"info.png"+"' onclick='omniPath(&#34;./.store/"+usr+"_store.json&#34;,&#34;"+el+"&#34;,&#34;false&#34;);'>";
+            arl+="<td><input type='button' onmouseover='soundButton();' style='width:80%;' onclick='"+((id!=usr)?fu0:fu1)+"' value='"+el+"'>";
+            arl+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"info.png"+"' onclick='omniPath(&#34;./.store/"+usr+"_store.json&#34;,&#34;"+el+"&#34;,&#34;false&#34;);'>";
             arl+="</td><td>"+eld['amount']+"</td><td>$"+eld['price']+"</td>"; ard=arl+"</tr>"+ard;
         }
     } return ard;
@@ -437,16 +436,16 @@ function noteBook(str) {
     var arr=str.split(' | '),ard=arl=eld=elt=eln='';
     var epr=sysDefPrefix.value; for (el in arr) {
         eld=arr[el],eln=sysDefNumeric.value,elt=decode(eld,'',eln);
-        arl="<input type='button' style='width:80%;' onclick='openNote(&#34;"+elt+"&#34;,&#34;&#34;,&#34;"+eln+"&#34;);' value='"+elt+"'>";
-        arl+="<input type='image' class='power' src='"+epr+"trash.png"+"' onclick='deleteNote(&#34;"+elt+"&#34;,&#34;&#34;,&#34;"+eln+"&#34;);'>";
+        arl="<input type='button' onmouseover='soundButton();' style='width:80%;' onclick='openNote(&#34;"+elt+"&#34;,&#34;&#34;,&#34;"+eln+"&#34;);' value='"+elt+"'>";
+        arl+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"trash.png"+"' onclick='deleteNote(&#34;"+elt+"&#34;,&#34;&#34;,&#34;"+eln+"&#34;);'>";
         ard=ard+arl+'<br>';
     } return ard;
 }
 function helpBook() {
     var obj=jsonarr(sysDefTutorData.value),ard=arl=elt='';
     var epr=sysDefPrefix.value; for (el in obj) {
-        elt=((obj[el]!==undefined)&&(obj[el][sysDefUnits.value]!==undefined)&&(obj[el][sysDefUnits.value]['title']!==undefined))?obj[el][sysDefUnits.value]['title']:((obj[el]['default']['title']!==undefined)?obj[el]['default']['title']:''); arl="<input type='button' style='width:80%;' onclick='openHelpPage(&#34;"+el+"&#34;);' value='"+elt+"'>";
-        arl+="<input type='image' class='power' src='"+epr+"info.png"+"' onclick='omniPath(&#34;tutorial.json&#34;,&#34;"+el+"&#34;,&#34;false&#34;);'>"; ard=ard+arl+'<br>';
+        elt=((obj[el]!==undefined)&&(obj[el][sysDefUnits.value]!==undefined)&&(obj[el][sysDefUnits.value]['title']!==undefined))?obj[el][sysDefUnits.value]['title']:((obj[el]['default']['title']!==undefined)?obj[el]['default']['title']:''); arl="<input type='button' onmouseover='soundButton();' style='width:80%;' onclick='openHelpPage(&#34;"+el+"&#34;);' value='"+elt+"'>";
+        arl+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"info.png"+"' onclick='omniPath(&#34;tutorial.json&#34;,&#34;"+el+"&#34;,&#34;false&#34;);'>"; ard=ard+arl+'<br>';
     } return ard;
 }
 function isoformat(num) {

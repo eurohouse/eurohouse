@@ -113,8 +113,7 @@ function world_clock() {
                 bookkeep_disp.innerHTML='<table style="width:100%;position:relative;"><thead><th style="width:25%;">'+fint[8]+'</th><th style="width:25%;">'+fint[0]+'</th><th style="width:25%;">'+fint[1]+'</th><th style="width:25%;">'+fint[2]+'</th></thead><tbody>'+jsonBookKeep(sysDefBookKeep.value)+'</tbody></table>';
             } else if (requestMode.value=='accessibility') { pressedKeyInfo.innerText=fint[9];
             } else if (requestMode.value=='album_collection') {
-                album_mode_switch.innerHTML=showLockInd();
-                var epr='',alr=[];
+                album_mode_switch.innerHTML=showLockInd(),epr='',alr=[];
                 var upn=decipher(sysDefPlaylist.value,sysDefSessionID.value,sysDefNumeric.value,'arr'),arl="",plCol=sysDefPlaylistColumns.value; for (iu in upn) {
                     arl+="<a href='javascript:omniListen(%22"+rfc3986(upn[iu])+"%22,true);'>"+upn[iu]+"</a><br>";
                 } currentPlaylist.innerHTML=arl;
