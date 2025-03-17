@@ -427,6 +427,11 @@ function french(array $voc,$units='EU'): string {
     } else { $showMonth=$voc['locale']['french']['default'][$curMonth];
     } return $showDate.' '.$showMonth;
 }
+function fixedSize($str,$offs=0,$len=128) {
+    $txr=substr($str,$offs,$len);
+    $stt=($offs>0)?'...':'';$edt=($offs>0)?'...':'';
+    return $stt.$txr.$edt;
+}
 function spaces($str) {
     if (strpos($str,'_')!==false) {
         $arr=explode('_',$str);$res=[];
