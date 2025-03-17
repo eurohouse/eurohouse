@@ -43,12 +43,10 @@ $usersList=array_keys($poweredData); natcasesort($usersList);
 /* ¶ 11 */ implode('//',(str_replace('./','',(glob('./*.mac')))))."\\\\".implode('//',(str_replace('./','',(glob('./*.pro')))))."\r\n\r\n".
 /* ¶ 12 */ implode(',',$usersList)."\r\n\r\n".
 /* ¶ 13 */ implode(' ',$currentTimes)."\r\n\r\n".
-/* ¶ 14 */ implode(' | ',array_keys($notesArr))."\r\n\r\n".
-/* ¶ 15 */ json_encode($notesArr,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
-/* ¶ 16 */ implode(' | ',array_keys($tutorArr))."\r\n\r\n".
-/* ¶ 17 */ json_encode($tutorArr,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
-/* ¶ 18 */ valstr($currentAvatars,';',':')."\r\n\r\n".
-/* ¶ 19 */ json_encode($newsData,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
-/* ¶ 20 */ json_encode($activeIPs,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
-/* ¶ 21 */ json_encode($localesArr,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
-/* ¶ 22 */ json_encode($listExem,JSON_UNESCAPED_UNICODE);
+/* ¶ 14 */ json_encode($notesArr,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
+/* ¶ 15 */ json_encode($tutorArr,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
+/* ¶ 16 */ valstr($currentAvatars,';',':')."\r\n\r\n".
+/* ¶ 17 */ json_encode($newsData,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
+/* ¶ 18 */ json_encode($activeIPs,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
+/* ¶ 19 */ json_encode($localesArr,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
+/* ¶ 20 */ json_encode($listExem,JSON_UNESCAPED_UNICODE);
