@@ -428,8 +428,8 @@ function french(array $voc,$units='EU'): string {
     } return $showDate.' '.$showMonth;
 }
 function fixedSize($str,$offs=0,$len=1000) {
-    $stl=strlen($str);
-    if (($offs<$len)&&($offs>=0)&&($len>0)) {
+    $stl=strlen($str);$sts=abs($len-$offs);
+    if (($offs<$len)&&($offs>=0)&&($len>0)&&($sts<$stl)) {
         if ($offs>0) {
             if ($len<$stl) {
                 $res='...'.substr($str,$offs,$len).'...';
