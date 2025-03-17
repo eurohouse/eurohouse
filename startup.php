@@ -43,7 +43,8 @@ function databox() {
             $('#sysDefIpData').val(pager(data,18));
             $('#sysDefHdiData').val(pager(data,19));
             $('#sysDefModelData').val(pager(data,20));
-            $('#sysDefMetaList').val(Object.keys(sysDefMetaData.value||{}).join(' | ')); $('#sysDefTutorList').val(Object.keys(sysDefTutorData.value||{}).join(' | '));
+            $('#sysDefMetaList').val(Object.keys(jsonarr(sysDefMetaData.value)).join(' | '));
+            $('#sysDefTutorList').val(Object.keys(jsonarr(sysDefTutorData.value)).join(' | '));
             if (sysDefBindData.value!=sysDefPostBindData.value) { playAudio(bindPlayer,sysDefBindSound.value); } sysDefPostBindData.value=sysDefBindData.value;
             if (sysDefPowersData.value!=sysDefPostPowersData.value) { playAudio(sufferPlayer,sysDefSufferSound.value); } sysDefPostPowersData.value=sysDefPowersData.value;
             if (sysDefToolData.value!=sysDefPostToolData.value) { playAudio(bindPlayer,sysDefBindSound.value); } sysDefPostToolData.value=sysDefToolData.value;
