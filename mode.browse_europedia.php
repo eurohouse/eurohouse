@@ -2,7 +2,7 @@
 <!-- CH: Explorare Europedia; DE: Entdecken Sie Europedia; AT: Entdecken Sie Europedia; GR: Εξερευνήστε Ευρωπαιδεία; CY: Εξερευνήστε Ευρωπαιδεία; FR: Parcourir Europedia; BE: Parcourir Europedia; IT: Sfoglia Europadia; ES: Explora Europadia; MX: Explora Europadia; BR: Explorar a Europadia; PT: Explorar a Europadia; RO: Explorați Europedia; MD: Explorați Europedia; TR: Europedia'yı keşfedin; IN: यूरोपियाडिया का अन्वेषण करें; LK: यूरोपडिया अन्वेषणं कुर्वन्तु; NP: ཡོ་རོབ་གླིང་ལ་མྱུལ་ཞིང༌།; RU: Просмотр Европедии; UA: Досліджуйте Europedia; CN: 浏览元素 Europedia; KR: 요소 찾아보기 Europedia; JP: 要素の閲覧 Europedia; AE: تصفح عناصر Europedia -->
 <!-- <ref> -->
 <!-- true -->
-<?php $iconSize=50;$flagSize=($session['censor'])?4:2;
+<?php $iconSize=50;$flagSize=($session['censor'])?2:4;
 $ssLC=$settings['locale'];
 $ssVC=$settings['vocabulary'];$ssUN = $session['units'];
 $exemplarArr=exemplar(str_replace('./','',(glob('./*.models.json'))));
