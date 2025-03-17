@@ -61,24 +61,29 @@ if ($request['group']!='') {
             </a>
         </th>
         <?php if ($session['censor']!=0) { ?>
-        <th style="width:25%;">
+        <th style="width:20%;">
             <a href="javascript:SortTable(2,'T');">
                 <?=term('Description',$ssVC,$ssUN);?>
             </a>
         </th>
         <?php } else { ?>
-        <th style="width:8%;">
+        <th style="width:6%;">
             <a href="javascript:SortTable(2,'N');">
                 <?=term('Height',$ssVC,$ssUN);?>
             </a>
         </th>
-        <th style="width:8%;">
+        <th style="width:6%;">
             <a href="javascript:SortTable(3,'N');">
                 <?=term('Weight',$ssVC,$ssUN);?>
             </a>
         </th>
-        <th style="width:9%;">
+        <th style="width:8%;">
             <a href="javascript:SortTable(4,'N');">
+                <?=term('Body Sizes',$ssVC,$ssUN);?>
+            </a>
+        </th>
+        <th style="width:6%;">
+            <a href="javascript:SortTable(5,'N');">
                 <?=term('Shoe Size',$ssVC,$ssUN);?>
             </a>
         </th>
@@ -107,9 +112,14 @@ if ($request['group']!='') {
             <?php if (isset($value['maison'])) { ?>
             </a><?php } ?>
         </td>
-        <?php } else { ?>
+        <?php
+        } else {
+            $sizesStr=;
+            ;
+            ?>
             <td><?=(isset($value['height']))?((isset($ssLC['length'][$ssUN]))?((isset($ssLC['length'][$ssUN]['inch']))?incher($value['height']):(round(($value['height']*$ssLC['length'][$ssUN]['coefficient']),2)).' '.$ssLC['length'][$ssUN]['sign']):(round(($value['height']*$ssLC['length']['default']['coefficient']),2)).' '.$ssLC['length']['default']['sign']):'';?></td>
             <td><?=(isset($value['weight']))?((isset($ssLC['mass'][$ssUN]))?(round($value['weight']*$ssLC['mass'][$ssUN]['coefficient'])).' '.$ssLC['mass'][$ssUN]['sign'] : (round($value['weight']*$ssLC['mass']['default']['coefficient'])).' '.$ssLC['mass']['default']['sign']) : '';?></td>
+            <td><?=(isset($value['sizes']))?((round((explode('-',$value['sizes'])[0]*$ssLC['length'][$ssUN]['coefficient']),2)).'-'.round((explode('-',$value['sizes'])[1]*$ssLC['length'][$ssUN]['coefficient']),2).'-'.round((explode('-',$value['sizes'])[0]*$ssLC['length'][$ssUN]['coefficient']),2)):'';?></td>
             <td><?=(isset($value['shoe_size']))?((isset($ssLC['shoe_size'][$ssUN]))?($value['shoe_size']+$ssLC['shoe_size'][$ssUN]).' '.$ssUN:($value['shoe_size']+$ssLC['shoe_size']['default']).' '.$ssUN):'';?></td>
         <?php } ?>
     </tr>
@@ -117,7 +127,7 @@ if ($request['group']!='') {
 </tbody>
 <tfoot>
     <tr>
-        <th style="width:25%;" colspan="5"><?=term('Total elements:',$settings['vocabulary'],$session['units']).' '.count($exemplarArr);?></th>
+        <th style="width:25%;" colspan="6"><?=term('Total elements:',$settings['vocabulary'],$session['units']).' '.count($exemplarArr);?></th>
     </tr>
 </tfoot>
 </table>
