@@ -9,8 +9,9 @@ $frndData=arropen('friendship.json',"{\"root\":\"\"}");
 $toolData=arropen('toolbox.json',"{\"root\":\"\"}");
 $callData=arropen('calling.json',"{\"root\":\"root\"}");
 $avaPref=(lux($userData['back_text_color']))?'ava.':'abc.';
+$pref=(lux($session['fore_text_color']))?'iso.':'iec.';
 $locksArr=arropen($cookie.'_lock.json',json_encode($userSettings['locks']),'DEFAULT');
-$userLocks=userlocks($locksArr,$userSettings['collections'],$avaPref);
+$userLocks=userlocks($locksArr,$userSettings['collections'],$avaPref,$pref);
 $notesArr=arropen($cookie.'_metadata.json',json_encode($userSettings['metadata']),'CUSTOM');
 $tutorArr=arropen('tutorial.json',"{\"\":\"\"}",'CUSTOM');
 $newsData=arropen('changelog.json',"{\"\":\"\"}",'CUSTOM');
@@ -25,7 +26,8 @@ foreach ($poweredData as $key=>$value) {
     if (file_exists($key.'_session.json')) {
         $testArr=arropen($key.'_session.json',json_encode($userSettings['defaults']),'DEFAULT');
     } else { $testArr=['timezone'=>0,'avatar'=>'NULL']; }
-    date_default_timezone_set(dec_tz($testArr['timezone']));$currentTimes[]=date('H');
+    date_default_timezone_set(dec_tz($testArr['timezone']));
+    $currentTimes[]=date('H');
     $currentAvatars[$key]=$testArr['avatar'];
 } $activeIPs=vismark('visitors.json');
 $usersList=array_keys($poweredData); natcasesort($usersList);

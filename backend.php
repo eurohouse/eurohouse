@@ -35,4 +35,4 @@ $prefix=(lux($session['fore_text_color']))?'iso.':'iec.';
 $reticlePrefix=(lux($session['fore_text_color']))?'rtd.':'rtc.';
 $themePrefix=(file_exists($session['theme'].'.pkg'))?$session['theme'].'.':$prefix; $portfolioPrefix=(($themePrefix=='iec')||($themePrefix=='iso'))?'org.':((themed($themePrefix,'head,left0,left90,left180,left270,right0,right90,right180,right270'))?$themePrefix:'org.');
 $background=getback($session);
-$locks=arropen($sessionID.'_lock.json',json_encode($settings['locks']),'DEFAULT'); $userLocks=userlocks($locks,$settings['collections'],$avaPrefix);
+$locks=arropen($sessionID.'_lock.json',json_encode($settings['locks']),'DEFAULT'); $userLocks=userlocks($locks,$settings['collections'],$avaPrefix,$prefix);

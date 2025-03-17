@@ -379,12 +379,10 @@ function showLockInd() {
         arl+="<input type='image' class='power' src='"+epr+lic[ch[iu]]+".png"+"' onclick='setdata(&#34;album&#34;,&#34;"+ch[iu]+"&#34;);'>";
     } arl+="</p>"; return arl;
 }
-function listAvatars() {
-    var epr=sysDefPrefix.value;
-    var ob=lockarr('avatar'),ar=[];
-    for (iu in ob) {
-        ar.push(ob[iu].split('.')[1]);
-    } return ar;
+function listlock(id) {
+    var ob=lockarr(id),ar=[];
+    for (iu in ob) { ar.push(ob[iu].split('.')[1]); }
+    return ar;
 }
 function jsonStore(id) {
     var arr=jsonarr(openJournal(id,sysDefStoreList,sysDefStoreJSONs));

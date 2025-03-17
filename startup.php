@@ -43,8 +43,7 @@ function databox() {
             $('#sysDefIpData').val(pager(data,18));
             $('#sysDefHdiData').val(pager(data,19));
             $('#sysDefModelData').val(pager(data,20));
-            $('#sysDefMetaList').val(Object.keys(jsonarr(sysDefMetaData.value)).join(' | '));
-            $('#sysDefTutorList').val(Object.keys(jsonarr(sysDefTutorData.value)).join(' | '));
+            $('#sysDefMetaList').val(Object.keys(jsonarr(sysDefMetaData.value)).join(' | ')); $('#sysDefTutorList').val(Object.keys(jsonarr(sysDefTutorData.value)).join(' | '));
             if (sysDefBindData.value!=sysDefPostBindData.value) { playAudio(bindPlayer,sysDefBindSound.value); } sysDefPostBindData.value=sysDefBindData.value;
             if (sysDefPowersData.value!=sysDefPostPowersData.value) { playAudio(sufferPlayer,sysDefSufferSound.value); } sysDefPostPowersData.value=sysDefPowersData.value;
             if (sysDefToolData.value!=sysDefPostToolData.value) { playAudio(bindPlayer,sysDefBindSound.value); } sysDefPostToolData.value=sysDefToolData.value;
@@ -115,22 +114,31 @@ function world_clock() {
             } else if (requestMode.value=='accessibility') { pressedKeyInfo.innerText=fint[9];
             } else if (requestMode.value=='album_collection') {
                 album_modes.innerHTML=showLockInd();
-                var epr=sysDefAvaPrefix.value,alr=listAvatars();
-                var upn=decipher(sysDefPlaylist.value,sysDefSessionID.value,sysDefNumeric.value,'arr'),arl="",plCol=sysDefPlaylistColumns.value;
-                for (iu in upn) {
+                var epr=sysDefAvaPrefix.value,alr=[];
+                var upn=decipher(sysDefPlaylist.value,sysDefSessionID.value,sysDefNumeric.value,'arr'),arl="",plCol=sysDefPlaylistColumns.value; for (iu in upn) {
                     arl+="<a href='javascript:omniListen(%22"+rfc3986(upn[iu])+"%22,true);'>"+upn[iu]+"</a><br>";
                 } currentPlaylist.innerHTML=arl;
                 currentPlaylist.setAttribute('style','columns:'+plCol+';-webkit-columns:'+plCol+';-moz-columns:'+plCol+';'); var alb=lockarr(sysDefAlbum.value),arl="";
-                var albCol=sysDefAlbumColumns.value;
-                if (sysDefAlbum.value=='music') {
+                var albCol=(sysDefAlbum.value=='avatar')?sysDefAlbumColumns.value:1; if (sysDefAlbum.value=='music') {
                     for (iu in alb) {
                         arl+="<a href='javascript:setdata(%22playlist%22,playlistNext(%22"+rfc3986(alb[iu])+"%22));'>"+alb[iu]+"</a><br>";
-                    } currentAlbumList.setAttribute('style','columns:'+albCol+';-webkit-columns:'+albCol+';-moz-columns:'+albCol+';');
+                    }
+                } else if (sysDefAlbum.value=='sound') {
+                    for (iu in alb) {
+                        arl+="<a href='javascript:omniListen(%22"+rfc3986(alb[iu])+"%22,true);'>"+alb[iu]+"</a><br>";
+                    }
+                } else if (sysDefAlbum.value=='font') {
+                    for (iu in alb) {
+                        arl+="<a href='javascript:omniRead(%22font_book%22,%22"+rfc3986(alb[iu])+"%22,%22"+requestLock.value+"%22);'>"+alb[iu]+"</a><br>";
+                    }
+                } else if (sysDefAlbum.value=='background') {
+                    for (iu in alb) { arl+=alb[iu]+"<br>"; }
                 } else if (sysDefAlbum.value=='avatar') {
-                    for (iu in alr) {
+                    alr=listlock('avatar'); for (iu in alr) {
                         arl+="<input type='image' class='power' src='"+epr+alr[iu]+".png' onclick='setdata(&#34;avatar&#34;,&#34;"+alr[iu]+"&#34;);'>";
-                    } currentAlbumList.setAttribute('style','columns:1;-webkit-columns:1;-moz-columns:1;');
+                    }
                 } currentAlbumList.innerHTML=arl;
+                currentAlbumList.setAttribute('style','columns:'+albCol+';-webkit-columns:'+albCol+';-moz-columns:'+albCol+';');
             } else if (requestMode.value=='point_of_sale') {
                 var stoInf="<p align='center'>"+fint[6]+"</p><p align='center'>"+fint[7]+"</p><p align='center'>"+activeHrsBtn(bndm)+"</p>";
                 var stoDop='<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+fint[3]+'</th><th style="width:7%;">'+fint[4]+'</th><th style="width:3%;">'+fint[5]+'</th></thead><tbody>'+jsonStore(bndm)+'</tbody></table>';

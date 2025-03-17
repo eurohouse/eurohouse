@@ -367,9 +367,17 @@ function modelcard($id,$cont,$exem,$ses,$sti) {
         } else { $bl=''; } $dl=$hd.' '.$bl.' '.$len.' '.$mas.' '.$szs.' '.$shs;
     } else { $dl=''; } return $dl;
 }
-function userlocks($arr,$col,$ava) {
+function userlocks($arr,$col,$pr1='ava.',$pr2='.iso') {
     $res=[]; foreach ($arr as $key=>$val) {
-        $lib=($key=='avatar')?str_replace('./','',(glob('./'.$ava.'*.png'))):(($key=='background')?str_replace('./','',(glob('./*.*.00.png'))):str_replace('./','',(glob('./*.{'.duplex($col[$key],true).'}',GLOB_BRACE)))); if ($key=='background') {
+        if ($key=='avatar') {
+            $lib=str_replace('./','',(glob('./'.$pr1.'*.png')));
+        } elseif ($key=='pictogram') {
+            $lib=str_replace('./','',(glob('./'.$pr2.'*.png')));
+        } elseif ($key=='background') {
+            $lib=str_replace('./','',(glob('./*.*.00.png')));
+        } else {
+            $lib=str_replace('./','',(glob('./*.{'.duplex($col[$key],true).'}',GLOB_BRACE)));
+        } if ($key=='background') {
             $res[$key]=excpkg($lib,$arr[$key],'COLLECTION');
         } else { $res[$key]=excpkg($lib,$arr[$key]); }
         natcasesort($res[$key]); array_unique($res[$key]);
