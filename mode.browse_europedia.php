@@ -80,7 +80,7 @@ if ($request['group']!='') {
                 <?=term('Weight',$ssVC,$ssUN);?>
             </a>
         </th>
-        <th style="width:8%;">
+        <th style="width:6%;">
             <a href="javascript:SortTable(4,'N');">
                 <?=term('Body Sizes',$ssVC,$ssUN);?>
             </a>
