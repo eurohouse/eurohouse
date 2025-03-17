@@ -432,13 +432,13 @@ function fixedSize($str,$offs=0,$len=1000) {
     if (($offs<$len)&&($offs>=0)&&($len>0)) {
         if ($offs>0) {
             if ($len<$stl) {
-                $res='...'.substr($str,$offs,$len);
+                $res='...'.substr($str,$offs,$len).'...';
             } else {
                 $res='...'.substr($str,$offs,$stl);
             }
         } else {
             if ($len<$stl) {
-                $res=substr($str,0,$len);
+                $res=substr($str,0,$len).'...';
             } else {
                 $res=substr($str,0,$stl);
             }
