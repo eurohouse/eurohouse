@@ -114,12 +114,12 @@ function world_clock() {
             } else if (requestMode.value=='accessibility') { pressedKeyInfo.innerText=fint[9];
             } else if (requestMode.value=='album_collection') {
                 album_modes.innerHTML=showLockInd();
-                var epr=sysDefAvaPrefix.value,alr=[];
+                var epr='',alr=[];
                 var upn=decipher(sysDefPlaylist.value,sysDefSessionID.value,sysDefNumeric.value,'arr'),arl="",plCol=sysDefPlaylistColumns.value; for (iu in upn) {
                     arl+="<a href='javascript:omniListen(%22"+rfc3986(upn[iu])+"%22,true);'>"+upn[iu]+"</a><br>";
                 } currentPlaylist.innerHTML=arl;
                 currentPlaylist.setAttribute('style','columns:'+plCol+';-webkit-columns:'+plCol+';-moz-columns:'+plCol+';'); var alb=lockarr(sysDefAlbum.value),arl="";
-                var albCol=(sysDefAlbum.value=='avatar')?sysDefAlbumColumns.value:1; if (sysDefAlbum.value=='music') {
+                var albCol=((sysDefAlbum.value=='avatar')||(sysDefAlbum.value=='pictogram'))?1:sysDefAlbumColumns.value; if (sysDefAlbum.value=='music') {
                     for (iu in alb) {
                         arl+="<a href='javascript:setdata(%22playlist%22,playlistNext(%22"+rfc3986(alb[iu])+"%22));'>"+alb[iu]+"</a><br>";
                     }
@@ -134,8 +134,14 @@ function world_clock() {
                 } else if (sysDefAlbum.value=='background') {
                     for (iu in alb) { arl+=alb[iu]+"<br>"; }
                 } else if (sysDefAlbum.value=='avatar') {
-                    alr=listlock('avatar'); for (iu in alr) {
+                    epr=sysDefAvaPrefix.value,alr=listlock(sysDefAlbum.value);
+                    for (iu in alr) {
                         arl+="<input type='image' class='power' src='"+epr+alr[iu]+".png' onclick='setdata(&#34;avatar&#34;,&#34;"+alr[iu]+"&#34;);'>";
+                    }
+                } else if (sysDefAlbum.value=='pictogram') {
+                    epr=sysDefPrefix.value,alr=listlock(sysDefAlbum.value);
+                    for (iu in alr) {
+                        arl+="<input type='image' class='power' src='"+epr+alr[iu]+".png'>";
                     }
                 } currentAlbumList.innerHTML=arl;
                 currentAlbumList.setAttribute('style','columns:'+albCol+';-webkit-columns:'+albCol+';-moz-columns:'+albCol+';');
