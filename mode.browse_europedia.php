@@ -54,14 +54,14 @@ if ($request['group']!='') {
 <table style="width:100%;" id="table">
 <thead>
     <tr>
-        <th style="width:5%;"><?=term('Flag', $ssVC, $ssUN);?></th>
-        <th style="width:10%;">
+        <th style="width:2%;"><?=term('Flag',$ssVC,$ssUN);?></th>
+        <th style="width:8%;">
             <a href="javascript:SortTable(1,'T');">
                 <?=term('Name',$ssVC,$ssUN);?>
             </a>
         </th>
         <?php if ($session['censor']!=0) { ?>
-        <th style="width:10%;">
+        <th style="width:8%;">
             <a href="javascript:SortTable(2,'T');">
                 <?=term('Description',$ssVC,$ssUN);?>
             </a>
