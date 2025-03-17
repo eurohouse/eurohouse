@@ -179,7 +179,7 @@ function excpkg(array $arr,$exc='',$flg=''): array {
         } else { $new=$arr; } foreach ($new as $val) {
             if (in_array($val,$arr)!==false) { $fin[]=$val; }
         } $res=(!empty($fin))?array_unique($fin):array_unique($arr);
-    } arsort($res); array_unique($res); return $res;
+    } return $res;
 }
 function valstr(array $arr,$y,$x): string {
     $lines=''; foreach ($arr as $key=>$val) {
@@ -380,7 +380,6 @@ function userlocks($arr,$col,$pr1='ava.',$pr2='.iso') {
         } if ($key=='background') {
             $res[$key]=excpkg($lib,$arr[$key],'COLLECTION');
         } else { $res[$key]=excpkg($lib,$arr[$key]); }
-        natcasesort($res[$key]); array_unique($res[$key]);
     } return $res;
 }
 function catlist($cat): array {
