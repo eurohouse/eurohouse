@@ -1,4 +1,4 @@
-<!-- delete -->
+<!-- trash -->
 <!-- CH: Redivivus Bin; FR: Corbeille; BE: Corbeille; RO: Coșul de reciclare; MD: Coșul de reciclare; BR: Lixeira de reciclagem; PT: Contentor; LK: पुनर्चक्रण बिन; IN: रीसायकल बिन; TR: Geri Dönüşüm Kutusu; ES: Papelera de reciclaje; MX: Papelera de reciclaje; IT: Pattumiera; DE: Papierkorb; AT: Papierkorb; GR: Κάδος Ανακύκλωσης; CY: Κάδος Ανακύκλωσης; RU: Корзина; UA: Кошик; CN: 回收站; KR: 휴지통; JP: ごみ箱; AE: إمساك الدفاتر -->
 <?php
 $line1Size=70;$recycleDir='./.trash/';
