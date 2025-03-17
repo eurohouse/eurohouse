@@ -34,7 +34,7 @@
         <input type="image" onmouseover="soundButton();" id="buttonBackspace" class="power" onclick="document.getElementById('omniBox').value='';
         document.getElementById('omniBox').focus();" src="<?=$prefix.'backspace.png';?>" title="<?=term('Clear Console',$settings['vocabulary'],$session['units']);?>">
     <?php } else { ?>
-        <input type="image" onmouseover="soundButton();" id="buttonSuggest" class="power" onclick="var uli=(sysDefUsersList.value).split(',');omniBoxAuthLogin.value=uli[rand(0,(uli.length))];omniBoxAuthPass.value='';omniBoxAuthPass.focus();" src="<?=$prefix.((isInBackup($sessionID))?'open.png':'save.png');?>" title="<?=term('Save/Load User Session Backup',$settings['vocabulary'],$session['units']);?>">
+        <input type="image" onmouseover="soundButton();" id="buttonSuggest" class="power" onclick="var uli=(sysDefUsersList.value).split(',');omniBoxAuthLogin.value=uli[rand(0,(uli.length))];omniBoxAuthPass.value='';omniBoxAuthPass.focus();" src="<?=$prefix.'user.png';?>" title="<?=term('Suggest Username',$settings['vocabulary'],$session['units']);?>">
         <input type='text' id="omniBoxAuthLogin" style="width:30%;" placeholder="<?=term('Username',$settings['vocabulary'],$session['units']);?>" value="" onkeydown="if (event.keyCode==13) {
             document.getElementById('omniBoxAuthPass').value='';
             document.getElementById('omniBoxAuthPass').focus();

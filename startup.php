@@ -88,6 +88,7 @@ function world_clock() {
             $('#buttonObserve').attr('src',sysDefPrefix.value+'power.png');
             $('#buttonSpectate').attr('src',sysDefPrefix.value+'camera.png');
             $('#buttonEnter').attr('src',sysDefPrefix.value+'return.png');
+            $('#buttonSuggest').attr('src',sysDefPrefix.value+'user.png');
             $('#buttonCommand').attr('src',sysDefPrefix.value+sysDefMode.value+'.png');
             $('#buttonChat').attr('src',sysDefPrefix.value+'mail.png');
             $('#buttonSearch').attr('src',sysDefPrefix.value+'directory.png');
