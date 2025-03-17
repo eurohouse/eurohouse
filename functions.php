@@ -179,7 +179,7 @@ function excpkg(array $arr,$exc='',$flg=''): array {
         } else { $new=$arr; } foreach ($new as $val) {
             if (in_array($val,$arr)!==false) { $fin[]=$val; }
         } $res=(!empty($fin))?array_unique($fin):array_unique($arr);
-    } natcasesort($res); array_unique($res); return $res;
+    } arsort($res); array_unique($res); return $res;
 }
 function valstr(array $arr,$y,$x): string {
     $lines=''; foreach ($arr as $key=>$val) {
