@@ -34,7 +34,8 @@
         <input type="image" onmouseover="soundButton();" id="buttonBackspace" class="power" onclick="document.getElementById('omniBox').value='';
         document.getElementById('omniBox').focus();" src="<?=$prefix.'backspace.png';?>" title="<?=term('Clear Console',$settings['vocabulary'],$session['units']);?>">
     <?php } else { ?>
-        <input type='text' id="omniBoxAuthLogin" style="width:34%;" placeholder="<?=term('Username',$settings['vocabulary'],$session['units']);?>" value="" onkeydown="if (event.keyCode==13) {
+        <input type="image" onmouseover="soundButton();" id="buttonSuggest" class="power" onclick="var uli=(sysDefUsersList.value).split(',');omniBoxAuthLogin.value=uli[rand(0,(uli.length-1))];" src="<?=$prefix.((isInBackup($sessionID))?'open.png':'save.png');?>" title="<?=term('Save/Load User Session Backup',$settings['vocabulary'],$session['units']);?>">
+        <input type='text' id="omniBoxAuthLogin" style="width:30%;" placeholder="<?=term('Username',$settings['vocabulary'],$session['units']);?>" value="" onkeydown="if (event.keyCode==13) {
             document.getElementById('omniBoxAuthPass').value='';
             document.getElementById('omniBoxAuthPass').focus();
         } else if (event.keyCode==27) {
@@ -42,7 +43,7 @@
         } else if (event.keyCode==8) { handleInput(this.value);
         } else if (event.keyCode==46) { handleInput(this.value);
         } keyd();" oninput="handleInput(this.value,true);">
-        <input type='password' id="omniBoxAuthPass" style="width:34%;" placeholder="<?=term('Password',$settings['vocabulary'],$session['units']);?>" value="" onkeydown="if (event.keyCode==13) {
+        <input type='password' id="omniBoxAuthPass" style="width:30%;" placeholder="<?=term('Password',$settings['vocabulary'],$session['units']);?>" value="" onkeydown="if (event.keyCode==13) {
             omniAuthRequest('signin',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString());
         } else if (event.keyCode==27) {
             document.getElementById('omniBoxAuthPass').value='';
