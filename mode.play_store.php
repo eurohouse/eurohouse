@@ -7,7 +7,7 @@
         $pkgID=explode('/',$ch)[count(explode('/',$ch))-1]; ?>
         <input type="button" name="<?=$ch;?>" value="<?=$ch;?>" style="width:<?=$line1Size;?>%;" onmouseover="soundButton();" onclick="clip(this.name);">
         <input type="image" name="<?=$ch;?>" onmouseover="soundButton();" class="power" onclick="getPkgSequence('get -i '+this.name,'get ');" src="<?=$prefix.'world.png';?>"><?php if (file_exists($pkgID.'.pkg')) { ?>
-            <input type="image" name="<?=$pkgID;?>" onmouseover="soundButton();" class="power" onclick="getPkgSequence('get -d '+this.name,'get ');" src="<?=$prefix.'delete.png';?>">
+            <input type="image" name="<?=$pkgID;?>" onmouseover="soundButton();" class="power" onclick="getPkgSequence('get -d '+this.name,'get ');" src="<?=$prefix.'trash.png';?>">
         <?php } else { ?>
             <input type="image" name="<?=$ch;?>" onmouseover="soundButton();" class="power" onclick="getPkgSequence('get -i '+this.name,'get ');" src="<?=$prefix.'update.png';?>">
     <?php }} ?>

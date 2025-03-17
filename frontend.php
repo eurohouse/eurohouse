@@ -351,7 +351,7 @@ function jsonHTML(str,mask) {
     var usr=sysDefSessionID.value,epr=sysDefPrefix.value;
     for (el in arr) {
         fu0="clearJournal(&#39;"+etw(el,usr)+"&#39;,&#39;"+sysDefMsgData.value+"&#39;,&#39;msgbox&#39;,);"; fu1="clip(&#39;"+arr[el]+"&#39;);";
-        ard=el+" <input type='image' class='power' src='"+epr+"delete.png"+"' onclick='"+fu0+"'><br>"+arr[el]+" <input type='image' class='power' src='"+epr+"copy.png"+"' onclick='"+fu1+"'><br>"+ard;
+        ard=el+" <input type='image' class='power' src='"+epr+"trash.png"+"' onclick='"+fu0+"'><br>"+arr[el]+" <input type='image' class='power' src='"+epr+"copy.png"+"' onclick='"+fu1+"'><br>"+ard;
     } return ard;
 }
 function jsonNews() {
@@ -440,7 +440,7 @@ function noteBook(str) {
     var epr=sysDefPrefix.value; for (el in arr) {
         eld=arr[el],eln=sysDefNumeric.value,elt=decode(eld,'',eln);
         arl="<input type='button' style='width:80%;' onclick='openNote(&#34;"+elt+"&#34;,&#34;&#34;,&#34;"+eln+"&#34;);' value='"+elt+"'>";
-        arl+="<input type='image' class='power' src='"+epr+"delete.png"+"' onclick='deleteNote(&#34;"+elt+"&#34;,&#34;&#34;,&#34;"+eln+"&#34;);'>";
+        arl+="<input type='image' class='power' src='"+epr+"trash.png"+"' onclick='deleteNote(&#34;"+elt+"&#34;,&#34;&#34;,&#34;"+eln+"&#34;);'>";
         ard=ard+arl+'<br>';
     } return ard;
 }

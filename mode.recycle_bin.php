@@ -16,6 +16,6 @@ $sizeRecBin=0; foreach ($recycleList as $val) {
     <input type="button" name="<?=$recycleDir.$val;?>" value="<?=str_replace('_fragment.json', '', $val);?>" style="width:<?=$line1Size;?>%;" onmouseover="soundButton();" onclick="omniPath(this.name,'','false');">
     <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
         <input type="image" name="<?=str_replace('_fragment.json', '', $val);?>" onmouseover="soundButton();" class="power" onclick="restore(this.name);" src="<?=$prefix.'update.png';?>">
-        <input type="image" name="<?=$recycleDir.$val;?>" onmouseover="soundButton();" class="power" onclick="del(this.name);" src="<?=$prefix.'delete.png';?>">
+        <input type="image" name="<?=$recycleDir.$val;?>" onmouseover="soundButton();" class="power" onclick="del(this.name);" src="<?=$prefix.'trash.png';?>">
     <?php } ?></p>
 <?php } ?>

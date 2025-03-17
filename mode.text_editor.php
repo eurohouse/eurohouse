@@ -52,7 +52,7 @@ $mkdirDocumentIcon = $themePrefix.'mkdir.png';
 $moveDocumentIcon = $themePrefix.'move.png';
 $dbDocumentIcon = $themePrefix.'database.png';
 $copyDocumentIcon = $themePrefix.'copy.png';
-$deleteDocumentIcon = $themePrefix.'delete.png';
+$deleteDocumentIcon = $themePrefix.'trash.png';
 $infoDocumentIcon = $themePrefix.'info.png';
 $homeDocumentIcon = $themePrefix.'home.png'; ?>
 <img class="actionIcon" loading="lazy" src="<?=$newDocumentIcon;?>" onmouseover="soundButton();" id="newButton" onclick="omniRead(requestMode.value,'file','true');countText();">
