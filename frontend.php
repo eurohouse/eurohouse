@@ -375,9 +375,9 @@ function showLockInd() {
     var ob=((jsonarr(sysDefLockData.value)!==undefined)&&(jsonarr(sysDefLockData.value)!==null))?jsonarr(sysDefLockData.value):{},ch=Object.keys(ob||{});
     var lic=jsonarr(sysDefLockIcons.value);
     var epr=sysDefPrefix.value;
-    var arl="<p align='center'>"; for (iu in ch) {
-        arl+="<input type='image' class='power' src='"+epr+lic[ch[iu]]+".png"+"' onclick='setdata(&#34;album&#34;,&#34;"+ch[iu]+"&#34;);'>";
-    } arl+="</p>"; return arl;
+    var arl=""; for (iu in ch) {
+        arl+="<input type='image' class='power' onmouseover='soundButton();'' src='"+epr+lic[ch[iu]]+".png"+"' onclick='setdata(&#34;album&#34;,&#34;"+ch[iu]+"&#34;);'>";
+    } return arl;
 }
 function listlock(id) {
     var ob=lockarr(id),ar=[];
