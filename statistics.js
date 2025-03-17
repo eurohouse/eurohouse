@@ -15,12 +15,12 @@ function scores(sta) {
             if ((ordered[indi]!==undefined)||(indi!='')) {
                 af=(ordered[indi]!=indi)?"@"+ordered[indi]:"SELF";
                 at=getUserAvatar(indi);
-                res+="<input type='image' class='power' src='"+eax+at+".png"+"' onclick='clip(&#34;"+at+"&#34;);'>";
-                res+="<input type='button' style='width:35%;' value='@"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
-                res+="<input type='button' style='width:34%;' value='"+af+"' onclick='clip(&#34;"+af+"&#34;);'>";
-                res+="<input type='image' class='power' src='"+epr+"chain.png"+"' onclick='bind(&#34;"+rid+"&#34;,&#34;"+indi+"&#34;);'>";
+                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+eax+at+".png"+"' onclick='clip(&#34;"+at+"&#34;);'>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:35%;' value='@"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:34%;' value='"+af+"' onclick='clip(&#34;"+af+"&#34;);'>";
+                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"chain.png"+"' onclick='bind(&#34;"+rid+"&#34;,&#34;"+indi+"&#34;);'>";
                 if (superuser()) {
-                    res+="<input type='image' class='power' src='"+epr+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;);'>";
+                    res+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;);'>";
                 } res+="<br>";
             }
         }
@@ -31,12 +31,12 @@ function scores(sta) {
             if ((ordered[indi]!==undefined)||(indi!='')) {
                 af=(ordered[indi]!=indi)?"INCOMING":"OUTGOING";
                 at=getUserAvatar(indi);
-                res+="<input type='image' class='power' src='"+eax+at+".png"+"' onclick='clip(&#34;"+at+"&#34;);'>";
-                res+="<input type='button' style='width:25%;' value='@"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
-                res+="<input type='button' style='width:45%;' value='"+af+"' onclick='clip(&#34;"+af+"&#34;);'>";
-                res+="<input type='image' class='power' src='"+epr+"call.png"+"' onclick='call(&#34;"+rid+"&#34;,&#34;"+indi+"&#34;);'>";
+                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+eax+at+".png"+"' onclick='clip(&#34;"+at+"&#34;);'>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:25%;' value='@"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:45%;' value='"+af+"' onclick='clip(&#34;"+af+"&#34;);'>";
+                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"call.png"+"' onclick='call(&#34;"+rid+"&#34;,&#34;"+indi+"&#34;);'>";
                 if (superuser()) {
-                    res+="<input type='image' class='power' src='"+epr+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;);'>";
+                    res+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;);'>";
                 } res+="<br>";
             }
         }
@@ -47,11 +47,11 @@ function scores(sta) {
             if ((ordered[indi]!==undefined)||(indi!='')) {
                 af=(ordered[indi]=='auto')?"AUTO":"MANUAL";
                 at=getUserAvatar(indi);
-                res+="<input type='image' class='power' src='"+eax+at+".png"+"' onclick='clip(&#34;"+at+"&#34;);'>";
-                res+="<input type='button' style='width:34%;' value='@"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
-                res+="<input type='button' style='width:45%;' value='"+af+"' onclick='clip(&#34;"+af+"&#34;);'>";
+                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+eax+at+".png"+"' onclick='clip(&#34;"+at+"&#34;);'>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:34%;' value='@"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:45%;' value='"+af+"' onclick='clip(&#34;"+af+"&#34;);'>";
                 if (superuser()) {
-                    res+="<input type='image' class='power' src='"+epr+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;);'>";
+                    res+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;);'>";
                 } res+="<br>";
             }
         }
@@ -62,11 +62,11 @@ function scores(sta) {
             if ((ordered[indi]!==undefined)||(indi!='')) {
                 af=(ordered[indi]!='')?'@{'+ordered[indi]+'}':"NULL";
                 at=getUserAvatar(indi);
-                res+="<input type='image' class='power' src='"+eax+at+".png"+"' onclick='clip(&#34;"+at+"&#34;);'>";
-                res+="<input type='button' style='width:24%;' value='@"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
-                res+="<input type='button' style='width:54%;' value='"+af+"' onclick='clip(&#34;"+af+"&#34;);'>";
+                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+eax+at+".png"+"' onclick='clip(&#34;"+at+"&#34;);'>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:24%;' value='@"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:54%;' value='"+af+"' onclick='clip(&#34;"+af+"&#34;);'>";
                 if (superuser()) {
-                    res+="<input type='image' class='power' src='"+epr+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;);'>";
+                    res+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;);'>";
                 } res+="<br>";
             }
         }
@@ -83,12 +83,12 @@ function scores(sta) {
                     fo=((dat[ordered[indi]]['force']!==undefined)&&(isInt(dat[ordered[indi]]['force']))&&(dat[ordered[indi]]['force']>0))?parseInt(dat[ordered[indi]]['force']):0;
                     em=(ex!=0)?am+'/'+se+fo:se+fo;
                     at=getUserAvatar(indi);
-                    res+="<input type='image' class='power' src='"+eax+at+".png"+"' onclick='clip(&#34;"+at+"&#34;);'>";
-                    res+="<input type='button' style='width:26%;' value='@"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
-                    res+="<input type='button' style='width:30%;' value='"+ordered[indi]+"' onclick='clip(&#34;"+ordered[indi]+"&#34;);'>";
-                    res+="<input type='button' style='width:23%;' value='"+em+"' onclick='clip(&#34;"+em+"&#34;);'>";
+                    res+="<input type='image' class='power' onmouseover='soundButton();' src='"+eax+at+".png"+"' onclick='clip(&#34;"+at+"&#34;);'>";
+                    res+="<input type='button' onmouseover='soundButton();' style='width:26%;' value='@"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
+                    res+="<input type='button' onmouseover='soundButton();' style='width:30%;' value='"+ordered[indi]+"' onclick='clip(&#34;"+ordered[indi]+"&#34;);'>";
+                    res+="<input type='button' onmouseover='soundButton();' style='width:23%;' value='"+em+"' onclick='clip(&#34;"+em+"&#34;);'>";
                     if (superuser()) {
-                        res+="<input type='image' class='power' src='"+epr+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;);'>";
+                        res+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;);'>";
                     } res+="<br>";
                 }
             }
@@ -100,15 +100,15 @@ function scores(sta) {
             if ((sortable[indi]!==undefined)&&(indi!='')) {
                 af=jsonarr(sysDefHdiData.value);
                 if (af[sortable[indi]['Country']]!==undefined) {
-                    res+="<input type='image' class='power' src='Flag."+sortable[indi]['Country']+".png"+"' onclick='clip(&#34;"+sortable[indi]['Country']+"&#34;);'>";
+                    res+="<input type='image' class='power' onmouseover='soundButton();' src='Flag."+sortable[indi]['Country']+".png"+"' onclick='clip(&#34;"+sortable[indi]['Country']+"&#34;);'>";
                 } else {
-                    res+="<input type='image' class='power' src='Flag.UN.png"+"' onclick='clip(&#34;"+sortable[indi]['Country']+"&#34;);'>";
-                } res+="<input type='button' style='width:46%;' value='"+indi+"' onclick='clip(&#34;"+(indi.split('/')[0])+"&#34;);'>";
+                    res+="<input type='image' class='power' onmouseover='soundButton();' src='Flag.UN.png"+"' onclick='clip(&#34;"+sortable[indi]['Country']+"&#34;);'>";
+                } res+="<input type='button' onmouseover='soundButton();' style='width:46%;' value='"+indi+"' onclick='clip(&#34;"+(indi.split('/')[0])+"&#34;);'>";
                 at=getUserAvatar(sortable[indi]['Username']);
-                res+="<input type='image' class='power' src='"+eax+at+".png"+"' onclick='clip(&#34;"+at+"&#34;);'>";
-                res+="<input type='button' style='width:24%;' value='@"+sortable[indi]['Username']+"' onclick='clip(&#34;"+sortable[indi]['Username']+"&#34;);'>";
+                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+eax+at+".png"+"' onclick='clip(&#34;"+at+"&#34;);'>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:24%;' value='@"+sortable[indi]['Username']+"' onclick='clip(&#34;"+sortable[indi]['Username']+"&#34;);'>";
                 if (superuser()) {
-                    res+="<input type='image' class='power' src='"+epr+"trash.png"+"' onclick='remove_entry(&#39;"+indi+"&#39;,&#39;"+arr+"&#39;,&#39;"+eps+"&#39;,true,true);'>";
+                    res+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"trash.png"+"' onclick='remove_entry(&#39;"+indi+"&#39;,&#39;"+arr+"&#39;,&#39;"+eps+"&#39;,true,true);'>";
                 } res+="<br>";
             }
         }
@@ -123,8 +123,8 @@ function scores(sta) {
             Object.entries(obj).sort(([,a],[,b])=>b['%bd']-a['%bd'])
         ); for (indi in sortable) {
             if ((sortable[indi]!==undefined)&&(indi!='')) {
-                res+="<input type='image' class='power' src='Flag."+sortable[indi]['%cc']+".png"+"' onclick='clip(&#34;"+indi+"&#34;);'>";
-                res+="<input type='button' style='width:68%;' value='"+sortable[indi]['%zd']+" "+indi+"' onclick='omniReadGroup(&#34;browse_europedia&#34;,&#34;"+indi+"&#34;);'><br>";
+                res+="<input type='image' class='power' onmouseover='soundButton();' src='Flag."+sortable[indi]['%cc']+".png"+"' onclick='clip(&#34;"+indi+"&#34;);'>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:68%;' value='"+sortable[indi]['%zd']+" "+indi+"' onclick='omniReadGroup(&#34;browse_europedia&#34;,&#34;"+indi+"&#34;);'><br>";
             }
         }
     } else if (sta=='hdi') {
@@ -155,10 +155,10 @@ function scores(sta) {
             Object.entries(obj).sort(([,a],[,b])=>b['Human Development Index']-a['Human Development Index'])
         ); for (indi in sortable) {
             if ((sortable[indi]!==undefined)&&(indi!='')) {
-                res+="<input type='image' class='power' src='Flag."+indi+".png"+"' onclick='clip(&#34;"+indi+"&#34;);'>";
-                res+="<input type='button' style='width:24%;' value='"+sortable[indi]['Human Development Index']+"' onclick='clip(&#34;"+sortable[indi]['Human Development Index']+"&#34;);'>";
-                res+="<input type='button' style='width:40%;' value='"+sortable[indi]['Gross National Income']['Both']+"' onclick='clip(&#34;"+sortable[indi]['Gross National Income']['Both']+"&#34;);'>";
-                res+="<input type='image' class='power' src='"+epr+"info.png"+"' onclick='omniPath(&#34;i18n.json&#34;,&#34;"+indi+"&#34;,&#34;false&#34;);'><br>";
+                res+="<input type='image' class='power' onmouseover='soundButton();' src='Flag."+indi+".png"+"' onclick='clip(&#34;"+indi+"&#34;);'>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:24%;' value='"+sortable[indi]['Human Development Index']+"' onclick='clip(&#34;"+sortable[indi]['Human Development Index']+"&#34;);'>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:40%;' value='"+sortable[indi]['Gross National Income']['Both']+"' onclick='clip(&#34;"+sortable[indi]['Gross National Income']['Both']+"&#34;);'>";
+                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"info.png"+"' onclick='omniPath(&#34;i18n.json&#34;,&#34;"+indi+"&#34;,&#34;false&#34;);'><br>";
             }
         }
     } else if (sta=='powers') {
@@ -167,11 +167,11 @@ function scores(sta) {
         ); for (indi in sortable) {
             if ((sortable[indi]!==undefined)||(indi!='')) {
                 at=getUserAvatar(indi);
-                res+="<input type='image' class='power' src='"+eax+at+".png"+"' onclick='clip(&#34;"+at+"&#34;);'>";
-                res+="<input type='button' style='width:24%;' value='@"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
-                res+="<input type='button' style='width:54%;' value='"+sortable[indi]+"' onclick='clip(&#34;"+sortable[indi]+"&#34;);'>";
+                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+eax+at+".png"+"' onclick='clip(&#34;"+at+"&#34;);'>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:24%;' value='@"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:54%;' value='"+sortable[indi]+"' onclick='clip(&#34;"+sortable[indi]+"&#34;);'>";
                 if (superuser()) {
-                    res+="<input type='image' class='power' src='"+epr+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;);'>";
+                    res+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;);'>";
                 } res+="<br>";
             }
         }
