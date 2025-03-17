@@ -1,13 +1,13 @@
 <!-- speed -->
 <!-- GR: Εξατομίκευση; CY: Εξατομίκευση; IT: Personalizzazione; FR: Personnalisation; BE: Personnalisation; LK: व्यक्तिगतकरणम्; IN: वैयक्तिकरण; CH: Occasus Personalis; TR: Kişiselleştirme; RO: Personalizare; MD: Personalizare; RS: Персонализација; NP: མི་སྒེར་ཅན་བཟོ་བ།; BR: Personalização; PT: Personalização; UA: Персоналізація; ES: Personalización; MX: Personalización; DE: Personalisierung; AT: Personalisierung; RU: Персонализация; CN: 个性化和元数据; KR: 개인화하다; JP: カスタマイズする; AE: إضفاء الطابع الشخصي -->
 <?php $listReticles=str_replace('./','',(glob('./'.$reticlePrefix.'*.png'))); ?>
-<div class='customPanel' id='pers_rtc' style="width:100%;height:80px;left:0px;top:0px;">
+<div class='customPanel' id='pers_rtc' style="width:100%;height:40px;left:0px;top:0px;">
     <p align='center'>
-        <img style="width:8%;" id="chooseReticle1" name="<?=$session['reticle_choice_1'];?>" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_1'].'.png';?>" onclick="setdata('reticle',chooseReticle1.name);">
-        <img style="width:8%;" id="chooseReticle2" name="<?=$session['reticle_choice_2'];?>" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_2'].'.png';?>" onclick="setdata('reticle',chooseReticle2.name);">
-        <img style="width:8%;" id="chooseReticle3" name="<?=$session['reticle_choice_3'];?>" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_3'].'.png';?>" onclick="setdata('reticle',chooseReticle3.name);">
-        <img style="width:8%;" id="chooseReticle4" name="<?=$session['reticle_choice_4'];?>" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_4'].'.png';?>" onclick="setdata('reticle',chooseReticle4.name);">
-        <img style="width:8%;" id="chooseReticle5" name="<?=$session['reticle_choice_5'];?>" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_5'].'.png';?>" onclick="setdata('reticle',chooseReticle5.name);">
+        <img style="width:12%;" id="chooseReticle1" name="<?=$session['reticle_choice_1'];?>" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_1'].'.png';?>" onclick="setdata('reticle',chooseReticle1.name);">
+        <img style="width:12%;" id="chooseReticle2" name="<?=$session['reticle_choice_2'];?>" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_2'].'.png';?>" onclick="setdata('reticle',chooseReticle2.name);">
+        <img style="width:12%;" id="chooseReticle3" name="<?=$session['reticle_choice_3'];?>" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_3'].'.png';?>" onclick="setdata('reticle',chooseReticle3.name);">
+        <img style="width:12%;" id="chooseReticle4" name="<?=$session['reticle_choice_4'];?>" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_4'].'.png';?>" onclick="setdata('reticle',chooseReticle4.name);">
+        <img style="width:12%;" id="chooseReticle5" name="<?=$session['reticle_choice_5'];?>" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_5'].'.png';?>" onclick="setdata('reticle',chooseReticle5.name);">
     </p>
 </div>
 <div class='customPanel' id='pers_btns' style="width:100%;height:40px;left:0px;top:0px;">
