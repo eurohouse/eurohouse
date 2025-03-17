@@ -54,7 +54,7 @@ if ($request['group']!='') {
 <table style="width:100%;" id="table">
 <thead>
     <tr>
-        <th style="width:2%;"><?=term('Flag',$ssVC,$ssUN);?></th>
+        <th style="width:4%;"><?=term('Flag',$ssVC,$ssUN);?></th>
         <th style="width:8%;">
             <a href="javascript:SortTable(1,'T');">
                 <?=term('Name',$ssVC,$ssUN);?>
