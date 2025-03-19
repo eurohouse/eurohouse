@@ -21,13 +21,14 @@ $listExem=exemplar(str_replace('./','',(glob('./*.models.json')))); foreach ($li
 $userBook=jsonopen('./.book/'.$cookie.'_book.json',true);
 $userStore=jsonopen('./.store/'.$cookie.'_store.json',true);
 $localesArr=arropen('./i18n.json');
-$currentTimes=$currentAvatars=[];
+$currentTimes=$currentTimesActive=$currentAvatars=[];
 foreach ($poweredData as $key=>$value) {
     if (file_exists($key.'_session.json')) {
         $testArr=arropen($key.'_session.json',json_encode($userSettings['defaults']),'DEFAULT');
     } else { $testArr=['timezone'=>0,'avatar'=>'NULL']; }
     date_default_timezone_set(dec_tz($testArr['timezone']));
-    $currentTimes[]=date('H');
+    $currentTimes[$key]=date('H');
+    $currentTimesActive[$key]=$testArr['active_hours'];
     $currentAvatars[$key]=$testArr['avatar'];
 } $activeIPs=vismark('visitors.json');
 $usersList=array_keys($poweredData); natcasesort($usersList);
@@ -44,11 +45,12 @@ $usersList=array_keys($poweredData); natcasesort($usersList);
 /* ¶ 10 */ json_encode($userLocks,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
 /* ¶ 11 */ implode('//',(str_replace('./','',(glob('./*.mac')))))."\\\\".implode('//',(str_replace('./','',(glob('./*.pro')))))."\r\n\r\n".
 /* ¶ 12 */ implode(',',$usersList)."\r\n\r\n".
-/* ¶ 13 */ implode(' ',$currentTimes)."\r\n\r\n".
-/* ¶ 14 */ json_encode($notesArr,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
-/* ¶ 15 */ json_encode($tutorArr,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
-/* ¶ 16 */ valstr($currentAvatars,';',':')."\r\n\r\n".
-/* ¶ 17 */ json_encode($newsData,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
-/* ¶ 18 */ json_encode($activeIPs,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
-/* ¶ 19 */ json_encode($localesArr,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
-/* ¶ 20 */ json_encode($listExem,JSON_UNESCAPED_UNICODE);
+/* ¶ 13 */ valstr($currentTimes,';',':')."\r\n\r\n".
+/* ¶ 14 */ valstr($currentTimesActive,';',':')."\r\n\r\n".
+/* ¶ 15 */ valstr($currentAvatars,';',':')."\r\n\r\n".
+/* ¶ 16 */ json_encode($notesArr,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
+/* ¶ 17 */ json_encode($tutorArr,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
+/* ¶ 18 */ json_encode($newsData,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
+/* ¶ 19 */ json_encode($activeIPs,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
+/* ¶ 20 */ json_encode($localesArr,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
+/* ¶ 21 */ json_encode($listExem,JSON_UNESCAPED_UNICODE);

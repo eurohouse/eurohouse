@@ -36,13 +36,14 @@ function databox() {
             $('#sysDefBooksList').val(pager(data,12));
             $('#sysDefStoreList').val(pager(data,12));
             $('#sysDefHoursNow').val(pager(data,13));
-            $('#sysDefMetaData').val(pager(data,14));
-            $('#sysDefTutorData').val(pager(data,15));
-            $('#sysDefAvatarsNow').val(pager(data,16));
-            $('#sysDefNewsData').val(pager(data,17));
-            $('#sysDefIpData').val(pager(data,18));
-            $('#sysDefHdiData').val(pager(data,19));
-            $('#sysDefModelData').val(pager(data,20));
+            $('#sysDefHoursActive').val(pager(data,14));
+            $('#sysDefAvatarsNow').val(pager(data,15));
+            $('#sysDefMetaData').val(pager(data,16));
+            $('#sysDefTutorData').val(pager(data,17));
+            $('#sysDefNewsData').val(pager(data,18));
+            $('#sysDefIpData').val(pager(data,19));
+            $('#sysDefHdiData').val(pager(data,20));
+            $('#sysDefModelData').val(pager(data,21));
             $('#sysDefMetaList').val(Object.keys(jsonarr(sysDefMetaData.value)).join(' | ')); $('#sysDefTutorList').val(Object.keys(jsonarr(sysDefTutorData.value)).join(' | '));
             if (sysDefBindData.value!=sysDefPostBindData.value) { playAudio(bindPlayer,sysDefBindSound.value); } sysDefPostBindData.value=sysDefBindData.value;
             if (sysDefPowersData.value!=sysDefPostPowersData.value) { playAudio(sufferPlayer,sysDefSufferSound.value); } sysDefPostPowersData.value=sysDefPowersData.value;
@@ -314,14 +315,6 @@ function wallpaper_engine() {
                 $('#showingAvatarNow').attr('src',pager(data,3));
             <?php } ?>
         },
-    });
-}
-function active_hours() {
-    $.ajax({
-        url: 'active_hours.php',
-        success: function(data) {
-            $('#sysDefHoursActive').val(data);
-        }
     });
 }
 function mailing_list() {

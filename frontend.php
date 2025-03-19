@@ -137,24 +137,20 @@ function openJournal(id,usersObj,dataObj) {
     return pager((dataObj.value),userNum);
 }
 function storeOpen(id) {
-    var userArr=(sysDefUsersList.value).split(',');
-    var userNum=arraySearch(id,userArr);
     var hours=storeHours(id).split(',');
     return (hours.includes(userTimeNow(id)));
 }
 function userTimeNow(id) {
-    var userArr=(sysDefUsersList.value).split(',');
-    var userNum=arraySearch(id,userArr);
-    return (sysDefHoursNow.value).split(' ')[userNum];
+    var arr=arrjob(sysDefHoursNow.value,';',':');
+    return (arr[id]!==undefined)?arr[id]:'00';
 }
 function getUserAvatar(id) {
-    var avaArr=arrjob(sysDefAvatarsNow.value,';',':');
-    return (avaArr[id]!==undefined)?avaArr[id]:'NULL';
+    var arr=arrjob(sysDefAvatarsNow.value,';',':');
+    return (arr[id]!==undefined)?arr[id]:'NULL';
 }
 function storeHours(id) {
-    var userArr=(sysDefUsersList.value).split(',');
-    var userNum=arraySearch(id,userArr);
-    return pager(sysDefHoursActive.value,userNum);
+    var arr=arrjob(sysDefHoursActive.value,';',':');
+    return (arr[id]!==undefined)?arr[id]:'';
 }
 function isInBackup(id) {
     var rfs=rfl={}; with(localStorage) {

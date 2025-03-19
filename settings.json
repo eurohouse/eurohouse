@@ -1,6 +1,6 @@
 {
     "lifetime": { "cookie_default": 0, "cookie_lengthen": 86400, "garbage_collector": 604800 },
-    "intervals": { "databox": 1000, "world_clock": 1000, "visual_effects": 300, "wallpaper_engine": 1000, "active_hours": 1000, "mailing_list": 1000, "bookkeep_list": 1000, "store_list": 1000, "automator": 250 },
+    "intervals": { "databox": 1000, "world_clock": 1000, "visual_effects": 300, "wallpaper_engine": 1000, "mailing_list": 1000, "bookkeep_list": 1000, "store_list": 1000, "automator": 250 },
     "viewport": { "width": "device-width", "initial-scale": "1.0", "maximum-scale": "1.0", "user-scalable": "0" },
     "locks": { "background": "!metro,distro,osx,xp", "avatar": "avatar", "pictogram": "avatar", "music": "botticelli,orchestra", "font": "unix", "sound": "unix" },
     "locks_icons": { "background": "image", "avatar": "user", "pictogram": "pick", "music": "music", "font": "font", "sound": "audio" },
