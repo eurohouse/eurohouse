@@ -3,11 +3,11 @@
 <?php $listReticles=str_replace('./','',(glob('./'.$reticlePrefix.'*.png'))); ?>
 <div class='customPanel' id='pers_rtc' style="width:100%;height:40px;left:0px;top:0px;">
     <p align='center'>
-        <img style="height:12%;position:relative;" id="chooseReticle1" name="<?=$session['reticle_choice_1'];?>" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_1'].'.png';?>" onclick="setdata('reticle',chooseReticle1.name);">
-        <img style="height:12%;position:relative;" id="chooseReticle2" name="<?=$session['reticle_choice_2'];?>" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_2'].'.png';?>" onclick="setdata('reticle',chooseReticle2.name);">
-        <img style="height:12%;position:relative;" id="chooseReticle3" name="<?=$session['reticle_choice_3'];?>" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_3'].'.png';?>" onclick="setdata('reticle',chooseReticle3.name);">
-        <img style="height:12%;position:relative;" id="chooseReticle4" name="<?=$session['reticle_choice_4'];?>" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_4'].'.png';?>" onclick="setdata('reticle',chooseReticle4.name);">
-        <img style="height:12%;position:relative;" id="chooseReticle5" name="<?=$session['reticle_choice_5'];?>" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_5'].'.png';?>" onclick="setdata('reticle',chooseReticle5.name);">
+        <img style="height:90%;position:relative;" id="chooseReticle1" name="<?=$session['reticle_choice_1'];?>" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_1'].'.png';?>" onclick="setdata('reticle',chooseReticle1.name);">
+        <img style="height:90%;position:relative;" id="chooseReticle2" name="<?=$session['reticle_choice_2'];?>" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_2'].'.png';?>" onclick="setdata('reticle',chooseReticle2.name);">
+        <img style="height:90%;position:relative;" id="chooseReticle3" name="<?=$session['reticle_choice_3'];?>" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_3'].'.png';?>" onclick="setdata('reticle',chooseReticle3.name);">
+        <img style="height:90%;position:relative;" id="chooseReticle4" name="<?=$session['reticle_choice_4'];?>" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_4'].'.png';?>" onclick="setdata('reticle',chooseReticle4.name);">
+        <img style="height:90%;position:relative;" id="chooseReticle5" name="<?=$session['reticle_choice_5'];?>" onmouseover="soundButton();" src="<?=$reticlePrefix.$session['reticle_choice_5'].'.png';?>" onclick="setdata('reticle',chooseReticle5.name);">
     </p>
 </div>
 <div class='customPanel' id='pers_btns' style="width:100%;height:40px;left:0px;top:0px;">
