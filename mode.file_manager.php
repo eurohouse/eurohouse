@@ -1,18 +1,18 @@
 <!-- files -->
 <!-- GR: Διαχείριση αρχείων; CY: Διαχείριση αρχείων; DE: Dateimanager; AT: Dateimanager; IT: Gestore dell'archivio; CH: Administrare Documentas; FR: Gestionnaire de fichiers; BE: Gestionnaire de fichiers; ES: Administrador de archivos; MX: Administrador de archivos; PT: Gestor de arquivos; BR: Gerenciador de arquivos; NP: ཡིག་ཆའི་དོ་དམ་པ།; TR: Dosya yöneticisi; LK: सञ्चिकाप्रबन्धकः; RO: Manager de fișiere; MD: Manager de fișiere; IN: फ़ाइल मैनेजर; RU: Файловый менеджер; UA: Файловий менеджер; CN: 文件查找器; KR:  파일 찾기; JP: ファイル検索; AE: باحث الملفات -->
-<?php $iconSize=40; include 'file_manager.php'; ?>
+<?php $iconSize=45; include 'file_manager.php'; ?>
 <table style="width:100%;" id="table">
 <thead>
     <tr>
         <th style="width:6%;">
             <?=term('Icon',$settings['vocabulary'],$session['units']);?>
         </th>
-        <th style="width:16%;">
+        <th style="width:18%;">
             <a href="javascript:SortTable(1,'T');">
                 <?=term('Name',$settings['vocabulary'],$session['units']);?>
             </a>
         </th>
-        <th style="width:12%;">
+        <th style="width:8%;">
             <a href="javascript:SortTable(2,'T');">
                 <?=term('Size',$settings['vocabulary'],$session['units']);?>
             </a>
