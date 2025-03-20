@@ -1,4 +1,14 @@
 {
+    "v7.816-b2586": {
+        "default": {
+            "title": "Eurohouse Developer Team (@eurohouse)",
+            "body": "Innovations and code fixes of the Eurohouse web application are already in the version that became available to you on March 20. These include separate panels for different interface elements, an updated file manager interface with a column of access rights to files and directories, improved built-in application functions that work with user data, a new button in the login and password input panel that substitutes any existing user name on the server, updated icons and pictograms, and much more."
+        },
+        "RU": {
+            "title": "Команда разработчиков Eurohouse (@eurohouse)",
+            "body": "Нововведения и исправления кода веб-приложения Eurohouse уже в версии, ставшей доступной для вас с 20 марта. Это и отдельные панели для разных элементов интерфейса, и обновлённый интерфейс файлового менеджера со столбцом прав доступа к файлам и директориям, и улучшенные встроенные функции приложения, работающие с данными пользователей, и новая кнопка в панели ввода формы логина и пароля, подставляющая любое существующее имя пользователя на сервере, и обновлённые иконки и пиктограммы, и многое другое."
+        }
+    },
     "v7.816-b1820": {
         "default": {
             "title": "Eurohouse Developer Team (@eurohouse)",
