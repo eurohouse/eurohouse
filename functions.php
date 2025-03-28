@@ -118,9 +118,8 @@ function pkgf($pkg,$ar=false) {
     $pkgr=($ar!==false)?explode(';',$pkgl):$pkgl;
     return $pkgr;
 }
-function excpkg(array $arr,$exc='',$flg=''): array {
-    $new=$fin=$sup=$res=[];
-    if ($flg=='COLLECTION') {
+function excpkg(array $arr,$cat,$exc=''): array {
+    $new=$fin=$sup=$res=[]; if ($cat=='background') {
         foreach ($arr as $exem) {
             if ($exc!='') {
                 if (strpos($exc,'!')!==false) {
@@ -140,25 +139,6 @@ function excpkg(array $arr,$exc='',$flg=''): array {
                 }
             } else { $new[explode('.',$exem)[0]]=$exem; }
             $sup[explode('.',$exem)[0]]=$exem;
-        } $res=(!empty($new))?$new:$sup;
-    } elseif ($flg=='SERIES') {
-        foreach ($arr as $exem) {
-            if ($exc!='') {
-                if (strpos($exc,'!')!==false) {
-                    $exr=str_replace('!','',$exc); $new[$exem]=$exem;
-                    if (strpos($exr,',')!==false) {
-                        if (in_array(explode('.',$exem)[0],explode(',',$exr))) { unset($new[$exem]); }
-                    } else {
-                        if (explode('.',$exem)[0]==$exr) { unset($new[$exem]); }
-                    }
-                } else {
-                    if (strpos($exc,',')!==false) {
-                        if (in_array(explode('.',$exem)[0],explode(',',$exc))) { $new[$exem]=$exem; }
-                    } else {
-                        if (explode('.',$exem)[0]==$exc) { $new[$exem]=$exem; }
-                    }
-                }
-            } else { $new[$exem]=$exem; } $sup[$exem]=$exem;
         } $res=(!empty($new))?$new:$sup;
     } else {
         if ($exc!='') {
@@ -377,9 +357,7 @@ function userlocks($arr,$col,$pr1='ava.',$pr2='.iso') {
             $lib=str_replace('./','',(glob('./*.*.00.png')));
         } else {
             $lib=str_replace('./','',(glob('./*.{'.duplex($col[$key],true).'}',GLOB_BRACE)));
-        } if ($key=='background') {
-            $res[$key]=excpkg($lib,$arr[$key],'COLLECTION');
-        } else { $res[$key]=excpkg($lib,$arr[$key]); }
+        } $res[$key]=excpkg($lib,$key,$arr[$key]);
     } return $res;
 }
 function catlist($cat): array {
