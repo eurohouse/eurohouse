@@ -41,17 +41,9 @@ function browserName($ua) {
     elseif (preg_match('/msie|trident/i',$ua)) return 'IE';
     return 'Other';
 }
-function engineName($ua) {
-    if (preg_match('/blink/i',$ua)) return 'Blink';
-    elseif (preg_match('/webkit/i',$ua)) return 'WebKit';
-    elseif (preg_match('/presto/i',$ua)) return 'Presto';
-    elseif (preg_match('/gecko/i',$ua)) return 'Gecko';
-    elseif (preg_match('/edge/i',$ua)) return 'Edge';
-    elseif (preg_match('/trident/i',$ua)) return 'Trident';
-    return 'Other';
-}
 function platformName($ua) { 
     if (preg_match('/linux/i',$ua)) return 'Linux';
+    elseif (preg_match('/bsd/i',$ua)) return 'BSD';
     elseif (preg_match('/macintosh|mac os x/i',$ua)) return 'macOS';
     elseif (preg_match('/windows|win32/i',$ua)) return 'Windows';
     return 'Other';
@@ -61,9 +53,8 @@ function vismark($name,$data='') {
     if ($data!='') {
         $isoCC=(unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip='.$_SERVER['REMOTE_ADDR'])))['geoplugin_countryCode'];
         $getWB=browserName($_SERVER['HTTP_USER_AGENT']);
-        $getBE=engineName($_SERVER['HTTP_USER_AGENT']);
         $getPF=platformName($_SERVER['HTTP_USER_AGENT']);
-        $test[$_SERVER['REMOTE_ADDR'].'/'.$getWB.'/'.$getBE.'/'.$getPF]=[
+        $test[$_SERVER['REMOTE_ADDR'].'/'.$getWB.'/'.$getPF]=[
             "Username"=>$data,"Country"=>$isoCC
         ];file_put_contents($name,json_encode($test,JSON_UNESCAPED_UNICODE));chmod($name,0777);
     } return arropen($name,'{}','');
