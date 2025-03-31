@@ -504,7 +504,7 @@ function titled($name,$units='EU') {
     if (isset($domFile['language'])) {
         $lang=valarr($domFile['language'],'. ',' - ');
         $res=(isset($lang[$units]))?$lang[$units]:$domFile['title'];
-    } else { $res = $domFile['title']; } return $res;
+    } else { $res=$domFile['title']; } return $res;
 }
 function term($word,array $voc,$units='EU') {
     return (isset($voc[$units][$word]))?$voc[$units][$word]:$word;

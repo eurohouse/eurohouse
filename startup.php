@@ -133,7 +133,7 @@ function world_clock() {
                         arl+="<a href='javascript:omniRead(%22font_book%22,%22"+rfc3986(alb[iu])+"%22,%22"+requestLock.value+"%22);'>"+alb[iu]+"</a><br>";
                     }
                 } else if (sysDefAlbum.value=='background') {
-                    for (iu in alb) { arl+=alb[iu]+"<br>"; }
+                    for (iu in alb) { arl+=(alb[iu].split('.')[0]).toUpperCase()+"<br>"; }
                 } else if (sysDefAlbum.value=='avatar') {
                     epr=sysDefAvaPrefix.value,alr=listlock(sysDefAlbum.value);
                     for (iu in alr) {
