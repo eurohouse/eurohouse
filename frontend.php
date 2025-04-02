@@ -876,15 +876,4 @@ function keyd() {
         pressedCode.innerText=(event.code).toUpperCase();
     }
 }
-function plsd(ei,el) {
-    var ii,i=0;
-    $("#"+ei).mousedown(function(e) {
-        ii=setInterval(function() {
-    	    i++;
-        },1000);
-    }).mouseup(function() {
-        setdata('playlist',playlistNext(el));
-        clearInterval(ii);i=0;
-    });
-}
 </script>
