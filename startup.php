@@ -122,7 +122,7 @@ function world_clock() {
                 currentPlaylist.setAttribute('style','columns:'+plCol+';-webkit-columns:'+plCol+';-moz-columns:'+plCol+';'); var alb=lockarr(sysDefAlbum.value),arl="";
                 var albCol=((sysDefAlbum.value=='avatar')||(sysDefAlbum.value=='pictogram'))?1:sysDefAlbumColumns.value; if (sysDefAlbum.value=='music') {
                     for (iu in alb) {
-                        elid=Crypto.SHA256(alb[iu]).toString();
+                        elid=CryptoJS.SHA256(alb[iu]).toString();
                         arl+="<a id='albumEl"+elid+"' href='javascript:omniListen(%22"+rfc3986(alb[iu])+"%22,true);' onclick='plsd(%22albumEl"+elid+"%22,%22"+alb[iu]+"%22);' onmousedown=`setTimeout(function() { setdata(&#34;playlist&#34;,playlistNext(&#34;"+(alb[iu])+"&#34;)); }, 1000);`>"+(parseInt(iu)+1)+'. '+alb[iu]+"</a><br>";
                     }
                 } else if (sysDefAlbum.value=='sound') {
