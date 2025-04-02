@@ -110,22 +110,15 @@ if ($request['group']!='') {
         <?php if ($session['censor']!=0) { ?>
         <td>
             <?php if (isset($value['maison'])) { ?><a href="<?=$value['maison'];?>"><?php } ?>
-                <?=fixedSize($mmDC,30,280);?>
+                <?=fixedSize($mmDC,0,300);?>
             <?php if (isset($value['maison'])) { ?></a><?php } ?>
         </td>
-        <?php } else {
-            if (isset($value['describe'])) { ?>
-            <td colspan=4>
-            <?php if (isset($value['maison'])) { ?><a href="<?=$value['maison'];?>"><?php } ?>
-                <?=fixedSize($mmDC,30,280);?>
-            <?php if (isset($value['maison'])) { ?></a><?php } ?>
-            </td>
-            <?php } else { ?>
+        <?php } else { ?>
             <td><?=(isset($value['height']))?((isset($ssLC['length'][$ssUN]))?((isset($ssLC['length'][$ssUN]['inch']))?incher($value['height']):(round(($value['height']*$ssLC['length'][$ssUN]['coefficient']),2)).' '.$ssLC['length'][$ssUN]['sign']):(round(($value['height']*$ssLC['length']['default']['coefficient']),2)).' '.$ssLC['length']['default']['sign']):'';?></td>
             <td><?=(isset($value['weight']))?((isset($ssLC['mass'][$ssUN]))?(round($value['weight']*$ssLC['mass'][$ssUN]['coefficient'])).' '.$ssLC['mass'][$ssUN]['sign'] : (round($value['weight']*$ssLC['mass']['default']['coefficient'])).' '.$ssLC['mass']['default']['sign']) : '';?></td>
             <td><?=(isset($value['sizes']))?((round((explode('-',$value['sizes'])[0]*$ssLC['body_sizes'][$ssUN]['coefficient']))).'-'.round((explode('-',$value['sizes'])[1]*$ssLC['body_sizes'][$ssUN]['coefficient'])).'-'.round((explode('-',$value['sizes'])[0]*$ssLC['body_sizes'][$ssUN]['coefficient']))):'';?></td>
             <td><?=(isset($value['shoe_size']))?((isset($ssLC['shoe_size'][$ssUN]))?($value['shoe_size']+$ssLC['shoe_size'][$ssUN]).' '.$ssUN:($value['shoe_size']+$ssLC['shoe_size']['default']).' '.$ssUN):'';?></td>
-        <?php }} ?>
+        <?php } ?>
     </tr>
     <?php } ?>
 </tbody>
