@@ -123,7 +123,7 @@ function world_clock() {
                 var albCol=((sysDefAlbum.value=='avatar')||(sysDefAlbum.value=='pictogram'))?1:sysDefAlbumColumns.value; if (sysDefAlbum.value=='music') {
                     for (iu in alb) {
                         elid=CryptoJS.SHA256(alb[iu]).toString();
-                        arl+="<a id='albumEl"+elid+"' href='javascript:omniListen(%22"+rfc3986(alb[iu])+"%22,true);' onclick='plsd(&#34;albumEl"+elid+"&#34;,&#34;"+alb[iu]+"&#34;);'>"+(parseInt(iu)+1)+'. '+alb[iu]+"</a><br>";
+                        arl+="<a id='albumEl"+elid+"' href='javascript:omniListen(%22"+rfc3986(alb[iu])+"%22,true);' onmousedown='plsd(&#34;albumEl"+elid+"&#34;,&#34;"+alb[iu]+"&#34;);'>"+(parseInt(iu)+1)+'. '+alb[iu]+"</a><br>";
                     }
                 } else if (sysDefAlbum.value=='sound') {
                     for (iu in alb) {
