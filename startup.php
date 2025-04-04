@@ -74,7 +74,7 @@ function world_clock() {
                 videoVolInd.value=mixers[2]; videoRatInd.value=mixers[3];
                 alarmVolInd.value=mixers[4]; timerVolInd.value=mixers[5];
                 loopVolInd.value=mixers[6]; restVolInd.value=mixers[7];
-            } document.querySelector(':root').style.setProperty('--bicolor',enzi[3]);
+            } document.querySelector(':root').style.setProperty('--bicolor',enzi[2]);
             sysDefMsgCounter.value=(sysDefMsgCounter.value<=0)?(Object.keys(jsonFilter(sysDefMsgData.value,sysDefFind.value)).length-1):(sysDefMsgCounter.value-1);
             $('#showUsUrgent').text(Object.values(jsonFilter(sysDefMsgData.value,sysDefFind.value,'msg'))[sysDefMsgCounter.value]);
             if (sysDefLoop.value!=sysDefPostBackEff.value) {
@@ -196,12 +196,12 @@ function world_clock() {
             } else if (requestMode.value=='text_editor') {
                 $('#textEdRep').attr('src',sysDefPrefix.value+'new.png');
                 $('#textEdRepAll').attr('src',sysDefPrefix.value+'copy.png');
-            } if (((enzi[2].split('')[0]==1)&&(enzi[2].split('')[1]==1))||((enzi[2].split('')[0]==1)&&(enzi[2].split('')[1]==0))) {
+            } if (((enzi[1].split('')[2]==1)&&(enzi[1].split('')[3]==1))||((enzi[1].split('')[2]==1)&&(enzi[1].split('')[3]==0))) {
                 $('#powerButton').show();$('.panel').hide();
                 $('.customPanel').hide();$('.upperGap').hide();
                 $('.lowerGap').hide();$('.topbar').hide();
             } else {
-                if ((enzi[2].split('')[0]==0)&&(enzi[2].split('')[1]==1)) {
+                if ((enzi[1].split('')[2]==0)&&(enzi[1].split('')[3]==1)) {
                     $('#powerButton').hide();$('.panel').hide();
                     $('.customPanel').hide();$('.upperGap').hide();
                     $('.lowerGap').hide();$('.topbar').show();
