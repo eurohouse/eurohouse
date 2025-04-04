@@ -8,8 +8,8 @@ $autoData=arropen('automator.json',"{\"root\":\"manual\"}");
 $frndData=arropen('friendship.json',"{\"root\":\"\"}");
 $toolData=arropen('toolbox.json',"{\"root\":\"\"}");
 $callData=arropen('calling.json',"{\"root\":\"root\"}");
-$avaPref=(lux($userData['back_text_color']))?'ava.':'abc.';
-$pref=(lux($session['fore_text_color']))?'iso.':'iec.';
+$avaPref=(isColorLight($userData['back_text_color']))?'ava.':'abc.';
+$pref=(isColorLight($session['fore_text_color']))?'iso.':'iec.';
 $locksArr=arropen($cookie.'_lock.json',json_encode($userSettings['locks']),'DEFAULT');
 $userLocks=userlocks($locksArr,$userSettings['collections'],$avaPref,$pref);
 $notesArr=arropen($cookie.'_metadata.json',json_encode($userSettings['metadata']),'CUSTOM');
@@ -30,7 +30,7 @@ foreach ($poweredData as $key=>$value) {
     $currentTimes[$key]=date('H');
     $currentTimesActive[$key]=$testArr['active_hours'];
     $currentAvatars[$key]=$testArr['avatar'];
-} $activeIPs=vismark('visitors.json');
+} $activeIPs=markWebsiteVisit('visitors.json');
 $usersList=array_keys($poweredData); natcasesort($usersList);
 /* ¶ 0 */ echo $cookie."\r\n\r\n".
 /* ¶ 1 */ valstr($bindingData,';',':')."\r\n\r\n".

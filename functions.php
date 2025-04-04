@@ -1,5 +1,5 @@
 <?php
-function wasAuth() {
+function wasAuthRequest() {
     if ((isset($_POST['auth']))&&(isset($_POST['login']))&&(isset($_POST['password']))) {
         $auth=$_POST['auth'];$login=$_POST['login'];$pass=$_POST['password'];
         if (($auth=='signup')&&($login!='')&&($pass!='')) {
@@ -17,14 +17,14 @@ function wasAuth() {
         }
     }
 }
-function isAuth() { return (isset($_SESSION['user'])); }
-function whichSess() {
+function isAuthorized() { return (isset($_SESSION['user'])); }
+function whichSession() {
     return (isset($_SESSION['user']))?$_SESSION['user']:'root';
 }
-function isAdmin() {
+function isUserRoot() {
     return ((isset($_SESSION['user']))&&($_SESSION['user']=='root'));
 }
-function withReq($name) {
+function onlyFilename($name) {
     if (strpos($name,'?')!==false) {
         $res=explode('?',$name)[0];
     } else { $res=$name; } return $res;
@@ -48,7 +48,7 @@ function platformName($ua) {
     elseif (preg_match('/windows|win32/i',$ua)) return 'Windows';
     return 'Other';
 }
-function vismark($name,$data='') {
+function markWebsiteVisit($name,$data=''): array {
     $test=arropen($name,'{}','');
     if ($data!='') {
         $isoCC=(unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip='.$_SERVER['REMOTE_ADDR'])))['geoplugin_countryCode'];
@@ -59,7 +59,7 @@ function vismark($name,$data='') {
         ];file_put_contents($name,json_encode($test,JSON_UNESCAPED_UNICODE));chmod($name,0777);
     } return arropen($name,'{}','');
 }
-function parseReq($uri): array {
+function parseRequestURI($uri): array {
     $prot=explode('://',$uri)[0];$rest=explode('://',$uri)[1];
     $parts=explode('/',$rest);$prest=$parts;
     $host=$parts[0]; if (count($parts)>2) {
@@ -74,11 +74,11 @@ function express(array $for) {
     foreach ($for as $pkg) {
         if (strpos($pkg,'>')!==false) {
             $uri=explode('>',$pkg)[0];$branch=explode('>',$pkg)[1];
-            $host=parseReq($uri)['host'];$prot=parseReq($uri)['prot'];
-            $repo=parseReq($uri)['repo'];$user=parseReq($uri)['user'];
+            $host=parseRequestURI($uri)['host'];$prot=parseRequestURI($uri)['prot'];
+            $repo=parseRequestURI($uri)['repo'];$user=parseRequestURI($uri)['user'];
         } else {
-            $branch='';$host=parseReq($pkg)['host'];$prot=parseReq($pkg)['prot'];
-            $repo=parseReq($pkg)['repo'];$user=parseReq($pkg)['user'];
+            $branch='';$host=parseRequestURI($pkg)['host'];$prot=parseRequestURI($pkg)['prot'];
+            $repo=parseRequestURI($pkg)['repo'];$user=parseRequestURI($pkg)['user'];
         } $socketOpen=fsockopen($host,80,$errno,$errstr,10);
         if ($socketOpen!=false) {
             foreach ((str_replace('./','',(glob('./*.txt')))) as $file) {
@@ -111,15 +111,13 @@ function express(array $for) {
         }
     }
 }
-function pkgf($pkg,$ar=false) {
+function packageFiles($pkg): array {
     if (@json_decode(file_get_contents($pkg.'.pkg'),true)!=null) {
         $pkgf=json_decode(file_get_contents($pkg.'.pkg'),true);
         $pkgl=(isset($pkgf['files']))?$pkgf['files']:'';
-    } else { $pkgl=''; }
-    $pkgr=($ar!==false)?explode(';',$pkgl):$pkgl;
-    return $pkgr;
+    } else { $pkgl=''; } return explode(';',$pkgl);
 }
-function excpkg(array $arr,$cat,$exc=''): array {
+function excludePackages(array $arr,$cat,$exc=''): array {
     $new=$fin=$sup=$res=[]; if ($cat=='background') {
         foreach ($arr as $exem) {
             if ($exc!='') {
@@ -147,15 +145,15 @@ function excpkg(array $arr,$cat,$exc=''): array {
                 $exr=str_replace('!','',$exc); $new=$arr;
                 if (strpos($exr,',')!==false) {
                     foreach (explode(',',$exr) as $iter=>$pkg) {
-                        $new=array_diff($new,pkgf($pkg,true));
+                        $new=array_diff($new,packageFiles($pkg));
                     }
-                } else { $new=array_diff($new,pkgf($exr,true)); }
+                } else { $new=array_diff($new,packageFiles($exr)); }
             } else {
                 if (strpos($exc,',')!==false) {
                     foreach (explode(',',$exc) as $iter=>$pkg) {
-                        $new=($iter==0)?pkgf($pkg,true):array_merge($new,pkgf($pkg,true));
+                        $new=($iter==0)?packageFiles($pkg,true):array_merge($new,packageFiles($pkg));
                     }
-                } else { $new=pkgf($exc,true); }
+                } else { $new=packageFiles($exc); }
             }
         } else { $new=$arr; } foreach ($new as $val) {
             if (in_array($val,$arr)!==false) { $fin[]=$val; }
@@ -174,7 +172,7 @@ function valarr(string $str,$y,$x): array {
         $newArr[$newStr[0]]=$newStr[1];
     } return $newArr;
 }
-function initiate($str='tmp') {
+function initDataDirs($str='tmp') {
     $arr=explode(',',$str); foreach ($arr as $dir) {
         if (!file_exists('./.'.$dir)) {
             mkdir('./.'.$dir); chmod('./.'.$dir, 0777);
@@ -205,7 +203,7 @@ function arropen($name,$default='{}',$exec='') {
         copy($name.'.bak',$name); chmod($name,0777);
     } if ($exec=='DEFAULT') {
         $tryit=json_decode(file_get_contents($name),true);
-        file_put_contents($name,json_encode(equarr(json_decode($default,true),$tryit)));
+        file_put_contents($name,json_encode(mirrorArrays(json_decode($default,true),$tryit)));
         chmod($name,0777); $res=$tryit;
     } elseif ($exec=='JSON') {
         $tryit=file_get_contents($name);$res=$tryit;
@@ -227,7 +225,7 @@ function jsonopen($name,$empt=false) {
     } else { copy($name.'.bak',$name); chmod($name,0777);
     } return file_get_contents($name);
 }
-function equarr(array $src,array $des) {
+function mirrorArrays(array $src,array $des) {
     foreach ($src as $key=>$val) {
         if (!isset($des[$key])) { $des[$key]=$val; }
     } foreach ($des as $key=>$val) {
@@ -296,7 +294,7 @@ function incher($num,$koeff=3.28084,$denom=12) {
     $frac=round($denom*(explode('.',$modul)[1]/10));
     return $nat."' ".$frac."\"";
 }
-function lux($hex): bool {
+function isColorLight($hex): bool {
     if (strlen($hex)<7) {
         $r=hexdec(substr($hex,1,1).'F');
         $g=hexdec(substr($hex,2,1).'F');
@@ -307,7 +305,7 @@ function lux($hex): bool {
         $b=hexdec(substr($hex,5,2));
     } return (($r+$g+$b)>382);
 }
-function rgbap($hex,$opa) {
+function alphaChannel($hex,$opa) {
     $fst=substr($hex,0,7);
     $lst=($opa=='IF')?'00':(($opa=='FI')?'FF':dechex($opa));
     return strtoupper($fst.$lst);
@@ -358,7 +356,7 @@ function userlocks($arr,$col,$pr1='ava.',$pr2='.iso') {
             $lib=str_replace('./','',(glob('./*.*.00.png')));
         } else {
             $lib=str_replace('./','',(glob('./*.{'.duplex($col[$key],true).'}',GLOB_BRACE)));
-        } $res[$key]=excpkg($lib,$key,$arr[$key]);
+        } $res[$key]=excludePackages($lib,$key,$arr[$key]);
     } return $res;
 }
 function catlist($cat): array {
@@ -373,7 +371,7 @@ function duplex($list,bool $txt=false) {
     $text=str_replace('.','',$list);
     return ($txt!=false)?$text:explode(',',$text);
 }
-function escHTML($str) {
+function annotationString($str) {
     return str_replace(' -->','',str_replace('<!-- ','',$str));
 }
 function zodiacSign($d) {
@@ -415,7 +413,7 @@ function fixedSize($str,$offs=0,$len=1000) {
         }
     } else { $res=$str; } return $res;
 }
-function spaces($str) {
+function snakeToSpaces($str) {
     if (strpos($str,'_')!==false) {
         $arr=explode('_',$str);$res=[];
         foreach ($arr as $val) { $res[]=ucfirst($val); }
@@ -423,8 +421,8 @@ function spaces($str) {
     } else { $result=ucfirst($str); }
     return $result;
 }
-function camel($str) {
-    if (strpos($str, '_')!==false) {
+function snakeToCamel($str) {
+    if (strpos($str,'_')!==false) {
         $arr=explode('_',$str);$res='';
         foreach ($arr as $val) { $res.=ucfirst($val); }
         $result=$res;
@@ -478,7 +476,7 @@ function wordfx($word,$sup,array $voc,array $ses) {
                 $res=(isset($loc['quarter'][$uni][$qM]))?$loc['quarter'][$uni][$qM]:$loc['quarter']['default'][$qM]; break;
             default:
                 // Get arbitrary user profile property
-                $entl=(strpos($full,':')!==false)?str_replace(':','',str_replace(']','',str_replace('[','',$full))):str_replace(']','',str_replace('[','',$full)); $itl=locTitle($ses,$entl);
+                $entl=(strpos($full,':')!==false)?str_replace(':','',str_replace(']','',str_replace('[','',$full))):str_replace(']','',str_replace('[','',$full)); $itl=localizedTitle($ses,$entl);
                 $res=titleColon($itl,(strpos($full,':')!==false),$voc,$ses);
                 break;
         } $word=str_replace($full,$res,$word);
@@ -488,7 +486,7 @@ function titleColon($itl,bool $cln=false,array $voc,array $ses) {
     $uni=$ses['units'];$vom=$voc['vocabulary'];$loc=$voc['locale'];
     $vun=($cln)?(($itl!='')?((isset($vom[$uni][': ']))?$vom[$uni][': ']:': '):''):''; return (in_array($uni,$loc['colon_ind']))?$vun.$itl:$itl.$vun;
 }
-function locTitle(array $ses,$entl) {
+function localizedTitle(array $ses,$entl) {
     $uni=$ses['units']; $entr=valarr($ses[$entl.'s'],' | ',' - ');
     $itl=(isset($entr[$uni]))?$entr[$uni]:(($ses[$entl]!='')?$ses[$entl]:'');
     return $itl;
@@ -506,12 +504,12 @@ function titled($name,$units='EU') {
         $res=(isset($lang[$units]))?$lang[$units]:$domFile['title'];
     } else { $res=$domFile['title']; } return $res;
 }
-function term($word,array $voc,$units='EU') {
-    return (isset($voc[$units][$word]))?$voc[$units][$word]:$word;
-}
-function localword($word,array $voc,$units='EU') {
-    return (isset($voc[$word][$units]))?$voc[$word][$units]:$voc[$word]['default'];
-}
-function termCmd($mod='command',array $voc,$units='EU') {
-    return (isset($voc[$mod][$units]))?$voc[$mod][$units]:$voc[$mod]['default'];
+function term($word,array $voc,$units='EU',$mod='') {
+    if ($mod=='default') {
+        $res=(isset($voc[$word][$units]))?$voc[$word][$units]:$voc[$word]['default'];
+    } elseif ($mod=='') {
+        $res=(isset($voc[$units][$word]))?$voc[$units][$word]:$word;
+    } else {
+        $res=(isset($voc[$mod][$units]))?$voc[$mod][$units]:$voc[$mod]['default'];
+    } return $res;
 }

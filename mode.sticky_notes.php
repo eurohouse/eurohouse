@@ -1,6 +1,6 @@
 <!-- note -->
 <!-- GR: Σημειώσεις; CY: Σημειώσεις; FR: Remarques; BE: Remarques; DE: Anmerkungen; AT: Anmerkungen; CH: Explorare Notae; IT: Note adesive; ES: Notas adhesivas; MX: Notas adhesivas; PT: Lembretes; BR: Lembretes; RO: Note lipicioase; MD: Note lipicioase; RU: Заметки; NP: སྦྱར་བའི་དྲན་ཐོ།; RS: Напомене; UA: Замітки; IN: स्टिकी नोट; TR: Yapışkan notlar; LK: चिपचिपा टिप्पणियाँ; CN: 便利贴; KR: 부착 노트; JP: ポストイット; AE: ورق ملاحظات -->
-<?php if (isAuth()) { ?>
+<?php if (isAuthorized()) { ?>
 <script>
 function newNote() { myNotesDoc.value='';countNote(); }
 function openNote(id) {
@@ -56,7 +56,7 @@ function countNote() {
 <div class="notesMenu" id="notesMenu"></div>
 <div class="notesContent">
 <p align='center'>
-<textarea id="myNotesDoc" style="width:100%;height:100%;" placeholder="<?=termCmd('chat',$settings['locale']['cli'],$session['units']);?>" onkeydown="if (event.keyCode==27) {
+<textarea id="myNotesDoc" style="width:100%;height:100%;" placeholder="<?=term('',$settings['locale']['cli'],$session['units'],'chat');?>" onkeydown="if (event.keyCode==27) {
     newNote();
 } else if (event.keyCode==8) { handleInput(this.value);
 } else if (event.keyCode==46) { handleInput(this.value);

@@ -21,8 +21,8 @@
     --arcforecolor: <?=$session['arc_fore_color'];?>;
     --arcinputcolor: <?=$session['arc_input_color'];?>;
     --background: url("<?=$background;?>");
-    --bicolor: <?=rgbap($session['back_color'], $session['opacity']);?>;
-    --qucolor: <?=rgbap($session['back_color'], 'IF');?>;
+    --bicolor: <?=alphaChannel($session['back_color'], $session['opacity']);?>;
+    --qucolor: <?=alphaChannel($session['back_color'], 'IF');?>;
     --graddeg: <?=$session['gradient'].'deg';?>;
     --radius: <?=$session['radius'];?>px;
     --box-shadow: <?=$session['box_shadow'];?>;

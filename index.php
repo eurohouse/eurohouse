@@ -26,13 +26,13 @@
             <input type='hidden' id="<?='request'.ucfirst($key);?>" value="<?=$value;?>">
         <?php }
         foreach ($postRequest as $key=>$value) { ?>
-            <input type='hidden' id="<?='postRequest'.camel($key);?>" value="<?=$value;?>">
+            <input type='hidden' id="<?='postRequest'.snakeToCamel($key);?>" value="<?=$value;?>">
         <?php }
         foreach ($session as $key=>$value) { ?>
-            <input type='hidden' id="<?='sysDef'.camel($key);?>" value="<?=$value;?>">
+            <input type='hidden' id="<?='sysDef'.snakeToCamel($key);?>" value="<?=$value;?>">
         <?php }
         foreach ($locks as $key=>$value) { ?>
-            <input type='hidden' id="<?='lock'.camel($key);?>" value="<?=$value;?>">
+            <input type='hidden' id="<?='lock'.snakeToCamel($key);?>" value="<?=$value;?>">
         <?php }
         foreach ($updateChannel as $key=>$value) { ?>
             <input type='hidden' id='<?='updateChannel'.md5($key);?>' value="<?=$value;?>">
@@ -52,7 +52,7 @@
         <input type='hidden' id="sysDefHoursActive" value="">
         <input type='hidden' id="sysDefLockData" value="">
         <input type='hidden' id="sysDefLockIcons" value="">
-        <input type='hidden' id="sysDefIsSession" value="<?=isAuth();?>">
+        <input type='hidden' id="sysDefIsSession" value="<?=isAuthorized();?>">
         <input type='hidden' id="sysDefSessionID" value="<?=$sessionID;?>">
         <input type='hidden' id="sysDefPostBackEff" value="0">
         <input type='hidden' id="sysDefPostTickEff" value="0">

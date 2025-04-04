@@ -86,7 +86,7 @@
             handleInput(this.value);
         }" oninput="handleInput(this.value,true);"><br>
         <label>
-        <a href="https://www.php.net/manual/en/datetime.format.php"><?=localword('iso8601',$settings['standards'],$session['units']);?></a> <?=term('&',$settings['vocabulary'],$session['units']);?> <a href="https://www.iso.org/obp/ui/#iso:pub:PUB500001:en"><?=localword('iso3166',$settings['standards'],$session['units']);?></a>
+        <a href="https://www.php.net/manual/en/datetime.format.php"><?=term('iso8601',$settings['standards'],$session['units'],'default');?></a> <?=term('&',$settings['vocabulary'],$session['units']);?> <a href="https://www.iso.org/obp/ui/#iso:pub:PUB500001:en"><?=term('iso3166',$settings['standards'],$session['units'],'default');?></a>
         </label><br>
         <input type="text" id="setDateFormat" style="width:25%;" value="<?=$session['date_format'];?>" placeholder="<?=term('Date Format',$settings['vocabulary'],$session['units']);?>" onkeydown="
         if (event.keyCode==13) {

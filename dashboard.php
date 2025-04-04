@@ -19,10 +19,10 @@
 </div>
 <div class='topBarItem'>
     <p align='center' class='block'>
-    <?php if (isAuth()) { ?>
+    <?php if (isAuthorized()) { ?>
         <input type="image" onmouseover="soundButton();" id="buttonBackup" class="power" onclick="userBackup(sysDefSessionID.value);" src="<?=$prefix.((isInBackup($sessionID))?'open.png':'save.png');?>" title="<?=term('Save/Load User Session Backup',$settings['vocabulary'],$session['units']);?>">
         <input type="image" onmouseover="soundButton();" id="buttonCommand" class="power" onclick="setdata('mode',nextImage('start;chat;search',sysDefMode.value)); omniBox.focus();" src="<?=$prefix.$session['mode'].'.png';?>" title="<?=term('Command Line Interface Mode',$settings['vocabulary'],$session['units']);?>">
-        <input type='text' id="omniBox" style="width:51%;" placeholder="<?=termCmd($session['mode'],$settings['locale']['cli'],$session['units']);?>" value="" onkeydown="if (event.keyCode==13) { omniEnter(); } else if (event.keyCode==27) {
+        <input type='text' id="omniBox" style="width:51%;" placeholder="<?=term('',$settings['locale']['cli'],$session['units'],$session['mode']);?>" value="" onkeydown="if (event.keyCode==13) { omniEnter(); } else if (event.keyCode==27) {
             document.getElementById('omniBox').value='';
         } else if (event.keyCode==8) { handleInput(this.value);
         } else if (event.keyCode==46) { handleInput(this.value);
@@ -118,7 +118,7 @@
     <input type="image" onmouseover="soundButton();" id="buttonMaximize" class="power" onclick="setdata('apps',flip(sysDefApps.value)); window.location.reload();" src="<?=$prefix.(($session['apps']!=0)?'restore.png':'maximize.png');?>" title="<?=term('Show Third-Party Apps',$settings['vocabulary'],$session['units']);?>">
     <input type="image" onmouseover="soundButton();" id="buttonMenuStyle" class="power" onclick="setdata('icons',flip(sysDefIcons.value)); window.location.reload();" src="<?=$prefix.(($session['icons']!=0)?'menu.png':'list.png');?>" title="<?=term('Icons/List Menu View',$settings['vocabulary'],$session['units']);?>">
     <input type="image" onmouseover="soundButton();" id="buttonUpdate" class="power" onclick="systemUpdate(sysDefBackload.value); window.location.reload();" src="<?=$prefix.'world.png';?>" title="<?=term('Eurohouse Update',$settings['vocabulary'],$session['units']);?>">
-    <input type="image" onmouseover="soundButton();" id="buttonUserStatus" class="power" onclick="if (authstate()) { omniAuthRequest('signout','',''); } else { omniAuthRequest('signin',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString()); }" src="<?=$prefix.((isAuth())?'logout.png':'login.png');?>" title="<?=term('Sign Out',$settings['vocabulary'],$session['units']);?>">
+    <input type="image" onmouseover="soundButton();" id="buttonUserStatus" class="power" onclick="if (authstate()) { omniAuthRequest('signout','',''); } else { omniAuthRequest('signin',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString()); }" src="<?=$prefix.((isAuthorized())?'logout.png':'login.png');?>" title="<?=term('Sign Out',$settings['vocabulary'],$session['units']);?>">
     <input type="image" onmouseover="soundButton();" id="buttonEscape" class="power" onclick="omniBack(sysDefParent.value);" src="<?=$prefix.'escape.png';?>" title="<?=term('Go Back',$settings['vocabulary'],$session['units']);?>">
     </p>
 </div>

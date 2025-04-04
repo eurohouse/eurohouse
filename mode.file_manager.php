@@ -54,7 +54,7 @@ foreach ($index as $key=>$value) {
         <td>
             <p align='center' class='block'>
                 <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor',this.name,'true');" src="<?=$prefix.'book.png';?>">
-                <?php if (isAdmin()) { ?>
+                <?php if (isUserRoot()) { ?>
                     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="getdir('d','',this.name,'from','','here',false);" src="<?=$prefix.'trash.png';?>">
                 <?php } else { ?>
                     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name,'','true');" src="<?=$prefix.'info.png';?>">
@@ -90,7 +90,7 @@ foreach ($index as $key=>$value) {
             <td>
                 <p align='center' class='block'>
                     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor',this.name,'true');" src="<?=$prefix.'book.png';?>">
-                    <?php if (isAdmin()) { ?>
+                    <?php if (isUserRoot()) { ?>
                         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="recycle(this.name);" src="<?=$prefix.'trash.png';?>">
                     <?php } else { ?>
                         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name,'','true');" src="<?=$prefix.'info.png';?>">
@@ -124,7 +124,7 @@ foreach ($index as $key=>$value) {
             <td>
                 <p align='center' class='block'>
                     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor',this.name,'true');" src="<?=$prefix.'book.png';?>">
-                    <?php if (isAdmin()) { ?>
+                    <?php if (isUserRoot()) { ?>
                         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="recycle(this.name);" src="<?=$prefix.'trash.png';?>">
                     <?php } else { ?>
                         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name,'','true');" src="<?=$prefix.'info.png';?>">
@@ -158,7 +158,7 @@ foreach ($index as $key=>$value) {
             <td>
                 <p align='center' class='block'>
                     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor',this.name,'false');" src="<?=$prefix.'book.png';?>">
-                    <?php if (isAdmin()) { ?>
+                    <?php if (isUserRoot()) { ?>
                         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="recycle(this.name);" src="<?=$prefix.'trash.png';?>">
                     <?php } else { ?>
                         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name,'','true');" src="<?=$prefix.'info.png';?>">
@@ -177,7 +177,7 @@ foreach ($index as $key=>$value) {
             <td>
                 <p align='center' class='block'>
                     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor',this.name,'false');" src="<?=$prefix.'book.png';?>">
-                    <?php if (isAdmin()) { ?>
+                    <?php if (isUserRoot()) { ?>
                         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="recycle(this.name);" src="<?=$prefix.'trash.png';?>">
                     <?php } else { ?>
                         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name,'','true');" src="<?=$prefix.'info.png';?>">
@@ -195,7 +195,7 @@ foreach ($index as $key=>$value) {
             <td>
                 <p align='center' class='block'>
                     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor',this.name,'false');" src="<?=$prefix.'book.png';?>">
-                    <?php if (isAdmin()) { ?>
+                    <?php if (isUserRoot()) { ?>
                         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="recycle(this.name);" src="<?=$prefix.'trash.png';?>">
                     <?php } else { ?>
                         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name,'','true');" src="<?=$prefix.'info.png';?>">
@@ -214,7 +214,7 @@ foreach ($index as $key=>$value) {
             <td>
                 <p align='center' class='block'>
                     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor',this.name, 'false');" src="<?=$prefix.'book.png';?>">
-                    <?php if (isAdmin()) { ?>
+                    <?php if (isUserRoot()) { ?>
                         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="recycle(this.name);" src="<?=$prefix.'trash.png';?>">
                     <?php } else { ?>
                         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name,'','true');" src="<?=$prefix.'info.png';?>">
@@ -233,7 +233,7 @@ foreach ($index as $key=>$value) {
             <td>
                 <p align='center' class='block'>
                     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor',this.name,'false');" src="<?=$prefix.'book.png';?>">
-                    <?php if (isAdmin()) { ?>
+                    <?php if (isUserRoot()) { ?>
                         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="recycle(this.name);" src="<?=$prefix.'trash.png';?>">
                     <?php } else { ?>
                         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name,'','true');" src="<?=$prefix.'info.png';?>">
@@ -252,7 +252,7 @@ foreach ($index as $key=>$value) {
             <td>
                 <p align='center' class='block'>
                     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor',this.name,'false');" src="<?=$prefix.'book.png';?>">
-                    <?php if (isAdmin()) { ?>
+                    <?php if (isUserRoot()) { ?>
                         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="recycle(this.name);" src="<?=$prefix.'trash.png';?>">
                     <?php } else { ?>
                         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name,'','true');" src="<?=$prefix.'info.png';?>">
@@ -271,7 +271,7 @@ foreach ($index as $key=>$value) {
             <td>
                 <p align='center' class='block'>
                     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor',this.name,'false');" src="<?=$prefix.'book.png';?>">
-                    <?php if (isAdmin()) { ?>
+                    <?php if (isUserRoot()) { ?>
                         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="recycle(this.name);" src="<?=$prefix.'trash.png';?>">
                     <?php } else { ?>
                         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name,'','true');" src="<?=$prefix.'info.png';?>">
@@ -295,7 +295,7 @@ foreach ($index as $key=>$value) {
             <td>
                 <p align='center' class='block'>
                     <input type="image" name="<?=$mediaFileBasename;?>" onmouseover="soundButton();" class="power" onclick="get('i','<?=$mediaPkgHost;?>','from',this.name,'<?=$mediaPkgBranch;?>','<?=$mediaPkgAuthor;?>',false);" src="<?=$prefix.'update.png';?>">
-                    <?php if (isAdmin()) { ?>
+                    <?php if (isUserRoot()) { ?>
                         <input type="image" name="<?=$mediaFileBasename;?>" onmouseover="soundButton();" class="power" onclick="get('d','',this.name,'from','','here',false);" src="<?=$prefix.'trash.png';?>">
                     <?php } else { ?>
                         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name,'','true');" src="<?=$prefix.'info.png';?>">
@@ -314,7 +314,7 @@ foreach ($index as $key=>$value) {
             <td>
                 <p align='center' class='block'>
                     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor',this.name,'true');" src="<?=$prefix.'book.png';?>">
-                    <?php if (isAdmin()) { ?>
+                    <?php if (isUserRoot()) { ?>
                         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="recycle(this.name);" src="<?=$prefix.'trash.png';?>">
                     <?php } else { ?>
                         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name,'','true');" src="<?=$prefix.'info.png';?>">
@@ -333,7 +333,7 @@ foreach ($index as $key=>$value) {
             <td>
                 <p align='center' class='block'>
                     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor',this.name,'true');" src="<?=$prefix.'book.png';?>">
-                    <?php if (isAdmin()) { ?>
+                    <?php if (isUserRoot()) { ?>
                         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="recycle(this.name);" src="<?=$prefix.'trash.png';?>">
                     <?php } else { ?>
                         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name,'','true');" src="<?=$prefix.'info.png';?>">
@@ -352,7 +352,7 @@ foreach ($index as $key=>$value) {
             <td>
                 <p align='center' class='block'>
                     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor',this.name,'true');" src="<?=$prefix.'book.png';?>">
-                    <?php if (isAdmin()) { ?>
+                    <?php if (isUserRoot()) { ?>
                         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="recycle(this.name);" src="<?=$prefix.'trash.png';?>">
                     <?php } else { ?>
                         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name,'','true');" src="<?=$prefix.'info.png';?>">
@@ -371,7 +371,7 @@ foreach ($index as $key=>$value) {
             <td>
                 <p align='center' class='block'>
                     <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniRead('text_editor',this.name,'true');" src="<?=$prefix.'book.png';?>">
-                    <?php if (isAdmin()) { ?>
+                    <?php if (isUserRoot()) { ?>
                         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="recycle(this.name);" src="<?=$prefix.'trash.png';?>">
                     <?php } else { ?>
                         <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name,'','true');" src="<?=$prefix.'info.png';?>">

@@ -2,14 +2,14 @@
 function lockdata() {
     var obj={
         <?php $iter=0; foreach ($locks as $key=>$value) {
-            echo "'".$key."': lock".camel($key).".value".((count($locks)==($iter-1))?'':','); $iter++;
+            echo "'".$key."': lock".snakeToCamel($key).".value".((count($locks)==($iter-1))?'':','); $iter++;
         } $iter=0; ?>
     }; return obj;
 }
 function userdata() {
     var obj = {
         <?php $iter=0; foreach ($settings['defaults'] as $key=>$value) {
-            echo "'".$key."': sysDef".camel($key).".value".((count($settings['defaults'])==($iter-1))?'':','); $iter++;
+            echo "'".$key."': sysDef".snakeToCamel($key).".value".((count($settings['defaults'])==($iter-1))?'':','); $iter++;
         } $iter=0; ?>
     }; return obj;
 }
@@ -17,14 +17,14 @@ function setlock(ent,val) {
     var obj=lockdata(); obj[ent]=val;
     set(sysDefSessionID.value+'_lock.json',JSON.stringify(obj),true);
     <?php foreach ($locks as $key=>$value) {
-        echo "lock".camel($key).".value = obj['".$key."'];";
+        echo "lock".snakeToCamel($key).".value = obj['".$key."'];";
     } ?>
 }
 function setdata(ent,val) {
     var obj=userdata(); obj[ent]=val;
     set(sysDefSessionID.value+'_session.json',JSON.stringify(obj),true);
     <?php foreach ($settings['defaults'] as $key=>$value) {
-        echo "sysDef".camel($key).".value = obj['".$key."'];";
+        echo "sysDef".snakeToCamel($key).".value = obj['".$key."'];";
     } ?> if (ent=='audio_volume') { audioPlayer.volume = val; }
     if (ent=='audio_speed') { audioPlayer.playbackRate=val; }
     if (ent=='alarm_volume') { alarmPlayer.volume=val; }

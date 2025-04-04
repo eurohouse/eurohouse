@@ -110,7 +110,7 @@ function world_clock() {
             $('#buttonReqLock').attr('src',sysDefPrefix.value+((requestLock.value!='true')?'expand.png':'collapse.png'));
             $('#buttonMaximize').attr('src',sysDefPrefix.value+((sysDefApps.value!=0)?'restore.png':'maximize.png'));
             $('#buttonMenuStyle').attr('src',sysDefPrefix.value+((sysDefIcons.value!=0)?'menu.png':'list.png')); $('#buttonUpdate').attr('src',sysDefPrefix.value+'world.png');
-            $('#buttonUserStatus').attr('src',sysDefPrefix.value+"<?=(isAuth())?'logout.png':'login.png';?>"); $('#buttonEscape').attr('src',sysDefPrefix.value+'escape.png');
+            $('#buttonUserStatus').attr('src',sysDefPrefix.value+"<?=(isAuthorized())?'logout.png':'login.png';?>"); $('#buttonEscape').attr('src',sysDefPrefix.value+'escape.png');
             if (requestMode.value == 'bookkeeping') {
                 bookkeep_disp.innerHTML='<table style="width:100%;position:relative;"><thead><th style="width:25%;">'+fint[8]+'</th><th style="width:25%;">'+fint[0]+'</th><th style="width:25%;">'+fint[1]+'</th><th style="width:25%;">'+fint[2]+'</th></thead><tbody>'+jsonBookKeep(sysDefBookKeep.value)+'</tbody></table>';
             } else if (requestMode.value=='accessibility') { pressedKeyInfo.innerText=fint[9];

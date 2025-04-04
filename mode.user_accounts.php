@@ -39,12 +39,12 @@ foreach ($indexUsers as $key=>$value) {
                 <img style="width:50%;" src="<?=$profIcon;?>" loading="lazy" onmouseover="soundButton();">
             </a>
         </td>
-        <td><?=locTitle($profData,'title');?></td>
-        <td><?=titleColon(locTitle($profData,'codename'),true,$settings,$session).locTitle($profData,'project');?></td>
+        <td><?=localizedTitle($profData,'title');?></td>
+        <td><?=titleColon(localizedTitle($profData,'codename'),true,$settings,$session).localizedTitle($profData,'project');?></td>
         <td><?='@'.$value;?></td>
         <td>
         <p align='center' class='block'>
-        <?php if (isAuth()) { ?>
+        <?php if (isAuthorized()) { ?>
             <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="this.src=(isFriends(this.name))?sysDefPrefix.value+'user.png':sysDefPrefix.value+'anonym.png';toggleFriend(this.name);" src="<?=$prefix.'user.png';?>">
         <?php if ($sessionID=='root') { ?>
             <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="delete_user(this.name);window.location.reload();" src="<?=$prefix.'trash.png';?>">
