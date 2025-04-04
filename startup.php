@@ -63,7 +63,9 @@ function world_clock() {
             $('#alarmTime').val((enzi[0]!='00:00')?enzi[0]:hhMmSs(audioPlayer.currentTime,true));
             var effi=pager(data,2).split(';');
             var mixers=pager(data,3).split(' ');
-            var bndm=arrjob(sysDefBindData.value,';',':')[sysDefSessionID.value],fint=pager(data,4).split(' | ');$('#sysDefLockIcons').val(pager(data,6));
+            var bndm=arrjob(sysDefBindData.value,';',':')[sysDefSessionID.value];
+            var fint=pager(data,4).split(' | ');
+            $('#sysDefLockIcons').val(pager(data,6));
             if (authstate()) {
                 $('#buttonBackup').attr('src',sysDefPrefix.value+((isInBackup(sysDefSessionID.value))?'open.png':'save.png'));
                 omniBox.placeholder=fint[10];
@@ -72,7 +74,7 @@ function world_clock() {
                 videoVolInd.value=mixers[2]; videoRatInd.value=mixers[3];
                 alarmVolInd.value=mixers[4]; timerVolInd.value=mixers[5];
                 loopVolInd.value=mixers[6]; restVolInd.value=mixers[7];
-            } document.querySelector(':root').style.setProperty('--bicolor',enzi[3]); var obs=enzi[2].split('')[0],spe=enzi[2].split('')[1];
+            } document.querySelector(':root').style.setProperty('--bicolor',enzi[3]);
             sysDefMsgCounter.value=(sysDefMsgCounter.value<=0)?(Object.keys(jsonFilter(sysDefMsgData.value,sysDefFind.value)).length-1):(sysDefMsgCounter.value-1);
             $('#showUsUrgent').text(Object.values(jsonFilter(sysDefMsgData.value,sysDefFind.value,'msg'))[sysDefMsgCounter.value]);
             if (sysDefLoop.value!=sysDefPostBackEff.value) {
@@ -194,12 +196,12 @@ function world_clock() {
             } else if (requestMode.value=='text_editor') {
                 $('#textEdRep').attr('src',sysDefPrefix.value+'new.png');
                 $('#textEdRepAll').attr('src',sysDefPrefix.value+'copy.png');
-            } if (((obs==1)&&(spe==1))||((obs==1)&&(spe==0))) {
+            } if (((enzi[2].split('')[0]==1)&&(enzi[2].split('')[1]==1))||((enzi[2].split('')[0]==1)&&(enzi[2].split('')[1]==0))) {
                 $('#powerButton').show();$('.panel').hide();
                 $('.customPanel').hide();$('.upperGap').hide();
                 $('.lowerGap').hide();$('.topbar').hide();
             } else {
-                if ((obs==0)&&(spe==1)) {
+                if ((enzi[2].split('')[0]==0)&&(enzi[2].split('')[1]==1)) {
                     $('#powerButton').hide();$('.panel').hide();
                     $('.customPanel').hide();$('.upperGap').hide();
                     $('.lowerGap').hide();$('.topbar').show();
