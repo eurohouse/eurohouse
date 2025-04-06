@@ -581,7 +581,7 @@ function automate() {
     sysDefAutoData.value=arrpack(obj,';',':');
 }
 function compose(msg) {
-    var addr=(msg!==undefined)?msg.match(/(@\w*)/g):'';
+    var addr=(msg!==undefined)?msg.match(/(@\S*)/g):'';
     var userID,cyp='.-',msgbox='',msgbr=[];
     var ratTab=arrjob(sysDefPowersData.value,';',':');
     if (ratTab[sysDefSessionID.value]>=0) {
