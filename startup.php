@@ -342,6 +342,7 @@ function store_list() {
 function automator() {
     var autoPower=arrjob(sysDefAutoData.value,';',':');
     var bindPower=arrjob(sysDefBindData.value,';',':');
+    var callPower=arrjob(sysDefBindData.value,';',':');
     var tabPower=arrjob(sysDefPowersData.value,';',':');
     var frndPower=arrjob(sysDefFriendData.value,';',':');
     var toolPower=arrjob(sysDefToolData.value,';',':');
@@ -349,23 +350,29 @@ function automator() {
     var subName=userList[rand(0,userList.length)];
     var objName=userList[rand(0,userList.length)];
     var subFrnd=friendsOf(frndPower,subName);
-    var sut=obt={},sch=och='',rnd=suc=obc=0;
+    var subMarket=objMarket={},subSelect=objSelect='';
+    var subMarketCount=objMarketCount=0;
     if (requestMode.value=='statistics') {
         userStats.innerHTML=scores(sysDefStats.value);
     } if ((subName!='')&&(objName!='')&&(isInt(tabPower[subName]))&&(tabPower[subName]>=0)&&(autoPower[subName]=='auto')) {
-        sut=jsonMarket(subName),suc=Object.keys(sut).length;
-        sch=(suc<=0)?'':((suc==1)?Object.keys(sut)[0]:Object.keys(sut)[rand(0,suc)]);
-        bind(subName,objName);equip(subName,sch);
-        obt=jsonMarket(objName),obc=Object.keys(obt).length;
-        och=(obc<=0)?'':((obc==1)?Object.keys(obt)[0]:Object.keys(obt)[rand(0,obc)]);
-        if ((subName!=objName)&&(obc>0)&&(obt[och]['type']!==undefined)&&(obt[och]['password']===undefined)&&(storeOpen(objName))) {
-            buy_item(subName,och,objName);
-            console.log('@'+subName+' '+och+'$ @'+objName);
-        } if ((subName!=objName)&&(suc>0)&&(sut[sch]['type']!==undefined)&&(sut[sch]['type']=='weapon')&&(!(subFrnd.includes(objName)))) {
-            dominate(subName,objName,sch);
-            console.log('@'+subName+' -'+sch+' @'+objName);
-        } if ((subName==objName)&&(suc>0)&&(sut[sch]['type']!==undefined)&&(sut[sch]['type']!='weapon')&&(sut[sch]['force']!==undefined)&&(isInt(sut[sch]['force']))) {
-            charge(subName,sch);console.log('@'+subName+' +'+sch);
+        subMarket=jsonMarket(subName);
+        subMarketCount=Object.keys(subMarket).length;
+        subSelect=(subMarketCount<=0)?'':((subMarketCount==1)?Object.keys(subMarket)[0]:Object.keys(subMarket)[rand(0,subMarketCount)]);
+        bind(subName,objName);equip(subName,subSelect);
+        objMarket=jsonMarket(objName),objMarketCount=Object.keys(objMarket).length;
+        objSelect=(objMarketCount<=0)?'':((objMarketCount==1)?Object.keys(objMarket)[0]:Object.keys(objMarket)[rand(0,objMarketCount)]);
+        if ((subName!=objName)&&(objMarketCount>0)&&(objMarket[objSelect]['type']!==undefined)&&(objMarket[objSelect]['password']===undefined)&&(storeOpen(objName))) {
+            buy_item(subName,objSelect,objName);
+            console.log('@'+subName+' '+objSelect+'$ @'+objName);
+        } if ((subName!=objName)&&(subMarketCount>0)&&(subMarket[subSelect]['type']!==undefined)&&(subMarket[subSelect]['type']=='weapon')&&(!(subFrnd.includes(objName)))) {
+            dominate(subName,objName,subSelect);
+            console.log('@'+subName+' -'+subSelect+' @'+objName);
+        } if ((subName!=objName)&&(subMarketCount>0)&&(subMarket[subSelect]['type']!==undefined)&&(subMarket[subSelect]['type']!=='weapon')&&(subFrnd.includes(objName))) {
+            call(subName,objName);
+            console.log('@'+subName+' ^'+subSelect+' @'+objName);
+        } if ((subName==objName)&&(subMarketCount>0)&&(subMarket[subSelect]['type']!==undefined)&&(subMarket[subSelect]['type']!='weapon')&&(subMarket[subSelect]['force']!==undefined)&&(isInt(subMarket[subSelect]['force']))) {
+            charge(subName,subSelect);
+            console.log('@'+subName+' +'+subSelect);
         }
     }
 }
