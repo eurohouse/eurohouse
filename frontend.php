@@ -32,7 +32,9 @@ function setdata(ent,val) {
     if (ent=='loop_volume') { backgroundPlayer.volume=val; }
     if (ent=='rest_volume') {
         soundPlayer.volume=typePlayer.volume=errorPlayer.volume=notifyPlayer.volume=bindPlayer.volume=hitPlayer.volume=sufferPlayer.volume=val;
-    } if (ent=='pitch_lock') { audioPlayer.preservesPitch=(val!=0)?true:false; } if (requestMode.value=='sticky_notes') {
+    } if (ent=='pitch_lock') {
+        audioPlayer.preservesPitch=(val!=0)?true:false;
+    } if (requestMode.value=='sticky_notes') {
         if (ent=='numeric') { myNotesRad.value=val; }
     } if (requestMode.value=='media_player') {
         if (ent=='video_volume') { video.volume=val; }
@@ -64,36 +66,36 @@ function superuser() {
 function authstate() {
     return (sysDefIsSession.value!=false);
 }
-function encipher(dt,ps='',nm='.-',md='str') {
-    var upn=dt.split(' | ');
-    var upl=[]; for (iu in upn) {
-        upl.push(etw(upn[iu],ps,nm));
-    } return (md=='arr')?upl:upl.join(' | ');
+function encipher(txt,pass='',numsys='.-',restyp='str') {
+    var srcarr=txt.split(' | ');
+    var resarr=[]; for (idx in srcarr) {
+        resarr.push(etw(srcarr[idx],pass,numsys));
+    } return (restyp=='arr')?resarr:resarr.join(' | ');
 }
-function decipher(dt,ps,nm,md='str') {
-    var upn=dt.split(' | ');
-    var upl=[]; for (iu in upn) {
-        upl.push(dtw(upn[iu],ps,nm));
-    } return (md=='arr')?upl:upl.join(' | ');
+function decipher(txt,pass='',numsys='.-',restyp='str') {
+    var srcarr=txt.split(' | ');
+    var resarr=[]; for (idx in srcarr) {
+        resarr.push(dtw(srcarr[idx],pass,numsys));
+    } return (restyp=='arr')?resarr:resarr.join(' | ');
 }
 function playlistNext(name) {
     return arrangeMenu(sysDefPlaylist.value,etw(name,sysDefSessionID.value,sysDefNumeric.value),' | ');
 }
-function trigUserDel() {
-    var dp=arrjob(sysDefPowersData.value,';',':');
-    dp[sysDefSessionID.value]=-666;
-    set('dominion.json',JSON.stringify(dp),true);
-    sysDefPowersData.value=arrpack(dp,';',':');
+function setdel() {
+    var arr=arrjob(sysDefPowersData.value,';',':');
+    arr[sysDefSessionID.value]=-666;
+    set('dominion.json',JSON.stringify(arr),true);
+    sysDefPowersData.value=arrpack(arr,';',':');
 }
-function lockarr(ind) {
-    var ob=((jsonarr(sysDefLockData.value)!==undefined)&&(jsonarr(sysDefLockData.value)!==null))?jsonarr(sysDefLockData.value):{};
-    var ch=Object.values(ob[ind]||{});
-    return ((ch!==undefined)&&(ch!==null))?ch:[];
+function lockarr(id) {
+    var objData=((jsonarr(sysDefLockData.value)!==undefined)&&(jsonarr(sysDefLockData.value)!==null))?jsonarr(sysDefLockData.value):{};
+    var dataSel=Object.values(objData[id]||{});
+    return ((dataSel!==undefined)&&(dataSel!==null))?dataSel:[];
 }
-function lockcount(ind) {
-    var ob=((jsonarr(sysDefLockData.value)!==undefined)&&(jsonarr(sysDefLockData.value)!==null))?jsonarr(sysDefLockData.value):{};
-    var ch=Object.keys(ob[ind]||{});
-    return (isInt(ch.length))?parseInt(ch.length):0;
+function lockcount(id) {
+    var objData=((jsonarr(sysDefLockData.value)!==undefined)&&(jsonarr(sysDefLockData.value)!==null))?jsonarr(sysDefLockData.value):{};
+    var dataSel=Object.keys(objData[id]||{});
+    return (isInt(dataSel.length))?parseInt(dataSel.length):0;
 }
 function metadata() { return jsonarr(sysDefMetaData.value); }
 function setmeta(ent,val) {
@@ -104,31 +106,34 @@ function delmeta(ent) {
     var obj=metadata(); delete obj[ent];
     set(sysDefSessionID.value+'_metadata.json',JSON.stringify(obj),true);
 }
-function clearJournal(num,obj,name,anyFile=false) {
-    var msgarr={}; if (typeof(obj)=='object') {
-        msgarr=jsonarr(obj.value);
-    } else { msgarr=jsonarr(obj); }
-    var nur,ras,las=Object.keys(msgarr).length-1;
-    if (isInt(num)) {
-        nur=Math.abs(num),ras=(las-nur); if (num<0) {
-            for (i=0; i<nur; i++) {
-                if (msgarr[Object.keys(msgarr)[0]]!==undefined) {
-                    delete msgarr[Object.keys(msgarr)[0]];
+function clearJournal(id,obj,name,anyFile=false) {
+    var resarr={},absNum=numDiff=0;
+    if (typeof(obj)=='object') {
+        resarr=jsonarr(obj.value);
+    } else { resarr=jsonarr(obj); }
+    var lastElem=Object.keys(resarr).length-1;
+    if (isInt(id)) {
+        absNum=Math.abs(id);
+        numDiff=(lastElem-absNum);
+        if (id<0) {
+            for (i=0; i<absNum; i++) {
+                if (resarr[Object.keys(resarr)[0]]!==undefined) {
+                    delete resarr[Object.keys(resarr)[0]];
                 }
             }
         } else {
-            for (i=las; i>ras; i--) {
-                if (msgarr[Object.keys(msgarr)[i]]!==undefined) {
-                    delete msgarr[Object.keys(msgarr)[i]];
+            for (i=lastElem; i>numDiff; i--) {
+                if (resarr[Object.keys(resarr)[i]]!==undefined) {
+                    delete resarr[Object.keys(resarr)[i]];
                 }
             }
         }
     } else {
-        if (msgarr[num]!==undefined) { delete msgarr[num]; }
+        if (resarr[id]!==undefined) { delete resarr[id]; }
     } if (anyFile) {
-        set('./'+name+'.json',encodeURIComponent(JSON.stringify(msgarr)),true);
+        set('./'+name+'.json',encodeURIComponent(JSON.stringify(resarr)),true);
     } else {
-        set('./.'+name+'/'+sysDefSessionID.value+'_'+name+'.json',encodeURIComponent(JSON.stringify(msgarr)),true);
+        set('./.'+name+'/'+sysDefSessionID.value+'_'+name+'.json',encodeURIComponent(JSON.stringify(resarr)),true);
     }
 }
 function openJournal(id,usersObj,dataObj) {
@@ -153,50 +158,49 @@ function storeHours(id) {
     return (arr[id]!==undefined)?arr[id]:'';
 }
 function isInBackup(id) {
-    var rfs=rfl={}; with(localStorage) {
+    var fsess=flock={};
+    with(localStorage) {
         readFile(id+'_session_saved.json','read','',id+'_session_data');
-        rfs=jsonarr(getItem(id+'_session_data'));
+        fsess=jsonarr(getItem(id+'_session_data'));
         readFile(id+'_lock_saved.json','read','',id+'_lock_data');
-        rfl=jsonarr(getItem(id+'_lock_data'));
-    } return ((rfs!==null)&&(rfl!==null)&&(Object.keys(rfs).length>0)&&(Object.keys(rfl).length>0));
+        flock=jsonarr(getItem(id+'_lock_data'));
+    } return ((fsess!==null)&&(flock!==null)&&(Object.keys(fsess).length>0)&&(Object.keys(flock).length>0));
 }
 function userBackup(id) {
-    var rfs=rfl={}; with(localStorage) {
+    var fsess=flock={};
+    with(localStorage) {
         if (isInBackup(id)) {
             copy(id+'_session_saved.json',id+'_session.json',true,1);
             copy(id+'_lock_saved.json',id+'_lock.json',true,1);
             del(id+'_session_saved.json',true); del(id+'_lock_saved.json',true);
             readFile(id+'_session.json','read','',id+'_session_data');
-            rfs=jsonarr(getItem(id+'_session_data')); for (iu in rfs) {
-                setItem(id+'_session_'+iu,rfs[iu]); setdata(iu,getItem(id+'_session_'+iu));
+            fsess=jsonarr(getItem(id+'_session_data')); for (idx in fsess) {
+                setItem(id+'_session_'+idx,fsess[idx]); setdata(idx,getItem(id+'_session_'+idx));
             } readFile(id+'_lock.json','read','',id+'_lock_data');
-            rfl=jsonarr(getItem(id+'_lock_data')); for (iu in rfl) {
-                setItem(id+'_lock_'+iu,rfl[iu]); setlock(iu,getItem(id+'_lock_'+iu));
+            flock=jsonarr(getItem(id+'_lock_data')); for (idx in flock) {
+                setItem(id+'_lock_'+idx,flock[idx]); setlock(idx,getItem(id+'_lock_'+idx));
             } omniListen(dtw(getItem(id+'_session_melody'),id,getItem(id+'_session_numeric')),false,parseInt(getItem(id+'_session_current')));
         } else {
             copy(id+'_session.json',id+'_session_saved.json',true,1);
             copy(id+'_lock.json',id+'_lock_saved.json',true,1);
             readFile(id+'_session_saved.json','read','',id+'_session_data');
-            rfs=jsonarr(getItem(id+'_session_data')); for (iu in rfs) {
-                setItem(id+'_session_'+iu,rfs[iu]);
+            fsess=jsonarr(getItem(id+'_session_data')); for (idx in fsess) {
+                setItem(id+'_session_'+idx,fsess[idx]);
             } readFile(id+'_lock_saved.json','read','',id+'_lock_data');
-            rfl=jsonarr(getItem(id+'_lock_data')); for (iu in rfl) {
-                setItem(id+'_lock_'+iu,rfl[iu]);
+            flock=jsonarr(getItem(id+'_lock_data')); for (idx in flock) {
+                setItem(id+'_lock_'+idx,flock[idx]);
             }
         }
     }
 }
 function remove_entry(id,obj,name,complex=false,helper=false,dy=';',dx=':') {
-    /* REMOVE CERTAIN ENTRY FROM CERTAIN DATA BANK */
-    var dat={}; if (typeof(obj)=='object') {
-        dat=(complex)?jsonarr(obj.value):arrjob((obj.value),dy,dx);
-    } else { dat=(complex)?jsonarr(obj):arrjob((obj),dy,dx); }
-    delete dat[id]; set(name,JSON.stringify(dat),true);
+    var rawData=(typeof(obj)=='object')?obj.value:obj;
+    var resarr=(complex)?jsonarr(rawData):arrjob((rawData),dy,dx);
+    delete resarr[id]; set(name,JSON.stringify(resarr),true);
     if (helper) { del(id+'.json',true); del(id,true); }
-    obj.value=(complex)?arrjson(dat):arrpack(dat,dy,dx);
+    obj.value=(complex)?arrjson(resarr):arrpack(resarr,dy,dx);
 }
 function delete_user(id) {
-    /* COMPLETELY REMOVES USER WITH ALL ITS DATA */
     unbind(sysDefSessionID.value); unbind(id);
     remove_entry(id,sysDefBindData,'binding.json');
     remove_entry(id,sysDefPowersData,'dominion.json');
@@ -216,17 +220,13 @@ function delete_user(id) {
     del('./.store/'+id+'_store.json.bak',true);
 }
 function transfer_entry(id,obj,name,onlyAssignID=false) {
-    /* TRANSFER ENTRY OF USER TO ANOTHER USER */
     var objData=arrjob(obj.value,';',':');
-    /* CREATES ENTRY FOR ANOTHER USER AND TRANSFER CURRENT USER DATA */
-    objData[id]=(onlyAssignID!==false)?id:objData[sysDefSessionID.value];
-    /* REMOVES CURRENT USER TO FREE SERVER SPACE */
+    objData[id]=(onlyAssignID)?id:objData[sysDefSessionID.value];
     if (sysDefSessionID.value!=id) { delete objData[sysDefSessionID.value]; }
     set(name+'.json',JSON.stringify(objData),true);
     obj.value=arrpack(objData,';',':');
 }
 function rename_user(username,password) {
-    /* CHANGES CURRENT USER ID AND TRANSFERS ITS DATA */
     unbind(sysDefSessionID.value); unbind(username);
     change(sysDefSessionID.value,username,CryptoJS.SHA256(password).toString(),true); if (sysDefSessionID.value!=username) {
         transfer_entry(username,sysDefBindData,'binding',true);
@@ -244,14 +244,10 @@ function init_user(id,pass='',args='',helper=false) {
     var fd=arrjob(sysDefFriendData.value,';',':');
     var td=arrjob(sysDefToolData.value,';',':');
     var cd=arrjob(sysDefCallData.value,';',':');
-    var usl=(sysDefUsersList.value).split(',');
-    var bkl=(sysDefBooksList.value).split(',');
-    var stl=(sysDefStoreList.value).split(',');
-    if (usl.indexOf(id)<=-1) {
+    var usersList=(sysDefUsersList.value).split(',');
+    if (usersList.indexOf(id)<=-1) {
         set('./.msgbox/'+id+'_msgbox.json','{}',true);
-    } if (bkl.indexOf(id)<=-1) {
         set('./.book/'+id+'_book.json','{}',true);
-    } if (stl.indexOf(id)<=-1) {
         set('./.store/'+id+'_store.json','{}',true);
     } if (!(id in bd)) {
         bd[id]=id; set('binding.json',JSON.stringify(bd),true);
@@ -359,7 +355,7 @@ function jsonNews() {
     } return ard;
 }
 function jsonMarket(id) {
-    return jsonarr(openJournal(id,sysDefStoreList,sysDefStoreJSONs));
+    return jsonarr(openJournal(id,sysDefUsersList,sysDefStoreJSONs));
 }
 function activeHrsBtn(id) {
     var arr=storeHours(id).split(',');
@@ -380,7 +376,7 @@ function listlock(id) {
     return ar;
 }
 function jsonStore(id) {
-    var arr=jsonarr(openJournal(id,sysDefStoreList,sysDefStoreJSONs));
+    var arr=jsonarr(openJournal(id,sysDefUsersList,sysDefStoreJSONs));
     var ard=arl='',eld={},fu0=fu1='';
     var usr=sysDefSessionID.value,epr=sysDefPrefix.value;
     for (el in arr) {
@@ -547,16 +543,20 @@ function isInMenu(list,item) {
     return (arr.indexOf(item)>-1);
 }
 function arrangePlay() {
-    var dp=arrjob(sysDefPowersData.value,';',':');
-    var db=arrjob(sysDefBindData.value,';',':');
-    var da=arrjob(sysDefAutoData.value,';',':');
-    sysDefAutoState.value=da[sysDefSessionID.value];
-    $('#buttonAutomator').attr('src',sysDefPrefix.value+((sysDefAutoState.value=='auto')?'wheel.png':'steer.png')); var my=dp[sysDefSessionID.value],bl=pl='',ch='chain'; if (my<=-666) {
+    var powersData=arrjob(sysDefPowersData.value,';',':');
+    var bindData=arrjob(sysDefBindData.value,';',':');
+    var autoData=arrjob(sysDefAutoData.value,';',':');
+    sysDefAutoState.value=autoData[sysDefSessionID.value];
+    $('#buttonAutomator').attr('src',sysDefPrefix.value+((sysDefAutoState.value=='auto')?'wheel.png':'steer.png'));
+    var myPowers=powersData[sysDefSessionID.value];
+    var chainIcon='chain'; if (myPowers<=-666) {
         delete_user(sysDefSessionID.value);omniAuthRequest('signout','','');
-    } ch=(arraySearch(sysDefSessionID.value,db)!=false)?((db[sysDefSessionID.value]!=sysDefSessionID.value)?'unbroke':'unchain'):((db[sysDefSessionID.value]!=sysDefSessionID.value)?'broke':'chain');
-    var pl=formCur(my),bl=formCur(sysDefSessionID.value);
-    $('#buttonBroke').attr('src',sysDefPrefix.value+ch+'.png');
-    $('#showUsInfoPower').val(pl); $('#showUsInfoBond').val(bl);
+    } chainIcon=(arraySearch(sysDefSessionID.value,bindData)!=false)?((bindData[sysDefSessionID.value]!=sysDefSessionID.value)?'unbroke':'unchain'):((bindData[sysDefSessionID.value]!=sysDefSessionID.value)?'broke':'chain');
+    var powerHandler=formCur(myPowers);
+    var nameHandler=formCur(sysDefSessionID.value);
+    $('#buttonBroke').attr('src',sysDefPrefix.value+chainIcon+'.png');
+    $('#showUsInfoPower').val(powerHandler);
+    $('#showUsInfoBond').val(nameHandler);
 }
 function call(usr,id) {
     var obj=arrjob(sysDefCallData.value,';',':');
@@ -628,56 +628,57 @@ function amounts(tabS,tabB,art) {
         }
     }
 }
-function buy_item(bye,art,sel) {
-    if (sel!=bye) {
-        var tabS=jsonarr(openJournal(sel,sysDefStoreList,sysDefStoreJSONs)), tabB=jsonarr(openJournal(bye,sysDefStoreList,sysDefStoreJSONs));
-        var prix,pass,obj=arrjob(sysDefPowersData.value,';',':');
-        if ((obj[bye]>=0)&&(obj[sel]>=0)) {
+function buy_item(buyer,art,seller) {
+    if (seller!=buyer) {
+        var tabS=jsonarr(openJournal(seller,sysDefUsersList,sysDefStoreJSONs));
+        var tabB=jsonarr(openJournal(buyer,sysDefUsersList,sysDefStoreJSONs));
+        var prix,pass,powersData=arrjob(sysDefPowersData.value,';',':');
+        if ((powersData[buyer]>=0)&&(powersData[seller]>=0)) {
             if ((tabS[art]!==undefined)&&(typeof(tabS[art])=='object')) {
                 if ((isInt(tabS[art]['price']))&&(!isInt(art))) {
-                    // Buy any product for certain price
-                    prix=parseInt(tabS[art]['price']); if (obj[bye]>=prix) {
-                        fixPrice(bye,sel,art,prix); amounts(tabS,tabB,art);
-                        set('./.store/'+sel+'_store.json',encodeURIComponent(JSON.stringify(tabS)),true); set('./.store/'+bye+'_store.json',encodeURIComponent(JSON.stringify(tabB)),true); if ((tabS[art]['password']!==undefined)&&(tabS[art]['type']=='account')) {
-                            copy(sel+'_session.json.bak',bye+'_session.json.bak',true,1);
-                            copy(sel+'_session.json',bye+'_session.json',true,1);
-                            copy(sel+'_lock.json.bak',bye+'_lock.json.bak',true,1);
-                            copy(sel+'_lock.json',bye+'_lock.json',true,1);
-                            change(bye,bye,tabS[art]['password'],true);
-                            omniAuthRequest('signin',bye,tabS[art]['password']);
+                    prix=parseInt(tabS[art]['price']);
+                    if (powersData[buyer]>=prix) {
+                        fixPrice(buyer,seller,art,prix);
+                        amounts(tabS,tabB,art);
+                        set('./.store/'+seller+'_store.json',encodeURIComponent(JSON.stringify(tabS)),true); set('./.store/'+buyer+'_store.json',encodeURIComponent(JSON.stringify(tabB)),true);
+                        if ((tabS[art]['password']!==undefined)&&(tabS[art]['type']=='account')) {
+                            copy(seller+'_session.json.bak',buyer+'_session.json.bak',true,1);
+                            copy(seller+'_session.json',buyer+'_session.json',true,1);
+                            copy(seller+'_lock.json.bak',buyer+'_lock.json.bak',true,1);
+                            copy(seller+'_lock.json',buyer+'_lock.json',true,1);
+                            change(buyer,buyer,tabS[art]['password'],true);
+                            omniAuthRequest('signin',buyer,tabS[art]['password']);
                         } else if ((tabS[art]['password']!==undefined)&&(tabS[art]['type']=='password')) {
-                            change(sel,sel,tabS[art]['password'],true);
-                            omniAuthRequest('signin',sel,tabS[art]['password']);
+                            change(seller,seller,tabS[art]['password'],true);
+                            omniAuthRequest('signin',seller,tabS[art]['password']);
                         }
                     }
                 } else if ((!isInt(tabS[art]['price']))&&(!isInt(art))&&(tabB[tabS[art]['price']]!==undefined)&&(typeof(tabB[tabS[art]['price']])=='object')) {
-                    // Exchange goods with other users
-                    prix=tabS[art]['price']; fixPrice(bye,sel,art,prix);
+                    prix=tabS[art]['price']; fixPrice(buyer,seller,art,prix);
                     amounts(tabB,tabS,prix); amounts(tabS,tabB,art);
-                    set('./.store/'+sel+'_store.json',encodeURIComponent(JSON.stringify(tabS)),true);
-                    set('./.store/'+bye+'_store.json',encodeURIComponent(JSON.stringify(tabB)),true);
+                    set('./.store/'+seller+'_store.json',encodeURIComponent(JSON.stringify(tabS)),true);
+                    set('./.store/'+buyer+'_store.json',encodeURIComponent(JSON.stringify(tabB)),true);
                 } else if ((!isInt(tabS[art]['price']))&&(tabS[art]['price']=='')) {
-                    // Get certain amount of money or good from user as a gift
-                    prix=tabS[art]['price']; fixPrice(bye,sel,art,prix); amounts(tabS,tabB,art);
-                    set('./.store/'+sel+'_store.json',encodeURIComponent(JSON.stringify(tabS)),true);
-                    set('./.store/'+bye+'_store.json',encodeURIComponent(JSON.stringify(tabB)),true);
+                    prix=tabS[art]['price']; fixPrice(buyer,seller,art,prix); amounts(tabS,tabB,art);
+                    set('./.store/'+seller+'_store.json',encodeURIComponent(JSON.stringify(tabS)),true);
+                    set('./.store/'+buyer+'_store.json',encodeURIComponent(JSON.stringify(tabB)),true);
                 }
             }
         }
     }
 }
-function sell_item(usr,art,dat='') {
-    var tabS=jsonarr(openJournal(usr,sysDefStoreList,sysDefStoreJSONs));
-    var obj=arrjob(sysDefPowersData.value,';',':'),dap=arrjob(dat,'; ',': '); if (obj[usr]>=0) {
-        var qu=((tabS[art]!==undefined)&&(typeof(tabS[art])=='object')&&(tabS[art]['amount']!==undefined)&&isInt(tabS[art]['amount'])&&(tabS[art]['amount']>=0))?parseInt(tabS[art]['amount'])+1:1; tabS[art]={"amount":qu};
-        for (iu in dap) {
-            tabS[art][iu]=(iu=='password')?CryptoJS.SHA256(dap[iu]).toString():dap[iu];
+function sell_item(usr,art,rawTxtData='') {
+    var tabS=jsonarr(openJournal(usr,sysDefUsersList,sysDefStoreJSONs));
+    var powersData=arrjob(sysDefPowersData.value,';',':');
+    var dataArr=arrjob(rawTxtData,'; ',': '); if (powersData[usr]>=0) {
+        var amount=((tabS[art]!==undefined)&&(typeof(tabS[art])=='object')&&(tabS[art]['amount']!==undefined)&&isInt(tabS[art]['amount'])&&(tabS[art]['amount']>=0))?parseInt(tabS[art]['amount'])+1:1; tabS[art]={"amount":amount}; for (idx in dataArr) {
+            tabS[art][idx]=(idx=='password')?CryptoJS.SHA256(dataArr[idx]).toString():dataArr[idx];
         } set('./.store/'+usr+'_store.json',encodeURIComponent(JSON.stringify(tabS)),true);
     }
 }
 function fixPrice(sen,rec,deb,cre) {
-    var tran1=openJournal(sen,sysDefBooksList,sysDefBookKeepJSONs);
-    var tran2=openJournal(rec,sysDefBooksList,sysDefBookKeepJSONs);
+    var tran1=openJournal(sen,sysDefUsersList,sysDefBookKeepJSONs);
+    var tran2=openJournal(rec,sysDefUsersList,sysDefBookKeepJSONs);
     var trans1=jsonarr(tran1),trans2=jsonarr(tran2);
     var stat=arrjob(sysDefPowersData.value,';',':');
     var statD=(isInt(stat[sen]))?parseInt(stat[sen]):0;
@@ -715,60 +716,73 @@ function fixPrice(sen,rec,deb,cre) {
     set('dominion.json',JSON.stringify(stat),true);
     sysDefPowersData.value=arrpack(stat,';',':');
 }
-function charge(usr,itp='') {
-    var obj=arrjob(sysDefPowersData.value,';',':');
-    var stu=jsonMarket(usr),f=m=s=n=0;
-    var suf=(isInt(obj[usr]))?parseInt(obj[usr]):0;
-    if (suf>=0) {
-        if ((stu[itp]!==undefined)&&(typeof(stu[itp])=='object')&&(stu[itp]['type']!='account')&&(stu[itp]['type']!='password')&&(stu[itp]['type']!='weapon')) {
-            m=((stu[itp]['amount']!==undefined)&&isInt(stu[itp]['amount']))?parseInt(stu[itp]['amount']):1;
-            f=(isInt(itp))?parseInt(itp):(((stu[itp]['force']!==undefined)&&isInt(stu[itp]['force']))?parseInt(stu[itp]['force']):1);
-            n=((stu[itp]['finite']!==undefined)&&isInt(stu[itp]['finite']))?parseInt(stu[itp]['finite']):0;
-            s=((stu[itp]['series']!==undefined)&&isInt(stu[itp]['series']))?parseInt(stu[itp]['series']):0;
-        } else { m=f=1,n=s=0; }
-        if (n!=0) {
-            if (m>0) { if (s!=0) {
-                    do { suf+=f; s-=1; } while (s>0);
-                } else { suf+=f; } m-=1; stu[itp]['amount']=m;
-            } else { delete stu[itp]; }
+function charge(usr,art='') {
+    var powersData=arrjob(sysDefPowersData.value,';',':');
+    var userMarket=jsonMarket(usr);
+    var force=amount=series=finite=0;
+    var usrPwr=(isInt(powersData[usr]))?parseInt(powersData[usr]):0;
+    if (usrPwr>=0) {
+        if ((userMarket[art]!==undefined)&&(typeof(userMarket[art])=='object')&&(userMarket[art]['type']!='account')&&(userMarket[art]['type']!='password')&&(userMarket[art]['type']!='weapon')) {
+            amount=((userMarket[art]['amount']!==undefined)&&isInt(userMarket[art]['amount']))?parseInt(userMarket[art]['amount']):1;
+            force=(isInt(art))?parseInt(art):(((userMarket[art]['force']!==undefined)&&isInt(userMarket[art]['force']))?parseInt(userMarket[art]['force']):1);
+            finite=((userMarket[art]['finite']!==undefined)&&isInt(userMarket[art]['finite']))?parseInt(userMarket[art]['finite']):0;
+            series=((userMarket[art]['series']!==undefined)&&isInt(userMarket[art]['series']))?parseInt(userMarket[art]['series']):0;
+        } else { amount=force=1,finite=series=0; }
+        if (finite!=0) {
+            if (amount>0) { if (series!=0) {
+                    do {
+                        usrPwr+=force; series-=1;
+                    } while (series>0);
+                } else {
+                    usrPwr+=force;
+                } amount-=1; userMarket[art]['amount']=amount;
+            } else { delete userMarket[art]; }
         } else {
-            if (s!=0) {
-                do { suf+=f; s-=1; } while (s>0);
-            } else { suf+=f; }
-        } obj[usr]=suf;
-        set('./.store/'+usr+'_store.json',encodeURIComponent(JSON.stringify(stu)),true);
-        set('dominion.json',JSON.stringify(obj),true);
-        sysDefPowersData.value=arrpack(obj,';',':');
+            if (series!=0) {
+                do {
+                    usrPwr+=force; series-=1;
+                } while (series>0);
+            } else { usrPwr+=force; }
+        } powersData[usr]=usrPwr;
+        set('./.store/'+usr+'_store.json',encodeURIComponent(JSON.stringify(userMarket)),true);
+        set('dominion.json',JSON.stringify(powersData),true);
+        sysDefPowersData.value=arrpack(powersData,';',':');
     }
 }
-function dominate(usr,id,wep='') {
-    var obj=arrjob(sysDefPowersData.value,';',':');
-    var stu=jsonMarket(usr),f=m=s=n=0;
-    var suf=(isInt(obj[usr]))?parseInt(obj[usr]):0;
-    var obf=(isInt(obj[id]))?parseInt(obj[id]):0;
-    if ((usr!=id)&&(suf>=0)) {
-        if ((stu[wep]!==undefined)&&(typeof(stu[wep])=='object')&&(stu[wep]['type']=='weapon')) {
-            m=((stu[wep]['amount']!==undefined)&&isInt(stu[wep]['amount']))?parseInt(stu[wep]['amount']):1;
-            f=((stu[wep]['force']!==undefined)&&isInt(stu[wep]['force']))?parseInt(stu[wep]['force']):1;
-            n=((stu[wep]['finite']!==undefined)&&isInt(stu[wep]['finite']))?parseInt(stu[wep]['finite']):0;
-            s=((stu[wep]['series']!==undefined)&&isInt(stu[wep]['series']))?parseInt(stu[wep]['series']):0;
-        } else { m=f=1,n=s=0; }
-        if (obf<=-666) { delete_user(id); } else {
-            if (n!=0) {
-                if (m>0) {
-                    if (s!=0) {
-                        do { suf+=f; obf-=f; s-=1; } while (s>0);
-                    } else { suf+=f; obf-=f; } m-=1;
-                    stu[wep]['amount']=m;
-                } else { delete stu[wep]; }
+function dominate(usr,id,art='') {
+    var powersData=arrjob(sysDefPowersData.value,';',':');
+    var userMarket=jsonMarket(usr);
+    var force=amount=series=finite=0;
+    var usrPwr=(isInt(powersData[usr]))?parseInt(powersData[usr]):0;
+    var idPwr=(isInt(powersData[id]))?parseInt(powersData[id]):0;
+    if ((usr!=id)&&(usrPwr>=0)) {
+        if ((userMarket[art]!==undefined)&&(typeof(userMarket[art])=='object')&&(userMarket[art]['type']=='weapon')) {
+            amount=((userMarket[art]['amount']!==undefined)&&isInt(userMarket[art]['amount']))?parseInt(userMarket[art]['amount']):1;
+            force=((userMarket[art]['force']!==undefined)&&isInt(userMarket[art]['force']))?parseInt(userMarket[art]['force']):1;
+            finite=((userMarket[art]['finite']!==undefined)&&isInt(userMarket[art]['finite']))?parseInt(userMarket[art]['finite']):0;
+            series=((userMarket[art]['series']!==undefined)&&isInt(userMarket[art]['series']))?parseInt(userMarket[art]['series']):0;
+        } else { amount=force=1,finite=series=0; }
+        if (idPwr<=-666) { delete_user(id); } else {
+            if (finite!=0) {
+                if (amount>0) {
+                    if (series!=0) {
+                        do {
+                            usrPwr+=force; idPwr-=force; series-=1;
+                        } while (series>0);
+                    } else {
+                        usrPwr+=force; idPwr-=force;
+                    } amount-=1; userMarket[art]['amount']=amount;
+                } else { delete userMarket[art]; }
             } else {
-                if (s!=0) {
-                    do { suf+=f; obf-=f; s-=1; } while (s>0);
-                } else { suf+=f; obf-=f; }
-            } obj[usr]=suf; obj[id]=obf;
-            set('./.store/'+usr+'_store.json',encodeURIComponent(JSON.stringify(stu)),true);
-            set('dominion.json',JSON.stringify(obj),true);
-            sysDefPowersData.value=arrpack(obj,';',':');
+                if (series!=0) {
+                    do {
+                        usrPwr+=force; idPwr-=force; series-=1;
+                    } while (series>0);
+                } else { usrPwr+=force; idPwr-=force; }
+            } powersData[usr]=usrPwr; powersData[id]=idPwr;
+            set('./.store/'+usr+'_store.json',encodeURIComponent(JSON.stringify(userMarket)),true);
+            set('dominion.json',JSON.stringify(powersData),true);
+            sysDefPowersData.value=arrpack(powersData,';',':');
         }
     }
 }

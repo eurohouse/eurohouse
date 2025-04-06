@@ -238,7 +238,7 @@ function omniEnter() {
         } else if (input=='\\=') {
             omniBox.value='\\='+dtw(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value);
         } else if (input.startsWith('store ')) {
-            var st=jsonarr(openJournal(sysDefSessionID.value,sysDefStoreList,sysDefStoreJSONs)), ob=arrjob(sysDefPowersData.value,';',':');
+            var st=jsonarr(openJournal(sysDefSessionID.value,sysDefUsersList,sysDefStoreJSONs)), ob=arrjob(sysDefPowersData.value,';',':');
             arb=input.replace('store ',''); if (ob[sysDefSessionID.value]>=0) {
                 if (arb.startsWith('delete ')) {
                     arj=arb.replace('delete ','');

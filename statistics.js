@@ -75,7 +75,7 @@ function scores(sta) {
             (obd,key) => { obd[key]=obj[key]; return obd; }, {}
         ); for (indi in ordered) {
             if ((ordered[indi]!==undefined)||(indi!='')) {
-                dat=jsonarr(openJournal(indi,sysDefStoreList,sysDefStoreJSONs));
+                dat=jsonarr(openJournal(indi,sysDefUsersList,sysDefStoreJSONs));
                 if ((dat[ordered[indi]]!==undefined)&&(typeof(dat[ordered[indi]])=='object')&&(ordered[indi]!='')) {
                     ex=((dat[ordered[indi]]['finite']!==undefined)&&(isInt(dat[ordered[indi]]['finite']))&&(dat[ordered[indi]]['finite']==1))?1:0;
                     am=((dat[ordered[indi]]['amount']!==undefined)&&(isInt(dat[ordered[indi]]['amount']))&&(dat[ordered[indi]]['amount']>0))?parseInt(dat[ordered[indi]]['amount']):0;

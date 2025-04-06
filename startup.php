@@ -33,8 +33,6 @@ function databox() {
             $('#sysDefCodexBox').val(pager(data,11).split("\\\\")[0]);
             $('#sysDefSpeechBox').val(pager(data,11).split("\\\\")[1]);
             $('#sysDefUsersList').val(pager(data,12));
-            $('#sysDefBooksList').val(pager(data,12));
-            $('#sysDefStoreList').val(pager(data,12));
             $('#sysDefHoursNow').val(pager(data,13));
             $('#sysDefHoursActive').val(pager(data,14));
             $('#sysDefAvatarsNow').val(pager(data,15));
