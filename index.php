@@ -76,6 +76,7 @@
         <input type='hidden' id="sysDefMsgData" value="">
         <input type='hidden' id="sysDefUserStore" value="">
         <input type='hidden' id="sysDefMsgCounter" value="0">
+        <input type='hidden' id="sysDefMsgMaxCount" value="0">
         <input type='hidden' id="sysDefCodexBox" value="<?=implode('//',(str_replace('./','',(glob('./*.mac')))));?>">
         <input type='hidden' id="sysDefSpeechBox" value="<?=implode('//',(str_replace('./','',(glob('./*.pro')))));?>">
         <input type='hidden' id="sysDefPostBindData" value="<?=valstr($bindData,';',':');?>">

@@ -73,7 +73,9 @@ function world_clock() {
                 alarmVolInd.value=mixers[4]; timerVolInd.value=mixers[5];
                 loopVolInd.value=mixers[6]; restVolInd.value=mixers[7];
             } document.querySelector(':root').style.setProperty('--bicolor',enzi[2]);
-            sysDefMsgCounter.value=(sysDefMsgCounter.value<=0)?(Object.keys(jsonFilter(sysDefMsgData.value,sysDefFind.value)).length-1):(sysDefMsgCounter.value-1);
+            //sysDefMsgCounter.value=(sysDefMsgCounter.value<=0)?sysDefMsgMaxCount.value:(sysDefMsgCounter.value-1);
+            sysDefMsgMaxCount.value=(Object.keys(jsonFilter(sysDefMsgData.value,sysDefFind.value)).length-1);
+            sysDefMsgCounter.value=(sysDefMsgCounter.value>=sysDefMsgMaxCount.value)?0:(sysDefMsgCounter.value+1);
             $('#showUsUrgent').text(Object.values(jsonFilter(sysDefMsgData.value,sysDefFind.value,'msg'))[sysDefMsgCounter.value]);
             if (sysDefLoop.value!=sysDefPostBackEff.value) {
                 if (sysDefLoop.value!=0) { playAudio(backgroundPlayer,sysDefBackgroundSound.value); } else { pauseAudio(backgroundPlayer); }
