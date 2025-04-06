@@ -367,9 +367,6 @@ function automator() {
         } if ((subName!=objName)&&(subMarketCount>0)&&(subMarket[subSelect]['type']!==undefined)&&(subMarket[subSelect]['type']=='weapon')&&(!(subFrnd.includes(objName)))) {
             dominate(subName,objName,subSelect);
             console.log('@'+subName+' -'+subSelect+' @'+objName);
-        } if ((subName!=objName)&&(subMarketCount>0)&&(subMarket[subSelect]['type']!==undefined)&&(subMarket[subSelect]['type']!=='weapon')) {
-            call(subName,objName);
-            console.log('@'+subName+' ^'+subSelect+' @'+objName);
         } if ((subName==objName)&&(subMarketCount>0)&&(subMarket[subSelect]['type']!==undefined)&&(subMarket[subSelect]['type']!='weapon')&&(subMarket[subSelect]['force']!==undefined)&&(isInt(subMarket[subSelect]['force']))) {
             charge(subName,subSelect);
             console.log('@'+subName+' +'+subSelect);
