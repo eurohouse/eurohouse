@@ -258,7 +258,6 @@ input[type=text], input[type=password], input[type=number], select, option, text
     box-shadow: var(--text-box-shadow);
 }
 option {
-    -webkit-appearance: none; -moz-appearance: none;
     background-color: var(--inputcolor);
     color: var(--inputtextcolor);
 }
