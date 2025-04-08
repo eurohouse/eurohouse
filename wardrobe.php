@@ -272,13 +272,10 @@ input[type=checkbox] {
 input[type=range] {
     -moz-appearance: none; -webkit-appearance: none;
     appearance: none; position: relative;
-    width: 40%; height: 26px; border: none;
+    width: 40%; height: 26px; border: none; outline: none;
     border-radius: var(--radius); background: var(--blankcolor);
     background-size: 100%; box-shadow: var(--box-shadow);
-    outline: none; opacity: 0.6; -moz-transition: .2s;
-    -webkit-transition: .2s; transition: opacity .2s;
 }
-input[type=range]:hover { opacity: 0.8; }
 input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none; appearance: none;
     position: relative; border: none;
@@ -317,8 +314,6 @@ h3 {
 .userDefine {
     color: var(--backtextcolor); font-family: "userDefine"; font-size: var(--dispsize);
 }
-.actionIcon { width: 9%; position: relative; }
-.slidecontainer { width: 100%; }
 .box {
     display: flex; justify-content: center;
     align-items: center; filter: blur(5px) contrast(10);

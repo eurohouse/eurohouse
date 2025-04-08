@@ -55,26 +55,26 @@ $copyDocumentIcon = $themePrefix.'copy.png';
 $deleteDocumentIcon = $themePrefix.'trash.png';
 $infoDocumentIcon = $themePrefix.'info.png';
 $homeDocumentIcon = $themePrefix.'home.png'; ?>
-<img class="actionIcon" loading="lazy" src="<?=$newDocumentIcon;?>" onmouseover="soundButton();" id="newButton" onclick="omniRead(requestMode.value,'file','true');countText();">
-<img class="actionIcon" loading="lazy" src="<?=$openDocumentIcon;?>" onmouseover="soundButton();" id="openButton" onclick="omniRead(requestMode.value,filename.value,'false');">
+<img style="width:9%;position:relative;" loading="lazy" src="<?=$newDocumentIcon;?>" onmouseover="soundButton();" id="newButton" onclick="omniRead(requestMode.value,'file','true');countText();">
+<img style="width:9%;position:relative;" loading="lazy" src="<?=$openDocumentIcon;?>" onmouseover="soundButton();" id="openButton" onclick="omniRead(requestMode.value,filename.value,'false');">
 <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
-    <img class="actionIcon" loading="lazy" src="<?=$saveDocumentIcon;?>" onmouseover="soundButton();" id="saveButton" onclick="saveGUI();">
+    <img style="width:9%;position:relative;" loading="lazy" src="<?=$saveDocumentIcon;?>" onmouseover="soundButton();" id="saveButton" onclick="saveGUI();">
 <?php } else { ?>
-    <img class="actionIcon" loading="lazy" src="<?=$filmDocumentIcon;?>" onmouseover="soundButton();" id="filmButton" onclick="omniRead('media_player',filename.value,'true');">
+    <img style="width:9%;position:relative;" loading="lazy" src="<?=$filmDocumentIcon;?>" onmouseover="soundButton();" id="filmButton" onclick="omniRead('media_player',filename.value,'true');">
 <?php } ?>
-<img class="actionIcon" loading="lazy" src="<?=$mkdirDocumentIcon;?>" onmouseover="soundButton();" id="mkdirButton" onclick="mkdir(filename.value,false);">
+<img style="width:9%;position:relative;" loading="lazy" src="<?=$mkdirDocumentIcon;?>" onmouseover="soundButton();" id="mkdirButton" onclick="mkdir(filename.value,false);">
 <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
-    <img class="actionIcon" loading="lazy" src="<?=$moveDocumentIcon;?>" onmouseover="soundButton();" id="moveButton" onclick="move(filename.value,doto.value,false);">
+    <img style="width:9%;position:relative;" loading="lazy" src="<?=$moveDocumentIcon;?>" onmouseover="soundButton();" id="moveButton" onclick="move(filename.value,doto.value,false);">
 <?php } else { ?>
-    <img class="actionIcon" loading="lazy" src="<?=$dbDocumentIcon;?>" onmouseover="soundButton();" id="dbButton" onclick="omniPath(filename.value,'','false');">
+    <img style="width:9%;position:relative;" loading="lazy" src="<?=$dbDocumentIcon;?>" onmouseover="soundButton();" id="dbButton" onclick="omniPath(filename.value,'','false');">
 <?php } ?>
-<img class="actionIcon" loading="lazy" src="<?=$copyDocumentIcon;?>" onmouseover="soundButton();" id="copyButton" onclick="copy(filename.value,doto.value,false);">
+<img style="width:9%;position:relative;" loading="lazy" src="<?=$copyDocumentIcon;?>" onmouseover="soundButton();" id="copyButton" onclick="copy(filename.value,doto.value,false);">
 <?php if ((isset($_SESSION['user'])) && ($sessionID == 'root')) { ?>
-    <img class="actionIcon" loading="lazy" src="<?=$deleteDocumentIcon;?>" onmouseover="soundButton();" id="deleteButton" onclick="recycle(filename.value,false);">
+    <img style="width:9%;position:relative;" loading="lazy" src="<?=$deleteDocumentIcon;?>" onmouseover="soundButton();" id="deleteButton" onclick="recycle(filename.value,false);">
 <?php } else { ?>
-    <img class="actionIcon" loading="lazy" src="<?=$infoDocumentIcon;?>" onmouseover="soundButton();" id="infoButton" onclick="omniPath(filename.value,'','true');">
+    <img style="width:9%;position:relative;" loading="lazy" src="<?=$infoDocumentIcon;?>" onmouseover="soundButton();" id="infoButton" onclick="omniPath(filename.value,'','true');">
 <?php } ?>
-<img class="actionIcon" loading="lazy" src="<?=$homeDocumentIcon;?>" onmouseover="soundButton();" id="homeButton" onclick="omniBack('<?=$parent?>');"><br>
+<img style="width:9%;position:relative;" loading="lazy" src="<?=$homeDocumentIcon;?>" onmouseover="soundButton();" id="homeButton" onclick="omniBack('<?=$parent?>');"><br>
 <input class="text" id="filename" name="<?=$request['mode'];?>" style="width:50%;" type="text" value="<?=$request['input'];?>" onkeydown="if (event.keyCode==13) {
     doto.focus();
 } else if (event.keyCode==27) {
