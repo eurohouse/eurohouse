@@ -257,6 +257,11 @@ input[type=text], input[type=password], input[type=number], select, option, text
     vertical-align: baseline;
     box-shadow: var(--text-box-shadow);
 }
+option {
+    -webkit-appearance: none; -moz-appearance: none;
+    background-color: var(--inputcolor);
+    color: var(--inputtextcolor);
+}
 input[type=checkbox] {
     background: var(--gradient-input); background-size: 100%;
     border: none; border-radius: var(--radius); position: relative;
@@ -304,7 +309,10 @@ h3 {
     font-size: var(--head3size); font-weight: normal;
     text-shadow: var(--text-shadow);
 }
-.block { color: var(--backtextcolor); font-family: "euro"; font-size: 0.2em; top: 3px; }
+.block {
+    color: var(--backtextcolor); font-family: "euro";
+    font-size: 0.2em; top: 3px;
+}
 .userDefine {
     color: var(--backtextcolor); font-family: "userDefine"; font-size: var(--dispsize);
 }
