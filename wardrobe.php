@@ -248,7 +248,6 @@ input[type=button], input[type=image], button {
     vertical-align: baseline; box-shadow: var(--box-shadow);
 }
 input[type=text], input[type=password], input[type=number], select, option, textarea {
-    -webkit-appearance: none; -moz-appearance: none;
     background: var(--gradient-input); background-size: 100%;
     color: var(--inputtextcolor); border: none;
     border-radius: var(--radius); font-family: "euro";
@@ -258,6 +257,7 @@ input[type=text], input[type=password], input[type=number], select, option, text
     box-shadow: var(--text-box-shadow);
 }
 option {
+    -webkit-appearance: none; -moz-appearance: none;
     background-color: var(--inputcolor);
     color: var(--inputtextcolor);
 }
