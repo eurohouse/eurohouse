@@ -259,7 +259,9 @@ input[type=text], input[type=password], input[type=number], select, option, text
 option {
     -webkit-appearance: none; -moz-appearance: none;
     background-color: var(--inputcolor);
-    color: var(--inputtextcolor);
+    color: var(--inputtextcolor); border: none;
+    font-size: var(--inputsize); position: relative;
+    font-family: "euro"; height: 1.4em;
 }
 input[type=checkbox] {
     background: var(--gradient-input); background-size: 100%;
