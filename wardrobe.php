@@ -92,11 +92,8 @@
     src: url("<?=$request['input'];?>");
 }
 body {
-    -moz-filter: var(--filter);
-    -webkit-filter: var(--filter);
-    filter: var(--filter);
+    -moz-filter: var(--filter); filter: var(--filter);
     -moz-backdrop-filter: var(--blur-filter);
-    -webkit-backdrop-filter: var(--blur-filter);
     backdrop-filter: var(--blur-filter);
     background-image: var(--background); background-size: cover;
     background-repeat: no-repeat; background-position: var(--position);
@@ -250,14 +247,15 @@ input[type=button], input[type=image], button {
     width: 1.4em; top: 4px; display: inline-block;
     vertical-align: baseline; box-shadow: var(--box-shadow);
 }
-input[type=text], input[type=password], input[type=number],
-select, textarea {
+input[type=text], input[type=password], input[type=number], select, option, textarea {
+    -webkit-appearance: none; -moz-appearance: none;
     background: var(--gradient-input); background-size: 100%;
     color: var(--inputtextcolor); border: none;
     border-radius: var(--radius); font-family: "euro";
     font-size: var(--inputsize); position: relative;
     height: 1.4em; display: inline-block;
-    vertical-align: baseline; box-shadow: var(--text-box-shadow);
+    vertical-align: baseline;
+    box-shadow: var(--text-box-shadow);
 }
 input[type=checkbox] {
     background: var(--gradient-input); background-size: 100%;
@@ -265,7 +263,32 @@ input[type=checkbox] {
     width: 1.4em; height: 1.4em; display: inline-block;
     vertical-align: baseline; box-shadow: var(--text-box-shadow);
 }
-option { background-color: var(--inputcolor); color: var(--inputtextcolor); }
+input[type=range] {
+    -moz-appearance: none; -webkit-appearance: none;
+    appearance: none; position: relative;
+    width: 40%; height: 26px; border: none;
+    border-radius: var(--radius); background: var(--blankcolor);
+    background-size: 100%; box-shadow: var(--box-shadow);
+    outline: none; opacity: 0.6; -moz-transition: .2s;
+    -webkit-transition: .2s; transition: opacity .2s;
+}
+input[type=range]:hover { opacity: 0.8; }
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none; appearance: none;
+    position: relative; border: none;
+    width: 26px; height: 26px;
+    border-radius: var(--radius); 
+    background: var(--gradient-fore); cursor: pointer;
+    background-size: 100%; box-shadow: var(--box-shadow);
+}
+input[type=range]::-moz-range-thumb {
+    -moz-appearance: none; appearance: none;
+    position: relative; border: none;
+    width: 26px; height: 26px;
+    border-radius: var(--radius); 
+    background: var(--gradient-fore); cursor: pointer;
+    background-size: 100%; box-shadow: var(--box-shadow);
+}
 h1 {
     color: var(--backtextcolor); font-family: "euro";
     font-size: var(--head1size); font-weight: normal;
@@ -287,32 +310,6 @@ h3 {
 }
 .actionIcon { width: 9%; position: relative; }
 .slidecontainer { width: 100%; }
-.slider {
-    -moz-appearance: none; -webkit-appearance: none;
-    appearance: none; position: relative;
-    width: 40%; height: 26px; border: none;
-    border-radius: var(--radius); background: var(--blankcolor);
-    background-size: 100%; box-shadow: var(--box-shadow);
-    outline: none; opacity: 0.6; -moz-transition: .2s;
-    -webkit-transition: .2s; transition: opacity .2s;
-}
-.slider:hover { opacity: 0.8; }
-.slider::-webkit-slider-thumb {
-    -webkit-appearance: none; appearance: none;
-    position: relative; border: none;
-    width: 26px; height: 26px;
-    border-radius: var(--radius); 
-    background: var(--gradient-fore); cursor: pointer;
-    background-size: 100%; box-shadow: var(--box-shadow);
-}
-.slider::-moz-range-thumb {
-    -moz-appearance: none; appearance: none;
-    position: relative; border: none;
-    width: 26px; height: 26px;
-    border-radius: var(--radius); 
-    background: var(--gradient-fore); cursor: pointer;
-    background-size: 100%; box-shadow: var(--box-shadow);
-}
 .box {
     display: flex; justify-content: center;
     align-items: center; filter: blur(5px) contrast(10);
