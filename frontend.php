@@ -82,9 +82,8 @@ function playlistNext(name) {
     return arrangeMenu(sysDefPlaylist.value,etw(name,sysDefSessionID.value,sysDefNumeric.value),' | ');
 }
 function setfor(id,obj,name,val) {
-    var arr=(typeof(obj)=='object')?arrjob(obj.value,';',':'):arrjob(obj,';',':'),arf={}; for (el in arr) {
-        arf[id]=(el==id)?val:arr[id];
-    } set(name+'.json',JSON.stringify(arf),true);
+    var arr=(typeof(obj)=='object')?arrjob(obj.value,';',':'):arrjob(obj,';',':'); var arf=arr; arf[id]=val;
+    set(name+'.json',JSON.stringify(arf),true);
     obj.value=arrpack(arf,';',':');
 }
 function lockarr(id) {
