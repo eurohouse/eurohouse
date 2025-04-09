@@ -82,9 +82,9 @@ function playlistNext(name) {
     return arrangeMenu(sysDefPlaylist.value,etw(name,sysDefSessionID.value,sysDefNumeric.value),' | ');
 }
 function setfor(id,obj,name,val) {
-    var arr=(typeof(obj)=='object')?arrjob(obj.value,';',':'):arrjob(obj,';',':'); arr[id]=val;
-    set(name+'.json',JSON.stringify(arr),true);
-    obj.value=arrpack(arr,';',':');
+    var arr=(typeof(obj)=='object')?arrjob(obj.value,';',':'):arrjob(obj,';',':'),arf={}; for (el in arr) {
+        arf[id]=(el==id)?val:arr[id];
+    } set(name+'.json',JSON.stringify(arf),true);
 }
 function lockarr(id) {
     var objData=((jsonarr(sysDefLockData.value)!==undefined)&&(jsonarr(sysDefLockData.value)!==null))?jsonarr(sysDefLockData.value):{};
