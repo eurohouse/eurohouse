@@ -422,7 +422,7 @@ function jsonBookKeep(str) {
 }
 function jsonDocs(str) {
     var arr=jsonarr(str),ard=arl='',arf={},eld=[];
-    var epr=sysDefPrefix.value,fu0=fu1='';
+    var epr=sysDefPrefix.value,fu0=fu1=fu2=fu3='';
     for (el in arr) { arf[el]=arr[el]; } for (el in arf) {
         fu0="markJournal(&#39;"+el+"&#39;,&#39;"+sysDefGovtData.value+"&#39;,&#39;cabinet&#39;,&#39;status&#39;,&#39;&#43;&#39;);";
         fu1="markJournal(&#39;"+el+"&#39;,&#39;"+sysDefGovtData.value+"&#39;,&#39;cabinet&#39;,&#39;status&#39;,&#39;&#45;&#39;);";
