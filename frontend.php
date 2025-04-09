@@ -132,7 +132,7 @@ function clearJournal(id,obj,name,anyFile=false) {
 }
 function markJournal(id,obj,name,ind,val,anyFile=false) {
     var resarr=(typeof(obj)=='object')?jsonarr(obj.value):jsonarr(obj);
-    if ((typeof(resarr[id])=='object')&&((resarr[id][ind]!==undefined)) {
+    if ((typeof(resarr[id])=='object')&&(resarr[id][ind]!==undefined)) {
         resarr[id][ind]=val;
     } if (anyFile) {
         set('./'+name+'.json',encodeURIComponent(JSON.stringify(resarr)),true);
