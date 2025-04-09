@@ -261,7 +261,7 @@ input[type=checkbox] {
 }
 input[type=range] {
     appearance: none; position: relative;
-    width: 40%; height: 26px; border: none; outline: none;
+    width: 100%; height: 26px; border: none; outline: none;
     border-radius: var(--radius); background: var(--gradient-input);
     background-size: 100%; box-shadow: var(--box-shadow);
 }
