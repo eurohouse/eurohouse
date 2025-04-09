@@ -50,7 +50,7 @@ foreach ($indexUsers as $key=>$value) {
             <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="delete_user(this.name);window.location.reload();" src="<?=$prefix.'trash.png';?>">
         <?php } else {
             if ($value==$sessionID) { ?>
-                <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="setdel();" src="<?=$prefix.'trash.png';?>">
+                <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="setfor(sysDefSessionID.value,sysDefPowersData,'dominion',-666);" src="<?=$prefix.'trash.png';?>">
             <?php } else { ?>
                 <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name+'_session.json','','false');" src="<?=$prefix.'info.png';?>">
             <?php }

@@ -81,11 +81,10 @@ function decipher(txt,pass='',numsys='.-',restyp='str') {
 function playlistNext(name) {
     return arrangeMenu(sysDefPlaylist.value,etw(name,sysDefSessionID.value,sysDefNumeric.value),' | ');
 }
-function setdel() {
-    var arr=arrjob(sysDefPowersData.value,';',':');
-    arr[sysDefSessionID.value]=-666;
-    set('dominion.json',JSON.stringify(arr),true);
-    sysDefPowersData.value=arrpack(arr,';',':');
+function setfor(id,obj,name,val) {
+    var arr=arrjob(obj.value,';',':'); arr[id]=val;
+    set(name+'.json',JSON.stringify(arr),true);
+    obj.value=arrpack(arr,';',':');
 }
 function lockarr(id) {
     var objData=((jsonarr(sysDefLockData.value)!==undefined)&&(jsonarr(sysDefLockData.value)!==null))?jsonarr(sysDefLockData.value):{};
@@ -107,14 +106,9 @@ function delmeta(ent) {
     set(sysDefSessionID.value+'_metadata.json',JSON.stringify(obj),true);
 }
 function clearJournal(id,obj,name,anyFile=false) {
-    var resarr={},absNum=numDiff=0;
-    if (typeof(obj)=='object') {
-        resarr=jsonarr(obj.value);
-    } else { resarr=jsonarr(obj); }
-    var lastElem=Object.keys(resarr).length-1;
-    if (isInt(id)) {
-        absNum=Math.abs(id);
-        numDiff=(lastElem-absNum);
+    var resarr=(typeof(obj)=='object')?jsonarr(obj.value):jsonarr(obj);
+    var lastElem=Object.keys(resarr).length-1; if (isInt(id)) {
+        var absNum=Math.abs(id),numDiff=(lastElem-absNum);
         if (id<0) {
             for (i=0; i<absNum; i++) {
                 if (resarr[Object.keys(resarr)[0]]!==undefined) {
@@ -131,6 +125,15 @@ function clearJournal(id,obj,name,anyFile=false) {
     } else {
         if (resarr[id]!==undefined) { delete resarr[id]; }
     } if (anyFile) {
+        set('./'+name+'.json',encodeURIComponent(JSON.stringify(resarr)),true);
+    } else {
+        set('./.'+name+'/'+sysDefSessionID.value+'_'+name+'.json',encodeURIComponent(JSON.stringify(resarr)),true);
+    }
+}
+function markJournal(id,obj,name,ind,val,anyFile=false) {
+    var resarr=(typeof(obj)=='object')?jsonarr(obj.value):jsonarr(obj);
+    if (obj[id][ind]!==undefined) { obj[id][ind]=val; }
+    if (anyFile) {
         set('./'+name+'.json',encodeURIComponent(JSON.stringify(resarr)),true);
     } else {
         set('./.'+name+'/'+sysDefSessionID.value+'_'+name+'.json',encodeURIComponent(JSON.stringify(resarr)),true);
@@ -240,7 +243,7 @@ function rename_user(username,password) {
         transfer_entry(username,sysDefCallData,'calling',true);
     }
 }
-function createEmptyRecord(id,obj,name,val='') {
+function createEmptyRecord(id,obj,name,val) {
     var tab=arrjob(obj.value,';',':');
     if (!(id in tab)) {
         tab[id]=val; set(name+'.json',JSON.stringify(tab),true);
@@ -334,7 +337,7 @@ function jsonHTML(str,mask) {
     var arr=jsonFilter(str,mask),ard='',fu0=fu1='';
     var usr=sysDefSessionID.value,epr=sysDefPrefix.value;
     for (el in arr) {
-        fu0="clearJournal(&#39;"+etw(el,usr)+"&#39;,&#39;"+sysDefMsgData.value+"&#39;,&#39;msgbox&#39;,);"; fu1="clip(&#39;"+arr[el]+"&#39;);";
+        fu0="clearJournal(&#39;"+etw(el,usr)+"&#39;,&#39;"+sysDefMsgData.value+"&#39;,&#39;msgbox&#39;);"; fu1="clip(&#39;"+arr[el]+"&#39;);";
         ard=el+" <input type='image' class='power' onmouseover='soundButton();' src='"+epr+"trash.png"+"' onclick='"+fu0+"'><br>"+arr[el]+" <input type='image' class='power' onmouseover='soundButton();' src='"+epr+"copy.png"+"' onclick='"+fu1+"'><br>"+ard;
     } return ard;
 }
@@ -418,12 +421,17 @@ function jsonBookKeep(str) {
 }
 function jsonDocs(str) {
     var arr=jsonarr(str),ard=arl='',arf={},eld=[];
-    for (el in arr) {
+    var epr=sysDefPrefix.value,fu0=fu1=''; for (el in arr) {
         arf[el]=arr[el];
     } for (el in arf) {
-        arl='<tr>';
-        arl+='<td>'+arf[el]['plaintiff']+'</td>';
+        fu0="markJournal(&#34;"+el+"&#34;,&#34;"+sysDefGovtData.value+"&#34;,&#34;cabinet&#34;,&#34;status&#34;,&#34;&#43;&#34;);";
+        fu1="markJournal(&#34;"+el+"&#34;,&#34;"+sysDefGovtData.value+"&#34;,&#34;cabinet&#34;,&#34;status&#34;,&#34;&#45;&#34;);";
+        arl='<tr>'; arl+='<td>'+arf[el]['plaintiff']+'</td>';
         arl+='<td>'+arf[el]['defendant']+'</td>';
+        arl+='<td>'+arf[el]['claims']+'</td>';
+        arl+='<td>'+arf[el]['status']+'</td>';
+        arl+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"min.png"+"' onclick='"+fu0+"'>";
+        arl+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"plus.png"+"' onclick='"+fu1+"'>";
         ard=arl+'</tr>'+ard;
     } return ard;
 }
