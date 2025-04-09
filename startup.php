@@ -113,9 +113,12 @@ function world_clock() {
             $('#buttonMaximize').attr('src',sysDefPrefix.value+((sysDefApps.value!=0)?'restore.png':'maximize.png'));
             $('#buttonMenuStyle').attr('src',sysDefPrefix.value+((sysDefIcons.value!=0)?'menu.png':'list.png')); $('#buttonUpdate').attr('src',sysDefPrefix.value+'world.png');
             $('#buttonUserStatus').attr('src',sysDefPrefix.value+"<?=(isAuthorized())?'logout.png':'login.png';?>"); $('#buttonEscape').attr('src',sysDefPrefix.value+'escape.png');
-            if (requestMode.value == 'bookkeeping') {
+            if (requestMode.value=='bookkeeping') {
                 bookkeep_disp.innerHTML='<table style="width:100%;position:relative;"><thead><th style="width:25%;">'+fint[8]+'</th><th style="width:25%;">'+fint[0]+'</th><th style="width:25%;">'+fint[1]+'</th><th style="width:25%;">'+fint[2]+'</th></thead><tbody>'+jsonBookKeep(sysDefBookKeep.value)+'</tbody></table>';
-            } else if (requestMode.value=='accessibility') { pressedKeyInfo.innerText=fint[9];
+            } else if (requestMode.value=='government') {
+                govt_disp.innerHTML='<table style="width:100%;position:relative;"><thead><th style="width:25%;">Plaintiff</th><th style="width:25%;">Defendant</th></thead><tbody>'+jsonDocs(sysDefGovtData.value)+'</tbody></table>';
+            } else if (requestMode.value=='accessibility') {
+                pressedKeyInfo.innerText=fint[9];
             } else if (requestMode.value=='album_collection') {
                 album_mode_switch.innerHTML=showLockInd(),epr='',alr=[];
                 var upn=decipher(sysDefPlaylist.value,sysDefSessionID.value,sysDefNumeric.value,'arr'),arl="",plCol=sysDefPlaylistColumns.value; for (iu in upn) {

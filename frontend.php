@@ -416,6 +416,17 @@ function jsonBookKeep(str) {
         ard=arl+'</tr>'+ard;
     } return ard;
 }
+function jsonDocs(str) {
+    var arr=jsonarr(str),ard=arl='',arf={},eld=[];
+    for (el in arr) {
+        arf[el]=arr[el];
+    } for (el in arf) {
+        arl='<tr>';
+        arl+='<td>'+arf[el]['plaintiff']+'</td>';
+        arl+='<td>'+arf[el]['defendant']+'</td>';
+        ard=arl+'</tr>'+ard;
+    } return ard;
+}
 function noteBook(str) {
     var arr=str.split(' | '),ard=arl=eld=elt=eln='';
     var epr=sysDefPrefix.value; for (el in arr) {
