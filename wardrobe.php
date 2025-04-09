@@ -260,10 +260,9 @@ input[type=checkbox] {
     vertical-align: baseline; box-shadow: var(--text-box-shadow);
 }
 input[type=range] {
-    /*-webkit-appearance: none; -moz-appearance: none;*/
     appearance: none; position: relative;
     width: 40%; height: 26px; border: none; outline: none;
-    border-radius: var(--radius); background: var(--blankcolor);
+    border-radius: var(--radius); background: var(--gradient-input);
     background-size: 100%; box-shadow: var(--box-shadow);
 }
 input[type=range]::-webkit-slider-thumb {
