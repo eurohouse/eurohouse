@@ -116,7 +116,7 @@ function world_clock() {
             if (requestMode.value=='bookkeeping') {
                 bookkeep_disp.innerHTML='<table style="width:100%;position:relative;"><thead><th style="width:25%;">'+fint[8]+'</th><th style="width:25%;">'+fint[0]+'</th><th style="width:25%;">'+fint[1]+'</th><th style="width:25%;">'+fint[2]+'</th></thead><tbody>'+jsonBookKeep(sysDefBookKeep.value)+'</tbody></table>';
             } else if (requestMode.value=='government') {
-                govt_disp.innerHTML='<table style="width:100%;position:relative;"><thead><th style="width:25%;">Plaintiff</th><th style="width:25%;">Defendant</th><th style="width:25%;">Claims</th><th style="width:25%;">Status</th><th style="width:25%;">Actions</th></thead><tbody>'+jsonDocs(sysDefGovtData.value)+'</tbody></table>';
+                govt_disp.innerHTML='<table style="width:100%;position:relative;"><thead><th style="width:12%;">Plaintiff</th><th style="width:12%;">Defendant</th><th style="width:12%;">Claims</th><th style="width:12%;">Status</th><th style="width:12%;">Actions</th></thead><tbody>'+jsonDocs(sysDefGovtData.value)+'</tbody></table>';
             } else if (requestMode.value=='accessibility') {
                 pressedKeyInfo.innerText=fint[9];
             } else if (requestMode.value=='album_collection') {
