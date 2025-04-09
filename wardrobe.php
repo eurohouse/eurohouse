@@ -88,8 +88,7 @@
     unicode-range: U+2600-26FF, U+1F300-1F64F, U+1F680-1F6FF;
 }
 @font-face {
-    font-family: "userDefine";
-    src: url("<?=$request['input'];?>");
+    font-family: "userDefine"; src: url("<?=$request['input'];?>");
 }
 body {
     -moz-filter: var(--filter); filter: var(--filter);
@@ -143,28 +142,19 @@ body {
     background-color: var(--qucolor); color: var(--backtextcolor);
 }
 .notesMenu {
-    float: left;
-    overflow-y: scroll;
-    width: 20%;
-    flex: 0%;
+    float: left; overflow-y: scroll; width: 20%; flex: 0%;
 }
 .notesContent {
-    float: right;
-    width: 80%;
-    flex: 0%;
+    float: right; width: 80%; flex: 0%;
 }
 .notesRow {
-    display: flex;
-    height: 70%;
+    display: flex; height: 70%;
 }
 .notesRow:after {
-    content: "";
-    display: table;
-    clear: both;
+    content: ""; display: table; clear: both;
 }
 .overlay {
-    width: 100%; height: 100%;
-    filter: var(--backdrop-filter);
+    width: 100%; height: 100%; filter: var(--backdrop-filter);
 }
 .overlay:before {
     content: ''; position: absolute; opacity: var(--backdrop-opacity);
@@ -270,7 +260,7 @@ input[type=checkbox] {
     vertical-align: baseline; box-shadow: var(--text-box-shadow);
 }
 input[type=range] {
-    -moz-appearance: none; -webkit-appearance: none;
+    /*-webkit-appearance: none; -moz-appearance: none;*/
     appearance: none; position: relative;
     width: 40%; height: 26px; border: none; outline: none;
     border-radius: var(--radius); background: var(--blankcolor);
@@ -313,24 +303,5 @@ h3 {
 }
 .userDefine {
     color: var(--backtextcolor); font-family: "userDefine"; font-size: var(--dispsize);
-}
-.box {
-    display: flex; justify-content: center;
-    align-items: center; filter: blur(5px) contrast(10);
-    mix-blend-mode: screen; z-index: -1;
-}
-.visualizer {
-    position: relative; width: 300px; height: 300px;
-    border-radius: 50%; background: #fff;
-    transition: .5s; transform: rotateZ(180deg);
-}
-.element {
-    position: absolute; top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    display: inline-block; width: 50px; height: 50px;
-    border-radius: 10px; border-top: 40px solid #fff;
-    border-right: 20px solid transparent;
-    border-left: 20px solid transparent;
-    transform-origin: top left; transition: .25s;
 }
 </style>
