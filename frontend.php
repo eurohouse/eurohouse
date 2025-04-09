@@ -425,14 +425,14 @@ function jsonDocs(str) {
     var epr=sysDefPrefix.value,fu0=fu1=''; for (el in arr) {
         arf[el]=arr[el];
     } for (el in arf) {
-        fu0="markJournal(&#39;"+el+"&#39;,&#39;"+sysDefGovtData.value+"&#39;,&#39;cabinet&#39;,&#39;status&#39;,&#39;Approved&#39;);";
-        fu1="markJournal(&#39;"+el+"&#39;,&#39;"+sysDefGovtData.value+"&#39;,&#39;cabinet&#39;,&#39;status&#39;,&#39;CLOSED&#39;);";
+        fu0="markJournal(&#39;"+el+"&#39;,&#39;"+sysDefGovtData.value+"&#39;,&#39;cabinet&#39;,&#39;status&#39;,&#39;&#45;&#39;);";
+        fu1="markJournal(&#39;"+el+"&#39;,&#39;"+sysDefGovtData.value+"&#39;,&#39;cabinet&#39;,&#39;status&#39;,&#39;&#43;&#39;);";
         arl='<tr>'; arl+='<td>'+arf[el]['plaintiff']+'</td>';
         arl+='<td>'+arf[el]['defendant']+'</td>';
         arl+='<td>'+arf[el]['claims']+'</td>';
         arl+='<td>'+arf[el]['status']+'</td><td>';
         arl+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"plus.png"+"' onclick='"+fu0+"'>";
-        arl+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"error.png"+"' onclick='"+fu1+"'>";
+        arl+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"min.png"+"' onclick='"+fu1+"'>";
         ard=arl+'</td></tr>'+ard;
     } return ard;
 }
