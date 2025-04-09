@@ -424,8 +424,8 @@ function jsonDocs(str) {
     var epr=sysDefPrefix.value,fu0=fu1=''; for (el in arr) {
         arf[el]=arr[el];
     } for (el in arf) {
-        fu0='markJournal(&#34;'+el+'&#34;,&#34;'+sysDefGovtData.value+'&#34;,&#34;cabinet&#34;,&#34;status&#34;,&#34;&#43;&#34;);';
-        fu1='markJournal(&#34;'+el+'&#34;,&#34;'+sysDefGovtData.value+'&#34;,&#34;cabinet&#34;,&#34;status&#34;,&#34;&#45;&#34;);';
+        fu0="markJournal(&#39;"+el+"&#39;,&#39;"+sysDefGovtData.value+"&#39;,&#39;cabinet&#39;,&#39;status&#39;,&#39;&#43;&#39;);";
+        fu1="markJournal(&#39;"+el+"&#39;,&#39;"+sysDefGovtData.value+"&#39;,&#39;cabinet&#39;,&#39;status&#39;,&#39;&#45;&#39;);";
         arl='<tr>'; arl+='<td>'+arf[el]['plaintiff']+'</td>';
         arl+='<td>'+arf[el]['defendant']+'</td>';
         arl+='<td>'+arf[el]['claims']+'</td>';
