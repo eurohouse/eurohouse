@@ -82,7 +82,7 @@ function playlistNext(name) {
     return arrangeMenu(sysDefPlaylist.value,etw(name,sysDefSessionID.value,sysDefNumeric.value),' | ');
 }
 function setfor(id,obj,name,val) {
-    var arr=(typeof(obj)=='object')?arrjob(obj.value,';',':'):arrjob(obj,';',':'); arr[id]=val; console.log(arr[id]);
+    var arr=(typeof(obj)=='object')?arrjob(obj.value,';',':'):arrjob(obj,';',':'); arr[id]=val;
     set(name+'.json',JSON.stringify(arr),true);
     obj.value=arrpack(arr,';',':');
 }
