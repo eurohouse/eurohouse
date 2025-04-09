@@ -11,8 +11,6 @@
         <input type='button' id="blurInd" value="<?=$session['blur'];?>px"><br>
         <input type="range" min="0" max="100" step="1" value="<?=$session['blur'];?>" id="blurRange" onchange="setdata('blur',this.value);">
     </p>
-</div>
-<div style="width:100%;position:relative;">
     <p align='center'>
         <?=term('Bright',$settings['vocabulary'],$session['units']);?> 
         <input type='button' id="brightnessInd" value="<?=$session['brightness'].'%';?>"><br>
