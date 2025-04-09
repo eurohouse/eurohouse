@@ -427,8 +427,8 @@ function jsonDocs(str) {
     for (el in arr) { arf[el]=arr[el]; } for (el in arf) {
         fu0="markJournal(&#39;"+el+"&#39;,&#39;"+sysDefGovtData.value+"&#39;,&#39;cabinet&#39;,&#39;status&#39;,&#39;&#43;&#39;);";
         fu1="markJournal(&#39;"+el+"&#39;,&#39;"+sysDefGovtData.value+"&#39;,&#39;cabinet&#39;,&#39;status&#39;,&#39;&#45;&#39;);";
-        fu2="setfor(&#39;"+arf[el]['defendant']+"&#39;,&#39;"+sysDefPowersData+"&#39;,&#39;dominion&#39;,-333);";
-        fu3="setfor(&#39;"+arf[el]['defendant']+"&#39;,&#39;"+sysDefPowersData+"&#39;,&#39;dominion&#39;,-666);";
+        fu2="setfor(&#39;"+arf[el]['defendant']+"&#39;,&#39;"+sysDefPowersData.value+"&#39;,&#39;dominion&#39;,-333);";
+        fu3="setfor(&#39;"+arf[el]['defendant']+"&#39;,&#39;"+sysDefPowersData.value+"&#39;,&#39;dominion&#39;,-666);";
         arl='<tr>'; arl+='<td>'+arf[el]['plaintiff']+'</td>';
         arl+='<td>'+arf[el]['defendant']+'</td>';
         arl+='<td>'+arf[el]['claims']+'</td>';
