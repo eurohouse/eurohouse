@@ -120,7 +120,8 @@ function world_clock() {
                 var upn=decipher(sysDefPlaylist.value,sysDefSessionID.value,sysDefNumeric.value,'arr'),arl="",plCol=sysDefPlaylistColumns.value; for (iu in upn) {
                     arl+="<a href='javascript:omniListen(%22"+rfc3986(upn[iu])+"%22,true);'>"+(parseInt(iu)+1)+'. '+upn[iu]+"</a><br>";
                 } currentPlaylist.innerHTML=arl;
-                currentPlaylist.setAttribute('style','columns:'+plCol+';-webkit-columns:'+plCol+';-moz-columns:'+plCol+';'); var alb=lockarr(sysDefAlbum.value),arl="";
+                currentPlaylist.setAttribute('style','columns:'+plCol+';-webkit-columns:'+plCol+';-moz-columns:'+plCol+';');
+                var alb=lockarr(sysDefAlbum.value),arl="";
                 var albCol=((sysDefAlbum.value=='avatar')||(sysDefAlbum.value=='pictogram'))?1:sysDefAlbumColumns.value; if (sysDefAlbum.value=='music') {
                     for (iu in alb) {
                         elid=CryptoJS.SHA256(alb[iu]).toString();
