@@ -82,7 +82,7 @@ function playlistNext(name) {
     return arrangeMenu(sysDefPlaylist.value,etw(name,sysDefSessionID.value,sysDefNumeric.value),' | ');
 }
 function setfor(id,obj,name,val) {
-    var arr=arrjob(obj.value,';',':'); arr[id]=val;
+    var arr=(typeof(obj)=='object')?arrjob(obj.value,';',':'):arrjob(obj,';',':'); if (arr[id]!==undefined) { arr[id]=val; }
     set(name+'.json',JSON.stringify(arr),true);
     obj.value=arrpack(arr,';',':');
 }
@@ -422,17 +422,20 @@ function jsonBookKeep(str) {
 }
 function jsonDocs(str) {
     var arr=jsonarr(str),ard=arl='',arf={},eld=[];
-    var epr=sysDefPrefix.value,fu0=fu1=''; for (el in arr) {
-        arf[el]=arr[el];
-    } for (el in arf) {
-        fu0="markJournal(&#39;"+el+"&#39;,&#39;"+sysDefGovtData.value+"&#39;,&#39;cabinet&#39;,&#39;status&#39;,&#39;&#45;&#39;);";
-        fu1="markJournal(&#39;"+el+"&#39;,&#39;"+sysDefGovtData.value+"&#39;,&#39;cabinet&#39;,&#39;status&#39;,&#39;&#43;&#39;);";
+    var epr=sysDefPrefix.value,fu0=fu1='';
+    for (el in arr) { arf[el]=arr[el]; } for (el in arf) {
+        fu0="markJournal(&#39;"+el+"&#39;,&#39;"+sysDefGovtData.value+"&#39;,&#39;cabinet&#39;,&#39;status&#39;,&#39;&#43;&#39;);";
+        fu1="markJournal(&#39;"+el+"&#39;,&#39;"+sysDefGovtData.value+"&#39;,&#39;cabinet&#39;,&#39;status&#39;,&#39;&#45;&#39;);";
+        fu2='setfor(&#39;'+arf[el]['defendant']+'&#39;,&#39;sysDefPowersData&#39;,&#39;dominion&#39;,-333);';
+        fu3='setfor(&#39;'+arf[el]['defendant']+'&#39;,&#39;sysDefPowersData&#39;,&#39;dominion&#39;,-666);';
         arl='<tr>'; arl+='<td>'+arf[el]['plaintiff']+'</td>';
         arl+='<td>'+arf[el]['defendant']+'</td>';
         arl+='<td>'+arf[el]['claims']+'</td>';
         arl+='<td>'+arf[el]['status']+'</td><td>';
         arl+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"plus.png"+"' onclick='"+fu0+"'>";
-        arl+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"min.png"+"' onclick='"+fu1+"'>";
+        arl+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"min.png"+"' onclick='"+fu1+"'><br>";
+        arl+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"lock.png"+"' onclick='"+fu2+"'>";
+        arl+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"error.png"+"' onclick='"+fu3+"'>";
         ard=arl+'</td></tr>'+ard;
     } return ard;
 }
