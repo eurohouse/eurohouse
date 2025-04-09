@@ -218,6 +218,8 @@ function delete_user(id) {
     del('./.book/'+id+'_book.json.bak',true);
     del('./.store/'+id+'_store.json',true);
     del('./.store/'+id+'_store.json.bak',true);
+    del('./.cabinet/'+id+'_cabinet.json',true);
+    del('./.cabinet/'+id+'_cabinet.json.bak',true);
 }
 function transfer_entry(id,obj,name,onlyAssignID=false) {
     var objData=arrjob(obj.value,';',':');
@@ -228,7 +230,8 @@ function transfer_entry(id,obj,name,onlyAssignID=false) {
 }
 function rename_user(username,password) {
     unbind(sysDefSessionID.value); unbind(username);
-    change(sysDefSessionID.value,username,CryptoJS.SHA256(password).toString(),true); if (sysDefSessionID.value!=username) {
+    change(sysDefSessionID.value,username,CryptoJS.SHA256(password).toString(),true);
+    if (sysDefSessionID.value!=username) {
         transfer_entry(username,sysDefBindData,'binding',true);
         transfer_entry(username,sysDefPowersData,'dominion');
         transfer_entry(username,sysDefAutoData,'automator');
@@ -237,38 +240,27 @@ function rename_user(username,password) {
         transfer_entry(username,sysDefCallData,'calling',true);
     }
 }
+function createEmptyRecord(id,obj,name,val='') {
+    var tab=arrjob(obj.value,';',':');
+    if (!(id in tab)) {
+        tab[id]=val; set(name+'.json',JSON.stringify(tab),true);
+        obj.value=arrpack(tab,';',':');
+    }
+}
 function init_user(id,pass='',args='',helper=false) {
-    var bd=arrjob(sysDefBindData.value,';',':');
-    var pd=arrjob(sysDefPowersData.value,';',':');
-    var ad=arrjob(sysDefAutoData.value,';',':');
-    var fd=arrjob(sysDefFriendData.value,';',':');
-    var td=arrjob(sysDefToolData.value,';',':');
-    var cd=arrjob(sysDefCallData.value,';',':');
     var usersList=(sysDefUsersList.value).split(',');
     if (usersList.indexOf(id)<=-1) {
         set('./.msgbox/'+id+'_msgbox.json','{}',true);
         set('./.book/'+id+'_book.json','{}',true);
         set('./.store/'+id+'_store.json','{}',true);
-    } if (!(id in bd)) {
-        bd[id]=id; set('binding.json',JSON.stringify(bd),true);
-        sysDefBindData.value=arrpack(bd,';',':');
-    } if (!(id in pd)) {
-        pd[id]=0; set('dominion.json',JSON.stringify(pd),true);
-        sysDefPowersData.value=arrpack(pd,';',':');
-    } if (!(id in ad)) {
-        ad[id]=(args.includes('auto'))?'auto':'manual';
-        set('automator.json',JSON.stringify(ad),true);
-        sysDefAutoData.value=arrpack(ad,';',':');
-    } if (!(id in fd)) {
-        fd[id]=''; set('friendship.json',JSON.stringify(fd),true);
-        sysDefFriendData.value=arrpack(fd,';',':');
-    } if (!(id in td)) {
-        td[id]=''; set('toolbox.json',JSON.stringify(td),true);
-        sysDefToolData.value=arrpack(td,';',':');
-    } if (!(id in cd)) {
-        cd[id]=id; set('calling.json',JSON.stringify(cd),true);
-        sysDefCallData.value=arrpack(cd,';',':');
-    } if (pass!='') { set(id+'_password',pass,true); }
+        set('./.cabinet/'+id+'_cabinet.json','{}',true);
+    } createEmptyRecord(id,sysDefBindData,'binding',id);
+    createEmptyRecord(id,sysDefPowersData,'dominion',0);
+    createEmptyRecord(id,sysDefPowersData,'automator',((args.includes('auto'))?'auto':'manual'));
+    createEmptyRecord(id,sysDefFriendData,'friendship','');
+    createEmptyRecord(id,sysDefToolData,'toolbox','');
+    createEmptyRecord(id,sysDefCallData,'calling',id);
+    if (pass!='') { set(id+'_password',pass,true); }
     if (helper) { delete_user(''); }
 }
 function friendsOf(obj,id) {
@@ -390,23 +382,23 @@ function jsonStore(id) {
     } return ard;
 }
 function formCur(val) {
-    var cur=sysDefCurrency.value,res=alm=clm=dlm=dlx='';
-    var x=c=a=e=''; if (cur.length==7) {
-        alm=(cur.charAt(1)!='x')?(cur.charAt(1)):'';
-        clm=(cur.charAt(5)!='y')?(cur.charAt(5)):'';
-        dlm=(cur.charAt(3)!=':')?(cur.charAt(3)):'';
-        dlx=(dlm=='_')?' ':dlm;
-        x=(isInt(val))?delimNum(parseInt(val),dlx):val;
-        c=(isInt(val))?alm:clm;
-        a=(isInt(val))?0:4,e=(isInt(val))?2:6;
-        if ((cur.charAt(a)=='^')&&(cur.charAt(e)=='_')) {
-            res=c+' '+x;
-        } else if ((cur.charAt(a)=='_')&&(cur.charAt(e)=='^')) {
-            res=x+' '+c;
-        } else if ((cur.charAt(a)=='^')&&(cur.charAt(e)==':')) {
-            res=c+x;
-        } else if ((cur.charAt(a)==':')&&(cur.charAt(e)=='^')) {
-            res=x+c;
+    var cur=sysDefCurrency.value,res=curSign=userSign=delim=delimit='';
+    var num=sign=start=end=''; if (cur.length==7) {
+        curSign=(cur.charAt(1)!='x')?(cur.charAt(1)):'';
+        userSign=(cur.charAt(5)!='y')?(cur.charAt(5)):'';
+        delim=(cur.charAt(3)!=':')?(cur.charAt(3)):'';
+        delimit=(delim=='_')?' ':delim;
+        num=(isInt(val))?delimNum(parseInt(val),delimit):val;
+        sign=(isInt(val))?curSign:userSign;
+        start=(isInt(val))?0:4,end=(isInt(val))?2:6;
+        if ((cur.charAt(start)=='^')&&(cur.charAt(end)=='_')) {
+            res=sign+' '+num;
+        } else if ((cur.charAt(start)=='_')&&(cur.charAt(end)=='^')) {
+            res=num+' '+sign;
+        } else if ((cur.charAt(start)=='^')&&(cur.charAt(end)==':')) {
+            res=sign+num;
+        } else if ((cur.charAt(start)==':')&&(cur.charAt(end)=='^')) {
+            res=num+sign;
         }
     } return res;
 }
@@ -884,7 +876,7 @@ function handleInput(val,bulk=false) {
         }
     }
 }
-function keyd() {
+function keyPressed() {
     if (requestMode.value=='accessibility') {
         pressedKeyCode.innerText=event.keyCode;
         pressedCode.innerText=(event.code).toUpperCase();

@@ -9,7 +9,7 @@
         setTimeZone.value=0; setdata('timezone',setTimeZone.value);
     } else if (event.keyCode==8) { handleInput(this.value);
     } else if (event.keyCode==46) { handleInput(this.value);
-    } keyd();">
+    } keyPressed();">
     <input type="image" id="buttonLock" onmouseover="soundButton();" class="power" onclick="setdata('lock',flip(sysDefLock.value));" src="<?=$prefix.(($session['lock']!=0)?'key.png':'lock.png');?>" title="<?=term('Lock On Wallpaper Position',$settings['vocabulary'],$session['units']);?>">
     <input type="image" id="buttonOnReload" onmouseover="soundButton();" class="power" onclick="setdata('reload',flip(sysDefReload.value));" src="<?=$prefix.(($session['reload']!=0)?'bluetooth.png':'radio.png');?>" title="<?=term('With/Without Page Reload',$settings['vocabulary'],$session['units']);?>">
     <input type="image" onmouseover="soundButton();" id="buttonSongIndex" class="power" onclick="setdata('song_index', nextImage(';random',sysDefSongIndex.value));" src="<?=$prefix.(($session['song_index']=='random')?'shuffle.png':'update.png');?>" title="<?=term('Audio Playlist Shuffle/Repeat',$settings['vocabulary'],$session['units']);?>">
@@ -28,7 +28,7 @@
         } else if (event.keyCode==46) { handleInput(this.value);
         } else if (event.keyCode==113) {
             setdata('mode',nextImage('start;chat;search',sysDefMode.value)); omniBox.focus();
-        } keyd();" oninput="handleInput(this.value,true);">
+        } keyPressed();" oninput="handleInput(this.value,true);">
         <input type="image" onmouseover="soundButton();" id="buttonEnter" class="power" onclick="omniEnter();" src="<?=$prefix.'return.png';?>" title="<?=term('Enter Command/Message',$settings['vocabulary'],$session['units']);?>">
         <input type="image" onmouseover="soundButton();" id="buttonKeyboard" class="power" onclick="document.getElementById('omniBox').focus();" src="<?=$prefix.'keyboard.png';?>" title="<?=term('Focus On Console',$settings['vocabulary'],$session['units']);?>">
         <input type="image" onmouseover="soundButton();" id="buttonBackspace" class="power" onclick="document.getElementById('omniBox').value='';
@@ -42,7 +42,7 @@
             document.getElementById('omniBoxAuthLogin').value='';
         } else if (event.keyCode==8) { handleInput(this.value);
         } else if (event.keyCode==46) { handleInput(this.value);
-        } keyd();" oninput="handleInput(this.value,true);">
+        } keyPressed();" oninput="handleInput(this.value,true);">
         <input type='password' id="omniBoxAuthPass" style="width:30%;" placeholder="<?=term('Password',$settings['vocabulary'],$session['units']);?>" value="" onkeydown="if (event.keyCode==13) {
             omniAuthRequest('signin',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString());
         } else if (event.keyCode==27) {
@@ -52,7 +52,7 @@
         } else if (event.keyCode==46) { handleInput(this.value);
         } else if (event.keyCode==113) {
             omniAuthRequest('signup',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString());
-        } keyd();" oninput="handleInput(this.value,true);">
+        } keyPressed();" oninput="handleInput(this.value,true);">
         <input type="image" onmouseover="soundButton();" id="buttonLogin" class="power" onclick="omniAuthRequest('signin',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString());" src="<?=$prefix.'return.png';?>" title="<?=term('Sign In/Authenticate',$settings['vocabulary'],$session['units']);?>">
         <input type="image" onmouseover="soundButton();" id="buttonRegister" class="power" onclick="omniAuthRequest('signup',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString());" src="<?=$prefix.'keyboard.png';?>" title="<?=term('Sign Up/Create Account',$settings['vocabulary'],$session['units']);?>">
         <input type="image" onmouseover="soundButton();" id="buttonCancelSignin" class="power" onclick="document.getElementById('omniBoxAuthPass').value='';
@@ -71,7 +71,7 @@
         setTimeHour.value=12; setdata('hour',setTimeHour.value);
     } else if (event.keyCode==8) { handleInput(this.value);
     } else if (event.keyCode==46) { handleInput(this.value);
-    } keyd();">
+    } keyPressed();">
     <input type="image" onmouseover="soundButton();" id="buttonVintage" class="power" onclick="setdata('vintage',flip(sysDefVintage.value));" src="<?=$prefix.'diamante.png';?>" title="<?=term('Enable Vintage Effects',$settings['vocabulary'],$session['units']);?>">
     <input type="image" onmouseover="soundButton();" id="buttonGloss" class="power" onclick="setdata('gloss',flip(sysDefGloss.value));" src="<?=$prefix.(($session['gloss']!=0)?'parfum.png':'deparfum.png');?>" title="<?=term('Enable Gloss/Gradient',$settings['vocabulary'],$session['units']);?>">
     <input type="image" onmouseover="soundButton();" id="buttonAugment" class="power" onclick="setdata('entry',nextImage(sysDefVarsArr.value,sysDefEntry.value));" src="<?=$prefix.'spade.png';?>" title="<?=term('Go My Way',$settings['vocabulary'],$session['units']);?>">

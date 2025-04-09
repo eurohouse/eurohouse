@@ -75,6 +75,7 @@
         <input type='hidden' id="sysDefBookKeep" value="">
         <input type='hidden' id="sysDefMsgData" value="">
         <input type='hidden' id="sysDefUserStore" value="">
+        <input type='hidden' id="sysDefGovtData" value="">
         <input type='hidden' id="sysDefMsgCounter" value="0">
         <input type='hidden' id="sysDefMsgMaxCount" value="0">
         <input type='hidden' id="sysDefCodexBox" value="<?=implode('//',(str_replace('./','',(glob('./*.mac')))));?>">
