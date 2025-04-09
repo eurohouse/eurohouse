@@ -1,6 +1,6 @@
 <!-- volume -->
 <!-- GR: Ελεγχος έντασης; CY: Ελεγχος έντασης; FR: Niveaux de volume; DE: Lautstärkeregelung; BE: Niveaux de volume; AT: Lautstärkeregelung; CH: Occasus Acusticus; ES: Niveles de volumen; MX: Niveles de volumen; PT: Niveles de volumen; BR: Níveis de volume; RO: Niveluri de volum; MD: Niveluri de volum; IT: Livelli di volume; RU: Уровни громкости; TR: Ses seviyeleri; IN: वॉल्यूम स्तर; LK: आयतनस्तराः; UA: Рівні гучності; RS: Нивои јачине звука; CN: 声音混合器; KR: 사운드 믹서; JP: サウンドミキサー; AE: خلاط الصوت -->
-<div style="width:100%;position:relative;columns:2;">
+<div class="customPanel" style="width:100%;-webkit-columns:2;-moz-columns:2;columns:2;">
     <p align='center'>
         <?=term('Audio Volume',$settings['vocabulary'],$session['units']);?> 
         <input type='button' id="audioVolInd" value="<?=$session['audio_volume'];?>"><br>

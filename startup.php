@@ -120,7 +120,7 @@ function world_clock() {
                 var upn=decipher(sysDefPlaylist.value,sysDefSessionID.value,sysDefNumeric.value,'arr'),arl="",plCol=sysDefPlaylistColumns.value; for (iu in upn) {
                     arl+="<a href='javascript:omniListen(%22"+rfc3986(upn[iu])+"%22,true);'>"+(parseInt(iu)+1)+'. '+upn[iu]+"</a><br>";
                 } currentPlaylist.innerHTML=arl;
-                currentPlaylist.setAttribute('style','columns:'+plCol+';-webkit-columns:'+plCol+';-moz-columns:'+plCol+';');
+                currentPlaylist.setAttribute('style','-webkit-columns:'+plCol+';-moz-columns:'+plCol+';columns:'+plCol+';');
                 var alb=lockarr(sysDefAlbum.value),arl="";
                 var albCol=((sysDefAlbum.value=='avatar')||(sysDefAlbum.value=='pictogram'))?1:sysDefAlbumColumns.value; if (sysDefAlbum.value=='music') {
                     for (iu in alb) {
@@ -150,7 +150,7 @@ function world_clock() {
                         arl+="<input type='image' class='power' style='width:40px;height:40px;' src='"+epr+alr[iu]+".png' title='"+(alr[iu].toUpperCase())+"'>";
                     }
                 } currentAlbumList.innerHTML=arl;
-                currentAlbumList.setAttribute('style','columns:'+albCol+';-webkit-columns:'+albCol+';-moz-columns:'+albCol+';');
+                currentAlbumList.setAttribute('style','-webkit-columns:'+albCol+';-moz-columns:'+albCol+';columns:'+albCol+';');
             } else if (requestMode.value=='point_of_sale') {
                 var stoInf="<p align='center'>"+fint[6]+"</p><p align='center'>"+fint[7]+"</p><p align='center'>"+activeHrsBtn(bndm)+"</p>";
                 var stoDop='<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+fint[3]+'</th><th style="width:7%;">'+fint[4]+'</th><th style="width:3%;">'+fint[5]+'</th></thead><tbody>'+jsonStore(bndm)+'</tbody></table>';
