@@ -429,10 +429,10 @@ function jsonDocs(str) {
         arl='<tr>'; arl+='<td>'+arf[el]['plaintiff']+'</td>';
         arl+='<td>'+arf[el]['defendant']+'</td>';
         arl+='<td>'+arf[el]['claims']+'</td>';
-        arl+='<td>'+arf[el]['status']+'</td>';
+        arl+='<td>'+arf[el]['status']+'</td><td>';
         arl+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"min.png"+"' onclick='"+fu0+"'>";
         arl+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"plus.png"+"' onclick='"+fu1+"'>";
-        ard=arl+'</tr>'+ard;
+        ard=arl+'</td></tr>'+ard;
     } return ard;
 }
 function noteBook(str) {
