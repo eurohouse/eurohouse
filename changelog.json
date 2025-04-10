@@ -1,4 +1,14 @@
 {
+    "v7.824-b3008": {
+        "default": {
+            "title": "Eurohouse Developer Team (@eurohouse)",
+            "body": "Here comes the April... And so is a new version of our universal, multifunctional web application that replaces your desktop and the operating system of your mobile device. Meet innovations and new menu sections, such as viewing album or collection data, and along with it the user's playlist, more understandable functions in the client and server parts of the web application code, a new section for encapsulating user data - icons, more elaborate interface elements, panel columns, etc."
+        },
+        "RU": {
+            "title": "Команда разработчиков Eurohouse (@eurohouse)",
+            "body": "Начинается апрель... А вместе с ним и новая версия нашего универсального, многофункционального веб-приложения, заменяющего вам ваш рабочий стол и операционную систему вашего мобильного устройства. Встречайте нововведения и новые разделы меню, такие как просмотр данных альбома или коллекции, а вместе с этим и плэйлиста пользователя, более понятные функции в клиентской и серверной частях кода веб-приложения, новый раздел инкапсуляции данных пользователя - пиктограммы, более проработанные элементы интерфейса, колонки панелей и т.п."
+        }
+    },
     "v7.816-b2586": {
         "default": {
             "title": "Eurohouse Developer Team (@eurohouse)",
