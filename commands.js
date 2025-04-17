@@ -221,7 +221,9 @@ function omniEnter() {
         } else if (input=='::::') { setdata('banner','none');
         } else if (input==':::') { setdata('banner','');
         } else if (input=='::') {
-            setdata('banner',randomImage(sysDefContentData.value));
+            var cont=jsonarr(sysDefContentData.value);
+            var conk=(Object.keys(cont)).join(';');
+            setdata('banner',randomImage(conk));
         } else if (input=='\\=') {
             omniBox.value='\\='+dtw(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value);
         } else if (input.startsWith('store ')) {
