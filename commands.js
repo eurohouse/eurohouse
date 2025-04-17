@@ -344,7 +344,18 @@ function omniEnter() {
             arg=input.slice(0,-1).split('#');
             omniBox.value=basedec(arg[0],arg[1])+'#'+arg[1]+'/';
         } else if (input.startsWith('::')) {
-            setdata('banner',input.replace('::','')+'.png');
+            rep=input.replace('::','');
+            if ((rep.includes('.'))&&(rep.split('.').length==3)) {
+                setdata('banner',rep+'.png');
+            } else {
+                var cont=jsonarr(sysDefContentData.value);
+                var conk=(Object.keys(cont)).join(';');
+                for (idx in cont) {
+                    if (cont[idx].toLowerCase().includes(rep.toLowerCase())) {
+                        setdata('banner',idx);
+                    }
+                }
+            }
         } else if (input.startsWith('->')) { omniSwitch(input.replace('->',''));
         } else if (input.startsWith('\\=')) {
             arb=input.replace('\\=',''); if (arb.includes('//')) {
