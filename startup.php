@@ -127,7 +127,7 @@ function world_clock() {
                     }
                 } else if (sysDefAlbum.value=='background') {
                     for (iu in alb) {
-                        arl+="<a href='"+getPkgData(alb[iu].split('.')[0],'favicon')+"'><img style='height:45%;' src='"+getPkgData(alb[iu].split('.')[0],'favicon')+"' title='"+alb[iu].split('.')[0]+"'></a>";
+                        arl+="<a href='"+getPkgData(alb[iu].split('.')[0],'favicon')+"'><img style='width:20%;' src='"+getPkgData(alb[iu].split('.')[0],'favicon')+"' title='"+alb[iu].split('.')[0]+"'></a>";
                     }
                 } else if (sysDefAlbum.value=='avatar') {
                     epr=sysDefAvaPrefix.value,alr=listlock(sysDefAlbum.value);
