@@ -126,7 +126,7 @@ function world_clock() {
                     }
                 } else if (sysDefAlbum.value=='background') {
                     for (iu in alb) {
-                        arl+=ucfirst(alb[iu].split('.')[0])+"<br>";
+                        arl+="<a href='"+getPkgData(alb[iu].split('.')[0],'favicon')+"'><img style='width:10%;' src='"+getPkgData(alb[iu].split('.')[0],'favicon')+"'></a>";
                     }
                 } else if (sysDefAlbum.value=='avatar') {
                     epr=sysDefAvaPrefix.value,alr=listlock(sysDefAlbum.value);

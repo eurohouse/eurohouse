@@ -178,6 +178,12 @@ function userRestore(id) {
         }
     }
 }
+function getPkgData(id,ent) {
+    var fpkg={},res=''; with(localStorage) {
+        readFile(id+'.pkg','read','',id+'_package_data');
+        fpkg=jsonarr(getItem(id+'_package_data'));
+    } res=fpkg[ent]; return res;
+}
 function remove_entry(id,obj,name,complex=false,helper=false,dy=';',dx=':') {
     var rawData=(typeof(obj)=='object')?obj.value:obj;
     var resarr=(complex)?jsonarr(rawData):arrjob((rawData),dy,dx);
