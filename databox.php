@@ -15,11 +15,10 @@ $userLocks=userlocks($locksArr,$userSettings['collections'],$avaPref,$pref);
 $notesArr=arropen($cookie.'_metadata.json',json_encode($userSettings['metadata']),'CUSTOM');
 $tutorArr=arropen('tutorial.json',"{\"\":\"\"}",'CUSTOM');
 $newsData=arropen('changelog.json',"{\"\":\"\"}",'CUSTOM');
-$listCont=exemplar(str_replace('./','',(glob('./*.contents.json'))));
 $listExem=exemplar(str_replace('./','',(glob('./*.models.json'))));
 foreach ($listExem as $key=>$value) {
     if (!isset($value['nsfw'])) { unset($listExem[$key]); }
-} $contKeys=[]; $localesArr=arropen('./i18n.json');
+} $localesArr=arropen('./i18n.json');
 $currentTimes=$currentTimesActive=$currentAvatars=[];
 foreach ($poweredData as $key=>$value) {
     if (file_exists($key.'_session.json')) {
@@ -49,5 +48,4 @@ $usersList=array_keys($poweredData); natcasesort($usersList);
 /* ¶ 15 */ json_encode($newsData,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
 /* ¶ 16 */ json_encode($activeIPs,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
 /* ¶ 17 */ json_encode($localesArr,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
-/* ¶ 18 */ json_encode($listExem,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
-/* ¶ 19 */ json_encode(contKeys,JSON_UNESCAPED_UNICODE);
+/* ¶ 18 */ json_encode($listExem,JSON_UNESCAPED_UNICODE)."\r\n\r\n";
