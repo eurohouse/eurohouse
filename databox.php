@@ -53,5 +53,5 @@ $usersList=array_keys($poweredData); natcasesort($usersList);
 /* ¶ 15 */ json_encode($newsData,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
 /* ¶ 16 */ json_encode($activeIPs,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
 /* ¶ 17 */ json_encode($localesArr,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
-/* ¶ 18 */ json_encode($listExem,JSON_UNESCAPED_UNICODE);
+/* ¶ 18 */ json_encode($listExem,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
 /* ¶ 19 */ json_encode($listCont,JSON_UNESCAPED_UNICODE);
