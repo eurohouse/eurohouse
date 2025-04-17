@@ -19,8 +19,8 @@ $listCont=exemplar(str_replace('./','',(glob('./*.contents.json'))));
 $listExem=exemplar(str_replace('./','',(glob('./*.models.json'))));
 foreach ($listExem as $key=>$value) {
     if (!isset($value['nsfw'])) { unset($listExem[$key]); }
-} foreach ($listCont as $key=>$value) {
-    foreach ($listExem as $iter=>$val) {
+} foreach ($listExem as $iter=>$val) {
+    foreach ($listCont as $key=>$value) {
         if (!in_array($iter,$listCont)) { unset($listCont[$key]); }
     }
 } $localesArr=arropen('./i18n.json');
