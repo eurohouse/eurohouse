@@ -121,16 +121,6 @@ function clearJournal(id,obj,name,anyFile=false) {
         set('./.'+name+'/'+sysDefSessionID.value+'_'+name+'.json',encodeURIComponent(JSON.stringify(resarr)),true);
     }
 }
-function markJournal(id,obj,name,ind,val,anyFile=false) {
-    var resarr=(typeof(obj)=='object')?jsonarr(obj.value):jsonarr(obj);
-    if ((typeof(resarr[id])=='object')&&(resarr[id][ind]!==undefined)) {
-        resarr[id][ind]=val;
-    } if (anyFile) {
-        set('./'+name+'.json',encodeURIComponent(JSON.stringify(resarr)),true);
-    } else {
-        set('./.'+name+'/'+sysDefSessionID.value+'_'+name+'.json',encodeURIComponent(JSON.stringify(resarr)),true);
-    }
-}
 function openJournal(id,obj) {
     var resarr=(typeof(obj)=='object')?jsonarr(obj.value):jsonarr(obj);
     return ((typeof(resarr[id])=='object')?arrjson(resarr[id]):"{\"\":\"\"}");
