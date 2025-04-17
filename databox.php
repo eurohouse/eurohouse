@@ -21,9 +21,6 @@ foreach ($listExem as $key=>$value) {
     if (!isset($value['nsfw'])) { unset($listExem[$key]); }
 } $keysCont=[]; foreach ($listExem as $title=>$cont) {
     $contKeys=array_keys($listCont,$title);
-    foreach ($contKeys as $val) {
-        $keysCont[]=$val;
-    }
 } $localesArr=arropen('./i18n.json');
 $currentTimes=$currentTimesActive=$currentAvatars=[];
 foreach ($poweredData as $key=>$value) {
@@ -55,4 +52,4 @@ $usersList=array_keys($poweredData); natcasesort($usersList);
 /* ¶ 16 */ json_encode($activeIPs,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
 /* ¶ 17 */ json_encode($localesArr,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
 /* ¶ 18 */ json_encode($listExem,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
-/* ¶ 19 */ implode(';',keysCont);
+/* ¶ 19 */ implode(';',contKeys);
