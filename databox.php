@@ -19,8 +19,9 @@ $listCont=exemplar(str_replace('./','',(glob('./*.contents.json'))));
 $listExem=exemplar(str_replace('./','',(glob('./*.models.json'))));
 foreach ($listExem as $key=>$value) {
     if (!isset($value['nsfw'])) { unset($listExem[$key]); }
-} $contKeys=[]; foreach ($listExem as $key=>$value) {
+} $contKeys=$contVals[]; foreach ($listExem as $key=>$value) {
     $contKeys=array_merge($contKeys,array_keys($listCont,$key));
+    $contVals=array_merge(array_fill_keys($contKeys,$value));
 } $localesArr=arropen('./i18n.json');
 $currentTimes=$currentTimesActive=$currentAvatars=[];
 foreach ($poweredData as $key=>$value) {
@@ -52,4 +53,4 @@ $usersList=array_keys($poweredData); natcasesort($usersList);
 /* ¶ 16 */ json_encode($activeIPs,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
 /* ¶ 17 */ json_encode($localesArr,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
 /* ¶ 18 */ json_encode($listExem,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
-/* ¶ 19 */ implode(';',$contKeys);
+/* ¶ 19 */ json_encode($contVals,JSON_UNESCAPED_UNICODE);
