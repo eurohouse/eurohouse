@@ -13,37 +13,33 @@ if ($request['group']!='') {
     } ?>
     <table style="width:100%;" id="table">
     <thead>
-    <tr>
-    <th style="width:40%;"><?=term('Image',$ssVC,$ssUN);?></th>
-    <th style="width:5%;"><?=term('Actions',$ssVC,$ssUN);?></th>
-    </tr>
+        <tr>
+            <th style="width:40%;"><?=term('Image',$ssVC,$ssUN);?></th>
+            <th style="width:5%;"><?=term('Actions',$ssVC,$ssUN);?></th>
+        </tr>
     </thead>
     <tbody>
     <?php foreach ($contentsArr as $key=>$value) { ?>
-    <tr>
-    <td>
-        <a href="<?=$key;?>">
-            <img style="width:<?=$iconSize;?>%;" src="<?=$key;?>" loading="lazy" onmouseover="soundButton();">
-        </a>
-    </td>
-    <td>
-    <p align='center' class='block'>
-        <input type="image" name="<?=$key;?>" onmouseover="soundButton();" class="power" onclick="setdata('banner',this.name);" src="<?=$prefix.'return.png';?>">
-        <input type="image" onmouseover="soundButton();" class="power" onclick="setdata('banner','');" src="<?=$prefix.'backspace.png';?>">
-    </p>
-    </td>
-    </tr>
+        <tr>
+            <td>
+                <a href="<?=$key;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$key;?>" loading="lazy" onmouseover="soundButton();"></a>
+            </td>
+            <td>
+                <p align='center' class='block'>
+                    <input type="image" name="<?=$key;?>" onmouseover="soundButton();" class="power" onclick="setdata('banner',this.name);" src="<?=$prefix.'return.png';?>">
+                    <input type="image" onmouseover="soundButton();" class="power" onclick="setdata('banner','');" src="<?=$prefix.'backspace.png';?>">
+                </p>
+            </td>
+        </tr>
     <?php } ?>
-</tbody>
-<tfoot>
-    <tr>
-        <th style="width:25%;" colspan="3"><?=term('Total elements:', $ssVC,$ssUN).' '.count($contentsArr);?><br>
-        <?=modelcard($request['group'],$contentsArr,$exemplarArr,$session,$settings);?></th>
-    </tr>
-</tfoot>
+    </tbody>
+    <tfoot>
+        <tr>
+            <th style="width:25%;" colspan="3"><?=term('Total elements:', $ssVC,$ssUN).' '.count($contentsArr);?><br><?=modelcard($request['group'],$contentsArr,$exemplarArr,$session,$settings);?></th>
+        </tr>
+    </tfoot>
 </table>
-<?php
-} else {
+<?php } else {
     foreach ($exemplarArr as $key=>$value) {
         if ($session['censor']!=0) {
             if (isset($value['nsfw'])) { unset($exemplarArr[$key]); }
@@ -94,12 +90,10 @@ if ($request['group']!='') {
     </tr>
 </thead>
 <tbody>
-    <?php
-    foreach ($exemplarArr as $key=>$value) {
+    <?php foreach ($exemplarArr as $key=>$value) {
         $ccAV=(file_exists('Flag.'.$value['country'].'.png'))?'Flag.'.$value['country'].'.png':'Flag.UN.png';
         $mmTL=(isset($value['language'][$ssUN]['title']))?$value['language'][$ssUN]['title']:$key;
-        $mmDC=(isset($value['language'][$ssUN]['memoir']))?$value['language'][$ssUN]['memoir']:((isset($value['memoir']))?$value['memoir']:'');
-    ?>
+        $mmDC=(isset($value['language'][$ssUN]['memoir']))?$value['language'][$ssUN]['memoir']:((isset($value['memoir']))?$value['memoir']:''); ?>
     <tr>
         <td>
             <a href="<?=$ccAV;?>"><img style="width:<?=$iconSize;?>%;" src="<?=$ccAV;?>" loading="lazy" onmouseover="soundButton();"></a>
@@ -115,8 +109,18 @@ if ($request['group']!='') {
         </td>
         <?php } else { ?>
             <td><?=(isset($value['height']))?((isset($ssLC['length'][$ssUN]))?((isset($ssLC['length'][$ssUN]['inch']))?incher($value['height']):(round(($value['height']*$ssLC['length'][$ssUN]['coefficient']),2)).' '.$ssLC['length'][$ssUN]['sign']):(round(($value['height']*$ssLC['length']['default']['coefficient']),2)).' '.$ssLC['length']['default']['sign']):'';?></td>
-            <td><?=(isset($value['weight']))?((isset($ssLC['mass'][$ssUN]))?(round($value['weight']*$ssLC['mass'][$ssUN]['coefficient'])).' '.$ssLC['mass'][$ssUN]['sign'] : (round($value['weight']*$ssLC['mass']['default']['coefficient'])).' '.$ssLC['mass']['default']['sign']) : '';?></td>
-            <td><?=(isset($value['sizes']))?((round((explode('-',$value['sizes'])[0]*$ssLC['body_sizes'][$ssUN]['coefficient']))).'-'.round((explode('-',$value['sizes'])[1]*$ssLC['body_sizes'][$ssUN]['coefficient'])).'-'.round((explode('-',$value['sizes'])[0]*$ssLC['body_sizes'][$ssUN]['coefficient']))):'';?></td>
+            <td><?=(isset($value['weight']))?((isset($ssLC['mass'][$ssUN]))?(round($value['weight']*$ssLC['mass'][$ssUN]['coefficient'])).' '.$ssLC['mass'][$ssUN]['sign']:(round($value['weight']*$ssLC['mass']['default']['coefficient'])).' '.$ssLC['mass']['default']['sign']):'';?></td>
+            <td><?php if (isset($value['sizes'])) {
+                if (isset($ssLC['body_sizes'][$ssUN])) {
+                    $chest=round(explode('-',$value['sizes'])[0])*$ssLC['body_sizes'][$ssUN]['coefficient'];
+                    $waist=round(explode('-',$value['sizes'])[1])*$ssLC['body_sizes'][$ssUN]['coefficient'];
+                    $hips=round(explode('-',$value['sizes'])[2])*$ssLC['body_sizes'][$ssUN]['coefficient'];
+                } else {
+                    $chest=round(explode('-',$value['sizes'])[0]);
+                    $waist=round(explode('-',$value['sizes'])[1]);
+                    $hips=round(explode('-',$value['sizes'])[2]);
+                } echo $chest.'-'.$waist.'-'.$hips;
+            } else { echo ''; } ?></td>
             <td><?=(isset($value['shoe_size']))?((isset($ssLC['shoe_size'][$ssUN]))?($value['shoe_size']+$ssLC['shoe_size'][$ssUN]).' '.$ssUN:($value['shoe_size']+$ssLC['shoe_size']['default']).' '.$ssUN):'';?></td>
         <?php } ?>
     </tr>
