@@ -398,36 +398,13 @@ function formCur(val) {
     } return res;
 }
 function jsonBookKeep(str) {
-    var arr=jsonarr(str),ard=arl='',arf={},eld=[];
-    for (el in arr) {
-        eld=arr[el].split(' | ');arf[el]=arr[el];
-    } for (el in arf) {
-        eld=arr[el].split(' | ');
-        arl=(eld[5]=='ERR')?'<tr style="text-decoration:line-through;">':'<tr>';
-        arl+='<td>@'+eld[1]+'</td>';
-        arl+=(isInt(eld[2]))?'<td>'+formCur(eld[2])+'</td>':'<td>'+eld[2]+'</td>';
-        arl+=(isInt(eld[3]))?'<td>'+formCur(eld[3])+'</td>':'<td>'+eld[3]+'</td>';
-        arl+='<td>'+formCur(eld[4])+'</td>';
-        ard=arl+'</tr>'+ard;
-    } return ard;
-}
-function jsonDocs(str) {
-    var arr=jsonarr(str),ard=arl='',arf={},eld=[];
-    var epr=sysDefPrefix.value,fu0=fu1=fu2=fu3='';
+    var arr=jsonarr(str),ard=arl='',arf={};
     for (el in arr) { arf[el]=arr[el]; } for (el in arf) {
-        fu0="markJournal(&#39;"+el+"&#39;,&#39;"+sysDefGovtData.value+"&#39;,&#39;cabinet&#39;,&#39;status&#39;,&#39;&#43;&#39;);";
-        fu1="markJournal(&#39;"+el+"&#39;,&#39;"+sysDefGovtData.value+"&#39;,&#39;cabinet&#39;,&#39;status&#39;,&#39;&#45;&#39;);";
-        fu2="setfor(&#39;"+arf[el]['defendant']+"&#39;,&#39;"+sysDefPowersData.value+"&#39;,&#39;dominion&#39;,-333);";
-        fu3="setfor(&#39;"+arf[el]['defendant']+"&#39;,&#39;"+sysDefPowersData.value+"&#39;,&#39;dominion&#39;,-666);";
-        arl='<tr>'; arl+='<td>'+arf[el]['plaintiff']+'</td>';
-        arl+='<td>'+arf[el]['defendant']+'</td>';
-        arl+='<td>'+arf[el]['claims']+'</td>';
-        arl+='<td>'+arf[el]['status']+'</td><td>';
-        arl+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"plus.png"+"' onclick='"+fu0+"'>";
-        arl+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"min.png"+"' onclick='"+fu1+"'><br>";
-        arl+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"lock.png"+"' onclick='"+fu2+"'>";
-        arl+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"error.png"+"' onclick='"+fu3+"'>";
-        ard=arl+'</td></tr>'+ard;
+        arl=(arr[el]['status']=='ERR')?'<tr style="text-decoration:line-through;">':'<tr>';
+        arl+='<td>@'+arr[el]['receiver']+'</td>';
+        arl+=(isInt(arr[el]['debit']))?'<td>'+formCur(arr[el]['debit'])+'</td>':'<td>'+arr[el]['debit']+'</td>'; arl+=(isInt(arr[el]['credit']))?'<td>'+formCur(arr[el]['credit'])+'</td>':'<td>'+arr[el]['credit']+'</td>';
+        arl+='<td>'+formCur(arr[el]['balance'])+'</td>';
+        ard=arl+'</tr>'+ard;
     } return ard;
 }
 function noteBook(str) {
@@ -691,8 +668,10 @@ function fixPrice(sen,rec,deb,cre) {
     var statD=(isInt(stat[sen]))?parseInt(stat[sen]):0;
     var statC=(isInt(stat[rec]))?parseInt(stat[rec]):0;
     var statDr=parseInt(statD),statCr=parseInt(statC);
-    var bal1=((tran1=='{}')||(tran1==''))?statDr:(trans1[Object.keys(trans1)[Object.keys(trans1).length-1]]).split(' | ')[4];
-    var bal2=((tran2=='{}')||(tran2==''))?statCr:(trans2[Object.keys(trans2)[Object.keys(trans2).length-1]]).split(' | ')[4];
+    var lkD=(trans1[Object.keys(trans1)[Object.keys(trans1).length-1]]);
+    var lkC=(trans2[Object.keys(trans2)[Object.keys(trans2).length-1]]);
+    var bal1=((tran1=='{}')||(tran1==''))?statDr:lkD['balance'];
+    var bal2=((tran2=='{}')||(tran2==''))?statCr:lkC['balance'];
     var statDt,statCt,statK,statV,statDi,statCi,statDn,statCn,statT;
     var statDv=statDr-parseInt(bal1),statCv=statCr-parseInt(bal2);
     if ((isInt(deb))&&!(isInt(cre))) {
@@ -708,20 +687,17 @@ function fixPrice(sen,rec,deb,cre) {
     } else { statK=cre,statT=deb;
         statDi=parseInt(bal1)+parseInt(statDv);
         statCi=parseInt(bal2)+parseInt(statCv);
-    } statDn=Math.abs(statDi-parseInt(bal1));
-    statCn=Math.abs(statCi-parseInt(bal2));
-    statDt=(statDi==statD)?'OK':'ERR';
-    statCt=(statCi==statC)?'OK':'ERR';
+    } statDn=Math.abs(statDi-parseInt(bal1)); statCn=Math.abs(statCi-parseInt(bal2));
+    statDt=(statDi==statD)?'OK':'ERR'; statCt=(statCi==statC)?'OK':'ERR';
     stat[sen]=parseInt(statD),stat[rec]=parseInt(statC);
-    trans1[isoformat(Date.now())+' UTC']=(statDi<parseInt(bal1))?sen+' | '+rec+' | '+statT+' | '+statDn+' | '+statDi+' | '+statDt : sen+' | '+rec+' | '+statDn+' | '+statT+' | '+statDi+' | '+statDt;
-    trans2[isoformat(Date.now())+' UTC']=(statCi<parseInt(bal2))?rec+' | '+sen+' | '+statT+' | '+statCn+' | '+statCi+' | '+statCt : rec+' | '+sen+' | '+statCn+' | '+statT+' | '+statCi+' | '+statCt;
+    trans1[isoformat(Date.now())+' UTC']=(statDi<parseInt(bal1))?{'sender':sen,'receiver':rec,'debit':statT,'credit':statDn,'balance':statDi,'status':statDt}:{'sender':sen,'receiver':rec,'debit':statDn,'credit':statT,'balance':statDi,'status':statDt};
+    trans2[isoformat(Date.now())+' UTC']=(statCi<parseInt(bal2))?{'sender':rec,'receiver':sen,'debit':statT,'credit':statCn,'balance':statCi,'status':statCt}:{'sender':rec,'receiver':sen,'debit':statCn,'credit':statT,'balance':statCi,'status':statCt};
     if (!isInt(deb)&&!isInt(cre)) {
-        trans1[isoformat(Date.now())+' UTC']=sen+' | '+rec+' | '+statT+' | '+statK+' | '+statDi+' | '+statDt;
-        trans2[isoformat(Date.now())+' UTC']=rec+' | '+sen+' | '+statK+' | '+statT+' | '+statCi+' | '+statCt;
+        trans1[isoformat(Date.now())+' UTC']={'sender':sen,'receiver':rec,'debit':statT,'credit':statK,'balance':statDi,'status':statDt};
+        trans2[isoformat(Date.now())+' UTC']={'sender':rec,'receiver':sen,'debit':statK,'credit':statT,'balance':statCi,'status':statCt};
     } set('./.book/'+sen+'_book.json',encodeURIComponent(JSON.stringify(trans1)),true);
     set('./.book/'+rec+'_book.json',encodeURIComponent(JSON.stringify(trans2)),true);
-    set('dominion.json',JSON.stringify(stat),true);
-    sysDefPowersData.value=arrpack(stat,';',':');
+    set('dominion.json',JSON.stringify(stat),true); sysDefPowersData.value=arrpack(stat,';',':');
 }
 function charge(usr,art='') {
     var powersData=arrjob(sysDefPowersData.value,';',':');
