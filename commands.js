@@ -352,7 +352,7 @@ function omniEnter() {
                 var conk=(Object.keys(cont)).join(';');
                 for (idx in cont) {
                     if (cont[idx].toLowerCase().includes(rep.toLowerCase())) {
-                        setdata('banner',idx);
+                        setdata('banner',idx); break;
                     }
                 }
             }
