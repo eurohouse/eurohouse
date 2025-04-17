@@ -339,11 +339,11 @@ function automator() {
     if (requestMode.value=='statistics') {
         userStats.innerHTML=scores(sysDefStats.value);
     } if ((subName!='')&&(objName!='')&&(isInt(tabPower[subName]))&&(tabPower[subName]>=0)&&(autoPower[subName]=='auto')) {
-        subMarket=jsonMarket(subName);
+        subMarket=jsonarr(openJournal(subName,sysDefStoreJSONs));
         subMarketCount=Object.keys(subMarket).length;
         subSelect=(subMarketCount<=0)?'':((subMarketCount==1)?Object.keys(subMarket)[0]:Object.keys(subMarket)[rand(0,subMarketCount)]);
         bind(subName,objName);equip(subName,subSelect);
-        objMarket=jsonMarket(objName);
+        objMarket=jsonarr(openJournal(objName,sysDefStoreJSONs));
         objMarketCount=Object.keys(objMarket).length;
         objSelect=(objMarketCount<=0)?'':((objMarketCount==1)?Object.keys(objMarket)[0]:Object.keys(objMarket)[rand(0,objMarketCount)]);
         if ((subName!=objName)&&(objMarketCount>0)&&(objMarket[objSelect]['type']!==undefined)&&(objMarket[objSelect]['password']===undefined)&&(storeOpen(objName))) {

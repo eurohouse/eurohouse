@@ -341,9 +341,6 @@ function jsonNews() {
         ard=ard+abk+' · '+el+"<br>"+abl+"<br>";
     } return ard;
 }
-function jsonMarket(id) {
-    return jsonarr(openJournal(id,sysDefStoreJSONs));
-}
 function activeHrsBtn(id) {
     var arr=storeHours(id).split(',');
     var arl=''; for (el in arr) {
@@ -402,8 +399,7 @@ function jsonBookKeep(str) {
     for (el in arr) { arf[el]=arr[el]; } for (el in arf) {
         arl=(arr[el]['status']=='ERR')?'<tr style="text-decoration:line-through;">':'<tr>';
         arl+='<td>@'+arr[el]['receiver']+'</td>';
-        arl+=(isInt(arr[el]['debit']))?'<td>'+formCur(arr[el]['debit'])+'</td>':'<td>'+arr[el]['debit']+'</td>'; arl+=(isInt(arr[el]['credit']))?'<td>'+formCur(arr[el]['credit'])+'</td>':'<td>'+arr[el]['credit']+'</td>';
-        arl+='<td>'+formCur(arr[el]['balance'])+'</td>';
+        arl+=(isInt(arr[el]['debit']))?'<td>'+formCur(arr[el]['debit'])+'</td>':'<td>'+arr[el]['debit']+'</td>'; arl+=(isInt(arr[el]['credit']))?'<td>'+formCur(arr[el]['credit'])+'</td>':'<td>'+arr[el]['credit']+'</td>'; arl+='<td>'+formCur(arr[el]['balance'])+'</td>';
         ard=arl+'</tr>'+ard;
     } return ard;
 }
@@ -701,7 +697,7 @@ function fixPrice(sen,rec,deb,cre) {
 }
 function charge(usr,art='') {
     var powersData=arrjob(sysDefPowersData.value,';',':');
-    var userMarket=jsonMarket(usr);
+    var userMarket=jsonarr(openJournal(usr,sysDefStoreJSONs));
     var force=amount=series=finite=0;
     var usrPwr=(isInt(powersData[usr]))?parseInt(powersData[usr]):0;
     if (usrPwr>=0) {
@@ -734,7 +730,7 @@ function charge(usr,art='') {
 }
 function dominate(usr,id,art='') {
     var powersData=arrjob(sysDefPowersData.value,';',':');
-    var userMarket=jsonMarket(usr);
+    var userMarket=jsonarr(openJournal(usr,sysDefStoreJSONs));
     var force=amount=series=finite=0;
     var usrPwr=(isInt(powersData[usr]))?parseInt(powersData[usr]):0;
     var idPwr=(isInt(powersData[id]))?parseInt(powersData[id]):0;
