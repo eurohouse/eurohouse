@@ -344,12 +344,19 @@ function omniEnter() {
             arg=input.slice(0,-1).split('#');
             omniBox.value=basedec(arg[0],arg[1])+'#'+arg[1]+'/';
         } else if (input.startsWith('::')) {
-            rep=input.replace('::','');
+            rep=input.replace('::',''),cont={},conk=[];
             if ((rep.includes('.'))&&(rep.split('.').length==3)) {
                 setdata('banner',rep+'.png');
+            } else if ((rep.includes(':'))&&(rep.split(':').length==2)) {
+                cont=jsonarr(sysDefContentData.value);
+                conk=[],san=rep.split(':'); for (idx in cont) {
+                    if (cont[idx].toLowerCase().includes(san[0].toLowerCase())) {
+                        conk.push(idx);
+                    }
+                } setdata('banner',conk[san[1]]);
             } else {
-                var cont=jsonarr(sysDefContentData.value);
-                var conk=[]; for (idx in cont) {
+                cont=jsonarr(sysDefContentData.value);
+                conk=[]; for (idx in cont) {
                     if (cont[idx].toLowerCase().includes(rep.toLowerCase())) {
                         conk.push(idx);
                     }
