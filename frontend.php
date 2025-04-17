@@ -664,10 +664,10 @@ function fixPrice(sen,rec,deb,cre) {
     var statD=(isInt(stat[sen]))?parseInt(stat[sen]):0;
     var statC=(isInt(stat[rec]))?parseInt(stat[rec]):0;
     var statDr=parseInt(statD),statCr=parseInt(statC);
-    var lkD=(trans1[Object.keys(trans1)[Object.keys(trans1).length-1]]);
-    var lkC=(trans2[Object.keys(trans2)[Object.keys(trans2).length-1]]);
-    var bal1=((tran1=='{}')||(tran1==''))?statDr:lkD['balance'];
-    var bal2=((tran2=='{}')||(tran2==''))?statCr:lkC['balance'];
+    var lkD=Object.keys(trans1)[Object.keys(trans1).length-1];
+    var lkC=Object.keys(trans2)[Object.keys(trans2).length-1];
+    var bal1=((trans1!==undefined)&&(trans1!==null)&&(trans1[lkD]['balance']!==undefined))?parseInt(trans1[lkD]['balance']):statDr;
+    var bal2=((trans2!==undefined)&&(trans2!==null)&&(trans2[lkC]['balance']!==undefined))?parseInt(trans2[lkC]['balance']):statCr;
     var statDt,statCt,statK,statV,statDi,statCi,statDn,statCn,statT;
     var statDv=statDr-parseInt(bal1),statCv=statCr-parseInt(bal2);
     if ((isInt(deb))&&!(isInt(cre))) {
