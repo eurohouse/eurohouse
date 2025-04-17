@@ -353,7 +353,7 @@ function omniEnter() {
                     if (cont[idx].toLowerCase().includes(rep.toLowerCase())) {
                         conk.push(idx);
                     }
-                } setdata('banner',conk[rand(0,(conk.length-1))]);
+                } setdata('banner',conk[rand(0,(conk.length))]);
             }
         } else if (input.startsWith('->')) { omniSwitch(input.replace('->',''));
         } else if (input.startsWith('\\=')) {
