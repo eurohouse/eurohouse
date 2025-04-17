@@ -349,12 +349,11 @@ function omniEnter() {
                 setdata('banner',rep+'.png');
             } else {
                 var cont=jsonarr(sysDefContentData.value);
-                var conk=(Object.keys(cont)).join(';');
-                for (idx in cont) {
+                var conk=[]; for (idx in cont) {
                     if (cont[idx].toLowerCase().includes(rep.toLowerCase())) {
-                        setdata('banner',idx); break;
+                        conk.push(idx);
                     }
-                }
+                } setdata('banner',conk[rand(0,(conk.length-1))]);
             }
         } else if (input.startsWith('->')) { omniSwitch(input.replace('->',''));
         } else if (input.startsWith('\\=')) {
