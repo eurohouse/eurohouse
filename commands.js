@@ -198,7 +198,8 @@ function pipeExec(input) {
     }
 }
 function omniEnter() {
-    var input=omniBox.value,arb='',arc='',arj='',itr=0,itd=0,arg=[],arh=[],ark={};
+    var input=omniBox.value,arb='',arc='',arj='';
+    var itr=0,itd=0,arg=[],arh=[],ark={};
     if (sysDefMode.value=='chat') { compose(input);
     } else if (sysDefMode.value=='search') {
         omniDisp(requestMode.value,input,requestLock.value);
@@ -344,23 +345,23 @@ function omniEnter() {
             arg=input.slice(0,-1).split('#');
             omniBox.value=basedec(arg[0],arg[1])+'#'+arg[1]+'/';
         } else if (input.startsWith('::')) {
-            rep=input.replace('::',''),cont={},conk=[];
-            if ((rep.includes('.'))&&(rep.split('.').length==3)) {
-                setdata('banner',rep+'.png');
-            } else if ((rep.includes(':'))&&(rep.split(':').length==2)) {
-                cont=jsonarr(sysDefContentData.value);
-                conk=[],san=rep.split(':'); for (idx in cont) {
-                    if (cont[idx].toLowerCase().includes(san[0].toLowerCase())) {
-                        conk.push(idx);
+            arb=input.replace('::','');
+            if ((arb.includes('.'))&&(arb.split('.').length==3)) {
+                setdata('banner',arb+'.png');
+            } else if ((arb.includes(':'))&&(arb.split(':').length==2)) {
+                ark=jsonarr(sysDefContentData.value);
+                arg=arb.split(':'); for (idx in ark) {
+                    if (ark[idx].toLowerCase().includes(arg[0].toLowerCase())) {
+                        arh.push(idx);
                     }
-                } setdata('banner',conk[san[1]]);
+                } setdata('banner',arh[arg[1]]);
             } else {
-                cont=jsonarr(sysDefContentData.value);
-                conk=[]; for (idx in cont) {
-                    if (cont[idx].toLowerCase().includes(rep.toLowerCase())) {
-                        conk.push(idx);
+                ark=jsonarr(sysDefContentData.value);
+                for (idx in ark) {
+                    if (ark[idx].toLowerCase().includes(arb.toLowerCase())) {
+                        arh.push(idx);
                     }
-                } setdata('banner',conk[rand(0,(conk.length))]);
+                } setdata('banner',arh[rand(0,(arh.length))]);
             }
         } else if (input.startsWith('->')) { omniSwitch(input.replace('->',''));
         } else if (input.startsWith('\\=')) {
