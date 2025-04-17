@@ -15,13 +15,15 @@ $userLocks=userlocks($locksArr,$userSettings['collections'],$avaPref,$pref);
 $notesArr=arropen($cookie.'_metadata.json',json_encode($userSettings['metadata']),'CUSTOM');
 $tutorArr=arropen('tutorial.json',"{\"\":\"\"}",'CUSTOM');
 $newsData=arropen('changelog.json',"{\"\":\"\"}",'CUSTOM');
-$listExem=exemplar(str_replace('./','',(glob('./*.models.json')))); foreach ($listExem as $key=>$value) {
+$listCont=exemplar(str_replace('./','',(glob('./*.contents.json'))));
+$listExem=exemplar(str_replace('./','',(glob('./*.models.json'))));
+foreach ($listExem as $key=>$value) {
     if (!isset($value['nsfw'])) { unset($listExem[$key]); }
-} $newsFeed=jsonopen('./.msgbox/'.$cookie.'_msgbox.json',true);
-$userBook=jsonopen('./.book/'.$cookie.'_book.json',true);
-$userStore=jsonopen('./.store/'.$cookie.'_store.json',true);
-$govtFeed=jsonopen('./.cabinet/'.$cookie.'_cabinet.json',true);
-$localesArr=arropen('./i18n.json');
+} foreach ($listCont as $key=>$value) {
+    foreach ($listExem as $iter=>$val) {
+        if (!in_array($iter,$listCont)) { unset($listCont[$key]); }
+    }
+} $localesArr=arropen('./i18n.json');
 $currentTimes=$currentTimesActive=$currentAvatars=[];
 foreach ($poweredData as $key=>$value) {
     if (file_exists($key.'_session.json')) {
@@ -52,3 +54,4 @@ $usersList=array_keys($poweredData); natcasesort($usersList);
 /* ¶ 16 */ json_encode($activeIPs,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
 /* ¶ 17 */ json_encode($localesArr,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
 /* ¶ 18 */ json_encode($listExem,JSON_UNESCAPED_UNICODE);
+/* ¶ 19 */ json_encode($listCont,JSON_UNESCAPED_UNICODE);
