@@ -19,7 +19,7 @@ $listCont=exemplar(str_replace('./','',(glob('./*.contents.json'))));
 $listExem=exemplar(str_replace('./','',(glob('./*.models.json'))));
 foreach ($listExem as $key=>$value) {
     if (!isset($value['nsfw'])) { unset($listExem[$key]); }
-} $keysCont=[]; foreach ($listExem as $title=>$cont) {
+} foreach ($listExem as $title=>$cont) {
     $contKeys=array_keys($listCont,$title);
 } $localesArr=arropen('./i18n.json');
 $currentTimes=$currentTimesActive=$currentAvatars=[];
