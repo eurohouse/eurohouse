@@ -241,10 +241,10 @@ function createEmptyRecord(id,obj,name,val) {
 function init_user(id,pass='',args='',helper=false) {
     var usersList=(sysDefUsersList.value).split(',');
     if (usersList.indexOf(id)<=-1) {
-        set('./.msgbox/'+id+'_msgbox.json','{"":""}',true);
-        set('./.book/'+id+'_book.json','{"":""}',true);
-        set('./.store/'+id+'_store.json','{"":""}',true);
-        set('./.cabinet/'+id+'_cabinet.json','{"":""}',true);
+        set('./.msgbox/'+id+'_msgbox.json','{\"\":\"\"}',true);
+        set('./.book/'+id+'_book.json','{\"\":\"\"}',true);
+        set('./.store/'+id+'_store.json','{\"\":\"\"}',true);
+        set('./.cabinet/'+id+'_cabinet.json','{\"\":\"\"}',true);
     } createEmptyRecord(id,sysDefBindData,'binding',id);
     createEmptyRecord(id,sysDefPowersData,'dominion',0);
     createEmptyRecord(id,sysDefPowersData,'automator',((args.includes('auto'))?'auto':'manual'));
