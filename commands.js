@@ -136,9 +136,9 @@ function pipeExec(input) {
                 }
             }
         }
-    } else if (input.includes('|')) {
-        exr=(input.endsWith('|')),pipes=input.split('|');
-        brd=(input.endsWith('|'))?(pipes.length-2):(pipes.length-1);
+    } else if (input.includes('!')) {
+        exr=(input.endsWith('!')),pipes=input.split('!');
+        brd=(input.endsWith('!'))?(pipes.length-2):(pipes.length-1);
         for (it in pipes) {
             if ((it>=1)&&(it<=brd)) {
                 ark=(pipes[it].includes(':'))?pipes[it].split(':')[0]:pipes[it];
@@ -374,6 +374,8 @@ function omniEnter() {
             }
         } else if (input.startsWith('./')) {
             omniRead(requestMode.value,input.replace('./',''),requestLock.value);
+        } else if (input.startsWith('?')) {
+            omniDisp(requestMode.value,input.replace('?',''),requestLock.value);
         } else if (input.startsWith('>')) {
             arb=input.replace('>',''); if (arb.endsWith('-')) {
                 arc=arb.replace('-',''); administer(arc,'-');
@@ -440,8 +442,7 @@ function omniEnter() {
                 }
             }
         } else if (input.endsWith(';')) { omniBox.value=executeCode(input);
-        } else if ((input.startsWith('/'))||(input.startsWith('\\'))||(input.startsWith('|'))) {
-            pipeExec(input);
+        } else if ((input.startsWith('/'))||(input.startsWith('\\'))||(input.startsWith('!'))) { pipeExec(input);
         } else if ((input.includes('|'))||(input.includes('&'))||(input.includes('~'))||(input.includes('^'))) { omniBox.value=finarr(arrmath(input)).join(';');
         } else if ((input.startsWith('+'))&&(input.endsWith('"'))) {
             arb=parseInt(input.replace('+','').replace('"',''))+1;
