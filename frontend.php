@@ -560,8 +560,7 @@ function compose(msg) {
     if (ratTab[sysDefSessionID.value]>=0) {
         if (addr!==null) {
             for (it in addr) {
-                userID=addr[it].replace('@','');
-                init_user();
+                userID=addr[it].replace('@',''); init_user(userID);
                 msgarr=jsonarr(openJournal(userID,sysDefMsgboxJSONs));
                 if (msg.match(/\r?\n/)!==null) {
                     msgbr=msg.split(/\r?\n/); for (j=0; j<msgbr.length; j++) {
