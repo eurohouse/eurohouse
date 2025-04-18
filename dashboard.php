@@ -26,7 +26,7 @@
         } else if (event.keyCode==8) { handleInput(this.value);
         } else if (event.keyCode==46) { handleInput(this.value);
         } else if (event.keyCode==113) {
-            setdata('mode',nextImage('start;chat;search',sysDefMode.value)); omniBox.focus();
+            setdata('mode',nextImage('start;chat',sysDefMode.value)); omniBox.focus();
         } keyPressed();" oninput="handleInput(this.value,true);">
         <input type="image" onmouseover="soundButton();" id="buttonEnter" class="power" onclick="omniEnter();" src="<?=$prefix.'return.png';?>" title="<?=term('Enter Command/Message',$settings['vocabulary'],$session['units']);?>">
         <input type="image" onmouseover="soundButton();" id="buttonKeyboard" class="power" onclick="document.getElementById('omniBox').focus();" src="<?=$prefix.'keyboard.png';?>" title="<?=term('Focus On Console',$settings['vocabulary'],$session['units']);?>">
