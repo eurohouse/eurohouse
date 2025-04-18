@@ -569,7 +569,7 @@ function compose(msg) {
                     }
                 } else {
                     msgarr[etw(sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now())+' UTC',userID,cyp)]=etw(msg,userID,cyp);
-                } set(userID+'_msgbox.json', encodeURIComponent(JSON.stringify(msgarr)), true);
+                } set(userID+'_msgbox.json',encodeURIComponent(JSON.stringify(msgarr)),true);
             }
         } else {
             msgbox=sysDefMyMsgboxData.value; msgarr=jsonarr(msgbox);
@@ -580,7 +580,7 @@ function compose(msg) {
                 }
             } else {
                 msgarr[etw(sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now())+' UTC',sysDefSessionID.value,cyp)]=etw(msg,sysDefSessionID.value,cyp);
-            } set(sysDefSessionID.value+'_msgbox.json', encodeURIComponent(JSON.stringify(msgarr)),true);
+            } set(sysDefSessionID.value+'_msgbox.json',encodeURIComponent(JSON.stringify(msgarr)),true);
         }
     }
 }
