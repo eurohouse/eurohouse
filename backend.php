@@ -2,7 +2,7 @@
 include 'functions.php'; $settings=fileopen('settings.json');
 $backloadString=implode(' ',$settings['payload']['backward']);
 $forloadString=implode(',',$settings['payload']['forward']);
-$dotDirsList=$settings['dot_dirs'];
+$dotDirsList=$settings['user_info'];
 $updateChannel=[]; foreach ($settings['payload'] as $key=>$val) { $updateChannel[$key]=implode(' ',$val); }
 foreach ($settings['collections'] as $key=>$value) { $settings['collections'][$key]=strtoupper($value).','.$value; }
 if (!file_exists('get.php')) { express(explode(',',$forloadString)); header("Location: index.php"); } initDataDirs('tmp,msgbox,book,store,cabinet,trash');

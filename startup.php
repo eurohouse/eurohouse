@@ -40,7 +40,10 @@ function databox() {
             $('#sysDefHdiData').val(pager(data,17));
             $('#sysDefModelData').val(pager(data,18));
             $('#sysDefContentData').val(pager(data,19));
-            $('#sysDefMetaList').val(Object.keys(jsonarr(sysDefMetaData.value)).join(' | ')); $('#sysDefTutorList').val(Object.keys(jsonarr(sysDefTutorData.value)).join(' | '));
+            for (const [i,val] of ((sysDefDotDirs.value).split(',')).entries()) {
+                document.getElementById('sysDef'+ucfirst(val)+'JSONs').value=miniPager(pager(data,20),i);
+                document.getElementById('sysDefMy'+ucfirst(val)+'Data').value=openJournal(sysDefSessionID.value,(document.getElementById('sysDef'+ucfirst(val)+'JSONs')));
+            } $('#sysDefMetaList').val(Object.keys(jsonarr(sysDefMetaData.value)).join(' | ')); $('#sysDefTutorList').val(Object.keys(jsonarr(sysDefTutorData.value)).join(' | '));
             if (sysDefBindData.value!=sysDefPostBindData.value) { playAudio(bindPlayer,sysDefBindSound.value); } sysDefPostBindData.value=sysDefBindData.value;
             if (sysDefPowersData.value!=sysDefPostPowersData.value) { playAudio(sufferPlayer,sysDefSufferSound.value); } sysDefPostPowersData.value=sysDefPowersData.value;
             if (sysDefToolData.value!=sysDefPostToolData.value) { playAudio(bindPlayer,sysDefBindSound.value); } sysDefPostToolData.value=sysDefToolData.value;
@@ -311,18 +314,6 @@ function wallpaper_engine() {
                 $('#showingAvatarNow').attr('src',pager(data,3));
             <?php } ?>
         },
-    });
-}
-function dot_dirs_data() {
-    $.ajax({
-        url: 'dot_dirs_data.php',
-        success: function(data) {
-            var dotdirs=(sysDefDotDirs.value).split(',')
-            for (const [i,val] of dotdirs.entries()) {
-                document.getElementById('sysDef'+ucfirst(val)+'JSONs').value=pager(data,i);
-                document.getElementById('sysDefMy'+ucfirst(val)+'Data').value=openJournal(sysDefSessionID.value,(document.getElementById('sysDef'+ucfirst(val)+'JSONs')));
-            }
-        }
     });
 }
 function automator() {
