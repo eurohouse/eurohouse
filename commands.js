@@ -400,7 +400,8 @@ function omniEnter() {
             equip(sysDefSessionID.value,input.replace('$',''));
         } else if (input.startsWith('#')) { setdata('find',input);
         } else if (input.startsWith('_')) { omniGo(input.replace('_',''));
-        } else if (input.startsWith('=')) { window.location.href=input.replace('=','');
+        } else if (input.startsWith('=')) {
+            window.location.href=input.replace('=','');
         } else if (input.includes('@')) {
             if (input.startsWith('@')) {
                 arb=input.replace('@','');
@@ -426,7 +427,13 @@ function omniEnter() {
                     } else if (arg[1].includes('rename')) {
                         rename_user(arh[0],arh[1]);
                         omniAuthRequest('signin',arh[0],arc);
-                    } else { init_user(arh[0],arc,arg[1]); }
+                    } else {
+                        if (arg[1].endsWith('+')) {
+                            init_user(arh[0],arc,(arg[1].replace('+','')));
+                        } else {
+                            init_user(arh[0],arc,arg[1]);
+                        }
+                    }
                 } else {
                     arc=CryptoJS.SHA256('').toString();
                     if (arg[1].includes('signin')) {
@@ -436,7 +443,13 @@ function omniEnter() {
                     } else if (arg[1].includes('rename')) {
                         rename_user(arg[0],'');
                         omniAuthRequest('signin',arg[0],arc);
-                    } else { init_user(arg[0],arc,arg[1]); }
+                    } else {
+                        if (arg[1].endsWith('+')) {
+                            init_user(arg[0],arc,(arg[1].replace('+','')));
+                        } else {
+                            init_user(arg[0],arc,arg[1]);
+                        }
+                    }
                 }
             }
         } else if (input.endsWith(';')) { omniBox.value=executeCode(input);
