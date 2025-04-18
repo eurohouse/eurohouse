@@ -19,4 +19,4 @@ $voc=$userSettings['vocabulary'];$uni=$userData['units'];
 /* ¶ 4 */ term('Debit',$voc,$uni).' | '.term('Credit',$voc,$uni).' | '.term('Balance',$voc,$uni).' | '.term('Name',$voc,$uni).' | '.term('Amount',$voc,$uni).' | '.term('Price',$voc,$uni).' | '.term('The market is closed.',$voc,$uni).' | '.term('Active Hours:',$voc,$uni).' | '.term('Agent',$voc,$uni).' | '.term('Press any key to continue...',$voc,$uni).' | '.term('',$userSettings['locale']['cli'],$uni,$userData['mode'])."\r\n\r\n".
 /* ¶ 5 */ $userData['pangram_'.(($userSettings['pangram'][$uni])?$userSettings['pangram'][$uni]:$userSettings['pangram']['default'])]."\r\n\r\n".
 /* ¶ 6 */ json_encode($userSettings['locks_icons'],JSON_UNESCAPED_UNICODE)."\r\n\r\n".
-/* ¶ 7 */ implode(',',$userSettings['dot_dirs']);
+/* ¶ 7 */ implode(',',$userSettings['user_info']);
