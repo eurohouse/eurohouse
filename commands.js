@@ -201,8 +201,6 @@ function omniEnter() {
     var input=omniBox.value,arb='',arc='',arj='';
     var itr=0,itd=0,arg=[],arh=[],ark={};
     if (sysDefMode.value=='chat') { compose(input);
-    } else if (sysDefMode.value=='search') {
-        omniDisp(requestMode.value,input,requestLock.value);
     } else if (sysDefMode.value=='start') {
         if ((input=='reload')||(input=='refresh')) { window.location.reload();
         } else if (input=='upload') {
