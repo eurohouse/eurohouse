@@ -238,10 +238,11 @@ function createEmptyRecord(id,obj,name,val) {
 }
 function init_user(id,pass='',args='',helper=false) {
     var usersList=(sysDefUsersList.value).split(',');
+    var empt=JSON.stringify({});
     if (usersList.indexOf(id)<=-1) {
-        set(id+'_msgbox.json','{}',true);
-        set(id+'_book.json','{}',true);
-        set(id+'_store.json','{}',true);
+        set(id+'_msgbox.json',empt,true);
+        set(id+'_book.json',empt,true);
+        set(id+'_store.json',empt,true);
     } createEmptyRecord(id,sysDefBindData,'binding',id);
     createEmptyRecord(id,sysDefPowersData,'dominion',0);
     createEmptyRecord(id,sysDefPowersData,'automator',((args.includes('auto'))?'auto':'manual'));
@@ -554,17 +555,16 @@ function automate() {
 }
 function compose(msg) {
     var addr=(msg!==undefined)?msg.match(/(@\w*)/g):'';
-    var userID,cyp='.-',msgbox='',msgbr=[];
+    var userID,cyp='.-',msgarr={},msgbr=[];
     var ratTab=arrjob(sysDefPowersData.value,';',':');
     if (ratTab[sysDefSessionID.value]>=0) {
         if (addr!==null) {
             for (it in addr) {
                 userID=addr[it].replace('@','');
-                msgbox=openJournal(userID,sysDefMsgboxJSONs);
-                msgarr=jsonarr(msgbox);
+                init_user();
+                msgarr=jsonarr(openJournal(userID,sysDefMsgboxJSONs));
                 if (msg.match(/\r?\n/)!==null) {
-                    msgbr=msg.split(/\r?\n/);
-                    for (j=0; j<msgbr.length; j++) {
+                    msgbr=msg.split(/\r?\n/); for (j=0; j<msgbr.length; j++) {
                         msgarr[etw(sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now()+j*1000)+' UTC',userID,cyp)]=etw(msgbr[j],userID,cyp);
                     }
                 } else {
@@ -572,10 +572,9 @@ function compose(msg) {
                 } set(userID+'_msgbox.json',encodeURIComponent(JSON.stringify(msgarr)),true);
             }
         } else {
-            msgbox=sysDefMyMsgboxData.value; msgarr=jsonarr(msgbox);
+            msgarr=jsonarr(sysDefMyMsgboxData.value);
             if (msg.match(/\r?\n/)!==null) {
-                msgbr=msg.split(/\r?\n/);
-                for (j=0; j<msgbr.length; j++) {
+                msgbr=msg.split(/\r?\n/); for (j=0; j<msgbr.length; j++) {
                     msgarr[etw(sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now()+j*1000)+' UTC',sysDefSessionID.value,cyp)]=etw(msgbr[j],sysDefSessionID.value,cyp);
                 }
             } else {
