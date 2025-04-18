@@ -118,7 +118,7 @@ function clearJournal(id,obj,name,anyFile=false) {
     } if (anyFile) {
         set('./'+name+'.json',encodeURIComponent(JSON.stringify(resarr)),true);
     } else {
-        set('./.'+name+'/'+sysDefSessionID.value+'_'+name+'.json',encodeURIComponent(JSON.stringify(resarr)),true);
+        set(sysDefSessionID.value+'_'+name+'.json',encodeURIComponent(JSON.stringify(resarr)),true);
     }
 }
 function openJournal(id,obj) {
