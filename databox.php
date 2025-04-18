@@ -37,7 +37,7 @@ $usersList=array_keys($poweredData); natcasesort($usersList);
 $usersData=[];$jsonPerStr='';
 foreach ($userSettings['user_info'] as $ind=>$itm) {
     $usersData=[]; foreach ($usersList as $key=>$value) {
-        $jsonTestArr=jsonopen('./.'.$itm.'/'.$value.'_'.$itm.'.json',true);
+        $jsonTestArr=jsonopen($value.'_'.$itm.'.json',true);
         $usersData[$value]=json_decode($jsonTestArr,true);
     } $jsonPerStr.=json_encode($usersData,JSON_UNESCAPED_UNICODE)."\r\n";
 }

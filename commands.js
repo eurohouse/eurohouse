@@ -270,7 +270,7 @@ function omniEnter() {
                     if ((ark[quote(arg[1])]!==undefined)&&(typeof(ark[quote(arg[1])])=='object')&&(ark[quote(arg[1])][quote(arg[0])]!=='undefined')&&(quote(arg[0])!='amount')) {
                         itr=(arg.length>1)?((isInt(quote(arg[2])))?parseInt(quote(arg[2])):quote(arg[2])):'';ark[quote(arg[1])][quote(arg[0])]=itr;
                     }
-                } set('./.store/'+sysDefSessionID.value+'_store.json',encodeURIComponent(JSON.stringify(ark)),true);
+                } set(sysDefSessionID.value+'_store.json',encodeURIComponent(JSON.stringify(ark)),true);
             }
         } else if (input.startsWith('sell ')) {
             arj=input.replace('sell ',''),arg=arj.match(/\"([^\"]+)\"|(\w+)/g); sell_item(sysDefSessionID.value,arg[0].replaceAll('"',''),arg[1].replaceAll('"',''));
