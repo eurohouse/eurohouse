@@ -224,7 +224,7 @@ function omniEnter() {
         } else if (input=='::') {
             ark=jsonarr(sysDefContentData.value);
             arg=Object.keys(ark);
-            setdata('banner',arg[rand(0,(arg.length-1))]);
+            setdata('banner',arg[rand(0,arg.length)]);
         } else if (input=='\\=') {
             omniBox.value='\\='+demorse(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value);
         } else if (input.startsWith('store ')) {
