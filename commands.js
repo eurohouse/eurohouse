@@ -247,7 +247,7 @@ function omniEnter() {
                 } else if (arb.startsWith('produce ')) {
                     arj=arb.replace('produce ','');
                     arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
-                    if ((ark[quote(arg[0])]!==undefined)&&(typeof(ark[quote(arg[0])])=='object')&&(ark[quote(arg[0])]['finite']!=='undefined')) {
+                    if ((ark[quote(arg[0])]!==undefined)&&(typeof(ark[quote(arg[0])])=='object')&&(ark[quote(arg[0])]['finite']!==undefined)) {
                         itr=(arg.length>1)?((isInt(quote(arg[1])))?parseInt(quote(arg[1])):1):1;
                         itd=(isInt(ark[quote(arg[0])]['amount'])&&(ark[quote(arg[0])]['amount']>=0))?(parseInt(ark[quote(arg[0])]['amount'])+itr):itr;
                         ark[quote(arg[0])]['amount']=itd;
@@ -255,7 +255,7 @@ function omniEnter() {
                 } else if (arb.startsWith('reduce ')) {
                     arj=arb.replace('reduce ','');
                     arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
-                    if ((ark[quote(arg[0])]!==undefined)&&(typeof(ark[quote(arg[0])])=='object')&&(ark[quote(arg[0])]['finite']!=='undefined')) {
+                    if ((ark[quote(arg[0])]!==undefined)&&(typeof(ark[quote(arg[0])])=='object')&&(ark[quote(arg[0])]['finite']!==undefined)) {
                         itr=(arg.length>1)?((isInt(quote(arg[1])))?parseInt(quote(arg[1])):1):1;
                         itd=(isInt(ark[quote(arg[0])]['amount'])&&(ark[quote(arg[0])]['amount']>=0))?(parseInt(ark[quote(arg[0])]['amount'])-itr):itr;
                         ark[quote(arg[0])]['amount']=itd;
@@ -263,12 +263,18 @@ function omniEnter() {
                 } else if (arb.includes('finite ')) {
                     arj=arb.replace('finite ','');
                     arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
-                    if ((ark[quote(arg[0])]!==undefined)&&(typeof(ark[quote(arg[0])])=='object')&&(ark[quote(arg[0])]['finite']!=='undefined')) {
-                        ark[quote(arg[0])]['finite']=flip(ark[quote(arg[0])]['finite']);
+                    if ((ark[quote(arg[0])]!==undefined)&&(typeof(ark[quote(arg[0])])=='object')&&(ark[quote(arg[0])]['finite']!==undefined)) {
+                        ark[quote(arg[0])]['finite']=1;
+                    }
+                } else if (arb.includes('infinite ')) {
+                    arj=arb.replace('infinite ','');
+                    arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
+                    if ((ark[quote(arg[0])]!==undefined)&&(typeof(ark[quote(arg[0])])=='object')&&(ark[quote(arg[0])]['finite']!==undefined)) {
+                        ark[quote(arg[0])]['finite']=0;
                     }
                 } else {
                     arg=arb.match(/\"([^\"]+)\"|(\w+)/g);
-                    if ((ark[quote(arg[1])]!==undefined)&&(typeof(ark[quote(arg[1])])=='object')&&(ark[quote(arg[1])][quote(arg[0])]!=='undefined')&&(quote(arg[0])!='amount')) {
+                    if ((ark[quote(arg[1])]!==undefined)&&(typeof(ark[quote(arg[1])])=='object')&&(ark[quote(arg[1])][quote(arg[0])]!==undefined)&&(quote(arg[0])!='amount')) {
                         itr=(arg.length>1)?((isInt(quote(arg[2])))?parseInt(quote(arg[2])):quote(arg[2])):'';ark[quote(arg[1])][quote(arg[0])]=itr;
                     }
                 } set('./'+sysDefSessionID.value+'_store.json',encodeURIComponent(JSON.stringify(ark)),true);
