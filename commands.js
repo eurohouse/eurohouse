@@ -291,14 +291,12 @@ function omniEnter() {
                     } window.location.reload();
                 }
             }
-        } else if (input.startsWith('touch ')) {
+        } else if (input.startsWith('set ')) {
             if (superuser()) {
-                arj=input.replace('touch ','');
+                arj=input.replace('set ','');
                 arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
-                if (arg.length>0) {
-                    for (i=0; i<arg.length; i++) {
-                        set(requestPath.value+'/'+arg[i].replaceAll('"',''),'',true);
-                    } window.location.reload();
+                if (arg.length==2) {
+                    set(requestPath.value+'/'+arg[0].replaceAll('"',''),requestPath.value+'/'+arg[1].replaceAll('"',''),true); window.location.reload();
                 }
             }
         } else if (input.startsWith('rm ')) {
