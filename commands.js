@@ -282,21 +282,21 @@ function omniEnter() {
         } else if (input.startsWith('sell ')) {
             arj=input.replace('sell ',''),arg=arj.match(/\"([^\"]+)\"|(\w+)/g); sell_item(sysDefSessionID.value,arg[0].replaceAll('"',''),arg[1].replaceAll('"',''));
         } else if (input.startsWith('mkdir ')) {
-            if (superuser()) {
-                arj=input.replace('mkdir ','');
-                arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
-                if (arg.length>0) {
-                    for (i=0; i<arg.length; i++) {
-                        mkdir(requestPath.value+'/'+arg[i].replaceAll('"',''),true);
-                    } window.location.reload();
-                }
+            itd=(superuser())?1:0;
+            arj=input.replace('mkdir ','');
+            arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
+            if (arg.length>0) {
+                for (i=0; i<arg.length; i++) {
+                    mkdir(quote(requestPath.value+'/'+arg[i]),true,itd);
+                } window.location.reload();
             }
         } else if (input.startsWith('set ')) {
             if (superuser()) {
                 arj=input.replace('set ','');
                 arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
                 if (arg.length==2) {
-                    set(requestPath.value+'/'+arg[0].replaceAll('"',''),requestPath.value+'/'+arg[1].replaceAll('"',''),true); window.location.reload();
+                    set(quote(requestPath.value+'/'+arg[0]),quote(requestPath.value+'/'+arg[1]),true);
+                    window.location.reload();
                 }
             }
         } else if (input.startsWith('rm ')) {
@@ -305,27 +305,26 @@ function omniEnter() {
                 arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
                 if (arg.length>0) {
                     for (i=0; i<arg.length; i++) {
-                        del(requestPath.value+'/'+arg[i].replaceAll('"',''),true);
+                        del(quote(requestPath.value+'/'+arg[i]),true);
                     } window.location.reload();
                 }
             }
         } else if (input.startsWith('mv ')) {
-            if (superuser()) {
-                arj=input.replace('mv ', '');
-                arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
-                if (arg.length==2) {
-                    move(requestPath.value+'/'+arg[0].replaceAll('"',''),requestPath.value+'/'+arg[1].replaceAll('"',''),true); window.location.reload();
-                }
+            itd=(superuser())?1:0;
+            arj=input.replace('mv ', '');
+            arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
+            if (arg.length==2) {
+                move(quote(requestPath.value+'/'+arg[0]),quote(requestPath.value+'/'+arg[1]),true,itd);
+                window.location.reload();
             }
         } else if (input.startsWith('cp ')) {
-            if (superuser()) {
-                arj=input.replace('cp ', '');
-                arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
-                if (arg.length>1) {
-                    for (i=1; i<arg.length; i++) {
-                        copy(requestPath.value+'/'+arg[0].replaceAll('"',''),requestPath.value+'/'+arg[i].replaceAll('"',''),true);
-                    } window.location.reload();
-                }
+            itd=(superuser())?1:0;
+            arj=input.replace('cp ', '');
+            arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
+            if (arg.length>1) {
+                for (i=1; i<arg.length; i++) {
+                    copy(quote(requestPath.value+'/'+arg[0]),quote(requestPath.value+'/'+arg[i]),true,itd);
+                } window.location.reload();
             }
         } else if (input.startsWith('update ')) {
             getPkgSequence('get -i '+document.getElementById('updateChannel'+CryptoJS.MD5(input.replace('update ','')).toString()).value,'get ',0);
