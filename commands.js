@@ -222,8 +222,7 @@ function omniEnter() {
         } else if (input=='::::') { setdata('banner','none');
         } else if (input==':::') { setdata('banner','');
         } else if (input=='::') {
-            ark=jsonarr(sysDefContentData.value);
-            arg=Object.keys(ark);
+            arg=Object.keys(jsonarr(sysDefContentData.value));
             setdata('banner',arg[rand(0,arg.length)]);
         } else if (input=='\\=') {
             omniBox.value='\\='+demorse(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value);
@@ -348,12 +347,10 @@ function omniEnter() {
             arb=input.replace('::','');
             if ((arb.includes('.'))&&(arb.split('.').length==3)) { setdata('banner',arb+'.png');
             } else {
-                arh=jsonarr(sysDefContentData.value);
-                for (idx in arh) {
-                    if (arh[idx].toLowerCase().includes(arb.toLowerCase())) {
-                        setdata('banner',idx); break;
-                    }
-                }
+                ark=jsonarr(sysDefContentData.value);
+                arh=[]; for (idx in ark) {
+                    if (ark[idx].toLowerCase().includes(arb.toLowerCase())) { arh.push(idx); }
+                } setdata('banner',arh[rand(0,arh.length-1)]);
             }
         } else if (input.startsWith('->')) {
             omniSwitch(input.replace('->',''));
