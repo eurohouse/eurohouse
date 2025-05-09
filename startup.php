@@ -66,7 +66,7 @@ function world_clock() {
         url: 'world_clock.php',
         success: function(data) {
             $('#currentTime').val(pager(data,0)); var enzi=pager(data,1).split(' ');
-            $('#alarmTime').val((enzi[0]!='00:00')?enzi[0]:format_hhmmss(audioPlayer.currentTime,true));
+            $('#alarmTime').val((enzi[0]!='00:00')?enzi[0]:hhmmss(audioPlayer.currentTime,true));
             var effi=pager(data,2).split(';'); var mixers=pager(data,3).split(' ');
             var bndm=strarr(sysDefBindData.value,';',':')[sysDefSessionID.value];
             var fint=pager(data,4).split(' | '); $('#sysDefLockIcons').val(pager(data,6));

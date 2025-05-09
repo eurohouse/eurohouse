@@ -13,7 +13,7 @@ if ($userData['vintage']!=0) {
 } else { $v00=$v01=$ol00=$ol01=$ol10=$ol11="none"; }
 $voc=$userSettings['vocabulary'];$uni=$userData['units'];
 /* ¶ 0 */ echo $dateTimeStr."\r\n\r\n".
-/* ¶ 1 */ format_hhmmss($alarmInTime,true)." ".$ongo.$inco.$userData['observe'].$userData['spectate'].date('ILw')." ".alphaChannel($userData['back_color'],$userData['opacity'])."\r\n\r\n".
+/* ¶ 1 */ hhmmss($alarmInTime,true)." ".$ongo.$inco.$userData['observe'].$userData['spectate'].date('ILw')." ".alphaChannel($userData['back_color'],$userData['opacity'])."\r\n\r\n".
 /* ¶ 2 */ $v00.";".$v01.";".$ol00.";".$ol01.";".$ol10.";".$ol11."\r\n\r\n".
 /* ¶ 3 */ $userData['audio_volume'].' '.$userData['audio_speed'].' '.$userData['video_volume'].' '.$userData['video_speed']."\r\n\r\n".
 /* ¶ 4 */ term('Debit',$voc,$uni).' | '.term('Credit',$voc,$uni).' | '.term('Balance',$voc,$uni).' | '.term('Name',$voc,$uni).' | '.term('Amount',$voc,$uni).' | '.term('Price',$voc,$uni).' | '.term('The market is closed.',$voc,$uni).' | '.term('Active Hours:',$voc,$uni).' | '.term('Agent',$voc,$uni).' | '.term('Press any key to continue...',$voc,$uni).' | '.term('',$userSettings['locale']['cli'],$uni,$userData['mode'])."\r\n\r\n".

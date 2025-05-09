@@ -231,7 +231,7 @@ function dir_size($path): int {
         }
     } return $bytestotal;
 }
-function format_hhmmss($num,$omitHours=false) {
+function hhmmss($num,$omitHours=false) {
     $hh=$mm=$ss=0;$isHour=floor($num/3600);
     $hh=sprintf('%02d',floor($num/3600));
     $num%=3600;$mm=sprintf('%02d',floor($num/60));
