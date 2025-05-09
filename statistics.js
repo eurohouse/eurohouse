@@ -2,7 +2,7 @@ function scores(sta) {
     var sto={'bind':'binding','call':'calling','auto':'automator','tool':'toolbox','ip':'visitors','powers':'dominion','hdi':'i18n'};
     var sti={'bind':'μ','call':'μ','auto':'μ','tool':'μ','powers':'μ'},rid=sysDefSessionID.value;
     var ept=document.getElementById('sysDef'+ucfirst(sta)+'Data'),arr=ept.value,eps=sto[sta]+'.json',obj={}; if (sti[sta]!==undefined) {
-        if (sti[sta]=='μ') { obj=arrjob(arr,';',':');
+        if (sti[sta]=='μ') { obj=strarr(arr,';',':');
         } else { obj=jsonarr(arr); }
     } else { obj=jsonarr(arr); }
     var res='',sortable={},ordered={};

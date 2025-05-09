@@ -17,7 +17,7 @@ function executeMacros(input) {
         if (input.startsWith('lock_')) {
             output=input+': '+lockdata()[input.replace('lock_','')];
         } else if ((input=='melody')) {
-            output=input+': '+dtw(userdata()[input],sysDefSessionID.value,sysDefNumeric.value);
+            output=input+': '+demorse(userdata()[input],sysDefSessionID.value,sysDefNumeric.value);
         } else if ((input=='playlist')) {
             output=input+': '+decipher(userdata()[input],sysDefSessionID.value,sysDefNumeric.value);
         } else { output=input+': '+userdata()[input]; }
@@ -182,9 +182,9 @@ function pipeExec(input) {
                     for (j=0; j<ml.length; j++) {
                         if ((ml[j].toLowerCase().includes(np3.toLowerCase()))&&(isInt(np4))) {
                             if ((isInt(np2))&&(inc>=np2)) {
-                                ard=arrangeMenu(sysDefPlaylist.value,etw(ml[j],sysDefSessionID.value,sysDefNumeric.value),' | '); setdata('playlist',ard);break;
+                                ard=arrangeMenu(sysDefPlaylist.value,enmorse(ml[j],sysDefSessionID.value,sysDefNumeric.value),' | '); setdata('playlist',ard);break;
                             } else if (np2=='*') {
-                                ard=arrangeMenu(sysDefPlaylist.value,etw(mr[rand(0,mr.length)],sysDefSessionID.value,sysDefNumeric.value),' | '); setdata('playlist',ard);break;
+                                ard=arrangeMenu(sysDefPlaylist.value,enmorse(mr[rand(0,mr.length)],sysDefSessionID.value,sysDefNumeric.value),' | '); setdata('playlist',ard);break;
                             } inc++;
                         }
                     }
@@ -208,7 +208,7 @@ function omniEnter() {
         } else if (input.toLowerCase()=='load') {
             userRestore(sysDefSessionID.value);
         } else if (input.toLowerCase()=='play') {
-            omniListen(dtw(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value));
+            omniListen(demorse(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value));
         } else if (input.toLowerCase()=='pause') { omniPause();
         } else if (input.toLowerCase()=='nightcore') {
             var vlr=superRound((parseFloat(sysDefAudioSpeed.value)+0.05),2);var vld=(vlr>1.5)?1.5:vlr;setdata('audio_speed',vld);
@@ -221,12 +221,16 @@ function omniEnter() {
             var vlr=superRound((parseFloat(sysDefVideoSpeed.value)-0.05),2);var vld=(vlr<0.5)?0.5:vlr;setdata('video_speed',vld);
         } else if (input=='::::') { setdata('banner','none');
         } else if (input==':::') { setdata('banner','');
+        } else if (input=='::') {
+            ark=jsonarr(sysDefContentData.value);
+            arg=Object.keys(ark);
+            setdata('banner',arg[rand(0,(arg.length-1))]);
         } else if (input=='\\=') {
-            omniBox.value='\\='+dtw(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value);
+            omniBox.value='\\='+demorse(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value);
         } else if (input.startsWith('store ')) {
             ark=jsonarr(openJournal(sysDefSessionID.value,sysDefStoreJSONs));
             arb=input.replace('store ','');
-            if ((arrjob(sysDefPowersData.value,';',':'))[sysDefSessionID.value]>=0) {
+            if ((strarr(sysDefPowersData.value,';',':'))[sysDefSessionID.value]>=0) {
                 if (arb.startsWith('delete ')) {
                     arj=arb.replace('delete ','');
                     arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
@@ -341,7 +345,16 @@ function omniEnter() {
             arg=input.slice(0,-1).split('#');
             omniBox.value=basedec(arg[0],arg[1])+'#'+arg[1]+'/';
         } else if (input.startsWith('::')) {
-            setdata('banner',input.replace('::','')+'.png');
+            arb=input.replace('::','');
+            if ((arb.includes('.'))&&(arb.split('.').length==3)) { setdata('banner',arb+'.png');
+            } else {
+                arh=jsonarr(sysDefContentData.value);
+                for (idx in arh) {
+                    if (arh[idx].toLowerCase().includes(arb.toLowerCase())) {
+                        setdata('banner',idx); break;
+                    }
+                }
+            }
         } else if (input.startsWith('->')) {
             omniSwitch(input.replace('->',''));
         } else if (input.startsWith('\\=')) {
@@ -384,8 +397,10 @@ function omniEnter() {
             bind(sysDefSessionID.value,input.replace('&',''));
         } else if (input.startsWith('$')) {
             equip(sysDefSessionID.value,input.replace('$',''));
-        } else if (input.startsWith('#')) { setdata('find',input);
-        } else if (input.startsWith('_')) { omniGo(input.replace('_',''));
+        } else if (input.startsWith('#')) {
+            setdata('find',input);
+        } else if (input.startsWith('_')) {
+            omniGo(input.replace('_',''));
         } else if (input.startsWith('=')) {
             window.location.href=input.replace('=','');
         } else if (input.includes('@')) {

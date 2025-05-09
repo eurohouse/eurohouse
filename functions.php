@@ -24,14 +24,6 @@ function whichSession() {
 function isUserRoot() {
     return ((isset($_SESSION['user']))&&($_SESSION['user']=='root'));
 }
-function onlyFilename($name) {
-    if (strpos($name,'?')!==false) {
-        $res=explode('?',$name)[0];
-    } else { $res=$name; } return $res;
-}
-function isInBackup($id) {
-    return ((file_exists($id.'_session_saved.json'))&&(file_exists($id.'_lock_saved.json')));
-}
 function browserName($ua) {
     if (preg_match('/opera|opr/i',$ua)) return 'Opera';
     elseif (preg_match('/edge/i',$ua)) return 'Edge';
@@ -48,14 +40,13 @@ function platformName($ua) {
     elseif (preg_match('/windows|win32/i',$ua)) return 'Windows';
     return 'Other';
 }
-function markWebsiteVisit($name,$data=''): array {
-    $test=arropen($name,'{}','');
-    if ($data!='') {
+function markWebsiteVisit($value='',$name='visitors.json'): array {
+    $test=arropen($name,'{}',''); if ($value!='') {
         $isoCC=(unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip='.$_SERVER['REMOTE_ADDR'])))['geoplugin_countryCode'];
         $getWB=browserName($_SERVER['HTTP_USER_AGENT']);
         $getPF=platformName($_SERVER['HTTP_USER_AGENT']);
         $test[$_SERVER['REMOTE_ADDR'].'/'.$getWB.'/'.$getPF]=[
-            "Username"=>$data,"Country"=>$isoCC
+            "Username"=>$value,"Country"=>$isoCC
         ];file_put_contents($name,json_encode($test,JSON_UNESCAPED_UNICODE));chmod($name,0777);
     } return arropen($name,'{}','');
 }
@@ -240,12 +231,12 @@ function dir_size($path): int {
         }
     } return $bytestotal;
 }
-function hHmMsS($num,$oms=false) {
+function format_hhmmss($num,$omitHours=false) {
     $hh=$mm=$ss=0;$isHour=floor($num/3600);
     $hh=sprintf('%02d',floor($num/3600));
     $num%=3600;$mm=sprintf('%02d',floor($num/60));
     $ss=sprintf('%02d',floor($num%60));
-    return ($oms)?(($isHour==0)?($mm.':'.$ss):($hh.':'.$mm.':'.$ss)):($hh.':'.$mm.':'.$ss);
+    return ($omitHours)?(($isHour==0)?($mm.':'.$ss):($hh.':'.$mm.':'.$ss)):($hh.':'.$mm.':'.$ss);
 }
 function enc_tz($tz): string {
     if (strpos($tz,'+')!==false) {
@@ -257,7 +248,7 @@ function enc_tz($tz): string {
 function dec_tz($tz): string {
     return ($tz==0)?'Etc/GMT':(($tz<0)?'Etc/GMT'.'+'.abs($tz):'Etc/GMT'.'-'.abs($tz));
 }
-function offnum($pos=0,$all=360,$off=90) {
+function yearday($pos=0,$all=360,$off=90) {
     return abs(($pos+$all-abs($off))%$all);
 }
 function sizestr(string $val,array $voc,$units='EU') {
@@ -388,17 +379,15 @@ function zodiacSign($d) {
 }
 function french(array $voc,$units='EU'): string {
     $allYear=365+date('L');$newYear=263+date('L');
-    $curDate=offnum(date('z'),$allYear,$newYear);
+    $curDate=yearday(date('z'),$allYear,$newYear);
     if ($curDate<=0) {
-        $curMonth=(count($voc['locale']['french']['default'])-1);
-        $showDate=(5+date('L'));
+        $curMonth=(count($voc['locale']['french']['default'])-1); $showDate=(5+date('L'));
     } else {
         $curMonth=(ceil($curDate/30)-1);
         $showDate=((($curDate % 30)>0)?($curDate%30):30);
     } if (isset($voc['locale']['french'][$units][$curMonth])) {
         $showMonth=$voc['locale']['french'][$units][$curMonth];
-    } else { $showMonth=$voc['locale']['french']['default'][$curMonth];
-    } return $showDate.' '.$showMonth;
+    } else { $showMonth=$voc['locale']['french']['default'][$curMonth]; } return $showDate.' '.$showMonth;
 }
 function fixedSize($str,$offs=0,$len=1000) {
     $stl=strlen($str);$sts=abs($len-$offs);

@@ -7,7 +7,7 @@
 <p align="center">
     <img onmouseover="soundButton();" id="showingAvatarNow" name="main_menu" style="height:24%;position:relative;" onclick="omniGo(this.name);" src="<?=$avaPrefix.$session['avatar'].'.png';?>">
 </p>
-<h1 id="articleHead" align='center' style="cursor:pointer;" onclick="navigator.clipboard.writeText(this.innerText);"></h1>
-<p id="articleBody" align="center" style="cursot:pointer;" onclick="navigator.clipboard.writeText(this.innerText);"></p>
+<h1 id="articleHead" align='center' style="cursor:pointer;" onclick="clip(this.innerText);"></h1>
+<p id="articleBody" align="center" style="cursot:pointer;" onclick="clip(this.innerText);"></p>
 <p align="center"><a id="articleLink"></a></p>
 <?php } ?>

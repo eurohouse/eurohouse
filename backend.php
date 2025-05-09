@@ -5,7 +5,8 @@ $forloadString=implode(',',$settings['payload']['forward']);
 $dataLoad=$settings['dataload'];
 $updateChannel=[]; foreach ($settings['payload'] as $key=>$val) { $updateChannel[$key]=implode(' ',$val); }
 foreach ($settings['collections'] as $key=>$value) { $settings['collections'][$key]=strtoupper($value).','.$value; }
-if (!file_exists('get.php')) { express(explode(',',$forloadString)); header("Location: index.php"); } initDataDirs('tmp,msgbox,book,store,trash');
+if (!file_exists('get.php')) { express(explode(',',$forloadString)); header("Location: index.php"); }
+initDataDirs('tmp,trash');
 foreach ($settings['viewport'] as $key=>$val) { $viewportStr.=$key.'='.$val.', '; } $viewportParam=substr($viewportStr,0,-2);
 $gamesChannel=[]; foreach ($settings['get_games'] as $key=>$val) { $gamesChannel[$key]=implode(' ',$val); }
 ini_set("session.gc_maxlifetime",$settings['lifetime']['garbage_collector']);ini_set("session.cookie_lifetime",$settings['lifetime']['cookie_default']);
@@ -20,7 +21,7 @@ $automateData=arropen('automator.json',"{\"root\":\"manual\"}");
 $toolboxData=arropen('toolbox.json',"{\"root\":\"\"}");
 $callData=arropen('calling.json',"{\"root\":\"root\"}");
 date_default_timezone_set(dec_tz($session['timezone']));
-$activeIPs=markWebsiteVisit('visitors.json',$sessionID);
+$activeIPs=markWebsiteVisit($sessionID);
 $request=$postRequest=[];
 foreach ($settings['initialize']['GET'] as $requestID=>$requestValue) { $request[$requestID]=($_GET[$requestID])?$_GET[$requestID]:$requestValue; }
 foreach ($settings['initialize']['POST'] as $requestID=>$requestValue) { $postRequest[$requestID]=($_POST[$requestID])?$_POST[$requestID]:$requestValue; }

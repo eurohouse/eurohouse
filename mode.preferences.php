@@ -25,120 +25,84 @@
         <label><?=term('Font Configuration:',$settings['vocabulary'],$session['units']);?></label><br>
         <select id="setUTF0" style="width:15%;" onchange="setdata('font_ascii',setUTF0.options[setUTF0.selectedIndex].id);">
         <?php foreach ($userLocks['font'] as $key=>$value) { ?>
-            <option id="<?=$value;?>" <?php if (onlyFilename($session['font_ascii'])==$value) { ?> selected <?php } ?>>
-                <?=$value;?>
-            </option>
+            <option id="<?=$value;?>" <?php if ($session['font_ascii']==$value) { ?> selected <?php } ?>><?=$value;?></option>
         <?php } ?></select>
         <select id="setUTF1" style="width:15%;" onchange="setdata('font_latin',setUTF1.options[setUTF1.selectedIndex].id);">
         <?php foreach ($userLocks['font'] as $key=>$value) { ?>
-            <option id="<?=$value;?>" <?php if (onlyFilename($session['font_latin'])==$value) { ?> selected <?php } ?>>
-                <?=$value;?>
-            </option>
+            <option id="<?=$value;?>" <?php if ($session['font_latin']==$value) { ?> selected <?php } ?>><?=$value;?></option>
         <?php } ?></select>
         <select id="setUTF2" style="width:15%;" onchange="setdata('font_phone',setUTF2.options[setUTF2.selectedIndex].id);">
         <?php foreach ($userLocks['font'] as $key=>$value) { ?>
-            <option id="<?=$value;?>" <?php if (onlyFilename($session['font_phone'])==$value) { ?> selected <?php } ?>>
-                <?=$value;?>
-            </option>
+            <option id="<?=$value;?>" <?php if ($session['font_phone']==$value) { ?> selected <?php } ?>><?=$value;?></option>
         <?php } ?></select>
         <select id="setUTF3" style="width:15%;" onchange="setdata('font_greek',setUTF3.options[setUTF3.selectedIndex].id);">
         <?php foreach ($userLocks['font'] as $key=>$value) { ?>
-            <option id="<?=$value;?>" <?php if (onlyFilename($session['font_greek'])==$value) { ?> selected <?php } ?>>
-                <?=$value;?>
-            </option>
+            <option id="<?=$value;?>" <?php if ($session['font_greek']==$value) { ?> selected <?php } ?>><?=$value;?></option>
         <?php } ?></select>
         <select id="setUTF4" style="width:15%;" onchange="setdata('font_cyril',setUTF4.options[setUTF4.selectedIndex].id);">
         <?php foreach ($userLocks['font'] as $key=>$value) { ?>
-            <option id="<?=$value;?>" <?php if (onlyFilename($session['font_cyril'])==$value) { ?> selected <?php } ?>>
-                <?=$value;?>
-            </option>
+            <option id="<?=$value;?>" <?php if ($session['font_cyril']==$value) { ?> selected <?php } ?>><?=$value;?></option>
         <?php } ?></select><br>
         <select id="setUTF5" style="width:15%;" onchange="setdata('font_arabi',setUTF5.options[setUTF5.selectedIndex].id);">
         <?php foreach ($userLocks['font'] as $key=>$value) { ?>
-            <option id="<?=$value;?>" <?php if (onlyFilename($session['font_arabi'])==$value) { ?> selected <?php } ?>>
-                <?=$value;?>
-            </option>
+            <option id="<?=$value;?>" <?php if ($session['font_arabi']==$value) { ?> selected <?php } ?>><?=$value;?></option>
         <?php } ?></select>
         <select id="setUTF6" style="width:15%;" onchange="setdata('font_korea',setUTF6.options[setUTF6.selectedIndex].id);">
         <?php foreach ($userLocks['font'] as $key=>$value) { ?>
-            <option id="<?=$value;?>" <?php if (onlyFilename($session['font_korea'])==$value) { ?> selected <?php } ?>>
-                <?=$value;?>
-            </option>
+            <option id="<?=$value;?>" <?php if ($session['font_korea']==$value) { ?> selected <?php } ?>><?=$value;?></option>
         <?php } ?></select>
         <select id="setUTF7" style="width:15%;" onchange="setdata('font_china',setUTF7.options[setUTF7.selectedIndex].id);">
         <?php foreach ($userLocks['font'] as $key=>$value) { ?>
-            <option id="<?=$value;?>" <?php if (onlyFilename($session['font_china'])==$value) { ?> selected <?php } ?>>
-                <?=$value;?>
-            </option>
+            <option id="<?=$value;?>" <?php if ($session['font_china']==$value) { ?> selected <?php } ?>><?=$value;?></option>
         <?php } ?></select>
         <select id="setUTF8" style="width:15%;" onchange="setdata('font_other',setUTF8.options[setUTF8.selectedIndex].id);">
         <?php foreach ($userLocks['font'] as $key=>$value) { ?>
-            <option id="<?=$value;?>" <?php if (onlyFilename($session['font_other'])==$value) { ?> selected <?php } ?>>
-                <?=$value;?>
-            </option>
+            <option id="<?=$value;?>" <?php if ($session['font_other']==$value) { ?> selected <?php } ?>><?=$value;?></option>
         <?php } ?></select>
         <select id="setUTF9" style="width:15%;" onchange="setdata('font_emoji',setUTF9.options[setUTF9.selectedIndex].id);">
         <?php foreach ($userLocks['font'] as $key=>$value) { ?>
-            <option id="<?=$value;?>" <?php if (onlyFilename($session['font_emoji'])==$value) { ?> selected <?php } ?>>
-                <?=$value;?>
-            </option>
+            <option id="<?=$value;?>" <?php if ($session['font_emoji']==$value) { ?> selected <?php } ?>><?=$value;?></option>
         <?php } ?></select><br>
         <label><?=term('Sound Effects:',$settings['vocabulary'],$session['units']);?></label><br>
         <select id="setAlarmSound" style="width:15%;" onchange="setdata('alarm_sound',setAlarmSound.options[setAlarmSound.selectedIndex].id); omniListen(setAlarmSound.options[setAlarmSound.selectedIndex].id, true);">
         <?php foreach ($userLocks['sound'] as $key=>$value) { ?>
-            <option id="<?=$value;?>" <?php if (onlyFilename($session['alarm_sound'])==$value) { ?> selected <?php } ?>>
-                <?=$value;?>
-            </option>
+            <option id="<?=$value;?>" <?php if ($session['alarm_sound']==$value) { ?> selected <?php } ?>><?=$value;?></option>
         <?php } ?></select>
         <select id="setTickingSound" style="width:15%;" onchange="setdata('ticking_sound',setTickingSound.options[setTickingSound.selectedIndex].id); omniListen(setTickingSound.options[setTickingSound.selectedIndex].id,true);">
         <?php foreach ($userLocks['sound'] as $key=>$value) { ?>
-            <option id="<?=$value;?>" <?php if (onlyFilename($session['ticking_sound'])==$value) { ?> selected <?php } ?>><?=$value;?></option>
+            <option id="<?=$value;?>" <?php if ($session['ticking_sound']==$value) { ?> selected <?php } ?>><?=$value;?></option>
         <?php } ?></select>
         <select id="setBackgroundSound" style="width:15%;" onchange="setdata('background_sound',setBackgroundSound.options[setBackgroundSound.selectedIndex].id); omniListen(setBackgroundSound.options[setBackgroundSound.selectedIndex].id,true);">
         <?php foreach ($userLocks['sound'] as $key=>$value) { ?>
-            <option id="<?=$value;?>" <?php if (onlyFilename($session['background_sound'])==$value) { ?> selected <?php } ?>><?=$value;?></option>
+            <option id="<?=$value;?>" <?php if ($session['background_sound']==$value) { ?> selected <?php } ?>><?=$value;?></option>
         <?php } ?></select>
         <select id="setFocusSound" style="width:15%;" onchange="setdata('focus_sound',setFocusSound.options[setFocusSound.selectedIndex].id); omniListen(setFocusSound.options[setFocusSound.selectedIndex].id,true);">
         <?php foreach ($userLocks['sound'] as $key=>$value) { ?>
-            <option id="<?=$value;?>" <?php if (onlyFilename($session['focus_sound'])==$value) { ?> selected <?php } ?>>
-                <?=$value;?>
-            </option>
+            <option id="<?=$value;?>" <?php if ($session['focus_sound']==$value) { ?> selected <?php } ?>><?=$value;?></option>
         <?php } ?></select>
         <select id="setTypeSound" style="width:15%;" onchange="setdata('type_sound',setTypeSound.options[setTypeSound.selectedIndex].id); omniListen(setTypeSound.options[setTypeSound.selectedIndex].id,true);">
         <?php foreach ($userLocks['sound'] as $key=>$value) { ?>
-            <option id="<?=$value;?>" <?php if (onlyFilename($session['type_sound'])==$value) { ?> selected <?php } ?>>
-                <?=$value;?>
-            </option>
+            <option id="<?=$value;?>" <?php if ($session['type_sound']==$value) { ?> selected <?php } ?>><?=$value;?></option>
         <?php } ?></select><br>
         <select id="setErrorSound" style="width:15%;" onchange="setdata('error_sound',setErrorSound.options[setErrorSound.selectedIndex].id); omniListen(setErrorSound.options[setErrorSound.selectedIndex].id,true);">
         <?php foreach ($userLocks['sound'] as $key=>$value) { ?>
-            <option id="<?=$value;?>" <?php if (onlyFilename($session['error_sound'])==$value) { ?> selected <?php } ?>>
-                <?=$value;?>
-            </option>
+            <option id="<?=$value;?>" <?php if ($session['error_sound']==$value) { ?> selected <?php } ?>><?=$value;?></option>
         <?php } ?></select>
         <select id="setNotifySound" style="width:15%;" onchange="setdata('notify_sound',setNotifySound.options[setNotifySound.selectedIndex].id); omniListen(setNotifySound.options[setNotifySound.selectedIndex].id,true);">
         <?php foreach ($userLocks['sound'] as $key=>$value) { ?>
-            <option id="<?=$value;?>" <?php if (onlyFilename($session['notify_sound'])==$value) { ?> selected <?php } ?>>
-                <?=$value;?>
-            </option>
+            <option id="<?=$value;?>" <?php if ($session['notify_sound']==$value) { ?> selected <?php } ?>><?=$value;?></option>
         <?php } ?></select>
         <select id="setBindSound" style="width:15%;" onchange="setdata('bind_sound',setBindSound.options[setBindSound.selectedIndex].id); omniListen(setBindSound.options[setBindSound.selectedIndex].id,true);">
         <?php foreach ($userLocks['sound'] as $key=>$value) { ?>
-            <option id="<?=$value;?>" <?php if (onlyFilename($session['bind_sound'])==$value) { ?> selected <?php } ?>>
-                <?=$value;?>
-            </option>
+            <option id="<?=$value;?>" <?php if ($session['bind_sound']==$value) { ?> selected <?php } ?>><?=$value;?></option>
         <?php } ?></select>
         <select id="setHitSound" style="width:15%;" onchange="setdata('hit_sound',setHitSound.options[setHitSound.selectedIndex].id); omniListen(setHitSound.options[setHitSound.selectedIndex].id,true);">
         <?php foreach ($userLocks['sound'] as $key=>$value) { ?>
-            <option id="<?=$value;?>" <?php if (onlyFilename($session['hit_sound'])==$value) { ?> selected <?php } ?>>
-                <?=$value;?>
-            </option>
+            <option id="<?=$value;?>" <?php if ($session['hit_sound']==$value) { ?> selected <?php } ?>><?=$value;?></option>
         <?php } ?></select>
         <select id="setSufferSound" style="width:15%;" onchange="setdata('suffer_sound',setSufferSound.options[setSufferSound.selectedIndex].id); omniListen(setSufferSound.options[setSufferSound.selectedIndex].id,true);">
         <?php foreach ($userLocks['sound'] as $key=>$value) { ?>
-            <option id="<?=$value;?>" <?php if (onlyFilename($session['suffer_sound'])==$value) { ?> selected <?php } ?>>
-                <?=$value;?>
-            </option>
+            <option id="<?=$value;?>" <?php if ($session['suffer_sound']==$value) { ?> selected <?php } ?>><?=$value;?></option>
         <?php } ?></select><br>
         <label><?=term('User Interface:', $settings['vocabulary'],$session['units']);?></label><br>
         <input type="text" id="setBoxShadow" style="width:27%;" value="<?=$session['box_shadow'];?>" onkeydown="
