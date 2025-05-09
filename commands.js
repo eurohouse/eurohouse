@@ -350,7 +350,7 @@ function omniEnter() {
                 ark=jsonarr(sysDefContentData.value);
                 arh=[]; for (idx in ark) {
                     if (ark[idx].toLowerCase().includes(arb.toLowerCase())) { arh.push(idx); }
-                } setdata('banner',arh[rand(0,arh.length-1)]);
+                } setdata('banner',arh[rand(0,arh.length)]);
             }
         } else if (input.startsWith('->')) {
             omniSwitch(input.replace('->',''));
