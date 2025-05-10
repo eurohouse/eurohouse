@@ -224,7 +224,7 @@ function world_clock() {
             } if (calls[sysDefSessionID.value]!=sysDefSessionID.value) {
                 playAudio(alarmPlayer,sysDefAlarmSound.value);
                 calls[sysDefSessionID.value]=sysDefSessionID.value;
-                set('calling.json',JSON.stringify(calls),true);
+                set('calling.json',JSON.stringify(calls),true,'rw');
                 sysDefCallData.value=arrstr(calls,';',':');
             }
         },

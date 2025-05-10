@@ -15,13 +15,13 @@ function userdata() {
 }
 function setlock(ent,val) {
     var obj=lockdata(); obj[ent]=val;
-    set(sysDefSessionID.value+'_lock.json',JSON.stringify(obj),true); <?php foreach ($locks as $key=>$value) {
+    set(sysDefSessionID.value+'_lock.json',JSON.stringify(obj),true,'rw'); <?php foreach ($locks as $key=>$value) {
         echo "lock".snakeToCamel($key).".value = obj['".$key."'];";
     } ?>
 }
 function setdata(ent,val) {
     var obj=userdata();obj[ent]=val;
-    set(sysDefSessionID.value+'_session.json',JSON.stringify(obj),true);
+    set(sysDefSessionID.value+'_session.json',JSON.stringify(obj),true,'rw');
     <?php foreach ($settings['defaults'] as $key=>$value) {
         echo "sysDef".snakeToCamel($key).".value=obj['".$key."'];";
     } ?> if (ent=='audio_volume') { audioPlayer.volume=val; }
@@ -86,7 +86,7 @@ function playlistNext(name) {
 }
 function setfor(id,obj,name,val) {
     var arr=(typeof(obj)=='object')?strarr(obj.value,';',':'):strarr(obj,';',':'); var arf=arr; arf[id]=val;
-    set(name+'.json',JSON.stringify(arf),true);
+    set(name+'.json',JSON.stringify(arf),true,'rw');
     obj.value=arrstr(arf,';',':');
 }
 function lockarr(id) {
@@ -102,11 +102,11 @@ function lockcount(id) {
 function metadata() { return jsonarr(sysDefMetaData.value); }
 function setmeta(ent,val) {
     var obj=metadata(); obj[ent]=val;
-    set(sysDefSessionID.value+'_metadata.json',JSON.stringify(obj),true);
+    set(sysDefSessionID.value+'_metadata.json',JSON.stringify(obj),true,'rw');
 }
 function delmeta(ent) {
     var obj=metadata(); delete obj[ent];
-    set(sysDefSessionID.value+'_metadata.json',JSON.stringify(obj),true);
+    set(sysDefSessionID.value+'_metadata.json',JSON.stringify(obj),true,'rw');
 }
 function clearJournal(id,obj,name,anyFile=false) {
     var resarr=(typeof(obj)=='object')?jsonarr(obj.value):jsonarr(obj);
@@ -128,9 +128,9 @@ function clearJournal(id,obj,name,anyFile=false) {
     } else {
         if (resarr[id]!==undefined) { delete resarr[id]; }
     } if (anyFile) {
-        set('./'+name+'.json',encodeURIComponent(JSON.stringify(resarr)),true);
+        set('./'+name+'.json',encodeURIComponent(JSON.stringify(resarr)),true,'rw');
     } else {
-        set('./'+sysDefSessionID.value+'_'+name+'.json',encodeURIComponent(JSON.stringify(resarr)),true);
+        set('./'+sysDefSessionID.value+'_'+name+'.json',encodeURIComponent(JSON.stringify(resarr)),true,'rw');
     }
 }
 function openJournal(id,obj) {
@@ -175,7 +175,8 @@ function isInBackup(id) {
 }
 function userBackup(id) {
     var fsess=flock={}; with(localStorage) {
-        copy(id+'_session.json',id+'_session_saved.json',true,1); copy(id+'_lock.json',id+'_lock_saved.json',true,1);
+        copy(id+'_session.json',id+'_session_saved.json',true,'rw');
+        copy(id+'_lock.json',id+'_lock_saved.json',true,'rw');
         readFile(id+'_session_saved.json','read','',id+'_session_data');
         fsess=jsonarr(getItem(id+'_session_data'));
         readFile(id+'_lock_saved.json','read','',id+'_lock_data');
@@ -185,7 +186,8 @@ function userBackup(id) {
 function userRestore(id) {
     var fsess=flock={}; with(localStorage) {
         if (isInBackup(id)) {
-            copy(id+'_session_saved.json',id+'_session.json',true,1); copy(id+'_lock_saved.json',id+'_lock.json',true,1);
+            copy(id+'_session_saved.json',id+'_session.json',true,'rw');
+            copy(id+'_lock_saved.json',id+'_lock.json',true,'rw');
             readFile(id+'_session.json','read','',id+'_session_data');
             fsess=jsonarr(getItem(id+'_session_data'));
             for (idx in fsess) { setdata(idx,fsess[idx]); }
@@ -199,7 +201,7 @@ function userRestore(id) {
 function remove_entry(id,obj,name,complex=false,helper=false,dy=';',dx=':') {
     var rawData=(typeof(obj)=='object')?obj.value:obj;
     var resarr=(complex)?jsonarr(rawData):strarr((rawData),dy,dx);
-    delete resarr[id]; set(name,JSON.stringify(resarr),true);
+    delete resarr[id]; set(name,JSON.stringify(resarr),true,'rw');
     if (helper) { del(id+'.json',true); del(id,true); }
     obj.value=(complex)?arrjson(resarr):arrstr(resarr,dy,dx);
 }
@@ -223,13 +225,13 @@ function transfer_entry(id,to,obj,name,onlyAssignID=false) {
     var objData=strarr(obj.value,';',':');
     objData[to]=(onlyAssignID)?to:objData[id];
     if (id!=to) { delete objData[id]; }
-    set(name+'.json',JSON.stringify(objData),true);
+    set(name+'.json',JSON.stringify(objData),true,'rw');
     obj.value=arrstr(objData,';',':');
 }
 function rename_user(id,to,pass,overwrite=false) {
     unbind(id); unbind(to); del(id+'_password',true);
-    set(to+'_password',CryptoJS.SHA256(pass).toString(),true);
-    var owr=(overwrite)?1:0; if (id!=to) {
+    set(to+'_password',CryptoJS.SHA256(pass).toString(),true,'rw');
+    var owr=(overwrite)?'rw':''; if (id!=to) {
         copy(id+'_lock.json',to+'_lock.json',true,owr);
         copy(id+'_metadata.json',to+'_metadata.json',true,owr);
         copy(id+'_session.json',to+'_session.json',true,owr);
@@ -270,14 +272,14 @@ function init_user(id,pass=null) {
     sysDefToolData.value=arrstr(toolTab,';',':');
     var msgData=jsonarr(openJournal(id,sysDefMsgboxJSONs));
     if (!notNull(msgData)) {
-        set('./'+id+'_msgbox.json',JSON.stringify({}),true);
+        set('./'+id+'_msgbox.json',JSON.stringify({}),true,'rw');
     } var bookData=jsonarr(openJournal(id,sysDefBookJSONs));
     if (!notNull(bookData)) {
-        set('./'+id+'_book.json',JSON.stringify({}),true);
+        set('./'+id+'_book.json',JSON.stringify({}),true,'rw');
     } var storeData=jsonarr(openJournal(id,sysDefStoreJSONs));
     if (!notNull(storeData)) {
-        set('./'+id+'_store.json',JSON.stringify({}),true);
-    } if (isLine(pass)) { set(id+'_password',pass,true); }
+        set('./'+id+'_store.json',JSON.stringify({}),true,'rw');
+    } if (isLine(pass)) { set(id+'_password',pass,true,'rw'); }
     delete_user('');
 }
 function administer(sta,md='+') {
@@ -306,7 +308,7 @@ function administer(sta,md='+') {
                 }
             }
         } if (ob!==null) {
-            set(eps,JSON.stringify(ob),true);
+            set(eps,JSON.stringify(ob),true,'rw');
             if (sti[sta]!==undefined) {
                 if (sti[sta]=='μ') { ept.value=arrstr(ob,';',':');
                 } else { ept.value=arrjson(ob); }
@@ -552,24 +554,24 @@ function arrangePlay() {
 }
 function call(usr,id) {
     var obj=strarr(sysDefCallData.value,';',':');
-    obj[id]=usr; set('calling.json',JSON.stringify(obj),true);
+    obj[id]=usr; set('calling.json',JSON.stringify(obj),true,'rw');
     sysDefCallData.value=arrstr(obj,';',':');
 }
 function bind(usr,id) {
     var obj=strarr(sysDefBindData.value,';',':');
-    obj[usr]=id; set('binding.json',JSON.stringify(obj),true);
+    obj[usr]=id; set('binding.json',JSON.stringify(obj),true,'rw');
     sysDefBindData.value=arrstr(obj,';',':');
 }
 function equip(usr,id) {
     var obj=strarr(sysDefToolData.value,';',':');
-    obj[usr]=id; set('toolbox.json',JSON.stringify(obj),true);
+    obj[usr]=id; set('toolbox.json',JSON.stringify(obj),true,'rw');
     sysDefToolData.value=arrstr(obj,';',':');
 }
 function automate() {
     var usr=sysDefSessionID.value;
     var obj=strarr(sysDefAutoData.value,';',':');
     obj[usr]=(sysDefAutoState.value=='auto')?'manual':'auto';
-    set('automator.json',JSON.stringify(obj),true);
+    set('automator.json',JSON.stringify(obj),true,'rw');
     sysDefAutoData.value=arrstr(obj,';',':');
 }
 function compose(msg) {
@@ -589,7 +591,7 @@ function compose(msg) {
                     }
                 } else {
                     msgarr[enmorse(sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now())+' UTC',userID,cyp)]=enmorse(msg,userID,cyp);
-                } set('./'+userID+'_msgbox.json', encodeURIComponent(JSON.stringify(msgarr)), true);
+                } set('./'+userID+'_msgbox.json',encodeURIComponent(JSON.stringify(msgarr)),true,'rw');
             }
         } else {
             msgbox=sysDefMyMsgboxData.value; msgarr=jsonarr(msgbox);
@@ -600,7 +602,7 @@ function compose(msg) {
                 }
             } else {
                 msgarr[enmorse(sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now())+' UTC',sysDefSessionID.value,cyp)]=enmorse(msg,sysDefSessionID.value,cyp);
-            } set('./'+sysDefSessionID.value+'_msgbox.json', encodeURIComponent(JSON.stringify(msgarr)), true);
+            } set('./'+sysDefSessionID.value+'_msgbox.json',encodeURIComponent(JSON.stringify(msgarr)),true,'rw');
         }
     }
 }
@@ -633,8 +635,8 @@ function buy_item(buyer,art,seller) {
                     if (powersData[buyer]>=prix) {
                         fixPrice(buyer,seller,art,prix);
                         amounts(tabS,tabB,art);
-                        set('./'+seller+'_store.json',encodeURIComponent(JSON.stringify(tabS)),true);
-                        set('./'+buyer+'_store.json',encodeURIComponent(JSON.stringify(tabB)),true);
+                        set('./'+seller+'_store.json',encodeURIComponent(JSON.stringify(tabS)),true,'rw');
+                        set('./'+buyer+'_store.json',encodeURIComponent(JSON.stringify(tabB)),true,'rw');
                         if ((tabS[art]['password']!==undefined)&&(tabS[art]['type']=='account')) {
                             rename_user(seller,buyer,tabS[art]['password'],true); omniAuthRequest('signin',buyer,tabS[art]['password']);
                         } else if ((tabS[art]['password']!==undefined)&&(tabS[art]['type']=='password')) {
@@ -645,12 +647,12 @@ function buy_item(buyer,art,seller) {
                 } else if ((!isInt(tabS[art]['price']))&&(!isInt(art))&&(tabB[tabS[art]['price']]!==undefined)&&(typeof(tabB[tabS[art]['price']])=='object')) {
                     prix=tabS[art]['price']; fixPrice(buyer,seller,art,prix);
                     amounts(tabB,tabS,prix); amounts(tabS,tabB,art);
-                    set('./'+seller+'_store.json',encodeURIComponent(JSON.stringify(tabS)),true);
-                    set('./'+buyer+'_store.json',encodeURIComponent(JSON.stringify(tabB)),true);
+                    set('./'+seller+'_store.json',encodeURIComponent(JSON.stringify(tabS)),true,'rw');
+                    set('./'+buyer+'_store.json',encodeURIComponent(JSON.stringify(tabB)),true,'rw');
                 } else if ((!isInt(tabS[art]['price']))&&(tabS[art]['price']=='')) {
                     prix=tabS[art]['price']; fixPrice(buyer,seller,art,prix); amounts(tabS,tabB,art);
-                    set('./'+seller+'_store.json',encodeURIComponent(JSON.stringify(tabS)),true);
-                    set('./'+buyer+'_store.json',encodeURIComponent(JSON.stringify(tabB)),true);
+                    set('./'+seller+'_store.json',encodeURIComponent(JSON.stringify(tabS)),true,'rw');
+                    set('./'+buyer+'_store.json',encodeURIComponent(JSON.stringify(tabB)),true,'rw');
                 }
             }
         }
@@ -662,7 +664,7 @@ function sell_item(usr,art,rawTxtData='') {
     var dataArr=strarr(rawTxtData,'; ',': '); if (powersData[usr]>=0) {
         var amount=((tabS[art]!==undefined)&&(typeof(tabS[art])=='object')&&(tabS[art]['amount']!==undefined)&&isInt(tabS[art]['amount'])&&(tabS[art]['amount']>=0))?parseInt(tabS[art]['amount'])+1:1; tabS[art]={"amount":amount}; for (idx in dataArr) {
             tabS[art][idx]=(idx=='password')?CryptoJS.SHA256(dataArr[idx]).toString():dataArr[idx];
-        } set('./'+usr+'_store.json',encodeURIComponent(JSON.stringify(tabS)),true);
+        } set('./'+usr+'_store.json',encodeURIComponent(JSON.stringify(tabS)),true,'rw');
     }
 }
 function fixPrice(sen,rec,deb,cre) {
@@ -700,9 +702,9 @@ function fixPrice(sen,rec,deb,cre) {
     if (!isNum(deb)&&!isNum(cre)) {
         trans1[isoformat(Date.now())+' UTC']=sen+' | '+rec+' | '+statT+' | '+statK+' | '+statDi+' | '+statDt;
         trans2[isoformat(Date.now())+' UTC']=rec+' | '+sen+' | '+statK+' | '+statT+' | '+statCi+' | '+statCt;
-    } set('./'+sen+'_book.json',encodeURIComponent(JSON.stringify(trans1)),true);
-    set('./'+rec+'_book.json',encodeURIComponent(JSON.stringify(trans2)),true);
-    set('dominion.json',JSON.stringify(stat),true);
+    } set('./'+sen+'_book.json',encodeURIComponent(JSON.stringify(trans1)),true,'rw');
+    set('./'+rec+'_book.json',encodeURIComponent(JSON.stringify(trans2)),true,'rw');
+    set('dominion.json',JSON.stringify(stat),true,'rw');
     sysDefPowersData.value=arrstr(stat,';',':');
 }
 function charge(usr,art='') {
@@ -733,8 +735,8 @@ function charge(usr,art='') {
                 } while (series>0);
             } else { usrPwr+=force; }
         } powersData[usr]=usrPwr;
-        set('./'+usr+'_store.json',encodeURIComponent(JSON.stringify(userMarket)),true);
-        set('dominion.json',JSON.stringify(powersData),true);
+        set('./'+usr+'_store.json',encodeURIComponent(JSON.stringify(userMarket)),true,'rw');
+        set('dominion.json',JSON.stringify(powersData),true,'rw');
         sysDefPowersData.value=arrstr(powersData,';',':');
     }
 }
@@ -769,8 +771,8 @@ function dominate(usr,id,art='') {
                     } while (series>0);
                 } else { usrPwr+=force; idPwr-=force; }
             } powersData[usr]=usrPwr; powersData[id]=idPwr;
-            set('./'+usr+'_store.json',encodeURIComponent(JSON.stringify(userMarket)),true);
-            set('dominion.json',JSON.stringify(powersData),true);
+            set('./'+usr+'_store.json',encodeURIComponent(JSON.stringify(userMarket)),true,'rw');
+            set('dominion.json',JSON.stringify(powersData),true,'rw');
             sysDefPowersData.value=arrstr(powersData,';',':');
         }
     }
