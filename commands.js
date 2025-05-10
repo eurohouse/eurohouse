@@ -306,7 +306,7 @@ function omniEnter() {
             arj=input.replace('set ','');
             arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
             if (arg.length==0) {
-                set(quote(requestPath.value+'/'+arg[0]),quote(requestPath.value+'/'+arg[1]),true,'rw');
+                set(quote(requestPath.value+'/'+arg[0]),quote(requestPath.value+'/'+arg[1]),true,itd);
                 window.location.reload();
             }
         } else if (input.startsWith('rm ')) {
@@ -315,7 +315,7 @@ function omniEnter() {
             arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
             if (arg.length>0) {
                 for (i=0; i<arg.length; i++) {
-                    del(quote(requestPath.value+'/'+arg[i]),true);
+                    del(quote(requestPath.value+'/'+arg[i]),true,itd);
                 } window.location.reload();
             }
         } else if (input.startsWith('mv ')) {
