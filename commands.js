@@ -296,49 +296,44 @@ function omniEnter() {
             itd=(superuser())?'rw':'';
             arj=input.replace('mkdir ','');
             arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
-            itr=((quote(arg[0])=='+')||(quote(arg[0])=='-'))?1:0;
-            if (arg.length>(0+itr)) {
+            if (arg.length>0) {
                 for (i=0; i<arg.length; i++) {
-                    mkdir(quote(requestPath.value+'/'+arg[i+itr]),true,itd);
-                } if (itr>0) { window.location.reload(); }
+                    mkdir(quote(requestPath.value+'/'+arg[i]),true,itd);
+                } window.location.reload();
             }
         } else if (input.startsWith('set ')) {
             itd=(superuser())?'rw':'';
             arj=input.replace('set ','');
             arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
-            itr=((quote(arg[0])=='+')||(quote(arg[0])=='-'))?1:0;
-            if (arg.length==(0+itr)) {
-                set(quote(requestPath.value+'/'+arg[0+itr]),quote(requestPath.value+'/'+arg[1+itr]),true,'rw');
-                if (itr>0) { window.location.reload(); }
+            if (arg.length==0) {
+                set(quote(requestPath.value+'/'+arg[0]),quote(requestPath.value+'/'+arg[1]),true,'rw');
+                window.location.reload();
             }
         } else if (input.startsWith('rm ')) {
             itd=(superuser())?'rw':'';
             arj=input.replace('rm ','');
             arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
-            itr=((quote(arg[0])=='+')||(quote(arg[0])=='-'))?1:0;
-            if (arg.length>(0+itr)) {
+            if (arg.length>0) {
                 for (i=0; i<arg.length; i++) {
-                    del(quote(requestPath.value+'/'+arg[i+itr]),true);
-                } if (itr>0) { window.location.reload(); }
+                    del(quote(requestPath.value+'/'+arg[i]),true);
+                } window.location.reload();
             }
         } else if (input.startsWith('mv ')) {
             itd=(superuser())?'rw':'';
             arj=input.replace('mv ', '');
             arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
-            itr=((quote(arg[0])=='+')||(quote(arg[0])=='-'))?1:0;
-            if (arg.length==(2+itr)) {
-                move(quote(requestPath.value+'/'+arg[0+itr]),quote(requestPath.value+'/'+arg[1+itr]),true,itd);
-                if (itr>0) { window.location.reload(); }
+            if (arg.length==2) {
+                move(quote(requestPath.value+'/'+arg[0]),quote(requestPath.value+'/'+arg[1]),true,itd);
+                window.location.reload();
             }
         } else if (input.startsWith('cp ')) {
             itd=(superuser())?'rw':'';
             arj=input.replace('cp ', '');
             arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
-            itr=((quote(arg[0])=='+')||(quote(arg[0])=='-'))?1:0;
-            if (arg.length>(1+itr)) {
+            if (arg.length>1) {
                 for (i=1; i<arg.length; i++) {
-                    copy(quote(requestPath.value+'/'+arg[0+itr]),quote(requestPath.value+'/'+arg[i+itr]),true,itd);
-                } if (itr>0) { window.location.reload(); }
+                    copy(quote(requestPath.value+'/'+arg[0]),quote(requestPath.value+'/'+arg[i]),true,itd);
+                } window.location.reload();
             }
         } else if (input.startsWith('update ')) {
             getPkgSequence('get -i '+document.getElementById('updateChannel'+CryptoJS.MD5(input.replace('update ','')).toString()).value,'get ',0);
