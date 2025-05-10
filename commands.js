@@ -305,7 +305,7 @@ function omniEnter() {
             itd=(superuser())?'rw':'';
             arj=input.replace('set ','');
             arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
-            if (arg.length==0) {
+            if (arg.length==2) {
                 set(quote(requestPath.value+'/'+arg[0]),quote(requestPath.value+'/'+arg[1]),true,itd);
                 window.location.reload();
             }
