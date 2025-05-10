@@ -33,7 +33,7 @@ function executeCode(input) {
     } return output;
 }
 function readFile(name,opt='read',path='',store='user_content') {
-    var dataString='name='+name+'&type=code&blank=&attr=multiline';
+    var dataString='name='+name+'&type=code&blank=&attr=plur';
     $.ajax({ type: "POST", url: "read.php", data: dataString, cache: false,
         success: function(result) {
             if (opt=='read') {
@@ -52,7 +52,7 @@ function readFile(name,opt='read',path='',store='user_content') {
     });
 }
 function executeFile(name,str='',re=false,sp=false) {
-    var dataString='name='+name+'&type=code&sign=&mode=multiline';
+    var dataString='name='+name+'&type=code&blank=&attr=plur';
     $.ajax({ type: "POST", url: "read.php", data: dataString, cache: false,
         success: function(result) {
             var codeExt=result.split(/\r?\n/),strd=strl=[],strs='';
