@@ -18,8 +18,8 @@ if (isset($cont[$showFilename])) {
         $assignAvatar1=$fore.$ent['insignia'].'.png';
         $assignAvatar2=$back.$ent['insignia'].'.png';
     } else {
-        $assignAvatar1=(isset($ent['nsfw']))?$brightAvaFore.'Lady.png':$fore.$userData['avatar'].'.png';
-        $assignAvatar2=(isset($ent['nsfw']))?$brightAvaBack.'Lady.png':$back.$userData['avatar'].'.png';
+        $assignAvatar1=(isset($ent['nsfw']))?$fore.'Lady.png':$fore.$userData['avatar'].'.png';
+        $assignAvatar2=(isset($ent['nsfw']))?$back.'Lady.png':$back.$userData['avatar'].'.png';
     }
 } else {
     $showHead=localizedTitle($userData,'title');
