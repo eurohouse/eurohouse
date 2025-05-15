@@ -595,11 +595,10 @@ function automate() {
 }
 function triggerResponse(usr,id,msg) {
     var argv=(msg!==undefined)?msg.match(/\{[^\}]*\}/g):'';
-    var msgbox=[];req=''; console.log(argv);
+    var msgbox=[];req='';
     if ((!cancelled(usr))&&(!cancelled(id))) {
         if (argv!==null) {
-            msgbox.push('@'+usr);
-            for (idx in argv) {
+            msgbox.push('@'+id); for (idx in argv) {
                 req=argv[idx].toString().replace('{','').replace('}','');
                 msgbox.push('['+calc(req).toString()+']');
             } compose(id,msgbox.join(' '));
@@ -620,11 +619,11 @@ function compose(usr,msg) {
                     if (msg.match(/\r?\n/)!==null) {
                         msgbr=msg.split(/\r?\n/);
                         for (j=0; j<msgbr.length; j++) {
-                            msgarr[enmorse(getUserData(usr,'title')+' (@'+usr+') · '+isoformat(Date.now()+j*1000)+' UTC',id,'.-')]=enmorse(msgbr[j],id,'.-');
+                            msgarr[enmorse(getUserData(usr,'title')+' (@'+usr+') · '+isoformat(Date.now()+j*1000)+' UTC',id)]=enmorse(msgbr[j],id);
                             triggerResponse(usr,id,msg);
                         }
                     } else {
-                        msgarr[enmorse(getUserData(usr,'title')+' (@'+usr+') · '+isoformat(Date.now())+' UTC',id,'.-')]=enmorse(msg,id,'.-');
+                        msgarr[enmorse(getUserData(usr,'title')+' (@'+usr+') · '+isoformat(Date.now())+' UTC',id)]=enmorse(msg,id);
                         triggerResponse(usr,id,msg);
                     } set('./'+id+'_msgbox.json',encodeURIComponent(JSON.stringify(msgarr)),'rw');
                 }
@@ -634,11 +633,11 @@ function compose(usr,msg) {
             if (msg.match(/\r?\n/)!==null) {
                 msgbr=msg.split(/\r?\n/);
                 for (j=0; j<msgbr.length; j++) {
-                    msgarr[enmorse(getUserData(usr,'title')+' (@'+usr+') · '+isoformat(Date.now()+j*1000)+' UTC',usr,'.-')]=enmorse(msgbr[j],usr,'.-');
+                    msgarr[enmorse(getUserData(usr,'title')+' (@'+usr+') · '+isoformat(Date.now()+j*1000)+' UTC',usr)]=enmorse(msgbr[j],usr);
                     triggerResponse(usr,usr,msg);
                 }
             } else {
-                msgarr[enmorse(getUserData(usr,'title')+' (@'+usr+') · '+isoformat(Date.now())+' UTC',usr,'.-')]=enmorse(msg,usr,'.-');
+                msgarr[enmorse(getUserData(usr,'title')+' (@'+usr+') · '+isoformat(Date.now())+' UTC',usr)]=enmorse(msg,usr);
                 triggerResponse(usr,usr,msg);
             } set('./'+usr+'_msgbox.json',encodeURIComponent(JSON.stringify(msgarr)),'rw');
         }
