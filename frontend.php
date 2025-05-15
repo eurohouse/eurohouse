@@ -600,7 +600,7 @@ function triggerResponse(usr,id,msg) {
         if (cmd!==null) {
             msg='@'+usr+' ';
             for (idx in cmd) {
-                req=trimChars(cmd[idx]);
+                req=removeQuotes(cmd[idx]);
                 msg+='['+calc(req)+'] ';
             } compose(id,msg.slice(0,-1));
         }
