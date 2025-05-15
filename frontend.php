@@ -604,7 +604,7 @@ function compose(usr,msg) {
                 init_user(id); if (!cancelled(id)) {
                     sen=((argv!==null)?id:usr);
                     rec=((argv!==null)?usr:id);
-                    msgbox=openJournal(cd,sysDefMsgboxJSONs); msgarr=jsonarr(msgbox);
+                    msgbox=openJournal(rec,sysDefMsgboxJSONs); msgarr=jsonarr(msgbox);
                     if (msg.match(/\r?\n/)!==null) {
                         msgbr=msg.split(/\r?\n/);
                         for (j=0; j<msgbr.length; j++) {
