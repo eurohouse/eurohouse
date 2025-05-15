@@ -593,34 +593,35 @@ function automate() {
     set('automator.json',JSON.stringify(obj),'rw');
     sysDefAutoData.value=arrstr(obj,';',':');
 }
-function compose(msg) {
+function compose(usr,msg) {
     var addr=(msg!==undefined)?msg.match(/(@\w*)/g):'';
-    var userID,cyp='.-',msgbox='',msgbr=[];
-    if (!cancelled(sysDefSessionID.value)) {
+    var id='',msgbox={},msgbr=[];
+    if (!cancelled(usr)) {
         if (addr!==null) {
             for (it in addr) {
-                userID=addr[it].replace('@',''); init_user(userID);
-                msgbox=openJournal(userID,sysDefMsgboxJSONs);
+                id=addr[it].replace('@','');
+                init_user(id);
+                msgbox=openJournal(id,sysDefMsgboxJSONs);
                 msgarr=jsonarr(msgbox);
                 if (msg.match(/\r?\n/)!==null) {
                     msgbr=msg.split(/\r?\n/);
                     for (j=0; j<msgbr.length; j++) {
-                        msgarr[enmorse(sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now()+j*1000)+' UTC',userID,cyp)]=enmorse(msgbr[j],userID,cyp);
+                        msgarr[enmorse(getUserData(usr,'title')+' (@'+usr+') · '+isoformat(Date.now()+j*1000)+' UTC',id,'.-')]=enmorse(msgbr[j],id,'.-');
                     }
                 } else {
-                    msgarr[enmorse(sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now())+' UTC',userID,cyp)]=enmorse(msg,userID,cyp);
-                } set('./'+userID+'_msgbox.json',encodeURIComponent(JSON.stringify(msgarr)),'rw');
+                    msgarr[enmorse(getUserData(usr,'title')+' (@'+usr+') · '+isoformat(Date.now())+' UTC',id,'.-')]=enmorse(msg,id,'.-');
+                } set('./'+id+'_msgbox.json',encodeURIComponent(JSON.stringify(msgarr)),'rw');
             }
         } else {
-            msgbox=sysDefMyMsgboxData.value; msgarr=jsonarr(msgbox);
+            msgbox=openJournal(usr,sysDefMsgboxJSONs); msgarr=jsonarr(msgbox);
             if (msg.match(/\r?\n/)!==null) {
                 msgbr=msg.split(/\r?\n/);
                 for (j=0; j<msgbr.length; j++) {
-                    msgarr[enmorse(sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now()+j*1000)+' UTC',sysDefSessionID.value,cyp)]=enmorse(msgbr[j],sysDefSessionID.value,cyp);
+                    msgarr[enmorse(getUserData(usr,'title')+' (@'+usr+') · '+isoformat(Date.now()+j*1000)+' UTC',usr,'.-')]=enmorse(msgbr[j],usr,'.-');
                 }
             } else {
-                msgarr[enmorse(sysDefTitle.value+' (@'+sysDefSessionID.value+') · '+isoformat(Date.now())+' UTC',sysDefSessionID.value,cyp)]=enmorse(msg,sysDefSessionID.value,cyp);
-            } set('./'+sysDefSessionID.value+'_msgbox.json',encodeURIComponent(JSON.stringify(msgarr)),'rw');
+                msgarr[enmorse(getUserData(usr,'title')+' (@'+usr+') · '+isoformat(Date.now())+' UTC',usr,'.-')]=enmorse(msg,usr,'.-');
+            } set('./'+usr+'_msgbox.json',encodeURIComponent(JSON.stringify(msgarr)),'rw');
         }
     }
 }

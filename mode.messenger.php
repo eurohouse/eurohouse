@@ -4,7 +4,7 @@
 <div class='customPanel'>
 <p align='center' class='block'>
 <input type="text" id="composeMessage" style="width:54%;" placeholder="<?=term('',$settings['locale']['cli'],$session['units'],'chat');?>" value="" onkeydown="if (event.keyCode == 13) {
-    compose(composeMessage.value);
+    compose(sysDefSessionID.value,composeMessage.value);
 } else if (event.keyCode==27) {
     document.getElementById('composeMessage').value='';
 } else if (event.keyCode==8) {
@@ -12,7 +12,7 @@
 } else if (event.keyCode==46) {
     handleInput(this.value);
 }" oninput="handleInput(this.value, true);">
-<input type="image" class="power" onmouseover="soundButton();" src="<?=$prefix[3].'return.png';?>" onclick="compose(composeMessage.value);">
+<input type="image" class="power" onmouseover="soundButton();" src="<?=$prefix[3].'return.png';?>" onclick="compose(sysDefSessionID.value,composeMessage.value);">
 <input type="image" class="power" onmouseover="soundButton();" src="<?=$prefix[3].'keyboard.png';?>" onclick="document.getElementById('composeMessage').focus();">
 <input type="image" class="power" onmouseover="soundButton();" src="<?=$prefix[3].'backspace.png';?>" onclick="document.getElementById('composeMessage').value = ''; document.getElementById('composeMessage').focus();"></p>
 </div><?php } ?>
