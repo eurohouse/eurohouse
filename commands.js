@@ -456,7 +456,7 @@ function omniEnter() {
         omniDisp(requestMode.value,input.replaceAll('?',''),requestLock.value);
     } else if (input.endsWith(';')) {
         omniBox.value=executeCode(input);
-    } else if (input.endsWith(':')) {
+    } else if ((input.startsWith(':'))||(input.endsWith(':'))) {
         arj=input.replace(':','');
         if (isBit(userdata()[arj])) {
             setdata(arj,flip(userdata()[arj]));
