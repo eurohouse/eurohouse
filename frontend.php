@@ -598,10 +598,10 @@ function triggerResponse(usr,id,msg) {
     var msg=req='';
     if ((!cancelled(usr))&&(!cancelled(id))) {
         if (arg!==null) {
-            msg='@'+usr+' ';
-            for (i=0; i<arg.length; i++) {
+            msg='@'+usr+' '; console.log(arrjson(arg));
+            for (idx in arg) {
                 req=((arg[i]).slice(0,-1)).slice(1);
-                msg+='['+calc(req)+'] ';
+                msg+='['+req+' '+calc(req)+'] ';
             } compose(id,msg.slice(0,-1));
         }
     }
