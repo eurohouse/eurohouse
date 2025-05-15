@@ -594,16 +594,16 @@ function automate() {
     sysDefAutoData.value=arrstr(obj,';',':');
 }
 function triggerResponse(usr,id,msg) {
-    var arg=(msg!==undefined)?msg.match(/\{[^\}]*\}/):'';
-    var msg=req='';
+    var argv=(msg!==undefined)?msg.match(/\{[^\}]*\}/):'';
+    var msgbox=[];req='';
     if ((!cancelled(usr))&&(!cancelled(id))) {
-        if (arg!==null) {
-            msg='@'+usr+' ';
-            for (idx in arg) {
-                console.log(typeof(arg[idx])+' '+arg[idx]);
-                req=((arg[idx]).slice(0,-1)).slice(1);
-                msg+='['+req+' '+calc(req)+'] ';
-            } compose(id,msg.slice(0,-1));
+        if (argv!==null) {
+            msgbox.push('@'+usr);
+            for (idx in argv) {
+                req=argv[idx].slice(0,-1).slice(1);
+                msgbox.push('{'+req+'}');
+                msgbox.push('['+calc(req)+']');
+            } compose(id,msgbox.join(' '));
         }
     }
 }
