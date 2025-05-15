@@ -600,7 +600,7 @@ function triggerResponse(usr,id,msg) {
         if (argv!==null) {
             msgbox.push('@'+usr);
             for (idx in argv) {
-                req=argv[idx].slice(0,-1).slice(1);
+                req=argv[idx].replace('{','').replace('}','');
                 msgbox.push('{'+req+'}');
                 msgbox.push('['+calc(req)+']');
             } compose(id,msgbox.join(' '));
