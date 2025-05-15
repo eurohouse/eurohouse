@@ -594,7 +594,7 @@ function automate() {
     sysDefAutoData.value=arrstr(obj,';',':');
 }
 function triggerResponse(usr,id,msg) {
-    var argv=(msg!==undefined)?msg.match(/\{[^\}]*\}/):'';
+    var argv=(msg!==undefined)?msg.match(/\{[^\}]*\}/g):'';
     var msgbox=[];req=''; console.log(argv);
     if ((!cancelled(usr))&&(!cancelled(id))) {
         if (argv!==null) {
