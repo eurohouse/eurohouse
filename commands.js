@@ -55,36 +55,53 @@ function executeFile(name,str='',re=false,sp=false) {
     var dataString='name='+name+'&type=code&blank=&attr=plur';
     $.ajax({ type: "POST", url: "read.php", data: dataString, cache: false,
         success: function(result) {
-            var codeExt=result.split(/\r?\n/),strd=strl=[],strs='';
-            if (str.includes(',')) {
+            var codeExt=result.split(/\r?\n/),strd=strl=[],strs=''; if (str.includes(',')) {
                 strl=str.split(','); for (il in strl) {
                     if (codeExt[strl[il]]!==undefined) {
-                        if (sp!==false) { strs+=codeExt[strl[il]]+'\r\n';
-                        } else { executeCode(codeExt[strl[il]]); }
+                        if (sp!==false) {
+                            strs+=codeExt[strl[il]]+'\r\n';
+                        } else {
+                            executeCode(codeExt[strl[il]]);
+                        }
                     }
                 } if (sp!==false) { compose(strs.slice(0,-2)); }
             } else if (str.includes('-')) {
                 strd=str.split('-'); if (strd[1]>strd[0]) {
-                    for (i=strd[0]; i<=strd[1]; i++) { strl.push(i); }
+                    for (i=strd[0]; i<=strd[1]; i++) {
+                        strl.push(i);
+                    }
                 } for (il in strl) {
                     if (codeExt[strl[il]]!==undefined) {
-                        if (sp!==false) { strs+=codeExt[strl[il]]+'\r\n';
-                        } else { executeCode(codeExt[strl[il]]); }
+                        if (sp!==false) {
+                            strs+=codeExt[strl[il]]+'\r\n';
+                        } else {
+                            executeCode(codeExt[strl[il]]);
+                        }
                     }
                 } if (sp!==false) { compose(strs.slice(0,-2)); }
-            } else if (isInt(str)) {
+            } else if ((isInt(str))&&(codeExt[str]!==undefined)) {
                 if (sp!==false) { compose(codeExt[str]);
                 } else { executeCode(codeExt[str]); }
-            } else if (str=='') { if (sp!==false) { compose(result);
-                } else { for (il in codeExt) { executeCode(codeExt[il]); }}
+            } else if (str=='') {
+                if (sp!==false) { compose(result);
+                } else {
+                    for (il in codeExt) {
+                        executeCode(codeExt[il]);
+                    }
+                }
             } else {
                 for (il in codeExt) {
                     if (codeExt[il].toLowerCase().includes(str.toLowerCase())) {
-                        if (sp!==false) { compose(codeExt[il]); break;
-                        } else { executeCode(codeExt[il]); break; }
+                        if (sp!==false) {
+                            compose(codeExt[il]); break;
+                        } else {
+                            executeCode(codeExt[il]); break;
+                        }
                     }
                 }
-            } if (re!==false) { if (sp===false) { window.location.reload(); }}
+            } if (re!==false) {
+                if (sp===false) { window.location.reload(); }
+            }
         }
     }); return false;
 }
