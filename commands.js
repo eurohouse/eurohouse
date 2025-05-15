@@ -64,7 +64,7 @@ function executeFile(name,str='',re=false,sp=false) {
                             executeCode(codeExt[strl[il]]);
                         }
                     }
-                } if (sp!==false) { compose(strs.slice(0,-2)); }
+                } if (sp!==false) { compose(sysDefSessionID.value,strs.slice(0,-2)); }
             } else if (str.includes('-')) {
                 strd=str.split('-'); if (strd[1]>strd[0]) {
                     for (i=strd[0]; i<=strd[1]; i++) {
@@ -78,12 +78,12 @@ function executeFile(name,str='',re=false,sp=false) {
                             executeCode(codeExt[strl[il]]);
                         }
                     }
-                } if (sp!==false) { compose(strs.slice(0,-2)); }
+                } if (sp!==false) { compose(sysDefSessionID.value,strs.slice(0,-2)); }
             } else if ((isInt(str))&&(codeExt[str]!==undefined)) {
-                if (sp!==false) { compose(codeExt[str]);
+                if (sp!==false) { compose(sysDefSessionID.value,codeExt[str]);
                 } else { executeCode(codeExt[str]); }
             } else if (str=='') {
-                if (sp!==false) { compose(result);
+                if (sp!==false) { compose(sysDefSessionID.value,result);
                 } else {
                     for (il in codeExt) {
                         executeCode(codeExt[il]);
@@ -93,7 +93,7 @@ function executeFile(name,str='',re=false,sp=false) {
                 for (il in codeExt) {
                     if (codeExt[il].toLowerCase().includes(str.toLowerCase())) {
                         if (sp!==false) {
-                            compose(codeExt[il]); break;
+                            compose(sysDefSessionID.value,codeExt[il]); break;
                         } else {
                             executeCode(codeExt[il]); break;
                         }
@@ -258,7 +258,7 @@ function omniEnter() {
     } else if (input=='\\=') {
         omniBox.value='\\='+demorse(sysDefMelody.value,uid,sysDefNumeric.value);
     } else if ((input.startsWith('"'))&&(input.endsWith('"'))) {
-        compose(input.replace('"','').slice(0,-1));
+        compose(sysDefSessionID.value,input.replace('"','').slice(0,-1));
     } else if (input.startsWith('store ')) {
         arb=input.replace('store ','');
         ark=jsonarr(openJournal(sysDefSessionID.value,sysDefStoreJSONs)); arg=arb.match(/\"([^\"]+)\"|(\w+)/g);
