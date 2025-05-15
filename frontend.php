@@ -620,7 +620,7 @@ function compose(usr,msg) {
                             msglr.push('@'+usr);
                             for (idx in argv) {
                                 req=argv[idx].toString().replace('{','').replace('}',''); msglr.push('['+calc(req).toString()+']');
-                            } msgarr[enmorse(getUserData(id,'title')+' (@'+id+') · '+isoformat(Date.now()+j*1000)+' UTC',usr)]=enmorse(msglr.join(' '),id);
+                            } msgarr[enmorse(getUserData(id,'title')+' (@'+id+') · '+isoformat(Date.now())+' UTC',id)]=enmorse(msglr.join(' '),id);
                         } else {
                             msgarr[enmorse(getUserData(usr,'title')+' (@'+usr+') · '+isoformat(Date.now())+' UTC',id)]=enmorse(msg,id);
                         }
