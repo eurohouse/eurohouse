@@ -598,9 +598,9 @@ function triggerResponse(usr,id,msg) {
     var msg=req='';
     if ((!cancelled(usr))&&(!cancelled(id))) {
         if (arg!==null) {
-            msg='@'+usr+' '; console.log(arrjson(arg));
+            msg='@'+usr+' ';
             for (idx in arg) {
-                console.log(arg[idx]);
+                console.log(typeof(arg[idx])+' '+arg[idx]);
                 req=((arg[idx]).slice(0,-1)).slice(1);
                 msg+='['+req+' '+calc(req)+'] ';
             } compose(id,msg.slice(0,-1));
