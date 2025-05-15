@@ -624,7 +624,7 @@ function compose(usr,msg) {
                     } else {
                         msgarr[enmorse(getUserData(usr,'title')+' (@'+usr+') · '+isoformat(Date.now())+' UTC',id)]=enmorse(msg,id);
                         triggerResponse(usr,id,msg);
-                    } set('./'+id+'_msgbox.json',encodeURIComponent(JSON.stringify(msgarr)),'rw');
+                    } set('./'+id+'_msgbox.json',(JSON.stringify(msgarr)),'rw');
                 }
             }
         } else {
@@ -638,7 +638,7 @@ function compose(usr,msg) {
             } else {
                 msgarr[enmorse(getUserData(usr,'title')+' (@'+usr+') · '+isoformat(Date.now())+' UTC',usr)]=enmorse(msg,usr);
                 triggerResponse(usr,usr,msg);
-            } set('./'+usr+'_msgbox.json',encodeURIComponent(JSON.stringify(msgarr)),'rw');
+            } set('./'+usr+'_msgbox.json',(JSON.stringify(msgarr)),'rw');
         }
     }
 }
