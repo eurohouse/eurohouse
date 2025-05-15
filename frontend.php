@@ -599,6 +599,7 @@ function triggerResponse(usr,id,msg) {
     if ((!cancelled(usr))&&(!cancelled(id))) {
         if (cmd!==null) {
             msg='@'+usr+' ';
+            console.log(typeof(cmd)+' '+cmd);
             for (idx in cmd) {
                 req=trimChars(cmd[idx]);
                 msg+='['+calc(req)+'] ';
