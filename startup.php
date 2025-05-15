@@ -85,7 +85,9 @@ function world_clock() {
                 videoVolInd.value=mixers[2]; videoRatInd.value=mixers[3];
             } document.querySelector(':root').style.setProperty('--bicolor',sysDefAccent.value);
             sysDefMsgMaxCount.value=parseInt(Object.keys(jsonFilter(sysDefMyMsgboxData.value,sysDefFind.value)).length-1); sysDefMsgCounter.value=(sysDefReverse.value!=0)?((parseInt(sysDefMsgCounter.value)<=0)?sysDefMsgMaxCount.value:(parseInt(sysDefMsgCounter.value)-1)):((parseInt(sysDefMsgCounter.value)>=sysDefMsgMaxCount.value)?0:(parseInt(sysDefMsgCounter.value)+1));
-            $('#showUsUrgent').text(Object.values(jsonFilter(sysDefMyMsgboxData.value,sysDefFind.value,'msg'))[sysDefMsgCounter.value]); if (sysDefLoop.value!=sysDefPostBackEff.value) {
+            sysDefMsgCurrent.value=(sysDefMorse.value!=0)?enmorse(Object.values(jsonFilter(sysDefMyMsgboxData.value,sysDefFind.value,'msg'))[sysDefMsgCounter.value],sysDefSessionID.value):Object.values(jsonFilter(sysDefMyMsgboxData.value,sysDefFind.value,'msg'))[sysDefMsgCounter.value];
+            $('#showUsUrgent').text(sysDefMsgCurrent.value);
+            if (sysDefLoop.value!=sysDefPostBackEff.value) {
                 if (sysDefLoop.value!=0) { playAudio(backgroundPlayer,sysDefBackgroundSound.value); } else { pauseAudio(backgroundPlayer); }
             } sysDefPostBackEff.value=sysDefLoop.value;
             if (requestMode.value=='messenger') { msgBox.innerHTML='<p>'+jsonHTML(sysDefMyMsgboxData.value,sysDefFind.value)+'</p>'; } if (requestMode.value=='news_feed') { newsBox.innerHTML='<p>'+jsonNews()+'</p>'; } $('#powerButton').attr('src',sysDefPrefix.value+'power.png');

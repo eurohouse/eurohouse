@@ -87,6 +87,7 @@
         <input type='hidden' id="sysDefNewsData" value="<?=json_encode($newsData,JSON_UNESCAPED_UNICODE);?>">
         <input type='hidden' id="sysDefMsgCounter" value="0">
         <input type='hidden' id="sysDefMsgMaxCount" value="0">
+        <input type='hidden' id="sysDefMsgCurrent" value="">
         <input type='hidden' id="sysDefCodexBox" value="<?=implode('//',(str_replace('./','',(glob('./*.mac')))));?>">
         <input type='hidden' id="sysDefSpeechBox" value="<?=implode('//',(str_replace('./','',(glob('./*.pro')))));?>">
         <input type='hidden' id="sysDefPostBindData" value="<?=valstr($bindData,';',':');?>">

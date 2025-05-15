@@ -338,11 +338,11 @@ function administer(sta,md='+') {
 }
 function jsonFilter(str,mask) {
     var arr=jsonarr(str),sym='#',uni='L';
-    var arf={},cyp='.-',hbin=hkin='',hbio={};
+    var arf={},hbin=hkin='',hbio={};
     if (mask==sym) {
         for (el in arr) {
-            hbin=demorse(arr[el],sysDefSessionID.value,cyp);
-            hkin=demorse(el,sysDefSessionID.value,cyp),arf[hkin]=hbin;
+            hbin=demorse(arr[el],sysDefSessionID.value);
+            hkin=demorse(el,sysDefSessionID.value),arf[hkin]=hbin;
         }
     } else {
         var arrRegex=XRegExp('(\\'+sym+'\\p{'+uni+'}+)','g');
@@ -351,8 +351,8 @@ function jsonFilter(str,mask) {
         for (el in arr) {
             if (wordArr!==null) {
                 for (iy in wordArr) {
-                    hbin=demorse(arr[el],sysDefSessionID.value,cyp);
-                    hkin=demorse(el,sysDefSessionID.value,cyp);
+                    hbin=demorse(arr[el],sysDefSessionID.value);
+                    hkin=demorse(el,sysDefSessionID.value);
                     hbio=XRegExp.replace(wordArr[iy],repRegex,'');
                     if (hbin.toLowerCase().includes(hbio.toLowerCase())) { arf[hkin]=hbin; }
                 }
