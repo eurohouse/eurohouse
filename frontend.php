@@ -596,13 +596,15 @@ function automate() {
 function compose(usr,msg) {
     var addr=(msg!==undefined)?msg.match(/(@\w*)/g):'';
     var argv=(msg!==undefined)?msg.match(/\{[^\}]*\}/g):'';
-    var id=req='',msgbox={},msgbr=msglr=[];
+    var id=sen=rec=req=msglt='',msgbox={},msgbr=msglr=[];
     if (!cancelled(usr)) {
         if (addr!==null) {
             for (it in addr) {
                 id=addr[it].replace('@','');
                 init_user(id); if (!cancelled(id)) {
-                    msgbox=openJournal(((argv!==null)?usr:id),sysDefMsgboxJSONs); msgarr=jsonarr(msgbox);
+                    sen=((argv!==null)?id:usr);
+                    rec=((argv!==null)?usr:id);
+                    msgbox=openJournal(cd,sysDefMsgboxJSONs); msgarr=jsonarr(msgbox);
                     if (msg.match(/\r?\n/)!==null) {
                         msgbr=msg.split(/\r?\n/);
                         for (j=0; j<msgbr.length; j++) {
@@ -610,21 +612,19 @@ function compose(usr,msg) {
                                 msglr.push('@'+usr);
                                 for (idx in argv) {
                                     req=argv[idx].toString().replace('{','').replace('}',''); msglr.push('['+calc(req).toString()+']');
-                                } msgarr[enmorse(getUserData(id,'title')+' (@'+id+') · '+isoformat(Date.now()+j*1000)+' UTC',usr)]=enmorse(msglr.join(' '),id);
-                            } else {
-                                msgarr[enmorse(getUserData(usr,'title')+' (@'+usr+') · '+isoformat(Date.now()+j*1000)+' UTC',id)]=enmorse(msgbr[j],id);
-                            }
+                                } msglt=msglr.join(' ');
+                            } else { msglt=msgbr[j]; }
+                            msgarr[enmorse(getUserData(sen,'title')+' (@'+sen+') · '+isoformat(Date.now()+j*1000)+' UTC',rec)]=enmorse(msglt,rec);
                         }
                     } else {
                         if (argv!==null) {
                             msglr.push('@'+usr);
                             for (idx in argv) {
                                 req=argv[idx].toString().replace('{','').replace('}',''); msglr.push('['+calc(req).toString()+']');
-                            } msgarr[enmorse(getUserData(id,'title')+' (@'+id+') · '+isoformat(Date.now())+' UTC',id)]=enmorse(msglr.join(' '),id);
-                        } else {
-                            msgarr[enmorse(getUserData(usr,'title')+' (@'+usr+') · '+isoformat(Date.now())+' UTC',id)]=enmorse(msg,id);
-                        }
-                    } set('./'+((argv!==null)?usr:id)+'_msgbox.json',(JSON.stringify(msgarr)),'rw');
+                            } msglt=msglr.join(' ');
+                        } else { msglt=msg; }
+                        msgarr[enmorse(getUserData(sen,'title')+' (@'+sen+') · '+isoformat(Date.now())+' UTC',rec)]=enmorse(msglt,rec);
+                    } set('./'+rec+'_msgbox.json',(JSON.stringify(msgarr)),'rw');
                 }
             }
         } else {
@@ -636,20 +636,18 @@ function compose(usr,msg) {
                         msglr.push('@'+usr);
                         for (idx in argv) {
                             req=argv[idx].toString().replace('{','').replace('}',''); msglr.push('['+calc(req).toString()+']');
-                        } msgarr[enmorse(getUserData(usr,'title')+' (@'+usr+') · '+isoformat(Date.now()+j*1000)+' UTC',usr)]=enmorse(msglr.join(' '),usr);
-                    } else {
-                        msgarr[enmorse(getUserData(usr,'title')+' (@'+usr+') · '+isoformat(Date.now()+j*1000)+' UTC',usr)]=enmorse(msgbr[j],usr);
-                    }
+                        } msglt=msglr.join(' ');
+                    } else { msglt=msgbr[j]; }
+                    msgarr[enmorse(getUserData(usr,'title')+' (@'+usr+') · '+isoformat(Date.now()+j*1000)+' UTC',usr)]=enmorse(msglt,usr);
                 }
             } else {
                 if (argv!==null) {
                     msglr.push('@'+usr);
                     for (idx in argv) {
                         req=argv[idx].toString().replace('{','').replace('}',''); msglr.push('['+calc(req).toString()+']');
-                    }  msgarr[enmorse(getUserData(usr,'title')+' (@'+usr+') · '+isoformat(Date.now())+' UTC',usr)]=enmorse(msglr.join(' '),usr);
-                } else {
-                    msgarr[enmorse(getUserData(usr,'title')+' (@'+usr+') · '+isoformat(Date.now())+' UTC',usr)]=enmorse(msg,usr);
-                }
+                    } msglt=msglr.join(' ');
+                } else { msglt=msg; }
+                msgarr[enmorse(getUserData(usr,'title')+' (@'+usr+') · '+isoformat(Date.now())+' UTC',usr)]=enmorse(msglt,usr);
             } set('./'+usr+'_msgbox.json',(JSON.stringify(msgarr)),'rw');
         }
     }
