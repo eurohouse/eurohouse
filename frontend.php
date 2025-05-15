@@ -596,18 +596,16 @@ function automate() {
 function triggerResponse(usr,id,msg) {
     var argv=(msg!==undefined)?msg.match(/\{[^\}]*\}/g):'';
     var msgbox=[];req='';
-    if ((!cancelled(usr))&&(!cancelled(id))) {
-        if (argv!==null) {
-            msgbox.push('@'+usr); for (idx in argv) {
-                req=argv[idx].toString().replace('{','').replace('}','');
-                msgbox.push('{'+req.toString()+'}');
-                msgbox.push('['+calc(req).toString()+']');
-            } compose(id,msgbox.join(' '));
-        }
+    if ((!cancelled(usr))&&(!cancelled(id))&&(argv!==null)) {
+        msgbox.push('@'+usr); for (idx in argv) {
+            req=argv[idx].toString().replace('{','').replace('}','');
+            msgbox.push('['+calc(req).toString()+']');
+        } compose(id,msgbox.join(' '));
     }
 }
 function compose(usr,msg) {
     var addr=(msg!==undefined)?msg.match(/(@\w*)/g):'';
+    var argv=(msg!==undefined)?msg.match(/\{[^\}]*\}/g):'';
     var id='',msgbox={},msgbr=[];
     if (!cancelled(usr)) {
         if (addr!==null) {
@@ -619,12 +617,18 @@ function compose(usr,msg) {
                     if (msg.match(/\r?\n/)!==null) {
                         msgbr=msg.split(/\r?\n/);
                         for (j=0; j<msgbr.length; j++) {
-                            msgarr[enmorse(getUserData(usr,'title')+' (@'+usr+') · '+isoformat(Date.now()+j*1000)+' UTC',id)]=enmorse(msgbr[j],id);
-                            triggerResponse(usr,id,msg);
+                            if (argv!==null) {
+                                triggerResponse(usr,id,msgbr[j]);
+                            } else {
+                                msgarr[enmorse(getUserData(usr,'title')+' (@'+usr+') · '+isoformat(Date.now()+j*1000)+' UTC',id)]=enmorse(msgbr[j],id);
+                            }
                         }
                     } else {
-                        msgarr[enmorse(getUserData(usr,'title')+' (@'+usr+') · '+isoformat(Date.now())+' UTC',id)]=enmorse(msg,id);
-                        triggerResponse(usr,id,msg);
+                        if (argv!==null) {
+                            triggerResponse(usr,id,msg);
+                        } else {
+                            msgarr[enmorse(getUserData(usr,'title')+' (@'+usr+') · '+isoformat(Date.now())+' UTC',id)]=enmorse(msg,id);
+                        }
                     } set('./'+id+'_msgbox.json',(JSON.stringify(msgarr)),'rw');
                 }
             }
@@ -633,12 +637,18 @@ function compose(usr,msg) {
             if (msg.match(/\r?\n/)!==null) {
                 msgbr=msg.split(/\r?\n/);
                 for (j=0; j<msgbr.length; j++) {
-                    msgarr[enmorse(getUserData(usr,'title')+' (@'+usr+') · '+isoformat(Date.now()+j*1000)+' UTC',usr)]=enmorse(msgbr[j],usr);
-                    triggerResponse(usr,usr,msg);
+                    if (argv!==null) {
+                        triggerResponse(usr,usr,msgbr[j]);
+                    } else {
+                        msgarr[enmorse(getUserData(usr,'title')+' (@'+usr+') · '+isoformat(Date.now()+j*1000)+' UTC',usr)]=enmorse(msgbr[j],usr);
+                    }
                 }
             } else {
-                msgarr[enmorse(getUserData(usr,'title')+' (@'+usr+') · '+isoformat(Date.now())+' UTC',usr)]=enmorse(msg,usr);
-                triggerResponse(usr,usr,msg);
+                if (argv!==null) {
+                    triggerResponse(usr,usr,msg);
+                } else {
+                    msgarr[enmorse(getUserData(usr,'title')+' (@'+usr+') · '+isoformat(Date.now())+' UTC',usr)]=enmorse(msg,usr);
+                }
             } set('./'+usr+'_msgbox.json',(JSON.stringify(msgarr)),'rw');
         }
     }
