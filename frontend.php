@@ -594,15 +594,13 @@ function automate() {
     sysDefAutoData.value=arrstr(obj,';',':');
 }
 function triggerResponse(usr,id,msg) {
-    var addr=(msg!==undefined)?msg.match(/(@\w*)/g):'';
     var cmd=(msg!==undefined)?msg.match(/\{[^\}]*\}/):'';
-    var res=(msg!==undefined)?msg.match(/\[[^\]]*\]/):'';
     var msg=req='';
     if ((!cancelled(usr))&&(!cancelled(id))) {
         if (cmd!==null) {
             msg='@'+usr+' ';
             for (it in cmd) {
-                req=cmd[it].replace('{','').replace('}','');
+                req=trimChars(cmd[it]);
                 msg+='['+calc(req)+'] ';
             } compose(id,msg.slice(0,-1));
         }
@@ -610,8 +608,6 @@ function triggerResponse(usr,id,msg) {
 }
 function compose(usr,msg) {
     var addr=(msg!==undefined)?msg.match(/(@\w*)/g):'';
-    var cmd=(msg!==undefined)?msg.match(/\{[^\}]*\}/):'';
-    var res=(msg!==undefined)?msg.match(/\[[^\]]*\]/):'';
     var id='',msgbox={},msgbr=[];
     if (!cancelled(usr)) {
         if (addr!==null) {
