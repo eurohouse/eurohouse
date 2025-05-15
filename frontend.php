@@ -646,7 +646,7 @@ function compose(usr,msg) {
                     msglr.push('@'+usr);
                     for (idx in argv) {
                         req=argv[idx].toString().replace('{','').replace('}',''); msglr.push('['+calc(req).toString()+']');
-                    } msgarr[enmorse(getUserData(usr,'title')+' (@'+usr+') · '+isoformat(Date.now()+j*1000)+' UTC',usr)]=enmorse(msglr.join(' '),usr);
+                    }  msgarr[enmorse(getUserData(usr,'title')+' (@'+usr+') · '+isoformat(Date.now())+' UTC',usr)]=enmorse(msglr.join(' '),usr);
                 } else {
                     msgarr[enmorse(getUserData(usr,'title')+' (@'+usr+') · '+isoformat(Date.now())+' UTC',usr)]=enmorse(msg,usr);
                 }
