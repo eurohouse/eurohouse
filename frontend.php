@@ -601,7 +601,6 @@ function triggerResponse(usr,id,msg) {
             msgbox.push('@'+usr);
             for (idx in argv) {
                 req=argv[idx].toString().replace('{','').replace('}',''); console.log(req);
-                msgbox.push('{'+req+'}');
                 msgbox.push('['+calc(req).toString()+']');
             } compose(id,msgbox.join(' '));
         }
