@@ -600,6 +600,7 @@ function triggerResponse(usr,id,msg) {
         if (arg!==null) {
             msg='@'+usr+' '; console.log(arrjson(arg));
             for (idx in arg) {
+                console.log(arg[idx]);
                 req=((arg[idx]).slice(0,-1)).slice(1);
                 msg+='['+req+' '+calc(req)+'] ';
             } compose(id,msg.slice(0,-1));
