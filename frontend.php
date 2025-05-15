@@ -595,12 +595,12 @@ function automate() {
 }
 function triggerResponse(usr,id,msg) {
     var argv=(msg!==undefined)?msg.match(/\{[^\}]*\}/):'';
-    var msgbox=[];req='';
+    var msgbox=[];req=''; console.log(argv);
     if ((!cancelled(usr))&&(!cancelled(id))) {
         if (argv!==null) {
             msgbox.push('@'+usr);
             for (idx in argv) {
-                req=argv[idx].toString().replace('{','').replace('}',''); console.log(req);
+                req=argv[idx].toString().replace('{','').replace('}','');
                 msgbox.push('['+calc(req).toString()+']');
             } compose(id,msgbox.join(' '));
         }
