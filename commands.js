@@ -456,6 +456,11 @@ function omniEnter() {
         omniDisp(requestMode.value,input.replaceAll('?',''),requestLock.value);
     } else if (input.endsWith(';')) {
         omniBox.value=executeCode(input);
+    } else if (input.endsWith(':')) {
+        arj=input.replace(':','');
+        if (isBit(userdata()[arj])) {
+            setdata(arj,flip(userdata()[arj]));
+        }
     } else if ((input.startsWith('/'))||(input.startsWith('\\'))||(input.startsWith('!'))) { pipeExec(input);
     } else if ((input.includes('|'))||(input.includes('&'))||(input.includes('~'))||(input.includes('^'))) {
         omniBox.value=finarr(arrmath(input)).join(';');
