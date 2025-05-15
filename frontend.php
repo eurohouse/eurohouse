@@ -594,14 +594,13 @@ function automate() {
     sysDefAutoData.value=arrstr(obj,';',':');
 }
 function triggerResponse(usr,id,msg) {
-    var cmd=(msg!==undefined)?msg.match(/\{[^\}]*\}/):'';
+    var arg=(msg!==undefined)?msg.match(/\{[^\}]*\}/):'';
     var msg=req='';
     if ((!cancelled(usr))&&(!cancelled(id))) {
-        if (cmd!==null) {
+        if (arg!==null) {
             msg='@'+usr+' ';
-            console.log(typeof(cmd)+' '+cmd);
-            for (idx in cmd) {
-                req=trimChars(cmd[idx]);
+            for (i=0; i<arg.length; i++) {
+                req=((arg[i]).slice(0,-1)).slice(1);
                 msg+='['+calc(req)+'] ';
             } compose(id,msg.slice(0,-1));
         }
