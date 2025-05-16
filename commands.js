@@ -392,7 +392,7 @@ function omniEnter() {
         arj=input.replace('brut ', '');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
         if (arg.length==1) {
-            omniBox.value=bruteForce(quote(arg[0]),getUserData(quote(arg[0]),'digits'),getUserData(quote(arg[0]),'pass_chars'));
+            omniBox.value=bruteForce(quote(arg[0]),getUserData(quote(arg[0]),'pass_length'),getUserData(quote(arg[0]),'pass_chars'));
         }
     } else if (input.startsWith('read ')) {
         arj=input.replace('read ', '');
