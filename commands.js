@@ -51,20 +51,22 @@ function readFile(name,opt='read',path='',store='user_content') {
         }
     });
 }
-function executeFile(name,str='',re=false,sp=false) {
+function executeFile(name,str='',withReload=false,multiline=false) {
     var dataString='name='+name+'&type=code&blank=&attr=plur';
     $.ajax({ type: "POST", url: "read.php", data: dataString, cache: false,
         success: function(result) {
             var codeExt=result.split(/\r?\n/),strd=strl=[],strs=''; if (str.includes(',')) {
                 strl=str.split(','); for (il in strl) {
                     if (codeExt[strl[il]]!==undefined) {
-                        if (sp!==false) {
+                        if (multiline!==false) {
                             strs+=codeExt[strl[il]]+'\r\n';
                         } else {
                             executeCode(codeExt[strl[il]]);
                         }
                     }
-                } if (sp!==false) { compose(sysDefSessionID.value,strs.slice(0,-2)); }
+                } if (multiline!==false) {
+                    compose(sysDefSessionID.value,strs.slice(0,-2));
+                }
             } else if (str.includes('-')) {
                 strd=str.split('-'); if (strd[1]>strd[0]) {
                     for (i=strd[0]; i<=strd[1]; i++) {
@@ -72,18 +74,22 @@ function executeFile(name,str='',re=false,sp=false) {
                     }
                 } for (il in strl) {
                     if (codeExt[strl[il]]!==undefined) {
-                        if (sp!==false) {
+                        if (multiline!==false) {
                             strs+=codeExt[strl[il]]+'\r\n';
                         } else {
                             executeCode(codeExt[strl[il]]);
                         }
                     }
-                } if (sp!==false) { compose(sysDefSessionID.value,strs.slice(0,-2)); }
+                } if (multiline!==false) {
+                    compose(sysDefSessionID.value,strs.slice(0,-2));
+                }
             } else if ((isInt(str))&&(codeExt[str]!==undefined)) {
-                if (sp!==false) { compose(sysDefSessionID.value,codeExt[str]);
+                if (multiline!==false) {
+                    compose(sysDefSessionID.value,codeExt[str]);
                 } else { executeCode(codeExt[str]); }
             } else if (str=='') {
-                if (sp!==false) { compose(sysDefSessionID.value,result);
+                if (multiline!==false) {
+                    compose(sysDefSessionID.value,result);
                 } else {
                     for (il in codeExt) {
                         executeCode(codeExt[il]);
@@ -92,15 +98,15 @@ function executeFile(name,str='',re=false,sp=false) {
             } else {
                 for (il in codeExt) {
                     if (codeExt[il].toLowerCase().includes(str.toLowerCase())) {
-                        if (sp!==false) {
+                        if (multiline!==false) {
                             compose(sysDefSessionID.value,codeExt[il]); break;
                         } else {
                             executeCode(codeExt[il]); break;
                         }
                     }
                 }
-            } if (re!==false) {
-                if (sp===false) { window.location.reload(); }
+            } if ((withReload!==false)&&(multiline!==true)) {
+                window.location.reload();
             }
         }
     }); return false;
@@ -139,7 +145,7 @@ function getPkgSequence(input,cmdword,isRepo=0,isDbg=0) {
 function pipeExec(input) {
     var exr,brd,ark,arv,lnt,mls=lockarr('music'),pls=[];
     var elm,fln,atr,fli,fle,ard='',inc=0;
-    if (input.includes('/')) {
+    if ((input.includes('/'))&&(input.startsWith('/'))) {
         exr=(input.endsWith('/')),pipes=input.split('/');
         brd=(exr)?(pipes.length-2):(pipes.length-1);
         lnt=(sysDefCodexBox.value).split('//');
@@ -156,24 +162,23 @@ function pipeExec(input) {
                 }
             }
         }
-    } else if (input.includes('!')) {
-        exr=(input.endsWith('!')),pipes=input.split('!');
-        brd=(exr)?(pipes.length-2):(pipes.length-1);
+    } else if ((input.includes('!'))&&(input.endsWith('!'))) {
+        pipes=input.split('!'); brd=pipes.length-2;
         lnt=(sysDefSpeechBox.value).split('//');
         for (it in pipes) {
-            if ((it>=1)&&(it<=brd)) {
+            if ((it>=0)&&(it<=brd)) {
                 if (pipes[it].includes(':')) {
                     ark=pipes[it].split(':')[0];
                     arv=pipes[it].split(':')[1];
                 } else { ark=pipes[it]; arv=''; }
                 for (i=0; i<lnt.length; i++) {
                     if (lnt[i].toLowerCase().includes(ark.toLowerCase())) {
-                        executeFile(lnt[i],arv,exr,true); break;
+                        executeFile(lnt[i],arv,false,true); break;
                     }
                 }
             }
         }
-    } else if (input.includes('\\')) {
+    } else if ((input.includes('\\'))&&(input.startsWith('\\'))) {
         exr=(input.endsWith('\\')),pipes=input.split('\\');
         brd=(exr)?(pipes.length-2):(pipes.length-1);
         for (it in pipes) {
@@ -478,7 +483,7 @@ function omniEnter() {
         if (isBit(userdata()[arj])) {
             setdata(arj,flip(userdata()[arj]));
         }
-    } else if ((input.startsWith('/'))||(input.startsWith('\\'))||(input.startsWith('!'))) { pipeExec(input);
+    } else if ((input.startsWith('/'))||(input.startsWith('\\'))||(input.endsWith('!'))) { pipeExec(input);
     } else if ((input.includes('|'))||(input.includes('&'))||(input.includes('~'))||(input.includes('^'))) {
         omniBox.value=finarr(arrmath(input)).join(';');
     } else if ((input.startsWith('+'))&&(input.endsWith('"'))) {
