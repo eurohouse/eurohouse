@@ -70,7 +70,7 @@ function bruteForce(user,len=4,sym='0123456789') {
         }; for (idx in permute) {
             test=readFile(user+'_password','read','',user+'_password');
             pass=CryptoJS.SHA256(permute[idx]).toString();
-            if (test==pass) { res.push(permute[idx]); }
+            res.push(permute[idx]);
         }
     } return res.join(' ');
 }
