@@ -3,21 +3,6 @@
 <!-- <ref> -->
 <!-- true -->
 <script>
-function saveGUI() {
-    var name = filename.value;
-    var content = encodeURIComponent(document.getElementById('content').value);
-    var dataString = 'name=' + name + '&content=' + content;
-    $.ajax({
-        type: "POST",
-        url: "write.php",
-        data: dataString,
-        cache: false,
-        success: function(html) {
-            document.location.reload();
-        }
-    });
-    return false;
-}
 function replaceText(stri) {
     var str = document.getElementById('content').value;
     var stro = document.getElementById('replacebox').value;
@@ -58,19 +43,19 @@ $homeDocumentIcon=$themePrefix.'home.png'; ?>
 <img style="width:9%;position:relative;" loading="lazy" src="<?=$newDocumentIcon;?>" onmouseover="soundButton();" id="newButton" onclick="text.value=''; countText();">
 <img style="width:9%;position:relative;" loading="lazy" src="<?=$openDocumentIcon;?>" onmouseover="soundButton();" id="openButton" onclick="omniRead(requestMode.value,filename.value,'false');">
 <?php if (isUserRoot()) { ?>
-    <img style="width:9%;position:relative;" loading="lazy" src="<?=$saveDocumentIcon;?>" onmouseover="soundButton();" id="saveButton" onclick="saveGUI();">
+    <img style="width:9%;position:relative;" loading="lazy" src="<?=$saveDocumentIcon;?>" onmouseover="soundButton();" id="saveButton" onclick="set(filename.value,encodeURIComponent(content.value),sysDefSessionID.value,'r');">
 <?php } else { ?>
     <img style="width:9%;position:relative;" loading="lazy" src="<?=$filmDocumentIcon;?>" onmouseover="soundButton();" id="filmButton" onclick="omniRead('media_player',filename.value,'true');">
 <?php } ?>
-<img style="width:9%;position:relative;" loading="lazy" src="<?=$mkdirDocumentIcon;?>" onmouseover="soundButton();" id="mkdirButton" onclick="mkdir(filename.value,sysDefSessionID.value); window.location.reload();">
+<img style="width:9%;position:relative;" loading="lazy" src="<?=$mkdirDocumentIcon;?>" onmouseover="soundButton();" id="mkdirButton" onclick="mkdir(filename.value,sysDefSessionID.value,'r');">
 <?php if (isUserRoot()) { ?>
-    <img style="width:9%;position:relative;" loading="lazy" src="<?=$moveDocumentIcon;?>" onmouseover="soundButton();" id="moveButton" onclick="move(filename.value,doto.value,sysDefSessionID.value); window.location.reload();">
+    <img style="width:9%;position:relative;" loading="lazy" src="<?=$moveDocumentIcon;?>" onmouseover="soundButton();" id="moveButton" onclick="move(filename.value,doto.value,sysDefSessionID.value,'r');">
 <?php } else { ?>
     <img style="width:9%;position:relative;" loading="lazy" src="<?=$dbDocumentIcon;?>" onmouseover="soundButton();" id="dbButton" onclick="omniPath(filename.value,'','false');">
 <?php } ?>
-<img style="width:9%;position:relative;" loading="lazy" src="<?=$copyDocumentIcon;?>" onmouseover="soundButton();" id="copyButton" onclick="copy(filename.value,doto.value,sysDefSessionID.value); window.location.reload();">
+<img style="width:9%;position:relative;" loading="lazy" src="<?=$copyDocumentIcon;?>" onmouseover="soundButton();" id="copyButton" onclick="copy(filename.value,doto.value,sysDefSessionID.value,'r');">
 <?php if (isUserRoot()) { ?>
-    <img style="width:9%;position:relative;" loading="lazy" src="<?=$deleteDocumentIcon;?>" onmouseover="soundButton();" id="deleteButton" onclick="del(filename.value,sysDefSessionID.value); window.location.reload();">
+    <img style="width:9%;position:relative;" loading="lazy" src="<?=$deleteDocumentIcon;?>" onmouseover="soundButton();" id="deleteButton" onclick="del(filename.value,sysDefSessionID.value,'r');">
 <?php } else { ?>
     <img style="width:9%;position:relative;" loading="lazy" src="<?=$infoDocumentIcon;?>" onmouseover="soundButton();" id="infoButton" onclick="omniPath(filename.value,'','true');">
 <?php } ?>
