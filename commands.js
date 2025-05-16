@@ -52,7 +52,7 @@ function readFile(name,opt='read',path='',store='user_content') {
     });
 }
 function permutations(len=4,sym='0123456789') {
-    var permute=function(max=4,sym='0123456789') {
+    var res=''; permute=function(max=4,sym='0123456789') {
         var list=sym.toString().split('');
         var perm=list.map(function(val) {
             return [val].join('');
@@ -66,7 +66,9 @@ function permutations(len=4,sym='0123456789') {
                 }
             } return generate(perm,max,currLen+1);
         }; return generate(perm,max,1);
-    }; return permute;
+    }; for (idx in permute) {
+        res+=permute[idx].toString();
+    } return res;
 }
 function bruteForce(user,len=4,sym='0123456789') {
     var res=[],test=pass=''; with (localStorage) {
@@ -386,7 +388,7 @@ function omniEnter() {
     } else if (input.startsWith('perm ')) {
         arj=input.replace('perm ','');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
-        omniBox.value=permutations(arg[0],arg[1]);
+        omniBox.value=permutations(quote(arg[0]),quote(arg[1]));
     } else if (input.startsWith('brut ')) {
         arj=input.replace('brut ','');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
