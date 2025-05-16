@@ -23,7 +23,7 @@
     --background: url("<?=$background;?>");
     --bicolor: <?=alphaChannel($session['back_color'], $session['opacity']);?>;
     --qucolor: <?=alphaChannel($session['back_color'], 'IF');?>;
-    --grad-line: <?=$session['gradient_line'].'deg';?>;
+    --grad-line: <?=$session['gradient_fore'].'deg';?>;
     --grad-button: <?=$session['gradient_button'].'deg';?>;
     --radius: <?=$session['radius'];?>px;
     --box-shadow: <?=$session['box_shadow'];?>;
