@@ -15,12 +15,12 @@ function scores(sta) {
             if ((ordered[indi]!==undefined)||(indi!='')) {
                 af=(ordered[indi]!=indi)?"@"+ordered[indi]:"SELF";
                 at=getUserAvatar(indi);
-                res+="<input type='image' style='background:linear-gradient("+sysDefGradientButton.value+"deg, "+getUserData(indi,'fore_color')+" 0%, "+getUserData(indi,'arc_fore_color')+" 100%);' class='power' onmouseover='soundButton();' src='"+eax+at+".png"+"' onclick='clip(&#34;"+at+"&#34;);'>";
-                res+="<input type='button' onmouseover='soundButton();' style='width:35%;background:linear-gradient("+sysDefGradientFore.value+"deg, "+getUserData(indi,'fore_color')+" 0%, "+getUserData(indi,'arc_fore_color')+" 100%);' value='@"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
-                res+="<input type='button' onmouseover='soundButton();' style='width:34%;background:linear-gradient("+sysDefGradientFore.value+"deg, "+getUserData(indi,'fore_color')+" 0%, "+getUserData(indi,'arc_fore_color')+" 100%);' value='"+af+"' onclick='clip(&#34;"+af+"&#34;);'>";
-                res+="<input type='image' style='background:linear-gradient("+sysDefGradientButton.value+"deg, "+getUserData(indi,'fore_color')+" 0%, "+getUserData(indi,'arc_fore_color')+" 100%);' class='power' onmouseover='soundButton();' src='"+epr+"chain.png"+"' onclick='bind(&#34;"+rid+"&#34;,&#34;"+indi+"&#34;);'>";
+                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+eax+at+".png"+"' onclick='clip(&#34;"+at+"&#34;);'>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:35%;' value='@"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:34%;' value='"+af+"' onclick='clip(&#34;"+af+"&#34;);'>";
+                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"chain.png"+"' onclick='bind(&#34;"+rid+"&#34;,&#34;"+indi+"&#34;);'>";
                 if (superuser()) {
-                    res+="<input type='image' style='background:linear-gradient("+sysDefGradientButton.value+"deg, "+getUserData(indi,'fore_color')+" 0%, "+getUserData(indi,'arc_fore_color')+" 100%);' class='power' onmouseover='soundButton();' src='"+epr+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;);'>";
+                    res+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;);'>";
                 } res+="<br>";
             }
         }
