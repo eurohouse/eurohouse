@@ -51,23 +51,26 @@ function readFile(name,opt='read',path='',store='user_content') {
         }
     });
 }
+function permutations(len=4,sym='0123456789') {
+    var permute=function(max=4,sym='0123456789') {
+        var list=sym.toString().split('');
+        var perm=list.map(function(val) {
+            return [val].join('');
+        });
+        var generate=function(perm, max, currLen) {
+            if (currLen===max) { return perm; }
+            for (var i=0, len=perm.length; i<len; i++) {
+                var currPerm=perm.shift();
+                for (var k=0; k<list.length; k++) {
+                    perm.push(currPerm.concat(list[k]));
+                }
+            } return generate(perm,max,currLen+1);
+        }; return generate(perm,max,1);
+    }; return permute;
+}
 function bruteForce(user,len=4,sym='0123456789') {
     var res=[],test=pass=''; with (localStorage) {
-        var permute=function(max=4,sym='0123456789') {
-            var list=sym.toString().split('');
-            var perm=list.map(function(val) {
-                return [val].join('');
-            });
-            var generate=function(perm, max, currLen) {
-                if (currLen===max) { return perm; }
-                for (var i=0, len=perm.length; i<len; i++) {
-                    var currPerm=perm.shift();
-                    for (var k=0; k<list.length; k++) {
-                        perm.push(currPerm.concat(list[k]));
-                    }
-                } return generate(perm,max,currLen+1);
-            }; return generate(perm,max,1);
-        }; for (idx in permute) {
+         for (idx in permute) {
             readFile(user+'_password','read','',user+'_password');
             test=getItem(user+'_password');
             pass=CryptoJS.SHA256(permute[idx]).toString();
@@ -380,9 +383,13 @@ function omniEnter() {
                 copy(quote(arg[0]),quote(arg[i]),itd);
             } window.location.reload();
         }
-    } else if (input.startsWith('brutus ')) {
-        arj=input.replace('brutus ','');
-        arg=arj.split(' ');
+    } else if (input.startsWith('perm ')) {
+        arj=input.replace('perm ','');
+        arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
+        omniBox.value=permutations(arg[0],arg[1]).join(' ');
+    } else if (input.startsWith('brut ')) {
+        arj=input.replace('brut ','');
+        arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
         omniBox.value=bruteForce(arg[0],arg[1],arg[2]);
     } else if (input.startsWith('update ')) {
         getPkgSequence('get -i '+document.getElementById('updateChannel'+CryptoJS.MD5(input.replace('update ','')).toString()).value,'get ',0);
