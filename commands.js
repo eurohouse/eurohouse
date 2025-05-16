@@ -394,6 +394,12 @@ function omniEnter() {
         if (arg.length==3) {
             omniBox.value=bruteForce(quote(arg[0]),quote(arg[1]),quote(arg[2]));
         }
+    } else if (input.startsWith('read ')) {
+        arj=input.replace('read ', '');
+        arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
+        if (arg.length==1) {
+            omniBox.value=loadFile(quote(arg[0]));
+        }
     } else if (input.startsWith('update ')) {
         getPkgSequence('get -i '+document.getElementById('updateChannel'+CryptoJS.MD5(input.replace('update ','')).toString()).value,'get ',0);
     } else if (input.startsWith('clear ')) {
