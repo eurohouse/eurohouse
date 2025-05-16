@@ -51,40 +51,23 @@ function readFile(name,opt='read',path='',store='user_content') {
         }
     });
 }
-function permutations(len=4,sym='0123456789') {
-    var permute=function(max=4,sym='0123456789') {
-        var list=sym.toString().split('');
-        var perm=list.map(function(val) {
-            return [val].join('');
-        });
-        var generate=function(perm, max, currLen) {
-            if (currLen===max) { return perm; }
-            for (var i=0, len=perm.length; i<len; i++) {
-                var currPerm=perm.shift();
-                for (var k=0; k<list.length; k++) {
-                    perm.push(currPerm.concat(list[k]));
-                }
-            } return generate(perm,max,currLen+1);
-        }; return generate(perm,max,1);
-    }; return permute(len,sym);
+function permute(max=4,sym='0123456789') {
+    var list=sym.toString().split('');
+    var perm=list.map(function(val) {
+        return [val].join('');
+    }); function generate(perm,max,currLen) {
+        if (currLen===max) { return perm; }
+        for (var i=0, len=perm.length; i<len; i++) {
+            var currPerm=perm.shift();
+            for (var k=0; k<list.length; k++) {
+                perm.push(currPerm.concat(list[k]));
+            }
+        } return generate(perm,max,currLen+1);
+    } return generate(perm,max,1);
 }
 function bruteForce(user,len=4,sym='0123456789') {
     var res=[],test=pass=''; with (localStorage) {
-    var permute=function(max=4,sym='0123456789') {
-        var list=sym.toString().split('');
-        var perm=list.map(function(val) {
-            return [val].join('');
-        });
-        var generate=function(perm, max, currLen) {
-            if (currLen===max) { return perm; }
-            for (var i=0, len=perm.length; i<len; i++) {
-                var currPerm=perm.shift();
-                for (var k=0; k<list.length; k++) {
-                    perm.push(currPerm.concat(list[k]));
-                }
-            } return generate(perm,max,currLen+1);
-        }; return generate(perm,max,1);
-    }; var perms=permute(len,sym);
+    var perms=permute(len,sym);
         for (idx in perms) {
             readFile(user+'_password','read','',user+'_password');
             test=getItem(user+'_password');
@@ -401,7 +384,7 @@ function omniEnter() {
     } else if (input.startsWith('perm ')) {
         arj=input.replace('perm ','');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
-        omniBox.value=permutations(quote(arg[0]),quote(arg[1]));
+        omniBox.value=permute(quote(arg[0]),quote(arg[1]));
     } else if (input.startsWith('brut ')) {
         arj=input.replace('brut ','');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
