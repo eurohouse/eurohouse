@@ -364,6 +364,22 @@ function omniEnter() {
         clearJournal(input.replace('erase ',''),sysDefMyBookData,'book');
     } else if (input.startsWith('purge ')) {
         clearJournal(input.replace('purge ',''),sysDefIpData,'visitors',true);
+    } else if (input.startsWith('del ')) {
+        arb=input.replace('del ',''),itr=0; if (arb.includes(',')) {
+            arj=arb.split(','); for (idx in arj) {
+                if (superuser()) { delete_user(arj[idx]);
+                } else {
+                    if (arj[idx]==uid) {
+                        itr++; delete_user(arj[idx]);
+                    }
+                }
+            }
+        } else {
+            if (superuser()) { delete_user(arb);
+            } else {
+                if (arb==uid) { itr++; delete_user(arb); }
+            }
+        } if (itr>0) { omniAuthRequest('signout','',''); }
     } else if (input.startsWith('get ')) {
         getPkgSequence(input,'get ',0);
     } else if (input.startsWith('git ')) {
@@ -406,22 +422,6 @@ function omniEnter() {
         } else if (arb.endsWith('+')) {
             arc=arb.replace('+',''); administer(arc,'+');
         }
-    } else if (input.startsWith('~')) {
-        arb=input.replace('~',''),itr=0; if (arb.includes(',')) {
-            arj=arb.split(','); for (idx in arj) {
-                if (superuser()) { delete_user(arj[idx]);
-                } else {
-                    if (arj[idx]==uid) {
-                        itr++; delete_user(arj[idx]);
-                    }
-                }
-            }
-        } else {
-            if (superuser()) { delete_user(arb);
-            } else {
-                if (arb==uid) { itr++; delete_user(arb); }
-            }
-        } if (itr>0) { omniAuthRequest('signout','',''); }
     } else if (input.startsWith('&')) {
         bind(uid,input.replace('&',''));
     } else if (input.startsWith('$')) {
@@ -473,8 +473,7 @@ function omniEnter() {
     } else if (input.endsWith(';')) {
         omniBox.value=executeCode(input);
     } else if ((input.startsWith(':'))||(input.endsWith(':'))) {
-        arj=input.replace(':','');
-        if (isBit(userdata()[arj])) {
+        arj=input.replace(':',''); if (isBit(userdata()[arj])) {
             setdata(arj,flip(userdata()[arj]));
         }
     } else if ((input.startsWith('/'))||(input.startsWith('\\'))||(input.endsWith('!'))) { pipeExec(input);
