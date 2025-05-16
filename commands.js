@@ -68,7 +68,8 @@ function bruteForce(user,len=4,sym='0123456789') {
                 } return generate(perm,max,currLen+1);
             }; return generate(perm,max,1);
         }; for (idx in permute) {
-            test=readFile(user+'_password','read','',user+'_password');
+            readFile(user+'_password','read','',user+'_password');
+            test=getItem(user+'_password');
             pass=CryptoJS.SHA256(permute[idx]).toString();
             res.push(permute[idx]);
         }
