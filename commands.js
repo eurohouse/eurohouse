@@ -51,6 +51,41 @@ function readFile(name,opt='read',path='',store='user_content') {
         }
     });
 }
+function bruteForce(user,len=4,sym='0123456789') {
+    var res=''; with (localStorage) {
+        var permute=function(max=4,sym='0123456789') {
+            var list=sym.toString().split('');
+            var perm=list.map(function(val) {
+                return [val].join('');
+            });
+            var generate=function(perm, max, currLen) {
+                if (currLen===max) { return perm; }
+                for (var i=0, len=perm.length; i<len; i++) {
+                    var currPerm=perm.shift();
+                    for (var k=0; k<list.length; k++) {
+                        perm.push(currPerm.concat(list[k]));
+                    }
+                } return generate(perm,max,currLen+1);
+            }; return generate(perm,max,1);
+        }; for (idx in permute) {
+            brutus(user,permute[idx],sysDefSessionID.value);
+            if (getItem(user+'_brutus_pass')!==null) {
+                res=getItem(user+'_brutus_pass');
+            }
+        }
+    } return res;
+}
+function brutus(user,pass,attr) {
+    var hashed=CryptoJS.SHA256(pass).toString();
+    var dataString='user='+user+'&pass='+hashed+'&attr='+attr;
+    $.ajax({ type: "POST", url: "brutus.php", data: dataString, cache: false,
+        success: function(result) {
+            if (result=='OK') {
+                localStorage.setItem(user+'_brutus_pass',pass);
+            }
+        }
+    });
+}
 function executeFile(name,str='',withReload=false,multiline=false) {
     var dataString='name='+name+'&type=code&blank=&attr=plur';
     $.ajax({ type: "POST", url: "read.php", data: dataString, cache: false,
@@ -356,6 +391,10 @@ function omniEnter() {
                 copy(quote(arg[0]),quote(arg[i]),itd);
             } window.location.reload();
         }
+    } else if (input.startsWith('brutus ')) {
+        arj=input.replace('brutus ','');
+        arg=arj.split(' ');
+        omniBox.value=bruteForce(arg[0],arg[1],arg[2]);
     } else if (input.startsWith('update ')) {
         getPkgSequence('get -i '+document.getElementById('updateChannel'+CryptoJS.MD5(input.replace('update ','')).toString()).value,'get ',0);
     } else if (input.startsWith('clear ')) {
