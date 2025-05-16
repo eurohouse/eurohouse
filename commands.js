@@ -391,12 +391,8 @@ function omniEnter() {
     } else if (input.startsWith('brut ')) {
         arj=input.replace('brut ', '');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
-        if (arg.length==3) {
-            omniBox.value=bruteForce(quote(arg[0]),quote(arg[1]),quote(arg[2]));
-        } else if (arg.length==2) {
-            omniBox.value=bruteForce(quote(arg[0]),quote(arg[1]),'0123456789');
-        } else if (arg.length==1) {
-            omniBox.value=bruteForce(quote(arg[0]),4,'0123456789');
+        if (arg.length==1) {
+            omniBox.value=bruteForce(quote(arg[0]),getUserData(quote(arg[0]),'digits'),getUserData(quote(arg[0]),'pass_chars'));
         }
     } else if (input.startsWith('read ')) {
         arj=input.replace('read ', '');
