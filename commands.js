@@ -453,7 +453,7 @@ function omniEnter() {
                 } else if (arg[1].includes('signup')) {
                     omniAuthRequest('signup',arh[0],arc);
                 } else if (arg[1].includes('rename')) {
-                    rename_user(uid,arh[0],arh[1]);
+                    rename_user(uid,arh[0],arh[1],uid);
                     omniAuthRequest('signin',arh[0],arc);
                 }
             } else {
@@ -463,7 +463,7 @@ function omniEnter() {
                 } else if (arg[1].includes('signup')) {
                     omniAuthRequest('signup',arg[0],arc);
                 } else if (arg[1].includes('rename')) {
-                    rename_user(uid,arg[0],'');
+                    rename_user(uid,arg[0],'',uid);
                     omniAuthRequest('signin',arg[0],arc);
                 }
             }

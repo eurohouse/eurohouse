@@ -261,16 +261,16 @@ function transfer_entry(id,to,obj,name,onlyAssignID=false) {
     set(name+'.json',JSON.stringify(objData),'rw');
     obj.value=arrstr(objData,';',':');
 }
-function rename_user(id,to,pass,overwrite=false) {
+function rename_user(id,to,pass,perm) {
     unbind(id); unbind(to); del(id+'_password','rw');
     set(to+'_password',CryptoJS.SHA256(pass).toString(),'rw');
-    var owr=(overwrite)?'rw':''; if (id!=to) {
-        copy(id+'_lock.json',to+'_lock.json',owr);
-        copy(id+'_metadata.json',to+'_metadata.json',owr);
-        copy(id+'_session.json',to+'_session.json',owr);
-        copy(id+'_msgbox.json',to+'_msgbox.json',owr);
-        copy(id+'_book.json',to+'_book.json',owr);
-        copy(id+'_store.json',to+'_store.json',owr);
+    if (id!=to) {
+        copy(id+'_lock.json',to+'_lock.json',perm);
+        copy(id+'_metadata.json',to+'_metadata.json',perm);
+        copy(id+'_session.json',to+'_session.json',perm);
+        copy(id+'_msgbox.json',to+'_msgbox.json',perm);
+        copy(id+'_book.json',to+'_book.json',perm);
+        copy(id+'_store.json',to+'_store.json',perm);
         transfer_entry(id,to,sysDefBindData,'binding',true);
         transfer_entry(id,to,sysDefPowersData,'dominion');
         transfer_entry(id,to,sysDefAutoData,'automator');
@@ -683,9 +683,9 @@ function buy_item(buyer,art,seller) {
                         set('./'+seller+'_store.json',encodeURIComponent(JSON.stringify(tabS)),'rw');
                         set('./'+buyer+'_store.json',encodeURIComponent(JSON.stringify(tabB)),'rw');
                         if ((tabS[art]['password']!==undefined)&&(tabS[art]['type']=='account')) {
-                            rename_user(seller,buyer,tabS[art]['password'],true); omniAuthRequest('signin',buyer,tabS[art]['password']);
+                            rename_user(seller,buyer,tabS[art]['password'],seller); omniAuthRequest('signin',buyer,tabS[art]['password']);
                         } else if ((tabS[art]['password']!==undefined)&&(tabS[art]['type']=='password')) {
-                            rename_user(seller,seller,tabS[art]['password']);
+                            rename_user(seller,seller,tabS[art]['password'],seller);
                             omniAuthRequest('signin',seller,tabS[art]['password']);
                         }
                     }
