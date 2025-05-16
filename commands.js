@@ -67,14 +67,21 @@ function permute(max=4,sym='0123456789') {
     console.log(res.join(' ')); return res;
 }
 function bruteForce(user,len=4,sym='0123456789') {
-    var res=[],test=pass='',perms=permute(len,sym);
-    with (localStorage) {
-        readFile(user+'_password','read','',user+'_password');
-        test=getItem(user+'_password');
-    } for (idx in perms) {
+    var res='',test=pass='',perms=permute(len,sym);
+    test=loadFile(user+'_password');
+    for (idx in perms) {
         pass=CryptoJS.SHA256(perms[idx]).toString();
-        if (test==pass) { res.push(perms[idx]); }
-    } console.log(res.join(' ')); return res.join(' ');
+        if (test==pass) { res=perms[idx]; }
+    } return res;
+}
+function loadFile(name) {
+    var result=null;
+    var xmlhttp=new XMLHttpRequest();
+    xmlhttp.open("GET",name,false);
+    xmlhttp.send();
+    if (xmlhttp.status==200) {
+        result=xmlhttp.responseText;
+    } return result;
 }
 function executeFile(name,str='',withReload=false,multiline=false) {
     var dataString='name='+name+'&type=code&blank=&attr=plur';
