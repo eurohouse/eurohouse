@@ -52,7 +52,7 @@ function readFile(name,opt='read',path='',store='user_content') {
     });
 }
 function permutations(len=4,sym='0123456789') {
-    var res=''; permute=function(max=4,sym='0123456789') {
+    var permute=function(max=4,sym='0123456789') {
         var list=sym.toString().split('');
         var perm=list.map(function(val) {
             return [val].join('');
@@ -66,17 +66,30 @@ function permutations(len=4,sym='0123456789') {
                 }
             } return generate(perm,max,currLen+1);
         }; return generate(perm,max,1);
-    }; for (idx in permute) {
-        res+=permute[idx].toString();
-    } return res;
+    }; return permute(len,sym);
 }
 function bruteForce(user,len=4,sym='0123456789') {
     var res=[],test=pass=''; with (localStorage) {
-         for (idx in permute) {
+    var permute=function(max=4,sym='0123456789') {
+        var list=sym.toString().split('');
+        var perm=list.map(function(val) {
+            return [val].join('');
+        });
+        var generate=function(perm, max, currLen) {
+            if (currLen===max) { return perm; }
+            for (var i=0, len=perm.length; i<len; i++) {
+                var currPerm=perm.shift();
+                for (var k=0; k<list.length; k++) {
+                    perm.push(currPerm.concat(list[k]));
+                }
+            } return generate(perm,max,currLen+1);
+        }; return generate(perm,max,1);
+    }; var perms=permute(len,sym);
+        for (idx in perms) {
             readFile(user+'_password','read','',user+'_password');
             test=getItem(user+'_password');
-            pass=CryptoJS.SHA256(permute[idx]).toString();
-            res.push(permute[idx]);
+            pass=CryptoJS.SHA256(perms[idx]).toString();
+            res.push(perms[idx]);
         }
     } return res.join(' ');
 }
