@@ -386,7 +386,7 @@ function omniEnter() {
     } else if (input.startsWith('perm ')) {
         arj=input.replace('perm ','');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
-        omniBox.value=permutations(arg[0],arg[1]).join(' ');
+        omniBox.value=permutations(arg[0],arg[1]);
     } else if (input.startsWith('brut ')) {
         arj=input.replace('brut ','');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
