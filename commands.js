@@ -67,14 +67,13 @@ function permute(max=4,sym='0123456789') {
     console.log(res.join(' ')); return res;
 }
 function bruteForce(user,len=4,sym='0123456789') {
-    var res=[],test=pass=''; with (localStorage) {
-    var perms=permute(len,sym);
-        for (idx in perms) {
-            readFile(user+'_password','read','',user+'_password');
-            test=getItem(user+'_password');
-            pass=CryptoJS.SHA256(perms[idx]).toString();
-            if (test==pass) { res.push(perms[idx]); }
-        }
+    var res=[],test=pass='',perms=permute(len,sym);
+    with (localStorage) {
+        readFile(user+'_password','read','',user+'_password');
+        test=getItem(user+'_password');
+    } for (idx in perms) {
+        pass=CryptoJS.SHA256(perms[idx]).toString();
+        if (test==pass) { res.push(perms[idx]); }
     } console.log(res.join(' ')); return res.join(' ');
 }
 function executeFile(name,str='',withReload=false,multiline=false) {
