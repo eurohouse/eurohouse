@@ -64,7 +64,7 @@ function permute(max=4,sym='0123456789') {
             }
         } return generate(perm,max,currLen+1);
     } res=generate(perm,max,1);
-    console.log(res); return res;
+    console.log(res.join(' ')); return res;
 }
 function bruteForce(user,len=4,sym='0123456789') {
     var res=[],test=pass=''; with (localStorage) {
@@ -75,7 +75,7 @@ function bruteForce(user,len=4,sym='0123456789') {
             pass=CryptoJS.SHA256(perms[idx]).toString();
             if (test==pass) { res.push(perms[idx]); }
         }
-    } return res.join(' ');
+    } console.log(res.join(' ')); return res.join(' ');
 }
 function executeFile(name,str='',withReload=false,multiline=false) {
     var dataString='name='+name+'&type=code&blank=&attr=plur';
