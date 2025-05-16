@@ -363,9 +363,9 @@ function jsonFilter(str,mask) {
 function jsonHTML(str,mask) {
     var arr=jsonFilter(str,mask),ard='',fu0=fu1=ark=arv='';
     var usr=sysDefSessionID.value,epr=sysDefPrefix.value;
-    for (el in arr) {
-        ark=(sysDefMorse.value!=0)?enmorse(el,usr):el;
-        arv=(sysDefMorse.value!=0)?enmorse(arr[el],usr):arr[el];
+    var cyp=sysDefCypher.value; for (el in arr) {
+        ark=(cyp!='')?enmorse(el,usr,cyp):el;
+        arv=(cyp!='')?enmorse(arr[el],usr,cyp):arr[el];
         fu0="clearJournal(&#39;"+enmorse(el,usr)+"&#39;,&#39;"+sysDefMyMsgboxData.value+"&#39;,&#39;msgbox&#39;);";
         fu1="clip(&#39;"+arv+"&#39;);";
         ard="<p><input type='image' class='power' onmouseover='soundButton();' src='"+epr+"trash.png"+"' onclick='"+fu0+"'> "+ark+" <input type='image' class='power' onmouseover='soundButton();' src='"+epr+"copy.png"+"' onclick='"+fu1+"'><br>"+arv+"</p>"+ard;
