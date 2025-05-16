@@ -81,7 +81,7 @@ function loadFile(name) {
     xmlhttp.send();
     if (xmlhttp.status==200) {
         result=xmlhttp.responseText;
-    } return result;
+    } console.log(result); return result;
 }
 function executeFile(name,str='',withReload=false,multiline=false) {
     var dataString='name='+name+'&type=code&blank=&attr=plur';
