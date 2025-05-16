@@ -652,6 +652,44 @@ function compose(usr,msg) {
         }
     }
 }
+function pamd(pass) {
+    var dt=new Date(),hh=dt.getUTCHours();
+    var mm=dt.getUTCMinutes(),ss=dt.getUTCSeconds();
+    var period=sysDefCron.value;
+    if ((authstate())&&(sysDefPam.value!=0)) {
+        if ((period=="60'")||(period=='3600"')) {
+            if ((parseInt(mm)==0)&&(parseInt(ss)==0)) {
+                rename_user(sysDefSessionID.value,sysDefSessionID.value,pass,sysDefSessionID.value);
+                compose('pam','@'+sysDefSessionID.value+':'+pass);
+            }
+        } else if ((period=="30'")||(period=='1800"')) {
+            if (((parseInt(mm)==0)||(parseInt(mm)==30))&&(parseInt(ss)==0)) {
+                rename_user(sysDefSessionID.value,sysDefSessionID.value,pass,sysDefSessionID.value);
+                compose('pam','@'+sysDefSessionID.value+':'+pass);
+            }
+        } else if ((period=="15'")||(period=='900"')) {
+            if (((parseInt(mm)==0)||(parseInt(mm)==15))||(parseInt(mm)==30)||(parseInt(mm)==45)&&(parseInt(ss)==0)) {
+                rename_user(sysDefSessionID.value,sysDefSessionID.value,pass,sysDefSessionID.value);
+                compose('pam','@'+sysDefSessionID.value+':'+pass);
+            }
+        } else if ((period=="1'")||(period=='60"')) {
+            if (parseInt(ss)==0) {
+                rename_user(sysDefSessionID.value,sysDefSessionID.value,pass,sysDefSessionID.value);
+                compose('pam','@'+sysDefSessionID.value+':'+pass);
+            }
+        } else if (period=='30"') {
+            if ((parseInt(ss)==0)||(parseInt(ss)==30)) {
+                rename_user(sysDefSessionID.value,sysDefSessionID.value,pass,sysDefSessionID.value);
+                compose('pam','@'+sysDefSessionID.value+':'+pass);
+            }
+        } else if (period=='15"') {
+            if ((parseInt(ss)==0)||(parseInt(ss)==15)||(parseInt(ss)==30)||(parseInt(ss)==45)) {
+                rename_user(sysDefSessionID.value,sysDefSessionID.value,pass,sysDefSessionID.value);
+                compose('pam','@'+sysDefSessionID.value+':'+pass);
+            }
+        }
+    }
+}
 function amounts(tabS,tabB,art) {
     var qS=qB=0; if ((tabS[art]['amount']!==undefined)&&isInt(tabS[art]['amount'])) {
         qS=parseInt(tabS[art]['amount']); if (qS>1) {
