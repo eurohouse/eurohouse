@@ -388,6 +388,12 @@ function omniEnter() {
                 copy(quote(arg[0]),quote(arg[i]),itd);
             } window.location.reload();
         }
+    } else if (input.startsWith('brut ')) {
+        arj=input.replace('brut ', '');
+        arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
+        if (arg.length==3) {
+            omniBox.value=bruteForce(quote(arg[0]),quote(arg[1]),quote(arg[2]));
+        }
     } else if (input.startsWith('update ')) {
         getPkgSequence('get -i '+document.getElementById('updateChannel'+CryptoJS.MD5(input.replace('update ','')).toString()).value,'get ',0);
     } else if (input.startsWith('clear ')) {
