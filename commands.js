@@ -52,7 +52,7 @@ function readFile(name,opt='read',path='',store='user_content') {
     });
 }
 function bruteForce(user,len=4,sym='0123456789') {
-    var res=[]; with (localStorage) {
+    var res=[],test=pass=''; with (localStorage) {
         var permute=function(max=4,sym='0123456789') {
             var list=sym.toString().split('');
             var perm=list.map(function(val) {
@@ -68,27 +68,11 @@ function bruteForce(user,len=4,sym='0123456789') {
                 } return generate(perm,max,currLen+1);
             }; return generate(perm,max,1);
         }; for (idx in permute) {
-            brutus(user,permute[idx],sysDefSessionID.value);
-            if (getItem(user+'_brutus_pass')!==null) {
-                res.push(getItem(user+'_brutus_pass')+' OK');
-            } else {
-                res.push(permute[idx]+' ERR');
-            }
+            test=readFile(user+'_password','read','',user+'_password');
+            pass=CryptoJS.SHA256(permute[idx]).toString();
+            if (test==pass) { res.push(permute[idx]); }
         }
     } return res.join(' ');
-}
-function brutus(user,pass,attr) {
-    var hashed=CryptoJS.SHA256(pass).toString();
-    var dataString='user='+user+'&pass='+hashed+'&attr='+attr;
-    $.ajax({ type: "POST", url: "brutus.php", data: dataString, cache: false,
-        success: function(result) {
-            if (result=='OK') {
-                with (localStorage) {
-                    setItem(user+'_brutus_pass',pass);
-                }
-            }
-        }
-    });
 }
 function executeFile(name,str='',withReload=false,multiline=false) {
     var dataString='name='+name+'&type=code&blank=&attr=plur';
