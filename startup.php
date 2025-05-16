@@ -66,7 +66,7 @@ function world_clock() {
     $.ajax({
         url: 'world_clock.php',
         success: function(data) {
-            $('#currentTime').val(pager(data,0));
+            $('#currentTime').html(pager(data,0));
             $('#alarmTime').val((pager(data,1)!='00:00')?pager(data,1):hhmmss(audioPlayer.currentTime,true));
             $('#sysDefIndicators').val(pager(data,2));
             $('#sysDefAccent').val(pager(data,3));
