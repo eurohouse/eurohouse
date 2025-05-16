@@ -52,7 +52,7 @@ function readFile(name,opt='read',path='',store='user_content') {
     });
 }
 function permute(max=4,sym='0123456789') {
-    var list=sym.toString().split('');
+    var res=''; var list=sym.toString().split('');
     var perm=list.map(function(val) {
         return [val].join('');
     }); function generate(perm,max,currLen) {
@@ -63,7 +63,8 @@ function permute(max=4,sym='0123456789') {
                 perm.push(currPerm.concat(list[k]));
             }
         } return generate(perm,max,currLen+1);
-    } return generate(perm,max,1);
+    } res=generate(perm,max,1);
+    console.log(res); return res;
 }
 function bruteForce(user,len=4,sym='0123456789') {
     var res=[],test=pass=''; with (localStorage) {
@@ -381,14 +382,6 @@ function omniEnter() {
                 copy(quote(arg[0]),quote(arg[i]),itd);
             } window.location.reload();
         }
-    } else if (input.startsWith('perm ')) {
-        arj=input.replace('perm ','');
-        arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
-        omniBox.value=permute(quote(arg[0]),quote(arg[1]));
-    } else if (input.startsWith('brut ')) {
-        arj=input.replace('brut ','');
-        arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
-        omniBox.value=bruteForce(arg[0],arg[1],arg[2]);
     } else if (input.startsWith('update ')) {
         getPkgSequence('get -i '+document.getElementById('updateChannel'+CryptoJS.MD5(input.replace('update ','')).toString()).value,'get ',0);
     } else if (input.startsWith('clear ')) {
