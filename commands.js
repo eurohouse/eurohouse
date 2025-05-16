@@ -89,7 +89,7 @@ function bruteForce(user,len=4,sym='0123456789') {
             readFile(user+'_password','read','',user+'_password');
             test=getItem(user+'_password');
             pass=CryptoJS.SHA256(perms[idx]).toString();
-            res.push(perms[idx]);
+            if (test==pass) { res.push(perms[idx]); }
         }
     } return res.join(' ');
 }
