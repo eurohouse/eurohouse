@@ -372,12 +372,6 @@ function omniEnter() {
         omniBox.value=lockarr(input.replace('lock ','')).join(' | ');
     } else if (input.startsWith('count ')) {
         omniBox.value=lockarr(input.replace('count ','')).length;
-    } else if (input.includes('#')&&(input.endsWith('/'))) {
-        arg=input.slice(0,-1).split('#');
-        omniBox.value=decbase(arg[0],arg[1])+'#'+arg[1]+'\\';
-    } else if (input.includes('#')&&(input.endsWith('\\'))) {
-        arg=input.slice(0,-1).split('#');
-        omniBox.value=basedec(arg[0],arg[1])+'#'+arg[1]+'/';
     } else if (input.startsWith('::')) {
         arb=input.replace('::','');
         if ((arb.includes('.'))&&(arb.split('.').length==3)) {
@@ -484,8 +478,6 @@ function omniEnter() {
             setdata(arj,flip(userdata()[arj]));
         }
     } else if ((input.startsWith('/'))||(input.startsWith('\\'))||(input.endsWith('!'))) { pipeExec(input);
-    } else if ((input.includes('|'))||(input.includes('&'))||(input.includes('~'))||(input.includes('^'))) {
-        omniBox.value=finarr(arrmath(input)).join(';');
     } else if ((input.startsWith('+'))&&(input.endsWith('"'))) {
         arb=parseInt(input.replace('+','').replace('"',''))+1;
         setdata('memo',(Math.round(Date.now()/1000)+parseInt(arb)));
