@@ -75,14 +75,12 @@ function bruteForce(user,len=4,sym='0123456789') {
     } return res;
 }
 function serialForce(user,len=25,sym='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ',num=5,delim='-') {
-    var res=x=y=z='',test=pass='',perms=permute(len,sym);
+    var res=prep='',test=pass='',perms=permute(len,sym);
     test=loadFile(user+'_password');
     for (idx in perms) {
-        x=XRegExp('.{1,'+num+'}','g');
-        y=XRegExp.match(perms[idx],x);
-        z=y.join(delim);
-        pass=CryptoJS.SHA256(z).toString();
-        if (test==pass) { res=z; }
+        prep=XRegExp.match(perms[idx],XRegExp('.{1,'+num+'}','g'));
+        pass=CryptoJS.SHA256(prep.join(delim)).toString();
+        if (test==pass) { res=prep.join(delim); }
     } return res;
 }
 function loadFile(name) {
@@ -92,7 +90,7 @@ function loadFile(name) {
     xmlhttp.send();
     if (xmlhttp.status==200) {
         result=xmlhttp.responseText;
-    } console.log(result); return result;
+    } return result;
 }
 function executeFile(name,str='',withReload=false,multiline=false) {
     var dataString='name='+name+'&type=code&blank=&attr=plur';
