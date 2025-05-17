@@ -411,12 +411,6 @@ function omniEnter() {
         if (arg.length==1) {
             omniBox.value=serialForce(quote(arg[0]),getUserData(quote(arg[0]),'pass_length'),getUserData(quote(arg[0]),'pass_chars'));
         }
-    } else if (input.startsWith('mask ')) {
-        arj=input.replace('mask ', '');
-        arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
-        if (arg.length==1) {
-            omniBox.value=bruteForce(quote(arg[0]),getUserData(quote(arg[0]),'pass_length'),getUserData(quote(arg[0]),'pass_chars'));
-        }
     } else if (input.startsWith('read ')) {
         arj=input.replace('read ', '');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
