@@ -64,7 +64,7 @@ function permute(max=4,sym='0123456789') {
             }
         } return generate(perm,max,currLen+1);
     } res=generate(perm,max,1);
-    console.log(res.join(' ')); return res;
+    return res;
 }
 function bruteForce(user,len=4,sym='0123456789') {
     var res='',test=pass='',perms=permute(len,sym);
@@ -72,6 +72,17 @@ function bruteForce(user,len=4,sym='0123456789') {
     for (idx in perms) {
         pass=CryptoJS.SHA256(perms[idx]).toString();
         if (test==pass) { res=perms[idx]; }
+    } return res;
+}
+function serialForce(user,len=25,sym='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ',num=5,delim='-') {
+    var res=x=y=z='',test=pass='',perms=permute(len,sym);
+    test=loadFile(user+'_password');
+    for (idx in perms) {
+        x=XRegExp('.{1,'+num+'}','g');
+        y=XRegExp.match(perms[idx],x);
+        z=y.join(delim);
+        pass=CryptoJS.SHA256(z).toString();
+        if (test==pass) { res=z; }
     } return res;
 }
 function loadFile(name) {
@@ -388,8 +399,20 @@ function omniEnter() {
                 copy(quote(arg[0]),quote(arg[i]),itd);
             } window.location.reload();
         }
-    } else if (input.startsWith('brut ')) {
-        arj=input.replace('brut ', '');
+    } else if (input.startsWith('brutus ')) {
+        arj=input.replace('brutus ', '');
+        arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
+        if (arg.length==1) {
+            omniBox.value=bruteForce(quote(arg[0]),getUserData(quote(arg[0]),'pass_length'),getUserData(quote(arg[0]),'pass_chars'));
+        }
+    } else if (input.startsWith('serial ')) {
+        arj=input.replace('serial ', '');
+        arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
+        if (arg.length==1) {
+            omniBox.value=serialForce(quote(arg[0]),getUserData(quote(arg[0]),'pass_length'),getUserData(quote(arg[0]),'pass_chars'));
+        }
+    } else if (input.startsWith('mask ')) {
+        arj=input.replace('mask ', '');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
         if (arg.length==1) {
             omniBox.value=bruteForce(quote(arg[0]),getUserData(quote(arg[0]),'pass_length'),getUserData(quote(arg[0]),'pass_chars'));
