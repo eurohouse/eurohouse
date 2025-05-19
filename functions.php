@@ -383,16 +383,15 @@ function duplex($list,bool $txt=false) {
 function annotationString($str) {
     return str_replace(' -->','',str_replace('<!-- ','',$str));
 }
-function timedate($format='Y-m-d H:i:s',array $voc,$tz=0,$offs=0) {
+function timedate($format='Y-m-d H:i:s',array $voc,$units='EU',$tz=0,$offs=0) {
     $di=DateInterval::createFromDateString($offs.'day');
     $dt=new DateTime('@'.time(),(new DateTimeZone(dec_tz($tz))));
     $dt->setTimeZone(new DateTimeZone(dec_tz($tz)));
     $ds=date_sub($dt,$di)->format($format);
     $list=$voc['locale']['month']['default'];
-    $preg=(preg_match_all('/('.implode('|',$list).')/',$ds,$matches));
-    for ($i=0; $i<count($matches[0]); $i++) {
-        $full=$matches[0][$i];
-        $ds=str_replace_all($full,monthName($full),$ds);
+    $preg=preg_match('/('.implode('|',$list).')/i',$ds);
+    if ($preg!=null) {
+        $ds=str_replace($preg[0],monthName($preg[0],$voc,$units),$ds);
     } return $ds;
 }
 function zodiacSign($d) {
