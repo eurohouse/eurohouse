@@ -15,7 +15,7 @@ if ($userData['calendar']=='Julian') {
     $dateStr=french($userSettings,$userData['units']);
 } else {
     $dateStr=timedate($userData['date_format'],$userSettings,$userData['units'],$userData['roman'],$userData['timezone']);
-} $timeStr=timedate($userData['time_format'],$userSettings,$userData['units'],$userData['roman'],$userData['timezone']);
+} $timeStr=timedate($userData['time_format'],$userSettings,$userData['units'],0,$userData['timezone']);
 if ($userData['vintage']!=0) {
     $videoArr=[
         "blur(0.".round($userData['magnitude']/1.5)."px)","0.".round($userData['magnitude']/1.5),"repeating-linear-gradient(90deg, #000".$userData['magnitude']." 0 ".round($userData['magnitude']/2.5)."px, transparent ".round($userData['magnitude']/3.5)."px 35vmin)",
