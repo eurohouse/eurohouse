@@ -18,12 +18,14 @@ function omniAuthRequest(auth,login,pass) {
 function omniSuggest() {
     var usersList=(sysDefUsersList.value).split(',');
     var curUser=usersList[rand(0,(usersList.length))];
-    var msgbox={},indexed=decyphered=pass='';
+    var msgbox={},msglen=0,indexed=decyphered=pass='';
     omniBoxAuthLogin.value=curUser;
     if (getUserData(curUser,'pam')!=0) {
         msgbox=jsonarr(loadFile(curUser+'_msgbox.json'));
         console.log(msgbox);
-        indexed=msgbox[Object.keys(msgbox)[0]];
+        msglen=Object.keys(msgbox).length;
+        console.log(msglen);
+        indexed=msgbox[Object.keys(msgbox)[msglen-1]];
         console.log(indexed);
         decyphered=demorse(indexed,curUser);
         console.log(decyphered);
