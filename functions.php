@@ -383,11 +383,19 @@ function duplex($list,bool $txt=false) {
 function annotationString($str) {
     return str_replace(' -->','',str_replace('<!-- ','',$str));
 }
-function julianTime($time) {
-    return intval($time/86400+2440588);
-}
 function convDate($time,$oldStyle=0) {
-    return ($oldStyle!=0)?jdtounix(juliantojd(jdtojulian(julianTime($time)))):jdtounix(gregoriantojd(jdtogregorian(julianTime($time))));
+    $jd=intval($time/86400+2440588);
+    if ($oldStyle!=0) {
+        $dd=explode('/',jdtojulian($jd))[1];
+        $mm=explode('/',jdtojulian($jd))[0];
+        $yy=explode('/',jdtojulian($jd))[2];
+        $jt=juliantojd($mm,$dd,$yy);
+    } else {
+        $dd=explode('/',jdtogregorian($jd))[1];
+        $mm=explode('/',jdtogregorian($jd))[0];
+        $yy=explode('/',jdtogregorian($jd))[2];
+        $jt=gregoriantojd($mm,$dd,$yy);
+    } return ($jt-2440588)*86400;
 }
 function zodiacSign($d) {
     if (($d>355)||($d<19)) { $r="♑️";
