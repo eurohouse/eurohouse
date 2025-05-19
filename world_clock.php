@@ -9,7 +9,8 @@ if ($userData['memo']!='') {
         $ongo=0; $inco=1; $alarmInTime=$userData['memo']-time();
     }
 } else { $ongo=0; $inco=0; $alarmInTime=0; }
-$dateTimeStr=($userData['timedisp']!=0)?timedate(time(),$userData['time_offset'],$userData['timezone'],$userData['date_format']):timedate(time(),$userData['time_offset'],$userData['timezone'],$userData['time_format']); if ($userData['vintage']!=0) {
+//$dateTimeStr=($userData['timedisp']!=0)?timedate(time(),$userData['time_offset'],$userData['timezone'],$userData['date_format']):timedate(time(),$userData['time_offset'],$userData['timezone'],$userData['time_format']);
+if ($userData['vintage']!=0) {
     $videoArr=[
         "blur(0.".round($userData['magnitude']/1.5)."px)","0.".round($userData['magnitude']/1.5),"repeating-linear-gradient(90deg, #000".$userData['magnitude']." 0 ".round($userData['magnitude']/2.5)."px, transparent ".round($userData['magnitude']/3.5)."px 35vmin)",
         "vlines 0.45s steps(1) infinite","repeating-conic-gradient(#00000".$userData['magnitude']." 0%, transparent 0.00003%, transparent 0.0005%, transparent 0.00095%), repeating-conic-gradient(#00000".$userData['magnitude']." 0%, transparent 0.00005%, transparent 0.00015%, transparent 0.0009%)",
