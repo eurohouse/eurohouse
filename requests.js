@@ -15,24 +15,21 @@ function omniAuthRequest(auth,login,pass) {
     hiddenField.value=pass; form.appendChild(hiddenField);
     document.body.appendChild(form); form.submit();
 }
+function guessUserPass(id) {
+    var msgbox={},msglen=0,indexed=decyphered=pass='';
+    if (getUserData(id,'pam')!=0) {
+        msgbox=jsonarr(loadFile(id+'_msgbox.json'));
+        msglen=Object.keys(msgbox).length;
+        indexed=msgbox[Object.keys(msgbox)[msglen-1]];
+        decyphered=demorse(indexed,id);
+        pass=(decyphered.includes(':'))?decyphered.split(':')[1]:'';
+    } else { pass=''; } return pass;
+}
 function omniSuggest() {
     var usersList=(sysDefUsersList.value).split(',');
     var curUser=usersList[rand(0,(usersList.length))];
-    var msgbox={},msglen=0,indexed=decyphered=pass='';
     omniBoxAuthLogin.value=curUser;
-    if (getUserData(curUser,'pam')!=0) {
-        msgbox=jsonarr(loadFile(curUser+'_msgbox.json'));
-        console.log(msgbox);
-        msglen=Object.keys(msgbox).length;
-        console.log(msglen);
-        indexed=msgbox[Object.keys(msgbox)[msglen-1]];
-        console.log(indexed);
-        decyphered=demorse(indexed,curUser);
-        console.log(decyphered);
-        pass=decyphered.split(':')[1];
-        omniBoxAuthPass.value=pass;
-        console.log(pass);
-    } else { omniBoxAuthPass.value=''; }
+    omniBoxAuthPass.value=guessUserPass(curUser);
     omniBoxAuthPass.focus();
 }
 function uploadFile() {

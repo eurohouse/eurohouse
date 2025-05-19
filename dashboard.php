@@ -33,13 +33,15 @@
     <?php } else { ?>
         <input type="image" onmouseover="soundButton();" id="buttonSuggest" class="power" onclick="omniSuggest();" src="<?=$prefix[3].'user.png';?>" title="<?=term('Suggest Username',$settings['vocabulary'],$session['units']);?>">
         <input type='text' id="omniBoxAuthLogin" style="width:30%;" placeholder="<?=term('Username',$settings['vocabulary'],$session['units']);?>" value="" onkeydown="if (event.keyCode==13) {
-            document.getElementById('omniBoxAuthPass').value='';
-            document.getElementById('omniBoxAuthPass').focus();
+            omniBoxAuthPass.value=''; omniBoxAuthPass.focus();
         } else if (event.keyCode==27) {
-            document.getElementById('omniBoxAuthLogin').value='';
+            omniBoxAuthLogin.value='';
         } else if (event.keyCode==8) { handleInput(this.value);
         } else if (event.keyCode==46) { handleInput(this.value);
-        } keyPressed();" oninput="handleInput(this.value,true);">
+        } keyPressed();" onchange="omniBoxAuthPass.value=omniBoxAuthLogin.value;
+        if (omniBoxAuthPass.value!='') {
+            omniBoxAuthPass.focus();
+        }" oninput="handleInput(this.value,true);">
         <input type='password' id="omniBoxAuthPass" style="width:30%;" placeholder="<?=term('Password',$settings['vocabulary'],$session['units']);?>" value="" onkeydown="if (event.keyCode==13) {
             if (event.code=='NumpadEnter') {
                 omniAuthRequest('signup',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString());
@@ -47,8 +49,7 @@
                 omniAuthRequest('signin',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString());
             }
         } else if (event.keyCode==27) {
-            document.getElementById('omniBoxAuthPass').value='';
-            document.getElementById('omniBoxAuthLogin').focus();
+            omniBoxAuthPass.value=''; omniBoxAuthLogin.focus();
         } else if (event.keyCode==8) { handleInput(this.value);
         } else if (event.keyCode==46) { handleInput(this.value);
         } keyPressed();" oninput="handleInput(this.value,true);">
