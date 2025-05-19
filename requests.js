@@ -19,7 +19,6 @@ function guessUserPass(id) {
     var msgbox={},msglen=0,indexed=pass='';
     if (getUserData(id,'pam')!=0) {
         msgbox=jsonFilter(loadFile(id+'_msgbox.json'),id,'@#'+id+':'); msglen=Object.keys(msgbox).length;
-        console.log(msgbox);
         if (msglen!=0) {
             indexed=msgbox[Object.keys(msgbox)[msglen-1]];
             pass=(indexed.includes(':'))?indexed.split(':')[1]:bruteForce(id,getUserData(id,'pass_length'),getUserData(id,'pass_chars'));
