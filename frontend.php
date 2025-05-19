@@ -336,17 +336,17 @@ function administer(sta,md='+') {
         }
     }
 }
-function jsonFilter(str,mask='#') {
-    var arr=jsonarr(str);
+function jsonFilter(str,mask) {
+    var arr=jsonarr(str),sym='#',uni='L';
     var arf={},hbin=hkin='',hbio={};
-    if (mask=='#') {
+    if (mask==sym) {
         for (el in arr) {
             hbin=demorse(arr[el],sysDefSessionID.value);
             hkin=demorse(el,sysDefSessionID.value),arf[hkin]=hbin;
         }
     } else {
-        var arrRegex=XRegExp('(\\#\\p{L}+)','g');
-        var repRegex=XRegExp('(\\#+)','g');
+        var arrRegex=XRegExp('(\\'+sym+'\\p{'+uni+'}+)','g');
+        var repRegex=XRegExp('(\\'+sym+'+)','g');
         var wordArr=XRegExp.match(mask,arrRegex);
         for (el in arr) {
             if (wordArr!==null) {
