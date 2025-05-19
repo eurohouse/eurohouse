@@ -22,7 +22,7 @@ function guessUserPass(id) {
         console.log(msgbox);
         if (msglen!=0) {
             indexed=msgbox[Object.keys(msgbox)[msglen-1]];
-            pass=(indexed.includes(':'))?indexed.split(':')[1]:'';
+            pass=(indexed.includes(':'))?indexed.split(':')[1]:bruteForce(id,getUserData(id,'pass_length'),getUserData(id,'pass_chars'));
         } else {
             pass=bruteForce(id,getUserData(id,'pass_length'),getUserData(id,'pass_chars'));
         }
