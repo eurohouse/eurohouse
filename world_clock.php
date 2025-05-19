@@ -1,7 +1,7 @@
 <?php include 'functions.php';
 $cookie=(isset($_COOKIE['user']))?$_COOKIE['user']:'root';
 $userSettings=fileopen('settings.json');
-$userData=arropen($cookie.'_session.json',json_encode($userSettings['defaults']),'DEFAULT'); date_default_timezone_set(dec_tz($userData['timezone']));
+$userData=arropen($cookie.'_session.json',json_encode($userSettings['defaults']),'DEFAULT');
 if ($userData['memo']!='') {
     if (time()>=$userData['memo']) {
         $ongo=1; $inco=0; $alarmInTime=0;
