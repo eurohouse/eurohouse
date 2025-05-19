@@ -385,9 +385,10 @@ function annotationString($str) {
 }
 function timedate($t=0,$of=0,$tz='Etc/GMT',$f='Y-m-d H:i:s') {
     $di=DateInterval::createFromDateString($of.'day');
-    $dt=new DateTime('@'.$t,new DateTimeZone($tz));
+    $dt=new DateTime('@'.$t,(new DateTimeZone('Etc/GMT')));
+    $dt->setTimeZone(new DateTimeZone($tz));
     return date_sub($dt,$di)->format($f);
-}
+} 
 function zodiacSign($d) {
     if (($d>355)||($d<19)) { $r="♑️";
     } elseif (($d>18)&&($d<49)) { $r="♒️";
