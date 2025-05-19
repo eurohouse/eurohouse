@@ -72,7 +72,6 @@
             "JP": [ "1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月" ],
             "KR": [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월" ]
         },
-        "month_excl": [ "CN", "KR", "JP" ],
         "month_short": {
             "default": [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ],
             "CH": [ "Ian", "Feb", "Mar", "Apr", "Mai", "Jun", "Qui", "Sex", "Sep", "Oct", "Nov", "Dec" ],
@@ -187,7 +186,6 @@
             "QA": [ "السبت", "الجمعة", "الخميس", "الاربعاء", "الثلاثاء", "الاثنين", "الاحد" ]
         }
     },
-    "weekday_excl": [ "IN", "LK", "CN", "KR", "JP", "AE", "SA", "IQ", "IR", "KW", "QA" ],
     "weekday_short": {
         "default": [ "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" ],
         "CH": [ "Dom", "Lun", "Mar", "Mer", "Iov", "Ven", "Sab" ],
