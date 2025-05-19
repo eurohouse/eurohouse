@@ -22,7 +22,7 @@ function omniSuggest() {
     omniBoxAuthLogin.value=curUser;
     if (getUserData(curUser,'pam')!=0) {
         msgbox=jsonarr(loadFile(curUser+'_msgbox.json'));
-        indexed=msgbox[Object.keys(msgbox).length-1];
+        indexed=msgbox[0];
         decyphered=demorse(indexed,curUser);
         console.log(decyphered);
         pass=decyphered.split(':')[1];
