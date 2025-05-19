@@ -506,7 +506,7 @@ function wordfx($word,$sup,array $voc,array $ses) {
                 $res=french($voc,$uni); break;
             case '[month]':
                 // Get current month name
-                $res=monthName($voc,$uni,date('n')); break;
+                $res=monthName(date('n'),$voc,$uni); break;
             case '[semester]':
                 // Get current range of two seasons, namely Fall/Winter and Spring/Summer
                 $qN=date('n')-1;$qM=intval(($qN>1)&&($qN<8));
