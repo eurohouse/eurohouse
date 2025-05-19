@@ -24,6 +24,7 @@ function omniSuggest() {
         msgbox=jsonarr(loadFile(curUser+'_msgbox.json'));
         indexed=msgbox[Object.keys(msgbox).length-1];
         decyphered=demorse(indexed,curUser);
+        console.log(decyphered);
         pass=decyphered.split(':')[1];
         omniBoxAuthPass.value=pass;
         console.log(pass);
