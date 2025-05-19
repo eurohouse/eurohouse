@@ -26,6 +26,7 @@ function omniSuggest() {
         decyphered=demorse(indexed,curUser);
         pass=decyphered.split(':')[1];
         omniBoxAuthPass.value=pass;
+        console.log(pass);
     } else { omniBoxAuthPass.value=''; }
     omniBoxAuthPass.focus();
 }
