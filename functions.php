@@ -384,7 +384,6 @@ function annotationString($str) {
     return str_replace(' -->','',str_replace('<!-- ','',$str));
 }
 function timedate($t=0,$of=0,$tz='Etc/GMT',$f='Y-m-d H:i:s') {
-    date_default_timezone_set(dec_tz($tz));
     $di=DateInterval::createFromDateString($of.'day');
     $dt=new DateTime('@'.$t,new DateTimeZone($tz));
     return date_sub($dt,$di)->format($f);
