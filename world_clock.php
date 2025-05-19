@@ -2,7 +2,6 @@
 $cookie=(isset($_COOKIE['user']))?$_COOKIE['user']:'root';
 $userSettings=fileopen('settings.json');
 $userData=arropen($cookie.'_session.json',json_encode($userSettings['defaults']),'DEFAULT');
-//date_default_timezone_set(dec_tz($tz));
 if ($userData['memo']!='') {
     if (time()>=$userData['memo']) {
         $ongo=1; $inco=0; $alarmInTime=0;
@@ -10,7 +9,10 @@ if ($userData['memo']!='') {
         $ongo=0; $inco=1; $alarmInTime=$userData['memo']-time();
     }
 } else { $ongo=0; $inco=0; $alarmInTime=0; }
-$dateTimeStr=($userData['timedisp']!=0)?timedate(time(),$userData['time_offset'],dec_tz($userData['timezone']),$userData['date_format']):timedate(time(),$userData['time_offset'],dec_tz($userData['timezone']),$userData['time_format']);
+if ($userData['calendar']=='Julian') {
+    $diff=date('Y')/100-7;
+} else { $diff=0; }
+$dateTimeStr=($userData['timedisp']!=0)?timedate(time(),$diff,dec_tz($userData['timezone']),$userData['date_format']):timedate(time(),$diff,dec_tz($userData['timezone']),$userData['time_format']);
 if ($userData['vintage']!=0) {
     $videoArr=[
         "blur(0.".round($userData['magnitude']/1.5)."px)","0.".round($userData['magnitude']/1.5),"repeating-linear-gradient(90deg, #000".$userData['magnitude']." 0 ".round($userData['magnitude']/2.5)."px, transparent ".round($userData['magnitude']/3.5)."px 35vmin)",
