@@ -345,7 +345,7 @@ function jsonFilter(str,mask) {
             hkin=demorse(el,sysDefSessionID.value),arf[hkin]=hbin;
         }
     } else {
-        var arrRegex=XRegExp('(\\#(\\@|\\p{L}|\\p{N})+)','g');
+        var arrRegex=XRegExp('(\\#(\\@|\\p{L}|\\p{N}\\:)+)','g');
         var repRegex=XRegExp('(\\#+)','g');
         var wordArr=XRegExp.match(mask,arrRegex);
         for (el in arr) {
