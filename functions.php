@@ -434,14 +434,21 @@ function num2rom($num,$isUpper=true) {
     } if($isUpper) return $res;
     else return strtolower($res);
 }
-function timedate($format='Y-m-d H:i:s',array $voc,$units='EU',$tz=0,$offs=0) {
+function timedate($format='Y-m-d H:i:s',array $voc,$units='EU',$tz=0,$offs=0,$roman=0) {
     $di=DateInterval::createFromDateString($offs.'day');
     $dt=new DateTime('@'.time(),(new DateTimeZone(dec_tz($tz))));
     $dt->setTimeZone(new DateTimeZone(dec_tz($tz)));
     $dat=date_sub($dt,$di)->format($format);
-    $nums=preg_match('/\d+/g');
-    foreach ($nums as $k=>$v) {
-        $dat=str_replace($v,num2rom($v),$dat);
+    if ($roman!=0) {
+        $arr=preg_match_all('/\d+/',$dat,$matches);
+        for ($i=0; $i<count($matches[0]); $i++) {
+            $full=$matches[0][$i];
+            $dat=str_replace($full,num2rom($full),$dat);
+        } $arr=preg_match_all('/[a-zA-Z]+/',$dat,$matches);
+        for ($i=0; $i<count($matches[0]); $i++) {
+            $full=$matches[0][$i];
+            $dat=strtoupper($dat);
+        }
     } $wek=$voc['locale']['weekday']['default'];
     $pat=$rep=[]; foreach ($wek as $k=>$v) {
         $pat[]='/'.$v.'/'; $rep[]=weekdayName(($k+1),$voc,$units);
