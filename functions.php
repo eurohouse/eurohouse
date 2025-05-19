@@ -387,12 +387,11 @@ function timedate($format='Y-m-d H:i:s',array $voc,$units='EU',$tz=0,$offs=0) {
     $di=DateInterval::createFromDateString($offs.'day');
     $dt=new DateTime('@'.time(),(new DateTimeZone(dec_tz($tz))));
     $dt->setTimeZone(new DateTimeZone(dec_tz($tz)));
-    $ds=date_sub($dt,$di)->format($format);
-    $list=$voc['locale']['month']['default'];
-    $preg=preg_match('/('.implode('|',$list).')/i',$ds);
-    if ($preg!=null) {
-        $ds=str_replace($preg[0],monthName($preg[0],$voc,$units),$ds);
-    } return $ds;
+    $dat=date_sub($dt,$di)->format($format);
+    $mon=$voc['locale']['month']['default'];
+    $pat=$rep=[]; foreach ($mon as $k=>$v) {
+        $pat[]='/'.$v.'/'; $rep[]=monthName(($k+1),$voc,$units);
+    } $dat=preg_replace($pat,$rep,$dat); return $dat;
 }
 function zodiacSign($d) {
     if (($d>355)||($d<19)) { $r="♑️";
@@ -433,13 +432,8 @@ function french(array $voc,$units='EU'): string {
     } else { $showMonth=$voc['locale']['french']['default'][$curMonth]; }
     return $showDate.' '.$showMonth;
 }
-function monthName($id,array $voc,$units='EU') {
-    if (is_int($id)) {
-        $res=(isset($voc['locale']['month'][$units][$id-1]))?$voc['locale']['month'][$units][$id-1]:$voc['locale']['month']['default'][$id-1];
-    } else {
-        $list=$voc['locale']['month']['default'];
-        $res=(isset($voc['locale']['month'][$units][array_search($id,$list)]))?$voc['locale']['month'][$units][array_search($id,$list)]:$voc['locale']['month']['default'][array_search($id,$list)];
-    } return $res;
+function monthName($id=1,array $voc,$units='EU') {
+    return (isset($voc['locale']['month'][$units][$id-1]))?$voc['locale']['month'][$units][$id-1]:$voc['locale']['month']['default'][$id-1];
 }
 function fixedSize($str,$offs=0,$len=1000) {
     $stl=strlen($str);$sts=abs($len-$offs);
