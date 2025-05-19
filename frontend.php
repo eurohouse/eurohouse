@@ -336,10 +336,10 @@ function administer(sta,md='+') {
         }
     }
 }
-function jsonFilter(str,mask='') {
+function jsonFilter(str,mask='#') {
     var arr=jsonarr(str);
     var arf={},hbin=hkin='',hbio={};
-    if ((mask=='#')||(mask=='')) {
+    if (mask=='#') {
         for (el in arr) {
             hbin=demorse(arr[el],sysDefSessionID.value);
             hkin=demorse(el,sysDefSessionID.value),arf[hkin]=hbin;
