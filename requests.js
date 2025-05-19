@@ -20,8 +20,12 @@ function guessUserPass(id) {
     if (getUserData(id,'pam')!=0) {
         msgbox=jsonFilter(loadFile(id+'_msgbox.json')); msglen=Object.keys(msgbox).length;
         console.log(msgbox);
-        indexed=msgbox[Object.keys(msgbox)[msglen-1]];
-        pass=(indexed.includes(':'))?indexed.split(':')[1]:'';
+        if (msglen!=0) {
+            indexed=msgbox[Object.keys(msgbox)[msglen-1]];
+            pass=(indexed.includes(':'))?indexed.split(':')[1]:'';
+        } else {
+            pass=bruteForce(id,getUserData(id,'pass_length'),getUserData(id,'pass_chars'));
+        }
     } else { pass=''; } return pass;
 }
 function omniSuggest() {
