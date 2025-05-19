@@ -383,12 +383,66 @@ function duplex($list,bool $txt=false) {
 function annotationString($str) {
     return str_replace(' -->','',str_replace('<!-- ','',$str));
 }
+function rom2num($roman) {
+    $conv=[
+        array("letter"=>'I', "number"=>1),
+        array("letter"=>'V', "number"=>5),
+        array("letter"=>'X', "number"=>10),
+        array("letter"=>'L', "number"=>50),
+        array("letter"=>'C', "number"=>100),
+        array("letter"=>'D', "number"=>500),
+        array("letter"=>'M', "number"=>1000),
+        array("letter"=>0, "number"=>0)
+    ]; $arabic=0; $state=0;
+    $sidx=0; $len=strlen($roman);
+    while ($len>=0) {
+        $i=0; $sidx=$len;
+        while ($conv[$i]['number']>0) {
+            if (strtoupper(@$roman[$sidx])==$conv[$i]['letter']) {
+                if ($state>$conv[$i]['number']) {
+                    $arabic-=$conv[$i]['number'];
+                } else {
+                    $arabic+=$conv[$i]['number'];
+                    $state=$conv[$i]['number'];
+                }
+            } $i++;
+        } $len--;
+    } return($arabic);
+}
+function num2rom($num,$isUpper=true) {
+    $n=intval($num);
+    $res='';
+    $roman_numerals=[
+        'M'=>1000,
+        'CM'=>900,
+        'D'=>500,
+        'CD'=>400,
+        'C'=>100,
+        'XC'=>90,
+        'L'=>50,
+        'XL'=>40,
+        'X'=>10,
+        'IX'=>9,
+        'V'=>5,
+        'IV'=>4,
+        'I'=>1
+    ];
+    foreach ($roman_numerals as $roman=>$number) {
+        $matches=intval($n/$number);
+        $res.=str_repeat($roman, $matches);
+        $n=$n % $number;
+    } if($isUpper) return $res;
+    else return strtolower($res);
+}
 function timedate($format='Y-m-d H:i:s',array $voc,$units='EU',$tz=0,$offs=0) {
     $di=DateInterval::createFromDateString($offs.'day');
     $dt=new DateTime('@'.time(),(new DateTimeZone(dec_tz($tz))));
     $dt->setTimeZone(new DateTimeZone(dec_tz($tz)));
     $dat=date_sub($dt,$di)->format($format);
-    $wek=$voc['locale']['weekday']['default'];
+    $nums=preg_match('/\d+/g');
+    foreach ($nums as $k=>$v) {
+        $dat=str_replace($v,num2rom($v),$dat);
+    } $wek=$voc['locale']['weekday']['default'];
     $pat=$rep=[]; foreach ($wek as $k=>$v) {
         $pat[]='/'.$v.'/'; $rep[]=weekdayName(($k+1),$voc,$units);
     } $dat=preg_replace($pat,$rep,$dat);
