@@ -383,11 +383,17 @@ function duplex($list,bool $txt=false) {
 function annotationString($str) {
     return str_replace(' -->','',str_replace('<!-- ','',$str));
 }
-function timedate($format='Y-m-d H:i:s',$tz=0,$offs=0) {
+function timedate($format='Y-m-d H:i:s',array $voc,$tz=0,$offs=0) {
     $di=DateInterval::createFromDateString($offs.'day');
     $dt=new DateTime('@'.time(),(new DateTimeZone(dec_tz($tz))));
     $dt->setTimeZone(new DateTimeZone(dec_tz($tz)));
-    return date_sub($dt,$di)->format($format);
+    $ds=date_sub($dt,$di)->format($format);
+    $list=$voc['locale']['month']['default'];
+    $preg=(preg_match_all('/('.implode('|',$list).')/',$ds,$matches));
+    for ($i=0; $i<count($matches[0]); $i++) {
+        $full=$matches[0][$i];
+        $ds=str_replace_all($full,monthName($full),$ds);
+    } return $ds;
 }
 function zodiacSign($d) {
     if (($d>355)||($d<19)) { $r="♑️";
@@ -427,6 +433,14 @@ function french(array $voc,$units='EU'): string {
         $showMonth=$voc['locale']['french'][$units][$curMonth];
     } else { $showMonth=$voc['locale']['french']['default'][$curMonth]; }
     return $showDate.' '.$showMonth;
+}
+function monthName($id,array $voc,$units='EU') {
+    if (is_int($id)) {
+        $res=(isset($voc['locale']['month'][$units][$id-1]))?$voc['locale']['month'][$units][$id-1]:$voc['locale']['month']['default'][$id-1];
+    } else {
+        $list=$voc['locale']['month']['default'];
+        $res=(isset($voc['locale']['month'][$units][array_search($id,$list)]))?$voc['locale']['month'][$units][array_search($id,$list)]:$voc['locale']['month']['default'][array_search($id,$list)];
+    } return $res;
 }
 function fixedSize($str,$offs=0,$len=1000) {
     $stl=strlen($str);$sts=abs($len-$offs);
@@ -491,8 +505,8 @@ function wordfx($word,$sup,array $voc,array $ses) {
                 // Display date in French Republican Calendar format
                 $res=french($voc,$uni); break;
             case '[month]':
-                // Get current month
-                $res=(isset($loc['month'][$uni][date('n')-1]))?$loc['month'][$uni][date('n')-1]:$loc['month']['default'][date('n')-1]; break;
+                // Get current month name
+                $res=monthName($voc,$uni,date('n')); break;
             case '[semester]':
                 // Get current range of two seasons, namely Fall/Winter and Spring/Summer
                 $qN=date('n')-1;$qM=intval(($qN>1)&&($qN<8));
