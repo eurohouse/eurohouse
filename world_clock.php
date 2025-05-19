@@ -9,7 +9,7 @@ if ($userData['memo']!='') {
         $ongo=0; $inco=1; $alarmInTime=$userData['memo']-time();
     }
 } else { $ongo=0; $inco=0; $alarmInTime=0; }
-$dateTimeStr=timedate(time(),$userData['time_offset'],enc_tz($userData['timezone']));
+$dateTimeStr=timedate(time(),$userData['time_offset'],dec_tz($userData['timezone']));
 /*$dateTimeStr=($userData['timedisp']!=0)?timedate(time(),$userData['time_offset'],enc_tz($userData['timezone']),$userData['date_format']):timedate(time(),$userData['time_offset'],enc_tz($userData['timezone']),$userData['time_format']);*/
 if ($userData['vintage']!=0) {
     $videoArr=[
