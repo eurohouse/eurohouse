@@ -54,30 +54,35 @@ $ssUN=$session['units']; if ($request['group']!='') {
                 <?=term('Name',$ssVC,$ssUN);?>
             </a>
         </th>
+        <th style="width:9%;">
+            <a href="javascript:SortTable(2,'T');">
+                <?=term('Birthday',$ssVC,$ssUN);?>
+            </a>
+        </th>
         <?php if ($session['censor']!=0) { ?>
         <th style="width:8%;">
-            <a href="javascript:SortTable(2,'T');">
+            <a href="javascript:SortTable(3,'T');">
                 <?=term('Description',$ssVC,$ssUN);?>
             </a>
         </th>
         <?php } else { ?>
         <th style="width:6%;">
-            <a href="javascript:SortTable(2,'N');">
+            <a href="javascript:SortTable(4,'N');">
                 <?=term('Height',$ssVC,$ssUN);?>
             </a>
         </th>
         <th style="width:6%;">
-            <a href="javascript:SortTable(3,'N');">
+            <a href="javascript:SortTable(5,'N');">
                 <?=term('Weight',$ssVC,$ssUN);?>
             </a>
         </th>
-        <th style="width:6%;">
-            <a href="javascript:SortTable(4,'N');">
+        <th style="width:7%;">
+            <a href="javascript:SortTable(6,'N');">
                 <?=term('Body Sizes',$ssVC,$ssUN);?>
             </a>
         </th>
         <th style="width:6%;">
-            <a href="javascript:SortTable(5,'N');">
+            <a href="javascript:SortTable(7,'N');">
                 <?=term('Shoe Size',$ssVC,$ssUN);?>
             </a>
         </th>
@@ -102,17 +107,24 @@ $ssUN=$session['units']; if ($request['group']!='') {
             <?php if (isset($value['maison'])) { ?></a><?php } ?>
         </td>
         <?php } else { ?>
-            <td><?=(isset($value['height']))?((isset($ssLC['length'][$ssUN]))?((isset($ssLC['length'][$ssUN]['inch']))?incher($value['height']):(round(($value['height']*$ssLC['length'][$ssUN]['coefficient']),2)).' '.$ssLC['length'][$ssUN]['sign']):(round(($value['height']*$ssLC['length']['default']['coefficient']),2)).' '.$ssLC['length']['default']['sign']):'';?></td>
-            <td><?=(isset($value['weight']))?((isset($ssLC['mass'][$ssUN]))?(round($value['weight']*$ssLC['mass'][$ssUN]['coefficient'])).' '.$ssLC['mass'][$ssUN]['sign'] : (round($value['weight']*$ssLC['mass']['default']['coefficient'])).' '.$ssLC['mass']['default']['sign']) : '';?></td>
+            <td><?php $bday=(isset($value['birthday']))?chooseCalendar($value['birthday'],$session,$settings):''; ?></td>
+            <td><?php $sign=(isset($ssLC['length'][$ssUN]['sign']))?$ssLC['length'][$ssUN]['sign']:$ssLC['length']['default']['sign']; $koeff=(isset($ssLC['length'][$ssUN]['coefficient']))?$ssLC['length'][$ssUN]['coefficient']:$ssLC['length']['default']['coefficient']; if (isset($value['height'])) {
+                if (isset($ssLC['length'][$ssUN]['inch'])) {
+                    $height=incher($value['height']);
+                } else { $height=(round(($value['height']*$koeff),2)).' '.$sign; }
+            } else { $height=''; } echo $height; ?></td>
+            <td><?php $sign=(isset($ssLC['mass'][$ssUN]['sign']))?$ssLC['mass'][$ssUN]['sign']:$ssLC['mass']['default']['sign']; $koeff=(isset($ssLC['mass'][$ssUN]['coefficient']))?$ssLC['mass'][$ssUN]['coefficient']:$ssLC['mass']['default']['coefficient'];
+            $weight=(isset($value['weight']))?round($value['weight']*$koeff).' '.$sign:' ';
+            echo $weight; ?>
             <td><?php $koeff=(isset($ssLC['body_sizes'][$ssUN]['coefficient']))?$ssLC['body_sizes'][$ssUN]['coefficient']:$ssLC['body_sizes']['default']['coefficient'];
             $sizes=(isset($value['sizes']))?((round((explode('-',$value['sizes'])[0]*$koeff))).'-'.(round((explode('-',$value['sizes'])[1]*$koeff))).'-'.(round((explode('-',$value['sizes'])[2]*$koeff)))):''; echo $sizes; ?></td>
-            <td><?=(isset($value['shoe_size']))?((isset($ssLC['shoe_size'][$ssUN]))?($value['shoe_size']+$ssLC['shoe_size'][$ssUN]).' '.$ssUN:($value['shoe_size']+$ssLC['shoe_size']['default']).' '.$ssUN):'';?></td>
+            <td><?php $koeff=(isset($ssLC['shoe_size'][$ssUN]))?$ssLC['shoe_size'][$ssUN]:$ssLC['shoe_size']['default']; $shoeSize=(isset($value['shoe_size']))?(($value['shoe_size']+$koeff).' '.$ssUN):' '; echo $shoeSize; ?></td>
         <?php } ?>
     </tr><?php } ?>
 </tbody>
 <tfoot>
     <tr>
-        <th style="width:25%;" colspan="6"><?=term('Total elements:',$settings['vocabulary'],$session['units']).' '.count($exemplarArr);?></th>
+        <th style="width:25%;" colspan="7"><?=term('Total elements:',$settings['vocabulary'],$session['units']).' '.count($exemplarArr);?></th>
     </tr>
 </tfoot>
 </table>

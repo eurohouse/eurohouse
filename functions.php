@@ -434,12 +434,21 @@ function num2rom($num,$isUpper=true) {
     } if($isUpper) return $res;
     else return strtolower($res);
 }
-function timedate($format='Y-m-d H:i:s',array $voc,$units='EU',$roman=0,$tz=0,$offs=0) {
+function chooseCalendar($time,array $prof,array $voc) {
+    if ($prof['calendar']=='Julian') {
+        $res=timedate(time(),$prof,$voc,'date',(intval(date('Y')/100)-7));
+    } elseif ($prof['calendar']=='French') {
+        $res=french($voc,$prof['units']);
+    } else {
+        $res=timedate(time(),$prof,$voc,'date');
+    } return $res;
+}
+function timedate($time,array $prof,array $voc,$mode='time',$offs=0) {
     $di=DateInterval::createFromDateString($offs.'day');
-    $dt=new DateTime('@'.time(),(new DateTimeZone(dec_tz($tz))));
-    $dt->setTimeZone(new DateTimeZone(dec_tz($tz)));
-    $dat=date_sub($dt,$di)->format($format);
-    if ($roman!=0) {
+    $dt=new DateTime('@'.$time,(new DateTimeZone(dec_tz($prof['timezone']))));
+    $dt->setTimeZone(new DateTimeZone(dec_tz($prof['timezone'])));
+    $dat=date_sub($dt,$di)->format($prof[$mode.'_format']);
+    if ($prof['roman']!=0) {
         $arr=preg_match_all('/\d+/',$dat,$matches);
         for ($i=0; $i<count($matches[0]); $i++) {
             $full=$matches[0][$i];
@@ -451,37 +460,37 @@ function timedate($format='Y-m-d H:i:s',array $voc,$units='EU',$roman=0,$tz=0,$o
         }
     } $wek=$voc['locale']['weekday']['default'];
     $pat=$rep=[]; foreach ($wek as $k=>$v) {
-        $pat[]='/'.$v.'/'; $rep[]=dayName(($k+1),$voc,$units,'weekday');
+        $pat[]='/'.$v.'/'; $rep[]=dayName(($k+1),$voc,$prof['units'],'weekday');
     } $dat=preg_replace($pat,$rep,$dat);
     $mon=$voc['locale']['month']['default'];
     $pat=$rep=[]; foreach ($mon as $k=>$v) {
-        $pat[]='/'.$v.'/'; $rep[]=dayName(($k+1),$voc,$units,'month');
+        $pat[]='/'.$v.'/'; $rep[]=dayName(($k+1),$voc,$prof['units'],'month');
     } $dat=preg_replace($pat,$rep,$dat);
     return $dat;
 }
-function zodiacSign($d) {
-    if (($d>355)||($d<19)) { $r="♑️";
-    } elseif (($d>18)&&($d<49)) { $r="♒️";
-    } elseif (($d>48)&&($d<80)) { $r="♓️";
-    } elseif (($d>79)&&($d<110)) { $r="♈️";
-    } elseif (($d>109)&&($d<141)) { $r="♉️";
-    } elseif (($d>140)&&($d<172)) { $r="♊️";
-    } elseif (($d>171)&&($d<204)) { $r="♋️";
-    } elseif (($d>203)&&($d<235)) { $r="♌️";
-    } elseif (($d>234)&&($d<266)) { $r="♍️";
-    } elseif (($d>265)&&($d<296)) { $r="♎️";
-    } elseif (($d>295)&&($d<326)) { $r="♏️";
-    } elseif (($d>325)&&($d<356)) { $r="♐️";
-    } return $r;
+function zodiacSign($dayYear) {
+    if (($dayYear>355)||($dayYear<19)) { $res="♑️";
+    } elseif (($dayYear>18)&&($dayYear<49)) { $res="♒️";
+    } elseif (($dayYear>48)&&($dayYear<80)) { $res="♓️";
+    } elseif (($dayYear>79)&&($dayYear<110)) { $res="♈️";
+    } elseif (($dayYear>109)&&($dayYear<141)) { $res="♉️";
+    } elseif (($dayYear>140)&&($dayYear<172)) { $res="♊️";
+    } elseif (($dayYear>171)&&($dayYear<204)) { $res="♋️";
+    } elseif (($dayYear>203)&&($dayYear<235)) { $res="♌️";
+    } elseif (($dayYear>234)&&($dayYear<266)) { $res="♍️";
+    } elseif (($dayYear>265)&&($dayYear<296)) { $res="♎️";
+    } elseif (($dayYear>295)&&($dayYear<326)) { $res="♏️";
+    } elseif (($dayYear>325)&&($dayYear<356)) { $res="♐️";
+    } return $res;
 }
-function prefixes(array $ud): array {
+function prefixes(array $prof): array {
     return [
-        (isColorLight($ud['back_text_color']))?'ava.':'abc.',
-        (isColorLight($ud['fore_text_color']))?'ava.':'abc.',
-        (isColorLight($ud['back_text_color']))?'iso.':'iec.',
-        (isColorLight($ud['fore_text_color']))?'iso.':'iec.',
-        (isColorLight($ud['back_text_color']))?'rtd.':'rtc.',
-        (isColorLight($ud['fore_text_color']))?'rtd.':'rtc.'
+        (isColorLight($prof['back_text_color']))?'ava.':'abc.',
+        (isColorLight($prof['fore_text_color']))?'ava.':'abc.',
+        (isColorLight($prof['back_text_color']))?'iso.':'iec.',
+        (isColorLight($prof['fore_text_color']))?'iso.':'iec.',
+        (isColorLight($prof['back_text_color']))?'rtd.':'rtc.',
+        (isColorLight($prof['fore_text_color']))?'rtd.':'rtc.'
     ];
 }
 function french(array $voc,$units='EU'): string {
