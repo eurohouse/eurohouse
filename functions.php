@@ -434,7 +434,7 @@ function num2rom($num,$isUpper=true) {
     } if($isUpper) return $res;
     else return strtolower($res);
 }
-function timedate($format='Y-m-d H:i:s',array $voc,$units='EU',$tz=0,$roman=0,$offs=0) {
+function timedate($format='Y-m-d H:i:s',array $voc,$units='EU',$roman=0,$tz=0,$offs=0) {
     $di=DateInterval::createFromDateString($offs.'day');
     $dt=new DateTime('@'.time(),(new DateTimeZone(dec_tz($tz))));
     $dt->setTimeZone(new DateTimeZone(dec_tz($tz)));
