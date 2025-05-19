@@ -18,7 +18,7 @@ function omniAuthRequest(auth,login,pass) {
 function guessUserPass(id) {
     var msgbox={},msglen=0,indexed=pass='';
     if (getUserData(id,'pam')!=0) {
-        msgbox=jsonFilter(loadFile(id+'_msgbox.json'),'#@'+id+':'); msglen=Object.keys(msgbox).length;
+        msgbox=jsonFilter(loadFile(id+'_msgbox.json'),'#'+id); msglen=Object.keys(msgbox).length;
         console.log(msgbox);
         indexed=msgbox[Object.keys(msgbox)[msglen-1]];
         pass=(indexed.includes(':'))?indexed.split(':')[1]:'';
