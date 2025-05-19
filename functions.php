@@ -383,11 +383,11 @@ function duplex($list,bool $txt=false) {
 function annotationString($str) {
     return str_replace(' -->','',str_replace('<!-- ','',$str));
 }
-function timedate($t=0,$of=0,$tz='Etc/GMT',$f='Y-m-d H:i:s') {
-    $di=DateInterval::createFromDateString($of.'day');
-    $dt=new DateTime('@'.$t,(new DateTimeZone('Etc/GMT')));
-    $dt->setTimeZone(new DateTimeZone($tz));
-    return date_sub($dt,$di)->format($f);
+function timedate($format='Y-m-d H:i:s',$tz=0,$offs=0) {
+    $di=DateInterval::createFromDateString($offs.'day');
+    $dt=new DateTime('@'.time(),(new DateTimeZone(dec_tz($tz))));
+    $dt->setTimeZone(new DateTimeZone(dec_tz($tz)));
+    return date_sub($dt,$di)->format($format);
 }
 function zodiacSign($d) {
     if (($d>355)||($d<19)) { $r="♑️";
@@ -418,13 +418,15 @@ function french(array $voc,$units='EU'): string {
     $allYear=365+date('L');$newYear=263+date('L');
     $curDate=yearday(date('z'),$allYear,$newYear);
     if ($curDate<=0) {
-        $curMonth=(count($voc['locale']['french']['default'])-1); $showDate=(5+date('L'));
+        $curMonth=(count($voc['locale']['french']['default'])-1);
+        $showDate=(5+date('L'));
     } else {
         $curMonth=(ceil($curDate/30)-1);
         $showDate=((($curDate % 30)>0)?($curDate%30):30);
     } if (isset($voc['locale']['french'][$units][$curMonth])) {
         $showMonth=$voc['locale']['french'][$units][$curMonth];
-    } else { $showMonth=$voc['locale']['french']['default'][$curMonth]; } return $showDate.' '.$showMonth;
+    } else { $showMonth=$voc['locale']['french']['default'][$curMonth]; }
+    return $showDate.' '.$showMonth;
 }
 function fixedSize($str,$offs=0,$len=1000) {
     $stl=strlen($str);$sts=abs($len-$offs);

@@ -10,9 +10,12 @@ if ($userData['memo']!='') {
     }
 } else { $ongo=0; $inco=0; $alarmInTime=0; }
 if ($userData['calendar']=='Julian') {
-    $diff=intval(date('Y')/100)-7;
-} else { $diff=0; }
-$dateTimeStr=($userData['timedisp']!=0)?timedate(time(),$diff,dec_tz($userData['timezone']),$userData['date_format']):timedate(time(),$diff,dec_tz($userData['timezone']),$userData['time_format']);
+    $dateStr=timedate($userData['date_format'],$userData['timezone'],(intval(date('Y')/100)-7));
+} elseif ($userData['calendar']=='French') {
+    $dateStr=french($userSettings,$userData['units']);
+} else {
+    $dateStr=timedate($userData['date_format'],$userData['timezone']);
+} $timeStr=timedate($userData['time_format'],$userData['timezone']);
 if ($userData['vintage']!=0) {
     $videoArr=[
         "blur(0.".round($userData['magnitude']/1.5)."px)","0.".round($userData['magnitude']/1.5),"repeating-linear-gradient(90deg, #000".$userData['magnitude']." 0 ".round($userData['magnitude']/2.5)."px, transparent ".round($userData['magnitude']/3.5)."px 35vmin)",
@@ -35,13 +38,14 @@ $finTerms=[
     term('Press any key to continue...',$voc,$uni),
     term('',$userSettings['locale']['cli'],$uni,$userData['mode'])
 ];
-/* ¶ 0 */ echo $dateTimeStr."\r\n\r\n".
-/* ¶ 1 */ hhmmss($alarmInTime,true)."\r\n\r\n".
-/* ¶ 2 */ $ongo.$inco.$userData['observe'].$userData['spectate'].$userData['censor'].date('ILw')."\r\n\r\n".
-/* ¶ 3 */ alphaChannel($userData['back_color'],$userData['opacity'])."\r\n\r\n".
-/* ¶ 4 */ json_encode($videoArr,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
-/* ¶ 5 */ json_encode($audioArr,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
-/* ¶ 6 */ json_encode($finTerms,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
-/* ¶ 7 */ $userData['pangram_'.(($userSettings['pangram'][$uni])?$userSettings['pangram'][$uni]:$userSettings['pangram']['default'])]."\r\n\r\n".
-/* ¶ 8 */ json_encode($userSettings['locks_icons'],JSON_UNESCAPED_UNICODE)."\r\n\r\n".
-/* ¶ 9 */ implode(',',$userSettings['dataload']);
+/* ¶ 0 */ echo $dateStr."\r\n\r\n".
+/* ¶ 1 */ $timeStr."\r\n\r\n".
+/* ¶ 2 */ hhmmss($alarmInTime,true)."\r\n\r\n".
+/* ¶ 3 */ $ongo.$inco.$userData['observe'].$userData['spectate'].$userData['censor'].date('ILw')."\r\n\r\n".
+/* ¶ 4 */ alphaChannel($userData['back_color'],$userData['opacity'])."\r\n\r\n".
+/* ¶ 5 */ json_encode($videoArr,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
+/* ¶ 6 */ json_encode($audioArr,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
+/* ¶ 7 */ json_encode($finTerms,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
+/* ¶ 8 */ $userData['pangram_'.(($userSettings['pangram'][$uni])?$userSettings['pangram'][$uni]:$userSettings['pangram']['default'])]."\r\n\r\n".
+/* ¶ 9 */ json_encode($userSettings['locks_icons'],JSON_UNESCAPED_UNICODE)."\r\n\r\n".
+/* ¶ 10 */ implode(',',$userSettings['dataload']);

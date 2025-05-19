@@ -66,21 +66,21 @@ function world_clock() {
     $.ajax({
         url: 'world_clock.php',
         success: function(data) {
-            $('#currentTime').val(pager(data,0));
-            $('#alarmTime').val((pager(data,1)!='00:00')?pager(data,1):hhmmss(audioPlayer.currentTime,true));
+            $('#currentTime').val(pager(data,sysDefTimedisp.value));
+            $('#alarmTime').val((pager(data,2)!='00:00')?pager(data,1):hhmmss(audioPlayer.currentTime,true));
             pamd(gen(sysDefPassLength.value,sysDefPassChars.value));
-            $('#sysDefIndicators').val(pager(data,2));
-            $('#sysDefAccent').val(pager(data,3));
-            $('#sysDefEffects').val(pager(data,4));
-            $('#sysDefMixers').val(pager(data,5));
-            $('#sysDefFinTerms').val(pager(data,6));
-            $('#sysDefPangram').val(pager(data,7));
+            $('#sysDefIndicators').val(pager(data,3));
+            $('#sysDefAccent').val(pager(data,4));
+            $('#sysDefEffects').val(pager(data,5));
+            $('#sysDefMixers').val(pager(data,6));
+            $('#sysDefFinTerms').val(pager(data,7));
+            $('#sysDefPangram').val(pager(data,8));
             var effects=jsonarr(sysDefEffects.value);
             var mixers=jsonarr(sysDefMixers.value);
             var bndm=strarr(sysDefBindData.value,';',':')[sysDefSessionID.value];
             var finterm=jsonarr(sysDefFinTerms.value);
-            $('#sysDefLockIcons').val(pager(data,8));
-            $('#sysDefDataLoad').val(pager(data,9));
+            $('#sysDefLockIcons').val(pager(data,9));
+            $('#sysDefDataLoad').val(pager(data,10));
             if (authstate()) { omniBox.placeholder=finterm[10]; } if (requestMode.value=='volume_control') {
                 audioVolInd.value=mixers[0]; audioRatInd.value=mixers[1];
                 videoVolInd.value=mixers[2]; videoRatInd.value=mixers[3];
@@ -94,8 +94,8 @@ function world_clock() {
             if (requestMode.value=='messenger') { msgBox.innerHTML='<p>'+jsonHTML(sysDefMyMsgboxData.value,sysDefFind.value)+'</p>'; } if (requestMode.value=='news_feed') { newsBox.innerHTML='<p>'+jsonNews()+'</p>'; } $('#powerButton').attr('src',sysDefPrefix.value+'power.png');
             $('#buttonPrev').attr('src',sysDefPrefix.value+'rew.png');
             $('#buttonNext').attr('src',sysDefPrefix.value+'ff.png');
-            $('#buttonLock').attr('src',sysDefPrefix.value+((sysDefLock.value != 0)?'key.png':'lock.png'));
-            $('#buttonOnReload').attr('src',sysDefPrefix.value+((sysDefReload.value!=0)?'bluetooth.png':'radio.png')); $('#buttonSongIndex').attr('src',sysDefPrefix.value+((sysDefSongIndex.value=='random')?'shuffle.png':'update.png')); $('#buttonPitched').attr('src',sysDefPrefix.value+((sysDefPitchLock.value != 0)?'midi.png':'volume.png'));
+            $('#buttonLock').attr('src',sysDefPrefix.value+((sysDefLock.value!=0)?'key.png':'lock.png'));
+            $('#buttonOnReload').attr('src',sysDefPrefix.value+((sysDefReload.value!=0)?'bluetooth.png':'radio.png')); $('#buttonSongIndex').attr('src',sysDefPrefix.value+((sysDefSongIndex.value=='random')?'shuffle.png':'update.png')); $('#buttonPitched').attr('src',sysDefPrefix.value+((sysDefPitchLock.value!=0)?'midi.png':'volume.png'));
             $('#buttonObserve').attr('src',sysDefPrefix.value+'power.png');
             $('#buttonSpectate').attr('src',sysDefPrefix.value+'camera.png');
             $('#buttonEnter').attr('src',sysDefPrefix.value+'return.png');
