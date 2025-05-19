@@ -388,6 +388,10 @@ function timedate($format='Y-m-d H:i:s',array $voc,$units='EU',$tz=0,$offs=0) {
     $dt=new DateTime('@'.time(),(new DateTimeZone(dec_tz($tz))));
     $dt->setTimeZone(new DateTimeZone(dec_tz($tz)));
     $dat=date_sub($dt,$di)->format($format);
+    $wek=$voc['locale']['weekday']['default'];
+    $pat=$rep=[]; foreach ($wek as $k=>$v) {
+        $pat[]='/'.$v.'/'; $rep[]=weekdayName(($k+1),$voc,$units);
+    } $dat=preg_replace($pat,$rep,$dat);
     $mon=$voc['locale']['month']['default'];
     $pat=$rep=[]; foreach ($mon as $k=>$v) {
         $pat[]='/'.$v.'/'; $rep[]=monthName(($k+1),$voc,$units);
@@ -434,6 +438,9 @@ function french(array $voc,$units='EU'): string {
 }
 function monthName($id=1,array $voc,$units='EU') {
     return (isset($voc['locale']['month'][$units][$id-1]))?$voc['locale']['month'][$units][$id-1]:$voc['locale']['month']['default'][$id-1];
+}
+function weekdayName($id=1,array $voc,$units='EU') {
+    return (isset($voc['locale']['weekday'][$units][$id-1]))?$voc['locale']['weekday'][$units][$id-1]:$voc['locale']['weekday']['default'][$id-1];
 }
 function fixedSize($str,$offs=0,$len=1000) {
     $stl=strlen($str);$sts=abs($len-$offs);
