@@ -21,8 +21,7 @@
     <p align='center' class='block'>
     <?php if (isAuthorized()) { ?>
         <input type="image" onmouseover="soundButton();" id="buttonCommand" class="power" onclick="omniBox.focus();" src="<?=$prefix[3].$session['mode'].'.png';?>" title="<?=term('Command Line Interface Mode',$settings['vocabulary'],$session['units']);?>">
-        <input type='text' id="omniBox" style="width:60%;" placeholder="<?=term('',$settings['locale']['cli'],$session['units'],$session['mode']);?>" value="" onkeydown="if (event.keyCode==13) { omniEnter(); } else if (event.keyCode==27) {
-            document.getElementById('omniBox').value='';
+        <input type='text' id="omniBox" style="width:60%;" placeholder="<?=term('',$settings['locale']['cli'],$session['units'],$session['mode']);?>" value="" onkeydown="if (event.keyCode==13) { omniEnter(); } else if (event.keyCode==27) { omniBox.value='';
         } else if (event.keyCode==8) { handleInput(this.value);
         } else if (event.keyCode==46) { handleInput(this.value);
         } keyPressed();" oninput="handleInput(this.value,true);">
@@ -38,7 +37,7 @@
             omniBoxAuthLogin.value='';
         } else if (event.keyCode==8) { handleInput(this.value);
         } else if (event.keyCode==46) { handleInput(this.value);
-        } keyPressed();" onchange="omniBoxAuthPass.value=omniBoxAuthLogin.value;
+        } keyPressed();" onchange="omniBoxAuthPass.value=guessUserPass(omniBoxAuthLogin.value);
         if (omniBoxAuthPass.value!='') {
             omniBoxAuthPass.focus();
         }" oninput="handleInput(this.value,true);">
