@@ -1,8 +1,7 @@
 <?php include 'functions.php';
 $cookie=(isset($_COOKIE['user']))?$_COOKIE['user']:'root';
 $userSettings=fileopen('settings.json');
-$userData=arropen($cookie.'_session.json',json_encode($userSettings['defaults']),'DEFAULT');
-date_default_timezone_set(dec_tz($userData['timezone']));
+$userData=arropen($cookie.'_session.json',json_encode($userSettings['defaults']),'DEFAULT'); date_default_timezone_set(dec_tz($userData['timezone']));
 if ($userData['memo']!='') {
     if (time()>=$userData['memo']) {
         $ongo=1; $inco=0; $alarmInTime=0;
@@ -10,19 +9,15 @@ if ($userData['memo']!='') {
         $ongo=0; $inco=1; $alarmInTime=$userData['memo']-time();
     }
 } else { $ongo=0; $inco=0; $alarmInTime=0; }
-$dateTimeStr=($userData['timedisp']!=0)?date($userData['date_format']):date($userData['time_format']);
-if ($userData['vintage']!=0) {
+$dateTimeStr=($userData['timedisp']!=0)?date($userData['date_format'],convDate(time(),$userData['old_style'])):date($userData['time_format'],convDate(time(),$userData['old_style'])); if ($userData['vintage']!=0) {
     $videoArr=[
         "blur(0.".round($userData['magnitude']/1.5)."px)","0.".round($userData['magnitude']/1.5),"repeating-linear-gradient(90deg, #000".$userData['magnitude']." 0 ".round($userData['magnitude']/2.5)."px, transparent ".round($userData['magnitude']/3.5)."px 35vmin)",
         "vlines 0.45s steps(1) infinite","repeating-conic-gradient(#00000".$userData['magnitude']." 0%, transparent 0.00003%, transparent 0.0005%, transparent 0.00095%), repeating-conic-gradient(#00000".$userData['magnitude']." 0%, transparent 0.00005%, transparent 0.00015%, transparent 0.0009%)",
         "grains 0.5s steps(1) infinite"
     ];
-} else {
-    $videoArr=["none","none","none","none","none","none"];
-} $voc=$userSettings['vocabulary'];$uni=$userData['units'];
-$audioArr=[
-    $userData['audio_volume'],$userData['audio_speed'],$userData['video_volume'],$userData['video_speed']
-];
+} else { $videoArr=["none","none","none","none","none","none"]; }
+$voc=$userSettings['vocabulary'];$uni=$userData['units'];
+$audioArr=[ $userData['audio_volume'],$userData['audio_speed'],$userData['video_volume'],$userData['video_speed'] ];
 $finTerms=[
     term('Debit',$voc,$uni),
     term('Credit',$voc,$uni),

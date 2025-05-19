@@ -383,6 +383,12 @@ function duplex($list,bool $txt=false) {
 function annotationString($str) {
     return str_replace(' -->','',str_replace('<!-- ','',$str));
 }
+function julianTime($time) {
+    return intval($time/86400+2440588);
+}
+function convDate($time,$oldStyle=0) {
+    return ($oldStyle!=0)?jdtounix(juliantojd(jdtojulian(julianTime($time)))):jdtounix(gregoriantojd(jdtogregorian(julianTime($time))));
+}
 function zodiacSign($d) {
     if (($d>355)||($d<19)) { $r="♑️";
     } elseif (($d>18)&&($d<49)) { $r="♒️";
