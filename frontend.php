@@ -336,23 +336,22 @@ function administer(sta,md='+') {
         }
     }
 }
-function jsonFilter(str,mask='#') {
+function jsonFilter(str,usr,mask='#') {
     var arr=jsonarr(str);
     var arf={},hbin=hkin='',hbio={};
     if (mask=='#') {
         for (el in arr) {
-            hbin=demorse(arr[el],sysDefSessionID.value);
-            hkin=demorse(el,sysDefSessionID.value),arf[hkin]=hbin;
+            hbin=demorse(arr[el],usr);
+            hkin=demorse(el,usr),arf[hkin]=hbin;
         }
     } else {
-        var arrRegex=XRegExp('(\\#(\\@|\\p{L}|\\p{N}|\\:)+)','g');
-        var repRegex=XRegExp('(\\#+)','g');
+        var arrRegex=XRegExp('(\\#(\\@|\\p{L}|\\p{N}|\\:)+)','g'); var repRegex=XRegExp('(\\#+)','g');
         var wordArr=XRegExp.match(mask,arrRegex);
         for (el in arr) {
             if (wordArr!==null) {
                 for (iy in wordArr) {
-                    hbin=demorse(arr[el],sysDefSessionID.value);
-                    hkin=demorse(el,sysDefSessionID.value);
+                    hbin=demorse(arr[el],usr);
+                    hkin=demorse(el,usr);
                     hbio=XRegExp.replace(wordArr[iy],repRegex,'');
                     if (hbin.toLowerCase().includes(hbio.toLowerCase())) { arf[hkin]=hbin; }
                 }
@@ -360,8 +359,8 @@ function jsonFilter(str,mask='#') {
         }
     } return arf;
 }
-function jsonHTML(str,mask) {
-    var arr=jsonFilter(str,mask),ard='',fu0=fu1=ark=arv='';
+function jsonHTML(str,usr,mask='#') {
+    var arr=jsonFilter(str,usr,mask),ard='',fu0=fu1=ark=arv='';
     var usr=sysDefSessionID.value,epr=sysDefPrefix.value;
     var cyp=sysDefCypher.value; for (el in arr) {
         ark=(cyp!='')?enmorse(el,usr,cyp):el;
