@@ -456,6 +456,14 @@ function timedate($format='Y-m-d H:i:s',array $voc,$units='EU',$roman=0,$tz=0,$o
     $mon=$voc['locale']['month']['default'];
     $pat=$rep=[]; foreach ($mon as $k=>$v) {
         $pat[]='/'.$v.'/'; $rep[]=monthName(($k+1),$voc,$units);
+    } $dat=preg_replace($pat,$rep,$dat);
+    $wek=$voc['locale']['weekday_short']['default'];
+    $pat=$rep=[]; foreach ($wek as $k=>$v) {
+        $pat[]='/'.$v.'/'; $rep[]=weekdayName(($k+1),$voc,$units,true);
+    } $dat=preg_replace($pat,$rep,$dat);
+    $mon=$voc['locale']['month_short']['default'];
+    $pat=$rep=[]; foreach ($mon as $k=>$v) {
+        $pat[]='/'.$v.'/'; $rep[]=monthName(($k+1),$voc,$units,true);
     } $dat=preg_replace($pat,$rep,$dat); return $dat;
 }
 function zodiacSign($d) {
@@ -497,11 +505,13 @@ function french(array $voc,$units='EU'): string {
     } else { $showMonth=$voc['locale']['french']['default'][$curMonth]; }
     return $showDate.' '.$showMonth;
 }
-function monthName($id=1,array $voc,$units='EU') {
-    return (isset($voc['locale']['month'][$units][$id-1]))?$voc['locale']['month'][$units][$id-1]:$voc['locale']['month']['default'][$id-1];
+function monthName($id=1,array $voc,$units='EU',$short=false) {
+    $entry=(($short!==false)&&(!in_array($units,$voc['locale']['month_excl'])))?'month_short':'month';
+    return (isset($voc['locale'][$entry][$units][$id-1]))?$voc['locale'][$entry][$units][$id-1]:$voc['locale'][$entry]['default'][$id-1];
 }
-function weekdayName($id=1,array $voc,$units='EU') {
-    return (isset($voc['locale']['weekday'][$units][$id-1]))?$voc['locale']['weekday'][$units][$id-1]:$voc['locale']['weekday']['default'][$id-1];
+function weekdayName($id=1,array $voc,$units='EU',$short=false) {
+    $entry=(($short!==false)&&(!in_array($units,$voc['locale']['weekday_excl'])))?'weekday_short':'weekday';
+    return (isset($voc['locale'][$entry][$units][$id-1]))?$voc['locale'][$entry][$units][$id-1]:$voc['locale'][$entry]['default'][$id-1];
 }
 function fixedSize($str,$offs=0,$len=1000) {
     $stl=strlen($str);$sts=abs($len-$offs);

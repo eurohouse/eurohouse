@@ -171,6 +171,30 @@
             "QA": [ "السبت", "الجمعة", "الخميس", "الاربعاء", "الثلاثاء", "الاثنين", "الاحد" ]
         }
     },
+    "weekday_excl": [ "IN", "LK", "CN", "KR", "JP", "AE", "SA", "IQ", "IR", "KW", "QA" ],
+    "weekday_short": {
+        "default": [ "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" ],
+        "CH": [ "Dom", "Lun", "Mar", "Mer", "Iov", "Ven", "Sab" ],
+        "GR": [ "Κυρ", "Δευ", "Τρί", "Τετ", "Πέμ", "Παρ", "Σάβ" ],
+        "CY": [ "Κυρ", "Δευ", "Τρί", "Τετ", "Πέμ", "Παρ", "Σάβ" ],
+        "FR": [ "Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam" ],
+        "BE": [ "Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam" ],
+        "DE": [ "Son", "Mon", "Die", "Mit", "Don", "Fre", "Samstag" ],
+        "AT": [ "Son", "Mon", "Die", "Mit", "Don", "Fre", "Samstag" ],
+        "IT": [ "Dom", "Lun", "Mar", "Mer", "Gio", "Ven", "Sab" ],
+        "RO": [ "dum", "lun", "mar", "mie", "joi", "vin", "sâm" ],
+        "MD": [ "dum", "lun", "mar", "mie", "joi", "vin", "sâm" ],
+        "PT": [ "Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb" ],
+        "BR": [ "Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb" ],
+        "ES": [ "Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb" ],
+        "MX": [ "Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb" ],
+        "RU": [ "Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб" ],
+        "UA": [ "Нд", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб" ],
+        "BY": [ "Нд", "Пн", "Ат", "Ср", "Чц", "Пт", "Сб" ],
+        "BG": [ "нд", "пн", "вт", "ср", "чт", "пт", "сб" ],
+        "RS": [ "Нд", "Пн", "Ут", "Ср", "Чт", "Пт", "Сб" ],
+        "MK": [ "Нд", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб" ]
+    },
     "angles": [ 0, 90, 180, 270 ],
     "get_games": {
         "arcade": [
