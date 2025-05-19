@@ -506,11 +506,11 @@ function french(array $voc,$units='EU'): string {
     return $showDate.' '.$showMonth;
 }
 function monthName($id=1,array $voc,$units='EU',$short=false) {
-    $entry=(($short!==false)&&(!in_array($units,$voc['locale']['month_excl'])))?'month_short':'month';
+    $entry=(($short!==false)&&(in_array($units,$voc['locale']['month_excl'])))?'month_short':'month';
     return (isset($voc['locale'][$entry][$units][$id-1]))?$voc['locale'][$entry][$units][$id-1]:$voc['locale'][$entry]['default'][$id-1];
 }
 function weekdayName($id=1,array $voc,$units='EU',$short=false) {
-    $entry=(($short!==false)&&(!in_array($units,$voc['locale']['weekday_excl'])))?'weekday_short':'weekday';
+    $entry=(($short!==false)&&(in_array($units,$voc['locale']['weekday_excl'])))?'weekday_short':'weekday';
     return (isset($voc['locale'][$entry][$units][$id-1]))?$voc['locale'][$entry][$units][$id-1]:$voc['locale'][$entry]['default'][$id-1];
 }
 function fixedSize($str,$offs=0,$len=1000) {
