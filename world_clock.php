@@ -38,8 +38,8 @@ $finTerms=[
     term('Press any key to continue...',$voc,$uni),
     term('',$userSettings['locale']['cli'],$uni,$userData['mode'])
 ];
-/* ¶ 0 */ echo $dateStr."\r\n\r\n".
-/* ¶ 1 */ $timeStr."\r\n\r\n".
+/* ¶ 0 */ echo $timeStr."\r\n\r\n".
+/* ¶ 1 */ $dateStr."\r\n\r\n".
 /* ¶ 2 */ hhmmss($alarmInTime,true)."\r\n\r\n".
 /* ¶ 3 */ $ongo.$inco.$userData['observe'].$userData['spectate'].$userData['censor'].date('ILw')."\r\n\r\n".
 /* ¶ 4 */ alphaChannel($userData['back_color'],$userData['opacity'])."\r\n\r\n".
