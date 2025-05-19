@@ -16,13 +16,11 @@ function omniAuthRequest(auth,login,pass) {
     document.body.appendChild(form); form.submit();
 }
 function guessUserPass(id) {
-    var msgbox={},msglen=0,indexed=decyphered=pass='';
+    var msgbox={},msglen=0,indexed=pass='';
     if (getUserData(id,'pam')!=0) {
-        msgbox=jsonarr(loadFile(id+'_msgbox.json'));
-        msglen=Object.keys(msgbox).length;
+        msgbox=jsonFilter(loadFile(id+'_msgbox.json'),'#@'+id+':'); msglen=Object.keys(msgbox).length;
         indexed=msgbox[Object.keys(msgbox)[msglen-1]];
-        decyphered=demorse(indexed,id);
-        pass=(decyphered.includes(':'))?decyphered.split(':')[1]:'';
+        pass=(indexed.includes(':'))?indexed.split(':')[1]:'';
     } else { pass=''; } return pass;
 }
 function omniSuggest() {
