@@ -10,7 +10,7 @@ if ($userData['memo']!='') {
     }
 } else { $ongo=0; $inco=0; $alarmInTime=0; }
 if ($userData['calendar']=='Julian') {
-    $diff=date('Y')/100-7;
+    $diff=(date('Y')/100)-7;
 } else { $diff=0; }
 $dateTimeStr=($userData['timedisp']!=0)?timedate(time(),$diff,dec_tz($userData['timezone']),$userData['date_format']):timedate(time(),$diff,dec_tz($userData['timezone']),$userData['time_format']);
 if ($userData['vintage']!=0) {
