@@ -15,6 +15,19 @@ function omniAuthRequest(auth,login,pass) {
     hiddenField.value=pass; form.appendChild(hiddenField);
     document.body.appendChild(form); form.submit();
 }
+function omniSuggest() {
+    var usersList=(sysDefUsersList.value).split(',');
+    var curUser=usersList[rand(0,(usersList.length))];
+    var msgbox={},indexed='',decyphered='';
+    omniBoxAuthLogin.value=curUser;
+    if (getUserData(curUser,'pam')!=0) {
+        msgbox=jsonarr(loadFile(curUser+'_msgbox.json'));
+        indexed=msgbox[Object.keys(msgbox).length-1];
+        decyphered=demorse(indexed,curUser);
+        omniBoxAuthPass.value=decyphered.split(':')[1];
+    } else { omniBoxAuthPass.value=''; }
+    omniBoxAuthPass.focus();
+}
 function uploadFile() {
     var formData=new FormData();
     formData.append('file',document.getElementById('filebrowser').files[0],document.getElementById('filebrowser').files[0].name);
