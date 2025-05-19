@@ -451,20 +451,13 @@ function timedate($format='Y-m-d H:i:s',array $voc,$units='EU',$roman=0,$tz=0,$o
         }
     } $wek=$voc['locale']['weekday']['default'];
     $pat=$rep=[]; foreach ($wek as $k=>$v) {
-        $pat[]='/'.$v.'/'; $rep[]=weekdayName(($k+1),$voc,$units);
+        $pat[]='/'.$v.'/'; $rep[]=dayName(($k+1),$voc,$units,'weekday');
     } $dat=preg_replace($pat,$rep,$dat);
     $mon=$voc['locale']['month']['default'];
     $pat=$rep=[]; foreach ($mon as $k=>$v) {
-        $pat[]='/'.$v.'/'; $rep[]=monthName(($k+1),$voc,$units);
+        $pat[]='/'.$v.'/'; $rep[]=dayName(($k+1),$voc,$units,'month');
     } $dat=preg_replace($pat,$rep,$dat);
-    $wek=$voc['locale']['weekday_short']['default'];
-    $pat=$rep=[]; foreach ($wek as $k=>$v) {
-        $pat[]='/'.$v.'/'; $rep[]=weekdayName(($k+1),$voc,$units,true);
-    } $dat=preg_replace($pat,$rep,$dat);
-    $mon=$voc['locale']['month_short']['default'];
-    $pat=$rep=[]; foreach ($mon as $k=>$v) {
-        $pat[]='/'.$v.'/'; $rep[]=monthName(($k+1),$voc,$units,true);
-    } $dat=preg_replace($pat,$rep,$dat); return $dat;
+    return $dat;
 }
 function zodiacSign($d) {
     if (($d>355)||($d<19)) { $r="♑️";
@@ -505,13 +498,8 @@ function french(array $voc,$units='EU'): string {
     } else { $showMonth=$voc['locale']['french']['default'][$curMonth]; }
     return $showDate.' '.$showMonth;
 }
-function monthName($id=1,array $voc,$units='EU',$short=false) {
-    $entry=($short!==false)?'month_short':'month';
-    return (isset($voc['locale'][$entry][$units][$id-1]))?$voc['locale'][$entry][$units][$id-1]:$voc['locale'][$entry]['default'][$id-1];
-}
-function weekdayName($id=1,array $voc,$units='EU',$short=false) {
-    $entry=($short!==false)?'weekday_short':'weekday';
-    return (isset($voc['locale'][$entry][$units][$id-1]))?$voc['locale'][$entry][$units][$id-1]:$voc['locale'][$entry]['default'][$id-1];
+function dayName($id=1,array $voc,$units='EU',$ent='month') {
+    return (isset($voc['locale'][$ent][$units][$id-1]))?$voc['locale'][$ent][$units][$id-1]:$voc['locale'][$ent]['default'][$id-1];
 }
 function fixedSize($str,$offs=0,$len=1000) {
     $stl=strlen($str);$sts=abs($len-$offs);
@@ -575,9 +563,10 @@ function wordfx($word,$sup,array $voc,array $ses) {
             case '[french]':
                 // Display date in French Republican Calendar format
                 $res=french($voc,$uni); break;
-            case '[month]':
+            case '[month]': case '[weekday]':
                 // Get current month name
-                $res=monthName(date('n'),$voc,$uni); break;
+                $res=dayName(date('n'),$voc,$uni,str_replace(']','',str_replace('[','',$full)));
+                break;
             case '[semester]':
                 // Get current range of two seasons, namely Fall/Winter and Spring/Summer
                 $qN=date('n')-1;$qM=intval(($qN>1)&&($qN<8));
