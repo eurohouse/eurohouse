@@ -401,13 +401,13 @@ function omniEnter() {
         arj=input.replace('brutus ', '');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
         if (arg.length==1) {
-            omniBox.value=bruteForce(quote(arg[0]),getUserData(quote(arg[0]),'pass_length'),getUserData(quote(arg[0]),'pass_chars'));
+            omniBox.value=bruteForce(quote(arg[0]),getUserData(quote(arg[0]),'pam_len'),getUserData(quote(arg[0]),'pam_char'));
         }
     } else if (input.startsWith('serial ')) {
         arj=input.replace('serial ', '');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
         if (arg.length==1) {
-            omniBox.value=serialForce(quote(arg[0]),getUserData(quote(arg[0]),'pass_length'),getUserData(quote(arg[0]),'pass_chars'));
+            omniBox.value=serialForce(quote(arg[0]),getUserData(quote(arg[0]),'pam_len'),getUserData(quote(arg[0]),'pam_char'));
         }
     } else if (input.startsWith('read ')) {
         arj=input.replace('read ', '');

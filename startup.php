@@ -68,7 +68,7 @@ function world_clock() {
         success: function(data) {
             $('#currentTime').val(pager(data,sysDefTimedisp.value));
             $('#alarmTime').val((pager(data,2)!='00:00')?pager(data,1):hhmmss(audioPlayer.currentTime,true));
-            pamd(gen(sysDefPassLength.value,sysDefPassChars.value));
+            pamd(sysDefPamLen.value,sysDefPamChar.value);
             $('#sysDefIndicators').val(pager(data,3));
             $('#sysDefAccent').val(pager(data,4));
             $('#sysDefEffects').val(pager(data,5));

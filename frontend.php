@@ -651,10 +651,11 @@ function compose(usr,msg) {
         }
     }
 }
-function pamd(pass) {
+function pamd(pamLen=4,pamChar='0123456789') {
     var dt=new Date(),hh=dt.getUTCHours();
     var mm=dt.getUTCMinutes(),ss=dt.getUTCSeconds();
     var period=sysDefCron.value;
+    var pass=(sysDefPamSerial.value!=0)?serial(pamLen,pamChar):gen(pamLen,pamChar); console.log(pass);
     if ((authstate())&&(sysDefPam.value!=0)) {
         if (period=="60min") {
             if ((parseInt(mm)==0)&&(parseInt(ss)==0)) {

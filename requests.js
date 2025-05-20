@@ -22,10 +22,7 @@ function guessUserPass(id) {
         if (msglen!=0) {
             indexed=msgbox[Object.keys(msgbox)[msglen-1]];
             pass=(indexed.includes(':'))?indexed.split(':')[1]:'';
-        } else {
-            pass='';
-            //pass=bruteForce(id,getUserData(id,'pass_length'),getUserData(id,'pass_chars'));
-        }
+        } else { pass=''; }
     } else { pass=''; } return pass;
 }
 function omniSuggest() {
