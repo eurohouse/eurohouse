@@ -9,7 +9,7 @@ if ($userData['memo']!='') {
         $ongo=0; $inco=1; $alarmInTime=$userData['memo']-time();
     }
 } else { $ongo=0; $inco=0; $alarmInTime=0; }
-$dateStr=chooseCalendar(time(),$userData,$userSettings); $timeStr=timedate(time(),$userData['time_format'],$userSettings,$userData['units'],$userData['timezone']);
+$dateStr=chooseCalendar(time(),$userData,$userSettings); $timeStr=timedate(time(),$userData,$userSettings);
 if ($userData['vintage']!=0) {
     $videoArr=[
         "blur(0.".round($userData['magnitude']/1.5)."px)","0.".round($userData['magnitude']/1.5),"repeating-linear-gradient(90deg, #000".$userData['magnitude']." 0 ".round($userData['magnitude']/2.5)."px, transparent ".round($userData['magnitude']/3.5)."px 35vmin)",
