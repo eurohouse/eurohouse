@@ -438,7 +438,7 @@ function chooseCalendar($time,array $prof,array $voc) {
     if ($prof['calendar']=='Julian') {
         $res=timedate(time(),$prof,$voc,'date',(intval(date('Y')/100)-7));
     } elseif ($prof['calendar']=='French') {
-        $res=french($voc,$prof['units']);
+        $res=french($time,$prof,$voc);
     } else {
         $res=timedate(time(),$prof,$voc,'date');
     } return $res;
@@ -493,19 +493,19 @@ function prefixes(array $prof): array {
         (isColorLight($prof['fore_text_color']))?'rtd.':'rtc.'
     ];
 }
-function french(array $voc,$units='EU'): string {
-    $allYear=365+date('L');$newYear=263+date('L');
-    $curDate=yearday(date('z'),$allYear,$newYear);
+function french($time,array $prof,array $voc): string {
+    $leap=date('L',$time); $day=date('z',$time);
+    $allYear=365+$leap; $newYear=263+$leap;
+    $curDate=yearday($day,$allYear,$newYear);
     if ($curDate<=0) {
         $curMonth=(count($voc['locale']['french']['default'])-1);
-        $showDate=(5+date('L'));
+        $showDate=(5+$leap);
     } else {
         $curMonth=(ceil($curDate/30)-1);
-        $showDate=((($curDate % 30)>0)?($curDate%30):30);
-    } if (isset($voc['locale']['french'][$units][$curMonth])) {
-        $showMonth=$voc['locale']['french'][$units][$curMonth];
-    } else { $showMonth=$voc['locale']['french']['default'][$curMonth]; }
-    return $showDate.' '.$showMonth;
+        $showDate=((($curDate%30)>0)?($curDate%30):30);
+    } if (isset($voc['locale']['french'][$prof['units']][$curMonth])) {
+        $showMonth=$voc['locale']['french'][$prof['units']][$curMonth];
+    } else { $showMonth=$voc['locale']['french']['default'][$curMonth]; } return $showDate.' '.$showMonth;
 }
 function dayName($id=1,array $voc,$units='EU',$ent='month') {
     return (isset($voc['locale'][$ent][$units][$id-1]))?$voc['locale'][$ent][$units][$id-1]:$voc['locale'][$ent]['default'][$id-1];
@@ -571,11 +571,10 @@ function wordfx($word,$sup,array $voc,array $ses) {
                 $res=sizestr(disk_free_space('/'),$loc,$uni); break;
             case '[french]':
                 // Display date in French Republican Calendar format
-                $res=french($voc,$uni); break;
+                $res=french(time(),$ses,$voc); break;
             case '[month]': case '[weekday]':
                 // Get current month name
-                $res=dayName(date('n'),$voc,$uni,str_replace(']','',str_replace('[','',$full)));
-                break;
+                $res=dayName(date('n'),$voc,$uni,str_replace(']','',str_replace('[','',$full))); break;
             case '[semester]':
                 // Get current range of two seasons, namely Fall/Winter and Spring/Summer
                 $qN=date('n')-1;$qM=intval(($qN>1)&&($qN<8));
