@@ -448,25 +448,25 @@ function timedate($time,array $prof,array $voc,$mode='time',$offs=0) {
     $dt=new DateTime('@'.$time,(new DateTimeZone(dec_tz($prof['timezone']))));
     $dt->setTimeZone(new DateTimeZone(dec_tz($prof['timezone'])));
     $dat=date_sub($dt,$di)->format($prof[$mode.'_format']);
-    if ($prof['roman']!=0) {
-        $arr=preg_match_all('/\d+/',$dat,$matches);
-        for ($i=0; $i<count($matches[0]); $i++) {
-            $full=$matches[0][$i];
-            $dat=str_replace($full,num2rom($full),$dat);
-        } $arr=preg_match_all('/[a-zA-Z]+/',$dat,$matches);
-        for ($i=0; $i<count($matches[0]); $i++) {
-            $full=$matches[0][$i];
-            $dat=strtoupper($dat);
-        }
-    } $wek=$voc['locale']['weekday']['default'];
-    $pat=$rep=[]; foreach ($wek as $k=>$v) {
-        $pat[]='/'.$v.'/'; $rep[]=dayName(($k+1),$voc,$prof['units'],'weekday');
-    } $dat=preg_replace($pat,$rep,$dat);
-    $mon=$voc['locale']['month']['default'];
-    $pat=$rep=[]; foreach ($mon as $k=>$v) {
-        $pat[]='/'.$v.'/'; $rep[]=dayName(($k+1),$voc,$prof['units'],'month');
-    } $dat=preg_replace($pat,$rep,$dat);
-    return $dat;
+    if ($mode=='date') {
+        if ($prof['roman']!=0) {
+            $arr=preg_match_all('/\d+/',$dat,$matches);
+            for ($i=0; $i<count($matches[0]); $i++) {
+                $full=$matches[0][$i];
+                $dat=str_replace($full,num2rom($full),$dat);
+            } $arr=preg_match_all('/[a-zA-Z]+/',$dat,$matches);
+            for ($i=0; $i<count($matches[0]); $i++) {
+                $full=$matches[0][$i]; $dat=strtoupper($dat);
+            }
+        } $wek=$voc['locale']['weekday']['default'];
+        $pat=$rep=[]; foreach ($wek as $k=>$v) {
+            $pat[]='/'.$v.'/'; $rep[]=dayName(($k+1),$voc,$prof['units'],'weekday');
+        } $dat=preg_replace($pat,$rep,$dat);
+        $mon=$voc['locale']['month']['default'];
+        $pat=$rep=[]; foreach ($mon as $k=>$v) {
+            $pat[]='/'.$v.'/'; $rep[]=dayName(($k+1),$voc,$prof['units'],'month');
+        } $dat=preg_replace($pat,$rep,$dat);
+    } return $dat;
 }
 function zodiacSign($dayYear) {
     if (($dayYear>355)||($dayYear<19)) { $res="♑️";
