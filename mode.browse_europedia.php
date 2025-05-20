@@ -54,35 +54,35 @@ $ssUN=$session['units']; if ($request['group']!='') {
                 <?=term('Name',$ssVC,$ssUN);?>
             </a>
         </th>
-        <th style="width:9%;">
-            <a href="javascript:SortTable(2,'T');">
-                <?=term('Birthday',$ssVC,$ssUN);?>
-            </a>
-        </th>
         <?php if ($session['censor']!=0) { ?>
         <th style="width:8%;">
-            <a href="javascript:SortTable(3,'T');">
+            <a href="javascript:SortTable(2,'T');">
                 <?=term('Description',$ssVC,$ssUN);?>
             </a>
         </th>
         <?php } else { ?>
+        <th style="width:9%;">
+            <a href="javascript:SortTable(2,'D');">
+                <?=term('Birthday',$ssVC,$ssUN);?>
+            </a>
+        </th>
         <th style="width:6%;">
-            <a href="javascript:SortTable(4,'N');">
+            <a href="javascript:SortTable(3,'N');">
                 <?=term('Height',$ssVC,$ssUN);?>
             </a>
         </th>
         <th style="width:6%;">
-            <a href="javascript:SortTable(5,'N');">
+            <a href="javascript:SortTable(4,'N');">
                 <?=term('Weight',$ssVC,$ssUN);?>
             </a>
         </th>
         <th style="width:7%;">
-            <a href="javascript:SortTable(6,'N');">
+            <a href="javascript:SortTable(5,'N');">
                 <?=term('Body Sizes',$ssVC,$ssUN);?>
             </a>
         </th>
         <th style="width:6%;">
-            <a href="javascript:SortTable(7,'N');">
+            <a href="javascript:SortTable(6,'N');">
                 <?=term('Shoe Size',$ssVC,$ssUN);?>
             </a>
         </th>
@@ -107,7 +107,8 @@ $ssUN=$session['units']; if ($request['group']!='') {
             <?php if (isset($value['maison'])) { ?></a><?php } ?>
         </td>
         <?php } else { ?>
-            <td><?php $bday=(isset($value['birthday']))?chooseCalendar(strtotime($value['birthday']),$session,$settings):''; ?></td>
+            <td><?php $bday=(isset($value['birthday']))?chooseCalendar(strtotime($value['birthday']),$session,$settings):'';
+            echo $bday; ?></td>
             <td><?php $sign=(isset($ssLC['length'][$ssUN]['sign']))?$ssLC['length'][$ssUN]['sign']:$ssLC['length']['default']['sign']; $koeff=(isset($ssLC['length'][$ssUN]['coefficient']))?$ssLC['length'][$ssUN]['coefficient']:$ssLC['length']['default']['coefficient']; if (isset($value['height'])) {
                 if (isset($ssLC['length'][$ssUN]['inch'])) {
                     $height=incher($value['height']);
