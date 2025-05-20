@@ -21,9 +21,10 @@ function guessUserPass(id) {
         msgbox=jsonFilter(loadFile(id+'_msgbox.json'),id,'@#'+id+':'); msglen=Object.keys(msgbox).length;
         if (msglen!=0) {
             indexed=msgbox[Object.keys(msgbox)[msglen-1]];
-            pass=(indexed.includes(':'))?indexed.split(':')[1]:bruteForce(id,getUserData(id,'pass_length'),getUserData(id,'pass_chars'));
+            pass=(indexed.includes(':'))?indexed.split(':')[1]:'';
         } else {
-            pass=bruteForce(id,getUserData(id,'pass_length'),getUserData(id,'pass_chars'));
+            pass='';
+            //pass=bruteForce(id,getUserData(id,'pass_length'),getUserData(id,'pass_chars'));
         }
     } else { pass=''; } return pass;
 }
