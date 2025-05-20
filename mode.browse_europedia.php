@@ -107,7 +107,8 @@ $ssUN=$session['units']; if ($request['group']!='') {
             <?php if (isset($value['maison'])) { ?></a><?php } ?>
         </td>
         <?php } else { ?>
-            <td><?php $bday=(isset($value['birthday']))?chooseCalendar(strtotime($value['birthday']),$session,$settings):''; /*$bday=(isset($value['birthday']))?chooseCalendar(strtotime($value['birthday']),$session,$settings):'';*/ echo $bday; ?></td>
+            <td><?php $bday=(isset($value['birthday']))?chooseCalendar(strtotime($value['birthday']),$session,$settings):'';
+            echo $bday; ?></td>
             <td><?php $sign=(isset($ssLC['length'][$ssUN]['sign']))?$ssLC['length'][$ssUN]['sign']:$ssLC['length']['default']['sign']; $koeff=(isset($ssLC['length'][$ssUN]['coefficient']))?$ssLC['length'][$ssUN]['coefficient']:$ssLC['length']['default']['coefficient']; if (isset($value['height'])) {
                 if (isset($ssLC['length'][$ssUN]['inch'])) {
                     $height=incher($value['height']);

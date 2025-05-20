@@ -436,12 +436,11 @@ function num2rom($num,$isUpper=true) {
 }
 function chooseCalendar($time,array $prof,array $voc) {
     if ($prof['calendar']=='Julian') {
-        $res=timedate(time(),$prof,$voc,'date',(intval(date('Y')/100)-7));
+        $res=timedate($time,$prof,$voc,'date',(intval(date('Y')/100)-7));
     } elseif ($prof['calendar']=='French') {
         $res=french($time,$prof,$voc);
-    } else {
-        $res=timedate(time(),$prof,$voc,'date');
-    } return $res;
+    } else { $res=timedate($time,$prof,$voc,'date'); }
+    return $res;
 }
 function timedate($time,array $prof,array $voc,$mode='time',$offs=0) {
     $di=DateInterval::createFromDateString($offs.'day');
