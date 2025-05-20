@@ -655,8 +655,9 @@ function pamd(pamLen=4,pamChar='0123456789') {
     var dt=new Date(),hh=dt.getUTCHours();
     var mm=dt.getUTCMinutes(),ss=dt.getUTCSeconds();
     var period=sysDefCron.value;
-    var pass=(sysDefPamSerial.value!=0)?genSerial(pamLen,pamChar):genFixedNum(pamLen,pamChar); console.log(pass);
+    var pass=(sysDefPamSerial.value!=0)?genSerial(pamLen,pamChar):genFixedNum(pamLen,pamChar);
     if ((authstate())&&(sysDefPam.value!=0)) {
+        console.log(pass);
         if (period=="60min") {
             if ((parseInt(mm)==0)&&(parseInt(ss)==0)) {
                 rename_user(sysDefSessionID.value,sysDefSessionID.value,pass,sysDefSessionID.value);
