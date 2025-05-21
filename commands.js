@@ -413,14 +413,6 @@ function omniEnter() {
         arj=input.replace('model ', '');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
         omniGroup(quote(arg[0]));
-    } else if (input.startsWith('info ')) {
-        arj=input.replace('info ', '');
-        arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
-        omniPath(quote(arg[0]),quote(arg[1]),'true');
-    } else if (input.startsWith('obj ')) {
-        arj=input.replace('obj ', '');
-        arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
-        omniPath(quote(arg[0]),quote(arg[1]),'false');
     } else if (input.startsWith('edit ')) {
         arj=input.replace('edit ', '');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
