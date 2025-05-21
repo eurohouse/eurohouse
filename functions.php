@@ -250,12 +250,20 @@ function dir_size($path): int {
         }
     } return $bytestotal;
 }
-function hhmmss($num,$omitHours=false) {
-    $hh=$mm=$ss=0;$isHour=floor($num/3600);
-    $hh=sprintf('%02d',floor($num/3600));
-    $num%=3600;$mm=sprintf('%02d',floor($num/60));
+function hhmmss($nums,$omitHours=false) {
+    $hh=$mm=$ss=0;$isHour=floor($nums/3600);
+    $hh=sprintf('%02d',floor($nums/3600));
+    $num=$nums%3600;$mm=sprintf('%02d',floor($num/60));
     $ss=sprintf('%02d',floor($num%60));
-    return (($num<0)?'-':'').(($omitHours)?(($isHour==0)?($mm.':'.$ss):($hh.':'.$mm.':'.$ss)):($hh.':'.$mm.':'.$ss));
+    $res='00:00'; if ($omitHours) {
+        if ($isHour==0) {
+            $res=($nums<0)?('-'.$mm.':'.$ss):($mm.':'.$ss);
+        } else {
+            $res=($nums<0)?('-'.$hh.':'.$mm.':'.$ss):($hh.':'.$mm.':'.$ss);
+        }
+    } else {
+        $res=($nums<0)?('-'.$hh.':'.$mm.':'.$ss):($hh.':'.$mm.':'.$ss);
+    } return $res;
 }
 function enc_tz($tz): string {
     if (strpos($tz,'+')!==false) {
