@@ -50,7 +50,8 @@ function omniGo(mode) {
     omniRequest(mode,requestSort.value,requestGroup.value,requestAngle.value,requestInput.value,requestOutput.value,requestArgs.value,requestLock.value,omniRef(),requestPath.value);
 }
 function omniRef() {
-    var currentMode=requestMode.value,currentRef=requestRef.value;
+    var currentMode=requestMode.value;
+    var currentRef=requestRef.value;
     return (sysDefIsRef.value=='true')?currentRef:currentMode;
 }
 function levelUp(path) {
@@ -94,29 +95,38 @@ function omniBack(mode) {
         group=currentGroup,changeMode=mode;
     } omniRequest(changeMode,requestSort.value,group,requestAngle.value,requestInput.value,requestOutput.value,args,requestLock.value,omniRef(),path);
 }
+function omniFor(mode,path,args='') {
+    if (mode=='file_manager') {
+        omniRequest(mode,requestSort.value,requestGroup.value,requestAngle.value,requestInput.value,args,requestArgs.value,requestLock.value,omniRef(),path);
+    } else if (mode=='object_info') {
+        omniRequest(mode,requestSort.value,requestGroup.value,requestAngle.value,path,requestOutput.value,args,'false',omniRef(),requestPath.value);
+    } else if (mode=='browse_europedia') {
+        omniRequest(mode,requestSort.value,path,requestAngle.value,requestInput.value,requestOutput.value,requestArgs.value,requestLock.value,omniRef(),requestPath.value);
+    } else {
+        omniRequest(mode,requestSort.value,requestGroup.value,requestAngle.value,path,requestOutput.value,requestArgs.value,requestLock.value,omniRef(),requestPath.value);
+    }
+}
 function omniPath(input,args,lock) {
     omniRequest('object_info',requestSort.value,requestGroup.value,requestAngle.value,input,requestOutput.value,args,lock,omniRef(),requestPath.value);
 }
-function omniPathDir(path,mode) {
-    omniRequest(mode,requestSort.value,requestGroup.value,requestAngle.value,requestInput.value,requestOutput.value,requestArgs.value,requestLock.value,omniRef(),path);
+function omniDir(path) {
+    omniRequest('file_manager',requestSort.value,requestGroup.value,requestAngle.value,requestInput.value,requestOutput.value,requestArgs.value,requestLock.value,omniRef(),path);
 }
 function omniRead(mode,input,lock) {
     omniRequest(mode,requestSort.value,requestGroup.value,requestAngle.value,input,requestOutput.value,requestArgs.value,lock,omniRef(),requestPath.value);
 }
-function omniReadGroup(mode,group) {
-    omniRequest(mode,requestSort.value,group,requestAngle.value,requestInput.value,requestOutput.value,requestArgs.value,requestLock.value,omniRef(),requestPath.value);
+function omniGroup(group) {
+    omniRequest('browse_europedia',requestSort.value,group,requestAngle.value,requestInput.value,requestOutput.value,requestArgs.value,requestLock.value,omniRef(),requestPath.value);
 }
-function omniLock(lock) {
+function invertLock() {
+    var lock=(requestLock.value=='true')?'false':'true';
     omniRequest(requestMode.value,requestSort.value,requestGroup.value,requestAngle.value,requestInput.value,requestOutput.value,requestArgs.value,lock,omniRef(),requestPath.value);
 }
-function omniDisp(mode,output,lock) {
-    omniRequest(mode,requestSort.value,requestGroup.value,requestAngle.value,requestInput.value,output,requestArgs.value,lock,omniRef(),requestPath.value);
+function omniDisp(output) {
+    omniRequest('file_manager',requestSort.value,requestGroup.value,requestAngle.value,requestInput.value,output,requestArgs.value,requestLock.value,omniRef(),requestPath.value);
 }
 function omniRotate(angle) {
-    omniRequest(requestMode.value,requestSort.value,requestGroup.value,angle,requestInput.value,requestOutput.value,requestArgs.value,requestLock.value,omniRef(),requestPath.value);
-}
-function omniSwitch(group) {
-    omniRequest(requestMode.value,requestSort.value,group,requestAngle.value,requestInput.value,requestOutput.value,requestArgs.value,requestLock.value,omniRef(),requestPath.value);
+    omniRequest('brigitte_bardot',requestSort.value,requestGroup.value,angle,requestInput.value,requestOutput.value,requestArgs.value,requestLock.value,omniRef(),requestPath.value);
 }
 function omniSort(sort) {
     omniRequest(requestMode.value,sort,requestGroup.value,requestAngle.value,requestInput.value,requestOutput.value,requestArgs.value,requestLock.value,omniRef(),requestPath.value);

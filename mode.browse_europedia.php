@@ -97,7 +97,7 @@ $ssUN=$session['units']; if ($request['group']!='') {
         <td><a href="<?=$ccAV;?>">
             <img style="width:<?=$iconSize;?>%;" src="<?=$ccAV;?>" loading="lazy" onmouseover="soundButton();">
         </a></td>
-        <td><a href="javascript:omniSwitch(%22<?=$key;?>%22);">
+        <td><a href="javascript:omniGroup(%22<?=$key;?>%22);">
             <?=$mmTL;?>
         </a></td>
         <?php if ($session['censor']!=0) { ?>

@@ -51,7 +51,7 @@ foreach ($index as $key=>$value) {
             </a>
         </td>
         <td>
-            <a href="javascript:omniPathDir(%22<?=$mediaFilename;?>/%22,requestMode.value);">
+            <a href="javascript:omniDir(%22<?=$mediaFilename;?>/%22);">
                 <?=$mediaFileTitle;?>
             </a>
         </td>

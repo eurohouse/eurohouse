@@ -93,7 +93,7 @@ function scores(sta) {
         ); for (indi in sortable) {
             if ((sortable[indi]!==undefined)&&(indi!='')) {
                 res+="<input type='image' class='power' onmouseover='soundButton();' src='Flag."+sortable[indi]['%cc']+".png"+"' onclick='clip(&#34;"+indi+"&#34;);'>";
-                res+="<input type='button' onmouseover='soundButton();' style='width:68%;' value='"+sortable[indi]['%zd']+" "+indi+"' onclick='omniReadGroup(&#34;browse_europedia&#34;,&#34;"+indi+"&#34;);'><br>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:68%;' value='"+sortable[indi]['%zd']+" "+indi+"' onclick='omniGroup(&#34;"+indi+"&#34;);'><br>";
             }
         }
     } else if (sta=='hdi') {

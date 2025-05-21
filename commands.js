@@ -397,6 +397,34 @@ function omniEnter() {
         } else {
             omniBox.value=loadFile(quote(arg[0]));
         }
+    } else if (input.startsWith('for ')) {
+        arj=input.replace('for ', '');
+        arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
+        if (arg.length==3) {
+            omniFor(quote(arg[0]),quote(arg[1]),quote(arg[2]));
+        } else {
+            omniFor(quote(arg[0]),quote(arg[1]));
+        }
+    } else if (input.startsWith('dir ')) {
+        arj=input.replace('dir ', '');
+        arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
+        omniDir(quote(arg[0]));
+    } else if (input.startsWith('model ')) {
+        arj=input.replace('model ', '');
+        arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
+        omniGroup(quote(arg[0]));
+    } else if (input.startsWith('info ')) {
+        arj=input.replace('info ', '');
+        arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
+        omniPath(quote(arg[0]),quote(arg[1]),'true');
+    } else if (input.startsWith('obj ')) {
+        arj=input.replace('obj ', '');
+        arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
+        omniPath(quote(arg[0]),quote(arg[1]),'false');
+    } else if (input.startsWith('edit ')) {
+        arj=input.replace('edit ', '');
+        arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
+        omniRead('text_editor',quote(arg[0]),'false');
     } else if (input.startsWith('update ')) {
         getPkgSequence('get -i '+document.getElementById('updateChannel'+CryptoJS.MD5(input.replace('update ','')).toString()).value,'get ',0);
     } else if (input.startsWith('clear ')) {
@@ -406,7 +434,8 @@ function omniEnter() {
     } else if (input.startsWith('purge ')) {
         clearJournal(input.replace('purge ',''),sysDefIpData,'visitors',true);
     } else if (input.startsWith('del ')) {
-        arb=input.replace('del ',''),itr=0; if (arb.includes(',')) {
+        arb=input.replace('del ',''),itr=0;
+        if (arb.includes(',')) {
             arj=arb.split(','); for (idx in arj) {
                 if (superuser()) { delete_user(arj[idx]);
                 } else {
@@ -439,8 +468,6 @@ function omniEnter() {
                 if (ark[idx].toLowerCase().includes(arb.toLowerCase())) { arh.push(idx); }
             } setdata('banner',arh[rand(0,arh.length)]);
         }
-    } else if (input.startsWith('->')) {
-        omniSwitch(input.replace('->',''));
     } else if (input.startsWith('\\=')) {
         arb=input.replace('\\=','');
         if (arb.includes('://')) { omniListen(arb,true);
@@ -453,10 +480,6 @@ function omniEnter() {
                 }
             } omniListen(arc,true);
         }
-    } else if (input.startsWith('./')) {
-        omniRead(requestMode.value,input.replace('./',''),requestLock.value);
-    } else if (input.startsWith('_/')) {
-        omniPathDir(input.replace('_/',''),requestMode.value);
     } else if (input.startsWith('>')) {
         arb=input.replace('>',''); if (arb.endsWith('-')) {
             arc=arb.replace('-',''); administer(arc,'-');
@@ -510,7 +533,7 @@ function omniEnter() {
             }
         }
     } else if ((input.startsWith('?'))||(input.endsWith('?'))||((input.startsWith('?'))&&(input.endsWith('?')))) {
-        omniDisp(requestMode.value,input.replaceAll('?',''),requestLock.value);
+        omniDisp(input.replaceAll('?',''));
     } else if (input.endsWith(';')) {
         omniBox.value=executeCode(input);
     } else if ((input.startsWith(':'))||(input.endsWith(':'))) {
