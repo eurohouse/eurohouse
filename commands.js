@@ -466,7 +466,7 @@ function omniEnter() {
         } else {
             if ((arb.includes('/'))&&(arb.split('/').length==2)) {
                 arg=arb.split('/'); if (isInt(arg[0])) {
-                    arc='https://github.com/lovehotcoffee/'+parseInt(arg[0])+'/blob/main/'+arg[1]+'?raw=true';
+                    arc='https://github.com/holylance98/'+parseInt(arg[0])+'/blob/main/'+arg[1]+'?raw=true';
                 } else {
                     arc='https://github.com/infofintech/'+arg[0]+'/blob/main/'+arg[1]+'?raw=true';
                 }
