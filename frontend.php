@@ -173,37 +173,29 @@ function storeHours(id) {
     return (arr[id]!==undefined)?arr[id]:'';
 }
 function isInBackup(id) {
-    var fsess=flock={}; with(localStorage) {
-        readFile(id+'_session_saved.json','read','',id+'_session_data');
-        fsess=jsonarr(getItem(id+'_session_data'));
-        readFile(id+'_lock_saved.json','read','',id+'_lock_data');
-        flock=jsonarr(getItem(id+'_lock_data'));
-    } return ((fsess!==null)&&(flock!==null)&&(Object.keys(fsess).length>0)&&(Object.keys(flock).length>0));
+    var fsess=loadFile(id+'_session_saved.json','/');
+    var flock=loadFile(id+'_lock_saved.json','/');
+    return ((fsess!==null)&&(flock!==null)&&(Object.keys(fsess).length>0)&&(Object.keys(flock).length>0));
 }
 function userBackup(id) {
-    var fsess=flock={}; with(localStorage) {
-        copy(id+'_session.json',id+'_session_saved.json','rw');
-        copy(id+'_lock.json',id+'_lock_saved.json','rw');
-        readFile(id+'_session_saved.json','read','',id+'_session_data');
-        fsess=jsonarr(getItem(id+'_session_data'));
-        readFile(id+'_lock_saved.json','read','',id+'_lock_data');
-        flock=jsonarr(getItem(id+'_lock_data'));
-    }
+    var fsess=flock={};
+    copy(id+'_session.json',id+'_session_saved.json','rw');
+    copy(id+'_lock.json',id+'_lock_saved.json','rw');
+    fsess=loadFile(id+'_session_saved.json','/');
+    flock=loadFile(id+'_lock_saved.json','/');
+    return {'session':fsess,'lock':flock};
 }
 function userRestore(id) {
-    var fsess=flock={}; with(localStorage) {
-        if (isInBackup(id)) {
-            copy(id+'_session_saved.json',id+'_session.json','rw');
-            copy(id+'_lock_saved.json',id+'_lock.json','rw');
-            readFile(id+'_session.json','read','',id+'_session_data');
-            fsess=jsonarr(getItem(id+'_session_data'));
-            for (idx in fsess) { setdata(idx,fsess[idx]); }
-            readFile(id+'_lock.json','read','',id+'_lock_data');
-            flock=jsonarr(getItem(id+'_lock_data'));
-            for (idx in flock) { setlock(idx,flock[idx]); }
-            omniListen(demorse(fsess['melody'],id,fsess['numeric']),false,parseInt(fsess['current']));
-        }
-    }
+    var fsess=flock={};
+    if (isInBackup(id)) {
+        copy(id+'_session_saved.json',id+'_session.json','rw');
+        copy(id+'_lock_saved.json',id+'_lock.json','rw');
+        fsess=loadFile(id+'_session.json','/');
+        for (idx in fsess) { setdata(idx,fsess[idx]); }
+        flock=loadFile(id+'_lock.json','/');
+        for (idx in flock) { setlock(idx,flock[idx]); }
+        omniListen(demorse(fsess['melody'],id,fsess['numeric']),false,parseInt(fsess['current']));
+    } return {'session':fsess,'lock':flock};
 }
 function remove_entry(id,obj,name,complex=false,helper=false,dy=';',dx=':') {
     var rawData=(typeof(obj)=='object')?obj.value:obj;

@@ -32,25 +32,6 @@ function executeCode(input) {
         } else { output+=executeMacros(query); } output=output+';';
     } return output;
 }
-function readFile(name,opt='read',path='',store='user_content') {
-    var dataString='name='+name+'&type=code&blank=&attr=plur';
-    $.ajax({ type: "POST", url: "read.php", data: dataString, cache: false,
-        success: function(result) {
-            if (opt=='read') {
-                var arr=jsonarr(result),ob; if (path!='') {
-                    if (path.includes('/')) {
-                        ob=arr; for (chk in path.split('/')) {
-                            ob=ob[path.split('/')[chk]];
-                        }
-                    } else { ob=arr[path]; }
-                } else { ob=arr; }
-                if (typeof(ob)=='object') {
-                    localStorage.setItem(store,JSON.stringify(ob));
-                } else { localStorage.setItem(store,ob); }
-            } else { localStorage.setItem(store,result); }
-        }
-    });
-}
 function permute(max=4,sym='0123456789') {
     var res=''; var list=sym.toString().split('');
     var perm=list.map(function(val) {
@@ -97,6 +78,9 @@ function loadFile(name,entry='') {
             for (i=0; i<ent.length; i++) {
                 arr=arr[ent[i]];
             } res=(isObject(arr))?arrjson(arr):arr;
+        } else if (entry=='/') {
+            arr=jsonarr(data);
+            res=(isObject(arr))?arrjson(arr):arr;
         } else {
             arr=jsonarr(data)[entry];
             res=(isObject(arr))?arrjson(arr):arr;
