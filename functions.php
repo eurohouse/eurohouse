@@ -256,7 +256,7 @@ function hhmmss($nums) {
     $num=$nums%3600;$mm=sprintf('%02d',floor($num/60));
     $ss=sprintf('%02d',floor($num%60));
     $res='00:00'; if ($nums<0) {
-        $res='-00:01';
+        $res='HH:MM';
     } else {
         $res=($isHour==0)?($mm.':'.$ss):($hh.':'.$mm.':'.$ss);
     } return $res;
