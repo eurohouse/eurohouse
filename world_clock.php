@@ -34,7 +34,7 @@ $finTerms=[
 ];
 /* ¶ 0 */ echo $timeStr."\r\n\r\n".
 /* ¶ 1 */ $dateStr."\r\n\r\n".
-/* ¶ 2 */ hhmmss($alarmInTime,true)."\r\n\r\n".
+/* ¶ 2 */ hhmmss($alarmInTime)."\r\n\r\n".
 /* ¶ 3 */ alphaChannel($userData['back_color'],$userData['opacity'])."\r\n\r\n".
 /* ¶ 4 */ json_encode($videoArr,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
 /* ¶ 5 */ json_encode($audioArr,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
