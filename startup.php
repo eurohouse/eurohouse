@@ -149,7 +149,7 @@ function world_clock() {
                 } else if (sysDefAlbum.value=='background') {
                     for (iu in alb) {
                         epr=alb[iu].split('.')[0];
-                        arl+="<img title='"+getPkgData(epr,'title')+"' src='"+getPkgData(epr,'favicon')+"' style='width:18%;'>";
+                        arl+="<img title='"+loadFile(epr+'.pkg','title')+"' src='"+loadFile(epr+'.pkg','favicon')+"' style='width:18%;'>";
                     }
                 } else if (sysDefAlbum.value=='avatar') {
                     epr=sysDefAva1Prefix.value;

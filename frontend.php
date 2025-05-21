@@ -172,24 +172,6 @@ function storeHours(id) {
     var arr=strarr(sysDefHoursActive.value,';',':');
     return (arr[id]!==undefined)?arr[id]:'';
 }
-function getPkgData(id,ent) {
-    var fdata={}; with(localStorage) {
-        readFile(id+'.pkg','read','',id+'_package_file');
-        fdata=jsonarr(getItem(id+'_package_file'));
-    } return ((fdata!==null)&&(Object.keys(fdata).length>0)&&(fdata[ent]!==undefined))?fdata[ent]:'';
-}
-function getUserData(id,ent) {
-    var fdata={}; with(localStorage) {
-        readFile(id+'_session.json','read','',id+'_session_file');
-        fdata=jsonarr(getItem(id+'_session_file'));
-    } return ((fdata!==null)&&(Object.keys(fdata).length>0)&&(fdata[ent]!==undefined))?fdata[ent]:'';
-}
-function getLockData(id,ent) {
-    var fdata={}; with(localStorage) {
-        readFile(id+'_lock.json','read','',id+'_lock_file');
-        fdata=jsonarr(getItem(id+'_lock_file'));
-    } return ((fdata!==null)&&(Object.keys(fdata).length>0)&&(fdata[ent]!==undefined))?fdata[ent]:'';
-}
 function isInBackup(id) {
     var fsess=flock={}; with(localStorage) {
         readFile(id+'_session_saved.json','read','',id+'_session_data');
@@ -637,7 +619,7 @@ function compose(usr,msg) {
                                     req=argv[idx].toString().replace('{','').replace('}',''); msglr.push('['+calc(req).toString()+']');
                                 } msglt=msglr.join(' ');
                             } else { msglt=msgbr[j]; }
-                            msgarr[enmorse(getUserData(sen,'title')+' (@'+sen+') · '+isoformat(Date.now()+j*1000)+' UTC',rec)]=enmorse(msglt,rec);
+                            msgarr[enmorse(loadFile(sen+'_session.json','title')+' (@'+sen+') · '+isoformat(Date.now()+j*1000)+' UTC',rec)]=enmorse(msglt,rec);
                         }
                     } else {
                         if (argv!==null) {
@@ -646,7 +628,7 @@ function compose(usr,msg) {
                                 req=argv[idx].toString().replace('{','').replace('}',''); msglr.push('['+calc(req).toString()+']');
                             } msglt=msglr.join(' ');
                         } else { msglt=msg; }
-                        msgarr[enmorse(getUserData(sen,'title')+' (@'+sen+') · '+isoformat(Date.now())+' UTC',rec)]=enmorse(msglt,rec);
+                        msgarr[enmorse(loadFile(sen+'_session.json','title')+' (@'+sen+') · '+isoformat(Date.now())+' UTC',rec)]=enmorse(msglt,rec);
                     } set('./'+rec+'_msgbox.json',(JSON.stringify(msgarr)),'rw');
                 }
             }
@@ -661,7 +643,7 @@ function compose(usr,msg) {
                             req=argv[idx].toString().replace('{','').replace('}',''); msglr.push('['+calc(req).toString()+']');
                         } msglt=msglr.join(' ');
                     } else { msglt=msgbr[j]; }
-                    msgarr[enmorse(getUserData(usr,'title')+' (@'+usr+') · '+isoformat(Date.now()+j*1000)+' UTC',usr)]=enmorse(msglt,usr);
+                    msgarr[enmorse(loadFile(usr+'_session.json','title')+' (@'+usr+') · '+isoformat(Date.now()+j*1000)+' UTC',usr)]=enmorse(msglt,usr);
                 }
             } else {
                 if (argv!==null) {
@@ -670,7 +652,7 @@ function compose(usr,msg) {
                         req=argv[idx].toString().replace('{','').replace('}',''); msglr.push('['+calc(req).toString()+']');
                     } msglt=msglr.join(' ');
                 } else { msglt=msg; }
-                msgarr[enmorse(getUserData(usr,'title')+' (@'+usr+') · '+isoformat(Date.now())+' UTC',usr)]=enmorse(msglt,usr);
+                msgarr[enmorse(loadFile(usr+'_session.json','title')+' (@'+usr+') · '+isoformat(Date.now())+' UTC',usr)]=enmorse(msglt,usr);
             } set('./'+usr+'_msgbox.json',(JSON.stringify(msgarr)),'rw');
         }
     }

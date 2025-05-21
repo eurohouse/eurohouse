@@ -83,14 +83,23 @@ function serialForce(user,len=25,sym='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ',num=
         if (test==pass) { res=prep.join(delim); }
     } return res;
 }
-function loadFile(name) {
-    var result=null;
+function loadFile(name,entry='') {
+    var data=res=arr=null;
     var xmlhttp=new XMLHttpRequest();
     xmlhttp.open("GET",name,false);
     xmlhttp.send();
     if (xmlhttp.status==200) {
-        result=xmlhttp.responseText;
-    } return result;
+        data=xmlhttp.responseText;
+    } if (entry!='') {
+        arr=jsonarr(data);
+        if (entry.includes('/')) {
+            for (ent in entry.split('/')) {
+                arr=arr[ent];
+            } res=(isObject(arr))?arrjson(arr):arr;
+        } else {
+            res=(isObject(arr[entry]))?arrjson(arr[entry]):arr;
+        }
+    } else { res=data; } return res;
 }
 function executeFile(name,str='',withReload=false,multiline=false) {
     var dataString='name='+name+'&type=code&blank=&attr=plur';
@@ -397,22 +406,12 @@ function omniEnter() {
                 copy(quote(arg[0]),quote(arg[i]),itd);
             } window.location.reload();
         }
-    } else if (input.startsWith('brutus ')) {
-        arj=input.replace('brutus ', '');
-        arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
-        if (arg.length==1) {
-            omniBox.value=bruteForce(quote(arg[0]),getUserData(quote(arg[0]),'pam_len'),getUserData(quote(arg[0]),'pam_char'));
-        }
-    } else if (input.startsWith('serial ')) {
-        arj=input.replace('serial ', '');
-        arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
-        if (arg.length==1) {
-            omniBox.value=serialForce(quote(arg[0]),getUserData(quote(arg[0]),'pam_len'),getUserData(quote(arg[0]),'pam_char'));
-        }
     } else if (input.startsWith('read ')) {
         arj=input.replace('read ', '');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
-        if (arg.length==1) {
+        if (arg.length==2) {
+            omniBox.value=loadFile(quote(arg[0]),quote(arg[1]));
+        } else {
             omniBox.value=loadFile(quote(arg[0]));
         }
     } else if (input.startsWith('update ')) {
