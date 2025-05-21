@@ -84,20 +84,22 @@ function serialForce(user,len=25,sym='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ',num=
     } return res;
 }
 function loadFile(name,entry='') {
-    var data=res=arr=null;
+    var data=res='',arr=ent=[];
     var xmlhttp=new XMLHttpRequest();
     xmlhttp.open("GET",name,false);
     xmlhttp.send();
     if (xmlhttp.status==200) {
         data=xmlhttp.responseText;
     } if (entry!='') {
-        arr=jsonarr(data);
         if (entry.includes('/')) {
-            for (ent in entry.split('/')) {
-                arr=arr[ent];
+            arr=jsonarr(data);
+            ent=entry.split('/');
+            for (i=0; i<ent.length; i++) {
+                arr=arr[ent[i]];
             } res=(isObject(arr))?arrjson(arr):arr;
         } else {
-            res=(isObject(arr[entry]))?arrjson(arr[entry]):arr;
+            arr=jsonarr(data)[entry];
+            res=(isObject(arr))?arrjson(arr):arr;
         }
     } else { res=data; } return res;
 }
