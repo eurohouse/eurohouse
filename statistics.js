@@ -14,7 +14,7 @@ function scores(sta) {
         ); for (indi in ordered) {
             if ((ordered[indi]!==undefined)||(indi!='')) {
                 af=(ordered[indi]!=indi)?"@"+ordered[indi]:"SELF";
-                at=getUserAvatar(indi);
+                at=loadFile(indi+'_session.json','avatar');
                 res+="<input type='image' class='power' onmouseover='soundButton();' src='"+eax+at+".png"+"' onclick='clip(&#34;"+at+"&#34;);'>";
                 res+="<input type='button' onmouseover='soundButton();' style='width:35%;' value='@"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
                 res+="<input type='button' onmouseover='soundButton();' style='width:34%;' value='"+af+"' onclick='clip(&#34;"+af+"&#34;);'>";
@@ -30,7 +30,7 @@ function scores(sta) {
         ); for (indi in ordered) {
             if ((ordered[indi]!==undefined)||(indi!='')) {
                 af=(ordered[indi]=='auto')?"AUTO":"MANUAL";
-                at=getUserAvatar(indi);
+                at=loadFile(indi+'_session.json','avatar');
                 res+="<input type='image' class='power' onmouseover='soundButton();' src='"+eax+at+".png"+"' onclick='clip(&#34;"+at+"&#34;);'>";
                 res+="<input type='button' onmouseover='soundButton();' style='width:34%;' value='@"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
                 res+="<input type='button' onmouseover='soundButton();' style='width:45%;' value='"+af+"' onclick='clip(&#34;"+af+"&#34;);'>";
@@ -51,7 +51,7 @@ function scores(sta) {
                     se=((dat[ordered[indi]]['series']!==undefined)&&(isInt(dat[ordered[indi]]['series']))&&(dat[ordered[indi]]['series']>1))?parseInt(dat[ordered[indi]]['series'])+'x':'x';
                     fo=((dat[ordered[indi]]['force']!==undefined)&&(isNum(dat[ordered[indi]]['force']))&&(dat[ordered[indi]]['force']>0))?parseFloat(dat[ordered[indi]]['force']):0;
                     em=(ex!=0)?am+'/'+se+fo:se+fo;
-                    at=getUserAvatar(indi);
+                    at=loadFile(indi+'_session.json','avatar');
                     res+="<input type='image' class='power' onmouseover='soundButton();' src='"+eax+at+".png"+"' onclick='clip(&#34;"+at+"&#34;);'>";
                     res+="<input type='button' onmouseover='soundButton();' style='width:26%;' value='@"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
                     res+="<input type='button' onmouseover='soundButton();' style='width:30%;' value='"+ordered[indi]+"' onclick='clip(&#34;"+ordered[indi]+"&#34;);'>";
@@ -73,7 +73,7 @@ function scores(sta) {
                 } else {
                     res+="<input type='image' class='power' onmouseover='soundButton();' src='Flag.UN.png"+"' onclick='clip(&#34;"+sortable[indi]['Country']+"&#34;);'>";
                 } res+="<input type='button' onmouseover='soundButton();' style='width:46%;' value='"+indi+"' onclick='clip(&#34;"+(indi.split('/')[0])+"&#34;);'>";
-                at=getUserAvatar(sortable[indi]['Username']);
+                at=loadFile((sortable[indi]['Username'])+'_session.json','avatar');
                 res+="<input type='image' class='power' onmouseover='soundButton();' src='"+eax+at+".png"+"' onclick='clip(&#34;"+at+"&#34;);'>";
                 res+="<input type='button' onmouseover='soundButton();' style='width:24%;' value='@"+sortable[indi]['Username']+"' onclick='clip(&#34;"+sortable[indi]['Username']+"&#34;);'>";
                 if (superuser()) {
@@ -135,7 +135,7 @@ function scores(sta) {
             Object.entries(obj).sort(([,a],[,b])=>b-a)
         ); for (indi in sortable) {
             if ((sortable[indi]!==undefined)||(indi!='')) {
-                at=getUserAvatar(indi);
+                at=loadFile(indi+'_session.json','avatar');
                 res+="<input type='image' class='power' onmouseover='soundButton();' src='"+eax+at+".png"+"' onclick='clip(&#34;"+at+"&#34;);'>";
                 res+="<input type='button' onmouseover='soundButton();' style='width:24%;' value='@"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
                 res+="<input type='button' onmouseover='soundButton();' style='width:54%;' value='"+formCur(sortable[indi])+"' onclick='clip(&#34;"+sortable[indi]+"&#34;);'>";

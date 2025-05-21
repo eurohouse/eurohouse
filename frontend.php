@@ -157,36 +157,25 @@ function openJournal(id,obj) {
     return (isObject(resarr[id]))?arrjson(resarr[id]):"{\"\":\"\"}";
 }
 function storeOpen(id) {
-    var hours=storeHours(id).split(',');
-    return (hours.includes(userTimeNow(id)));
+    return loadFile(id+'_session.json','active_hours').split(',').includes(userTimeNow(id));
 }
 function userTimeNow(id) {
     var arr=strarr(sysDefHoursNow.value,';',':');
     return (arr[id]!==undefined)?arr[id]:'00';
 }
-function getUserAvatar(id) {
-    var arr=strarr(sysDefAvatarsNow.value,';',':');
-    return (arr[id]!==undefined)?arr[id]:'NULL';
-}
-function storeHours(id) {
-    var arr=strarr(sysDefHoursActive.value,';',':');
-    return (arr[id]!==undefined)?arr[id]:'';
-}
 function isInBackup(id) {
     var fsess=jsonarr(loadFile(id+'_session_saved.json'));
     var flock=jsonarr(loadFile(id+'_lock_saved.json'));
-    return ((fsess!==null)&&(flock!==null)&&(Object.keys(fsess).length>0)&&(Object.keys(flock).length>0));
+    return (isObject(fsess)&&isObject(flock));
 }
 function userBackup(id) {
     copy(id+'_session.json',id+'_session_saved.json','rw');
     copy(id+'_lock.json',id+'_lock_saved.json','rw');
     var fsess=jsonarr(loadFile(id+'_session_saved.json'));
     var flock=jsonarr(loadFile(id+'_lock_saved.json'));
-    return {'session':fsess,'lock':flock};
 }
 function userRestore(id) {
-    var fsess=flock={};
-    if (isInBackup(id)) {
+    var fsess=flock={}; if (isInBackup(id)) {
         copy(id+'_session_saved.json',id+'_session.json','rw');
         copy(id+'_lock_saved.json',id+'_lock.json','rw');
         fsess=jsonarr(loadFile(id+'_session_saved.json'));
@@ -194,7 +183,7 @@ function userRestore(id) {
         flock=jsonarr(loadFile(id+'_lock_saved.json'));
         for (idx in flock) { setlock(idx,flock[idx]); }
         omniListen(demorse(fsess['melody'],id,fsess['numeric']),false,parseInt(fsess['current']));
-    } return {'session':fsess,'lock':flock};
+    }
 }
 function remove_entry(id,obj,name,complex=false,helper=false,dy=';',dx=':') {
     var rawData=(typeof(obj)=='object')?obj.value:obj;
@@ -376,8 +365,7 @@ function jsonNews() {
     } return ard;
 }
 function activeHrsBtn(id) {
-    var arr=storeHours(id).split(',');
-    var arl=''; for (el in arr) {
+    var arr=loadFile(id+'_session.json','active_hours').split(','),arl=''; for (el in arr) {
         arl+="<input type='button' onmouseover='soundButton();' value='"+arr[el]+"'>";
     } return arl;
 }

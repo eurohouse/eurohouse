@@ -65,9 +65,7 @@
         <input type='hidden' id="sysDefHdiData" value="">
         <input type='hidden' id="sysDefModelData" value="">
         <input type='hidden' id="sysDefContentData" value="">
-        <input type='hidden' id="sysDefAvatarsNow" value="">
         <input type='hidden' id="sysDefHoursNow" value="">
-        <input type='hidden' id="sysDefHoursActive" value="">
         <input type='hidden' id="sysDefLockData" value="">
         <input type='hidden' id="sysDefLockIcons" value="">
         <input type='hidden' id="sysDefIsSession" value="<?=isAuthorized();?>">
