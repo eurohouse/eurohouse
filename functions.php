@@ -255,7 +255,7 @@ function hhmmss($num,$omitHours=false) {
     $hh=sprintf('%02d',floor($num/3600));
     $num%=3600;$mm=sprintf('%02d',floor($num/60));
     $ss=sprintf('%02d',floor($num%60));
-    return ($omitHours)?(($isHour==0)?($mm.':'.$ss):($hh.':'.$mm.':'.$ss)):($hh.':'.$mm.':'.$ss);
+    return (($num<0)?'-':'').(($omitHours)?(($isHour==0)?($mm.':'.$ss):($hh.':'.$mm.':'.$ss)):($hh.':'.$mm.':'.$ss));
 }
 function enc_tz($tz): string {
     if (strpos($tz,'+')!==false) {

@@ -67,18 +67,17 @@ function world_clock() {
             $('#currentTime').val(pager(data,sysDefTimedisp.value));
             $('#alarmTime').val((pager(data,2)!='00:00')?pager(data,1):hhmmss(audioPlayer.currentTime,true));
             pamd(sysDefPamLen.value,sysDefPamChar.value);
-            $('#sysDefIndicators').val(pager(data,3));
-            $('#sysDefAccent').val(pager(data,4));
-            $('#sysDefEffects').val(pager(data,5));
-            $('#sysDefMixers').val(pager(data,6));
-            $('#sysDefFinTerms').val(pager(data,7));
-            $('#sysDefPangram').val(pager(data,8));
+            $('#sysDefAccent').val(pager(data,3));
+            $('#sysDefEffects').val(pager(data,4));
+            $('#sysDefMixers').val(pager(data,5));
+            $('#sysDefFinTerms').val(pager(data,6));
+            $('#sysDefPangram').val(pager(data,7));
             var effects=jsonarr(sysDefEffects.value);
             var mixers=jsonarr(sysDefMixers.value);
             var bndm=strarr(sysDefBindData.value,';',':')[sysDefSessionID.value];
             var finterm=jsonarr(sysDefFinTerms.value);
-            $('#sysDefLockIcons').val(pager(data,9));
-            $('#sysDefDataLoad').val(pager(data,10));
+            $('#sysDefLockIcons').val(pager(data,8));
+            $('#sysDefDataLoad').val(pager(data,9));
             if (authstate()) { omniBox.placeholder=finterm[10]; } if (requestMode.value=='volume_control') {
                 audioVolInd.value=mixers[0]; audioRatInd.value=mixers[1];
                 videoVolInd.value=mixers[2]; videoRatInd.value=mixers[3];
@@ -209,12 +208,13 @@ function world_clock() {
             } else if (requestMode.value=='text_editor') {
                 $('#textEdRep').attr('src',sysDefPrefix.value+'new.png');
                 $('#textEdRepAll').attr('src',sysDefPrefix.value+'copy.png');
-            } if (((ind(2)==1)&&(ind(3)==1))||((ind(2)==1)&&(ind(3)==0))) {
+            } sysDefObserve.value
+            if (((sysDefObserve.value!=0)&&(sysDefSpectate.value!=0))||((sysDefObserve.value!=0)&&(sysDefSpectate.value==0))) {
                 $('#powerButton').show();$('.panel').hide();
                 $('.customPanel').hide();$('.upperGap').hide();
                 $('.lowerGap').hide();$('.topbar').hide();
             } else {
-                if ((ind(2)==0)&&(ind(3)==1)) {
+                if ((sysDefObserve.value==0)&&(sysDefSpectate.value!=0)) {
                     $('#powerButton').hide();$('.panel').hide();
                     $('.customPanel').hide();$('.upperGap').hide();
                     $('.lowerGap').hide();$('.topbar').show();
@@ -229,10 +229,10 @@ function world_clock() {
             document.querySelector(':root').style.setProperty('--overlay-before-ani',effects[3]);
             document.querySelector(':root').style.setProperty('--overlay-after-bg',effects[4]);
             document.querySelector(':root').style.setProperty('--overlay-after-ani',effects[5]);
-            if (ind(1)!=0) {
+            if ((pager(data,2)!='00:00')&&(pager(data,2)!='-00:01')) {
                 playAudio(tickerPlayer,sysDefTickingSound.value);
             } else { pauseAudio(tickerPlayer); }
-            if (ind(0)!=0) {
+            if ((pager(data,2)=='-00:01')) {
                 playAudio(alarmPlayer,sysDefAlarmSound.value);
                 setdata('memo','');
             }

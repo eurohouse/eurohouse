@@ -1,12 +1,4 @@
 <script>
-function ind(num) {
-    var res=num1=num2=''; if (num.length==2) {
-        num1=num.charAt(0),num1=num.charAt(1);
-        res=(sysDefIndicators.value).charAt(num1).toString()+(sysDefIndicators.value).charAt(num2).toString();
-    } else if (num.length==1) {
-        res=(sysDefIndicators.value).charAt(num).toString();
-    } return res;
-}
 function lockdata() {
     var obj={
         <?php $iter=0; foreach ($locks as $key=>$value) {

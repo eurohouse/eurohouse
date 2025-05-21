@@ -4,11 +4,11 @@ $userSettings=fileopen('settings.json');
 $userData=arropen($cookie.'_session.json',json_encode($userSettings['defaults']),'DEFAULT');
 if ($userData['memo']!='') {
     if (time()>=$userData['memo']) {
-        $ongo=1; $inco=0; $alarmInTime=0;
+        $alarmInTime=-1;
     } else {
-        $ongo=0; $inco=1; $alarmInTime=$userData['memo']-time();
+        $alarmInTime=$userData['memo']-time();
     }
-} else { $ongo=0; $inco=0; $alarmInTime=0; }
+} else { $alarmInTime=0; }
 $dateStr=chooseCalendar(time(),$userData,$userSettings); $timeStr=timedate(time(),$userData,$userSettings);
 if ($userData['vintage']!=0) {
     $videoArr=[
@@ -35,11 +35,10 @@ $finTerms=[
 /* ¶ 0 */ echo $timeStr."\r\n\r\n".
 /* ¶ 1 */ $dateStr."\r\n\r\n".
 /* ¶ 2 */ hhmmss($alarmInTime,true)."\r\n\r\n".
-/* ¶ 3 */ $ongo.$inco.$userData['observe'].$userData['spectate'].$userData['censor'].date('ILw')."\r\n\r\n".
-/* ¶ 4 */ alphaChannel($userData['back_color'],$userData['opacity'])."\r\n\r\n".
-/* ¶ 5 */ json_encode($videoArr,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
-/* ¶ 6 */ json_encode($audioArr,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
-/* ¶ 7 */ json_encode($finTerms,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
-/* ¶ 8 */ $userData['pangram_'.(($userSettings['pangram'][$uni])?$userSettings['pangram'][$uni]:$userSettings['pangram']['default'])]."\r\n\r\n".
-/* ¶ 9 */ json_encode($userSettings['locks_icons'],JSON_UNESCAPED_UNICODE)."\r\n\r\n".
-/* ¶ 10 */ implode(',',$userSettings['dataload']);
+/* ¶ 3 */ alphaChannel($userData['back_color'],$userData['opacity'])."\r\n\r\n".
+/* ¶ 4 */ json_encode($videoArr,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
+/* ¶ 5 */ json_encode($audioArr,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
+/* ¶ 6 */ json_encode($finTerms,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
+/* ¶ 7 */ $userData['pangram_'.(($userSettings['pangram'][$uni])?$userSettings['pangram'][$uni]:$userSettings['pangram']['default'])]."\r\n\r\n".
+/* ¶ 8 */ json_encode($userSettings['locks_icons'],JSON_UNESCAPED_UNICODE)."\r\n\r\n".
+/* ¶ 9 */ implode(',',$userSettings['dataload']);
