@@ -311,9 +311,7 @@ function administer(entry,mode='+') {
         var counts=strarr(sysDefPowersData.value,';',':');
         if (notNull(sub[entry])) {
             tempObj=document.getElementById('sysDef'+ucfirst(entry)+'Data'),tempData=tempObj.value;
-            if (micro.includes(entry)) {
-                obj=strarr(tempData,';',':');
-            } else { obj=jsonarr(tempData); }
+            obj=(micro.includes(entry))?strarr(tempData,';',':'):jsonarr(tempData);
             sum=arrsum(Object.values(obj));
             qua=Object.keys(obj).length;
             div=Math.round(sum/qua);
@@ -331,17 +329,12 @@ function administer(entry,mode='+') {
                     }
                 }
             } if (notNull(obj)) {
-                set(files[entry]+'.json',JSON.stringify(obj),'rw'); if (micro.includes(entry)) {
-                    tempObj.value=arrstr(obj,';',':');
-                } else { tempObj.value=arrjson(obj); }
+                set(files[entry]+'.json',JSON.stringify(obj),'rw'); tempObj.value=(micro.includes(entry))?arrstr(obj,';',':'):arrjson(obj);
             }
         } else {
-            for (i=0; i<micro.length; i++) {
-                temp=micro[i];
+            for (temp in sub) {
                 tempObj=document.getElementById('sysDef'+ucfirst(temp)+'Data'),tempData=tempObj.value;
-                if (micro.includes(temp)) {
-                    obj=strarr(tempData,';',':');
-                } else { obj=jsonarr(tempData); }
+                obj=(micro.includes(temp))?strarr(tempData,';',':'):jsonarr(tempData);
                 sum=arrsum(Object.values(obj));
                 qua=Object.keys(obj).length;
                 div=Math.round(sum/qua);
@@ -361,9 +354,7 @@ function administer(entry,mode='+') {
                         }
                     }
                 } if (notNull(obj)) {
-                    set(files[temp]+'.json',JSON.stringify(obj),'rw'); if (micro.includes(temp)) {
-                        tempObj.value=arrstr(obj,';',':');
-                    } else { tempObj.value=arrjson(obj); }
+                    set(files[temp]+'.json',JSON.stringify(obj),'rw'); tempObj.value=(micro.includes(temp))?arrstr(obj,';',':'):arrjson(obj);
                 }
             }
         }
