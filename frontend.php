@@ -577,17 +577,26 @@ function automate() {
     set('automator.json',JSON.stringify(obj),'rw');
     sysDefAutoData.value=arrstr(obj,';',':');
 }
+function localizedTitle(id,ent='title') {
+    var mono=loadFile(id+'_session.json',ent);
+    var lang=loadFile(id+'_session.json','units');
+    var trans=loadFile(id+'_session.json',ent+'s');
+    var tran=strarr(trans,' | ',' - ');
+    return (notNull(tran[lang]))?tran[lang]:mono;
+}
 function compose(usr,msg) {
     var addr=(msg!==undefined)?msg.match(/(@\w*)/g):'';
     var argv=(msg!==undefined)?msg.match(/\{[^\}]*\}/g):'';
     var id=sen=rec=req=msglt='',msgbox={},msgbr=msglr=[];
-    if (!cancelled(usr)) {
+    var senT=recT=usrT=''; if (!cancelled(usr)) {
         if (addr!==null) {
             for (it in addr) {
                 id=addr[it].replace('@','');
                 init_user(id); if (!cancelled(id)) {
                     sen=((argv!==null)?id:usr);
                     rec=((argv!==null)?usr:id);
+                    senT=localizedTitle(sen);
+                    recT=localizedTitle(rec);
                     msgbox=openJournal(rec,sysDefMsgboxJSONs); msgarr=jsonarr(msgbox);
                     if (msg.match(/\r?\n/)!==null) {
                         msgbr=msg.split(/\r?\n/);
@@ -598,7 +607,7 @@ function compose(usr,msg) {
                                     req=argv[idx].toString().replace('{','').replace('}',''); msglr.push('['+calc(req).toString()+']');
                                 } msglt=msglr.join(' ');
                             } else { msglt=msgbr[j]; }
-                            msgarr[enmorse(loadFile(sen+'_session.json','title')+' (@'+sen+') · '+isoformat(Date.now()+j*1000)+' UTC',rec)]=enmorse(msglt,rec);
+                            msgarr[enmorse(senT+' (@'+sen+') · '+isoformat(Date.now()+j*1000)+' UTC',rec)]=enmorse(msglt,rec);
                         }
                     } else {
                         if (argv!==null) {
@@ -607,12 +616,13 @@ function compose(usr,msg) {
                                 req=argv[idx].toString().replace('{','').replace('}',''); msglr.push('['+calc(req).toString()+']');
                             } msglt=msglr.join(' ');
                         } else { msglt=msg; }
-                        msgarr[enmorse(loadFile(sen+'_session.json','title')+' (@'+sen+') · '+isoformat(Date.now())+' UTC',rec)]=enmorse(msglt,rec);
+                        msgarr[enmorse(senT+' (@'+sen+') · '+isoformat(Date.now())+' UTC',rec)]=enmorse(msglt,rec);
                     } set('./'+rec+'_msgbox.json',(JSON.stringify(msgarr)),'rw');
                 }
             }
         } else {
             msgbox=openJournal(usr,sysDefMsgboxJSONs); msgarr=jsonarr(msgbox);
+            usrT=localizedTitle(usr);
             if (msg.match(/\r?\n/)!==null) {
                 msgbr=msg.split(/\r?\n/);
                 for (j=0; j<msgbr.length; j++) {
@@ -622,7 +632,7 @@ function compose(usr,msg) {
                             req=argv[idx].toString().replace('{','').replace('}',''); msglr.push('['+calc(req).toString()+']');
                         } msglt=msglr.join(' ');
                     } else { msglt=msgbr[j]; }
-                    msgarr[enmorse(loadFile(usr+'_session.json','title')+' (@'+usr+') · '+isoformat(Date.now()+j*1000)+' UTC',usr)]=enmorse(msglt,usr);
+                    msgarr[enmorse(usrT+' (@'+usr+') · '+isoformat(Date.now()+j*1000)+' UTC',usr)]=enmorse(msglt,usr);
                 }
             } else {
                 if (argv!==null) {
@@ -631,7 +641,7 @@ function compose(usr,msg) {
                         req=argv[idx].toString().replace('{','').replace('}',''); msglr.push('['+calc(req).toString()+']');
                     } msglt=msglr.join(' ');
                 } else { msglt=msg; }
-                msgarr[enmorse(loadFile(usr+'_session.json','title')+' (@'+usr+') · '+isoformat(Date.now())+' UTC',usr)]=enmorse(msglt,usr);
+                msgarr[enmorse(usrT+' (@'+usr+') · '+isoformat(Date.now())+' UTC',usr)]=enmorse(msglt,usr);
             } set('./'+usr+'_msgbox.json',(JSON.stringify(msgarr)),'rw');
         }
     }
