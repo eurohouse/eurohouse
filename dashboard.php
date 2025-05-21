@@ -31,14 +31,14 @@
         document.getElementById('omniBox').focus();" src="<?=$prefix[3].'backspace.png';?>" title="<?=term('Clear Console',$settings['vocabulary'],$session['units']);?>">
     <?php } else { ?>
         <input type="image" onmouseover="soundButton();" id="buttonSuggest" class="power" onclick="omniSuggest();" src="<?=$prefix[3].'user.png';?>" title="<?=term('Suggest Username',$settings['vocabulary'],$session['units']);?>">
-        <input type='text' id="omniBoxAuthLogin" style="width:30%;" placeholder="<?=term('Username',$settings['vocabulary'],$session['units']);?>" value="" onkeydown="if (event.keyCode==13) {
+        <input type='text' id="omniBoxAuthLogin" style="width:31%;" placeholder="<?=term('Username',$settings['vocabulary'],$session['units']);?>" value="" onkeydown="if (event.keyCode==13) {
             omniBoxAuthPass.value=guessUserPass(omniBoxAuthLogin.value); omniBoxAuthPass.focus();
         } else if (event.keyCode==27) {
             omniBoxAuthLogin.value='';
         } else if (event.keyCode==8) { handleInput(this.value);
         } else if (event.keyCode==46) { handleInput(this.value);
         } keyPressed();" oninput="handleInput(this.value,true);">
-        <input type='password' id="omniBoxAuthPass" style="width:30%;" placeholder="<?=term('Password',$settings['vocabulary'],$session['units']);?>" value="" onkeydown="if (event.keyCode==13) {
+        <input type='password' id="omniBoxAuthPass" style="width:31%;" placeholder="<?=term('Password',$settings['vocabulary'],$session['units']);?>" value="" onkeydown="if (event.keyCode==13) {
             if (event.code=='NumpadEnter') {
                 omniAuthRequest('signup',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString());
             } else {
