@@ -3,11 +3,7 @@ $cookie=(isset($_COOKIE['user']))?$_COOKIE['user']:'root';
 $userSettings=fileopen('settings.json');
 $userData=arropen($cookie.'_session.json',json_encode($userSettings['defaults']),'DEFAULT');
 if ($userData['memo']!='') {
-    if (time()>=$userData['memo']) {
-        $alarmInTime=-1;
-    } else {
-        $alarmInTime=$userData['memo']-time();
-    }
+    $alarmInTime=(time()>=$userData['memo'])?-1:($userData['memo']-time());
 } else { $alarmInTime=0; }
 $dateStr=chooseCalendar(time(),$userData,$userSettings); $timeStr=timedate(time(),$userData,$userSettings);
 if ($userData['vintage']!=0) {
