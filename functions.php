@@ -353,7 +353,7 @@ function modelcard($id,$cont,$exem,$ses,$sti) {
             if (in_array($uni,$loc['anno_ind']['space'])) { $dp=$ba.' '.$anno;
             } elseif (in_array($uni,$loc['anno_ind']['concat'])) { $dp=$anno.$ba;
             } else { $dp=$anno.' '.$ba; }
-            $bl=zodiacSign($bc).' ('.date($ses['date_format'],strtotime($bday)).') '.$dp.' '.$bk;
+            $bl=zodiacSign($bc).' ('.chooseCalendar(strtotime($bday),$ses,$sti).') '.$dp.' '.$bk;
         } else { $bl=''; } $dl=$hd.' '.$bl.' '.$len.' '.$mas.' '.$szs.' '.$shs;
     } else { $dl=''; } return $dl;
 }
