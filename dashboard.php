@@ -95,18 +95,18 @@
     <input type='button' id="showUsInfoPower" style="width:34%;" value="<?=intval($powersData[$sessionID]);?>">
     <input type="image" onmouseover="soundButton();" id="buttonBroke" class="power" onclick="var uli=(sysDefUsersList.value).split(','),bdi=strarr(sysDefBindData.value,';',':'); delete uli[sysDefSessionID.value]; if (bdi[sysDefSessionID.value]!=sysDefSessionID.value) { unbind(sysDefSessionID.value); } else { bind(sysDefSessionID.value,uli[rand(0,(uli.length))]); }" src="<?=$prefix[3].'chain.png';?>" title="<?=term('Bind/Unbind Another User',$settings['vocabulary'],$session['units']);?>">
     <input type="image" onmouseover="soundButton();" id="buttonReticle" class="power" onclick="dominate(sysDefSessionID.value,strarr(sysDefBindData.value,';',':')[sysDefSessionID.value],strarr(sysDefToolData.value,';',':')[sysDefSessionID.value]); playAudio(hitPlayer,sysDefHitSound.value);" src="<?=$prefix[5].$session['reticle'].'.png';?>" title="<?=term('Hit Another User',$settings['vocabulary'],$session['units']);?>">
-    <input type='button' id="showUsInfoBond" style="width:30%;" onclick="clip(sysDefSessionID.value);" value="<?=$sessionID;?>">
+    <input type='button' id="showUsInfoBond" style="width:28%;" onclick="clip(sysDefSessionID.value);" value="<?=$sessionID;?>">
     <input type="image" onmouseover="soundButton();" id="buttonSpectate" class="power" onclick="setdata('spectate',flip(sysDefSpectate.value));" src="<?=$prefix[3].'camera.png';?>" title="<?=term('Spectate Mode',$settings['vocabulary'],$session['units']);?>">
     </p>
 </div>
 <div class='topBarItem'>
     <p align='center' class='block'>
     <input type="image" id="userAvatarBadge" onmouseover="soundButton();" class="power" src="<?=$prefix[1].$session['avatar'].'.png';?>" onclick="setdata('face',flip(sysDefFace.value)); window.location.reload();" title="<?=term('Show/Hide User Avatar',$settings['vocabulary'],$session['units']);?>">
-    <select id="setUnits" style="width:13%;" onchange="setdata('units',setUnits.options[setUnits.selectedIndex].id); if (sysDefReload.value!=0) { window.location.reload(); }">
+    <select id="setUnits" style="width:14%;" onchange="setdata('units',setUnits.options[setUnits.selectedIndex].id); if (sysDefReload.value!=0) { window.location.reload(); }">
     <?php foreach (explode(',',$session['units_list']) as $selID) { ?>
         <option id="<?=$selID;?>" <?php if ($session['units']==$selID) { ?> selected <?php } ?>><?=$selID;?></option>
     <?php } ?></select>
-    <select id="setTheme" style="width:18%;" onchange="setdata('theme',setTheme.options[setTheme.selectedIndex].id); window.location.reload();">
+    <select id="setTheme" style="width:21%;" onchange="setdata('theme',setTheme.options[setTheme.selectedIndex].id); window.location.reload();">
     <?php foreach ((str_replace('./','',(glob('./*.start.png')))) as $key=>$value) { ?>
         <option id="<?=explode('.',$value)[0];?>" <?php if ($session['theme']==explode('.',$value)[0]) { ?> selected <?php } ?>><?=explode('.',$value)[0];?></option>
     <?php } ?></select>
