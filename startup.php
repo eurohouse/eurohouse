@@ -65,7 +65,7 @@ function world_clock() {
         url: 'world_clock.php',
         success: function(data) {
             $('#currentTime').val(pager(data,sysDefTimedisp.value));
-            $('#alarmTime').val((pager(data,2)!='00:00')?pager(data,1):hhmmss(audioPlayer.currentTime,true));
+            $('#alarmTime').val((pager(data,2)!='00:00')?pager(data,2):hhmmss(audioPlayer.currentTime,true));
             pamd(sysDefPamLen.value,sysDefPamChar.value);
             $('#sysDefAccent').val(pager(data,3));
             $('#sysDefEffects').val(pager(data,4));
