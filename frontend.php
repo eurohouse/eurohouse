@@ -302,37 +302,37 @@ function init_user(id,pass=null) {
     } if (isLine(pass)) { set(id+'_password',pass,'rw'); }
     delete_user('');
 }
-function administer(sta,md='+') {
+function administer(entry,mode='+') {
     if (superuser()) {
-        var sto={'bind':'binding','auto':'automator','tool':'toolbox','ip':'visitors','powers':'dominion','hdi':'i18n'};
-        var sti={'bind':'μ','auto':'μ','tool':'μ','powers':'μ'},rid=sysDefSessionID.value;
-        var stu={'bind':'i','auto':'manual|auto','tool':'e','powers':'n'},rid=sysDefSessionID.value;
-        var ept=document.getElementById('sysDef'+ucfirst(sta)+'Data'),arr=ept.value,eps=sto[sta]+'.json',ob={}; if (sti[sta]!==undefined) {
-            if (sti[sta]=='μ') { ob=strarr(arr,';',':');
-            } else { ob=jsonarr(arr); }
-        } else { ob=jsonarr(arr); }
-        var sum=arrsum(Object.values(ob)),qua=Object.keys(ob).length;
-        if (stu[sta]!==undefined) {
-            if (stu[sta]=='i') {
-                for (ib in ob) { ob[ib]=ib; }
-            } else if (stu[sta].includes('|')) {
-                for (ib in ob) { ob[ib]=(md=='-')?stu[sta].split('|')[0]:stu[sta].split('|')[1]; }
-            } else if (stu[sta]=='e') {
-                for (ib in ob) { ob[ib]=''; }
-            } else if (stu[sta]=='n') {
-                if (md=='-') {
+        var files={'bind':'binding','auto':'automator','tool':'toolbox','ip':'visitors','powers':'dominion','hdi':'i18n'};
+        var micro=['bind','auto','tool','powers'];
+        var sub={'bind':'i','auto':'manual|auto','tool':'e','powers':'n'};
+        var userID=sysDefSessionID.value;
+        var dataObj=document.getElementById('sysDef'+ucfirst(entry)+'Data');
+        var data=dataObj.value,obj={},div=1; if (notNull(micro[entry])) {
+            obj=strarr(data,';',':');
+        } else { obj=jsonarr(data); }
+        var sum=arrsum(Object.values(obj)),qua=Object.keys(obj).length;
+        if (sub[entry]!==undefined) {
+            if (sub[entry]=='i') { for (idx in obj) { obj[idx]=idx; }
+            } else if (sub[entry].includes('|')) {
+                for (idx in obj) {
+                    obj[idx]=(mode=='-')?sub[entry].split('|')[0]:sub[entry].split('|')[1];
+                }
+            } else if (sub[entry]=='e') { for (idx in obj) { obj[idx]=''; }
+            } else if (sub[entry]=='n') {
+                if (mode=='-') {
                     div=Math.round(sum/qua);
-                    for (ib in ob) { ob[ib]=parseFloat(div); }
+                    for (idx in obj) { obj[idx]=parseFloat(div); }
                 } else {
-                    for (ib in ob) { ob[ib]=parseFloat(sum); }
+                    for (idx in obj) { obj[idx]=parseFloat(sum); }
                 }
             }
-        } if (ob!==null) {
-            set(eps,JSON.stringify(ob),'rw');
-            if (sti[sta]!==undefined) {
-                if (sti[sta]=='μ') { ept.value=arrstr(ob,';',':');
-                } else { ept.value=arrjson(ob); }
-            } else { ept.value=arrjson(ob); }
+        } if (obj!==null) {
+            set(files[entry]+'.json',JSON.stringify(obj),'rw');
+            if (notNull(micro[entry])) {
+                objData.value=arrstr(obj,';',':');
+            } else { objData.value=arrjson(obj); }
         }
     }
 }
