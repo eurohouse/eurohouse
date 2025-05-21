@@ -173,16 +173,15 @@ function storeHours(id) {
     return (arr[id]!==undefined)?arr[id]:'';
 }
 function isInBackup(id) {
-    var fsess=loadFile(id+'_session_saved.json','/');
-    var flock=loadFile(id+'_lock_saved.json','/');
+    var fsess=jsonarr(loadFile(id+'_session_saved.json'));
+    var flock=jsonarr(loadFile(id+'_lock_saved.json'));
     return ((fsess!==null)&&(flock!==null)&&(Object.keys(fsess).length>0)&&(Object.keys(flock).length>0));
 }
 function userBackup(id) {
-    var fsess=flock={};
     copy(id+'_session.json',id+'_session_saved.json','rw');
     copy(id+'_lock.json',id+'_lock_saved.json','rw');
-    fsess=loadFile(id+'_session_saved.json','/');
-    flock=loadFile(id+'_lock_saved.json','/');
+    var fsess=jsonarr(loadFile(id+'_session_saved.json'));
+    var flock=jsonarr(loadFile(id+'_lock_saved.json'));
     return {'session':fsess,'lock':flock};
 }
 function userRestore(id) {
@@ -190,9 +189,9 @@ function userRestore(id) {
     if (isInBackup(id)) {
         copy(id+'_session_saved.json',id+'_session.json','rw');
         copy(id+'_lock_saved.json',id+'_lock.json','rw');
-        fsess=loadFile(id+'_session.json','/');
+        fsess=jsonarr(loadFile(id+'_session_saved.json'));
         for (idx in fsess) { setdata(idx,fsess[idx]); }
-        flock=loadFile(id+'_lock.json','/');
+        flock=jsonarr(loadFile(id+'_lock_saved.json'));
         for (idx in flock) { setlock(idx,flock[idx]); }
         omniListen(demorse(fsess['melody'],id,fsess['numeric']),false,parseInt(fsess['current']));
     } return {'session':fsess,'lock':flock};

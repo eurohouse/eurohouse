@@ -78,9 +78,6 @@ function loadFile(name,entry='') {
             for (i=0; i<ent.length; i++) {
                 arr=arr[ent[i]];
             } res=(isObject(arr))?arrjson(arr):arr;
-        } else if (entry=='/') {
-            arr=jsonarr(data);
-            res=(isObject(arr))?arrjson(arr):arr;
         } else {
             arr=jsonarr(data)[entry];
             res=(isObject(arr))?arrjson(arr):arr;
