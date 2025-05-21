@@ -331,8 +331,8 @@ function administer(entry,mode='+') {
         } if (obj!==null) {
             set(files[entry]+'.json',JSON.stringify(obj),'rw');
             if (notNull(micro[entry])) {
-                objData.value=arrstr(obj,';',':');
-            } else { objData.value=arrjson(obj); }
+                dataObj.value=arrstr(obj,';',':');
+            } else { dataObj.value=arrjson(obj); }
         }
     }
 }
