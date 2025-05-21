@@ -60,7 +60,7 @@
 <div class='topBarItem'>
     <p align='center' class='block'>
     <input type="image" onmouseover="soundButton();" id="buttonTime" class="power" onclick="setdata('benchmark',nextImage('0;2',sysDefBenchmark.value));" src="<?=$prefix[3].'time.png';?>" title="<?=term('Slideshow Wallpapers',$settings['vocabulary'],$session['units']);?>">
-    <input type='button' id="currentTime" style="width:30%;" onclick="setdata('timedisp',flip(sysDefTimedisp.value));" value="<?=date(($session['timedisp']!=0)?$session['date_format']:$session['time_format']);?>">
+    <input type='button' id="currentTime" style="width:33%;" onclick="setdata('timedisp',flip(sysDefTimedisp.value));" value="<?=date(($session['timedisp']!=0)?$session['date_format']:$session['time_format']);?>">
     <input type="image" id="buttonPrev" onmouseover="soundButton();" class="power" onclick="songIndex('prev');" src="<?=$prefix[3].'rew.png';?>" title="<?=term('Previous Track',$settings['vocabulary'],$session['units']);?>">
     <input type="image" id="buttonNext" onmouseover="soundButton();" class="power" onclick="songIndex('next');" src="<?=$prefix[3].'ff.png';?>" title="<?=term('Next Track',$settings['vocabulary'],$session['units']);?>">
     <input type="number" min='0' max='23' step='1' id="setTimeHour" style="width:12%;" value="<?=$session['hour'];?>" onchange="setTimeHour.value=pad(setTimeHour.value,-2);" oninput="setdata('hour',pad(setTimeHour.value,-2)); handleInput(this.value,true);" onkeydown="if (event.keyCode==27) {
