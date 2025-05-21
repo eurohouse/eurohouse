@@ -310,13 +310,13 @@ function administer(entry,mode='+') {
         var userID=sysDefSessionID.value;
         var dataObj=document.getElementById('sysDef'+ucfirst(entry)+'Data');
         var counts=strarr(sysDefPowersData.value,';',':');
-        var data=dataObj.value,obj={},div=1;
+        var data=dataObj.value,obj={},div=1,temp='';
         if (micro.includes(entry)) {
             obj=strarr(data,';',':');
         } else { obj=jsonarr(data); }
         var sum=arrsum(Object.values(obj));
         var qua=Object.keys(obj).length;
-        if (sub[entry]!==undefined) {
+        if (notNull(sub[entry])) {
             if (sub[entry]=='i') {
                 for (idx in counts) { obj[idx]=idx; }
             } else if (sub[entry].includes('|')) {
@@ -334,6 +334,26 @@ function administer(entry,mode='+') {
                 } else {
                     for (idx in counts) {
                         obj[idx]=parseFloat(sum);
+                    }
+                }
+            }
+        } else {
+            for (i=0; i<micro.length; i++) {
+                temp=micro[i];
+                for (idx in counts) {
+                    if (sub[temp]=='i') {
+                        obj[idx]=idx;
+                    } else if (sub[temp].includes('|')) {
+                        obj[idx]=(mode=='-')?sub[temp].split('|')[0]:sub[temp].split('|')[1];
+                    } else if (sub[temp]=='e') {
+                        obj[idx]='';
+                    } else if (sub[temp]=='n') {
+                        if (mode=='-') {
+                            div=Math.round(sum/qua);
+                            obj[idx]=parseFloat(div);
+                        } else {
+                            obj[idx]=parseFloat(sum);
+                        }
                     }
                 }
             }
