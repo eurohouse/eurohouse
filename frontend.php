@@ -309,6 +309,7 @@ function administer(entry,mode='+') {
         var sub={'bind':'i','auto':'manual|auto','tool':'e','powers':'n'};
         var userID=sysDefSessionID.value;
         var dataObj=document.getElementById('sysDef'+ucfirst(entry)+'Data');
+        var counts=strarr(sysDefPowersData.value,';',':');
         var data=dataObj.value,obj={},div=1;
         if (micro.includes(entry)) {
             obj=strarr(data,';',':');
@@ -317,21 +318,21 @@ function administer(entry,mode='+') {
         var qua=Object.keys(obj).length;
         if (sub[entry]!==undefined) {
             if (sub[entry]=='i') {
-                for (idx in obj) { obj[idx]=idx; }
+                for (idx in counts) { obj[idx]=idx; }
             } else if (sub[entry].includes('|')) {
-                for (idx in obj) {
+                for (idx in counts) {
                     obj[idx]=(mode=='-')?sub[entry].split('|')[0]:sub[entry].split('|')[1];
                 }
             } else if (sub[entry]=='e') {
-                for (idx in obj) { obj[idx]=''; }
+                for (idx in counts) { obj[idx]=''; }
             } else if (sub[entry]=='n') {
                 if (mode=='-') {
                     div=Math.round(sum/qua);
-                    for (idx in obj) {
+                    for (idx in counts) {
                         obj[idx]=parseFloat(div);
                     }
                 } else {
-                    for (idx in obj) {
+                    for (idx in counts) {
                         obj[idx]=parseFloat(sum);
                     }
                 }
