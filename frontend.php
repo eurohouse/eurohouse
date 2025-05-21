@@ -306,40 +306,45 @@ function administer(entry,mode='+') {
     if (superuser()) {
         var files={'bind':'binding','auto':'automator','tool':'toolbox','ip':'visitors','powers':'dominion','hdi':'i18n'};
         var micro=['bind','auto','tool','powers'];
-        var sub={'bind':'i','auto':'manual|auto','tool':'e','powers':'n'};
-        var userID=sysDefSessionID.value;
-        var dataObj=document.getElementById('sysDef'+ucfirst(entry)+'Data');
+        var sub={'bind':'i','auto':'manual|auto','tool':'e','powers':'n'},sum=qua=div=1;
+        var tempObj=obj={},tempData=temp='';
         var counts=strarr(sysDefPowersData.value,';',':');
-        var data=dataObj.value,obj={},div=1,temp='';
-        if (micro.includes(entry)) {
-            obj=strarr(data,';',':');
-        } else { obj=jsonarr(data); }
-        var sum=arrsum(Object.values(obj));
-        var qua=Object.keys(obj).length;
         if (notNull(sub[entry])) {
-            if (sub[entry]=='i') {
-                for (idx in counts) { obj[idx]=idx; }
-            } else if (sub[entry].includes('|')) {
-                for (idx in counts) {
+            tempObj=document.getElementById('sysDef'+ucfirst(entry)+'Data'),tempData=tempObj.value;
+            if (micro.includes(entry)) {
+                obj=strarr(tempData,';',':');
+            } else { obj=jsonarr(tempData); }
+            sum=arrsum(Object.values(obj));
+            qua=Object.keys(obj).length;
+            div=Math.round(sum/qua);
+            for (idx in counts) {
+                if (sub[entry]=='i') { obj[idx]=idx;
+                } else if (sub[entry].includes('|')) {
                     obj[idx]=(mode=='-')?sub[entry].split('|')[0]:sub[entry].split('|')[1];
-                }
-            } else if (sub[entry]=='e') {
-                for (idx in counts) { obj[idx]=''; }
-            } else if (sub[entry]=='n') {
-                if (mode=='-') {
-                    div=Math.round(sum/qua);
-                    for (idx in counts) {
+                } else if (sub[entry]=='e') {
+                    obj[idx]='';
+                } else if (sub[entry]=='n') {
+                    if (mode=='-') {
                         obj[idx]=parseFloat(div);
-                    }
-                } else {
-                    for (idx in counts) {
+                    } else {
                         obj[idx]=parseFloat(sum);
                     }
                 }
+            } if (notNull(obj)) {
+                set(files[entry]+'.json',JSON.stringify(obj),'rw'); if (micro.includes(entry)) {
+                    tempObj.value=arrstr(obj,';',':');
+                } else { tempObj.value=arrjson(obj); }
             }
         } else {
             for (i=0; i<micro.length; i++) {
                 temp=micro[i];
+                tempObj=document.getElementById('sysDef'+ucfirst(temp)+'Data'),tempData=tempObj.value;
+                if (micro.includes(temp)) {
+                    obj=strarr(tempData,';',':');
+                } else { obj=jsonarr(tempData); }
+                sum=arrsum(Object.values(obj));
+                qua=Object.keys(obj).length;
+                div=Math.round(sum/qua);
                 for (idx in counts) {
                     if (sub[temp]=='i') {
                         obj[idx]=idx;
@@ -355,13 +360,12 @@ function administer(entry,mode='+') {
                             obj[idx]=parseFloat(sum);
                         }
                     }
+                } if (notNull(obj)) {
+                    set(files[temp]+'.json',JSON.stringify(obj),'rw'); if (micro.includes(temp)) {
+                        tempObj.value=arrstr(obj,';',':');
+                    } else { tempObj.value=arrjson(obj); }
                 }
             }
-        } if (obj!==null) {
-            set(files[entry]+'.json',JSON.stringify(obj),'rw');
-            if (micro.includes(entry)) {
-                dataObj.value=arrstr(obj,';',':');
-            } else { dataObj.value=arrjson(obj); }
         }
     }
 }
