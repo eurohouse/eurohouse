@@ -32,8 +32,8 @@
     --position: <?=$session['position'];?>;
     --filter: brightness(<?=$session['brightness'];?>%) saturate(<?=$session['saturation'];?>%) contrast(<?=$session['contrast'];?>%) sepia(<?=$session['sepia'];?>%) grayscale(<?=$session['grayscale'];?>%) hue-rotate(<?=$session['hue'];?>deg);
     --blur-filter: blur(<?=$session['blur'];?>px) brightness(<?=$session['brightness'];?>%) saturate(<?=$session['saturation'];?>%) contrast(<?=$session['contrast'];?>%) sepia(<?=$session['sepia'];?>%) grayscale(<?=$session['grayscale'];?>%) hue-rotate(<?=$session['hue'];?>deg);
-    --gradient-fore: linear-gradient(var(--grad-fore), var(--forecolor) 0%, var(--arcforecolor) 100%);
-    --gradient-input: linear-gradient(var(--grad-input), var(--inputcolor) 0%, var(--arcinputcolor) 100%);
+    --gradient-fore: linear-gradient(var(--grad-line), var(--forecolor) 0%, var(--arcforecolor) 100%);
+    --gradient-input: linear-gradient(var(--grad-line), var(--inputcolor) 0%, var(--arcinputcolor) 100%);
     --gradient-power: linear-gradient(var(--grad-button), var(--forecolor) 0%, var(--arcforecolor) 100%);
     --backdrop-filter: none; --backdrop-opacity: none;
     --overlay-before-bg: none; --overlay-before-ani: none;
