@@ -1,8 +1,18 @@
 {
+    "v7.11.10": {
+        "default": {
+            "title": "Eurohouse Developer Team (@eurohouse)",
+            "body": "We, as a team of developers of web application of web desktop type, Eurohouse, are glad to present you some improvements and fixes of web application. Among them: new color theme Eurohouse Praline, variations of music albums Botticelli (cold music palette) and Orchestra (warm music palette) have been added to the macro of application account settings. Now the user can select separate collections of melodies, simply enter the command /eur:cool or /eur:warm. Also the functions of displaying the current date and time have been improved, using the necessary calendar (Gregorian, Julian, French Republican, etc.), depending on the localization chosen by the user."
+        },
+        "RU": {
+            "title": "Команда разработчиков Eurohouse (@eurohouse)",
+            "body": "Мы как команда разработчиков веб-приложения типа web desktop, Eurohouse, рада представить вам некоторые улучшения и исправления веб-приложения. Среди них: новая цветовая тема Eurohouse Пралине, добавлены вариации музыкальных альбомов Botticelli (холодная палитра музыки) и Orchestra (тёплая палитра музыки) в макрос настройки аккаунта приложения. Теперь пользователь может выбрать отдельные коллекции мелодий, просто ввести команду /eur:cool или /eur:warm. Также улучшены функции показа текущей даты и времени, используя нужный календарь (Григорианский, Юлианский, Французский Республиканский и пр.), в зависимости от выбранной пользователем локализации."
+        }
+    },
     "v7.11.9-hotfix": {
         "default": {
             "title": "Eurohouse Developer Team (@eurohouse)",
-            "body": "Приветствуем вас с обновлённой страной нашего веб-приложения! Оно включает в себя новые параметры стиля интерфейса, сгруппированные и индивидуализированные макросы стилей, исправленные встроенные функции, следующие за выводом данных с помощью AJAX в приложении со скриптами на пространстве, в частности типы и группировку рабочих данных, префиксы файлов разных форматов, а также исправления команд следования с помощью обратных слешей."
+            "body": "Welcome to the updated country of our web application! It includes new interface style options, grouped and individualized style macros, fixed built-in functions following data output using AJAX in the application with scripts in space, in particular types and grouping of working data, prefixes of file formats, and fixes to following commands using backslashes."
         },
         "RU": {
             "title": "Команда разработчиков Eurohouse (@eurohouse)",
