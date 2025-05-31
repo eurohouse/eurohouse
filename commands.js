@@ -293,6 +293,9 @@ function omniEnter() {
     } else if (input=='::') {
         arg=Object.keys(jsonarr(sysDefContentData.value));
         setdata('banner',arg[rand(0,arg.length)]);
+     } else if (input=='->') {
+        arg=Object.keys(jsonarr(sysDefContentData.value));
+        window.location.href=arg[rand(0,arg.length)];
     } else if (input=='\\=') {
         omniBox.value='\\='+demorse(sysDefMelody.value,uid,sysDefNumeric.value);
     } else if ((input.startsWith('"'))&&(input.endsWith('"'))) {
@@ -409,6 +412,10 @@ function omniEnter() {
         arj=input.replace('dir ', '');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
         omniDir(quote(arg[0]));
+    } else if (input.startsWith('cd ')) {
+        arj=input.replace('cd ', '');
+        arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
+        omniDir(quote(arg[0]));
     } else if (input.startsWith('model ')) {
         arj=input.replace('model ', '');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
@@ -425,8 +432,8 @@ function omniEnter() {
         clearJournal(input.replace('erase ',''),sysDefMyBookData,'book');
     } else if (input.startsWith('purge ')) {
         clearJournal(input.replace('purge ',''),sysDefIpData,'visitors',true);
-    } else if (input.startsWith('del ')) {
-        arb=input.replace('del ',''),itr=0;
+    } else if (input.startsWith('deluser ')) {
+        arb=input.replace('deluser ',''),itr=0;
         if (arb.includes(',')) {
             arj=arb.split(','); for (idx in arj) {
                 if (superuser()) { delete_user(arj[idx]);
@@ -450,6 +457,21 @@ function omniEnter() {
         omniBox.value=lockarr(input.replace('lock ','')).join(' | ');
     } else if (input.startsWith('count ')) {
         omniBox.value=lockarr(input.replace('count ','')).length;
+    } else if (input.startsWith('->')) {
+        arb=input.replace('->','');
+        if ((arb.includes('.'))&&(arb.split('.').length==3)) {
+            window.location.href=arb+'.png';
+        } else if ((arb.includes(':'))&&(arb.split(':').length==2)) {
+            ark=jsonarr(sysDefContentData.value);
+            arh=[]; arg=arb.split(':'); for (idx in ark) {
+                if (ark[idx].toLowerCase().includes(arg[0].toLowerCase())) { arh.push(idx); }
+            } window.location.href=arh[arg[1]];
+        } else {
+            ark=jsonarr(sysDefContentData.value);
+            arh=[]; for (idx in ark) {
+                if (ark[idx].toLowerCase().includes(arb.toLowerCase())) { arh.push(idx); }
+            } window.location.href=arh[rand(0,arh.length)];
+        }
     } else if (input.startsWith('::')) {
         arb=input.replace('::','');
         if ((arb.includes('.'))&&(arb.split('.').length==3)) {
