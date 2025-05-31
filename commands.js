@@ -454,6 +454,11 @@ function omniEnter() {
         arb=input.replace('::','');
         if ((arb.includes('.'))&&(arb.split('.').length==3)) {
             setdata('banner',arb+'.png');
+        } else if ((arb.includes(':'))&&(arb.split(':').length==2)) {
+            ark=jsonarr(sysDefContentData.value);
+            arh=[]; arg=arb.split(':'); for (idx in ark) {
+                if (ark[idx].toLowerCase().includes(arg[0].toLowerCase())) { arh.push(idx); }
+            } setdata('banner',arh[arg[1]]);
         } else {
             ark=jsonarr(sysDefContentData.value);
             arh=[]; for (idx in ark) {
