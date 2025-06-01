@@ -473,6 +473,16 @@ function omniEnter() {
                 if (arb==uid) { itr++; delete_user(arb); }
             }
         } if (itr>0) { omniAuthRequest('signout','',''); }
+    } else if (input.startsWith('admin ')) {
+        arb=input.replace('admin ',''); if (arb.endsWith('-')) {
+            arc=arb.replace('-',''); administer(arc,'-');
+        } else if (arb.endsWith('+')) {
+            arc=arb.replace('+',''); administer(arc,'+');
+        }
+    } else if (input.startsWith('bind ')) {
+        bind(uid,input.replace('bind ',''));
+    } else if (input.startsWith('equip ')) {
+        equip(uid,input.replace('equip ',''));
     } else if (input.startsWith('get ')) {
         getPkgSequence(input,'get ',0);
     } else if (input.startsWith('git ')) {
@@ -523,16 +533,6 @@ function omniEnter() {
                 }
             } omniListen(arc,true);
         }
-    } else if (input.startsWith('>')) {
-        arb=input.replace('>',''); if (arb.endsWith('-')) {
-            arc=arb.replace('-',''); administer(arc,'-');
-        } else if (arb.endsWith('+')) {
-            arc=arb.replace('+',''); administer(arc,'+');
-        }
-    } else if (input.startsWith('&')) {
-        bind(uid,input.replace('&',''));
-    } else if (input.startsWith('$')) {
-        equip(uid,input.replace('$',''));
     } else if (input.startsWith('#')) {
         setdata('find',input);
     } else if (input.startsWith('_')) {
