@@ -300,6 +300,15 @@ function omniEnter() {
         omniBox.value='\\='+demorse(sysDefMelody.value,uid,sysDefNumeric.value);
     } else if ((input.startsWith('"'))&&(input.endsWith('"'))) {
         compose(sysDefSessionID.value,input.replace('"','').slice(0,-1));
+    } else if ((input.startsWith('`'))&&(input.endsWith('`'))) {
+        (async () => {
+            var text=(input.replace('`','').slice(0,-1));
+            var sentiment=''; if (text.includes('`')) {
+                sentiment=await chatgpt.sentiment(text.split('`')[0],text.split('`')[1]);
+            } else {
+                sentiment=await chatgpt.sentiment(text,'');
+            } omniBox.value=chatgpt.alert(sentiment);
+        })();
     } else if (input.startsWith('store ')) {
         arb=input.replace('store ','');
         ark=jsonarr(openJournal(sysDefSessionID.value,sysDefStoreJSONs)); arg=arb.match(/\"([^\"]+)\"|(\w+)/g);

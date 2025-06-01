@@ -6,7 +6,7 @@
     "locks_icons": { "background": "image", "avatar": "user", "pictogram": "home", "reticle": "power", "music": "music", "font": "font", "sound": "audio" },
     "locks_thumb": [ "background", "avatar", "pictogram", "reticle" ],
     "libraries": {
-        "domestic": [ "backend.js","frontend.js","tablesort.js", "requests.js","commands.js","jquery.js", "crypto.js","XRegExp.js","statistics.js", "math.js","nerdamer.js","algebra.js","calculus.js","solve.js" ],
+        "domestic": [ "backend.js","frontend.js","tablesort.js", "requests.js","commands.js","jquery.js", "crypto.js","XRegExp.js","statistics.js", "math.js","nerdamer.js","algebra.js","calculus.js","solve.js", "chatgpt.min.js" ],
         "foreign": [ "https://www.midijs.net/lib/midi.js" ]
     },
     "collections": {
