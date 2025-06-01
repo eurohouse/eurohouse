@@ -359,6 +359,18 @@ function omniEnter() {
             set(quote(arg[0]),'',itd);
             window.location.reload();
         }
+    } else if (input.startsWith('etw ')) {
+        arj=input.replace('etw ','');
+        arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
+        if (arg.length==3) {
+            omniBox.value=etw(quote(arg[0]),quote(arg[1]),quote(arg[2]));
+        }
+    } else if (input.startsWith('dtw ')) {
+        arj=input.replace('dtw ','');
+        arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
+        if (arg.length==3) {
+            omniBox.value=dtw(quote(arg[0]),quote(arg[1]),quote(arg[2]));
+        }
     } else if (input.startsWith('chmod ')) {
         itd=(superuser())?'rw':uid; arj=input.replace('chmod ','');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
