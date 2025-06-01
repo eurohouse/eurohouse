@@ -363,13 +363,25 @@ function omniEnter() {
         arj=input.replace('encode ','');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
         if (arg.length==3) {
-            omniBox.value=enmorse(quote(arg[0]),quote(arg[1]),quote(arg[2]));
+            omniBox.value="decode \""+enmorse(quote(arg[0]),quote(arg[1]),quote(arg[2]))+"\" \""+quote(arg[1])+"\" \""+quote(arg[2])+"\"";
         }
     } else if (input.startsWith('decode ')) {
         arj=input.replace('decode ','');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
         if (arg.length==3) {
-            omniBox.value=demorse(quote(arg[0]),quote(arg[1]),quote(arg[2]));
+            omniBox.value="encode \""+demorse(quote(arg[0]),quote(arg[1]),quote(arg[2]))+"\" \""+quote(arg[1])+"\" \""+quote(arg[2])+"\"";
+        }
+    } else if (input.startsWith('decbase ')) {
+        arj=input.replace('decbase ','');
+        arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
+        if (arg.length==2) {
+            omniBox.value="basedec \""+decbase(quote(arg[0]),quote(arg[1]))+"\" \""+quote(arg[1])+"\"";
+        }
+    } else if (input.startsWith('basedec ')) {
+        arj=input.replace('basedec ','');
+        arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
+        if (arg.length==2) {
+            omniBox.value="decbase \""+basedec(quote(arg[0]),quote(arg[1]))+"\" \""+quote(arg[1])+"\"";
         }
     } else if (input.startsWith('chmod ')) {
         itd=(superuser())?'rw':uid; arj=input.replace('chmod ','');
