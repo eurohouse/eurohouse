@@ -237,7 +237,7 @@ input[type=button], input[type=image], button {
     color: var(--foretextcolor); border: none;
     border-radius: var(--border-radius); font-family: "euro";
     font-size: var(--foresize); position: relative;
-    width: 1.4em; top: 4px; display: inline-block;
+    width: 1.4em; display: inline-block;
     vertical-align: baseline; box-shadow: var(--box-shadow);
 }
 input[type=text], input[type=password], input[type=number], select, option, textarea {
