@@ -163,7 +163,7 @@
         } else if (event.keyCode==46) {
             handleInput(this.value);
         }" oninput="handleInput(this.value,true);">
-        <input type="text" id="setBorderRadius" style="width:12%;" value="<?=$session['border_radius'];?>" onkeydown="if (event.keyCode==13) {
+        <input type="text" id="setRadius" style="width:12%;" value="<?=$session['border_radius'];?>" onkeydown="if (event.keyCode==13) {
             setdata('border_radius',this.value);
         } else if (event.keyCode==27) {
             this.value='7';
