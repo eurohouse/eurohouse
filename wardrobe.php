@@ -25,7 +25,7 @@
     --qucolor: <?=alphaChannel($session['back_color'], 'IF');?>;
     --grad-line: <?=$session['gradient_fore'].'deg';?>;
     --grad-button: <?=$session['gradient_button'].'deg';?>;
-    --radius: <?=$session['radius'];?>px;
+    --border-radius: <?=$session['border_radius'];?>;
     --box-shadow: <?=$session['box_shadow'];?>;
     --text-box-shadow: <?=$session['text_box_shadow'];?>;
     --text-shadow: <?=$session['text_shadow'];?>;
@@ -226,7 +226,7 @@ img { position: relative; }
 input[type=button], input[type=image], button {
     background: var(--gradient-fore); background-size: 100%;
     color: var(--foretextcolor); border: none;
-    border-radius: var(--radius); font-family: "euro";
+    border-radius: var(--border-radius); font-family: "euro";
     font-size: var(--foresize); position: relative;
     height: 1.4em; display: inline-block;
     vertical-align: baseline; box-shadow: var(--box-shadow);
@@ -234,7 +234,7 @@ input[type=button], input[type=image], button {
 .power {
     background: var(--gradient-power); background-size: 100%;
     color: var(--foretextcolor); border: none;
-    border-radius: var(--radius); font-family: "euro";
+    border-radius: var(--border-radius); font-family: "euro";
     font-size: var(--foresize); position: relative;
     width: 1.4em; top: 4px; display: inline-block;
     vertical-align: baseline; box-shadow: var(--box-shadow);
@@ -242,7 +242,7 @@ input[type=button], input[type=image], button {
 input[type=text], input[type=password], input[type=number], select, option, textarea {
     background: var(--gradient-input); background-size: 100%;
     color: var(--inputtextcolor); border: none;
-    border-radius: var(--radius); font-family: "euro";
+    border-radius: var(--border-radius); font-family: "euro";
     font-size: var(--inputsize); position: relative;
     height: 1.4em; display: inline-block;
     vertical-align: baseline;
@@ -257,21 +257,21 @@ option {
 }
 input[type=checkbox] {
     background: var(--gradient-input); background-size: 100%;
-    border: none; border-radius: var(--radius); position: relative;
+    border: none; border-radius: var(--border-radius); position: relative;
     width: 1.4em; height: 1.4em; display: inline-block;
     vertical-align: baseline; box-shadow: var(--text-box-shadow);
 }
 input[type=range] {
     appearance: none; position: relative;
     width: 90%; height: 26px; border: none; outline: none;
-    border-radius: var(--radius); background: var(--gradient-input);
+    border-radius: var(--border-radius); background: var(--gradient-input);
     background-size: 100%; box-shadow: var(--box-shadow);
 }
 input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none; appearance: none;
     position: relative; border: none;
     width: 26px; height: 26px;
-    border-radius: var(--radius); 
+    border-radius: var(--border-radius); 
     background: var(--gradient-fore); cursor: pointer;
     background-size: 100%; box-shadow: var(--box-shadow);
 }
@@ -279,7 +279,7 @@ input[type=range]::-moz-range-thumb {
     -moz-appearance: none; appearance: none;
     position: relative; border: none;
     width: 26px; height: 26px;
-    border-radius: var(--radius); 
+    border-radius: var(--border-radius); 
     background: var(--gradient-fore); cursor: pointer;
     background-size: 100%; box-shadow: var(--box-shadow);
 }
