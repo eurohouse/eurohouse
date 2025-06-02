@@ -26,6 +26,7 @@
     --grad-line: <?=$session['gradient_fore'].'deg';?>;
     --grad-button: <?=$session['gradient_button'].'deg';?>;
     --border-radius: <?=$session['border_radius'];?>;
+    --text-border-radius: <?=$session['text_border_radius'];?>;
     --box-shadow: <?=$session['box_shadow'];?>;
     --text-box-shadow: <?=$session['text_box_shadow'];?>;
     --text-shadow: <?=$session['text_shadow'];?>;
@@ -242,7 +243,7 @@ input[type=button], input[type=image], button {
 input[type=text], input[type=password], input[type=number], select, option, textarea {
     background: var(--gradient-input); background-size: 100%;
     color: var(--inputtextcolor); border: none;
-    border-radius: var(--border-radius); font-family: "euro";
+    border-radius: var(--text-border-radius); font-family: "euro";
     font-size: var(--inputsize); position: relative;
     height: 1.4em; display: inline-block;
     vertical-align: baseline;

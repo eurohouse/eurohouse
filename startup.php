@@ -264,6 +264,7 @@ function visual_effects() {
     document.querySelector(':root').style.setProperty('--arcinputcolor',sysDefArcInputColor.value);
     document.querySelector(':root').style.setProperty('--qucolor',(sysDefBackColor.value).slice(0,7)+'00');
     document.querySelector(':root').style.setProperty('--border-radius',sysDefBorderRadius.value);
+    document.querySelector(':root').style.setProperty('--text-border-radius',sysDefTextBorderRadius.value);
     document.querySelector(':root').style.setProperty('--box-shadow',sysDefBoxShadow.value);
     document.querySelector(':root').style.setProperty('--text-box-shadow',sysDefTextBoxShadow.value);
     document.querySelector(':root').style.setProperty('--text-shadow',sysDefTextShadow.value);
