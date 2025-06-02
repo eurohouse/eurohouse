@@ -134,7 +134,16 @@
         } else if (event.keyCode==46) {
             handleInput(this.value);
         }" oninput="handleInput(this.value,true);">
-        <input type="text" id="setBackImage" style="width:38%;" value="<?=$session['background'];?>" onkeydown="
+        <input type="text" id="setBorderRadius" style="width:18%;" value="<?=$session['border_radius'];?>" onkeydown="if (event.keyCode==13) {
+            setdata('border_radius',this.value);
+        } else if (event.keyCode==27) {
+            this.value='7';
+        } else if (event.keyCode==8) {
+            handleInput(this.value);
+        } else if (event.keyCode==46) {
+            handleInput(this.value);
+        }" oninput="handleInput(this.value,true);">
+        <input type="text" id="setBackImage" style="width:18%;" value="<?=$session['background'];?>" onkeydown="
         if (event.keyCode==13) {
             setdata('background',this.value);
         } else if (event.keyCode==27) {
