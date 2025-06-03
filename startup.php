@@ -195,20 +195,21 @@ function world_clock() {
                 $('#prefsBtnUpdateTitle').attr('src',sysDefPrefix.value+'keyboard.png');
                 $('#prefsBtnUpdateTitles').attr('src',sysDefPrefix.value+'movie.png');
             } else if (requestMode.value=='sticky_notes') {
-                $('#myNotesApplyBtn').attr('src',sysDefPrefix.value+'return.png');
-                $('#myNotesKbdBtn').attr('src',sysDefPrefix.value+'keyboard.png');
-                $('#myNotesResetBtn').attr('src',sysDefPrefix.value+'backspace.png');
-                $('#myNotesNewBtn').attr('src',sysDefPrefix.value+'new.png');
-                $('#myNotesOpenBtn').attr('src',sysDefPrefix.value+'open.png');
-                $('#myNotesSaveBtn').attr('src',sysDefPrefix.value+'save.png');
-                notesMenu.innerHTML='<p align="center" class="block">'+noteBook(sysDefMetaList.value)+'</p>';
+                if (authstate()) {
+                    $('#myNotesApplyBtn').attr('src',sysDefPrefix.value+'return.png');
+                    $('#myNotesKbdBtn').attr('src',sysDefPrefix.value+'keyboard.png');
+                    $('#myNotesResetBtn').attr('src',sysDefPrefix.value+'backspace.png');
+                    $('#myNotesNewBtn').attr('src',sysDefPrefix.value+'new.png');
+                    $('#myNotesOpenBtn').attr('src',sysDefPrefix.value+'open.png');
+                    $('#myNotesSaveBtn').attr('src',sysDefPrefix.value+'save.png');
+                    notesMenu.innerHTML='<p align="center" class="block">'+noteBook(sysDefMetaList.value)+'</p>';
+                }
             } else if (requestMode.value=='user_tutorial') {
                 helpMenu.innerHTML='<p align="center" class="block">'+helpBook()+'</p>';
             } else if (requestMode.value=='text_editor') {
                 $('#textEdRep').attr('src',sysDefPrefix.value+'new.png');
                 $('#textEdRepAll').attr('src',sysDefPrefix.value+'copy.png');
-            } sysDefObserve.value
-            if (((sysDefObserve.value!=0)&&(sysDefSpectate.value!=0))||((sysDefObserve.value!=0)&&(sysDefSpectate.value==0))) {
+            } if (((sysDefObserve.value!=0)&&(sysDefSpectate.value!=0))||((sysDefObserve.value!=0)&&(sysDefSpectate.value==0))) {
                 $('#powerButton').show();$('.panel').hide();
                 $('.customPanel').hide();$('.upperGap').hide();
                 $('.lowerGap').hide();$('.topbar').hide();
