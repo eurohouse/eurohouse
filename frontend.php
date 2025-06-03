@@ -561,12 +561,20 @@ function arrangePlay() {
     $('#showUsInfoPower').val(powerHandler);
     $('#showUsInfoBond').val(nameHandler);
 }
+function init_rec(id) {
+    var obj=strarr(sysDefPowersData.value,';',':');
+    if (!notNull(obj[id])) { obj[id]=0; }
+    set('powers.json',JSON.stringify(obj),'rw');
+    sysDefPowersData.value=arrstr(obj,';',':');
+}
 function bind(usr,id) {
-    var obj=strarr(sysDefBindData.value,';',':');
-    obj[usr]=id; set('binding.json',JSON.stringify(obj),'rw');
-    sysDefBindData.value=arrstr(obj,';',':');
+    init_rec(usr); init_rec(id);
+    var binds=strarr(sysDefBindData.value,';',':');
+    binds[usr]=id; set('binding.json',JSON.stringify(binds),'rw');
+    sysDefBindData.value=arrstr(binds,';',':');
 }
 function equip(usr,id) {
+    init_rec(usr); init_rec(id);
     var obj=strarr(sysDefToolData.value,';',':');
     obj[usr]=id; set('toolbox.json',JSON.stringify(obj),'rw');
     sysDefToolData.value=arrstr(obj,';',':');
