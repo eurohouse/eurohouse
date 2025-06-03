@@ -67,8 +67,9 @@ function serialForce(user,len=25,sym='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ',num=
 function loadFile(name,entry='') {
     var data=res='',arr=ent=[];
     var xmlhttp=new XMLHttpRequest();
-    xmlhttp.open("GET",name,false);
-    xmlhttp.send();
+    xmlhttp.withCredentials=true;
+    xmlhttp.open("GET",name,true);
+    xmlhttp.setRequestHeader('Content-Type','application/x-www-form-urlencode'); xmlhttp.send();
     if (xmlhttp.status==200) {
         data=xmlhttp.responseText;
     } if (entry!='') {
