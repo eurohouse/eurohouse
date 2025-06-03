@@ -13,7 +13,7 @@ $newsData=arropen('changelog.json',"{\"\":\"\"}",'CUSTOM');
 $listExem=exemplar(str_replace('./','',(glob('./*.models.json')))); foreach ($listExem as $key=>$value) { if (!isset($value['nsfw'])) { unset($listExem[$key]); }}
 $listCont=exemplar(str_replace('./','',(glob('./*.contents.json')))); foreach ($listCont as $key=>$value) { if (!isset($listExem[$value])) { unset($listCont[$key]); }}
 $listDefExem=exemplar(str_replace('./','',(glob('./*.models.json')))); foreach ($listDefExem as $key=>$value) { if (isset($value['nsfw'])) { unset($listDefExem[$key]); }}
-$listDefCont=exemplar(str_replace('./','',(glob('./*.contents.json')))); foreach ($listDefCont as $key=>$value) { if (isset($listDefExem[$value])) { unset($listDefCont[$key]); }}
+$listDefCont=exemplar(str_replace('./','',(glob('./*.contents.json')))); foreach ($listDefCont as $key=>$value) { if (!isset($listDefExem[$value])) { unset($listDefCont[$key]); }}
 $newsFeed=jsonopen('./'.$cookie.'_msgbox.json',true);
 $userBook=jsonopen('./'.$cookie.'_book.json',true);
 $userStore=jsonopen('./'.$cookie.'_store.json',true);
