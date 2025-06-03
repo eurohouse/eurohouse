@@ -184,6 +184,9 @@ function remove_entry(id,obj,name,complex=false,helper=false,dy=';',dx=':') {
     if (helper) { del(id+'.json','rw'); del(id,'rw'); }
     obj.value=(complex)?arrjson(resarr):arrstr(resarr,dy,dx);
 }
+function user_exists(id) {
+    return ((sysDefUsersList.value).split(',').includes(id));
+}
 function delete_user(id) {
     unbind(sysDefSessionID.value); unbind(id);
     remove_entry(id,sysDefBindData,'binding.json');
@@ -254,6 +257,9 @@ function init_user(id,pass=null) {
     if (!notNull(storeData)) {
         set('./'+id+'_store.json',JSON.stringify({}),'rw');
     } if (isLine(pass)) { set(id+'_password',pass,'rw'); }
+    if (user_exists('')) { delete_user(''); }
+    if (user_exists('0')) { delete_user('0'); }
+    if (user_exists('auto')) { delete_user('auto'); }
 }
 function administer(entry,mode='+') {
     if (superuser()) {
