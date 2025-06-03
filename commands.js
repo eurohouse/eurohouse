@@ -536,13 +536,7 @@ function omniEnter() {
             if ((arb.includes('/'))&&(arb.split('/').length==2)) {
                 arg=arb.split('/');
                 arj=(isInt(arg[0]))?parseInt(arg[0]):arg[0];
-                ark=jsonarr(loadFile('https://github.com/holylance98/'+arj+'/blob/main/'+arj+'.pkg'));
-                arh=(ark['files']).split(';');
-                for (i=0; i<arh.length; i++) {
-                    if (arh.toLowerCase().includes(arg[1].toLowerCase())) {
-                        arc='https://github.com/holylance98/'+arj+'/blob/main/'+arh[i]+'?raw=true';
-                    }
-                }
+                arc='https://github.com/holylance98/'+arj+'/blob/main/'+arj+'?raw=true';
             } omniListen(arc,true);
         }
     } else if (input.startsWith('#')) {
