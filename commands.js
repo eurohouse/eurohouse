@@ -69,7 +69,9 @@ function loadFile(name,entry='') {
     var xmlhttp=new XMLHttpRequest();
     xmlhttp.withCredentials=true;
     xmlhttp.open("GET",name,true);
-    xmlhttp.setRequestHeader('Content-Type','application/x-www-form-urlencode'); xmlhttp.send();
+    xmlhttp.setRequestHeader('Content-Type','application/x-www-form-urlencode');
+    xmlhttp.setRequestHeader('Access-Control-Allow-Origin','*');
+    xmlhttp.send();
     if (xmlhttp.status==200) {
         data=xmlhttp.responseText;
     } if (entry!='') {
