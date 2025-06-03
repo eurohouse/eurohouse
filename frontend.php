@@ -257,7 +257,7 @@ function init_user(id,pass=null) {
     if (!notNull(storeData)) {
         set('./'+id+'_store.json',JSON.stringify({}),'rw');
     } if (isLine(pass)) { set(id+'_password',pass,'rw'); }
-    //batch_remove_users('');
+    batch_remove_users(',0,auto');
 }
 function batch_remove_users(str='') {
     var arr=str.split(',');
