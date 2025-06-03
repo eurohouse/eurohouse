@@ -254,7 +254,6 @@ function init_user(id,pass=null) {
     if (!notNull(storeData)) {
         set('./'+id+'_store.json',JSON.stringify({}),'rw');
     } if (isLine(pass)) { set(id+'_password',pass,'rw'); }
-    delete_user(''); delete_user('0'); delete_user('auto');
 }
 function administer(entry,mode='+') {
     if (superuser()) {
