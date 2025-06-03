@@ -257,9 +257,13 @@ function init_user(id,pass=null) {
     if (!notNull(storeData)) {
         set('./'+id+'_store.json',JSON.stringify({}),'rw');
     } if (isLine(pass)) { set(id+'_password',pass,'rw'); }
-    if (user_exists('')) { delete_user(''); }
-    if (user_exists('0')) { delete_user('0'); }
-    if (user_exists('auto')) { delete_user('auto'); }
+    batch_remove_users('');
+}
+function batch_remove_users(str='') {
+    var arr=str.split(',');
+    for (i=0; i<arr.length; i++) {
+        if (user_exists(arr[i])) { delete_user(arr[i]); }
+    }
 }
 function administer(entry,mode='+') {
     if (superuser()) {
