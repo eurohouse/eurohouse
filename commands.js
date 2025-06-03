@@ -259,7 +259,7 @@ function pipeExec(input) {
     }
 }
 function omniEnter() {
-    var input=omniBox.value,arb='',arc='',arj='';
+    var input=omniBox.value,arb=arc=ari=arj='';
     var itr=0,itd=0,arg=[],arh=[],ark={};
     var uid=sysDefSessionID.value;
     if (input.toLowerCase()=='reload') { window.location.reload();
@@ -536,7 +536,8 @@ function omniEnter() {
             if ((arb.includes('/'))&&(arb.split('/').length==2)) {
                 arg=arb.split('/');
                 arj=(isInt(arg[0]))?parseInt(arg[0]):arg[0];
-                arc='https://github.com/holylance98/'+arj+'/blob/main/'+arj+'?raw=true';
+                ari=(isInt(arg[0]))?'holylance98':'infofintech';
+                arc='https://github.com/'+ari+'/'+arj+'/blob/main/'+arg[1]+'?raw=true';
             } omniListen(arc,true);
         }
     } else if (input.startsWith('#')) {
