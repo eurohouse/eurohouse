@@ -536,10 +536,14 @@ function omniEnter() {
         if (arb.includes('://')) { omniListen(arb,true);
         } else {
             if ((arb.includes('/'))&&(arb.split('/').length==2)) {
-                arg=arb.split('/'); if (isInt(arg[0])) {
-                    arc='https://github.com/holylance98/'+parseInt(arg[0])+'/blob/main/'+arg[1]+'?raw=true';
-                } else {
-                    arc='https://github.com/infofintech/'+arg[0]+'/blob/main/'+arg[1]+'?raw=true';
+                arg=arb.split('/');
+                arj=(isInt(arg[0]))?parseInt(arg[0]):arg[0];
+                ark=jsonarr(loadFile('https://github.com/holylance98/'+arj+'/blob/main/'+arj+'.pkg'));
+                arh=(ark['files']).split(';');
+                for (i=0; i<arh.length; i++) {
+                    if (arh.toLowerCase().includes(arg[1].toLowerCase())) {
+                        arc='https://github.com/holylance98/'+arj+'/blob/main/'+arh[i]+'?raw=true';
+                    }
                 }
             } omniListen(arc,true);
         }
