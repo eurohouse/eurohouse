@@ -67,18 +67,12 @@ function serialForce(user,len=25,sym='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ',num=
 function loadFile(name,entry='') {
     var data=res='',arr=ent=[];
     var xmlhttp=new XMLHttpRequest();
-    xmlhttp.withCredentials=true;
-    xmlhttp.open("GET",name,true);
-    xmlhttp.setRequestHeader('Access-Control-Allow-Origin',window.location.href);
-    xmlhttp.setRequestHeader('Allow-Methods','GET,POST,OPTIONS');
-    xmlhttp.setRequestHeader('Allow-Headers','Origin,Content-Type,Accept');
-    xmlhttp.send();
-    if (xmlhttp.status==200) {
+    xmlhttp.open("GET",name,false);
+    xmlhttp.send(); if (xmlhttp.status==200) {
         data=xmlhttp.responseText;
     } if (entry!='') {
         if (entry.includes('/')) {
-            arr=jsonarr(data);
-            ent=entry.split('/');
+            arr=jsonarr(data); ent=entry.split('/');
             for (i=0; i<ent.length; i++) {
                 arr=arr[ent[i]];
             } res=(isObject(arr))?arrjson(arr):arr;
