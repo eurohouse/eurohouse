@@ -574,7 +574,7 @@ function bind(usr,id) {
     sysDefBindData.value=arrstr(binds,';',':');
 }
 function equip(usr,id) {
-    init_rec(usr); init_rec(id);
+    init_rec(usr);
     var obj=strarr(sysDefToolData.value,';',':');
     obj[usr]=id; set('toolbox.json',JSON.stringify(obj),'rw');
     sysDefToolData.value=arrstr(obj,';',':');
