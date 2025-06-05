@@ -137,7 +137,7 @@ body {
 }
 .panel {
     border: none; border-radius: 0px; position: relative;
-    background-color: var(--bicolor); color: var(--backtextcolor);
+    background-color: var(--qucolor); color: var(--backtextcolor);
     overflow-y: scroll; width: 100%; height: 50%; left: 0%; top: -2px;
 }
 .customPanel {
@@ -160,7 +160,6 @@ body {
     width: 100%; height: 100%; filter: var(--backdrop-filter);
     border: none; border-radius: 0px;
     background-color: var(--bicolor); color: var(--backtextcolor);
-
 }
 .overlay:before {
     content: ''; position: absolute; opacity: var(--backdrop-opacity);
