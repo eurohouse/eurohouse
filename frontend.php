@@ -1,12 +1,12 @@
 <script>
 function ipdata(url) {
-    text(url).then(data => {
-        var ipRegex=/[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}/
-        return data.match(ipRegex)[0];
+    const apiKey='081225d0170c218674861ff51dd9c64cd0a6b1bbb401ea4c163d88ee';
+    json(`https://api.ipdata.co?api-key=${apiKey}`).then(data=>{
+        return data.ip;
     });
 }
-function text(url) {
-    return fetch(url).then(res=>res.text());
+function json(url) {
+  return fetch(url).then(res=>res.json());
 }
 function lockdata() {
     var obj={
