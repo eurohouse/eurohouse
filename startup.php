@@ -39,10 +39,8 @@ function databox() {
             var contentUncensored=pager(data,17);
             var modelsCensored=pager(data,18);
             var contentCensored=pager(data,19);
-            var modelsUnion={...jsonarr(modelsUncensored),...jsonarr(modelsCensored)};
-            var contentUnion={...jsonarr(contentUncensored),...jsonarr(contentCensored)};
-            $('#sysDefModelData').val((sysDefCensor.value!=0)?modelsCensored:arrjson(modelsUnion));
-            $('#sysDefContentData').val((sysDefCensor.value!=0)?contentCensored:arrjson(contentUnion));
+            $('#sysDefModelData').val((sysDefCensor.value!=0)?modelsCensored:modelsUncensored);
+            $('#sysDefContentData').val((sysDefCensor.value!=0)?contentCensored:contentUncensored);
             $('#sysDefMetaList').val(Object.keys(jsonarr(sysDefMetaData.value)).join(' | '));
             $('#sysDefTutorList').val(Object.keys(jsonarr(sysDefTutorData.value)).join(' | '));
             sysDefPrefix.value=(sysDefPrefData.value).split(',')[3]; sysDefAva0Prefix.value=(sysDefPrefData.value).split(',')[0]; sysDefAva1Prefix.value=(sysDefPrefData.value).split(',')[1]; sysDefPic0Prefix.value=(sysDefPrefData.value).split(',')[2]; sysDefPic1Prefix.value=(sysDefPrefData.value).split(',')[3]; sysDefRet0Prefix.value=(sysDefPrefData.value).split(',')[4]; sysDefRet1Prefix.value=(sysDefPrefData.value).split(',')[5];
