@@ -255,11 +255,7 @@ function hhmmss($nums) {
     $hh=sprintf('%02d',floor($nums/3600));
     $num=$nums%3600;$mm=sprintf('%02d',floor($num/60));
     $ss=sprintf('%02d',floor($num%60));
-    $res='00:00'; if ($nums<0) {
-        $res='HH:MM';
-    } else {
-        $res=($isHour==0)?($mm.':'.$ss):($hh.':'.$mm.':'.$ss);
-    } return $res;
+    return ($nums<0)?'--:--':(($isHour==0)?($mm.':'.$ss):($hh.':'.$mm.':'.$ss));
 }
 function enc_tz($tz): string {
     if (strpos($tz,'+')!==false) {
