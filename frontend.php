@@ -1,8 +1,10 @@
 <script>
 function ipdata(url) {
-    const apiKey='081225d0170c218674861ff51dd9c64cd0a6b1bbb401ea4c163d88ee';
-    var ipdata=fetch(`https://api.ipdata.co?api-key=${apiKey}`).then(res=>res.json()); console.log(res);
-    return res.then(data=>{ return data.ip; })
+    var res=''; const apiKey='081225d0170c218674861ff51dd9c64cd0a6b1bbb401ea4c163d88ee';
+    var ipdata=jsonfetch(`https://api.ipdata.co?api-key=${apiKey}&fields=ip`).then(data=>{ res=data[ip]; }); return res;
+}
+function jsonfetch(url) {
+  return fetch(url).then(res=>res.json());
 }
 function lockdata() {
     var obj={
