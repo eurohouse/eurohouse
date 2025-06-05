@@ -1,4 +1,14 @@
 {
+    "v7.11.10-hotfix": {
+        "default": {
+            "title": "Eurohouse Developer Team (@eurohouse)",
+            "body": "We present to your attention some innovations in the Eurohouse web application. The most significant, in our humble opinion, is the improved large panel, which includes the transparency mode for the entire application, now located on the entire screen. Also added were improved and supplemented settings for the radius of the borders of elements, a changed design of the settings page, etc."
+        },
+        "RU": {
+            "title": "Команда разработчиков Eurohouse (@eurohouse)",
+            "body": "Предлагаем вашему вниманию некоторые нововведения в веб-приложение Eurohouse. Наиболее значимое, по нашему скромному мнению, это усовершенствованная большая панель, вмешающая режим прозрачности для всего приложения, теперь расположенная на весь экран. Также были добавлена улучшенная и дополненная настройка радиуса границ элементов, изменённый дизайн страницы настроек и т.п."
+        }
+    },
     "v7.11.10": {
         "default": {
             "title": "Eurohouse Developer Team (@eurohouse)",

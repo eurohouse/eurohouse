@@ -2,7 +2,7 @@
 <!-- GR: Πίνακας Ελέγχου; CY: Πίνακας Ελέγχου; FR: Panneau de contrôle; BE: Panneau de contrôle; IT: Pannello di controllo; PT: Painel de controlo; BR: Painel de controle; IN: कंट्रोल पैनल; LK: नियन्त्रण पटल; RS: Контролна табла; ES: Panel de control; MX: Panel de control; DE: Schalttafel; AT: Schalttafel; CH: Occasus Generalis; RO: Panou de control; MD: Panou de control; UA: Панель управління; NP: ཚོད་འཛིན་སྒྲོམ་གཞི།; TR: Kontrol Paneli; RU: Панель управления; CN: 应用程序偏好设置; KR: 프로그램 설정; JP: 番組設定; AE: تفضيلات التطبيق -->
 <div class='customPanel' id='prefs_btns' style="width:100%;height:40px;left:0px;top:0px;">
     <p align='center'>
-        <input type='image' id='prefsBtnApply' onmouseover="soundButton();" class="power" onclick="setdata('box_shadow',setBoxShadow.value); setdata('text_box_shadow',setTextBoxShadow.value); setdata('border_radius',setBorderRadius.value); setdata('text_border_radius',setTextBorderRadius.value); setdata('gradient_fore',setGradFore.value); setdata('gradient_input',setGradInput.value); setdata('gradient_button',setGradButton.value); setdata('magnitude',setMagnitude.value); setdata('specimen',encodeURIComponent(setSpecimen.value)); setdata('background',setBackImage.value);" src="<?=$prefix[3].'return.png';?>" title="<?=term('Apply Settings',$settings['vocabulary'],$session['units']);?>">
+        <input type='image' id='prefsBtnApply' onmouseover="soundButton();" class="power" onclick="setdata('box_shadow',setBoxShadow.value); setdata('text_box_shadow',setTextBoxShadow.value); setdata('border_radius',setBorderRadius.value); setdata('text_border_radius',setTextBorderRadius.value); setdata('gradient_fore',setGradFore.value); setdata('gradient_input',setGradInput.value); setdata('gradient_button',setGradButton.value); setdata('pam_len',setPamLen.value); setdata('magnitude',setMagnitude.value); setdata('specimen',encodeURIComponent(setSpecimen.value)); setdata('background',setBackImage.value);" src="<?=$prefix[3].'return.png';?>" title="<?=term('Apply Settings',$settings['vocabulary'],$session['units']);?>">
         <input type='image' id='prefsBtnApplySizes' onmouseover="soundButton();" class="power" onclick="setdata('back_size',setBackSize.value); setdata('fore_size',setForeSize.value); setdata('input_size',setInputSize.value); setdata('head1_size',setHead1Size.value); setdata('head2_size',setHead2Size.value); setdata('head3_size',setHead3Size.value); setdata('disp_size',setDispSize.value);" src="<?=$prefix[3].'ruler.png';?>" title="<?=term('Apply Dimensions',$settings['vocabulary'],$session['units']);?>">
         <input type='image' id='prefsBtnApplyColors' onmouseover="soundButton();" class="power" onclick="setdata('back_color',setBackColor.value); setdata('fore_color',setForeColor.value); setdata('input_color',setInputColor.value); setdata('back_text_color',setBackTextColor.value); setdata('fore_text_color',setForeTextColor.value); setdata('input_text_color',setInputTextColor.value); setdata('blank_color',setBlankColor.value); setdata('blank_text_color',setBlankTextColor.value); setdata('arc_fore_color',setArcForeColor.value); setdata('arc_input_color',setArcInputColor.value);" src="<?=$prefix[3].'paint.png';?>" title="<?=term('Apply Style Configuration',$settings['vocabulary'],$session['units']);?>">
         <input type='image' id='prefsBtnUpdate' onmouseover="soundButton();" class="power" onclick="rename_user(sysDefSessionID.value,setUsername.value,setPassword.value,sysDefSessionID.value); omniAuthRequest('signin',setUsername.value, CryptoJS.SHA256(setPassword.value).toString());" src="<?=$prefix[3].'lock.png';?>" title="<?=term('Update Password',$settings['vocabulary'],$session['units']);?>">
@@ -134,7 +134,17 @@
         } else if (event.keyCode==46) {
             handleInput(this.value);
         }" oninput="handleInput(this.value,true);">
-        <input type="text" id="setBorderRadius" style="width:18%;" value="<?=$session['border_radius'];?>" onkeydown="if (event.keyCode==13) {
+        <input type="text" id="setBackImage" style="width:38%;" value="<?=$session['background'];?>" onkeydown="
+        if (event.keyCode==13) {
+            setdata('background',this.value);
+        } else if (event.keyCode==27) {
+            this.value='none';
+        } else if (event.keyCode==8) {
+            handleInput(this.value);
+        } else if (event.keyCode==46) {
+            handleInput(this.value);
+        }" oninput="handleInput(this.value,true);"><br>
+        <input type="text" id="setBorderRadius" style="width:38%;" value="<?=$session['border_radius'];?>" onkeydown="if (event.keyCode==13) {
             setdata('border_radius',this.value);
         } else if (event.keyCode==27) {
             this.value='7';
@@ -143,11 +153,10 @@
         } else if (event.keyCode==46) {
             handleInput(this.value);
         }" oninput="handleInput(this.value,true);">
-        <input type="text" id="setBackImage" style="width:18%;" value="<?=$session['background'];?>" onkeydown="
-        if (event.keyCode==13) {
-            setdata('background',this.value);
+        <input type="text" id="setTextBorderRadius" style="width:38%;" value="<?=$session['text_border_radius'];?>" onkeydown="if (event.keyCode==13) {
+            setdata('text_border_radius',this.value);
         } else if (event.keyCode==27) {
-            this.value='none';
+            this.value='7';
         } else if (event.keyCode==8) {
             handleInput(this.value);
         } else if (event.keyCode==46) {
@@ -163,10 +172,11 @@
         } else if (event.keyCode==46) {
             handleInput(this.value);
         }" oninput="handleInput(this.value,true);">
-        <input type="text" id="setTextBorderRadius" style="width:12%;" value="<?=$session['text_border_radius'];?>" onkeydown="if (event.keyCode==13) {
-            setdata('text_border_radius',this.value);
+        <input type="text" id="setPamLen" style="width:12%;" value="<?=$session['pam_len'];?>" onkeydown="
+        if (event.keyCode==13) {
+            setdata('pam_len',this.value);
         } else if (event.keyCode==27) {
-            this.value='7';
+            this.value='4';
         } else if (event.keyCode==8) {
             handleInput(this.value);
         } else if (event.keyCode==46) {
