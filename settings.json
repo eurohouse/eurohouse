@@ -232,6 +232,10 @@
             "https://github.com/infofintech/pool",
             "https://github.com/infofintech/chess",
             "https://github.com/infofintech/monopoly"
+        ],
+        "online/tools": [
+            "https://github.com/infofintech/photopea",
+            "https://github.com/infofintech/vectorpea"
         ]
     },
     "payload": {
@@ -271,8 +275,11 @@
             "https://github.com/infofintech/nightlife",
             "https://github.com/infofintech/stellar"
         ],
+        "public/misc": [
+            "https://github.com/infofintech/flicker",
+            "https://github.com/eurohouse/nestor"
+        ],
         "eurohouse/wallpapers": [
-            "https://github.com/eurohouse/nestor",
             "https://github.com/eurohouse/baron",
             "https://github.com/eurohouse/cappuccino",
             "https://github.com/eurohouse/epoque",
