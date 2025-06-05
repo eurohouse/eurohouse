@@ -491,6 +491,8 @@ function omniEnter() {
         bind(uid,input.replace('bind ',''));
     } else if (input.startsWith('equip ')) {
         equip(uid,input.replace('equip ',''));
+    } else if (input.startsWith('ipdata ')) {
+        omniBox.value=ipdata(input.replace('ipdata ',''));
     } else if (input.startsWith('get ')) {
         getPkgSequence(input,'get ',0);
     } else if (input.startsWith('git ')) {

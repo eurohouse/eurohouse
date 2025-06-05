@@ -1,4 +1,13 @@
 <script>
+function ipdata(url) {
+    text(url).then(data => {
+        var ipRegex=/[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}/
+        return data.match(ipRegex)[0];
+    });
+}
+function text(url) {
+    return fetch(url).then(res=>res.text());
+}
 function lockdata() {
     var obj={
         <?php $iter=0; foreach ($locks as $key=>$value) {
