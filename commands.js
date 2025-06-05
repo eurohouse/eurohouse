@@ -286,6 +286,9 @@ function omniEnter() {
     } else if (input.toLowerCase()=='slowmo') {
         arb=superRound((parseFloat(sysDefVideoSpeed.value)-0.05),2);
         arc=(arb<0.5)?0.5:arb; setdata('video_speed',arc);
+    } else if (input.toLowerCase()=='model') {
+        arg=Object.keys(jsonarr(sysDefModelData.value));
+        omniGroup(arg[rand(0,arg.length)]);
     } else if (input=='::::') { setdata('banner','none');
     } else if (input==':::') { setdata('banner','');
     } else if (input=='::') {
@@ -449,9 +452,17 @@ function omniEnter() {
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
         omniDir(quote(arg[0]));
     } else if (input.startsWith('model ')) {
-        arj=input.replace('model ', '');
-        arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
-        omniGroup(quote(arg[0]));
+        arb=input.replace('model ', ''); arh=[];
+        ark=jsonarr(sysDefModelData.value);
+        if (arb.includes(':')) {
+            arg=arb.split(':'); for (idx in ark) {
+                if (idx.toLowerCase().includes(arg[0].toLowerCase())) { arh.push(idx); }
+            } omniGroup(arh[arg[1]]);
+        } else {
+            for (idx in ark) {
+                if (idx.toLowerCase().includes(arb.toLowerCase())) { arh.push(idx); }
+            } omniGroup(arh[rand(0,arh.length)]);
+        }
     } else if (input.startsWith('edit ')) {
         arj=input.replace('edit ', '');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
@@ -500,16 +511,14 @@ function omniEnter() {
     } else if (input.startsWith('count ')) {
         omniBox.value=lockarr(input.replace('count ','')).length;
     } else if (input.startsWith('->')) {
-        arb=input.replace('->','');
+        arb=input.replace('->',''); ark=jsonarr(sysDefContentData.value);
         if ((arb.includes('.'))&&(arb.split('.').length==3)) {
             window.location.href=arb+'.png';
         } else if ((arb.includes(':'))&&(arb.split(':').length==2)) {
-            ark=jsonarr(sysDefContentData.value);
             arh=[]; arg=arb.split(':'); for (idx in ark) {
                 if (ark[idx].toLowerCase().includes(arg[0].toLowerCase())) { arh.push(idx); }
             } window.location.href=arh[arg[1]];
         } else {
-            ark=jsonarr(sysDefContentData.value);
             arh=[]; for (idx in ark) {
                 if (ark[idx].toLowerCase().includes(arb.toLowerCase())) { arh.push(idx); }
             } window.location.href=arh[rand(0,arh.length)];
