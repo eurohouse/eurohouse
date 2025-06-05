@@ -125,6 +125,12 @@ body {
     width: 100%; height: 1.5em; left: 0%; top: -5px;
     text-align: center; overflow: hidden;
 }
+.bottombar {
+    border: none; border-radius: 0px; position: relative;
+    background-color: var(--bicolor); color: var(--backtextcolor);
+    width: 100%; height: auto; bottom: 0px; left: 0%; top: -2px;
+    display: flex; flex-direction: column; flex-wrap: nowrap;
+}
 @keyframes scrollMarquee {
     to { transform: translateX(-100%); }
 }
