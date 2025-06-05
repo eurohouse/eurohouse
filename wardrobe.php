@@ -109,27 +109,21 @@ body {
 }
 .topbar {
     border: none; border-radius: 0px; position: relative;
-    background-color: var(--bicolor); color: var(--backtextcolor);
+    background-color: var(--qucolor); color: var(--backtextcolor);
     width: 100%; height: 250px; left: 0%; top: -2px;
     display: flex; flex-direction: column; flex-wrap: nowrap;
 }
 .upperGap {
     border: none; border-radius: 0px; position: relative;
-    background-color: var(--bicolor); color: var(--backtextcolor);
+    background-color: var(--qucolor); color: var(--backtextcolor);
     width: 100%; height: 2.8em; left: 0%; top: -2px;
     text-align: center; overflow: hidden;
 }
 .lowerGap {
     border: none; border-radius: 0px; position: relative;
-    background-color: var(--bicolor); color: var(--backtextcolor);
+    background-color: var(--qucolor); color: var(--backtextcolor);
     width: 100%; height: 1.5em; left: 0%; top: -5px;
     text-align: center; overflow: hidden;
-}
-.bottombar {
-    border: none; border-radius: 0px; position: relative;
-    background-color: var(--bicolor); color: var(--backtextcolor);
-    width: 100%; height: auto; bottom: 0px; left: 0%; top: -2px;
-    display: flex; flex-direction: column; flex-wrap: nowrap;
 }
 @keyframes scrollMarquee {
     to { transform: translateX(-100%); }
@@ -164,6 +158,9 @@ body {
 }
 .overlay {
     width: 100%; height: 100%; filter: var(--backdrop-filter);
+    border: none; border-radius: 0px;
+    background-color: var(--bicolor); color: var(--backtextcolor);
+
 }
 .overlay:before {
     content: ''; position: absolute; opacity: var(--backdrop-opacity);

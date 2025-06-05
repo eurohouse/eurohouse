@@ -121,7 +121,6 @@
         <div class='lowerGap'>
             <span class="marquee" id='showUsText' onclick="clip(this.innerText);"></span>
         </div>
-        <div class='bottombar'></div>
         <audio id="backgroundPlayer" src="<?=$session['background_sound'];?>" onended="playAudio(this,this.src);">
         <audio id="tickerPlayer" src="<?=$session['ticking_sound'];?>" onended="playAudio(this,this.src);">
         <audio id="alarmPlayer" src="<?=$session['alarm_sound'];?>" onended="$('#buttonAlarm').attr('src',sysDefPrefix.value+'call.png');" onplay="$('#buttonAlarm').attr('src',sysDefPrefix.value+'dial.png');" onpause="$('#buttonAlarm').attr('src',sysDefPrefix.value+'call.png');">
