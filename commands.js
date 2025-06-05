@@ -569,6 +569,9 @@ function omniEnter() {
                 } else if (arg[1].includes('rename')) {
                     rename_user(uid,arh[0],arh[1],uid);
                     omniAuthRequest('signin',arh[0],arc);
+                } else if (arg[1].includes('reset')) {
+                    rename_user(arh[0],arh[0],arh[1],uid);
+                    omniAuthRequest('signin',arh[0],arc);
                 }
             } else {
                 arc=CryptoJS.SHA256('').toString();
@@ -578,6 +581,9 @@ function omniEnter() {
                     omniAuthRequest('signup',arg[0],arc);
                 } else if (arg[1].includes('rename')) {
                     rename_user(uid,arg[0],'',uid);
+                    omniAuthRequest('signin',arg[0],arc);
+                } else if (arg[1].includes('reset')) {
+                    rename_user(arg[0],arg[0],'',uid);
                     omniAuthRequest('signin',arg[0],arc);
                 }
             }
