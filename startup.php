@@ -234,10 +234,10 @@ function world_clock() {
             document.querySelector(':root').style.setProperty('--overlay-before-ani',effects[3]);
             document.querySelector(':root').style.setProperty('--overlay-after-bg',effects[4]);
             document.querySelector(':root').style.setProperty('--overlay-after-ani',effects[5]);
-            if ((pager(data,2)!='00:00')&&(pager(data,2)!='HH:MM')&&(sysDefMemo.value!='')) {
+            if ((pager(data,2)!='00:00')&&(pager(data,2)!='--:--')&&(sysDefMemo.value!='')) {
                 playAudio(tickerPlayer,sysDefTickingSound.value);
             } else { pauseAudio(tickerPlayer); }
-            if ((pager(data,2)=='HH:MM')&&(sysDefMemo.value!='')) {
+            if ((pager(data,2)=='--:--')&&(sysDefMemo.value!='')) {
                 playAudio(alarmPlayer,sysDefAlarmSound.value);
                 setdata('memo','');
             }
