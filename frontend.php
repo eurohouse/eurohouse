@@ -375,7 +375,7 @@ function showLockInd() {
     var ch=Object.keys(ob||{});
     var lic=jsonarr(sysDefLockIcons.value);
     var epr=sysDefPrefix.value,arl=""; for (iu in ch) {
-        arl+="<input type='image' class='power' onmouseover='soundButton();' style='width:36px;height:36px;' onmouseover='soundButton();' src='"+epr+lic[ch[iu]]+".png"+"' onclick='setdata(&#34;album&#34;,&#34;"+ch[iu]+"&#34;);'>";
+        arl+="<input type='image' class='power' onmouseover='soundButton();' onmouseover='soundButton();' src='"+epr+lic[ch[iu]]+".png"+"' onclick='setdata(&#34;album&#34;,&#34;"+ch[iu]+"&#34;);'>";
     } return arl;
 }
 function indexAvatars(id) {
