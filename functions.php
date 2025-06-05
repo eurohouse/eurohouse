@@ -567,8 +567,9 @@ function wordfx($word,$sup,array $voc,array $ses) {
             case '[uname -r]': $res=php_uname('r'); break;
             case '[uname -v]': $res=php_uname('v'); break;
             case '[uname -m]': $res=php_uname('m'); break;
-            case '[euro]': $res=arropen('eurohouse.pkg')['version']; break;
-            case '[sys]': $res=arropen('system.pkg')['version']; break;
+            case '[app_version]': $res=arropen('eurohouse.pkg')['version']; break;
+            case '[sys_version]': $res=arropen('system.pkg')['version']; break;
+            case '[server_ip]': $res=$_SERVER['SERVER_ADDR']; break;
             case '[free_disk_space]':
                 // Get free disk space on web server
                 $res=sizestr(disk_free_space('/'),$loc,$uni); break;
