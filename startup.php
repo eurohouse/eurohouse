@@ -78,21 +78,25 @@ function world_clock() {
             $('#sysDefPangram').val(pager(data,7));
             var effects=jsonarr(sysDefEffects.value);
             var mixers=jsonarr(sysDefMixers.value);
-            var bndm=strarr(sysDefBindData.value,';',':')[sysDefSessionID.value];
+            var uidm=sysDefSessionID.value;
+            var bndm=strarr(sysDefBindData.value,';',':')[uidm];
             var finterm=jsonarr(sysDefFinTerms.value);
             $('#sysDefLockIcons').val(pager(data,8));
             $('#sysDefDataLoad').val(pager(data,9));
-            if (authstate()) { omniBox.placeholder=finterm[10]; } if (requestMode.value=='volume_control') {
+            if (authstate()) { omniBox.placeholder=finterm[10]; }
+            if (requestMode.value=='volume_control') {
                 audioVolInd.value=mixers[0]; audioRatInd.value=mixers[1];
                 videoVolInd.value=mixers[2]; videoRatInd.value=mixers[3];
             } document.querySelector(':root').style.setProperty('--bicolor',sysDefAccent.value);
-            sysDefMsgMaxCount.value=parseInt(Object.keys(jsonFilter(sysDefMyMsgboxData.value,sysDefSessionID.value,sysDefFind.value)).length-1); sysDefMsgCounter.value=(sysDefReverse.value!=0)?((parseInt(sysDefMsgCounter.value)<=0)?sysDefMsgMaxCount.value:(parseInt(sysDefMsgCounter.value)-1)):((parseInt(sysDefMsgCounter.value)>=sysDefMsgMaxCount.value)?0:(parseInt(sysDefMsgCounter.value)+1));
-            sysDefMsgCurrent.value=(sysDefCypher.value!='')?enmorse(Object.values(jsonFilter(sysDefMyMsgboxData.value,sysDefSessionID.value,sysDefFind.value,'msg'))[sysDefMsgCounter.value],sysDefSessionID.value,sysDefCypher.value):Object.values(jsonFilter(sysDefMyMsgboxData.value,sysDefSessionID.value,sysDefFind.value,'msg'))[sysDefMsgCounter.value];
+            sysDefMsgMaxCount.value=parseInt(Object.keys(jsonFilter(sysDefMyMsgboxData.value,uidm,sysDefFind.value)).length-1); sysDefMsgCounter.value=(sysDefReverse.value!=0)?((parseInt(sysDefMsgCounter.value)<=0)?sysDefMsgMaxCount.value:(parseInt(sysDefMsgCounter.value)-1)):((parseInt(sysDefMsgCounter.value)>=sysDefMsgMaxCount.value)?0:(parseInt(sysDefMsgCounter.value)+1));
+            sysDefMsgCurrent.value=(sysDefCypher.value!='')?enmorse(Object.values(jsonFilter(sysDefMyMsgboxData.value,uidm,sysDefFind.value,'msg'))[sysDefMsgCounter.value],uidm,sysDefCypher.value):Object.values(jsonFilter(sysDefMyMsgboxData.value,uidm,sysDefFind.value,'msg'))[sysDefMsgCounter.value];
             $('#showUsUrgent').text(sysDefMsgCurrent.value);
             if (sysDefLoop.value!=sysDefPostBackEff.value) {
-                if (sysDefLoop.value!=0) { playAudio(backgroundPlayer,sysDefBackgroundSound.value); } else { pauseAudio(backgroundPlayer); }
+                if (sysDefLoop.value!=0) {
+                    playAudio(backgroundPlayer,sysDefBackgroundSound.value);
+                } else { pauseAudio(backgroundPlayer); }
             } sysDefPostBackEff.value=sysDefLoop.value;
-            if (requestMode.value=='messenger') { msgBox.innerHTML='<p>'+jsonHTML(sysDefMyMsgboxData.value,sysDefSessionID.value,sysDefFind.value)+'</p>'; } if (requestMode.value=='news_feed') { newsBox.innerHTML='<p>'+jsonNews()+'</p>'; } $('#powerButton').attr('src',sysDefPrefix.value+'power.png');
+            if (requestMode.value=='messenger') { msgBox.innerHTML='<p>'+jsonHTML(sysDefMyMsgboxData.value,uidm,sysDefFind.value)+'</p>'; } if (requestMode.value=='news_feed') { newsBox.innerHTML='<p>'+jsonNews()+'</p>'; } $('#powerButton').attr('src',sysDefPrefix.value+'power.png');
             $('#buttonPrev').attr('src',sysDefPrefix.value+'rew.png');
             $('#buttonNext').attr('src',sysDefPrefix.value+'ff.png');
             $('#buttonLock').attr('src',sysDefPrefix.value+((sysDefLock.value!=0)?'key.png':'lock.png'));
@@ -128,7 +132,7 @@ function world_clock() {
                 pressedKeyInfo.innerText=finterm[9];
             } else if (requestMode.value=='album_collection') {
                 album_mode_switch.innerHTML=showLockInd();
-                var epr='',alr=indexAvatars(sysDefAlbum.value),upn=decipher(sysDefPlaylist.value,sysDefSessionID.value,sysDefNumeric.value,'arr'),arl="",plCol=sysDefPlaylistColumns.value;
+                var epr='',alr=indexAvatars(sysDefAlbum.value),upn=decipher(sysDefPlaylist.value,uidm,sysDefNumeric.value,'arr'),arl="",plCol=sysDefPlaylistColumns.value;
                 for (iu in upn) {
                     arl+="<a href='javascript:omniListen(%22"+rfc3986(upn[iu])+"%22,true);'>"+(parseInt(iu)+1)+'. '+upn[iu]+"</a><br>";
                 } currentPlaylist.innerHTML=arl;
@@ -169,10 +173,11 @@ function world_clock() {
                     }
                 } currentAlbumList.innerHTML=arl;
                 currentAlbumList.setAttribute('style','-webkit-columns:'+albCol+';-moz-columns:'+albCol+';columns:'+albCol+';text-align:'+(((sysDefAlbum.value=='avatar')||(sysDefAlbum.value=='pictogram')||(sysDefAlbum.value=='reticle')||(sysDefAlbum.value=='background'))?'center':'left')+';');
+            } else if (requestMode.value=='inventory') {
+                var stoDop='<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+finterm[3]+'</th><th style="width:7%;">'+finterm[4]+'</th><th style="width:3%;">'+finterm[5]+'</th></thead><tbody>'+jsonStore(uidm)+'</tbody></table>'; store_disp.innerHTML=stoDop;
             } else if (requestMode.value=='point_of_sale') {
                 var stoInf="<p align='center'>"+finterm[6]+"</p><p align='center'>"+finterm[7]+"</p><p align='center'>"+activeHrsBtn(bndm)+"</p>";
-                var stoDop='<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+finterm[3]+'</th><th style="width:7%;">'+finterm[4]+'</th><th style="width:3%;">'+finterm[5]+'</th></thead><tbody>'+jsonStore(bndm)+'</tbody></table>';
-                store_disp.innerHTML=(sysDefSessionID.value!=bndm)?((storeOpen(bndm))?stoDop:stoInf):stoDop;
+                var stoDop='<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+finterm[3]+'</th><th style="width:7%;">'+finterm[4]+'</th><th style="width:3%;">'+finterm[5]+'</th></thead><tbody>'+jsonStore(bndm)+'</tbody></table>'; store_disp.innerHTML=(uidm!=bndm)?((storeOpen(bndm))?stoDop:stoInf):stoDop;
             } else if (requestMode.value=='font_book') {
                 fontBook24Pt.innerText=fontBook22Pt.innerText=fontBook20Pt.innerText=fontBook18Pt.innerText=fontBook16Pt.innerText=fontBook14Pt.innerText=sysDefPangram.value;
             } else if (requestMode.value=='statistics') {

@@ -1,0 +1,3 @@
+<!-- briefcase -->
+<!-- CH: Inventarium; FR: Inventaire; BE: Inventaire; RO: Inventar; MD: Inventar; BR: Inventário; PT: Inventário; LK: वस्तुपरिसङ्ख्या; IN: भंडार; TR: Envanter; ES: Inventario; MX: Inventario; IT: Inventario; DE: Inventar; AT: Inventar; GR: Καταγραφή εμπορευμάτων; CY: Καταγραφή εμπορευμάτων; RU: Инвентарь; UA: Інвентар; CN: 存货; KR: 목록; JP: 在庫; AE: جرد -->
+<div class='customPanel' id='store_disp' style="width:100%;height:75%;left:0px;top:0px;overflow-y:scroll;"></div>
