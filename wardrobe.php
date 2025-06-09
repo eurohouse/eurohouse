@@ -226,8 +226,9 @@ table tfoot {
     text-shadow: var(--text-shadow);
 }
 img { position: relative; }
-input[type=text], input[type=password], input[type=number], select, textarea {
-    background: var(--gradient-input); background-size: 100%;
+input[type=text], input[type=password], input[type=number], select, option, textarea {
+    background: var(--gradient-input);
+    background-color: var(--inputcolor); background-size: 100%;
     color: var(--inputtextcolor); border: none;
     border-radius: var(--text-border-radius);
     font-family: "euro";
