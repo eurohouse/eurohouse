@@ -43,27 +43,27 @@ $homeDocumentIcon=$themePrefix.'home.png'; ?>
 <p align='center'>
 <img style="width:9%;position:relative;" loading="lazy" src="<?=$newDocumentIcon;?>" onmouseover="soundButton();" id="newButton" onclick="content.value=''; countText();">
 <img style="width:9%;position:relative;" loading="lazy" src="<?=$openDocumentIcon;?>" onmouseover="soundButton();" id="openButton" onclick="content.value=loadFile(filename.value); countText();">
-<img style="width:9%;position:relative;" loading="lazy" src="<?=$saveDocumentIcon;?>" onmouseover="soundButton();" id="saveButton" onclick="set(filename.value,encodeURIComponent(content.value),sysDefSessionID.value,'r'); content.value=loadFile(filename.value); countText();">
-<img style="width:9%;position:relative;" loading="lazy" src="<?=$mkdirDocumentIcon;?>" onmouseover="soundButton();" id="mkdirButton" onclick="mkdir(filename.value,sysDefSessionID.value,'r');">
-<img style="width:9%;position:relative;" loading="lazy" src="<?=$moveDocumentIcon;?>" onmouseover="soundButton();" id="moveButton" onclick="move(filename.value,doto.value,sysDefSessionID.value,'r'); content.value=loadFile(doto.value); filename.value=doto.value; doto.value=''; countText();">
-<img style="width:9%;position:relative;" loading="lazy" src="<?=$copyDocumentIcon;?>" onmouseover="soundButton();" id="copyButton" onclick="copy(filename.value,doto.value,sysDefSessionID.value,'r'); content.value=loadFile(doto.value); filename.value=doto.value; doto.value=''; countText();">
-<img style="width:9%;position:relative;" loading="lazy" src="<?=$deleteDocumentIcon;?>" onmouseover="soundButton();" id="deleteButton" onclick="del(filename.value,sysDefSessionID.value,'r'); filename.value=''; doto.value=''; content.value=''; countText();">
+<img style="width:9%;position:relative;" loading="lazy" src="<?=$saveDocumentIcon;?>" onmouseover="soundButton();" id="saveButton" onclick="set(filename.value,encodeURIComponent(content.value,sysDefSessionID.value); content.value=loadFile(filename.value); countText();">
+<img style="width:9%;position:relative;" loading="lazy" src="<?=$mkdirDocumentIcon;?>" onmouseover="soundButton();" id="mkdirButton" onclick="mkdir(filename.value,sysDefSessionID.value);">
+<img style="width:9%;position:relative;" loading="lazy" src="<?=$moveDocumentIcon;?>" onmouseover="soundButton();" id="moveButton" onclick="move(filename.value,doto.value,sysDefSessionID.value); content.value=loadFile(doto.value); filename.value=doto.value; doto.value=''; countText();">
+<img style="width:9%;position:relative;" loading="lazy" src="<?=$copyDocumentIcon;?>" onmouseover="soundButton();" id="copyButton" onclick="copy(filename.value,doto.value,sysDefSessionID.value); content.value=loadFile(doto.value); filename.value=doto.value; doto.value=''; countText();">
+<img style="width:9%;position:relative;" loading="lazy" src="<?=$deleteDocumentIcon;?>" onmouseover="soundButton();" id="deleteButton" onclick="del(filename.value,sysDefSessionID.value); filename.value=''; doto.value=''; content.value=''; countText();">
 <img style="width:9%;position:relative;" loading="lazy" src="<?=$homeDocumentIcon;?>" onmouseover="soundButton();" id="homeButton" onclick="omniBack(sysDefParent.value);"><br>
 <input class="text" id="filename" name="<?=$request['mode'];?>" style="width:45%;" type="text" value="<?=$request['input'];?>" onkeydown="if (event.keyCode==13) {
     content.value=loadFile(filename.value); countText();
 } else if (event.keyCode==27) {
     this.value='';
 } else if (event.keyCode==113) {
-    set(filename.value,encodeURIComponent(content.value),sysDefSessionID.value,'r'); content.value=loadFile(filename.value); countText();
+    set(filename.value,encodeURIComponent(content.value),sysDefSessionID.value); content.value=loadFile(filename.value); countText();
 }">
 <input class="text" id="doto" name="<?=$request['mode'];?>" style="width:45%;" type="text" value="" onkeydown="if (event.keyCode==13) {
-    copy(filename.value,doto.value,sysDefSessionID.value,'r');
+    copy(filename.value,doto.value,sysDefSessionID.value);
     content.value=loadFile(doto.value);
     filename.value=doto.value; doto.value=''; countText();
 } else if (event.keyCode==27) {
     this.value='';
 } else if (event.keyCode==113) {
-    move(filename.value,doto.value,sysDefSessionID.value,'r');
+    move(filename.value,doto.value,sysDefSessionID.value);
     content.value=loadFile(doto.value);
     filename.value=doto.value; doto.value=''; countText();
 }"><br>
