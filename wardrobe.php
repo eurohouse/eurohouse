@@ -239,11 +239,12 @@ input[type=text], input[type=password], input[type=number], select, textarea {
     vertical-align: baseline;
     box-shadow: var(--text-box-shadow);
 }
-option {
+select option {
     background-color: var(--inputcolor);
 }
-option:hover option:checked {
+select option:checked, select option:hover {
     background-color: var(--forecolor);
+    box-shadow: 0 0 10px 100px #000 inset;
 }
 input[type=button], input[type=image], button {
     -webkit-appearance: none;  /* Remove style Chrome */
