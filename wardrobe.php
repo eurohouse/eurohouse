@@ -242,15 +242,6 @@ input[type=button], input[type=image], button {
     width: 1.4em; top: 7px; display: inline-block;
     vertical-align: baseline; box-shadow: var(--box-shadow);
 }
-input[type=text], input[type=password], input[type=number], select, option, textarea {
-    background: var(--gradient-input); background-size: 100%;
-    color: var(--inputtextcolor); border: none;
-    border-radius: var(--text-border-radius); font-family: "euro";
-    font-size: var(--inputsize); position: relative;
-    height: 1.4em; display: inline-block;
-    vertical-align: baseline;
-    box-shadow: var(--text-box-shadow);
-}
 @supports (-moz-appearance: none) {
     select {
         -moz-appearance: none !important;
@@ -261,10 +252,25 @@ input[type=text], input[type=password], input[type=number], select, option, text
         height: 1.4em; display: inline-block;
         vertical-align: baseline;
         box-shadow: var(--text-box-shadow);
+    },
+    option {
+        -moz-appearance: none; !important;
+        background-color: var(--inputcolor);
+        color: var(--inputtextcolor); border: none;
+        font-size: var(--inputsize); position: relative;
+        font-family: "euro"; height: 1.4em;
     }
 }
+input[type=text], input[type=password], input[type=number], select, option, textarea {
+    background: var(--gradient-input); background-size: 100%;
+    color: var(--inputtextcolor); border: none;
+    border-radius: var(--text-border-radius); font-family: "euro";
+    font-size: var(--inputsize); position: relative;
+    height: 1.4em; display: inline-block;
+    vertical-align: baseline;
+    box-shadow: var(--text-box-shadow);
+}
 option {
-    -webkit-appearance: none; -moz-appearance: none;
     background-color: var(--inputcolor);
     color: var(--inputtextcolor); border: none;
     font-size: var(--inputsize); position: relative;
