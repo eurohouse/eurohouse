@@ -244,13 +244,8 @@ input[type=button], input[type=image], button {
     height: 1.4em; display: inline-block;
     vertical-align: baseline; box-shadow: var(--box-shadow);
 }
-.power {
-    background: var(--gradient-power); background-size: 100%;
-    color: var(--foretextcolor); border: none;
-    border-radius: var(--border-radius); font-family: "euro";
-    font-size: var(--foresize); position: relative;
-    width: 1.4em; top: 7px; display: inline-block;
-    vertical-align: baseline; box-shadow: var(--box-shadow);
+input.power {
+    background: var(--gradient-power); top: 7px;
 }
 input[type=checkbox] {
     background: var(--gradient-input); background-size: 100%;
