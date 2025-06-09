@@ -243,7 +243,6 @@ input[type=button], input[type=image], select.selected option:checked, button {
     vertical-align: baseline; box-shadow: var(--box-shadow);
 }
 input[type=text], input[type=password], input[type=number], select, option:not(:checked), textarea {
-    -moz-appearance: none !important;
     background: var(--gradient-input); background-size: 100%;
     color: var(--inputtextcolor); border: none;
     border-radius: var(--text-border-radius);
