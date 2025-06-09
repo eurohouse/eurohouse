@@ -240,18 +240,15 @@ input[type=text], input[type=password], input[type=number], select, textarea {
     box-shadow: var(--text-box-shadow);
 }
 option {
-    -webkit-appearance: none;  /* Remove style Chrome */
-    -moz-appearance: none; /* Remove style FireFox */
-    appearance: none; /* Remove style */
     background-color: var(--inputcolor);
 }
 option:hover option:checked {
-    -webkit-appearance: none;  /* Remove style Chrome */
-    -moz-appearance: none; /* Remove style FireFox */
-    appearance: none; /* Remove style */
     background-color: var(--forecolor);
 }
 input[type=button], input[type=image], button {
+    -webkit-appearance: none;  /* Remove style Chrome */
+    -moz-appearance: none; /* Remove style FireFox */
+    appearance: none; /* Remove style */
     background: var(--gradient-fore); background-size: 100%;
     color: var(--foretextcolor); border: none;
     border-radius: var(--border-radius);
