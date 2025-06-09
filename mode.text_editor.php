@@ -43,7 +43,7 @@ $homeDocumentIcon=$themePrefix.'home.png'; ?>
 <p align='center'>
 <img style="width:9%;position:relative;" loading="lazy" src="<?=$newDocumentIcon;?>" onmouseover="soundButton();" id="newButton" onclick="content.value=''; countText();">
 <img style="width:9%;position:relative;" loading="lazy" src="<?=$openDocumentIcon;?>" onmouseover="soundButton();" id="openButton" onclick="content.value=loadFile(filename.value); countText();">
-<img style="width:9%;position:relative;" loading="lazy" src="<?=$saveDocumentIcon;?>" onmouseover="soundButton();" id="saveButton" onclick="set(filename.value,encodeURIComponent(content.value,sysDefSessionID.value); content.value=loadFile(filename.value); countText();">
+<img style="width:9%;position:relative;" loading="lazy" src="<?=$saveDocumentIcon;?>" onmouseover="soundButton();" id="saveButton" onclick="set(filename.value,encodeURIComponent(content.value),sysDefSessionID.value); content.value=loadFile(filename.value); countText();">
 <img style="width:9%;position:relative;" loading="lazy" src="<?=$mkdirDocumentIcon;?>" onmouseover="soundButton();" id="mkdirButton" onclick="mkdir(filename.value,sysDefSessionID.value);">
 <img style="width:9%;position:relative;" loading="lazy" src="<?=$moveDocumentIcon;?>" onmouseover="soundButton();" id="moveButton" onclick="move(filename.value,doto.value,sysDefSessionID.value); content.value=loadFile(doto.value); filename.value=doto.value; doto.value=''; countText();">
 <img style="width:9%;position:relative;" loading="lazy" src="<?=$copyDocumentIcon;?>" onmouseover="soundButton();" id="copyButton" onclick="copy(filename.value,doto.value,sysDefSessionID.value); content.value=loadFile(doto.value); filename.value=doto.value; doto.value=''; countText();">
