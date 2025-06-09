@@ -229,7 +229,7 @@ img { position: relative; }
 input[type=text], input[type=password], input[type=number], select, option, textarea {
     -webkit-appearance: none;  /* Remove style Chrome */
     -moz-appearance: none; /* Remove style FireFox */
-    appearance: none; /* Remove style FireFox*/
+    appearance: none; /* Remove style */
     background: var(--gradient-input); background-size: 100%;
     color: var(--inputtextcolor); border: none;
     border-radius: var(--text-border-radius);
@@ -239,7 +239,13 @@ input[type=text], input[type=password], input[type=number], select, option, text
     vertical-align: baseline;
     box-shadow: var(--text-box-shadow);
 }
-input[type=button], input[type=image], select.selected, option:checked, button {
+option:checked {
+    -webkit-appearance: none;  /* Remove style Chrome */
+    -moz-appearance: none; /* Remove style FireFox */
+    appearance: none; /* Remove style */
+    background-color: var(--inputcolor);
+}
+input[type=button], input[type=image], button {
     background: var(--gradient-fore); background-size: 100%;
     color: var(--foretextcolor); border: none;
     border-radius: var(--border-radius);
