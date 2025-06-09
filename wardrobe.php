@@ -226,7 +226,7 @@ table tfoot {
     text-shadow: var(--text-shadow);
 }
 img { position: relative; }
-input[type=button], input[type=image], button {
+input[type=button], input[type=image], select.selected option:checked, button {
     background: var(--gradient-fore); background-size: 100%;
     color: var(--foretextcolor); border: none;
     border-radius: var(--border-radius); font-family: "euro";
@@ -242,7 +242,7 @@ input[type=button], input[type=image], button {
     width: 1.4em; top: 7px; display: inline-block;
     vertical-align: baseline; box-shadow: var(--box-shadow);
 }
-input[type=text], input[type=password], input[type=number], select, option, textarea {
+input[type=text], input[type=password], input[type=number], select, option:not(:checked), textarea {
     -moz-appearance: none !important;
     background: var(--gradient-input); background-size: 100%;
     color: var(--inputtextcolor); border: none;
@@ -255,7 +255,8 @@ input[type=text], input[type=password], input[type=number], select, option, text
 }
 input[type=checkbox] {
     background: var(--gradient-input); background-size: 100%;
-    border: none; border-radius: var(--border-radius); position: relative;
+    border: none; border-radius: var(--border-radius);
+    position: relative;
     width: 1.4em; height: 1.4em; display: inline-block;
     vertical-align: baseline; box-shadow: var(--text-box-shadow);
 }
