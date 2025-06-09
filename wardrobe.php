@@ -226,7 +226,7 @@ table tfoot {
     text-shadow: var(--text-shadow);
 }
 img { position: relative; }
-input[type=text], input[type=password], input[type=number], select, option, textarea {
+input[type=text], input[type=password], input[type=number], select, textarea {
     -webkit-appearance: none;  /* Remove style Chrome */
     -moz-appearance: none; /* Remove style FireFox */
     appearance: none; /* Remove style */
@@ -239,11 +239,17 @@ input[type=text], input[type=password], input[type=number], select, option, text
     vertical-align: baseline;
     box-shadow: var(--text-box-shadow);
 }
-option:checked {
+option {
     -webkit-appearance: none;  /* Remove style Chrome */
     -moz-appearance: none; /* Remove style FireFox */
     appearance: none; /* Remove style */
     background-color: var(--inputcolor);
+}
+option:checked {
+    -webkit-appearance: none;  /* Remove style Chrome */
+    -moz-appearance: none; /* Remove style FireFox */
+    appearance: none; /* Remove style */
+    background-color: var(--forecolor);
 }
 input[type=button], input[type=image], button {
     background: var(--gradient-fore); background-size: 100%;
