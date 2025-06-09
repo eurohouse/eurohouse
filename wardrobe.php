@@ -245,7 +245,7 @@ option {
     appearance: none; /* Remove style */
     background-color: var(--inputcolor);
 }
-select.selected, option:checked {
+option:checked, option:hover {
     -webkit-appearance: none;  /* Remove style Chrome */
     -moz-appearance: none; /* Remove style FireFox */
     appearance: none; /* Remove style */
