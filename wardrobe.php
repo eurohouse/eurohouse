@@ -251,6 +251,10 @@ select:focus > option:checked {
     background-color: var(--forecolor);
     color: var(--foretextcolor);
 }
+select:checked > option:focus {
+    background-color: var(--forecolor);
+    color: var(--foretextcolor);
+}
 input[type=button], input[type=image], button {
     -webkit-appearance: none;  /* Remove style Chrome */
     -moz-appearance: none; /* Remove style FireFox */
