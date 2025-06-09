@@ -226,6 +226,16 @@ table tfoot {
     text-shadow: var(--text-shadow);
 }
 img { position: relative; }
+input[type=text], input[type=password], input[type=number], select, option:not(:checked), textarea {
+    background: var(--gradient-input); background-size: 100%;
+    color: var(--inputtextcolor); border: none;
+    border-radius: var(--text-border-radius);
+    font-family: "euro";
+    font-size: var(--inputsize); position: relative;
+    height: 1.4em; display: inline-block;
+    vertical-align: baseline;
+    box-shadow: var(--text-box-shadow);
+}
 input[type=button], input[type=image], select.selected option:checked, button {
     background: var(--gradient-fore); background-size: 100%;
     color: var(--foretextcolor); border: none;
@@ -241,16 +251,6 @@ input[type=button], input[type=image], select.selected option:checked, button {
     font-size: var(--foresize); position: relative;
     width: 1.4em; top: 7px; display: inline-block;
     vertical-align: baseline; box-shadow: var(--box-shadow);
-}
-input[type=text], input[type=password], input[type=number], select, option:not(:checked), textarea {
-    background: var(--gradient-input); background-size: 100%;
-    color: var(--inputtextcolor); border: none;
-    border-radius: var(--text-border-radius);
-    font-family: "euro";
-    font-size: var(--inputsize); position: relative;
-    height: 1.4em; display: inline-block;
-    vertical-align: baseline;
-    box-shadow: var(--text-box-shadow);
 }
 input[type=checkbox] {
     background: var(--gradient-input); background-size: 100%;
