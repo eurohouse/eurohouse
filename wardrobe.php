@@ -227,12 +227,11 @@ table tfoot {
 }
 img { position: relative; }
 input[type=text], input[type=password], input[type=number], select, option, textarea {
-    background: var(--gradient-input);
-    background-color: var(--inputcolor); background-size: 100%;
+    background: var(--gradient-input); background-size: 100%;
     color: var(--inputtextcolor); border: none;
     border-radius: var(--text-border-radius);
-    font-family: "euro";
-    font-size: var(--inputsize); position: relative;
+    font-family: "euro"; position: relative;
+    font-size: var(--inputsize);
     height: 1.4em; display: inline-block;
     vertical-align: baseline;
     box-shadow: var(--text-box-shadow);
@@ -240,8 +239,9 @@ input[type=text], input[type=password], input[type=number], select, option, text
 input[type=button], input[type=image], button {
     background: var(--gradient-fore); background-size: 100%;
     color: var(--foretextcolor); border: none;
-    border-radius: var(--border-radius); font-family: "euro";
-    font-size: var(--foresize); position: relative;
+    border-radius: var(--border-radius);
+    font-family: "euro"; position: relative;
+    font-size: var(--foresize);
     height: 1.4em; display: inline-block;
     vertical-align: baseline; box-shadow: var(--box-shadow);
 }
