@@ -239,7 +239,7 @@ input[type=text], input[type=password], input[type=number], select, option, text
     vertical-align: baseline;
     box-shadow: var(--text-box-shadow);
 }
-input[type=button], input[type=image], button {
+input[type=button], input[type=image], select.selected option:checked, button {
     background: var(--gradient-fore); background-size: 100%;
     color: var(--foretextcolor); border: none;
     border-radius: var(--border-radius);
