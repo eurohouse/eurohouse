@@ -241,12 +241,15 @@ input[type=text], input[type=password], input[type=number], select, textarea {
 }
 select option {
     background-color: var(--inputcolor);
+    color: var(--inputtextcolor);
 }
 select option:checked, select option:hover {
     background-color: var(--forecolor);
+    color: var(--foretextcolor);
 }
 select:focus > option:checked {
     background-color: var(--forecolor);
+    color: var(--foretextcolor);
 }
 input[type=button], input[type=image], button {
     -webkit-appearance: none;  /* Remove style Chrome */
