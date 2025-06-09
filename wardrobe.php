@@ -244,7 +244,9 @@ select option {
 }
 select option:checked, select option:hover {
     background-color: var(--forecolor);
-    box-shadow: 0 0 10px 100px #000 inset;
+}
+select:focus > option:checked {
+    background-color: var(--forecolor);
 }
 input[type=button], input[type=image], button {
     -webkit-appearance: none;  /* Remove style Chrome */
