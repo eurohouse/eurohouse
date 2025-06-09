@@ -242,7 +242,7 @@ input[type=button], input[type=image], button {
     width: 1.4em; top: 7px; display: inline-block;
     vertical-align: baseline; box-shadow: var(--box-shadow);
 }
-@supports (-moz-appearance: none) {
+/*@supports (-moz-appearance: none) {
     select, option {
         -moz-appearance: none !important;
         background: var(--gradient-input); background-size: 100%;
@@ -253,7 +253,7 @@ input[type=button], input[type=image], button {
         vertical-align: baseline;
         box-shadow: var(--text-box-shadow);
     }
-}
+}*/
 input[type=text], input[type=password], input[type=number], select, option, textarea {
     background: var(--gradient-input); background-size: 100%;
     color: var(--inputtextcolor); border: none;
