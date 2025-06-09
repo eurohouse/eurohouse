@@ -251,6 +251,18 @@ input[type=text], input[type=password], input[type=number], select, option, text
     vertical-align: baseline;
     box-shadow: var(--text-box-shadow);
 }
+@supports (-moz-appearance: none) {
+    select {
+        -moz-appearance: none !important;
+        background: var(--gradient-input); background-size: 100%;
+        color: var(--inputtextcolor); border: none;
+        border-radius: var(--text-border-radius); font-family: "euro";
+        font-size: var(--inputsize); position: relative;
+        height: 1.4em; display: inline-block;
+        vertical-align: baseline;
+        box-shadow: var(--text-box-shadow);
+    }
+}
 option {
     -webkit-appearance: none; -moz-appearance: none;
     background-color: var(--inputcolor);
