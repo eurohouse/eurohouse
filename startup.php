@@ -158,7 +158,7 @@ function dynamic_panels() {
     var finterm=jsonarr(sysDefFinTerms.value);
     var uidm=sysDefSessionID.value;
     var bndm=strarr(sysDefBindData.value,';',':')[uidm];
-    if (authstate()) { omniBox.placeholder=finterm['']; }
+    if (authstate()) { omniBox.placeholder=finterm['</'+sysDefMode.value+'/>']; }
     if (requestMode.value=='messenger') {
         msgBox.innerHTML='<p>'+jsonHTML(sysDefMyMsgboxData.value,uidm,sysDefFind.value)+'</p>';
         composeMessage.placeholder=finterm['</chat/>'];
