@@ -622,3 +622,11 @@ function term($word,array $voc,$units='EU',$mod='') {
         $res=(isset($voc[$mod][$units]))?$voc[$mod][$units]:$voc[$mod]['default'];
     } return $res;
 }
+function terms(array $voc,array $ses) {
+    $arr=[''=>term('',$voc['locale']['cli'],$ses['units'],$ses['mode'])];
+    foreach ($voc['vocabulary'][$ses['units']] as $key=>$val) {
+        if ($key!='') {
+            $arr[$key]=term($key,$voc['vocabulary'],$ses['units']);
+        }
+    }
+}

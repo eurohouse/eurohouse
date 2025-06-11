@@ -51,7 +51,7 @@
         <input type='hidden' id='sysDefAccent' value="">
         <input type='hidden' id='sysDefEffects' value="">
         <input type='hidden' id='sysDefMixers' value="">
-        <input type='hidden' id='sysDefFinTerms' value="">
+        <input type='hidden' id='sysDefFinTerms' value="<?=$finLang;?>">
         <input type='hidden' id='sysDefBackload' value="<?=$backloadString;?>">
         <input type='hidden' id='sysDefPrefData' value="<?=valstr($prefix,';',':');?>">
         <input type='hidden' id='sysDefPrefix' value="<?=$prefix[3];?>">

@@ -6,7 +6,7 @@ $dataLoad=$settings['dataload'];
 $updateChannel=[]; foreach ($settings['payload'] as $key=>$val) { $updateChannel[$key]=implode(' ',$val); }
 foreach ($settings['collections'] as $key=>$value) { $settings['collections'][$key]=strtoupper($value).','.$value; }
 if (!file_exists('get.php')) { express(explode(',',$backloadString)); header("Location: index.php"); }
-initDataDirs('tmp,trash');
+initDataDirs('tmp,trash');$finLang=terms($settings,$session);
 foreach ($settings['viewport'] as $key=>$val) { $viewportStr.=$key.'='.$val.', '; } $viewportParam=substr($viewportStr,0,-2);
 $gamesChannel=[]; foreach ($settings['get_games'] as $key=>$val) { $gamesChannel[$key]=implode(' ',$val); }
 ini_set("session.gc_maxlifetime",$settings['lifetime']['garbage_collector']);ini_set("session.cookie_lifetime",$settings['lifetime']['cookie_default']);
