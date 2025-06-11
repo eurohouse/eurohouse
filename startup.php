@@ -158,10 +158,12 @@ function dynamic_panels() {
     var finterm=jsonarr(sysDefFinTerms.value);
     var uidm=sysDefSessionID.value;
     var bndm=strarr(sysDefBindData.value,';',':')[uidm];
-    if (authstate()) { omniBox.placeholder=finterm['</'+sysDefMode.value+'/>']; }
+    if (authstate()) {
+        omniBox.placeholder=finterm['<'+sysDefMode.value+'>'];
+    }
     if (requestMode.value=='messenger') {
         msgBox.innerHTML='<p>'+jsonHTML(sysDefMyMsgboxData.value,uidm,sysDefFind.value)+'</p>';
-        composeMessage.placeholder=finterm['</chat/>'];
+        composeMessage.placeholder=finterm['<chat>'];
     } else if (requestMode.value=='news_feed') {
         newsBox.innerHTML='<p>'+jsonNews()+'</p>';
     } else if (requestMode.value=='bookkeeping') {
