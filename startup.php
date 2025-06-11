@@ -161,7 +161,7 @@ function dynamic_panels() {
     if (authstate()) { omniBox.placeholder=finterm['']; }
     if (requestMode.value=='messenger') {
         msgBox.innerHTML='<p>'+jsonHTML(sysDefMyMsgboxData.value,uidm,sysDefFind.value)+'</p>';
-        msgBox.placeholder=finterm['</chat/>'];
+        composeMessage.placeholder=finterm['</chat/>'];
     } else if (requestMode.value=='news_feed') {
         newsBox.innerHTML='<p>'+jsonNews()+'</p>';
     } else if (requestMode.value=='bookkeeping') {
