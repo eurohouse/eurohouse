@@ -290,14 +290,7 @@ function visual_effects() {
         document.querySelector(':root').style.setProperty('--gradient-fore','linear-gradient('+sysDefGradientFore.value+'deg, '+sysDefForeColor.value+' 0%, '+sysDefForeColor.value+' 100%)');
         document.querySelector(':root').style.setProperty('--gradient-input','linear-gradient('+sysDefGradientInput.value+'deg, '+sysDefInputColor.value+' 0%, '+sysDefInputColor.value+' 100%)');
     } if (requestMode.value=='visual_effects') {
-        opacityInd.value=sysDefOpacity.value;
-        blurInd.value=sysDefBlur.value+'px';
-        brightnessInd.value=sysDefBrightness.value+'%';
-        saturationInd.value=sysDefSaturation.value+'%';
-        contrastInd.value=sysDefContrast.value+'%';
-        sepiaInd.value=sysDefSepia.value+'%';
-        grayInd.value=sysDefGrayscale.value+'%';
-        hueInd.value=sysDefHue.value+'deg';
+        opacityInd.value=sysDefOpacity.value; blurInd.value=sysDefBlur.value+'px'; brightnessInd.value=sysDefBrightness.value+'%'; saturationInd.value=sysDefSaturation.value+'%'; contrastInd.value=sysDefContrast.value+'%'; sepiaInd.value=sysDefSepia.value+'%'; grayInd.value=sysDefGrayscale.value+'%'; hueInd.value=sysDefHue.value+'deg';
     }
 }
 function wallpaper_engine() {
@@ -305,8 +298,7 @@ function wallpaper_engine() {
         url: 'wallpaper_engine.php',
         success: function(data) {
             $('#buttonChild').attr('src',sysDefPrefix.value+((sysDefCensor.value!=0)?'briefcase.png':'cabinet.png')); $('#sysDefVarsArr').val(pager(data,5));
-            $('body').css('background-image','url('+((pager(data,12)!='')?pager(data,12):pager(data,1))+')');
-            $('#buttonAugment').attr('src',sysDefPrefix.value+(((sysDefVarsArr.value.split(';').length)>1)?((sysDefEntry.value!='')?'diamond.png':'heart.png'):((sysDefEntry.value!='')?'club.png':'spade.png')));
+            $('body').css('background-image','url('+((pager(data,12)!='')?pager(data,12):pager(data,1))+')'); $('#buttonAugment').attr('src',sysDefPrefix.value+(((sysDefVarsArr.value.split(';').length)>1)?((sysDefEntry.value!='')?'diamond.png':'heart.png'):((sysDefEntry.value!='')?'club.png':'spade.png')));
             document.title=pager(data,0)+' (@'+sysDefSessionID.value+') · Eurohouse UX/UI';
             document.querySelector(':root').style.setProperty('--position',pager(data,4));
             $('#userAvatarBadge').attr('src',pager(data,8));
@@ -317,11 +309,7 @@ function wallpaper_engine() {
             $('#chooseReticle3').attr('name',sysDefReticleChoice3.value);
             $('#chooseReticle4').attr('name',sysDefReticleChoice4.value);
             $('#chooseReticle5').attr('name',sysDefReticleChoice5.value);
-            $('#chooseReticle1').attr('src',sysDefRet0Prefix.value+sysDefReticleChoice1.value+'.png');
-            $('#chooseReticle2').attr('src',sysDefRet0Prefix.value+sysDefReticleChoice2.value+'.png');
-            $('#chooseReticle3').attr('src',sysDefRet0Prefix.value+sysDefReticleChoice3.value+'.png');
-            $('#chooseReticle4').attr('src',sysDefRet0Prefix.value+sysDefReticleChoice4.value+'.png');
-            $('#chooseReticle5').attr('src',sysDefRet0Prefix.value+sysDefReticleChoice5.value+'.png');
+            $('#chooseReticle1').attr('src',sysDefRet0Prefix.value+sysDefReticleChoice1.value+'.png'); $('#chooseReticle2').attr('src',sysDefRet0Prefix.value+sysDefReticleChoice2.value+'.png'); $('#chooseReticle3').attr('src',sysDefRet0Prefix.value+sysDefReticleChoice3.value+'.png'); $('#chooseReticle4').attr('src',sysDefRet0Prefix.value+sysDefReticleChoice4.value+'.png'); $('#chooseReticle5').attr('src',sysDefRet0Prefix.value+sysDefReticleChoice5.value+'.png');
             arrangePlay(); <?php if (file_exists('mode.'.$request['mode'].'.php')) {
                 if ($request['mode']=='main_menu') { ?>
                     $('#projectTitle').text(pager(data,0).toUpperCase());
