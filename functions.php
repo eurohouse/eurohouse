@@ -628,8 +628,8 @@ function l10nEnt($cat='',$word='',array $voc,array $ses) {
 }
 function terms(array $voc,array $ses) {
     $arr=[''=>term('',$voc,$ses)];
-    $arr=['<start>'=>term('<start>',$voc,$ses)];
-    $arr=['<chat>'=>term('<chat>',$voc,$ses)];
+    $arr['<start>']=term('<start>',$voc,$ses);
+    $arr['<chat>']=term('<chat>',$voc,$ses);
     foreach ($voc['vocabulary'][array_key_first($voc['vocabulary'])] as $key=>$val) {
         if ($key!='') { $arr[$key]=term($key,$voc,$ses); }
     } return $arr;
