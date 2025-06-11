@@ -250,6 +250,9 @@ function dynamic_panels() {
             $('#myNotesOpenBtn').attr('src',sysDefPrefix.value+'open.png');
             $('#myNotesSaveBtn').attr('src',sysDefPrefix.value+'save.png');
             notesMenu.innerHTML='<p align="center" class="block">'+noteBook(sysDefMetaList.value)+'</p>';
+            myNotesRad.placeholder=finterm('Symbolic Digits');
+            myNotesEnt.placeholder=finterm('Title');
+            myNotesEnc.placeholder=finterm('Password');
         }
     } else if (requestMode.value=='user_tutorial') {
         helpMenu.innerHTML='<p align="center" class="block">'+helpBook()+'</p>';
