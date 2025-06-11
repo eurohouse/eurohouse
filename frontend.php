@@ -247,10 +247,10 @@ function rename_user(id,to,pass,perm) {
     }
 }
 function init_user(id,pass=null) {
-    reset_entry(id,sysDefPowersData,'powers','n');
-    reset_entry(id,sysDefBindData,'powers','i');
-    reset_entry(id,sysDefToolData,'powers','e');
-    reset_entry(id,sysDefToolData,'auto','manual');
+    reset_entry(id,sysDefPowersData,'powers.json','n');
+    reset_entry(id,sysDefBindData,'bind.json','i');
+    reset_entry(id,sysDefAutoData,'auto.json','manual');
+    reset_entry(id,sysDefToolData,'tool.json','e');
     var msgData=jsonarr(openJournal(id,sysDefMsgboxJSONs));
     if (!notNull(msgData)) {
         set('./'+id+'_msgbox.json',JSON.stringify({}),'rw');
