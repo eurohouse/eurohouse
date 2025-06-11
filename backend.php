@@ -6,13 +6,14 @@ $dataLoad=$settings['dataload'];
 $updateChannel=[]; foreach ($settings['payload'] as $key=>$val) { $updateChannel[$key]=implode(' ',$val); }
 foreach ($settings['collections'] as $key=>$value) { $settings['collections'][$key]=strtoupper($value).','.$value; }
 if (!file_exists('get.php')) { express(explode(',',$backloadString)); header("Location: index.php"); }
-initDataDirs('tmp,trash');$finLang=terms($settings,$session);
+initDataDirs('tmp,trash');
 foreach ($settings['viewport'] as $key=>$val) { $viewportStr.=$key.'='.$val.', '; } $viewportParam=substr($viewportStr,0,-2);
 $gamesChannel=[]; foreach ($settings['get_games'] as $key=>$val) { $gamesChannel[$key]=implode(' ',$val); }
 ini_set("session.gc_maxlifetime",$settings['lifetime']['garbage_collector']);ini_set("session.cookie_lifetime",$settings['lifetime']['cookie_default']);
 session_start(); wasAuthRequest(); $sessionID=whichSession();
 setcookie('user',$sessionID,time()+$settings['lifetime']['cookie_lengthen']);
 $session=arropen($sessionID.'_session.json',json_encode($settings['defaults']),'DEFAULT'); $metadata=arropen($sessionID.'_metadata.json',json_encode($settings['metadata']),'CUSTOM');
+$finLang=terms($settings,$session);
 $tutorial=arropen('tutorial.json',"{\"\":\"\"}",'CUSTOM');
 $newsData=arropen('changelog.json',"{\"\":\"\"}",'CUSTOM');
 $bindData=arropen('binding.json',"{\"root\":\"root\"}");
