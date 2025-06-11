@@ -366,9 +366,11 @@ function jsonNews() {
     } return ard;
 }
 function activeHrsBtn(id) {
-    var arr=loadFile(id+'_session.json','active_hours').split(','),arl=''; for (el in arr) {
-        arl+="<input type='button' onmouseover='soundButton();' value='"+arr[el]+"'>";
-    } return (arl!='')?arl:'';
+    var arr=loadFile(id+'_session.json','active_hours').split(',');var arl=res=''; if (notNull(arr)) {
+        for (el in arr) {
+            arl+="<input type='button' onmouseover='soundButton();' value='"+arr[el]+"'>";
+        } res=arl;
+    } else { res='' } return res;
 }
 function showLockInd() {
     var ob=((jsonarr(sysDefLockData.value)!==undefined)&&(jsonarr(sysDefLockData.value)!==null))?jsonarr(sysDefLockData.value):{};
