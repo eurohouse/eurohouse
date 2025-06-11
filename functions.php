@@ -628,5 +628,5 @@ function terms(array $voc,array $ses) {
         if ($key!='') {
             $arr[$key]=term($key,$voc['vocabulary'],$ses['units']);
         }
-    }
+    } return $arr;
 }
