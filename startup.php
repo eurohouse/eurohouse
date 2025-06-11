@@ -155,21 +155,20 @@ function world_clock() {
     });
 }
 function dynamic_panels() {
-    var finterm=jsonarr(sysDefFinTerms.value);
     var uidm=sysDefSessionID.value;
     var bndm=strarr(sysDefBindData.value,';',':')[uidm];
     if (authstate()) {
-        omniBox.placeholder=finterm['<'+sysDefMode.value+'>'];
+        omniBox.placeholder=finterm('<'+sysDefMode.value+'>');
     }
     if (requestMode.value=='messenger') {
         msgBox.innerHTML='<p>'+jsonHTML(sysDefMyMsgboxData.value,uidm,sysDefFind.value)+'</p>';
-        composeMessage.placeholder=finterm['<chat>'];
+        composeMessage.placeholder=finterm('<chat>');
     } else if (requestMode.value=='news_feed') {
         newsBox.innerHTML='<p>'+jsonNews()+'</p>';
     } else if (requestMode.value=='bookkeeping') {
-        bookkeep_disp.innerHTML='<table style="width:100%;position:relative;"><thead><th style="width:25%;">'+finterm['Recipient']+'</th><th style="width:25%;">'+finterm['Debit']+'</th><th style="width:25%;">'+finterm['Credit']+'</th><th style="width:25%;">'+finterm['Balance']+'</th></thead><tbody>'+jsonBookKeep(sysDefMyBookData.value)+'</tbody></table>';
+        bookkeep_disp.innerHTML='<table style="width:100%;position:relative;"><thead><th style="width:25%;">'+finterm('Recipient')+'</th><th style="width:25%;">'+finterm('Debit')+'</th><th style="width:25%;">'+finterm('Credit')+'</th><th style="width:25%;">'+finterm('Balance')+'</th></thead><tbody>'+jsonBookKeep(sysDefMyBookData.value)+'</tbody></table>';
     } else if (requestMode.value=='accessibility') {
-        pressedKeyInfo.innerText=finterm['Press any key to continue...'];
+        pressedKeyInfo.innerText=finterm('Press any key to continue...');
     } else if (requestMode.value=='album_collection') {
         album_mode_switch.innerHTML=showLockInd();
         var epr='',alr=indexAvatars(sysDefAlbum.value);
@@ -217,11 +216,11 @@ function dynamic_panels() {
         } currentAlbumList.innerHTML=arl;
         currentAlbumList.setAttribute('style','-webkit-columns:'+albCol+';-moz-columns:'+albCol+';columns:'+albCol+';text-align:'+(((sysDefAlbum.value=='avatar')||(sysDefAlbum.value=='pictogram')||(sysDefAlbum.value=='reticle')||(sysDefAlbum.value=='background'))?'center':'left')+';');
     } else if (requestMode.value=='inventory') {
-        var stoDop='<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+finterm['Name']+'</th><th style="width:7%;">'+finterm['Amount']+'</th><th style="width:3%;">'+finterm['Price']+'</th></thead><tbody>'+jsonStore(uidm)+'</tbody></table>';
+        var stoDop='<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+finterm('Name')+'</th><th style="width:7%;">'+finterm('Amount')+'</th><th style="width:3%;">'+finterm('Price')+'</th></thead><tbody>'+jsonStore(uidm)+'</tbody></table>';
         store_disp.innerHTML=stoDop;
     } else if (requestMode.value=='point_of_sale') {
-        var stoInf="<p align='center'>"+finterm['The market is closed.']+"</p><p align='center'>"+finterm['Active Hours:']+"</p>"+activeHrsBtn(bndm);
-        var stoDop='<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+finterm['Name']+'</th><th style="width:7%;">'+finterm['Amount']+'</th><th style="width:3%;">'+finterm['Price']+'</th></thead><tbody>'+jsonStore(bndm)+'</tbody></table>'; store_disp.innerHTML=(uidm!=bndm)?((storeOpen(bndm))?stoDop:stoInf):stoDop;
+        var stoInf="<p align='center'>"+finterm('The market is closed.')+"</p><p align='center'>"+finterm('Active Hours:')+"</p>"+activeHrsBtn(bndm);
+        var stoDop='<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+finterm('Name')+'</th><th style="width:7%;">'+finterm('Amount')+'</th><th style="width:3%;">'+finterm('Price')+'</th></thead><tbody>'+jsonStore(bndm)+'</tbody></table>'; store_disp.innerHTML=(uidm!=bndm)?((storeOpen(bndm))?stoDop:stoInf):stoDop;
     } else if (requestMode.value=='font_book') {
         fontBook24Pt.innerText=fontBook22Pt.innerText=fontBook20Pt.innerText=fontBook18Pt.innerText=fontBook16Pt.innerText=fontBook14Pt.innerText=sysDefPangram.value;
     } else if (requestMode.value=='statistics') {

@@ -95,6 +95,13 @@ function demorse(msg,usr='',abc='.-') {
 function playlistNext(name) {
     return arrangeMenu(sysDefPlaylist.value,enmorse(name,sysDefSessionID.value,sysDefNumeric.value),' | ');
 }
+function finterm(term) {
+    var arr=jsonarr(sysDefFinTerms.value),rep=res='';
+    if ((term.startsWith('<'))&&(term.endsWith('>'))) {
+        rep=term.replace('<','').replace('>','');
+        res=(isLine(arr[term]))?arr[term]:arr['<start>'];
+    } else { res=arr[term]; } return res;
+}
 function setfor(id,obj,name,val) {
     var arr=(typeof(obj)=='object')?strarr(obj.value,';',':'):strarr(obj,';',':'); var arf=arr; arf[id]=val;
     set(name+'.json',JSON.stringify(arf),'rw');
