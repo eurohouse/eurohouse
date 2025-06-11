@@ -178,9 +178,21 @@ function userRestore(id) {
     }
 }
 function remove_entry(id,obj,name,complex=false,helper=false,dy=';',dx=':') {
-    var rawData=(typeof(obj)=='object')?obj.value:obj;
+    var rawData=(isObject(obj))?obj.value:obj;
     var resarr=(complex)?jsonarr(rawData):strarr((rawData),dy,dx);
     delete resarr[id]; set(name,JSON.stringify(resarr),'rw');
+    if (helper) { del(id+'.json','rw'); del(id,'rw'); }
+    obj.value=(complex)?arrjson(resarr):arrstr(resarr,dy,dx);
+}
+function reset_entry(id,obj,name,mode='e',complex=false,helper=false,dy=';',dx=':') {
+    var rawData=(isObject(obj))?obj.value:obj;
+    var resarr=(complex)?jsonarr(rawData):strarr((rawData),dy,dx);
+    if (!notNull(resarr[id])) {
+        if (mode=='i') { resarr[id]=id;
+        } else if (mode=='e') { resarr[id]='';
+        } else if (mode=='n') { resarr[id]=0;
+        } else { resarr[id]=mode; }
+    } set(name,JSON.stringify(resarr),'rw');
     if (helper) { del(id+'.json','rw'); del(id,'rw'); }
     obj.value=(complex)?arrjson(resarr):arrstr(resarr,dy,dx);
 }
@@ -235,18 +247,10 @@ function rename_user(id,to,pass,perm) {
     }
 }
 function init_user(id,pass=null) {
-    var scoreTab=strarr(sysDefPowersData.value,';',':');
-    if (!notNull(scoreTab[id])) { scoreTab[id]=0; }
-    sysDefPowersData.value=arrstr(scoreTab,';',':');
-    /*var bindTab=strarr(sysDefBindData.value,';',':');
-    if (!notNull(bindTab[id])) { bindTab[id]=id; }
-    sysDefBindData.value=arrstr(bindTab,';',':');*/
-    var autoTab=strarr(sysDefAutoData.value,';',':');
-    if (!notNull(autoTab[id])) { autoTab[id]='manual'; }
-    sysDefAutoData.value=arrstr(autoTab,';',':');
-    var toolTab=strarr(sysDefToolData.value,';',':');
-    if (!notNull(toolTab[id])) { toolTab[id]=''; }
-    sysDefToolData.value=arrstr(toolTab,';',':');
+    reset_entry(id,sysDefPowersData,'powers','n');
+    reset_entry(id,sysDefBindData,'powers','i');
+    reset_entry(id,sysDefToolData,'powers','e');
+    reset_entry(id,sysDefToolData,'auto','manual');
     var msgData=jsonarr(openJournal(id,sysDefMsgboxJSONs));
     if (!notNull(msgData)) {
         set('./'+id+'_msgbox.json',JSON.stringify({}),'rw');
@@ -571,15 +575,24 @@ function init_rec(id) {
 }
 function bind(usr,id) {
     init_rec(usr); init_rec(id);
-    var binds=strarr(sysDefBindData.value,';',':');
-    binds[usr]=id; set('binding.json',JSON.stringify(binds),'rw');
-    sysDefBindData.value=arrstr(binds,';',':');
+    var obj=strarr(sysDefBindData.value,';',':');
+    obj[usr]=id; set('binding.json',JSON.stringify(obj),'rw');
+    sysDefBindData.value=arrstr(obj,';',':');
 }
 function equip(usr,id) {
-    init_rec(usr);
-    var obj=strarr(sysDefToolData.value,';',':');
+    init_rec(usr); var obj=strarr(sysDefToolData.value,';',':');
     obj[usr]=id; set('toolbox.json',JSON.stringify(obj),'rw');
     sysDefToolData.value=arrstr(obj,';',':');
+}
+function defvals(usr,dat) {
+    init_rec(usr); obn=(isObject(dat)?dat.value:dat);
+    var arr=strarr(obn,';',':');
+    arr[usr]=''; set('toolbox.json',JSON.stringify(arr),'rw');
+    if (isObject(dat)) {
+        dat.value=arrstr(arr,';',':');
+    } else {
+        dat=arrstr(arr,';',':');
+    }
 }
 function automate() {
     var usr=sysDefSessionID.value;
