@@ -623,8 +623,7 @@ function term($word,array $voc,$units='EU',$mod='') {
     } return $res;
 }
 function terms(array $voc,array $ses) {
-    $arr=[''=>term('',$voc['locale']['cli'],$ses['units'],$ses['mode'])];
-    foreach ($voc['vocabulary'][$ses['units']] as $key=>$val) {
+    $arr=[''=>term('',$voc['locale']['cli'],$ses['units'],$ses['mode'])]; foreach ($voc['vocabulary'][array_key_first($voc['vocabulary'])] as $key=>$val) {
         if ($key!='') {
             $arr[$key]=term($key,$voc['vocabulary'],$ses['units']);
         }
