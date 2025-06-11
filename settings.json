@@ -1,7 +1,7 @@
 {
     "lifetime": { "cookie_default": 0, "cookie_lengthen": 86400, "garbage_collector": 604800 },
     "intervals": {
-        "databox": 250, "dataload": 250, "world_clock": 250, "visual_effects": 300, "wallpaper_engine": 250, "automator": 250
+        "databox": 750, "dataload": 750, "world_clock": 500, "visual_effects": 250, "wallpaper_engine": 500, "automator": 250
     },
     "viewport": {
         "width": "device-width", "initial-scale": "1.0",
