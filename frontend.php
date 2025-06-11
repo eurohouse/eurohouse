@@ -177,23 +177,22 @@ function userRestore(id) {
         omniListen(demorse(fsess['melody'],id,fsess['numeric']),false,parseInt(fsess['current']));
     }
 }
-function remove_entry(id,obj,name,complex=false,helper=false,dy=';',dx=':') {
+function remove_entry(id,obj,name,complex=false,dy=';',dx=':') {
     var rawData=(isObject(obj))?obj.value:obj;
     var resarr=(complex)?jsonarr(rawData):strarr((rawData),dy,dx);
-    delete resarr[id]; set(name,JSON.stringify(resarr),'rw');
-    if (helper) { del(id+'.json','rw'); del(id,'rw'); }
+    delete resarr[id]; set(name+'.json',JSON.stringify(resarr),'rw');
     obj.value=(complex)?arrjson(resarr):arrstr(resarr,dy,dx);
 }
-function reset_entry(id,obj,name,mode='e',complex=false,helper=false,dy=';',dx=':') {
+function reset_entry(id,obj,name,mode='',complex=false,dy=';',dx=':') {
     var rawData=(isObject(obj))?obj.value:obj;
     var resarr=(complex)?jsonarr(rawData):strarr((rawData),dy,dx);
     if (!notNull(resarr[id])) {
         if (mode=='i') { resarr[id]=id;
         } else if (mode=='e') { resarr[id]='';
         } else if (mode=='n') { resarr[id]=0;
-        } else { resarr[id]=mode; }
-    } set(name,JSON.stringify(resarr),'rw');
-    if (helper) { del(id+'.json','rw'); del(id,'rw'); }
+        } else if (mode=='a') { resarr[id]='auto';
+        } else if (mode=='m') { resarr[id]='manual'; }
+    } set(name+'.json',JSON.stringify(resarr),'rw');
     obj.value=(complex)?arrjson(resarr):arrstr(resarr,dy,dx);
 }
 function user_exists(id) {
@@ -201,10 +200,10 @@ function user_exists(id) {
 }
 function delete_user(id) {
     unbind(sysDefSessionID.value); unbind(id);
-    remove_entry(id,sysDefBindData,'binding.json');
-    remove_entry(id,sysDefPowersData,'dominion.json');
-    remove_entry(id,sysDefAutoData,'automator.json');
-    remove_entry(id,sysDefToolData,'toolbox.json');
+    remove_entry(id,sysDefBindData,'binding');
+    remove_entry(id,sysDefPowersData,'dominion');
+    remove_entry(id,sysDefAutoData,'automator');
+    remove_entry(id,sysDefToolData,'toolbox');
     del(id+'_lock_saved.json','rw');
     del(id+'_session_saved.json','rw');
     del(id+'_msgbox.json.bak','rw');
@@ -247,10 +246,10 @@ function rename_user(id,to,pass,perm) {
     }
 }
 function init_user(id,pass=null) {
-    reset_entry(id,sysDefPowersData,'powers.json','n');
-    reset_entry(id,sysDefBindData,'bind.json','i');
-    reset_entry(id,sysDefAutoData,'auto.json','manual');
-    reset_entry(id,sysDefToolData,'tool.json','e');
+    reset_entry(id,sysDefPowersData,'dominion','n');
+    reset_entry(id,sysDefBindData,'binding','i');
+    reset_entry(id,sysDefAutoData,'automator','m');
+    reset_entry(id,sysDefToolData,'toolbox','e');
     var msgData=jsonarr(openJournal(id,sysDefMsgboxJSONs));
     if (!notNull(msgData)) {
         set('./'+id+'_msgbox.json',JSON.stringify({}),'rw');
