@@ -212,7 +212,7 @@ function dynamic_panels() {
         var stoDop='<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+finterm['Name']+'</th><th style="width:7%;">'+finterm['Amount']+'</th><th style="width:3%;">'+finterm['Price']+'</th></thead><tbody>'+jsonStore(uidm)+'</tbody></table>';
         store_disp.innerHTML=stoDop;
     } else if (requestMode.value=='point_of_sale') {
-        var stoInf="<p align='center'>"+finterm['The market is closed.']+"</p><p align='center'>"+finterm['Active Hours:']+"</p><p align='center'>"+activeHrsBtn(bndm)+"</p>";
+        var stoInf="<p align='center'>"+finterm['The market is closed.']+"</p><p align='center'>"+finterm['Active Hours:']+"</p>"+activeHrsBtn(bndm);
         var stoDop='<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+finterm['Name']+'</th><th style="width:7%;">'+finterm['Amount']+'</th><th style="width:3%;">'+finterm['Price']+'</th></thead><tbody>'+jsonStore(bndm)+'</tbody></table>'; store_disp.innerHTML=(uidm!=bndm)?((storeOpen(bndm))?stoDop:stoInf):stoDop;
     } else if (requestMode.value=='font_book') {
         fontBook24Pt.innerText=fontBook22Pt.innerText=fontBook20Pt.innerText=fontBook18Pt.innerText=fontBook16Pt.innerText=fontBook14Pt.innerText=sysDefPangram.value;

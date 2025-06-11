@@ -367,9 +367,9 @@ function jsonNews() {
 }
 function activeHrsBtn(id) {
     var arr=loadFile(id+'_session.json','active_hours').split(',');var arl=res=''; if (notNull(arr)) {
-        for (el in arr) {
+        arl="<p align='center'>"; for (el in arr) {
             arl+="<input type='button' onmouseover='soundButton();' value='"+arr[el]+"'>";
-        } res=arl;
+        } res=arl+"</p>";
     } else { res='' } return res;
 }
 function showLockInd() {
