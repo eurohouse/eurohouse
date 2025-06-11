@@ -4,6 +4,6 @@
 <?php $arr=fileopen('i18n.json');$arr['UN']['Continent']='Worldwide';
 $arr['EU']['Continent']='Europe';$arr['AQ']['Continent']='Antarctica';
 ksort($arr); foreach ($arr as $key=>$value) { ?>
-    <img name="<?=$key;?>" style="height:17%;opacity:<?=(in_array($key,explode(',',$session['units_list'])))?1:0.5;?>;" title="<?=$key.' ('.term($value['Continent'],$settings['locale']['continent'],$session['units']).')';?>" src="<?='Flag.'.$key.'.png';?>" onclick="setdata('units_list',arrangeMenu(sysDefUnitsList.value,this.name)); if (this.style.opacity==0.5) { this.style.setProperty('opacity',1); } else { this.style.setProperty('opacity',0.5); }">
+    <img name="<?=$key;?>" style="height:17%;opacity:<?=(in_array($key,explode(',',$session['units_list'])))?1:0.5;?>;" title="<?=$key.' ('.l10nEnt('continent',$value['Continent'],$settings,$session).')';?>" src="<?='Flag.'.$key.'.png';?>" onclick="setdata('units_list',arrangeMenu(sysDefUnitsList.value,this.name)); if (this.style.opacity==0.5) { this.style.setProperty('opacity',1); } else { this.style.setProperty('opacity',0.5); }">
 <?php } ?>
 </p>

@@ -3,13 +3,13 @@
 <?php
 $line1Size=70;$recycleDir='./.trash/';
 $recycleList=str_replace($recycleDir,'',(glob($recycleDir.'*_fragment.json')));
-$elemString=term('Total elements:',$settings['vocabulary'],$session['units']).' '.count($recycleList);
+$elemString=term('Total elements:',$settings,$session).' '.count($recycleList);
 $sizeRecBin=0; foreach ($recycleList as $val) {
     $sizeRecBin+=filesize($val);
-} $sizeString=sizestr($sizeRecBin,$settings['locale']['size'],$session['units']); $diskSpace=term('Free disk space:',$settings['vocabulary'],$session['units']).' '.sizestr(disk_free_space('/'),$settings['locale'],$session['units']);
+} $sizeString=sizestr($sizeRecBin,$settings['locale']['size'],$session['units']); $diskSpace=term('Free disk space:',$settings,$session).' '.sizestr(disk_free_space('/'),$settings['locale'],$session['units']);
 ?>
 <p align="center">
-    <?=$elemString;?> <?=term('(',$settings['vocabulary'],$session['units']).$sizeString.term(')',$settings['vocabulary'],$session['units']);?> <input type="button" value="<?=term('Clear', $settings['vocabulary'], $session['units']);?>" onmouseover="soundButton();" onclick="getdir('d','','.trash','from','','here',false);"><br><?=$diskSpace;?>
+    <?=$elemString;?> <?=term('(',$settings,$session).$sizeString.term(')',$settings,$session);?> <input type="button" value="<?=term('Clear',$settings,$session);?>" onmouseover="soundButton();" onclick="getdir('d','','.trash','from','','here',false);"><br><?=$diskSpace;?>
 </p>
 <?php foreach ($recycleList as $val) { ?>
     <p align="center" class="block">

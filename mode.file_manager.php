@@ -5,30 +5,30 @@
 <thead>
     <tr>
         <th style="width:8%;">
-            <?=term('Icon',$settings['vocabulary'],$session['units']);?>
+            <?=term('Icon',$settings,$session);?>
         </th>
         <th style="width:12%;">
             <a href="javascript:SortTable(1,'T');">
-                <?=term('Name',$settings['vocabulary'],$session['units']);?>
+                <?=term('Name',$settings,$session);?>
             </a>
         </th>
         <th style="width:8%;">
             <a href="javascript:SortTable(2,'N');">
-                <?=term('Size',$settings['vocabulary'],$session['units']);?>
+                <?=term('Size',$settings,$session);?>
             </a>
         </th>
         <th style="width:10%;">
             <a href="javascript:SortTable(3,'T');">
-                <?=term('MIME',$settings['vocabulary'],$session['units']);?>
+                <?=term('MIME',$settings,$session);?>
             </a>
         </th>
         <th style="width:4%;">
             <a href="javascript:SortTable(4,'N');">
-                <?=term('Rights',$settings['vocabulary'],$session['units']);?>
+                <?=term('Rights',$settings,$session);?>
             </a>
         </th>
         <th style="width:6%;">
-            <?=term('Actions',$settings['vocabulary'],$session['units']);?>
+            <?=term('Actions',$settings,$session);?>
         </th>
     </tr>
 </thead>
@@ -416,7 +416,7 @@ foreach ($index as $key=>$value) {
 </tbody>
 <tfoot>
     <tr>
-        <th style="width:25%;" colspan="3"><?=term('Total elements:',$settings['vocabulary'],$session['units']).' '.$searchFilesCount;?></th>
+        <th style="width:25%;" colspan="3"><?=term('Total elements:',$settings,$session).' '.$searchFilesCount;?></th>
         <th style="width:25%;" colspan="3"><?=$searchFilesSize;?></th>
     </tr>
 </tfoot>

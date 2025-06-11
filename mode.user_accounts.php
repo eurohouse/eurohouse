@@ -5,25 +5,25 @@
 <thead>
     <tr>
         <th style="width:10%;">
-            <?=term('Icon',$settings['vocabulary'],$session['units']);?>
+            <?=term('Icon',$settings,$session);?>
         </th>
         <th style="width:20%;">
             <a href="javascript:SortTable(1,'T');">
-                <?=term('Name',$settings['vocabulary'],$session['units']);?>
+                <?=term('Name',$settings,$session);?>
             </a>
         </th>
         <th style="width:20%;">
             <a href="javascript:SortTable(2,'T');">
-                <?=term('Project Name',$settings['vocabulary'],$session['units']);?>
+                <?=term('Project Name',$settings,$session);?>
             </a>
         </th>
         <th style="width:20%;">
             <a href="javascript:SortTable(3,'T');">
-                <?=term('Username',$settings['vocabulary'],$session['units']);?>
+                <?=term('Username',$settings,$session);?>
             </a>
         </th>
         <th style="width:10%;">
-            <?=term('Actions',$settings['vocabulary'],$session['units']);?>
+            <?=term('Actions',$settings,$session);?>
         </th>
     </tr>
 </thead>
@@ -65,7 +65,7 @@ foreach ($indexUsers as $key=>$value) {
 </tbody>
 <tfoot>
     <tr>
-        <th style="width:50%;" colspan="5"><?=term('Total elements:', $settings['vocabulary'], $session['units']).' '.count($indexUsers);?></th>
+        <th style="width:50%;" colspan="5"><?=term('Total elements:',$settings,$session).' '.count($indexUsers);?></th>
     </tr>
 </tfoot>
 </table>

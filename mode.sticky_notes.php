@@ -27,7 +27,7 @@ function countNote() {
 }
 </script>
 <p align='center' class='block'>
-<input class="text" id="myNotesRad" style="width:65%;" type="text" placeholder="<?=term('Symbolic Digits',$settings['vocabulary'],$session['units']);?>" value="<?=$session['numeric'];?>" onkeydown="if (event.keyCode==13) {
+<input class="text" id="myNotesRad" style="width:65%;" type="text" placeholder="<?=term('Symbolic Digits',$settings,$session);?>" value="<?=$session['numeric'];?>" onkeydown="if (event.keyCode==13) {
     setdata('numeric',myNotesRad.value);
 } else if (event.keyCode==27) { myNotesRad.value=''; countNote();
 } else if (event.keyCode==8) { handleInput(this.value);
@@ -38,12 +38,12 @@ function countNote() {
 <input type="image" id="myNotesResetBtn" onmouseover="soundButton();" class="power" onclick="myNotesRad.value=''; countNote();" src="<?=$prefix[3].'backspace.png';?>">
 </p>
 <p align='center' class='block'>
-<input class="text" id="myNotesEnt" style="width:34%;" type="text" placeholder="<?=term('Title',$settings['vocabulary'],$session['units']);?>" value="" onkeydown="if (event.keyCode==13) { myNotesEnc.focus();
+<input class="text" id="myNotesEnt" style="width:34%;" type="text" placeholder="<?=term('Title',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) { myNotesEnc.focus();
 } else if (event.keyCode==27) { this.value='';
 } else if (event.keyCode==8) { handleInput(this.value);
 } else if (event.keyCode==46) { handleInput(this.value);
 }" oninput="handleInput(this.value, true);">
-<input class="text" id="myNotesEnc" style="width:32%;" type="password" placeholder="<?=term('Password',$settings['vocabulary'],$session['units']);?>" value="" onkeydown="if (event.keyCode==13) { openNote(myNotesEnt.value);
+<input class="text" id="myNotesEnc" style="width:32%;" type="password" placeholder="<?=term('Password',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) { openNote(myNotesEnt.value);
 } else if (event.keyCode==27) { this.value=''; myNotesEnt.focus();
 } else if (event.keyCode==8) { handleInput(this.value);
 } else if (event.keyCode==46) { handleInput(this.value);
@@ -56,7 +56,7 @@ function countNote() {
 <div class="notesMenu" id="notesMenu"></div>
 <div class="notesContent">
 <p align='center'>
-<textarea id="myNotesDoc" style="width:100%;height:100%;" placeholder="<?=term('',$settings['locale']['cli'],$session['units'],'chat');?>" onkeydown="if (event.keyCode==27) {
+<textarea id="myNotesDoc" style="width:100%;height:100%;" placeholder="<?=term('',$settings,$session);?>" onkeydown="if (event.keyCode==27) {
     newNote();
 } else if (event.keyCode==8) { handleInput(this.value);
 } else if (event.keyCode==46) { handleInput(this.value);

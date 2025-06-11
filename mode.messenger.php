@@ -3,7 +3,7 @@
 <?php if (isAuthorized()) { ?>
 <div class='customPanel'>
 <p align='center' class='block'>
-<input type="text" id="composeMessage" style="width:54%;" placeholder="<?=term('',$settings['locale']['cli'],$session['units'],'chat');?>" value="" onkeydown="if (event.keyCode == 13) {
+<input type="text" id="composeMessage" style="width:54%;" placeholder="<?=term('',$settings,$session);?>" value="" onkeydown="if (event.keyCode == 13) {
     compose(sysDefSessionID.value,composeMessage.value);
 } else if (event.keyCode==27) {
     document.getElementById('composeMessage').value='';

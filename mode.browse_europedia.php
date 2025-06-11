@@ -2,19 +2,21 @@
 <!-- CH: Explorare Europedia; DE: Entdecken Sie Europedia; AT: Entdecken Sie Europedia; GR: Εξερευνήστε Ευρωπαιδεία; CY: Εξερευνήστε Ευρωπαιδεία; FR: Parcourir Europedia; BE: Parcourir Europedia; IT: Sfoglia Europadia; ES: Explora Europadia; MX: Explora Europadia; BR: Explorar a Europadia; PT: Explorar a Europadia; RO: Explorați Europedia; MD: Explorați Europedia; TR: Europedia'yı keşfedin; IN: यूरोपियाडिया का अन्वेषण करें; LK: यूरोपडिया अन्वेषणं कुर्वन्तु; NP: ཡོ་རོབ་གླིང་ལ་མྱུལ་ཞིང༌།; RU: Просмотр Европедии; UA: Досліджуйте Europedia; CN: 浏览元素 Europedia; KR: 요소 찾아보기 Europedia; JP: 要素の閲覧 Europedia; AE: تصفح عناصر Europedia -->
 <!-- <ref> -->
 <!-- true -->
-<?php $iconSize=50;$flagSize=($session['censor'])?2:4;
-$ssLC=$settings['locale'];$ssVC=$settings['vocabulary'];
+<?php
+$iconSize=50;$flagSize=($session['censor'])?2:4;
+$ssLC=$settings['locale'];
 $exemplarArr=exemplar(str_replace('./','',(glob('./*.models.json'))));
 $contentsArr=exemplar(str_replace('./','',(glob('./*.contents.json'))));
-$ssUN=$session['units']; if ($request['group']!='') {
+$ssUN=$session['units'];
+if ($request['group']!='') {
     foreach ($contentsArr as $key=>$value) {
         if ($value!=$request['group']) { unset($contentsArr[$key]); }
     } ?>
     <table style="width:100%;" id="table">
     <thead>
     <tr>
-        <th style="width:40%;"><?=term('Image',$ssVC,$ssUN);?></th>
-        <th style="width:5%;"><?=term('Actions',$ssVC,$ssUN);?></th>
+        <th style="width:40%;"><?=term('Image',$settings,$session);?></th>
+        <th style="width:5%;"><?=term('Actions',$settings,$session);?></th>
     </tr>
     </thead>
     <tbody><?php foreach ($contentsArr as $key=>$value) { ?>
@@ -30,7 +32,7 @@ $ssUN=$session['units']; if ($request['group']!='') {
 </tbody>
 <tfoot>
     <tr><th style="width:25%;" colspan="3">
-        <?=term('Total elements:', $ssVC,$ssUN).' '.count($contentsArr);?><br>
+        <?=term('Total elements:',$settings,$session).' '.count($contentsArr);?><br>
         <?=modelcard($request['group'],$contentsArr,$exemplarArr,$session,$settings);?>
     </th></tr>
 </tfoot>
@@ -47,43 +49,43 @@ $ssUN=$session['units']; if ($request['group']!='') {
 <thead>
     <tr>
         <th style="width:<?=$flagSize;?>%;">
-            <?=term('Flag',$ssVC,$ssUN);?>
+            <?=term('Flag',$settings,$session);?>
         </th>
         <th style="width:8%;">
             <a href="javascript:SortTable(1,'T');">
-                <?=term('Name',$ssVC,$ssUN);?>
+                <?=term('Name',$settings,$session);?>
             </a>
         </th>
         <?php if ($session['censor']!=0) { ?>
         <th style="width:8%;">
             <a href="javascript:SortTable(2,'T');">
-                <?=term('Description',$ssVC,$ssUN);?>
+                <?=term('Description',$settings,$session);?>
             </a>
         </th>
         <?php } else { ?>
         <th style="width:9%;">
             <a href="javascript:SortTable(2,'D');">
-                <?=term('Birthday',$ssVC,$ssUN);?>
+                <?=term('Birthday',$settings,$session);?>
             </a>
         </th>
         <th style="width:6%;">
             <a href="javascript:SortTable(3,'N');">
-                <?=term('Height',$ssVC,$ssUN);?>
+                <?=term('Height',$settings,$session);?>
             </a>
         </th>
         <th style="width:6%;">
             <a href="javascript:SortTable(4,'N');">
-                <?=term('Weight',$ssVC,$ssUN);?>
+                <?=term('Weight',$settings,$session);?>
             </a>
         </th>
         <th style="width:7%;">
             <a href="javascript:SortTable(5,'N');">
-                <?=term('Body Sizes',$ssVC,$ssUN);?>
+                <?=term('Body Sizes',$settings,$session);?>
             </a>
         </th>
         <th style="width:6%;">
             <a href="javascript:SortTable(6,'N');">
-                <?=term('Shoe Size',$ssVC,$ssUN);?>
+                <?=term('Shoe Size',$settings,$session);?>
             </a>
         </th>
         <?php } ?>
@@ -125,7 +127,7 @@ $ssUN=$session['units']; if ($request['group']!='') {
 </tbody>
 <tfoot>
     <tr>
-        <th style="width:25%;" colspan="7"><?=term('Total elements:',$settings['vocabulary'],$session['units']).' '.count($exemplarArr);?></th>
+        <th style="width:25%;" colspan="7"><?=term('Total elements:',$settings,$session).' '.count($exemplarArr);?></th>
     </tr>
 </tfoot>
 </table>
