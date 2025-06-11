@@ -15,7 +15,7 @@ if ($userData['vintage']!=0) {
 } else { $videoArr=["none","none","none","none","none","none"]; }
 $voc=$userSettings['vocabulary'];$uni=$userData['units'];
 $audioArr=[ $userData['audio_volume'],$userData['audio_speed'],$userData['video_volume'],$userData['video_speed'] ];
-$finTerms=[''=>term('',$userSettings['locale']['cli'],$uni,$userData['mode'])]; foreach ($voc as $key=>$val) {
+$finTerms=[''=>term('',$userSettings['locale']['cli'],$uni,$userData['mode'])]; foreach ($voc[$uni] as $key=>$val) {
     if ($key!='') { $finTerms[$key]=term($key,$voc,$uni); }
 }
 /* ¶ 0 */ echo $timeStr."\r\n\r\n".
