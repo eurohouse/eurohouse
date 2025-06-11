@@ -1,6 +1,6 @@
 <script>
 window.onload=function() {
-    init_user(sysDefSessionID.value); remove_users(',0,auto');
+    init_user(sysDefSessionID.value); delete_users(',0,auto');
     if (authstate()) { document.getElementById('omniBox').focus();
     } else { document.getElementById('omniBoxAuthLogin').focus(); }
     if (window.history.replaceState) {
