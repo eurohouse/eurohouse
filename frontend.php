@@ -368,7 +368,7 @@ function jsonNews() {
 function activeHrsBtn(id) {
     var arr=loadFile(id+'_session.json','active_hours').split(','),arl=''; for (el in arr) {
         arl+="<input type='button' onmouseover='soundButton();' value='"+arr[el]+"'>";
-    } return arl;
+    } return (arl!='')?arl:'';
 }
 function showLockInd() {
     var ob=((jsonarr(sysDefLockData.value)!==undefined)&&(jsonarr(sysDefLockData.value)!==null))?jsonarr(sysDefLockData.value):{};

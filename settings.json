@@ -1,19 +1,46 @@
 {
-    "lifetime": { "cookie_default": 0, "cookie_lengthen": 86400, "garbage_collector": 604800 },
+    "lifetime": {
+        "cookie_default": 0,
+        "cookie_lengthen": 86400,
+        "garbage_collector": 604800
+    },
     "intervals": {
-        "databox": 500, "dataload": 500, "world_clock": 500, "visual_effects": 250, "wallpaper_engine": 500, "automator": 250
+        "databox": 500,
+        "dataload": 500,
+        "world_clock": 500,
+        "dynamic_panels": 250,
+        "visual_effects": 250,
+        "wallpaper_engine": 500,
+        "automator": 250
     },
     "viewport": {
         "width": "device-width", "initial-scale": "1.0",
         "maximum-scale": "1.0", "user-scalable": "0"
     }, "dataload": [ "msgbox", "book", "store" ],
     "locks": {
-        "background": "!metro,distro,osx,xp", "avatar": "avatar", "pictogram": "avatar", "reticle": "avatar", "music": "botticelli,orchestra", "font": "unix", "sound": "unix"
+        "background": "!metro,distro,osx,xp",
+        "avatar": "avatar",
+        "pictogram": "avatar",
+        "reticle": "avatar",
+        "music": "botticelli,orchestra",
+        "font": "unix",
+        "sound": "unix"
     },
     "locks_icons": {
-        "background": "image", "avatar": "user", "pictogram": "home", "reticle": "power", "music": "music", "font": "font", "sound": "audio"
+        "background": "image",
+        "avatar": "user",
+        "pictogram": "home",
+        "reticle": "power",
+        "music": "music",
+        "font": "font",
+        "sound": "audio"
     },
-    "locks_thumb": [ "background", "avatar", "pictogram", "reticle" ],
+    "locks_thumb": [
+        "background",
+        "avatar",
+        "pictogram",
+        "reticle"
+    ],
     "libraries": {
         "domestic": [
             "backend.js","frontend.js","tablesort.js", "requests.js","commands.js","jquery.js", "crypto.js","XRegExp.js","statistics.js", "math.js","nerdamer.js","algebra.js","calculus.js","solve.js", "chatgpt.min.js"

@@ -80,13 +80,10 @@ function world_clock() {
             var mixers=jsonarr(sysDefMixers.value);
             var uidm=sysDefSessionID.value;
             var bndm=strarr(sysDefBindData.value,';',':')[uidm];
-            var finterm=jsonarr(sysDefFinTerms.value);
             $('#sysDefLockIcons').val(pager(data,8));
             $('#sysDefDataLoad').val(pager(data,9));
-            if (authstate()) { omniBox.placeholder=finterm[10]; }
             if (requestMode.value=='volume_control') {
-                audioVolInd.value=mixers[0]; audioRatInd.value=mixers[1];
-                videoVolInd.value=mixers[2]; videoRatInd.value=mixers[3];
+                audioVolInd.value=mixers[0]; audioRatInd.value=mixers[1]; videoVolInd.value=mixers[2]; videoRatInd.value=mixers[3];
             } document.querySelector(':root').style.setProperty('--bicolor',sysDefAccent.value);
             sysDefMsgMaxCount.value=parseInt(Object.keys(jsonFilter(sysDefMyMsgboxData.value,uidm,sysDefFind.value)).length-1); sysDefMsgCounter.value=(sysDefReverse.value!=0)?((parseInt(sysDefMsgCounter.value)<=0)?sysDefMsgMaxCount.value:(parseInt(sysDefMsgCounter.value)-1)):((parseInt(sysDefMsgCounter.value)>=sysDefMsgMaxCount.value)?0:(parseInt(sysDefMsgCounter.value)+1));
             sysDefMsgCurrent.value=(sysDefCypher.value!='')?enmorse(Object.values(jsonFilter(sysDefMyMsgboxData.value,uidm,sysDefFind.value,'msg'))[sysDefMsgCounter.value],uidm,sysDefCypher.value):Object.values(jsonFilter(sysDefMyMsgboxData.value,uidm,sysDefFind.value,'msg'))[sysDefMsgCounter.value];
@@ -126,100 +123,7 @@ function world_clock() {
             $('#buttonMaximize').attr('src',sysDefPrefix.value+((sysDefApps.value!=0)?'restore.png':'maximize.png'));
             $('#buttonMenuStyle').attr('src',sysDefPrefix.value+((sysDefIcons.value!=0)?'menu.png':'list.png')); $('#buttonUpdate').attr('src',sysDefPrefix.value+'world.png');
             $('#buttonUserStatus').attr('src',sysDefPrefix.value+"<?=(isAuthorized())?'logout.png':'login.png';?>"); $('#buttonEscape').attr('src',sysDefPrefix.value+'escape.png');
-            if (requestMode.value=='bookkeeping') {
-                bookkeep_disp.innerHTML='<table style="width:100%;position:relative;"><thead><th style="width:25%;">'+finterm[8]+'</th><th style="width:25%;">'+finterm[0]+'</th><th style="width:25%;">'+finterm[1]+'</th><th style="width:25%;">'+finterm[2]+'</th></thead><tbody>'+jsonBookKeep(sysDefMyBookData.value)+'</tbody></table>';
-            } else if (requestMode.value=='accessibility') {
-                pressedKeyInfo.innerText=finterm[9];
-            } else if (requestMode.value=='album_collection') {
-                album_mode_switch.innerHTML=showLockInd();
-                var epr='',alr=indexAvatars(sysDefAlbum.value),upn=decipher(sysDefPlaylist.value,uidm,sysDefNumeric.value,'arr'),arl="",plCol=sysDefPlaylistColumns.value;
-                for (iu in upn) {
-                    arl+="<a href='javascript:omniListen(%22"+rfc3986(upn[iu])+"%22,true);'>"+(parseInt(iu)+1)+'. '+upn[iu]+"</a><br>";
-                } currentPlaylist.innerHTML=arl;
-                currentPlaylist.setAttribute('style','-webkit-columns:'+plCol+';-moz-columns:'+plCol+';columns:'+plCol+';');
-                var alb=lockarr(sysDefAlbum.value),arl="";
-                var albCol=(((sysDefAlbum.value=='avatar')||(sysDefAlbum.value=='pictogram')||(sysDefAlbum.value=='reticle')||(sysDefAlbum.value=='background'))?1:sysDefAlbumColumns.value); if (sysDefAlbum.value=='music') {
-                    for (iu in alb) {
-                        elid=CryptoJS.SHA256(alb[iu]).toString();
-                        arl+="<a id='albumEl"+elid+"' href='javascript:setdata(%22playlist%22,playlistNext(%22"+rfc3986(alb[iu])+"%22));'>"+(parseInt(iu)+1)+'. '+alb[iu]+"</a><br>";
-                    }
-                } else if (sysDefAlbum.value=='sound') {
-                    for (iu in alb) {
-                        arl+="<a href='javascript:omniListen(%22"+rfc3986(alb[iu])+"%22,true);'>"+alb[iu]+"</a><br>";
-                    }
-                } else if (sysDefAlbum.value=='font') {
-                    for (iu in alb) {
-                        arl+="<a href='javascript:omniRead(%22font_book%22,%22"+rfc3986(alb[iu])+"%22,%22"+requestLock.value+"%22);'>"+alb[iu]+"</a><br>";
-                    }
-                } else if (sysDefAlbum.value=='background') {
-                    for (iu in alb) {
-                        epr=alb[iu].split('.')[0];
-                        arl+="<img title='"+loadFile(epr+'.pkg','title')+"' src='"+loadFile(epr+'.pkg','favicon')+"' style='width:18%;'>";
-                    }
-                } else if (sysDefAlbum.value=='avatar') {
-                    epr=sysDefAva1Prefix.value;
-                    for (iu in alr) {
-                        arl+="<input type='image' class='power' style='width:40px;height:40px;' src='"+epr+alr[iu]+".png' title='"+alr[iu]+"' onclick='setdata(&#34;avatar&#34;,&#34;"+alr[iu]+"&#34;);'>";
-                    }
-                } else if (sysDefAlbum.value=='pictogram') {
-                    epr=sysDefPrefix.value;
-                    for (iu in alr) {
-                        arl+="<input type='image' class='power' style='width:40px;height:40px;' src='"+epr+alr[iu]+".png' title='"+(alr[iu].toUpperCase())+"'>";
-                    }
-                } else if (sysDefAlbum.value=='reticle') {
-                    epr=sysDefRet1Prefix.value;
-                    for (iu in alr) {
-                        arl+="<input type='image' class='power' style='width:50px;height:50px;' src='"+epr+alr[iu]+".png' title='"+(alr[iu].toUpperCase())+"' onclick='setdata(&#34;reticle&#34;,&#34;"+alr[iu]+"&#34;);'>";
-                    }
-                } currentAlbumList.innerHTML=arl;
-                currentAlbumList.setAttribute('style','-webkit-columns:'+albCol+';-moz-columns:'+albCol+';columns:'+albCol+';text-align:'+(((sysDefAlbum.value=='avatar')||(sysDefAlbum.value=='pictogram')||(sysDefAlbum.value=='reticle')||(sysDefAlbum.value=='background'))?'center':'left')+';');
-            } else if (requestMode.value=='inventory') {
-                var stoDop='<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+finterm[3]+'</th><th style="width:7%;">'+finterm[4]+'</th><th style="width:3%;">'+finterm[5]+'</th></thead><tbody>'+jsonStore(uidm)+'</tbody></table>'; store_disp.innerHTML=stoDop;
-            } else if (requestMode.value=='point_of_sale') {
-                var stoInf="<p align='center'>"+finterm[6]+"</p><p align='center'>"+finterm[7]+"</p><p align='center'>"+activeHrsBtn(bndm)+"</p>";
-                var stoDop='<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+finterm[3]+'</th><th style="width:7%;">'+finterm[4]+'</th><th style="width:3%;">'+finterm[5]+'</th></thead><tbody>'+jsonStore(bndm)+'</tbody></table>'; store_disp.innerHTML=(uidm!=bndm)?((storeOpen(bndm))?stoDop:stoInf):stoDop;
-            } else if (requestMode.value=='font_book') {
-                fontBook24Pt.innerText=fontBook22Pt.innerText=fontBook20Pt.innerText=fontBook18Pt.innerText=fontBook16Pt.innerText=fontBook14Pt.innerText=sysDefPangram.value;
-            } else if (requestMode.value=='statistics') {
-                $('#switchBtnAuto').attr('src',sysDefPrefix.value+'steer.png');
-                $('#switchBtnBind').attr('src',sysDefPrefix.value+'chain.png');
-                $('#switchBtnTool').attr('src',sysDefPrefix.value+'parfum.png');
-                $('#switchBtnScore').attr('src',sysDefPrefix.value+'money.png');
-                $('#switchBtnHDI').attr('src',sysDefPrefix.value+'heart.png');
-                $('#switchBtnModel').attr('src',sysDefPrefix.value+'user.png');
-                $('#switchBtnIP').attr('src',sysDefPrefix.value+'world.png');
-            } else if (requestMode.value=='preferences') {
-                $('#prefsBtnApply').attr('src',sysDefPrefix.value+'return.png');
-                $('#prefsBtnUpdate').attr('src',sysDefPrefix.value+'lock.png');
-                $('#prefsBtnReset').attr('src',sysDefPrefix.value+'backspace.png');
-                $('#prefsBtnReload').attr('src',sysDefPrefix.value+'update.png');
-                $('#prefsBtnClear').attr('src',sysDefPrefix.value+'error.png');
-                $('#prefsBtnApplySizes').attr('src',sysDefPrefix.value+'ruler.png');
-                $('#prefsBtnApplyColors').attr('src',sysDefPrefix.value+'paint.png');
-            } else if (requestMode.value=='personalization') {
-                $('#prefsBtnApply').attr('src',sysDefPrefix.value+'return.png');
-                $('#prefsBtnUpdate').attr('src',sysDefPrefix.value+'lock.png');
-                $('#prefsBtnReset').attr('src',sysDefPrefix.value+'backspace.png');
-                $('#prefsBtnReload').attr('src',sysDefPrefix.value+'update.png');
-                $('#prefsBtnClear').attr('src',sysDefPrefix.value+'error.png');
-                $('#prefsBtnUpdateTitle').attr('src',sysDefPrefix.value+'keyboard.png');
-                $('#prefsBtnUpdateTitles').attr('src',sysDefPrefix.value+'movie.png');
-            } else if (requestMode.value=='sticky_notes') {
-                if (authstate()) {
-                    $('#myNotesApplyBtn').attr('src',sysDefPrefix.value+'return.png');
-                    $('#myNotesKbdBtn').attr('src',sysDefPrefix.value+'keyboard.png');
-                    $('#myNotesResetBtn').attr('src',sysDefPrefix.value+'backspace.png');
-                    $('#myNotesNewBtn').attr('src',sysDefPrefix.value+'new.png');
-                    $('#myNotesOpenBtn').attr('src',sysDefPrefix.value+'open.png');
-                    $('#myNotesSaveBtn').attr('src',sysDefPrefix.value+'save.png');
-                    notesMenu.innerHTML='<p align="center" class="block">'+noteBook(sysDefMetaList.value)+'</p>';
-                }
-            } else if (requestMode.value=='user_tutorial') {
-                helpMenu.innerHTML='<p align="center" class="block">'+helpBook()+'</p>';
-            } else if (requestMode.value=='text_editor') {
-                $('#textEdRep').attr('src',sysDefPrefix.value+'new.png');
-                $('#textEdRepAll').attr('src',sysDefPrefix.value+'copy.png');
-            } if (((sysDefObserve.value!=0)&&(sysDefSpectate.value!=0))||((sysDefObserve.value!=0)&&(sysDefSpectate.value==0))) {
+            if (((sysDefObserve.value!=0)&&(sysDefSpectate.value!=0))||((sysDefObserve.value!=0)&&(sysDefSpectate.value==0))) {
                 $('#powerButton').show();$('.panel').hide();
                 $('.customPanel').hide();$('.upperGap').hide();
                 $('.lowerGap').hide();$('.topbar').hide();
@@ -248,6 +152,104 @@ function world_clock() {
             }
         },
     });
+}
+function dynamic_panels() {
+    var finterm=jsonarr(sysDefFinTerms.value);
+    var uidm=sysDefSessionID.value;
+    var bndm=strarr(sysDefBindData.value,';',':')[uidm];
+    if (authstate()) { omniBox.placeholder=finterm['']; }
+    if (requestMode.value=='bookkeeping') {
+        bookkeep_disp.innerHTML='<table style="width:100%;position:relative;"><thead><th style="width:25%;">'+finterm['Recipient']+'</th><th style="width:25%;">'+finterm['Debit']+'</th><th style="width:25%;">'+finterm['Credit']+'</th><th style="width:25%;">'+finterm['Balance']+'</th></thead><tbody>'+jsonBookKeep(sysDefMyBookData.value)+'</tbody></table>';
+    } else if (requestMode.value=='accessibility') {
+        pressedKeyInfo.innerText=finterm['Press any key to continue...'];
+    } else if (requestMode.value=='album_collection') {
+        album_mode_switch.innerHTML=showLockInd();
+        var epr='',alr=indexAvatars(sysDefAlbum.value);
+        var upn=decipher(sysDefPlaylist.value,uidm,sysDefNumeric.value,'arr');
+        var arl="",plCol=sysDefPlaylistColumns.value;
+        for (iu in upn) {
+            arl+="<a href='javascript:omniListen(%22"+rfc3986(upn[iu])+"%22,true);'>"+(parseInt(iu)+1)+'. '+upn[iu]+"</a><br>";
+        } currentPlaylist.innerHTML=arl;
+        currentPlaylist.setAttribute('style','-webkit-columns:'+plCol+';-moz-columns:'+plCol+';columns:'+plCol+';');
+        var alb=lockarr(sysDefAlbum.value),arl="";
+        var albCol=(((sysDefAlbum.value=='avatar')||(sysDefAlbum.value=='pictogram')||(sysDefAlbum.value=='reticle')||(sysDefAlbum.value=='background'))?1:sysDefAlbumColumns.value);
+        if (sysDefAlbum.value=='music') {
+            for (iu in alb) {
+                elid=CryptoJS.SHA256(alb[iu]).toString();
+                arl+="<a id='albumEl"+elid+"' href='javascript:setdata(%22playlist%22,playlistNext(%22"+rfc3986(alb[iu])+"%22));'>"+(parseInt(iu)+1)+'. '+alb[iu]+"</a><br>";
+            }
+        } else if (sysDefAlbum.value=='sound') {
+            for (iu in alb) {
+                arl+="<a href='javascript:omniListen(%22"+rfc3986(alb[iu])+"%22,true);'>"+alb[iu]+"</a><br>";
+            }
+        } else if (sysDefAlbum.value=='font') {
+            for (iu in alb) {
+                arl+="<a href='javascript:omniRead(%22font_book%22,%22"+rfc3986(alb[iu])+"%22,%22"+requestLock.value+"%22);'>"+alb[iu]+"</a><br>";
+            }
+        } else if (sysDefAlbum.value=='background') {
+            for (iu in alb) {
+                epr=alb[iu].split('.')[0];
+                arl+="<img title='"+loadFile(epr+'.pkg','title')+"' src='"+loadFile(epr+'.pkg','favicon')+"' style='width:18%;'>";
+            }
+        } else if (sysDefAlbum.value=='avatar') {
+            epr=sysDefAva1Prefix.value;
+            for (iu in alr) {
+                arl+="<input type='image' class='power' style='width:40px;height:40px;' src='"+epr+alr[iu]+".png' title='"+alr[iu]+"' onclick='setdata(&#34;avatar&#34;,&#34;"+alr[iu]+"&#34;);'>";
+            }
+        } else if (sysDefAlbum.value=='pictogram') {
+            epr=sysDefPrefix.value;
+            for (iu in alr) {
+                arl+="<input type='image' class='power' style='width:40px;height:40px;' src='"+epr+alr[iu]+".png' title='"+(alr[iu].toUpperCase())+"'>";
+            }
+        } else if (sysDefAlbum.value=='reticle') {
+            epr=sysDefRet1Prefix.value;
+            for (iu in alr) {
+                arl+="<input type='image' class='power' style='width:50px;height:50px;' src='"+epr+alr[iu]+".png' title='"+(alr[iu].toUpperCase())+"' onclick='setdata(&#34;reticle&#34;,&#34;"+alr[iu]+"&#34;);'>";
+            }
+        } currentAlbumList.innerHTML=arl;
+        currentAlbumList.setAttribute('style','-webkit-columns:'+albCol+';-moz-columns:'+albCol+';columns:'+albCol+';text-align:'+(((sysDefAlbum.value=='avatar')||(sysDefAlbum.value=='pictogram')||(sysDefAlbum.value=='reticle')||(sysDefAlbum.value=='background'))?'center':'left')+';');
+    } else if (requestMode.value=='inventory') {
+        var stoDop='<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+finterm['Name']+'</th><th style="width:7%;">'+finterm['Amount']+'</th><th style="width:3%;">'+finterm['Price']+'</th></thead><tbody>'+jsonStore(uidm)+'</tbody></table>';
+        store_disp.innerHTML=stoDop;
+    } else if (requestMode.value=='point_of_sale') {
+        var stoInf="<p align='center'>"+finterm['The market is closed.']+"</p><p align='center'>"+finterm['Active Hours:']+"</p><p align='center'>"+activeHrsBtn(bndm)+"</p>";
+        var stoDop='<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+finterm['Name']+'</th><th style="width:7%;">'+finterm['Amount']+'</th><th style="width:3%;">'+finterm['Price']+'</th></thead><tbody>'+jsonStore(bndm)+'</tbody></table>'; store_disp.innerHTML=(uidm!=bndm)?((storeOpen(bndm))?stoDop:stoInf):stoDop;
+    } else if (requestMode.value=='font_book') {
+        fontBook24Pt.innerText=fontBook22Pt.innerText=fontBook20Pt.innerText=fontBook18Pt.innerText=fontBook16Pt.innerText=fontBook14Pt.innerText=sysDefPangram.value;
+    } else if (requestMode.value=='statistics') {
+        $('#switchBtnAuto').attr('src',sysDefPrefix.value+'steer.png'); $('#switchBtnBind').attr('src',sysDefPrefix.value+'chain.png'); $('#switchBtnTool').attr('src',sysDefPrefix.value+'parfum.png'); $('#switchBtnScore').attr('src',sysDefPrefix.value+'money.png'); $('#switchBtnHDI').attr('src',sysDefPrefix.value+'heart.png'); $('#switchBtnModel').attr('src',sysDefPrefix.value+'user.png'); $('#switchBtnIP').attr('src',sysDefPrefix.value+'world.png');
+    } else if (requestMode.value=='preferences') {
+        $('#prefsBtnApply').attr('src',sysDefPrefix.value+'return.png');
+        $('#prefsBtnUpdate').attr('src',sysDefPrefix.value+'lock.png');
+        $('#prefsBtnReset').attr('src',sysDefPrefix.value+'backspace.png');
+        $('#prefsBtnReload').attr('src',sysDefPrefix.value+'update.png');
+        $('#prefsBtnClear').attr('src',sysDefPrefix.value+'error.png');
+        $('#prefsBtnApplySizes').attr('src',sysDefPrefix.value+'ruler.png');
+        $('#prefsBtnApplyColors').attr('src',sysDefPrefix.value+'paint.png');
+    } else if (requestMode.value=='personalization') {
+        $('#prefsBtnApply').attr('src',sysDefPrefix.value+'return.png');
+        $('#prefsBtnUpdate').attr('src',sysDefPrefix.value+'lock.png');
+        $('#prefsBtnReset').attr('src',sysDefPrefix.value+'backspace.png');
+        $('#prefsBtnReload').attr('src',sysDefPrefix.value+'update.png');
+        $('#prefsBtnClear').attr('src',sysDefPrefix.value+'error.png');
+        $('#prefsBtnUpdateTitle').attr('src',sysDefPrefix.value+'keyboard.png');
+        $('#prefsBtnUpdateTitles').attr('src',sysDefPrefix.value+'movie.png');
+    } else if (requestMode.value=='sticky_notes') {
+        if (authstate()) {
+            $('#myNotesApplyBtn').attr('src',sysDefPrefix.value+'return.png');
+            $('#myNotesKbdBtn').attr('src',sysDefPrefix.value+'keyboard.png');
+            $('#myNotesResetBtn').attr('src',sysDefPrefix.value+'backspace.png');
+            $('#myNotesNewBtn').attr('src',sysDefPrefix.value+'new.png');
+            $('#myNotesOpenBtn').attr('src',sysDefPrefix.value+'open.png');
+            $('#myNotesSaveBtn').attr('src',sysDefPrefix.value+'save.png');
+            notesMenu.innerHTML='<p align="center" class="block">'+noteBook(sysDefMetaList.value)+'</p>';
+        }
+    } else if (requestMode.value=='user_tutorial') {
+        helpMenu.innerHTML='<p align="center" class="block">'+helpBook()+'</p>';
+    } else if (requestMode.value=='text_editor') {
+        $('#textEdRep').attr('src',sysDefPrefix.value+'new.png');
+        $('#textEdRepAll').attr('src',sysDefPrefix.value+'copy.png');
+    }
 }
 function visual_effects() {
     document.querySelector(':root').style.setProperty('--grad-fore',sysDefGradientFore.value+'deg');

@@ -15,19 +15,9 @@ if ($userData['vintage']!=0) {
 } else { $videoArr=["none","none","none","none","none","none"]; }
 $voc=$userSettings['vocabulary'];$uni=$userData['units'];
 $audioArr=[ $userData['audio_volume'],$userData['audio_speed'],$userData['video_volume'],$userData['video_speed'] ];
-$finTerms=[
-    term('Debit',$voc,$uni),
-    term('Credit',$voc,$uni),
-    term('Balance',$voc,$uni),
-    term('Name',$voc,$uni),
-    term('Amount',$voc,$uni),
-    term('Price',$voc,$uni),
-    term('The market is closed.',$voc,$uni),
-    term('Active Hours:',$voc,$uni),
-    term('Agent',$voc,$uni),
-    term('Press any key to continue...',$voc,$uni),
-    term('',$userSettings['locale']['cli'],$uni,$userData['mode'])
-];
+$finTerms=[''=>term('',$userSettings['locale']['cli'],$uni,$userData['mode'])]; foreach ($voc as $key=>$val) {
+    if ($key!='') { $finTerms[$key]=term($key,$voc,$uni); }
+}
 /* ¶ 0 */ echo $timeStr."\r\n\r\n".
 /* ¶ 1 */ $dateStr."\r\n\r\n".
 /* ¶ 2 */ hhmmss($alarmInTime)."\r\n\r\n".
