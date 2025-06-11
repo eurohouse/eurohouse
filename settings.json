@@ -5,11 +5,11 @@
         "garbage_collector": 604800
     },
     "intervals": {
-        "databox": 500,
-        "dataload": 500,
+        "databox": 1000,
+        "dataload": 750,
         "world_clock": 500,
-        "dynamic_panels": 250,
-        "visual_effects": 250,
+        "dynamic_panels": 400,
+        "visual_effects": 300,
         "wallpaper_engine": 500,
         "automator": 250
     },
