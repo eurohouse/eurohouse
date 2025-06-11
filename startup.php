@@ -94,7 +94,7 @@ function world_clock() {
                     playAudio(backgroundPlayer,sysDefBackgroundSound.value);
                 } else { pauseAudio(backgroundPlayer); }
             } sysDefPostBackEff.value=sysDefLoop.value;
-            if (requestMode.value=='messenger') { msgBox.innerHTML='<p>'+jsonHTML(sysDefMyMsgboxData.value,uidm,sysDefFind.value)+'</p>'; } if (requestMode.value=='news_feed') { newsBox.innerHTML='<p>'+jsonNews()+'</p>'; } $('#powerButton').attr('src',sysDefPrefix.value+'power.png');
+            $('#powerButton').attr('src',sysDefPrefix.value+'power.png');
             $('#buttonPrev').attr('src',sysDefPrefix.value+'rew.png');
             $('#buttonNext').attr('src',sysDefPrefix.value+'ff.png');
             $('#buttonLock').attr('src',sysDefPrefix.value+((sysDefLock.value!=0)?'key.png':'lock.png'));
@@ -159,7 +159,12 @@ function dynamic_panels() {
     var uidm=sysDefSessionID.value;
     var bndm=strarr(sysDefBindData.value,';',':')[uidm];
     if (authstate()) { omniBox.placeholder=finterm['']; }
-    if (requestMode.value=='bookkeeping') {
+    if (requestMode.value=='messenger') {
+        msgBox.innerHTML='<p>'+jsonHTML(sysDefMyMsgboxData.value,uidm,sysDefFind.value)+'</p>';
+        msgBox.placeholder=finterm['</chat/>'];
+    } else if (requestMode.value=='news_feed') {
+        newsBox.innerHTML='<p>'+jsonNews()+'</p>';
+    } else if (requestMode.value=='bookkeeping') {
         bookkeep_disp.innerHTML='<table style="width:100%;position:relative;"><thead><th style="width:25%;">'+finterm['Recipient']+'</th><th style="width:25%;">'+finterm['Debit']+'</th><th style="width:25%;">'+finterm['Credit']+'</th><th style="width:25%;">'+finterm['Balance']+'</th></thead><tbody>'+jsonBookKeep(sysDefMyBookData.value)+'</tbody></table>';
     } else if (requestMode.value=='accessibility') {
         pressedKeyInfo.innerText=finterm['Press any key to continue...'];

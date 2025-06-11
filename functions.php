@@ -616,7 +616,7 @@ function titled($name,$units='EU') {
 function term($word='',array $voc,array $ses) {
     if ($word=='') {
         $res=(isset($voc['locale']['cli'][$ses['mode']][$ses['units']]))?$voc['locale']['cli'][$ses['mode']][$ses['units']]:$voc['locale']['cli'][$ses['mode']]['default'];
-    } elseif (preg_match('/^<\/.*\/>$/gi',$word)) {
+    } elseif (str_start_with($word,'</')&&str_ends_with($word,'/>')) {
         $rep=str_replace('/>','',str_replace('</','',$word));
         $res=(isset($voc['locale']['cli'][$rep][$ses['units']]))?$voc['locale']['cli'][$rep][$ses['units']]:$voc['locale']['cli'][$rep]['default'];
     } else {
@@ -628,7 +628,8 @@ function l10nEnt($cat='',$word='',array $voc,array $ses) {
 }
 function terms(array $voc,array $ses) {
     $arr=[''=>term('',$voc,$ses)];
-    $arr=['""'=>term('""',$voc,$ses)];
+    $arr=['</start/>'=>term('</start/>',$voc,$ses)];
+    $arr=['</chat/>'=>term('</chat/>',$voc,$ses)];
     foreach ($voc['vocabulary'][array_key_first($voc['vocabulary'])] as $key=>$val) {
         if ($key!='') { $arr[$key]=term($key,$voc,$ses); }
     } return $arr;
