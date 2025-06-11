@@ -238,9 +238,9 @@ function init_user(id,pass=null) {
     var scoreTab=strarr(sysDefPowersData.value,';',':');
     if (!notNull(scoreTab[id])) { scoreTab[id]=0; }
     sysDefPowersData.value=arrstr(scoreTab,';',':');
-    var bindTab=strarr(sysDefBindData.value,';',':');
+    /*var bindTab=strarr(sysDefBindData.value,';',':');
     if (!notNull(bindTab[id])) { bindTab[id]=id; }
-    sysDefBindData.value=arrstr(bindTab,';',':');
+    sysDefBindData.value=arrstr(bindTab,';',':');*/
     var autoTab=strarr(sysDefAutoData.value,';',':');
     if (!notNull(autoTab[id])) { autoTab[id]='manual'; }
     sysDefAutoData.value=arrstr(autoTab,';',':');
@@ -257,11 +257,9 @@ function init_user(id,pass=null) {
     if (!notNull(storeData)) {
         set('./'+id+'_store.json',JSON.stringify({}),'rw');
     } if (isLine(pass)) { set(id+'_password',pass,'rw'); }
-    batch_remove_users(',0,auto');
 }
-function batch_remove_users(str='') {
-    var arr=str.split(',');
-    for (i=0; i<arr.length; i++) {
+function delete_users(str='') {
+    var arr=str.split(','); for (i=0; i<arr.length; i++) {
         if (user_exists(arr[i])) { delete_user(arr[i]); }
     }
 }
