@@ -614,11 +614,9 @@ function titled($name,$units='EU') {
     } else { $res=$domFile['title']; } return $res;
 }
 function term($word='',array $voc,array $ses) {
-    if ($word=='') {
-        $res=(isset($voc['locale']['cli'][$ses['mode']][$ses['units']]))?$voc['locale']['cli'][$ses['mode']][$ses['units']]:$voc['locale']['cli'][$ses['mode']]['default'];
-    } elseif ((str_starts_with($word,'<'))&&(str_ends_with($word,'>'))) {
+    if ((str_starts_with($word,'<'))&&(str_ends_with($word,'>'))) {
         $rep=str_replace('>','',str_replace('<','',$word));
-        $res=(isset($voc['locale']['cli'][$rep][$ses['units']]))?$voc['locale']['cli'][$rep][$ses['units']]:$voc['locale']['cli'][$rep]['default'];
+        $res=(isset($voc['locale']['cli'][$rep]))?((isset($voc['locale']['cli'][$rep][$ses['units']]))?$voc['locale']['cli'][$rep][$ses['units']]:$voc['locale']['cli'][$rep]['default']):$voc['locale']['cli']['start']['default'];
     } else {
         $res=(isset($voc['vocabulary'][$ses['units']][$word]))?$voc['vocabulary'][$ses['units']][$word]:$word;
     } return $res;
@@ -627,10 +625,9 @@ function l10nEnt($cat='',$word='',array $voc,array $ses) {
     return (isset($voc['locale'][$cat][$word][$ses['units']]))?$voc['locale'][$cat][$word][$ses['units']]:$voc['locale'][$cat][$word]['default'];
 }
 function terms(array $voc,array $ses) {
-    $arr=[''=>term('',$voc,$ses)];
-    $arr['<start>']=term('<start>',$voc,$ses);
-    $arr['<chat>']=term('<chat>',$voc,$ses);
-    foreach ($voc['vocabulary'][array_key_first($voc['vocabulary'])] as $key=>$val) {
+    $arr=[]; foreach ($voc['locale']['cli'] as $key=>$val) {
+        $arr['<'.$key.'>']=term('<'.$key.'>',$voc,$ses);
+    } foreach ($voc['vocabulary'][array_key_first($voc['vocabulary'])] as $key=>$val) {
         if ($key!='') { $arr[$key]=term($key,$voc,$ses); }
     } return $arr;
 }
