@@ -8,7 +8,7 @@
         "databox": 1000,
         "dataload": 1000,
         "world_clock": 1000,
-        "visual_effects": 250,
+        "visual_effects": 500,
         "wallpaper_engine": 1000,
         "automator": 500
     },
