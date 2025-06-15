@@ -11,7 +11,7 @@ $uni=$userData['units']; $loc=$userSettings['locale'];
 $pref=prefixes($userData); $fore=$pref[1]; $back=$pref[0];
 if (isset($cont[$showFilename])) {
     $ent=$exem[$cont[$showFilename]];
-    $showLine=modelcard($cont[$showFilename],$cont,$exem,$userData,$userSettings);
+    $showLine=modelcard($cont[$showFilename],$cont,$exem,$userData,$userSettings)['line'];
     $showHead=(isset($ent['language'][$uni]['title']))?$ent['language'][$uni]['title']:$cont[$showFilename]; $showBody=(isset($ent['language'][$uni]['memoir']))?$ent['language'][$uni]['memoir']:((isset($ent['memoir']))?$ent['memoir']:$showLine);
     $showURLMaison=(isset($ent['maison']))?$ent['maison']:"";
     if (isset($ent['insignia'])) {

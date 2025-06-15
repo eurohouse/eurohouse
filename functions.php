@@ -326,22 +326,30 @@ function getways($name,array $ses) {
 }
 function modelcard($id,$cont,$exem,$ses,$sti) {
     $uni=$ses['units']; $loc=$sti['locale']; $voc=$sti['vocabulary'];
-    $anno=(isset($loc['anno'][$uni]))?$loc['anno'][$uni]:$loc['anno']['default']; if (isset($exem[$id])) { $ent=$exem[$id];
-        $hd=(isset($ent['language'][$uni]['title']))?$ent['language'][$uni]['title']:$id;
-        $len=(isset($ent['height']))?((isset($loc['length'][$uni]))?((isset($loc['length'][$uni]['inch']))?incher($ent['height']):round(($ent['height']*$loc['length'][$uni]['coefficient']),2).' '.$loc['length'][$uni]['sign']):round(($ent['height']*$loc['length']['default']['coefficient']),2).' '.$loc['length']['default']['sign']):'';
-        $mas=(isset($ent['weight']))?((isset($loc['mass'][$uni]))?(round($ent['weight']*$loc['mass'][$uni]['coefficient']).' '.$loc['mass'][$uni]['sign']):round($ent['weight']*$loc['mass']['default']['coefficient']).' '.$loc['mass']['default']['sign']):'';
-        $szs=(isset($ent['sizes']))?((isset($loc['length'][$uni]['inch']))?(round(explode('-',$ent['sizes'])[0]*$loc['length'][$uni]['coefficient']).'-'.round(explode('-',$ent['sizes'])[1]*$loc['length'][$uni]['coefficient']).'-'.round(explode('-',$ent['sizes'])[2]*$loc['length'][$uni]['coefficient'])):(explode('-',$ent['sizes'])[0].'-'.explode('-',$ent['sizes'])[1].'-'.explode('-',$ent['sizes'])[2])):'';
-        $shs=(isset($ent['shoe_size']))?((isset($loc['shoe_size'][$uni]))?(($ent['shoe_size']+$loc['shoe_size'][$uni]).' '.$uni):($ent['shoe_size']+$loc['shoe_size']['default']).' '.$uni):''; if (isset($ent['birthday'])) {
-            $bday=(isset($ent['birthday']))?$ent['birthday']:'January 1, 1970';
-            $ba=(round((time()-strtotime($bday))/(3600*24*365.25)));
-            $bd=date('j',strtotime($bday)); $bm=date('n',strtotime($bday));
-            $bc=date('z',strtotime($bday)); $bk=(($bd==date('j'))&&($bm==date('n')))?"🎂":"";
-            if (in_array($uni,$loc['anno_ind']['space'])) { $dp=$ba.' '.$anno;
-            } elseif (in_array($uni,$loc['anno_ind']['concat'])) { $dp=$anno.$ba;
-            } else { $dp=$anno.' '.$ba; }
-            $bl=zodiacSign($bc).' ('.chooseCalendar(strtotime($bday),$ses,$sti).') '.$dp.' '.$bk;
-        } else { $bl=''; } $dl=$hd.' '.$bl.' '.$len.' '.$mas.' '.$szs.' '.$shs;
-    } else { $dl=''; } return $dl;
+    $annoInd=(isset($loc['anno'][$uni]))?$loc['anno'][$uni]:$loc['anno']['default']; if (isset($exem[$id])) { $ent=$exem[$id];
+    $title=(isset($ent['language'][$uni]['title']))?$ent['language'][$uni]['title']:$id;
+    $len=(isset($ent['height']))?((isset($loc['length'][$uni]))?((isset($loc['length'][$uni]['inch']))?incher($ent['height']):round(($ent['height']*$loc['length'][$uni]['coefficient']),2).' '.$loc['length'][$uni]['sign']):round(($ent['height']*$loc['length']['default']['coefficient']),2).' '.$loc['length']['default']['sign']):'';
+    $mas=(isset($ent['weight']))?((isset($loc['mass'][$uni]))?(round($ent['weight']*$loc['mass'][$uni]['coefficient']).' '.$loc['mass'][$uni]['sign']):round($ent['weight']*$loc['mass']['default']['coefficient']).' '.$loc['mass']['default']['sign']):'';
+    $body=(isset($ent['sizes']))?((isset($loc['length'][$uni]['inch']))?(round(explode('-',$ent['sizes'])[0]*$loc['length'][$uni]['coefficient']).'-'.round(explode('-',$ent['sizes'])[1]*$loc['length'][$uni]['coefficient']).'-'.round(explode('-',$ent['sizes'])[2]*$loc['length'][$uni]['coefficient'])):(explode('-',$ent['sizes'])[0].'-'.explode('-',$ent['sizes'])[1].'-'.explode('-',$ent['sizes'])[2])):'';
+    $shoe=(isset($ent['shoe_size']))?((isset($loc['shoe_size'][$uni]))?(($ent['shoe_size']+$loc['shoe_size'][$uni]).' '.$uni):($ent['shoe_size']+$loc['shoe_size']['default']).' '.$uni):'';
+    $bday=(isset($ent['birthday']))?$ent['birthday']:"now";
+    $dday=(isset($ent['deathday']))?$ent['deathday']:"now";
+    $tdiff=date_diff(date_create($bday),date_create($dday))->format('%y');
+    $cake=((date('j',strtotime($bday))==date('j'))&&(date('n',strtotime($bday))==date('n')))?"🎂":"";
+    if (in_array($uni,$loc['anno_ind']['space'])) {
+        $annoT=$tdiff.' '.$annoInd;
+    } elseif (in_array($uni,$loc['anno_ind']['concat'])) {
+        $annoT=$annoInd.$tdiff;
+    } else {
+        $annoT=$annoInd.' '.$tdiff;
+    } $zodT=zodiacSign(date('j',strtotime($bday)));
+    $dateT=chooseCalendar(strtotime($bday),$ses,$sti);
+    return [
+        'title'=>((isset($ent['birthday']))?$zodT.' '.$title:$title),
+        'line'=>($zodT.' '.$title.' '.$annoT.' ('.$dateT.') '.$len.' '.$mas.' '.$body.' '.$shoe),
+        'anno'=>$annoT,'body'=>$body,'shoe'=>$shoe,
+        'height'=>$len,'weight'=>$mas
+    ];
 }
 function userlocks($arr,$col,array $pic) {
     $res=[]; foreach ($arr as $key=>$val) {

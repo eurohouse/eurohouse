@@ -33,7 +33,7 @@ if ($request['group']!='') {
 <tfoot>
     <tr><th style="width:25%;" colspan="3">
         <?=term('Total elements:',$settings,$session).' '.count($contentsArr);?><br>
-        <?=modelcard($request['group'],$contentsArr,$exemplarArr,$session,$settings);?>
+        <?=modelcard($request['group'],$contentsArr,$exemplarArr,$session,$settings)['line'];?>
     </th></tr>
 </tfoot>
 </table>
@@ -84,10 +84,8 @@ if ($request['group']!='') {
 <tbody>
 <?php foreach ($exemplarArr as $key=>$value) {
     $ava=(file_exists('Flag.'.$value['country'].'.png'))?'Flag.'.$value['country'].'.png':'Flag.UN.png';
-    $title=(isset($value['language'][$ssUN]['title']))?$value['language'][$ssUN]['title']:$key;
-    $bday=(isset($value['birthday']))?$value['birthday']:"now";
-    $dday=(isset($value['deathday']))?$value['deathday']:"now";
-    $tdiff=date_diff(date_create($bday),date_create($dday))->format('%y'); $tzod=(isset($value['birthday']))?zodiacSign(strtotime($bday)).' ':''; ?>
+    $mod=modelcard($key,$contentsArr,$exemplarArr,$session,$settings);
+    ?>
     <tr>
         <td>
             <a href="<?=$ava;?>">
@@ -96,31 +94,16 @@ if ($request['group']!='') {
         </td>
         <td>
             <a href="javascript:omniGroup(%22<?=$key;?>%22);">
-                <?=$tzod.$title;?>
+                <?=$mod['title'];?>
             </a>
         </td>
-        <td><?php
-        $sign=(isset($ssLC['anno'][$ssUN]))?$ssLC['anno'][$ssUN]:$ssLC['anno']['default'];
-        if (in_array($ssUN,$ssLC['anno_ind']['space'])) {
-            echo $tdiff.' '.$sign;
-        } elseif (in_array($uni,$loc['anno_ind']['concat'])) {
-            echo $sign.$tdiff;
-        } else { echo $sign.' '.$tdiff; }
-        ?></td>
-        <td><?php $sign=(isset($ssLC['length'][$ssUN]['sign']))?$ssLC['length'][$ssUN]['sign']:$ssLC['length']['default']['sign']; $koeff=(isset($ssLC['length'][$ssUN]['coefficient']))?$ssLC['length'][$ssUN]['coefficient']:$ssLC['length']['default']['coefficient']; if (isset($value['height'])) {
-            if (isset($ssLC['length'][$ssUN]['inch'])) {
-                $height=incher($value['height']);
-            } else {
-                $height=(round(($value['height']*$koeff),2)).' '.$sign;
-            }
-        } else { $height=''; } echo $height; ?></td>
-        <td><?php $sign=(isset($ssLC['mass'][$ssUN]['sign']))?$ssLC['mass'][$ssUN]['sign']:$ssLC['mass']['default']['sign']; $koeff=(isset($ssLC['mass'][$ssUN]['coefficient']))?$ssLC['mass'][$ssUN]['coefficient']:$ssLC['mass']['default']['coefficient']; $weight=(isset($value['weight']))?round($value['weight']*$koeff).' '.$sign:' ';
-        echo $weight; ?></td>
-        <td><?php $koeff=(isset($ssLC['body_sizes'][$ssUN]['coefficient']))?$ssLC['body_sizes'][$ssUN]['coefficient']:$ssLC['body_sizes']['default']['coefficient'];
-        $sizes=(isset($value['sizes']))?((round((explode('-',$value['sizes'])[0]*$koeff))).'-'.(round((explode('-',$value['sizes'])[1]*$koeff))).'-'.(round((explode('-',$value['sizes'])[2]*$koeff)))):''; echo $sizes; ?></td>
-        <td><?php $koeff=(isset($ssLC['shoe_size'][$ssUN]))?$ssLC['shoe_size'][$ssUN]:$ssLC['shoe_size']['default']; $shoeSize=(isset($value['shoe_size']))?(($value['shoe_size']+$koeff).' '.$ssUN):' '; echo $shoeSize; ?></td>
+        <td><?=$mod['anno'];?></td>
+        <td><?=$mod['height'];?></td>
+        <td><?=$mod['weight'];?></td>
+        <td><?=$mod['body'];?></td>
+        <td><?=$mod['shoe'];?></td>
     </tr>
-    <?php } ?>
+<?php } ?>
 </tbody>
 <tfoot>
     <tr>
