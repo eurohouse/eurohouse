@@ -87,7 +87,7 @@ if ($request['group']!='') {
     $title=(isset($value['language'][$ssUN]['title']))?$value['language'][$ssUN]['title']:$key;
     $bday=(isset($value['birthday']))?$value['birthday']:'';
     $dday=(isset($value['deathday']))?$value['deathday']:time();
-    $tdiff=timedate_diff($bday,$dday);
+    $tdiff=date_diff(date_create($bday),date_create($dday));
     $bcal=(isset($value['birthday']))?chooseCalendar(strtotime($bday),$session,$settings):'';
     $tzod=(isset($value['birthday']))?zodiacSign(date('z',strtotime($bday))).' ':''; ?>
     <tr>
