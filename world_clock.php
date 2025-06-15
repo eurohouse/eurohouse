@@ -1,6 +1,8 @@
 <?php include 'functions.php';
-$cookie=(isset($_COOKIE['user']))?$_COOKIE['user']:'root';
 $userSettings=fileopen('settings.json');
+$nu=$userSettings['reserve']['unauthorized'];
+$su=$userSettings['reserve']['superuser'];
+$cookie=whichCookie($nu);
 $userData=arropen($cookie.'_session.json',json_encode($userSettings['defaults']),'DEFAULT');
 if ($userData['memo']!='') {
     $alarmInTime=(time()>=$userData['memo'])?-1:($userData['memo']-time());

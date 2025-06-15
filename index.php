@@ -61,6 +61,8 @@
         <input type='hidden' id='sysDefPic1Prefix' value="<?=$prefix[3];?>">
         <input type='hidden' id='sysDefRet0Prefix' value="<?=$prefix[4];?>">
         <input type='hidden' id='sysDefRet1Prefix' value="<?=$prefix[5];?>">
+        <input type='hidden' id='sysDefNullUserName' value="<?=$nuUser;?>">
+        <input type='hidden' id='sysDefSuperUserName' value="<?=$suUser;?>">
         <input type='hidden' id="sysDefHdiData" value="">
         <input type='hidden' id="sysDefModelData" value="">
         <input type='hidden' id="sysDefContentData" value="">

@@ -57,7 +57,7 @@ function setdata(ent,val) {
     }
 }
 function superuser() {
-    return ((sysDefIsSession.value!=false)&&(sysDefSessionID.value=='root'));
+    return ((sysDefIsSession.value!=false)&&(sysDefSessionID.value==sysDefSuperUserName.value));
 }
 function authstate() {
     return (sysDefIsSession.value!=false);

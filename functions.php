@@ -18,11 +18,14 @@ function wasAuthRequest() {
     }
 }
 function isAuthorized() { return (isset($_SESSION['user'])); }
-function whichSession() {
-    return (isset($_SESSION['user']))?$_SESSION['user']:'root';
+function whichSession($def) {
+    return (isset($_SESSION['user']))?$_SESSION['user']:$def;
 }
-function isUserRoot() {
-    return ((isset($_SESSION['user']))&&($_SESSION['user']=='root'));
+function whichCookie($def) {
+    return (isset($_COOKIE['user']))?$_COOKIE['user']:$def;
+}
+function isUserRoot($def) {
+    return ((isset($_SESSION['user']))&&($_SESSION['user']==$def));
 }
 function browserName($ua) {
     if (preg_match('/opera|opr/i',$ua)) return 'Opera';

@@ -1,5 +1,7 @@
 <?php error_reporting(0); $websiteID=basename(__DIR__);
 include 'functions.php'; $settings=fileopen('settings.json');
+$nuUser=$userSettings['reserve']['unauthorized'];
+$suUser=$userSettings['reserve']['superuser'];
 $backloadString=implode(' ',$settings['payload']['backward']);
 $forloadString=implode(',',$settings['payload']['forward']);
 $dataLoad=$settings['dataload'];
@@ -10,16 +12,18 @@ initDataDirs('tmp,trash');
 foreach ($settings['viewport'] as $key=>$val) { $viewportStr.=$key.'='.$val.', '; } $viewportParam=substr($viewportStr,0,-2);
 $gamesChannel=[]; foreach ($settings['get_games'] as $key=>$val) { $gamesChannel[$key]=implode(' ',$val); }
 ini_set("session.gc_maxlifetime",$settings['lifetime']['garbage_collector']);ini_set("session.cookie_lifetime",$settings['lifetime']['cookie_default']);
-session_start(); wasAuthRequest(); $sessionID=whichSession();
+session_start(); wasAuthRequest(); $sessionID=whichSession($nuUser);
 setcookie('user',$sessionID,time()+$settings['lifetime']['cookie_lengthen']);
 $session=arropen($sessionID.'_session.json',json_encode($settings['defaults']),'DEFAULT'); $metadata=arropen($sessionID.'_metadata.json',json_encode($settings['metadata']),'CUSTOM');
 $finLang=terms($settings,$session);
 $tutorial=arropen('tutorial.json',"{\"\":\"\"}",'CUSTOM');
 $newsData=arropen('changelog.json',"{\"\":\"\"}",'CUSTOM');
-$bindData=arropen('binding.json',"{\"root\":\"root\"}");
-$powersData=arropen('dominion.json',"{\"root\":0}");
-$automateData=arropen('automator.json',"{\"root\":\"manual\"}");
-$toolboxData=arropen('toolbox.json',"{\"root\":\"\"}");
+$defUsr=['bind'=>[$nu=>$nu,$su=>$su],'powers'=>[$nu=>0,$su=>0],
+'auto'=>[$nu=>'manual',$su=>'manual'],'tool'=>[$nu=>$nu,$su=>$su]];
+$bindData=arropen('binding.json',json_encode($defUsr['bind']));
+$powersData=arropen('dominion.json',json_encode($defUsr['powers']));
+$automateData=arropen('automator.json',json_encode($defUsr['auto'])");
+$toolboxData=arropen('toolbox.json',json_encode($defUsr['tool']));
 date_default_timezone_set(dec_tz($session['timezone']));
 $request=$postRequest=[];
 foreach ($settings['initialize']['GET'] as $requestID=>$requestValue) { $request[$requestID]=($_GET[$requestID])?$_GET[$requestID]:$requestValue; }
