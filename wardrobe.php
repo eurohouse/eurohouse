@@ -237,8 +237,22 @@ input[type=text], input[type=password], input[type=number], select, textarea {
     box-shadow: var(--text-box-shadow);
 }
 select option {
+    -webkit-appearance: none; -moz-appearance: none;
+    -ms-appearance: none; appearance: none;
     background-color: var(--inputcolor);
     color: var(--inputtextcolor);
+}
+select option:checked, select option:hover {
+    background-color: var(--forecolor);
+    color: var(--foretextcolor);
+}
+select:focus > option:checked {
+    background-color: var(--forecolor);
+    color: var(--foretextcolor);
+}
+select:checked > option:focus {
+    background-color: var(--forecolor);
+    color: var(--foretextcolor);
 }
 input[type=button], input[type=image], button {
     background: var(--gradient-fore); background-size: 100%;

@@ -190,17 +190,17 @@ function world_clock() {
                 } else if (sysDefAlbum.value=='avatar') {
                     epr=sysDefAva1Prefix.value;
                     for (iu in alr) {
-                        arl+="<input type='image' class='power' style='width:40px;height:40px;' src='"+epr+alr[iu]+".png' title='"+alr[iu]+"' onclick='setdata(&#34;avatar&#34;,&#34;"+alr[iu]+"&#34;);'>";
+                        arl+="<input type='image' class='power' src='"+epr+alr[iu]+".png' title='"+alr[iu]+"' onclick='setdata(&#34;avatar&#34;,&#34;"+alr[iu]+"&#34;);'>";
                     }
                 } else if (sysDefAlbum.value=='pictogram') {
                     epr=sysDefPrefix.value;
                     for (iu in alr) {
-                        arl+="<input type='image' class='power' style='width:40px;height:40px;' src='"+epr+alr[iu]+".png' title='"+(alr[iu].toUpperCase())+"' onclick='setdata(&#34;mode&#34;,&#34;"+alr[iu]+"&#34;);'>";
+                        arl+="<input type='image' class='power' src='"+epr+alr[iu]+".png' title='"+(alr[iu].toUpperCase())+"' onclick='setdata(&#34;mode&#34;,&#34;"+alr[iu]+"&#34;);'>";
                     }
                 } else if (sysDefAlbum.value=='reticle') {
                     epr=sysDefRet1Prefix.value;
                     for (iu in alr) {
-                        arl+="<input type='image' class='power' style='width:50px;height:50px;' src='"+epr+alr[iu]+".png' title='"+(alr[iu].toUpperCase())+"' onclick='setdata(&#34;reticle&#34;,&#34;"+alr[iu]+"&#34;);'>";
+                        arl+="<input type='image' class='power' src='"+epr+alr[iu]+".png' title='"+(alr[iu].toUpperCase())+"' onclick='setdata(&#34;reticle&#34;,&#34;"+alr[iu]+"&#34;);'>";
                     }
                 } currentAlbumList.innerHTML=arl;
                 currentAlbumList.setAttribute('style','-webkit-columns:'+albCol+';-moz-columns:'+albCol+';columns:'+albCol+';text-align:'+(((sysDefAlbum.value=='avatar')||(sysDefAlbum.value=='pictogram')||(sysDefAlbum.value=='reticle')||(sysDefAlbum.value=='background'))?'center':'left')+';');
