@@ -5,8 +5,8 @@
         "garbage_collector": 604800
     },
     "intervals": {
-        "databox": 1000,
-        "dataload": 1000,
+        "databox": 700,
+        "dataload": 700,
         "world_clock": 1000,
         "visual_effects": 300,
         "wallpaper_engine": 1000,
