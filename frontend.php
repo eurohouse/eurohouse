@@ -576,7 +576,7 @@ function arrangePlay() {
 function init_rec(id) {
     var obj=strarr(sysDefPowersData.value,';',':');
     if (!notNull(obj[id])) {
-        obj[id]=0; set('powers.json',JSON.stringify(obj),'rw');
+        obj[id]=0; set('dominion.json',JSON.stringify(obj),'rw');
         sysDefPowersData.value=arrstr(obj,';',':');
     }
 }
