@@ -87,8 +87,7 @@ if ($request['group']!='') {
     $title=(isset($value['language'][$ssUN]['title']))?$value['language'][$ssUN]['title']:$key;
     $bday=(isset($value['birthday']))?$value['birthday']:"now";
     $dday=(isset($value['deathday']))?$value['deathday']:"now";
-    $tdiff=date_diff(date_create($bday),date_create($dday))->format('%y');
-    ?>
+    $tdiff=date_diff(date_create($bday),date_create($dday))->format('%y'); $tzod=(isset($value['birthday']))?zodiacSign(strtotime($bday)).' ':''; ?>
     <tr>
         <td>
             <a href="<?=$ava;?>">
@@ -100,7 +99,14 @@ if ($request['group']!='') {
                 <?=$tzod.$title;?>
             </a>
         </td>
-        <td><?=$tdiff;?></td>
+        <td><?php
+        $sign=(isset($ssLC['anno'][$ssUN]))?$ssLC['anno'][$ssUN]:$ssLC['anno']['default'];
+        if (in_array($ssUN,$ssLC['anno_ind']['space'])) {
+            echo $tdiff.' '.$sign;
+        } elseif (in_array($uni,$loc['anno_ind']['concat'])) {
+            echo $sign.$tdiff;
+        } else { echo $sign.' '.$tdiff; }
+        ?></td>
         <td><?php $sign=(isset($ssLC['length'][$ssUN]['sign']))?$ssLC['length'][$ssUN]['sign']:$ssLC['length']['default']['sign']; $koeff=(isset($ssLC['length'][$ssUN]['coefficient']))?$ssLC['length'][$ssUN]['coefficient']:$ssLC['length']['default']['coefficient']; if (isset($value['height'])) {
             if (isset($ssLC['length'][$ssUN]['inch'])) {
                 $height=incher($value['height']);
