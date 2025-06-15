@@ -55,8 +55,8 @@ if ($request['group']!='') {
             </a>
         </th>
         <th style="width:9%;">
-            <a href="javascript:SortTable(2,'T');">
-                <?=term('Birthday',$settings,$session);?>
+            <a href="javascript:SortTable(2,'N');">
+                <?=term('Age',$settings,$session);?>
             </a>
         </th>
         <th style="width:6%;">
