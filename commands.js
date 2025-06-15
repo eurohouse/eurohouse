@@ -473,8 +473,6 @@ function omniEnter() {
         clearJournal(input.replace('clear ',''),sysDefMyMsgboxData,'msgbox');
     } else if (input.startsWith('erase ')) {
         clearJournal(input.replace('erase ',''),sysDefMyBookData,'book');
-    } else if (input.startsWith('purge ')) {
-        clearJournal(input.replace('purge ',''),sysDefIpData,'visitors',true);
     } else if (input.startsWith('deluser ')) {
         arb=input.replace('deluser ',''),itr=0;
         if (arb.includes(',')) {

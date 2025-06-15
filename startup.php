@@ -34,10 +34,9 @@ function databox() {
             $('#sysDefMetaData').val(pager(data,11));
             $('#sysDefTutorData').val(pager(data,12));
             $('#sysDefNewsData').val(pager(data,13));
-            $('#sysDefIpData').val(pager(data,14));
-            $('#sysDefHdiData').val(pager(data,15));
-            var modNSFW=pager(data,16),contNSFW=pager(data,17);
-            var modN=pager(data,18),contN=pager(data,19);
+            $('#sysDefHdiData').val(pager(data,14));
+            var modNSFW=pager(data,15),contNSFW=pager(data,16);
+            var modN=pager(data,17),contN=pager(data,18);
             var modU=arrjson({...jsonarr(modNSFW), ...jsonarr(modN)});
             var contU=arrjson({...jsonarr(contNSFW), ...jsonarr(contN)});
             $('#sysDefModelData').val((sysDefNsfw.value!=0)?modU:modN);

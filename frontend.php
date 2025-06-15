@@ -275,7 +275,7 @@ function delete_users(str='') {
 }
 function administer(entry,mode='+') {
     if (superuser()) {
-        var files={'bind':'binding','auto':'automator','tool':'toolbox','ip':'visitors','powers':'dominion','hdi':'i18n'};
+        var files={'bind':'binding','auto':'automator','tool':'toolbox','powers':'dominion','hdi':'i18n'};
         var micro=['bind','auto','tool','powers'];
         var sub={'bind':'i','auto':'manual|auto','tool':'e','powers':'n'},sum=qua=div=1;
         var tempObj=obj={},tempData=temp='';

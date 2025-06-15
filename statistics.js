@@ -1,5 +1,5 @@
 function scores(sta) {
-    var sto={'bind':'binding','call':'calling','auto':'automator','tool':'toolbox','ip':'visitors','powers':'dominion','hdi':'i18n'};
+    var sto={'bind':'binding','call':'calling','auto':'automator','tool':'toolbox','powers':'dominion','hdi':'i18n'};
     var sti={'bind':'μ','call':'μ','auto':'μ','tool':'μ','powers':'μ'},rid=sysDefSessionID.value;
     var ept=document.getElementById('sysDef'+ucfirst(sta)+'Data'),arr=ept.value,eps=sto[sta]+'.json',obj={}; if (sti[sta]!==undefined) {
         if (sti[sta]=='μ') { obj=strarr(arr,';',':');
@@ -60,25 +60,6 @@ function scores(sta) {
                         res+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;);'>";
                     } res+="<br>";
                 }
-            }
-        }
-    } else if (sta=='ip') {
-        sortable=Object.fromEntries(
-            Object.entries(obj).sort(([,a],[,b])=>(a['Username']<b['Username'])?-1:((a['Username']>b['Username'])?1:0))
-        ); for (indi in sortable) {
-            if ((sortable[indi]!==undefined)&&(indi!='')) {
-                af=jsonarr(sysDefHdiData.value);
-                if (af[sortable[indi]['Country']]!==undefined) {
-                    res+="<input type='image' class='power' onmouseover='soundButton();' src='Flag."+sortable[indi]['Country']+".png"+"' onclick='clip(&#34;"+sortable[indi]['Country']+"&#34;);'>";
-                } else {
-                    res+="<input type='image' class='power' onmouseover='soundButton();' src='Flag.UN.png"+"' onclick='clip(&#34;"+sortable[indi]['Country']+"&#34;);'>";
-                } res+="<input type='button' onmouseover='soundButton();' style='width:46%;' value='"+indi+"' onclick='clip(&#34;"+(indi.split('/')[0])+"&#34;);'>";
-                at=loadFile(((sortable[indi]['Username']).slice(1))+'_session.json','avatar');
-                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+eax+at+".png"+"' onclick='clip(&#34;"+at+"&#34;);'>";
-                res+="<input type='button' onmouseover='soundButton();' style='width:24%;' value='"+sortable[indi]['Username']+"' onclick='clip(&#34;"+(sortable[indi]['Username']).slice(1)+"&#34;);'>";
-                if (superuser()) {
-                    res+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"trash.png"+"' onclick='remove_entry(&#39;"+indi+"&#39;,&#39;"+arr+"&#39;,&#39;"+eps+"&#39;,true,true);'>";
-                } res+="<br>";
             }
         }
     } else if (sta=='model') {

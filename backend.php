@@ -21,7 +21,6 @@ $powersData=arropen('dominion.json',"{\"root\":0}");
 $automateData=arropen('automator.json',"{\"root\":\"manual\"}");
 $toolboxData=arropen('toolbox.json',"{\"root\":\"\"}");
 date_default_timezone_set(dec_tz($session['timezone']));
-$activeIPs=markWebsiteVisit(currentUsernameHandler());
 $request=$postRequest=[];
 foreach ($settings['initialize']['GET'] as $requestID=>$requestValue) { $request[$requestID]=($_GET[$requestID])?$_GET[$requestID]:$requestValue; }
 foreach ($settings['initialize']['POST'] as $requestID=>$requestValue) { $postRequest[$requestID]=($_POST[$requestID])?$_POST[$requestID]:$requestValue; }

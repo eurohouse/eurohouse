@@ -24,8 +24,7 @@ $currentTimes=[]; foreach ($poweredData as $key=>$value) {
     } else { $testArr=['timezone'=>0,'avatar'=>'NULL']; }
     date_default_timezone_set(dec_tz($testArr['timezone']));
     $currentTimes[$key]=date('H');
-} $activeIPs=markWebsiteVisit();
-$usersList=array_keys($poweredData);natcasesort($usersList);
+} $usersList=array_keys($poweredData);natcasesort($usersList);
 /* ¶ 0 */ echo $cookie."\r\n\r\n".
 /* ¶ 1 */ implode(',',$pref)."\r\n\r\n".
 /* ¶ 2 */ valstr($bindingData,';',':')."\r\n\r\n".
@@ -40,9 +39,8 @@ $usersList=array_keys($poweredData);natcasesort($usersList);
 /* ¶ 11 */ json_encode($notesArr,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
 /* ¶ 12 */ json_encode($tutorArr,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
 /* ¶ 13 */ json_encode($newsData,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
-/* ¶ 14 */ json_encode($activeIPs,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
-/* ¶ 15 */ json_encode($localesArr,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
-/* ¶ 16 */ json_encode($listExem,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
-/* ¶ 17 */ json_encode($listCont,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
-/* ¶ 18 */ json_encode($listDefExem,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
-/* ¶ 19 */ json_encode($listDefCont,JSON_UNESCAPED_UNICODE);
+/* ¶ 14 */ json_encode($localesArr,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
+/* ¶ 15 */ json_encode($listExem,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
+/* ¶ 16 */ json_encode($listCont,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
+/* ¶ 17 */ json_encode($listDefExem,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
+/* ¶ 18 */ json_encode($listDefCont,JSON_UNESCAPED_UNICODE);

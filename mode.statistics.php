@@ -8,7 +8,6 @@
         <input type='image' id='switchBtnScore' onmouseover="soundButton();" class="power" onclick="setdata('stats','powers');" src="<?=$prefix[3].'money.png';?>">
         <input type='image' id='switchBtnHDI' onmouseover="soundButton();" class="power" onclick="setdata('stats','hdi');" src="<?=$prefix[3].'heart.png';?>">
         <input type='image' id='switchBtnModel' onmouseover="soundButton();" class="power" onclick="setdata('stats','model');" src="<?=$prefix[3].'user.png';?>">
-        <input type='image' id='switchBtnIP' onmouseover="soundButton();" class="power" onclick="setdata('stats','ip');" src="<?=$prefix[3].'world.png';?>">
     </p>
 </div>
 <div class='customPanel' id='stat_disp' style="width:100%;height:75%;left:0px;top:0px;overflow-y:scroll;">
