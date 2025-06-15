@@ -73,9 +73,9 @@ function scores(sta) {
                 } else {
                     res+="<input type='image' class='power' onmouseover='soundButton();' src='Flag.UN.png"+"' onclick='clip(&#34;"+sortable[indi]['Country']+"&#34;);'>";
                 } res+="<input type='button' onmouseover='soundButton();' style='width:46%;' value='"+indi+"' onclick='clip(&#34;"+(indi.split('/')[0])+"&#34;);'>";
-                at=loadFile((sortable[indi]['Username'])+'_session.json','avatar');
+                at=loadFile(((sortable[indi]['Username']).slice(1))+'_session.json','avatar');
                 res+="<input type='image' class='power' onmouseover='soundButton();' src='"+eax+at+".png"+"' onclick='clip(&#34;"+at+"&#34;);'>";
-                res+="<input type='button' onmouseover='soundButton();' style='width:24%;' value='"+sortable[indi]['Handler']+"' onclick='clip(&#34;"+sortable[indi]['Username']+"&#34;);'>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:24%;' value='"+sortable[indi]['Username']+"' onclick='clip(&#34;"+(sortable[indi]['Username']).slice(1)+"&#34;);'>";
                 if (superuser()) {
                     res+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"trash.png"+"' onclick='remove_entry(&#39;"+indi+"&#39;,&#39;"+arr+"&#39;,&#39;"+eps+"&#39;,true,true);'>";
                 } res+="<br>";

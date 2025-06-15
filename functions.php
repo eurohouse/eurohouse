@@ -57,8 +57,7 @@ function markWebsiteVisit($value='',$name='visitors.json'): array {
         $getWB=browserName($_SERVER['HTTP_USER_AGENT']);
         $getPF=platformName($_SERVER['HTTP_USER_AGENT']);
         $test[$_SERVER['REMOTE_ADDR'].'/'.$getWB.'/'.$getPF]=[
-            "Username"=>substr($value,1),"Country"=>$isoCC,
-            "Handler"=>$value
+            "Username"=>substr($value,1),"Country"=>$isoCC
         ]; file_put_contents($name,json_encode($test,JSON_UNESCAPED_UNICODE)); chmod($name,0777);
     } return arropen($name,'{}','');
 }
