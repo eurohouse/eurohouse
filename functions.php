@@ -345,9 +345,10 @@ function modelcard($id,$cont,$exem,$ses,$sti) {
             $annoT=$annoInd.' '.$tdiff;
         } $zodT=zodiacSign(date('j',strtotime($bday)));
         $dateT=chooseCalendar(strtotime($bday),$ses,$sti);
+        $titleT=((isset($ent['birthday']))?$zodT.' '.$title:$title);
         $res=[
-            'title'=>((isset($ent['birthday']))?$zodT.' '.$title:$title),
-            'line'=>($zodT.' '.$title.' '.$annoT.' ('.$dateT.') '.$len.' '.$mas.' '.$body.' '.$shoe),
+            'title'=>$titleT,
+            'line'=>($titleT.' '.$annoT.' ('.$dateT.') '.$len.' '.$mas.' '.$body.' '.$shoe),
             'anno'=>$annoT,'body'=>$body,'shoe'=>$shoe,
             'height'=>$len,'weight'=>$mas
         ];
