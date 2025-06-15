@@ -197,7 +197,7 @@ function world_clock() {
                 } else if (sysDefAlbum.value=='pictogram') {
                     epr=sysDefPrefix.value;
                     for (iu in alr) {
-                        arl+="<input type='image' class='power' style='width:40px;height:40px;' src='"+epr+alr[iu]+".png' title='"+(alr[iu].toUpperCase())+"'>";
+                        arl+="<input type='image' class='power' style='width:40px;height:40px;' src='"+epr+alr[iu]+".png' title='"+(alr[iu].toUpperCase())+"' onclick='setdata(&#34;mode&#34;,&#34;"+alr[iu]+"&#34;);'>";
                     }
                 } else if (sysDefAlbum.value=='reticle') {
                     epr=sysDefRet1Prefix.value;
