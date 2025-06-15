@@ -85,11 +85,10 @@ if ($request['group']!='') {
 <?php foreach ($exemplarArr as $key=>$value) {
     $ava=(file_exists('Flag.'.$value['country'].'.png'))?'Flag.'.$value['country'].'.png':'Flag.UN.png';
     $title=(isset($value['language'][$ssUN]['title']))?$value['language'][$ssUN]['title']:$key;
-    $bday=(isset($value['birthday']))?$value['birthday']:'';
-    $dday=(isset($value['deathday']))?$value['deathday']:time();
-    $tdiff=date_diff(date_create($bday),date_create($dday));
-    $bcal=(isset($value['birthday']))?chooseCalendar(strtotime($bday),$session,$settings):'';
-    $tzod=(isset($value['birthday']))?zodiacSign(date('z',strtotime($bday))).' ':''; ?>
+    $bday=(isset($value['birthday']))?$value['birthday']:date_format('M j, Y',time());
+    $dday=(isset($value['deathday']))?$value['deathday']:date_format('M j, Y',time());
+    $tdiff=date_diff(date_create($bday),date_create($dday))->format('%y');
+    ?>
     <tr>
         <td>
             <a href="<?=$ava;?>">
