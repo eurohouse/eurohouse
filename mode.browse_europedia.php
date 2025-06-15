@@ -3,7 +3,7 @@
 <!-- <ref> -->
 <!-- true -->
 <?php
-$iconSize=50;$flagSize=($session['censor'])?2:4;
+$iconSize=50; $flagSize=2**(1+($session['nsfw']));
 $ssLC=$settings['locale'];
 $exemplarArr=exemplar(str_replace('./','',(glob('./*.models.json'))));
 $contentsArr=exemplar(str_replace('./','',(glob('./*.contents.json'))));
@@ -39,10 +39,10 @@ if ($request['group']!='') {
 </table>
 <?php } else {
     foreach ($exemplarArr as $key=>$value) {
-        if ($session['censor']!=0) {
-            if (isset($value['nsfw'])) { unset($exemplarArr[$key]); }
-        } else {
+        if ($session['nsfw']!=0) {
             if (!isset($value['nsfw'])) { unset($exemplarArr[$key]); }
+        } else {
+            if (isset($value['nsfw'])) { unset($exemplarArr[$key]); }
         }
     } ?>
 <table style="width:100%;" id="table">
@@ -56,7 +56,7 @@ if ($request['group']!='') {
                 <?=term('Name',$settings,$session);?>
             </a>
         </th>
-        <?php if ($session['censor']!=0) { ?>
+        <?php if ($session['nsfw']==0) { ?>
         <th style="width:8%;">
             <a href="javascript:SortTable(2,'T');">
                 <?=term('Description',$settings,$session);?>
@@ -102,7 +102,7 @@ if ($request['group']!='') {
         <td><a href="javascript:omniGroup(%22<?=$key;?>%22);">
             <?=$mmTL;?>
         </a></td>
-        <?php if ($session['censor']!=0) { ?>
+        <?php if ($session['nsfw']==0) { ?>
         <td>
             <?php if (isset($value['maison'])) { ?><a href="<?=$value['maison'];?>"><?php } ?>
                 <?=fixedSize($mmDC,0,180);?>

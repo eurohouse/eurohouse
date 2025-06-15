@@ -6,7 +6,7 @@
     $appIndex=str_replace('./','',(glob('./*.pkg')));
 } else { $index=str_replace('./','',(glob('./mode.*.php'))); }
 ?>
-<?php if (($session['bardot']==1)&&($session['censor']==0)) { ?>
+<?php if (($session['bardot']==1)&&($session['nsfw']!=0)) { ?>
     <p align="center">
         <img onmouseover="soundButton();" id="showingBardotLNow" name="brigitte_bardot" style="height:54%;" onclick="omniGo(this.name);" src="<?=$portfolioPrefix.'left0.png';?>">
         <img onmouseover="soundButton();" id="showingBardotNow" name="" style="height:54%;" onclick="omniGo(this.name);" src="<?=$portfolioPrefix.'head.png';?>">

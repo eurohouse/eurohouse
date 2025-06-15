@@ -332,7 +332,7 @@ function getback(array $ses) {
     return ($ses['banner']!='')?$ses['banner']:daily($ses['background'],$ses['entry'],(($ses['lock'])?sprintf("%02d",$ses['hour']):((($ses['benchmark']>0)&&($ses['benchmark']<5))?hourize(date('s'),date('i'),$ses['benchmark']):date('H'))));
 }
 function getways($name,array $ses) {
-    return ($ses['censor']!=0)?'':implode(';',str_replace(explode('.',$name)[0].'.'.explode('.',$name)[1].'.'.substr(explode('.',$name)[2],0,2),'',str_replace('.png','',str_replace('./','',(glob('./'.explode('.',$name)[0].'.'.explode('.',$name)[1].'.'.substr(explode('.',$name)[2],0,2).'*.png'))))));
+    return ($ses['nsfw']!=0)?implode(';',str_replace(explode('.',$name)[0].'.'.explode('.',$name)[1].'.'.substr(explode('.',$name)[2],0,2),'',str_replace('.png','',str_replace('./','',(glob('./'.explode('.',$name)[0].'.'.explode('.',$name)[1].'.'.substr(explode('.',$name)[2],0,2).'*.png')))))):'';
 }
 function modelcard($id,$cont,$exem,$ses,$sti) {
     $uni=$ses['units']; $loc=$sti['locale']; $voc=$sti['vocabulary'];

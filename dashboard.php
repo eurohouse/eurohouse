@@ -1,19 +1,20 @@
 <div class='topBarItem'>
     <p align='center' class='block'>
     <input type="image" onmouseover="soundButton();" id="buttonRandom" class="power" onclick="songIndex('random');" src="<?=$prefix[3].'dice.png';?>" title="<?=term('Random Track',$settings,$session);?>">
-    <select id="ErotoOlympus" style="width:35%;" onchange="setdata('background',ErotoOlympus.options[ErotoOlympus.selectedIndex].id);"><?php foreach ($userLocks['background'] as $key=>$val) { ?>
+    <select id="ErotoOlympus" style="width:38%;" onchange="setdata('background',ErotoOlympus.options[ErotoOlympus.selectedIndex].id);"><?php foreach ($userLocks['background'] as $key=>$val) { ?>
     <option disabled><?=titled($val,$session['units']);?></option>
     <?php foreach (catlist($key) as $value) { ?>
     <option id="<?=$value;?>" <?php if ((explode('.',$value)[0]==explode('.',$background)[0])&&(explode('.',$value)[1]==explode('.',$background)[1])) { ?> selected="selected" <?php } ?>><?=titler($value,$settings,$session);?></option><?php }} ?>
-    </select><input type="number" min='-11' max='12' step='1' id="setTimeZone" style="width:10%;" value="<?=$session['timezone'];?>" onchange="setTimeZone.value=pad(setTimeZone.value,-2);" oninput="setdata('timezone',pad(setTimeZone.value,-2)); handleInput(this.value,true);" onkeydown="if (event.keyCode==27) {
-        setTimeZone.value=0; setdata('timezone',pad(setTimeZone.value,-2));
+    </select><input type="number" min='-11' max='12' step='1' id="setTimeZone" style="width:10%;" value="<?=$session['timezone'];?>" onchange="setTimeZone.value=pad(setTimeZone.value,-2);" oninput="setdata('timezone',pad(setTimeZone.value,-2)); handleInput(this.value,true);" onkeydown="
+    if (event.keyCode==27) {
+        setTimeZone.value=0;
+        setdata('timezone',pad(setTimeZone.value,-2));
     } else if (event.keyCode==8) { handleInput(this.value);
     } else if (event.keyCode==46) { handleInput(this.value);
     } keyPressed();">
     <input type="image" id="buttonLock" onmouseover="soundButton();" class="power" onclick="setdata('lock',flip(sysDefLock.value));" src="<?=$prefix[3].(($session['lock']!=0)?'key.png':'lock.png');?>" title="<?=term('Lock On Wallpaper Position',$settings,$session);?>">
     <input type="image" id="buttonOnReload" onmouseover="soundButton();" class="power" onclick="setdata('reload',flip(sysDefReload.value));" src="<?=$prefix[3].(($session['reload']!=0)?'bluetooth.png':'radio.png');?>" title="<?=term('With/Without Page Reload',$settings,$session);?>">
     <input type="image" onmouseover="soundButton();" id="buttonSongIndex" class="power" onclick="setdata('song_index', nextImage(';random',sysDefSongIndex.value));" src="<?=$prefix[3].(($session['song_index']=='random')?'shuffle.png':'update.png');?>" title="<?=term('Audio Playlist Shuffle/Repeat',$settings,$session);?>">
-    <input type="image" id="buttonChild" onmouseover="soundButton();" class="power" onclick="setdata('censor',flip(sysDefCensor.value)); if (sysDefReload.value!=0) { window.location.reload(); }" src="<?=$prefix[3].(($session['censor']!=0)?'briefcase.png':'cabinet.png');?>" title="<?=term('Censor NSFW Content',$settings,$session);?>">
     <input type="image" id="buttonObserve" onmouseover="soundButton();" class="power" onclick="setdata('observe',flip(sysDefObserve.value));" src="<?=$prefix[3].'power.png';?>" title="<?=term('Observe Background View',$settings,$session);?>">
     </p>
 </div>

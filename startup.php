@@ -36,12 +36,12 @@ function databox() {
             $('#sysDefNewsData').val(pager(data,13));
             $('#sysDefIpData').val(pager(data,14));
             $('#sysDefHdiData').val(pager(data,15));
-            var modelsUncensored=pager(data,16);
-            var contentUncensored=pager(data,17);
-            var modelsCensored=pager(data,18);
-            var contentCensored=pager(data,19);
-            $('#sysDefModelData').val((sysDefCensor.value!=0)?modelsCensored:modelsUncensored);
-            $('#sysDefContentData').val((sysDefCensor.value!=0)?contentCensored:contentUncensored);
+            var modNSFW=pager(data,16),contNSFW=pager(data,17);
+            var modN=pager(data,18),contN=pager(data,19);
+            var modU=arrjson({...jsonarr(modNSFW), ...jsonarr(modN)});
+            var contU=arrjson({...jsonarr(contNSFW), ...jsonarr(contN)});
+            $('#sysDefModelData').val((sysDefNsfw.value!=0)?modU:modN);
+            $('#sysDefContentData').val((sysDefNsfw.value!=0)?contU:contN);
             $('#sysDefMetaList').val(Object.keys(jsonarr(sysDefMetaData.value)).join(' | '));
             $('#sysDefTutorList').val(Object.keys(jsonarr(sysDefTutorData.value)).join(' | '));
             sysDefPrefix.value=(sysDefPrefData.value).split(',')[3]; sysDefAva0Prefix.value=(sysDefPrefData.value).split(',')[0]; sysDefAva1Prefix.value=(sysDefPrefData.value).split(',')[1]; sysDefPic0Prefix.value=(sysDefPrefData.value).split(',')[2]; sysDefPic1Prefix.value=(sysDefPrefData.value).split(',')[3]; sysDefRet0Prefix.value=(sysDefPrefData.value).split(',')[4]; sysDefRet1Prefix.value=(sysDefPrefData.value).split(',')[5];
@@ -309,7 +309,7 @@ function wallpaper_engine() {
     $.ajax({
         url: 'wallpaper_engine.php',
         success: function(data) {
-            $('#buttonChild').attr('src',sysDefPrefix.value+((sysDefCensor.value!=0)?'briefcase.png':'cabinet.png')); $('#sysDefVarsArr').val(pager(data,5));
+            $('#sysDefVarsArr').val(pager(data,5));
             $('body').css('background-image','url('+((pager(data,12)!='')?pager(data,12):pager(data,1))+')'); $('#buttonAugment').attr('src',sysDefPrefix.value+(((sysDefVarsArr.value.split(';').length)>1)?((sysDefEntry.value!='')?'diamond.png':'heart.png'):((sysDefEntry.value!='')?'club.png':'spade.png')));
             document.title=pager(data,0)+' (@'+sysDefSessionID.value+') · Eurohouse UX/UI';
             document.querySelector(':root').style.setProperty('--position',pager(data,4));

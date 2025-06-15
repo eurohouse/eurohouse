@@ -1,4 +1,4 @@
-<?php if (($session['bardot']==1)&&($session['censor']==0)) { ?>
+<?php if (($session['bardot']==1)&&($session['nsfw']!=0)) { ?>
 <p align="center">
     <img onmouseover="soundButton();" id="showingBardotLNow" name="brigitte_bardot" style="height:54%;position:relative;" onclick="omniGo(this.name);" src="<?=$portfolioPrefix.'left0.png';?>">
     <img onmouseover="soundButton();" id="showingBardotNow" name="main_menu" style="height:54%;position:relative;" onclick="omniGo(this.name);" src="<?=$portfolioPrefix.'head.png';?>">
