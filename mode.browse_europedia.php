@@ -105,7 +105,7 @@ if ($request['group']!='') {
         </td>
         <td>
             <a href="javascript:omniGroup(%22<?=$key;?>%22);">
-                <?=/*zodiacSign(date('z',strtotime($bday))).' '.*/$mmTL;?>
+                <?=/*zodiacSign(date('z',strtotime($bday))).' '.*/$title;?>
             </a>
         </td>
         <td><?=$bcal;?></td>
