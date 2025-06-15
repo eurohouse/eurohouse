@@ -33,7 +33,7 @@
     <?php } else { ?>
         <input type="image" onmouseover="soundButton();" id="buttonSuggest" class="power" onclick="omniSuggest();" src="<?=$prefix[3].'user.png';?>" title="<?=term('Suggest Username',$settings,$session);?>">
         <input type='text' id="omniBoxAuthLogin" style="width:31%;" placeholder="<?=term('Username',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) {
-            omniBoxAuthPass.value=guessUserPass(omniBoxAuthLogin.value); omniBoxAuthPass.focus();
+            omniBoxAuthPass.value=''; omniBoxAuthPass.focus();
         } else if (event.keyCode==27) {
             omniBoxAuthLogin.value='';
         } else if (event.keyCode==8) { handleInput(this.value);
