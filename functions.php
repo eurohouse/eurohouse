@@ -627,7 +627,7 @@ function l10nEnt($cat='',$word='',array $voc,array $ses) {
 function terms(array $voc,array $ses) {
     $arr=[]; foreach ($voc['locale']['cli'] as $key=>$val) {
         $arr['<'.$key.'>']=term('<'.$key.'>',$voc,$ses);
-    } foreach ($voc['vocabulary'][array_key_first($voc['vocabulary'])] as $key=>$val) {
-        if ($key!='') { $arr[$key]=term($key,$voc,$ses); }
-    } return $arr;
+    } $term=['Debit','Credit','Balance','Agent','Press any key to continue...','Name','Amount','Price','Active Hours:','The market is closed.','Symbolic Digits','Type','Password'];
+    foreach ($term as $val) { $arr[$val]=term($val,$voc,$ses); }
+    return $arr;
 }

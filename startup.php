@@ -166,7 +166,7 @@ function dynamic_panels() {
     } else if (requestMode.value=='news_feed') {
         newsBox.innerHTML='<p>'+jsonNews()+'</p>';
     } else if (requestMode.value=='bookkeeping') {
-        bookkeep_disp.innerHTML='<table style="width:100%;position:relative;"><thead><th style="width:25%;">'+finterm('Recipient')+'</th><th style="width:25%;">'+finterm('Debit')+'</th><th style="width:25%;">'+finterm('Credit')+'</th><th style="width:25%;">'+finterm('Balance')+'</th></thead><tbody>'+jsonBookKeep(sysDefMyBookData.value)+'</tbody></table>';
+        bookkeep_disp.innerHTML='<table style="width:100%;position:relative;"><thead><th style="width:25%;">'+finterm('Agent')+'</th><th style="width:25%;">'+finterm('Debit')+'</th><th style="width:25%;">'+finterm('Credit')+'</th><th style="width:25%;">'+finterm('Balance')+'</th></thead><tbody>'+jsonBookKeep(sysDefMyBookData.value)+'</tbody></table>';
     } else if (requestMode.value=='accessibility') {
         pressedKeyInfo.innerText=finterm('Press any key to continue...');
     } else if (requestMode.value=='album_collection') {
