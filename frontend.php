@@ -573,21 +573,13 @@ function arrangePlay() {
     $('#showUsInfoPower').val(powerHandler);
     $('#showUsInfoBond').val(nameHandler);
 }
-function init_rec(id) {
-    var obj=strarr(sysDefPowersData.value,';',':');
-    if (!notNull(obj[id])) {
-        obj[id]=0; set('dominion.json',JSON.stringify(obj),'rw');
-        sysDefPowersData.value=arrstr(obj,';',':');
-    }
-}
 function bind(usr,id) {
-    init_rec(usr); init_rec(id);
     var obj=strarr(sysDefBindData.value,';',':');
     obj[usr]=id; set('binding.json',JSON.stringify(obj),'rw');
     sysDefBindData.value=arrstr(obj,';',':');
 }
 function equip(usr,id) {
-    init_rec(usr); var obj=strarr(sysDefToolData.value,';',':');
+    var obj=strarr(sysDefToolData.value,';',':');
     obj[usr]=id; set('toolbox.json',JSON.stringify(obj),'rw');
     sysDefToolData.value=arrstr(obj,';',':');
 }
