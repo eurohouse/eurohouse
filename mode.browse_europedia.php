@@ -55,7 +55,7 @@ if ($request['group']!='') {
             </a>
         </th>
         <th style="width:9%;">
-            <a href="javascript:SortTable(2,'D',sysDefDateFormat.value);">
+            <a href="javascript:SortTable(2,'D','d.m.Y');">
                 <?=term('Birthday',$settings,$session);?>
             </a>
         </th>
