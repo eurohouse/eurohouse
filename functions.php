@@ -17,6 +17,17 @@ function wasAuthRequest() {
         }
     }
 }
+function currentUsernameHandler() {
+    if (isAuthorized()) {
+        if (isUserRoot()) {
+            $handler='#'.whichSession();
+        } else {
+            $handler='@'.whichSession();
+        }
+    } else {
+        $handler='~'.whichSession();
+    } return $handler;
+}
 function isAuthorized() { return (isset($_SESSION['user'])); }
 function whichSession() {
     return (isset($_SESSION['user']))?$_SESSION['user']:'root';
@@ -47,7 +58,7 @@ function markWebsiteVisit($value='',$name='visitors.json'): array {
         $getPF=platformName($_SERVER['HTTP_USER_AGENT']);
         $test[$_SERVER['REMOTE_ADDR'].'/'.$getWB.'/'.$getPF]=[
             "Username"=>$value,"Country"=>$isoCC
-        ];file_put_contents($name,json_encode($test,JSON_UNESCAPED_UNICODE));chmod($name,0777);
+        ]; file_put_contents($name,json_encode($test,JSON_UNESCAPED_UNICODE)); chmod($name,0777);
     } return arropen($name,'{}','');
 }
 function parseRequestURI($uri): array {
