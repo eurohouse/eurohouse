@@ -575,9 +575,10 @@ function arrangePlay() {
 }
 function init_rec(id) {
     var obj=strarr(sysDefPowersData.value,';',':');
-    if (!notNull(obj[id])) { obj[id]=0; }
-    set('powers.json',JSON.stringify(obj),'rw');
-    sysDefPowersData.value=arrstr(obj,';',':');
+    if (!notNull(obj[id])) {
+        obj[id]=0; set('powers.json',JSON.stringify(obj),'rw');
+        sysDefPowersData.value=arrstr(obj,';',':');
+    }
 }
 function bind(usr,id) {
     init_rec(usr); init_rec(id);
@@ -589,16 +590,6 @@ function equip(usr,id) {
     init_rec(usr); var obj=strarr(sysDefToolData.value,';',':');
     obj[usr]=id; set('toolbox.json',JSON.stringify(obj),'rw');
     sysDefToolData.value=arrstr(obj,';',':');
-}
-function defvals(usr,dat) {
-    init_rec(usr); obn=(isObject(dat)?dat.value:dat);
-    var arr=strarr(obn,';',':');
-    arr[usr]=''; set('toolbox.json',JSON.stringify(arr),'rw');
-    if (isObject(dat)) {
-        dat.value=arrstr(arr,';',':');
-    } else {
-        dat=arrstr(arr,';',':');
-    }
 }
 function automate() {
     var usr=sysDefSessionID.value;
