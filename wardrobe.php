@@ -268,7 +268,7 @@ input[type=button], input[type=image], button {
     vertical-align: baseline; box-shadow: var(--box-shadow);
 }
 input.power {
-    background: var(--gradient-power); top: 7px;
+    background: var(--gradient-power); top: 7px; width: 1.4em;
 }
 input[type=checkbox] {
     background: var(--gradient-input); background-size: 100%;
