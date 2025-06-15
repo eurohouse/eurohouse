@@ -227,9 +227,6 @@ table tfoot {
 }
 img { position: relative; }
 input[type=text], input[type=password], input[type=number], select, textarea {
-    -webkit-appearance: none;  /* Remove style Chrome */
-    -moz-appearance: none; /* Remove style FireFox */
-    appearance: none; /* Remove style */
     background: var(--gradient-input); background-size: 100%;
     color: var(--inputtextcolor); border: none;
     border-radius: var(--text-border-radius);
@@ -256,9 +253,6 @@ select:checked > option:focus {
     color: var(--foretextcolor);
 }
 input[type=button], input[type=image], button {
-    -webkit-appearance: none;  /* Remove style Chrome */
-    -moz-appearance: none; /* Remove style FireFox */
-    appearance: none; /* Remove style */
     background: var(--gradient-fore); background-size: 100%;
     color: var(--foretextcolor); border: none;
     border-radius: var(--border-radius);
