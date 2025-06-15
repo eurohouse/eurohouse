@@ -39,9 +39,7 @@ if ($request['group']!='') {
 </table>
 <?php } else {
     foreach ($exemplarArr as $key=>$value) {
-        if ($session['nsfw']!=0) {
-            if (!isset($value['nsfw'])) { unset($exemplarArr[$key]); }
-        } else {
+        if ($session['nsfw']==0) {
             if (isset($value['nsfw'])) { unset($exemplarArr[$key]); }
         }
     } ?>
@@ -81,7 +79,6 @@ if ($request['group']!='') {
                 <?=term('Shoe Size',$settings,$session);?>
             </a>
         </th>
-        <?php } ?>
     </tr>
 </thead>
 <tbody>
