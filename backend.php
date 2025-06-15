@@ -18,12 +18,10 @@ $session=arropen($sessionID.'_session.json',json_encode($settings['defaults']),'
 $finLang=terms($settings,$session);
 $tutorial=arropen('tutorial.json',"{\"\":\"\"}",'CUSTOM');
 $newsData=arropen('changelog.json',"{\"\":\"\"}",'CUSTOM');
-$defUsr=['bind'=>[$nu=>$nu,$su=>$su],'powers'=>[$nu=>0,$su=>0],
-'auto'=>[$nu=>'manual',$su=>'manual'],'tool'=>[$nu=>$nu,$su=>$su]];
-$bindData=arropen('binding.json',json_encode($defUsr['bind']));
-$powersData=arropen('dominion.json',json_encode($defUsr['powers']));
-$automateData=arropen('automator.json',json_encode($defUsr['auto'])");
-$toolboxData=arropen('toolbox.json',json_encode($defUsr['tool']));
+$bindData=arropen('binding.json');
+$powersData=arropen('dominion.json');
+$automateData=arropen('automator.json');
+$toolboxData=arropen('toolbox.json');
 date_default_timezone_set(dec_tz($session['timezone']));
 $request=$postRequest=[];
 foreach ($settings['initialize']['GET'] as $requestID=>$requestValue) { $request[$requestID]=($_GET[$requestID])?$_GET[$requestID]:$requestValue; }

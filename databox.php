@@ -4,12 +4,10 @@ $nu=$userSettings['reserve']['unauthorized'];
 $su=$userSettings['reserve']['superuser'];
 $cookie=whichCookie($nu);
 $userData=arropen($cookie.'_session.json',json_encode($userSettings['defaults']),'DEFAULT');
-$defUsr=['bind'=>[$nu=>$nu,$su=>$su],'powers'=>[$nu=>0,$su=>0],
-'auto'=>[$nu=>'manual',$su=>'manual'],'tool'=>[$nu=>$nu,$su=>$su]];
-$bindingData=arropen('binding.json',json_encode($defUsr['bind']));
-$poweredData=arropen('dominion.json',json_encode($defUsr['powers']));
-$autoData=arropen('automator.json',json_encode($defUsr['auto']));
-$toolData=arropen('toolbox.json',json_encode($defUsr['tool']));
+$bindingData=arropen('binding.json');
+$poweredData=arropen('dominion.json');
+$autoData=arropen('automator.json');
+$toolData=arropen('toolbox.json');
 $pref=prefixes($userData); $locksArr=arropen($cookie.'_lock.json',json_encode($userSettings['locks']),'DEFAULT');
 $userLocks=userlocks($locksArr,$userSettings['collections'],$pref); $notesArr=arropen($cookie.'_metadata.json',json_encode($userSettings['metadata']),'CUSTOM');
 $tutorArr=arropen('tutorial.json',"{\"\":\"\"}",'CUSTOM');

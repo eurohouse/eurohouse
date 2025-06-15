@@ -190,7 +190,7 @@ function fileopen($name,$default='') {
     $fileOpen=(file_exists($name))?file_get_contents($name):$default;
     return (@unserialize($fileOpen)!==false)?unserialize($fileOpen):((@json_decode($fileOpen,true)!=null)?json_decode($fileOpen,true):(((@paging($name)!==null)?paging($name):$fileOpen)));
 }
-function arropen($name,$default='{}',$exec='') {
+function arropen($name,$default="{\"\":\"\"}",$exec='') {
     if (!file_exists($name)) {
         file_put_contents($name,$default); chmod($name,0777);
     } $test=file_get_contents($name);

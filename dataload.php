@@ -1,6 +1,9 @@
 <?php include 'functions.php';
-$userSettings=fileopen('settings.json'); $dataLoad=$userSettings['dataload'];
-$poweredData=arropen('dominion.json',"{\"root\":0}");
+$userSettings=fileopen('settings.json');
+$nu=$userSettings['reserve']['unauthorized'];
+$su=$userSettings['reserve']['superuser'];
+$dataLoad=$userSettings['dataload'];
+$poweredData=arropen('dominion.json');
 $usersList=array_keys($poweredData); natcasesort($usersList);
 $usersData=[]; foreach ($dataLoad as $ind=>$itm) {
     $usersData=[]; foreach ($usersList as $key=>$value) {
