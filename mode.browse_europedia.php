@@ -56,15 +56,8 @@ if ($request['group']!='') {
                 <?=term('Name',$settings,$session);?>
             </a>
         </th>
-        <?php if ($session['nsfw']==0) { ?>
-        <th style="width:8%;">
-            <a href="javascript:SortTable(2,'T');">
-                <?=term('Description',$settings,$session);?>
-            </a>
-        </th>
-        <?php } else { ?>
         <th style="width:9%;">
-            <a href="javascript:SortTable(2,'D');">
+            <a href="javascript:SortTable(2,'D',sysDefDateFormat.value);">
                 <?=term('Birthday',$settings,$session);?>
             </a>
         </th>
