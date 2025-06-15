@@ -85,8 +85,8 @@ if ($request['group']!='') {
 <?php foreach ($exemplarArr as $key=>$value) {
     $ava=(file_exists('Flag.'.$value['country'].'.png'))?'Flag.'.$value['country'].'.png':'Flag.UN.png';
     $title=(isset($value['language'][$ssUN]['title']))?$value['language'][$ssUN]['title']:$key;
-    $bday=(isset($value['birthday']))?$value['birthday']:date_format('M j, Y',time());
-    $dday=(isset($value['deathday']))?$value['deathday']:date_format('M j, Y',time());
+    $bday=(isset($value['birthday']))?$value['birthday']:"now";
+    $dday=(isset($value['deathday']))?$value['deathday']:"now";
     $tdiff=date_diff(date_create($bday),date_create($dday))->format('%y');
     ?>
     <tr>
