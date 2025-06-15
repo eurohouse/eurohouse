@@ -8,7 +8,6 @@
         "databox": 1000,
         "dataload": 1000,
         "world_clock": 1000,
-        "dynamic_panels": 500,
         "visual_effects": 300,
         "wallpaper_engine": 1000,
         "automator": 300
