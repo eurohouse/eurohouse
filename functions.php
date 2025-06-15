@@ -433,8 +433,8 @@ function chooseCalendar($time,array $prof,array $voc) {
     return $res;
 }
 function timedate_diff($time1,$time2,$suf='years') {
-    $origin=new DateTimeImmutable('@'.$time1);
-    $target=new DateTimeImmutable('@'.$time2);
+    $origin=new DateTime('@'.$time1);
+    $target=new DateTime('@'.$time2);
     $interval=$origin->diff($target);
     return $interval->format('%R%a '.$suf);
 }
