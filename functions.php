@@ -351,9 +351,7 @@ function modelcard($id,$cont,$exem,$ses,$sti) {
             'anno'=>$annoT,'body'=>$body,'shoe'=>$shoe,
             'height'=>$len,'weight'=>$mas
         ];
-    } else {
-        $res=[];
-    }
+    } else { $res=[]; } return $res;
 }
 function userlocks($arr,$col,array $pic) {
     $res=[]; foreach ($arr as $key=>$val) {
