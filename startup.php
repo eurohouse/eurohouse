@@ -154,11 +154,10 @@ function dynamic_panels() {
     var uidm=sysDefSessionID.value;
     var bndm=strarr(sysDefBindData.value,';',':')[uidm];
     if (authstate()) {
-        omniBox.placeholder=finterm('<'+sysDefMode.value+'>');
-    }
-    if (requestMode.value=='messenger') {
+        omniBox.placeholder=finterm('Type command or expression and press ENTER');
+    } if (requestMode.value=='messenger') {
         msgBox.innerHTML='<p>'+jsonHTML(sysDefMyMsgboxData.value,uidm,sysDefFind.value)+'</p>';
-        composeMessage.placeholder=finterm('<chat>');
+        composeMessage.placeholder=finterm('What's on your mind?');
     } else if (requestMode.value=='news_feed') {
         newsBox.innerHTML='<p>'+jsonNews()+'</p>';
     } else if (requestMode.value=='bookkeeping') {

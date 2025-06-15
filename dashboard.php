@@ -22,7 +22,7 @@
     <p align='center' class='block'>
     <?php if (isAuthorized()) { ?>
         <input type="image" onmouseover="soundButton();" id="buttonCommand" class="power" onclick="omniBox.focus();" src="<?=$prefix[3].$session['mode'].'.png';?>" title="<?=term('Command Line Interface Mode',$settings,$session);?>">
-        <input type='text' id="omniBox" style="width:62%;" placeholder="<?=term('<'.$session['mode'].'>',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) { omniEnter(); } else if (event.keyCode==27) { omniBox.value='';
+        <input type='text' id="omniBox" style="width:62%;" placeholder="<?=term('Type command or expression and press ENTER',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) { omniEnter(); } else if (event.keyCode==27) { omniBox.value='';
         } else if (event.keyCode==8) { handleInput(this.value);
         } else if (event.keyCode==46) { handleInput(this.value);
         } keyPressed();" oninput="handleInput(this.value,true);">
