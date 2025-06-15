@@ -55,7 +55,7 @@ if ($request['group']!='') {
             </a>
         </th>
         <th style="width:9%;">
-            <a href="javascript:SortTable(2,'D',sysDefDateFormat.value);">
+            <a href="javascript:SortTable(2,'T');">
                 <?=term('Birthday',$settings,$session);?>
             </a>
         </th>
@@ -86,7 +86,8 @@ if ($request['group']!='') {
     $ava=(file_exists('Flag.'.$value['country'].'.png'))?'Flag.'.$value['country'].'.png':'Flag.UN.png';
     $title=(isset($value['language'][$ssUN]['title']))?$value['language'][$ssUN]['title']:$key;
     $bday=(isset($value['birthday']))?$value['birthday']:'';
-    $bcal=(isset($value['birthday']))?chooseCalendar(strtotime($bday),$session,$settings):''; ?>
+    $bcal=(isset($value['birthday']))?chooseCalendar(strtotime($bday),$session,$settings):'';
+    $tzod=(isset($value['birthday']))?zodiacSign(date('z',strtotime($bday))).' ':''; ?>
     <tr>
         <td>
             <a href="<?=$ava;?>">
@@ -95,7 +96,7 @@ if ($request['group']!='') {
         </td>
         <td>
             <a href="javascript:omniGroup(%22<?=$key;?>%22);">
-                <?=zodiacSign(date('z',strtotime($bday))).' '.$title;?>
+                <?=$tzod.$title;?>
             </a>
         </td>
         <td><?=$bcal;?></td>

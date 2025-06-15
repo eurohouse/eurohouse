@@ -62,21 +62,6 @@ function scores(sta) {
                 }
             }
         }
-    } else if (sta=='model') {
-        for (et in obj) {
-            if (obj[et]['nsfw']===undefined) { delete obj[et]; }
-        } for (et in obj){
-            obj[et]['%cc']=(obj[et]['country'])?obj[et]['country']:'UN';
-            obj[et]['%bd']=(obj[et]['birthday'])?timefrom(obj[et]['birthday']):0;
-            obj[et]['%zd']=zodiac(obj[et]['%bd']);
-        } sortable=Object.fromEntries(
-            Object.entries(obj).sort(([,a],[,b])=>b['%bd']-a['%bd'])
-        ); for (indi in sortable) {
-            if ((sortable[indi]!==undefined)&&(indi!='')) {
-                res+="<input type='image' class='power' onmouseover='soundButton();' src='Flag."+sortable[indi]['%cc']+".png"+"' onclick='clip(&#34;"+indi+"&#34;);'>";
-                res+="<input type='button' onmouseover='soundButton();' style='width:68%;' value='"+sortable[indi]['%zd']+" "+indi+"' onclick='omniGroup(&#34;"+indi+"&#34;);'><br>";
-            }
-        }
     } else if (sta=='hdi') {
         for (et in obj) {
             var lem,lef,mysm,mysf,eysm,eysf,gnim,gnif;
