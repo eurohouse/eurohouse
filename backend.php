@@ -1,7 +1,7 @@
 <?php error_reporting(0); $websiteID=basename(__DIR__);
 include 'functions.php'; $settings=fileopen('settings.json');
-$nuUser=$userSettings['reserve']['unauthorized'];
-$suUser=$userSettings['reserve']['superuser'];
+$nuUser=$settings['reserve']['unauthorized'];
+$suUser=$settings['reserve']['superuser'];
 $backloadString=implode(' ',$settings['payload']['backward']);
 $forloadString=implode(',',$settings['payload']['forward']);
 $dataLoad=$settings['dataload'];
