@@ -147,8 +147,7 @@ function world_clock() {
             if ((pager(data,2)=='--:--')&&(sysDefMemo.value!='')) {
                 playAudio(alarmPlayer,sysDefAlarmSound.value);
                 setdata('memo','');
-            } var uidm=sysDefSessionID.value;
-            var bndm=strarr(sysDefBindData.value,';',':')[uidm];
+            } var uidm=sysDefSessionID.value,bndm=strarr(sysDefBindData.value,';',':')[uidm];
             if (authstate()) {
                 omniBox.placeholder=finterm('Type command or expression and press ENTER');
             } if (requestMode.value=='messenger') {
@@ -303,7 +302,8 @@ function wallpaper_engine() {
         url: 'wallpaper_engine.php',
         success: function(data) {
             $('#sysDefVarsArr').val(pager(data,5));
-            $('body').css('background-image','url('+((pager(data,12)!='')?pager(data,12):pager(data,1))+')'); $('#buttonAugment').attr('src',sysDefPrefix.value+(((sysDefVarsArr.value.split(';').length)>1)?((sysDefEntry.value!='')?'diamond.png':'heart.png'):((sysDefEntry.value!='')?'club.png':'spade.png')));
+            $('body').css('background-image','url('+((pager(data,12)!='')?pager(data,12):pager(data,1))+')');
+            $('#buttonAugment').attr('src',sysDefPrefix.value+(((sysDefVarsArr.value.split(';').length)>1)?((sysDefEntry.value!='')?'diamond.png':'heart.png'):((sysDefEntry.value!='')?'club.png':'spade.png')));
             document.title=pager(data,0)+' (@'+sysDefSessionID.value+') · Eurohouse UX/UI';
             document.querySelector(':root').style.setProperty('--position',pager(data,4));
             $('#userAvatarBadge').attr('src',pager(data,8));
@@ -314,8 +314,26 @@ function wallpaper_engine() {
             $('#chooseReticle3').attr('name',sysDefReticleChoice3.value);
             $('#chooseReticle4').attr('name',sysDefReticleChoice4.value);
             $('#chooseReticle5').attr('name',sysDefReticleChoice5.value);
-            $('#chooseReticle1').attr('src',sysDefRet0Prefix.value+sysDefReticleChoice1.value+'.png'); $('#chooseReticle2').attr('src',sysDefRet0Prefix.value+sysDefReticleChoice2.value+'.png'); $('#chooseReticle3').attr('src',sysDefRet0Prefix.value+sysDefReticleChoice3.value+'.png'); $('#chooseReticle4').attr('src',sysDefRet0Prefix.value+sysDefReticleChoice4.value+'.png'); $('#chooseReticle5').attr('src',sysDefRet0Prefix.value+sysDefReticleChoice5.value+'.png');
-            arrangePlay(); <?php if (file_exists('mode.'.$request['mode'].'.php')) {
+            $('#chooseReticle1').attr('src',sysDefRet0Prefix.value+sysDefReticleChoice1.value+'.png');
+            $('#chooseReticle2').attr('src',sysDefRet0Prefix.value+sysDefReticleChoice2.value+'.png');
+            $('#chooseReticle3').attr('src',sysDefRet0Prefix.value+sysDefReticleChoice3.value+'.png');
+            $('#chooseReticle4').attr('src',sysDefRet0Prefix.value+sysDefReticleChoice4.value+'.png');
+            $('#chooseReticle5').attr('src',sysDefRet0Prefix.value+sysDefReticleChoice5.value+'.png');
+            var powersData=strarr(sysDefPowersData.value,';',':');
+            var bindData=strarr(sysDefBindData.value,';',':');
+            var autoData=strarr(sysDefAutoData.value,';',':');
+            sysDefAutoState.value=autoData[sysDefSessionID.value];
+            $('#buttonAutomator').attr('src',sysDefPrefix.value+((sysDefAutoState.value=='auto')?'wheel.png':'steer.png'));
+            var myPowers=powersData[sysDefSessionID.value];
+            var chainIcon='chain'; if (myPowers<=-666) {
+                delete_user(sysDefSessionID.value);omniAuthRequest('signout','','');
+            } chainIcon=(arraySearch(sysDefSessionID.value,bindData)!=false)?((bindData[sysDefSessionID.value]!=sysDefSessionID.value)?'unbroke':'unchain'):((bindData[sysDefSessionID.value]!=sysDefSessionID.value)?'broke':'chain');
+            var powerHandler=formCur(myPowers);
+            var nameHandler=formCur(sysDefSessionID.value,'str');
+            $('#buttonBroke').attr('src',sysDefPrefix.value+chainIcon+'.png');
+            $('#showUsInfoPower').val(powerHandler);
+            $('#showUsInfoBond').val(nameHandler);
+            <?php if (file_exists('mode.'.$request['mode'].'.php')) {
                 if ($request['mode']=='main_menu') { ?>
                     $('#projectTitle').text(pager(data,0).toUpperCase());
                     $('#showingAvatarNow').attr('src',pager(data,9));

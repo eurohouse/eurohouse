@@ -375,25 +375,23 @@ function jsonNews() {
 }
 function activeHrsBtn(id) {
     var str=loadFile(id+'_session.json','active_hours');
-    var arr=str.split(','); var arl=res='';
-    if (str!='') {
+    var arr=str.split(','),arl=res=''; if (str!='') {
         arl="<p align='center'>"; for (el in arr) {
             arl+="<input type='button' onmouseover='soundButton();' value='"+arr[el]+"'>";
         } res=arl+"</p>";
-    } else { res='' } return res;
+    } else { res=''; } return res;
 }
 function showLockInd() {
-    var ob=((jsonarr(sysDefLockData.value)!==undefined)&&(jsonarr(sysDefLockData.value)!==null))?jsonarr(sysDefLockData.value):{};
-    var ch=Object.keys(ob||{});
-    var lic=jsonarr(sysDefLockIcons.value);
-    var epr=sysDefPrefix.value,arl=""; for (iu in ch) {
+    var ob=((jsonarr(sysDefLockData.value)!==undefined)&&(jsonarr(sysDefLockData.value)!==null))?jsonarr(sysDefLockData.value):{},ch=Object.keys(ob||{});
+    var lic=jsonarr(sysDefLockIcons.value),epr=sysDefPrefix.value,arl=""; for (iu in ch) {
         arl+="<input type='image' class='power' onmouseover='soundButton();' onmouseover='soundButton();' src='"+epr+lic[ch[iu]]+".png"+"' onclick='setdata(&#34;album&#34;,&#34;"+ch[iu]+"&#34;);'>";
     } return arl;
 }
 function indexAvatars(id) {
-    var obj=lockarr(id),arr=[];
-    for (idx in obj) {
-        if ((id=='avatar')||(id=='pictogram')||(id=='reticle')) { arr.push(obj[idx].split('.')[1]); }
+    var obj=lockarr(id),arr=[]; for (idx in obj) {
+        if ((id=='avatar')||(id=='pictogram')||(id=='reticle')) {
+            arr.push(obj[idx].split('.')[1]);
+        }
     } return arr;
 }
 function jsonStore(id) {
@@ -406,7 +404,7 @@ function jsonStore(id) {
             fu0="buy_item(&#34;"+usr+"&#34;,&#34;"+el+"&#34;,&#34;"+id+"&#34;);",fu1=(isNum(el))?"charge(&#34;"+id+"&#34;,&#34;"+parseFloat(el)+"&#34;);":(((eld['type']=='book')||(eld['type']=='text'))?"omniPath(&#34;./"+usr+"_store.json&#34;,&#34;"+el+"/contents&#34;,&#34;false&#34;);":((eld['type']=='weapon')?"equip(&#34;"+id+"&#34;,&#34;"+el+"&#34;);":"charge(&#34;"+id+"&#34;,&#34;"+el+"&#34;);"));
             arl+="<td><input type='button' onmouseover='soundButton();' style='width:80%;' onclick='"+((id!=usr)?fu0:fu1)+"' value='"+el+"'>";
             arl+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"info.png"+"' onclick='omniPath(&#34;./"+usr+"_store.json&#34;,&#34;"+el+"&#34;,&#34;false&#34;);'>";
-            arl+="</td><td>"+eld['amount']+"</td><td>$"+eld['price']+"</td>"; ard=arl+"</tr>"+ard;
+            arl+="</td><td>"+eld['amount']+"</td><td>"+formCur(eld['price'])+"</td>"; ard=arl+"</tr>"+ard;
         }
     } return ard;
 }
@@ -556,22 +554,6 @@ function arrangeMenu(list,item,delim=',',sort=false) {
 function isInMenu(list,item) {
     var arr=list.toString('').split(',');
     return (arr.indexOf(item)>-1);
-}
-function arrangePlay() {
-    var powersData=strarr(sysDefPowersData.value,';',':');
-    var bindData=strarr(sysDefBindData.value,';',':');
-    var autoData=strarr(sysDefAutoData.value,';',':');
-    sysDefAutoState.value=autoData[sysDefSessionID.value];
-    $('#buttonAutomator').attr('src',sysDefPrefix.value+((sysDefAutoState.value=='auto')?'wheel.png':'steer.png'));
-    var myPowers=powersData[sysDefSessionID.value];
-    var chainIcon='chain'; if (myPowers<=-666) {
-        delete_user(sysDefSessionID.value);omniAuthRequest('signout','','');
-    } chainIcon=(arraySearch(sysDefSessionID.value,bindData)!=false)?((bindData[sysDefSessionID.value]!=sysDefSessionID.value)?'unbroke':'unchain'):((bindData[sysDefSessionID.value]!=sysDefSessionID.value)?'broke':'chain');
-    var powerHandler=formCur(myPowers);
-    var nameHandler=formCur(sysDefSessionID.value,'str');
-    $('#buttonBroke').attr('src',sysDefPrefix.value+chainIcon+'.png');
-    $('#showUsInfoPower').val(powerHandler);
-    $('#showUsInfoBond').val(nameHandler);
 }
 function bind(usr,id) {
     var obj=strarr(sysDefBindData.value,';',':');
