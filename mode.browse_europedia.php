@@ -94,13 +94,16 @@ if ($request['group']!='') {
 <tbody><?php foreach ($exemplarArr as $key=>$value) {
         $ccAV=(file_exists('Flag.'.$value['country'].'.png'))?'Flag.'.$value['country'].'.png':'Flag.UN.png';
         $mmTL=(isset($value['language'][$ssUN]['title']))?$value['language'][$ssUN]['title']:$key;
-        $mmDC=(isset($value['language'][$ssUN]['memoir']))?$value['language'][$ssUN]['memoir']:((isset($value['memoir']))?$value['memoir']:''); ?>
+        $mmDC=(isset($value['language'][$ssUN]['memoir']))?$value['language'][$ssUN]['memoir']:((isset($value['memoir']))?$value['memoir']:'');
+        $bday=(isset($value['birthday']))?$value['birthday']:'';
+        $bcal=chooseCalendar(strtotime($bday),$session,$settings);
+        ?>
     <tr>
         <td><a href="<?=$ccAV;?>">
             <img style="width:<?=$iconSize;?>%;" src="<?=$ccAV;?>" loading="lazy" onmouseover="soundButton();">
         </a></td>
         <td><a href="javascript:omniGroup(%22<?=$key;?>%22);">
-            <?=$mmTL;?>
+            <?=zodiacSign(date('z',strtotime($bday))).' '.$mmTL;?>
         </a></td>
         <?php if ($session['nsfw']==0) { ?>
         <td>
@@ -109,9 +112,9 @@ if ($request['group']!='') {
             <?php if (isset($value['maison'])) { ?></a><?php } ?>
         </td>
         <?php } else { ?>
-            <td><?php $bday=(isset($value['birthday']))?chooseCalendar(strtotime($value['birthday']),$session,$settings):'';
-            echo $bday; ?></td>
-            <td><?php $sign=(isset($ssLC['length'][$ssUN]['sign']))?$ssLC['length'][$ssUN]['sign']:$ssLC['length']['default']['sign']; $koeff=(isset($ssLC['length'][$ssUN]['coefficient']))?$ssLC['length'][$ssUN]['coefficient']:$ssLC['length']['default']['coefficient']; if (isset($value['height'])) {
+            <td><?=$bcal;?></td>
+            <td><?php $sign=(isset($ssLC['length'][$ssUN]['sign']))?$ssLC['length'][$ssUN]['sign']:$ssLC['length']['default']['sign']; $koeff=(isset($ssLC['length'][$ssUN]['coefficient']))?$ssLC['length'][$ssUN]['coefficient']:$ssLC['length']['default']['coefficient'];
+            if (isset($value['height'])) {
                 if (isset($ssLC['length'][$ssUN]['inch'])) {
                     $height=incher($value['height']);
                 } else { $height=(round(($value['height']*$koeff),2)).' '.$sign; }
