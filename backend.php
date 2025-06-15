@@ -5,7 +5,6 @@ $forloadString=implode(',',$settings['payload']['forward']);
 $dataLoad=$settings['dataload'];
 $updateChannel=[]; foreach ($settings['payload'] as $key=>$val) { $updateChannel[$key]=implode(' ',$val); }
 foreach ($settings['collections'] as $key=>$value) { $settings['collections'][$key]=strtoupper($value).','.$value; }
-//chmod('get.php',0777); unlink('get.php');
 if (!file_exists('get.php')) { express(explode(',',$backloadString)); header("Location: index.php"); }
 initDataDirs('tmp,trash');
 foreach ($settings['viewport'] as $key=>$val) { $viewportStr.=$key.'='.$val.', '; } $viewportParam=substr($viewportStr,0,-2);
