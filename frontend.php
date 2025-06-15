@@ -659,45 +659,6 @@ function compose(usr,msg) {
         }
     }
 }
-function pamd(pamLen=4,pamChar='0123456789') {
-    var dt=new Date(),hh=dt.getUTCHours();
-    var mm=dt.getUTCMinutes(),ss=dt.getUTCSeconds();
-    var period=sysDefCron.value;
-    var pass=(sysDefPamSerial.value!=0)?genSerial(pamLen,pamChar):genFixedNum(pamLen,pamChar);
-    if ((authstate())&&(sysDefPam.value!=0)) {
-        if (period=="60min") {
-            if ((parseInt(mm)==0)&&(parseInt(ss)==0)) {
-                rename_user(sysDefSessionID.value,sysDefSessionID.value,pass,sysDefSessionID.value);
-                compose('pam','@'+sysDefSessionID.value+':'+pass);
-            }
-        } else if (period=="30min") {
-            if (((parseInt(mm)==0)||(parseInt(mm)==30))&&(parseInt(ss)==0)) {
-                rename_user(sysDefSessionID.value,sysDefSessionID.value,pass,sysDefSessionID.value);
-                compose('pam','@'+sysDefSessionID.value+':'+pass);
-            }
-        } else if (period=="15min") {
-            if (((parseInt(mm)==0)||(parseInt(mm)==15))||(parseInt(mm)==30)||(parseInt(mm)==45)&&(parseInt(ss)==0)) {
-                rename_user(sysDefSessionID.value,sysDefSessionID.value,pass,sysDefSessionID.value);
-                compose('pam','@'+sysDefSessionID.value+':'+pass);
-            }
-        } else if (period=="60sec") {
-            if (parseInt(ss)==0) {
-                rename_user(sysDefSessionID.value,sysDefSessionID.value,pass,sysDefSessionID.value);
-                compose('pam','@'+sysDefSessionID.value+':'+pass);
-            }
-        } else if (period=="30sec") {
-            if ((parseInt(ss)==0)||(parseInt(ss)==30)) {
-                rename_user(sysDefSessionID.value,sysDefSessionID.value,pass,sysDefSessionID.value);
-                compose('pam','@'+sysDefSessionID.value+':'+pass);
-            }
-        } else if (period=="15sec") {
-            if ((parseInt(ss)==0)||(parseInt(ss)==15)||(parseInt(ss)==30)||(parseInt(ss)==45)) {
-                rename_user(sysDefSessionID.value,sysDefSessionID.value,pass,sysDefSessionID.value);
-                compose('pam','@'+sysDefSessionID.value+':'+pass);
-            }
-        }
-    }
-}
 function amounts(tabS,tabB,art) {
     var qS=qB=0; if ((tabS[art]['amount']!==undefined)&&isInt(tabS[art]['amount'])) {
         qS=parseInt(tabS[art]['amount']); if (qS>1) {

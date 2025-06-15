@@ -15,24 +15,10 @@ function omniAuthRequest(auth,login,pass) {
     hiddenField.value=pass; form.appendChild(hiddenField);
     document.body.appendChild(form); form.submit();
 }
-function guessUserPass(id) {
-    var msgbox={},msglen=0,indexed=pass='';
-    if (loadFile(id+'_session.json','pam')!=0) {
-        msgbox=jsonFilter(loadFile(id+'_msgbox.json'),id,'@#'+id+':');
-        console.log(msgbox);
-        msglen=Object.keys(msgbox).length;
-        if (msglen!=0) {
-            indexed=msgbox[Object.keys(msgbox)[msglen-1]];
-            console.log(indexed);
-            pass=(indexed.startsWith('@'+id+':'))?indexed.split(':')[1]:'';
-        } else { pass=''; }
-    } else { pass=''; } return pass;
-}
 function omniSuggest() {
     var usersList=(sysDefUsersList.value).split(',');
     var curUser=usersList[rand(0,(usersList.length))];
-    omniBoxAuthLogin.value=curUser;
-    omniBoxAuthPass.value=guessUserPass(curUser);
+    omniBoxAuthLogin.value=curUser; omniBoxAuthPass.value='';
     omniBoxAuthPass.focus();
 }
 function uploadFile() {

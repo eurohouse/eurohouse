@@ -1,7 +1,5 @@
 <script>
 window.onload=function() {
-    /* init_user(sysDefSessionID.value);
-    if (superuser()) { delete_users(',0,auto'); } */
     if (authstate()) { document.getElementById('omniBox').focus();
     } else { document.getElementById('omniBoxAuthLogin').focus(); }
     if (window.history.replaceState) {
@@ -70,7 +68,6 @@ function world_clock() {
         url: 'world_clock.php',
         success: function(data) {
             $('#currentTime').val(pager(data,sysDefTimedisp.value)); $('#alarmTime').val((pager(data,2)!='00:00')?pager(data,2):hhmmss(audioPlayer.currentTime,true));
-            pamd(sysDefPamLen.value,sysDefPamChar.value);
             $('#sysDefAccent').val(pager(data,3));
             $('#sysDefEffects').val(pager(data,4));
             $('#sysDefMixers').val(pager(data,5));
