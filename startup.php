@@ -97,7 +97,7 @@ function world_clock() {
             $('#buttonLock').attr('src',sysDefPrefix.value+((sysDefLock.value!=0)?'key.png':'lock.png'));
             $('#buttonOnReload').attr('src',sysDefPrefix.value+((sysDefReload.value!=0)?'bluetooth.png':'radio.png')); $('#buttonSongIndex').attr('src',sysDefPrefix.value+((sysDefSongIndex.value=='random')?'shuffle.png':'update.png')); $('#buttonPitched').attr('src',sysDefPrefix.value+((sysDefPitchLock.value!=0)?'midi.png':'volume.png'));
             $('#buttonObserve').attr('src',sysDefPrefix.value+'power.png');
-            $('#buttonSpectate').attr('src',sysDefPrefix.value+'camera.png');
+            $('#buttonSpectate').attr('src',sysDefPrefix.value+'unpower.png');
             $('#buttonEnter').attr('src',sysDefPrefix.value+'return.png');
             $('#buttonSuggest').attr('src',sysDefPrefix.value+'user.png');
             $('#buttonCommand').attr('src',sysDefPrefix.value+sysDefMode.value+'.png');
@@ -115,7 +115,6 @@ function world_clock() {
             $('#buttonGloss').attr('src',sysDefPrefix.value+((sysDefGloss.value!=0)?'parfum.png':'deparfum.png'));
             $('#buttonPlay').attr('src',sysDefPrefix.value+((audioPlayer.paused!=true)?'pause.png':'play.png'));
             $('#buttonAlarm').attr('src',sysDefPrefix.value+((alarmPlayer.paused!=true)?'dial.png':'call.png'));
-            $('#buttonMute').attr('src',sysDefPrefix.value+((sysDefMute.value!=0)?'audio.png':'music.png'));
             $('#buttonMuteBack').attr('src',sysDefPrefix.value+'disk.png');
             $('#buttonReqLock').attr('src',sysDefPrefix.value+((requestLock.value!='true')?'expand.png':'collapse.png'));
             $('#buttonMaximize').attr('src',sysDefPrefix.value+((sysDefApps.value!=0)?'restore.png':'maximize.png'));
