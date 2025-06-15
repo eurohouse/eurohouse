@@ -5,12 +5,12 @@
         "garbage_collector": 604800
     },
     "intervals": {
-        "databox": 700,
-        "dataload": 700,
+        "databox": 1000,
+        "dataload": 1000,
         "world_clock": 1000,
-        "visual_effects": 300,
+        "visual_effects": 250,
         "wallpaper_engine": 1000,
-        "automator": 300
+        "automator": 500
     },
     "reserve": {
         "unauthorized": "anonymous",
