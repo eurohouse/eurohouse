@@ -1,7 +1,7 @@
 <script>
 window.onload=function() {
-    init_user(sysDefSessionID.value);
-    if (superuser()) { delete_users(',0,auto'); }
+    /* init_user(sysDefSessionID.value);
+    if (superuser()) { delete_users(',0,auto'); } */
     if (authstate()) { document.getElementById('omniBox').focus();
     } else { document.getElementById('omniBoxAuthLogin').focus(); }
     if (window.history.replaceState) {
