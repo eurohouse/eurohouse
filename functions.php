@@ -432,6 +432,12 @@ function chooseCalendar($time,array $prof,array $voc) {
     } else { $res=timedate($time,$prof,$voc,'date'); }
     return $res;
 }
+function timedate_diff($time1,$time2,$suf='years') {
+    $origin=new DateTimeImmutable('@'.$time1);
+    $target=new DateTimeImmutable('@'.$time2);
+    $interval=$origin->diff($target);
+    return $interval->format('%R%a '.$suf);
+}
 function timedate($time,array $prof,array $voc,$mode='time',$offs=0) {
     $di=DateInterval::createFromDateString($offs.'day');
     $dt=new DateTime('@'.$time,(new DateTimeZone(dec_tz($prof['timezone']))));

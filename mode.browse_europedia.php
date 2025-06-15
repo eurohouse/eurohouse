@@ -86,6 +86,8 @@ if ($request['group']!='') {
     $ava=(file_exists('Flag.'.$value['country'].'.png'))?'Flag.'.$value['country'].'.png':'Flag.UN.png';
     $title=(isset($value['language'][$ssUN]['title']))?$value['language'][$ssUN]['title']:$key;
     $bday=(isset($value['birthday']))?$value['birthday']:'';
+    $dday=(isset($value['deathday']))?$value['deathday']:time();
+    $tdiff=timedate_diff($bday,$dday);
     $bcal=(isset($value['birthday']))?chooseCalendar(strtotime($bday),$session,$settings):'';
     $tzod=(isset($value['birthday']))?zodiacSign(date('z',strtotime($bday))).' ':''; ?>
     <tr>
@@ -99,7 +101,7 @@ if ($request['group']!='') {
                 <?=$tzod.$title;?>
             </a>
         </td>
-        <td><?=$bcal;?></td>
+        <td><?=$tdiff;?></td>
         <td><?php $sign=(isset($ssLC['length'][$ssUN]['sign']))?$ssLC['length'][$ssUN]['sign']:$ssLC['length']['default']['sign']; $koeff=(isset($ssLC['length'][$ssUN]['coefficient']))?$ssLC['length'][$ssUN]['coefficient']:$ssLC['length']['default']['coefficient']; if (isset($value['height'])) {
             if (isset($ssLC['length'][$ssUN]['inch'])) {
                 $height=incher($value['height']);
