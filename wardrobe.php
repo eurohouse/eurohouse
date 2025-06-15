@@ -240,18 +240,6 @@ select option {
     background-color: var(--inputcolor);
     color: var(--inputtextcolor);
 }
-select option:checked, select option:hover {
-    background-color: var(--forecolor);
-    color: var(--foretextcolor);
-}
-select:focus > option:checked {
-    background-color: var(--forecolor);
-    color: var(--foretextcolor);
-}
-select:checked > option:focus {
-    background-color: var(--forecolor);
-    color: var(--foretextcolor);
-}
 input[type=button], input[type=image], button {
     background: var(--gradient-fore); background-size: 100%;
     color: var(--foretextcolor); border: none;
