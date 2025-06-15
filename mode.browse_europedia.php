@@ -91,42 +91,38 @@ if ($request['group']!='') {
         <?php } ?>
     </tr>
 </thead>
-<tbody><?php foreach ($exemplarArr as $key=>$value) {
-        $ccAV=(file_exists('Flag.'.$value['country'].'.png'))?'Flag.'.$value['country'].'.png':'Flag.UN.png';
-        $mmTL=(isset($value['language'][$ssUN]['title']))?$value['language'][$ssUN]['title']:$key;
-        $mmDC=(isset($value['language'][$ssUN]['memoir']))?$value['language'][$ssUN]['memoir']:((isset($value['memoir']))?$value['memoir']:'');
-        $bday=(isset($value['birthday']))?$value['birthday']:'';
-        $bcal=chooseCalendar(strtotime($bday),$session,$settings);
-        ?>
+<tbody>
+<?php foreach ($exemplarArr as $key=>$value) {
+    $ava=(file_exists('Flag.'.$value['country'].'.png'))?'Flag.'.$value['country'].'.png':'Flag.UN.png';
+    $title=(isset($value['language'][$ssUN]['title']))?$value['language'][$ssUN]['title']:$key;
+    $bday=(isset($value['birthday']))?$value['birthday']:'';
+    $bcal=(isset($value['birthday']))?chooseCalendar(strtotime($bday),$session,$settings):''; ?>
     <tr>
-        <td><a href="<?=$ccAV;?>">
-            <img style="width:<?=$iconSize;?>%;" src="<?=$ccAV;?>" loading="lazy" onmouseover="soundButton();">
-        </a></td>
-        <td><a href="javascript:omniGroup(%22<?=$key;?>%22);">
-            <?=zodiacSign(date('z',strtotime($bday))).' '.$mmTL;?>
-        </a></td>
-        <?php if ($session['nsfw']==0) { ?>
         <td>
-            <?php if (isset($value['maison'])) { ?><a href="<?=$value['maison'];?>"><?php } ?>
-                <?=fixedSize($mmDC,0,180);?>
-            <?php if (isset($value['maison'])) { ?></a><?php } ?>
+            <a href="<?=$ava;?>">
+                <img style="width:<?=$iconSize;?>%;" src="<?=$ava;?>" loading="lazy" onmouseover="soundButton();">
+            </a>
         </td>
-        <?php } else { ?>
-            <td><?=$bcal;?></td>
-            <td><?php $sign=(isset($ssLC['length'][$ssUN]['sign']))?$ssLC['length'][$ssUN]['sign']:$ssLC['length']['default']['sign']; $koeff=(isset($ssLC['length'][$ssUN]['coefficient']))?$ssLC['length'][$ssUN]['coefficient']:$ssLC['length']['default']['coefficient'];
-            if (isset($value['height'])) {
-                if (isset($ssLC['length'][$ssUN]['inch'])) {
-                    $height=incher($value['height']);
-                } else { $height=(round(($value['height']*$koeff),2)).' '.$sign; }
-            } else { $height=''; } echo $height; ?></td>
-            <td><?php $sign=(isset($ssLC['mass'][$ssUN]['sign']))?$ssLC['mass'][$ssUN]['sign']:$ssLC['mass']['default']['sign']; $koeff=(isset($ssLC['mass'][$ssUN]['coefficient']))?$ssLC['mass'][$ssUN]['coefficient']:$ssLC['mass']['default']['coefficient'];
-            $weight=(isset($value['weight']))?round($value['weight']*$koeff).' '.$sign:' ';
-            echo $weight; ?>
-            <td><?php $koeff=(isset($ssLC['body_sizes'][$ssUN]['coefficient']))?$ssLC['body_sizes'][$ssUN]['coefficient']:$ssLC['body_sizes']['default']['coefficient'];
-            $sizes=(isset($value['sizes']))?((round((explode('-',$value['sizes'])[0]*$koeff))).'-'.(round((explode('-',$value['sizes'])[1]*$koeff))).'-'.(round((explode('-',$value['sizes'])[2]*$koeff)))):''; echo $sizes; ?></td>
-            <td><?php $koeff=(isset($ssLC['shoe_size'][$ssUN]))?$ssLC['shoe_size'][$ssUN]:$ssLC['shoe_size']['default']; $shoeSize=(isset($value['shoe_size']))?(($value['shoe_size']+$koeff).' '.$ssUN):' '; echo $shoeSize; ?></td>
-        <?php } ?>
-    </tr><?php } ?>
+        <td>
+            <a href="javascript:omniGroup(%22<?=$key;?>%22);">
+                <?=/*zodiacSign(date('z',strtotime($bday))).' '.*/$mmTL;?>
+            </a>
+        </td>
+        <td><?=$bcal;?></td>
+        <td><?php $sign=(isset($ssLC['length'][$ssUN]['sign']))?$ssLC['length'][$ssUN]['sign']:$ssLC['length']['default']['sign']; $koeff=(isset($ssLC['length'][$ssUN]['coefficient']))?$ssLC['length'][$ssUN]['coefficient']:$ssLC['length']['default']['coefficient']; if (isset($value['height'])) {
+            if (isset($ssLC['length'][$ssUN]['inch'])) {
+                $height=incher($value['height']);
+            } else {
+                $height=(round(($value['height']*$koeff),2)).' '.$sign;
+            }
+        } else { $height=''; } echo $height; ?></td>
+        <td><?php $sign=(isset($ssLC['mass'][$ssUN]['sign']))?$ssLC['mass'][$ssUN]['sign']:$ssLC['mass']['default']['sign']; $koeff=(isset($ssLC['mass'][$ssUN]['coefficient']))?$ssLC['mass'][$ssUN]['coefficient']:$ssLC['mass']['default']['coefficient']; $weight=(isset($value['weight']))?round($value['weight']*$koeff).' '.$sign:' ';
+        echo $weight; ?></td>
+        <td><?php $koeff=(isset($ssLC['body_sizes'][$ssUN]['coefficient']))?$ssLC['body_sizes'][$ssUN]['coefficient']:$ssLC['body_sizes']['default']['coefficient'];
+        $sizes=(isset($value['sizes']))?((round((explode('-',$value['sizes'])[0]*$koeff))).'-'.(round((explode('-',$value['sizes'])[1]*$koeff))).'-'.(round((explode('-',$value['sizes'])[2]*$koeff)))):''; echo $sizes; ?></td>
+        <td><?php $koeff=(isset($ssLC['shoe_size'][$ssUN]))?$ssLC['shoe_size'][$ssUN]:$ssLC['shoe_size']['default']; $shoeSize=(isset($value['shoe_size']))?(($value['shoe_size']+$koeff).' '.$ssUN):' '; echo $shoeSize; ?></td>
+    </tr>
+    <?php } ?>
 </tbody>
 <tfoot>
     <tr>
