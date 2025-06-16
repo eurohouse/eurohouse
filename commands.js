@@ -443,12 +443,19 @@ function omniEnter() {
         omniDir(quote(arg[0]));
     } else if (input.startsWith('model ')) {
         arb=input.replace('model ', ''); arh=[];
-        ark=jsonarr(sysDefModelData.value);
         if (arb.includes(':')) {
+            ark=jsonarr(sysDefModelData.value);
             arg=arb.split(':'); for (idx in ark) {
                 if (idx.toLowerCase().includes(arg[0].toLowerCase())) { arh.push(idx); }
             } omniGroup(arh[arg[1]]);
+        } else if ((arb=='true')||(arb==1)) {
+            arg=Object.keys(jsonarr(sysDefNSFWModelData.value));
+            omniGroup(arg[rand(0,arg.length)]);
+        } else if ((arb=='false')||(arb==0)) {
+            arg=Object.keys(jsonarr(sysDefSafeModelData.value));
+            omniGroup(arg[rand(0,arg.length)]);
         } else {
+            ark=jsonarr(sysDefModelData.value);
             for (idx in ark) {
                 if (idx.toLowerCase().includes(arb.toLowerCase())) { arh.push(idx); }
             } omniGroup(arh[rand(0,arh.length)]);
@@ -506,6 +513,12 @@ function omniEnter() {
             arh=[]; arg=arb.split(':'); for (idx in ark) {
                 if (ark[idx].toLowerCase().includes(arg[0].toLowerCase())) { arh.push(idx); }
             } window.location.href=arh[arg[1]];
+        } else if ((arb=='true')||(arb==1)) {
+            arg=Object.keys(jsonarr(sysDefNSFWContentData.value));
+            window.location.href=arg[rand(0,arg.length)];
+        } else if ((arb=='false')||(arb==0)) {
+            arg=Object.keys(jsonarr(sysDefSafeContentData.value));
+            window.location.href=arg[rand(0,arg.length)];
         } else {
             arh=[]; for (idx in ark) {
                 if (ark[idx].toLowerCase().includes(arb.toLowerCase())) { arh.push(idx); }
