@@ -100,7 +100,6 @@ function world_clock() {
             $('#buttonSpectate').attr('src',sysDefPrefix.value+'unpower.png');
             $('#buttonEnter').attr('src',sysDefPrefix.value+'return.png');
             $('#buttonSuggest').attr('src',sysDefPrefix.value+'user.png');
-            $('#buttonCommand').attr('src',sysDefPrefix.value+sysDefMode.value+'.png');
             $('#buttonChat').attr('src',sysDefPrefix.value+'mail.png');
             $('#buttonSearch').attr('src',sysDefPrefix.value+'directory.png');
             $('#buttonKeyboard').attr('src',sysDefPrefix.value+'keyboard.png');
@@ -112,6 +111,8 @@ function world_clock() {
             $('#buttonAutoplay').attr('src',sysDefPrefix.value+((sysDefAutoplay.value!=0)?'autopause.png':'autoplay.png'));
             $('#buttonRandom').attr('src',sysDefPrefix.value+'dice.png');
             $('#buttonVintage').attr('src',sysDefPrefix.value+'diamante.png');
+            $('#buttonSetBanner').attr('src',sysDefPrefix.value+'shift.png');
+            $('#buttonResetBanner').attr('src',sysDefPrefix.value+'delete.png');
             $('#buttonGloss').attr('src',sysDefPrefix.value+((sysDefGloss.value!=0)?'parfum.png':'deparfum.png'));
             $('#buttonPlay').attr('src',sysDefPrefix.value+((audioPlayer.paused!=true)?'pause.png':'play.png'));
             $('#buttonAlarm').attr('src',sysDefPrefix.value+((alarmPlayer.paused!=true)?'dial.png':'call.png'));

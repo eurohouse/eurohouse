@@ -525,26 +525,7 @@ function omniEnter() {
             } window.location.href=arh[rand(0,arh.length)];
         }
     } else if (input.startsWith('::')) {
-        arb=input.replace('::','');
-        if ((arb.includes('.'))&&(arb.split('.').length==3)) {
-            setdata('banner',arb+'.png');
-        } else if ((arb.includes(':'))&&(arb.split(':').length==2)) {
-            ark=jsonarr(sysDefContentData.value);
-            arh=[]; arg=arb.split(':'); for (idx in ark) {
-                if (ark[idx].toLowerCase().includes(arg[0].toLowerCase())) { arh.push(idx); }
-            } setdata('banner',arh[arg[1]]);
-        } else if ((arb=='true')||(arb==1)) {
-            arg=Object.keys(jsonarr(sysDefNSFWContentData.value));
-            setdata('banner',arg[rand(0,arg.length)]);
-        } else if ((arb=='false')||(arb==0)) {
-            arg=Object.keys(jsonarr(sysDefSafeContentData.value));
-            setdata('banner',arg[rand(0,arg.length)]);
-        } else {
-            ark=jsonarr(sysDefContentData.value);
-            arh=[]; for (idx in ark) {
-                if (ark[idx].toLowerCase().includes(arb.toLowerCase())) { arh.push(idx); }
-            } setdata('banner',arh[rand(0,arh.length)]);
-        }
+        arb=input.replace('::',''); seekBanner(arb);
     } else if (input.startsWith('\\=')) {
         arb=input.replace('\\=','');
         if (arb.includes('://')) { omniListen(arb,true);
