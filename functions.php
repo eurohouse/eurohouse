@@ -601,7 +601,9 @@ function titleColon($itl,bool $cln=false,array $voc,array $ses) {
 }
 function localizedTitle(array $ses,$entl) {
     $uni=$ses['units']; $entr=valarr($ses[$entl.'s'],' | ',' - ');
-    $itl=(isset($entr[$uni]))?$entr[$uni]:(($ses[$entl]!='')?$ses[$entl]:'');
+    $entd=valarr($ses['titles'],' | ',' - ');
+    $ttl=(isset($entd[$uni]))?$entd[$uni]:(($ses['title']!='')?$ses['title']:'');
+    $itl=(isset($entr[$uni]))?$entr[$uni]:(($ses[$entl]!='')?$ses[$entl]:$ttl);
     return $itl;
 }
 function titler($name,array $voc,array $ses) {
