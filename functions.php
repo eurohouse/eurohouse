@@ -589,22 +589,30 @@ function wordfx($word,$sup,array $voc,array $ses) {
                 $res=(isset($loc['quarter'][$uni][$qM]))?$loc['quarter'][$uni][$qM]:$loc['quarter']['default'][$qM]; break;
             default:
                 // Get arbitrary user profile property
-                $entl=(strpos($full,':')!==false)?str_replace(':','',str_replace(']','',str_replace('[','',$full))):str_replace(']','',str_replace('[','',$full)); $itl=localizedTitle($ses,$entl);
-                $res=titleColon($itl,(strpos($full,':')!==false),$voc,$ses);
-                break;
+                if (strpos($full,':')!==false) {
+                    $entl=str_replace(':','',str_replace(']','',str_replace('[','',$full)));
+                    $itl=localizedTitle($ses,$entl);
+                    $res=titleColon($itl,true,$voc,$ses);
+                } elseif (strpos($full,'|')!==false) {
+                    $entl=str_replace(']','',str_replace('[','',$full)); $entr=explode('|',$entl);
+                    foreach ($entr as $ei=>$ed) {
+                        $entd=localizedTitle($ses,$ed);
+                        if ($entd!='') { break; }
+                    } $res=$entd;
+                } else {
+                    $entl=str_replace(']','',str_replace('[','',$full)); $itl=localizedTitle($ses,$entl);
+                    $res=titleColon($itl,false,$voc,$ses);
+                } break;
         } $word=str_replace($full,$res,$word);
     } return $word;
 }
 function titleColon($itl,bool $cln=false,array $voc,array $ses) {
-    $uni=$ses['units'];$vom=$voc['vocabulary'];$loc=$voc['locale'];
+    $uni=$ses['units']; $vom=$voc['vocabulary']; $loc=$voc['locale'];
     $vun=($cln)?(($itl!='')?((isset($vom[$uni][': ']))?$vom[$uni][': ']:': '):''):''; return (in_array($uni,$loc['colon_ind']))?$vun.$itl:$itl.$vun;
 }
 function localizedTitle(array $ses,$entl) {
     $uni=$ses['units']; $entr=valarr($ses[$entl.'s'],' | ',' - ');
-    $entd=valarr($ses['titles'],' | ',' - ');
-    $ttl=(isset($entd[$uni]))?$entd[$uni]:(($ses['title']!='')?$ses['title']:'');
-    $itl=(isset($entr[$uni]))?$entr[$uni]:(($ses[$entl]!='')?$ses[$entl]:$ttl);
-    return $itl;
+    $itl=(isset($entr[$uni]))?$entr[$uni]:(($ses[$entl]!='')?$ses[$entl]:''); return $itl;
 }
 function titler($name,array $voc,array $ses) {
     $domain=explode('.',$name)[0];$volume=explode('.',$name)[1];
