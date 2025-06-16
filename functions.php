@@ -634,5 +634,5 @@ function l10nEnt($cat='',$word='',array $voc,array $ses) {
     return (isset($voc['locale'][$cat][$word][$ses['units']]))?$voc['locale'][$cat][$word][$ses['units']]:$voc['locale'][$cat][$word]['default'];
 }
 function terms(array $voc,array $ses) {
-    $arr=[]; $term=["Debit","Credit","Balance","Agent","Press any key to continue...","Name","Amount","Price","Active Hours:","The market is closed.","Symbolic Digits","Type","Password","What's on your mind?","Type command or expression and press ENTER"]; foreach ($term as $val) { $arr[$val]=term($val,$voc,$ses); } return $arr;
+    $arr=[]; $term=["Debit","Credit","Balance","Agent","Press any key to continue...","Name","Amount","Price","Active Hours:","The market is closed.","Symbolic Digits","Type","Title","Password","What's on your mind?","Type command or expression and press ENTER"]; foreach ($term as $val) { $arr[$val]=term($val,$voc,$ses); } return $arr;
 }
