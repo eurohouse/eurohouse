@@ -64,6 +64,10 @@
         <input type='hidden' id='sysDefNullUserName' value="<?=$nuUser;?>">
         <input type='hidden' id='sysDefSuperUserName' value="<?=$suUser;?>">
         <input type='hidden' id="sysDefHdiData" value="">
+        <input type='hidden' id="sysDefNSFWModelData" value="">
+        <input type='hidden' id="sysDefNSFWContentData" value="">
+        <input type='hidden' id="sysDefSafeModelData" value="">
+        <input type='hidden' id="sysDefSafeContentData" value="">
         <input type='hidden' id="sysDefModelData" value="">
         <input type='hidden' id="sysDefContentData" value="">
         <input type='hidden' id="sysDefHoursNow" value="">

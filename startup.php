@@ -33,12 +33,12 @@ function databox() {
             $('#sysDefTutorData').val(pager(data,12));
             $('#sysDefNewsData').val(pager(data,13));
             $('#sysDefHdiData').val(pager(data,14));
-            var modNSFW=pager(data,15),contNSFW=pager(data,16);
-            var modN=pager(data,17),contN=pager(data,18);
-            var modU=arrjson({...jsonarr(modNSFW), ...jsonarr(modN)});
-            var contU=arrjson({...jsonarr(contNSFW), ...jsonarr(contN)});
-            $('#sysDefModelData').val((sysDefNsfw.value!=0)?modU:modN);
-            $('#sysDefContentData').val((sysDefNsfw.value!=0)?contU:contN);
+            $('#sysDefNSFWModelData').val(pager(data,15));
+            $('#sysDefNSFWContentData').val(pager(data,16));
+            $('#sysDefSafeModelData').val(pager(data,17));
+            $('#sysDefSafeContentData').val(pager(data,18));
+            $('#sysDefModelData').val(arrjson({...jsonarr(sysDefNSFWModelData.value), ...jsonarr(sysDefSafeModelData.value)}));
+            $('#sysDefContentData').val(arrjson({...jsonarr(sysDefNSFWContentData), ...jsonarr(sysDefSafeContentData)}));
             $('#sysDefMetaList').val(Object.keys(jsonarr(sysDefMetaData.value)).join(' | '));
             $('#sysDefTutorList').val(Object.keys(jsonarr(sysDefTutorData.value)).join(' | '));
             sysDefPrefix.value=(sysDefPrefData.value).split(',')[3]; sysDefAva0Prefix.value=(sysDefPrefData.value).split(',')[0]; sysDefAva1Prefix.value=(sysDefPrefData.value).split(',')[1]; sysDefPic0Prefix.value=(sysDefPrefData.value).split(',')[2]; sysDefPic1Prefix.value=(sysDefPrefData.value).split(',')[3]; sysDefRet0Prefix.value=(sysDefPrefData.value).split(',')[4]; sysDefRet1Prefix.value=(sysDefPrefData.value).split(',')[5];

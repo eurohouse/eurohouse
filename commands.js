@@ -520,6 +520,12 @@ function omniEnter() {
             arh=[]; arg=arb.split(':'); for (idx in ark) {
                 if (ark[idx].toLowerCase().includes(arg[0].toLowerCase())) { arh.push(idx); }
             } setdata('banner',arh[arg[1]]);
+        } else if ((arb=='true')||(arb==1)) {
+            arg=Object.keys(jsonarr(sysDefNSFWContentData.value));
+            setdata('banner',arg[rand(0,arg.length)]);
+        } else if ((arb=='false')||(arb==0)) {
+            arg=Object.keys(jsonarr(sysDefSafeContentData.value));
+            setdata('banner',arg[rand(0,arg.length)]);
         } else {
             ark=jsonarr(sysDefContentData.value);
             arh=[]; for (idx in ark) {
