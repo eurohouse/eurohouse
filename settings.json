@@ -8,9 +8,9 @@
         "databox": 1000,
         "dataload": 1000,
         "world_clock": 1000,
-        "visual_effects": 500,
+        "visual_effects": 1000,
         "wallpaper_engine": 1000,
-        "automator": 500
+        "automator": 1000
     },
     "reserve": {
         "unauthorized": "anonymous",
