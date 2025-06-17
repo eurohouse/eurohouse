@@ -286,6 +286,9 @@ function omniEnter() {
     } else if (input.toLowerCase()=='slowmo') {
         arb=superRound((parseFloat(sysDefVideoSpeed.value)-0.05),2);
         arc=(arb<0.5)?0.5:arb; setdata('video_speed',arc);
+    } else if (input.toLowerCase()=='nsfw') { omniSort('nsfw');
+    } else if (input.toLowerCase()=='safe') { omniSort('safe');
+    } else if (input.toLowerCase()=='all') { omniSort('');
     } else if (input.toLowerCase()=='model') {
         arg=Object.keys(jsonarr(sysDefModelData.value));
         omniGroup(arg[rand(0,arg.length)]);

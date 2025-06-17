@@ -115,5 +115,5 @@ function omniRotate(angle) {
     omniRequest('brigitte_bardot',requestSort.value,requestGroup.value,angle,requestInput.value,requestOutput.value,requestArgs.value,requestLock.value,omniRef(),requestPath.value);
 }
 function omniSort(sort) {
-    omniRequest(requestMode.value,sort,requestGroup.value,requestAngle.value,requestInput.value,requestOutput.value,requestArgs.value,requestLock.value,omniRef(),requestPath.value);
+    omniRequest(requestMode.value,sort,'',requestAngle.value,requestInput.value,requestOutput.value,requestArgs.value,requestLock.value,omniRef(),requestPath.value);
 }

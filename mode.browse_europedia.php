@@ -39,7 +39,9 @@ if ($request['group']!='') {
 </table>
 <?php } else {
     foreach ($exemplarArr as $key=>$value) {
-        if ($session['nsfw']==0) {
+        if ($request['sort']=='nsfw') {
+            if (!isset($value['nsfw'])) { unset($exemplarArr[$key]); }
+        } elseif ($request['sort']=='safe') {
             if (isset($value['nsfw'])) { unset($exemplarArr[$key]); }
         }
     } ?>
