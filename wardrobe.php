@@ -116,7 +116,7 @@ body {
 .upperGap {
     border: none; border-radius: 0px; position: relative;
     background-color: var(--qucolor); color: var(--backtextcolor);
-    width: 100%; height: 3.2em; left: 0%; top: -2px;
+    width: 100%; height: 3.4em; left: 0%; top: -2px;
     text-align: center; overflow: hidden;
 }
 .lowerGap {
