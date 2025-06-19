@@ -292,9 +292,7 @@ function omniEnter() {
     } else if (input.toLowerCase()=='model') {
         arg=Object.keys(jsonarr(sysDefModelData.value));
         omniGroup(arg[rand(0,arg.length)]);
-    } else if (input=='::::') { setdata('banner','none');
-    } else if (input==':::') { setdata('banner','');
-    } else if (input=='::') {
+    } else if (input==':') {
         arg=Object.keys(jsonarr(sysDefContentData.value));
         setdata('banner',arg[rand(0,arg.length)]);
      } else if (input=='=') {
@@ -491,8 +489,8 @@ function omniEnter() {
         omniBox.value=lockarr(input.replace('lock ','')).join(' | ');
     } else if (input.startsWith('count ')) {
         omniBox.value=lockarr(input.replace('count ','')).length;
-    } else if (input.startsWith('::')) {
-        arb=input.replace('::',''); seekBanner(arb);
+    } else if ((input.startsWith(':'))||(input.endsWith(':'))||((input.startsWith(':'))&&(input.endsWith(':')))) {
+        arb=input.replace(':',''); seekBanner(arb);
     } else if (input.startsWith('\\=')) {
         arb=input.replace('\\=','');
         if (arb.includes('://')) { omniListen(arb,true);
