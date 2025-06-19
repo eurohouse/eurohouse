@@ -489,8 +489,12 @@ function omniEnter() {
         omniBox.value=lockarr(input.replace('lock ','')).join(' | ');
     } else if (input.startsWith('count ')) {
         omniBox.value=lockarr(input.replace('count ','')).length;
-    } else if ((input.startsWith(':'))||(input.endsWith(':'))||((input.startsWith(':'))&&(input.endsWith(':')))) {
-        arb=input.replaceAll(':',''); seekBanner(arb);
+    } else if (input.startsWith(':')) {
+        seekBanner(input.slice(1));
+    } else if (input.endsWith(':')) {
+        seekBanner(input.slice(0,-1));
+    } else if ((input.startsWith(':'))&&(input.endsWith(':'))) {
+        seekBanner(input.slice(1,-1));
     } else if (input.startsWith('\\=')) {
         arb=input.replace('\\=','');
         if (arb.includes('://')) { omniListen(arb,true);
@@ -550,8 +554,10 @@ function omniEnter() {
                 }
             }
         }
-    } else if ((input.startsWith('?'))||(input.endsWith('?'))||((input.startsWith('?'))&&(input.endsWith('?')))) {
-        omniDisp(input.replaceAll('?',''));
+    } else if (input.startsWith('?')) { omniDisp(input.slice(1));
+    } else if (input.endsWith('?')) { omniDisp(input.slice(0,-1));
+    } else if ((input.startsWith('?'))&&(input.endsWith('?'))) {
+        omniDisp(input.slice(1,-1));
     } else if (input.endsWith(';')) {
         omniBox.value=executeCode(input);
     } else if ((input.startsWith('/'))||(input.startsWith('\\'))||(input.endsWith('!'))) { pipeExec(input);
