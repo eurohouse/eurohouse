@@ -111,7 +111,7 @@ function world_clock() {
             $('#buttonAutoplay').attr('src',sysDefPrefix.value+((sysDefAutoplay.value!=0)?'autopause.png':'autoplay.png'));
             $('#buttonRandom').attr('src',sysDefPrefix.value+'dice.png');
             $('#buttonVintage').attr('src',sysDefPrefix.value+'diamante.png');
-            $('#buttonResetBanner').attr('src',sysDefPrefix.value+'delete.png');
+            $('#buttonResetBanner').attr('src',sysDefPrefix.value+((sysDefBanner.value!='')?'delete.png':'backspace.png'));
             $('#buttonGloss').attr('src',sysDefPrefix.value+((sysDefGloss.value!=0)?'parfum.png':'deparfum.png'));
             $('#buttonPlay').attr('src',sysDefPrefix.value+((audioPlayer.paused!=true)?'pause.png':'play.png'));
             $('#buttonAlarm').attr('src',sysDefPrefix.value+((alarmPlayer.paused!=true)?'dial.png':'call.png'));
