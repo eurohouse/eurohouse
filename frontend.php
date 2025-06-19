@@ -509,10 +509,10 @@ function seekImage(arb) {
         arh=[]; arg=arb.split(':'); for (idx in ark) {
             if (ark[idx].toLowerCase().includes(arg[0].toLowerCase())) { arh.push(idx); }
         } window.location.href=arh[arg[1]];
-    } else if ((arb=='true')||(arb==1)) {
+    } else if (Boolean(arb)===true) {
         arg=Object.keys(jsonarr(sysDefNSFWContentData.value));
         window.location.href=arg[rand(0,arg.length)];
-    } else if ((arb=='false')||(arb==0)) {
+    } else if (Boolean(arb)===false) {
         arg=Object.keys(jsonarr(sysDefSafeContentData.value));
         window.location.href=arg[rand(0,arg.length)];
     } else {

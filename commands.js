@@ -297,7 +297,7 @@ function omniEnter() {
     } else if (input=='::') {
         arg=Object.keys(jsonarr(sysDefContentData.value));
         setdata('banner',arg[rand(0,arg.length)]);
-     } else if (input=='->') {
+     } else if (input=='=') {
         arg=Object.keys(jsonarr(sysDefContentData.value));
         window.location.href=arg[rand(0,arg.length)];
     } else if (input=='\\=') {
@@ -491,8 +491,6 @@ function omniEnter() {
         omniBox.value=lockarr(input.replace('lock ','')).join(' | ');
     } else if (input.startsWith('count ')) {
         omniBox.value=lockarr(input.replace('count ','')).length;
-    } else if (input.startsWith('->')) {
-        arb=input.replace('->',''); seekImage(arb);
     } else if (input.startsWith('::')) {
         arb=input.replace('::',''); seekBanner(arb);
     } else if (input.startsWith('\\=')) {
@@ -511,7 +509,7 @@ function omniEnter() {
     } else if (input.startsWith('_')) {
         omniGo(input.replace('_',''));
     } else if (input.startsWith('=')) {
-        window.location.href=input.replace('=','');
+        arb=input.replace('=',''); seekImage(arb);
     } else if (input.includes('@')) {
         if (input.startsWith('@')) {
             arb=input.replace('@','');
