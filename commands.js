@@ -490,7 +490,7 @@ function omniEnter() {
     } else if (input.startsWith('count ')) {
         omniBox.value=lockarr(input.replace('count ','')).length;
     } else if ((input.startsWith(':'))||(input.endsWith(':'))||((input.startsWith(':'))&&(input.endsWith(':')))) {
-        arb=input.replace(':',''); seekBanner(arb);
+        arb=input.replaceAll(':',''); seekBanner(arb);
     } else if (input.startsWith('\\=')) {
         arb=input.replace('\\=','');
         if (arb.includes('://')) { omniListen(arb,true);
@@ -554,10 +554,6 @@ function omniEnter() {
         omniDisp(input.replaceAll('?',''));
     } else if (input.endsWith(';')) {
         omniBox.value=executeCode(input);
-    } else if ((input.startsWith(':'))||(input.endsWith(':'))) {
-        arj=input.replace(':',''); if (isBit(userdata()[arj])) {
-            setdata(arj,flip(userdata()[arj]));
-        }
     } else if ((input.startsWith('/'))||(input.startsWith('\\'))||(input.endsWith('!'))) { pipeExec(input);
     } else if ((input.startsWith('+'))&&(input.endsWith('"'))) {
         arb=parseInt(input.replace('+','').replace('"',''))+1;
