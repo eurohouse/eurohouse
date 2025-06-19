@@ -445,24 +445,7 @@ function omniEnter() {
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
         omniDir(quote(arg[0]));
     } else if (input.startsWith('model ')) {
-        arb=input.replace('model ', ''); arh=[];
-        if (arb.includes(':')) {
-            ark=jsonarr(sysDefModelData.value);
-            arg=arb.split(':'); for (idx in ark) {
-                if (idx.toLowerCase().includes(arg[0].toLowerCase())) { arh.push(idx); }
-            } omniGroup(arh[arg[1]]);
-        } else if ((arb=='true')||(arb==1)) {
-            arg=Object.keys(jsonarr(sysDefNSFWModelData.value));
-            omniGroup(arg[rand(0,arg.length)]);
-        } else if ((arb=='false')||(arb==0)) {
-            arg=Object.keys(jsonarr(sysDefSafeModelData.value));
-            omniGroup(arg[rand(0,arg.length)]);
-        } else {
-            ark=jsonarr(sysDefModelData.value);
-            for (idx in ark) {
-                if (idx.toLowerCase().includes(arb.toLowerCase())) { arh.push(idx); }
-            } omniGroup(arh[rand(0,arh.length)]);
-        }
+        arb=input.replace('model ', ''); seekModel(arb);
     } else if (input.startsWith('edit ')) {
         arj=input.replace('edit ', '');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
@@ -509,24 +492,7 @@ function omniEnter() {
     } else if (input.startsWith('count ')) {
         omniBox.value=lockarr(input.replace('count ','')).length;
     } else if (input.startsWith('->')) {
-        arb=input.replace('->',''); ark=jsonarr(sysDefContentData.value);
-        if ((arb.includes('.'))&&(arb.split('.').length==3)) {
-            window.location.href=arb+'.png';
-        } else if ((arb.includes(':'))&&(arb.split(':').length==2)) {
-            arh=[]; arg=arb.split(':'); for (idx in ark) {
-                if (ark[idx].toLowerCase().includes(arg[0].toLowerCase())) { arh.push(idx); }
-            } window.location.href=arh[arg[1]];
-        } else if ((arb=='true')||(arb==1)) {
-            arg=Object.keys(jsonarr(sysDefNSFWContentData.value));
-            window.location.href=arg[rand(0,arg.length)];
-        } else if ((arb=='false')||(arb==0)) {
-            arg=Object.keys(jsonarr(sysDefSafeContentData.value));
-            window.location.href=arg[rand(0,arg.length)];
-        } else {
-            arh=[]; for (idx in ark) {
-                if (ark[idx].toLowerCase().includes(arb.toLowerCase())) { arh.push(idx); }
-            } window.location.href=arh[rand(0,arh.length)];
-        }
+        arb=input.replace('->',''); seekImage(arb);
     } else if (input.startsWith('::')) {
         arb=input.replace('::',''); seekBanner(arb);
     } else if (input.startsWith('\\=')) {

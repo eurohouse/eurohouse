@@ -23,7 +23,9 @@
     <?php if (isAuthorized()) { ?>
         <input type="image" onmouseover="soundButton();" id="buttonResetBanner" class="power" onclick="setdata('banner','');" src="<?=$prefix[3].'delete.png';?>" title="<?=term('Reset Banner',$settings,$session);?>">
         <input type="image" onmouseover="soundButton();" id="buttonSetBanner" class="power" onclick="seekBanner(omniBox.value);" src="<?=$prefix[3].'shift.png';?>" title="<?=term('Set Up Banner',$settings,$session);?>">
-        <input type='text' id="omniBox" style="width:54%;" placeholder="<?=term('Type command or expression and press ENTER',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) { omniEnter(); } else if (event.keyCode==27) { omniBox.value='';
+        <input type="image" onmouseover="soundButton();" id="buttonGoImage" class="power" onclick="seekImage(omniBox.value);" src="<?=$prefix[3].'command.png';?>" title="<?=term('Open Image',$settings,$session);?>">
+        <input type="image" onmouseover="soundButton();" id="buttonGoModel" class="power" onclick="seekModel(omniBox.value);" src="<?=$prefix[3].'option.png';?>" title="<?=term('Open Model',$settings,$session);?>">
+        <input type='text' id="omniBox" style="width:48%;" placeholder="<?=term('Type command or expression and press ENTER',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) { omniEnter(); } else if (event.keyCode==27) { omniBox.value='';
         } else if (event.keyCode==8) { handleInput(this.value);
         } else if (event.keyCode==46) { handleInput(this.value);
         } keyPressed();" oninput="handleInput(this.value,true);">
