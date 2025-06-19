@@ -133,7 +133,7 @@ body {
 }
 .marquee {
     overflow: hidden; white-space: nowrap; cursor: pointer;
-    display: inline-block; animation: scrollMarquee 60s linear infinite;
+    display: inline-block; animation: scrollMarquee 90s linear infinite;
 }
 .panel {
     border: none; border-radius: 0px; position: relative;
