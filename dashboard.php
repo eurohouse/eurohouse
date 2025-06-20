@@ -32,7 +32,7 @@
         document.getElementById('omniBox').focus();" src="<?=$prefix[3].'backspace.png';?>" title="<?=term('Clear Console',$settings,$session);?>">
     <?php } else { ?>
         <input type="image" onmouseover="soundButton();" id="buttonSuggest" class="power" onclick="omniSuggest();" src="<?=$prefix[3].'dice.png';?>" title="<?=term('Suggest Username',$settings,$session);?>">
-        <input type='text' id="omniBoxAuthLogin" style="width:35%;" placeholder="<?=term('Username',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) {
+        <input type='text' id="omniBoxAuthLogin" style="width:36%;" placeholder="<?=term('Username',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) {
             omniBoxAuthPass.value=''; omniBoxAuthPass.focus();
         } else if (event.keyCode==27) { omniBoxAuthLogin.value='';
         } else if (event.keyCode==8) { handleInput(this.value);
