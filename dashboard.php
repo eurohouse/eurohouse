@@ -21,7 +21,7 @@
 <div class='topBarItem'>
     <p align='center' class='block'>
     <?php if (isAuthorized()) { ?>
-        <input type="image" onmouseover="soundButton();" id="buttonResetBanner" class="power" onclick="if (sysDefBanner.value!='') { setdata('banner',''); } else { seekBanner(1); }" src="<?=$prefix[3].(($session['banner']!='')?'end.png':'start.png');?>" title="<?=term('Reset Banner',$settings,$session);?>">
+        <input type="image" onmouseover="soundButton();" id="buttonResetBanner" class="power" onclick="if (sysDefBanner.value!='') { setdata('banner',''); } else { seekBanner(omniBox.value); }" src="<?=$prefix[3].(($session['banner']!='')?'end.png':'start.png');?>" title="<?=term('Reset Banner',$settings,$session);?>">
         <input type='text' id="omniBox" style="width:63%;" placeholder="<?=term('Type command or expression and press ENTER',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) { omniEnter(); } else if (event.keyCode==27) { omniBox.value='';
         } else if (event.keyCode==8) { handleInput(this.value);
         } else if (event.keyCode==46) { handleInput(this.value);
