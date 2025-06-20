@@ -501,14 +501,10 @@ function seekMusic(elm) {
         fln=elm; fle=0; for (i=0; i<mls.length; i++) {
             if (mls[i].toLowerCase().includes(fln.toLowerCase())) { pls.push(mls[i]); }
         } fli=rand(0,pls.length-1);
-    } var inc=0; for (j=0; j<mls.length; j++) {
-        if ((mls[j].toLowerCase().includes(fln.toLowerCase()))&&(isInt(fle))) {
-            if ((isInt(fli))&&(inc>=fli)) {
-                omniListen(mls[j],true,parseInt(fle)); break;
-            } else if (fli=='*') {
-                omniListen(pls[rand(0,pls.length)],true,parseInt(fle)); break;
-            }
-        } inc++;
+    } if (isInt(fli)) {
+        omniListen(pls[fli],true,parseInt(fle)); break;
+    } else if (fli=='*') {
+        omniListen(pls[fli],true,parseInt(fle)); break;
     }
 }
 function seekModel(arb) {
