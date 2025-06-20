@@ -94,22 +94,20 @@ function world_clock() {
             $('#powerButton').attr('src',sysDefPrefix.value+'power.png');
             $('#buttonPrev').attr('src',sysDefPrefix.value+'rew.png');
             $('#buttonNext').attr('src',sysDefPrefix.value+'ff.png');
-            $('#buttonLock').attr('src',sysDefPrefix.value+((sysDefLock.value!=0)?'key.png':'lock.png'));
-            $('#buttonOnReload').attr('src',sysDefPrefix.value+((sysDefReload.value!=0)?'bluetooth.png':'radio.png')); $('#buttonSongIndex').attr('src',sysDefPrefix.value+((sysDefSongIndex.value=='random')?'shuffle.png':'update.png')); $('#buttonPitched').attr('src',sysDefPrefix.value+((sysDefPitchLock.value!=0)?'midi.png':'volume.png'));
+            $('#buttonLock').attr('src',sysDefPrefix.value+((sysDefLock.value!=0)?'key.png':'lock.png')); $('#buttonOnReload').attr('src',sysDefPrefix.value+((sysDefReload.value!=0)?'bluetooth.png':'radio.png')); $('#buttonSongIndex').attr('src',sysDefPrefix.value+((sysDefSongIndex.value=='random')?'shuffle.png':'update.png')); $('#buttonPitched').attr('src',sysDefPrefix.value+((sysDefPitchLock.value!=0)?'midi.png':'volume.png'));
             $('#buttonObserve').attr('src',sysDefPrefix.value+'power.png');
             $('#buttonSpectate').attr('src',sysDefPrefix.value+'unpower.png');
             $('#buttonEnter').attr('src',sysDefPrefix.value+'return.png');
-            $('#buttonSuggest').attr('src',sysDefPrefix.value+'user.png');
+            $('#buttonSuggest').attr('src',sysDefPrefix.value+'dice.png');
             $('#buttonChat').attr('src',sysDefPrefix.value+'mail.png');
             $('#buttonSearch').attr('src',sysDefPrefix.value+'directory.png');
             $('#buttonKeyboard').attr('src',sysDefPrefix.value+'keyboard.png');
             $('#buttonBackspace').attr('src',sysDefPrefix.value+'backspace.png');
-            $('#buttonLogin').attr('src',sysDefPrefix.value+'return.png');
-            $('#buttonRegister').attr('src',sysDefPrefix.value+'keyboard.png');
+            $('#buttonRegister').attr('src',sysDefPrefix.value+'book.png');
             $('#buttonCancelSignin').attr('src',sysDefPrefix.value+'backspace.png');
             $('#buttonTime').attr('src',sysDefPrefix.value+((sysDefTimedisp.value!=0)?((sysDefBenchmark.value!=0)?'note.png':'calendar.png'):((sysDefBenchmark.value!=0)?'speed.png':'time.png')));
             $('#buttonAutoplay').attr('src',sysDefPrefix.value+((sysDefAutoplay.value!=0)?'autopause.png':'autoplay.png'));
-            $('#buttonRandom').attr('src',sysDefPrefix.value+'dice.png');
+            $('#buttonRandom').attr('src',sysDefPrefix.value+'music.png');
             $('#buttonVintage').attr('src',sysDefPrefix.value+'diamante.png');
             $('#buttonResetBanner').attr('src',sysDefPrefix.value+((sysDefBanner.value!='')?'delete.png':'backspace.png'));
             $('#buttonGloss').attr('src',sysDefPrefix.value+((sysDefGloss.value!=0)?'parfum.png':'deparfum.png'));
@@ -119,7 +117,7 @@ function world_clock() {
             $('#buttonReqLock').attr('src',sysDefPrefix.value+((requestLock.value!='true')?'expand.png':'collapse.png'));
             $('#buttonMaximize').attr('src',sysDefPrefix.value+((sysDefApps.value!=0)?'restore.png':'maximize.png'));
             $('#buttonMenuStyle').attr('src',sysDefPrefix.value+((sysDefIcons.value!=0)?'menu.png':'list.png')); $('#buttonUpdate').attr('src',sysDefPrefix.value+'world.png');
-            $('#buttonUserStatus').attr('src',sysDefPrefix.value+"<?=(isAuthorized())?'logout.png':'login.png';?>"); $('#buttonEscape').attr('src',sysDefPrefix.value+'escape.png');
+            $('#buttonUserStatus').attr('src',sysDefPrefix.value+"<?=(isAuthorized())?'user.png':'anonym.png';?>"); $('#buttonEscape').attr('src',sysDefPrefix.value+'escape.png');
             if (((sysDefObserve.value!=0)&&(sysDefSpectate.value!=0))||((sysDefObserve.value!=0)&&(sysDefSpectate.value==0))) {
                 $('#powerButton').show();$('.panel').hide();
                 $('.customPanel').hide();$('.upperGap').hide();
