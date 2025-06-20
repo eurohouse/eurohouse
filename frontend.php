@@ -463,12 +463,12 @@ function seekBanner(req) {
     var all=jsonarr(sysDefContentData.value);
     var nsfw=Object.keys(jsonarr(sysDefNSFWContentData.value));
     var safe=Object.keys(jsonarr(sysDefSafeContentData.value));
-    var rqs=((req.includes(':'))&&(req.split(':').length==2))?req.split(':')[0]:req; var arr=[]; for (idx in all) {
+    var rqs=((req.includes(':'))&&(req.split(':').length==2))?req.split(':')[0]:req;
+    var arr=[]; for (idx in all) {
         if (all[idx].toLowerCase().includes(rqs.toLowerCase())) {
             arr.push(idx);
         }
-    } var rqt=((req.includes(':'))&&(req.split(':').length==2))?req.split(':')[1]:rand(0,arr.length);
-    if ((req=='true')||(req==1)) {
+    } var rqt=((req.includes(':'))&&(req.split(':').length==2))?req.split(':')[1]:rand(0,arr.length); if ((req=='true')||(req==1)) {
         setdata('banner',nsfw[rand(0,nsfw.length)]);
     } else if ((req=='false')||(req==0)) {
         setdata('banner',safe[rand(0,safe.length)]);
@@ -478,6 +478,37 @@ function seekBanner(req) {
         setdata('banner',safe[rand(0,safe.length)]);
     } else {
         setdata('banner',nsfw[rand(0,nsfw.length)]);
+    }
+}
+function seekMusic(elm) {
+    var mls=lockarr('music'),pls=[];
+    if ((elm.includes('?'))&&(elm.includes(':'))) {
+        fln=elm.split('?')[0]; atr=elm.split('?')[1];
+        for (i=0; i<mls.length; i++) {
+            if (mls[i].toLowerCase().includes(fln.toLowerCase())) { pls.push(mls[i]); }
+        } fli=atr.split(':')[0]; fle=atr.split(':')[1];
+    } else if (elm.includes('?')) {
+        fln=elm.split('?')[0]; fli=elm.split('?')[1];
+        for (i=0; i<mls.length; i++) {
+            if (mls[i].toLowerCase().includes(fln.toLowerCase())) { pls.push(mls[i]); }
+        } fle=0;
+    } else if (elm.includes(':')) {
+        fln=elm.split(':')[0]; fle=elm.split(':')[1];
+        for (i=0; i<mls.length; i++) {
+            if (mls[i].toLowerCase().includes(fln.toLowerCase())) { pls.push(mls[i]); }
+        } fli=rand(0,pls.length-1);
+    } else {
+        fln=elm; fle=0; for (i=0; i<mls.length; i++) {
+            if (mls[i].toLowerCase().includes(fln.toLowerCase())) { pls.push(mls[i]); }
+        } fli=rand(0,pls.length-1);
+    } var inc=0; for (j=0; j<mls.length; j++) {
+        if ((mls[j].toLowerCase().includes(fln.toLowerCase()))&&(isInt(fle))) {
+            if ((isInt(fli))&&(inc>=fli)) {
+                omniListen(mls[j],true,parseInt(fle)); break;
+            } else if (fli=='*') {
+                omniListen(pls[rand(0,pls.length)],true,parseInt(fle)); break;
+            }
+        } inc++;
     }
 }
 function seekModel(arb) {
