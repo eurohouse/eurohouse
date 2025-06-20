@@ -216,24 +216,23 @@ function pipeExec(input) {
             elm=pipes[it]; if ((it>=1)&&(it<=brd)) {
                 if ((elm.includes('?'))&&(elm.includes(':'))) {
                     fln=elm.split('?')[0]; atr=elm.split('?')[1];
-                    fli=atr.split(':')[0]; fle=atr.split(':')[1];
                     for (i=0; i<mls.length; i++) {
                         if (mls[i].toLowerCase().includes(fln.toLowerCase())) { pls.push(mls[i]); }
-                    }
+                    } fli=atr.split(':')[0]; fle=atr.split(':')[1];
                 } else if (elm.includes('?')) {
                     fln=elm.split('?')[0]; fli=elm.split('?')[1];
                     for (i=0; i<mls.length; i++) {
                         if (mls[i].toLowerCase().includes(fln.toLowerCase())) { pls.push(mls[i]); }
-                    } fle=rand(0,pls.length-1);
+                    } fle=0;
                 } else if (elm.includes(':')) {
-                    fln=elm.split(':')[0]; fle=elm.split(':')[1]; fli=0;
+                    fln=elm.split(':')[0]; fle=elm.split(':')[1];
                     for (i=0; i<mls.length; i++) {
                         if (mls[i].toLowerCase().includes(fln.toLowerCase())) { pls.push(mls[i]); }
-                    }
+                    } fli=rand(0,pls.length-1);
                 } else {
-                    fln=elm; fli=0; for (i=0; i<mls.length; i++) {
+                    fln=elm; fle=0; for (i=0; i<mls.length; i++) {
                         if (mls[i].toLowerCase().includes(fln.toLowerCase())) { pls.push(mls[i]); }
-                    } fle=rand(0,pls.length-1);
+                    } fli=rand(0,pls.length-1);
                 } inc=0; if (((it==1)&&(it==brd))||((it==1)&&(it<brd))) {
                     for (j=0; j<mls.length; j++) {
                         if ((mls[j].toLowerCase().includes(fln.toLowerCase()))&&(isInt(fle))) {
