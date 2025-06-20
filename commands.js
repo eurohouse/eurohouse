@@ -295,9 +295,6 @@ function omniEnter() {
     } else if (input==':') {
         arg=Object.keys(jsonarr(sysDefContentData.value));
         setdata('banner',arg[rand(0,arg.length)]);
-     } else if (input=='=') {
-        arg=Object.keys(jsonarr(sysDefContentData.value));
-        window.location.href=arg[rand(0,arg.length)];
     } else if (input=='\\=') {
         omniBox.value='\\='+demorse(sysDefMelody.value,uid,sysDefNumeric.value);
     } else if ((input.startsWith('"'))&&(input.endsWith('"'))) {
@@ -507,7 +504,7 @@ function omniEnter() {
     } else if (input.startsWith('_')) {
         omniGo(input.replace('_',''));
     } else if (input.startsWith('=')) {
-        arb=input.replace('=',''); seekImage(arb);
+        window.location.href=input.slice(1);
     } else if (input.includes('@')) {
         if (input.startsWith('@')) {
             arb=input.replace('@','');

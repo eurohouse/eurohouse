@@ -460,10 +460,10 @@ function helpBook() {
     } return ard;
 }
 function seekBanner(arb) {
+    ark=jsonarr(sysDefContentData.value);
     if ((arb.includes('.'))&&(arb.split('.').length==3)) {
         setdata('banner',arb+'.png');
     } else if ((arb.includes(':'))&&(arb.split(':').length==2)) {
-        ark=jsonarr(sysDefContentData.value);
         arh=[]; arg=arb.split(':'); for (idx in ark) {
             if (ark[idx].toLowerCase().includes(arg[0].toLowerCase())) { arh.push(idx); }
         } setdata('banner',arh[arg[1]]);
@@ -474,7 +474,6 @@ function seekBanner(arb) {
         arg=Object.keys(jsonarr(sysDefSafeContentData.value));
         setdata('banner',arg[rand(0,arg.length)]);
     } else {
-        ark=jsonarr(sysDefContentData.value);
         arh=[]; for (idx in ark) {
             if (ark[idx].toLowerCase().includes(arb.toLowerCase())) { arh.push(idx); }
         } setdata('banner',arh[rand(0,arh.length)]);
