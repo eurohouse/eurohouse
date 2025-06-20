@@ -459,24 +459,25 @@ function helpBook() {
         arl+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"info.png"+"' onclick='omniPath(&#34;tutorial.json&#34;,&#34;"+el+"&#34;,&#34;false&#34;);'>"; ard=ard+arl+'<br>';
     } return ard;
 }
-function seekBanner(arb) {
-    ark=jsonarr(sysDefContentData.value);
-    if ((arb.includes('.'))&&(arb.split('.').length==3)) {
-        setdata('banner',arb+'.png');
-    } else if ((arb.includes(':'))&&(arb.split(':').length==2)) {
-        arh=[]; arg=arb.split(':'); for (idx in ark) {
-            if (ark[idx].toLowerCase().includes(arg[0].toLowerCase())) { arh.push(idx); }
-        } setdata('banner',arh[arg[1]]);
-    } else if ((arb=='true')||(arb==1)) {
-        arg=Object.keys(jsonarr(sysDefNSFWContentData.value));
-        setdata('banner',arg[rand(0,arg.length)]);
-    } else if ((arb=='false')||(arb==0)) {
-        arg=Object.keys(jsonarr(sysDefSafeContentData.value));
-        setdata('banner',arg[rand(0,arg.length)]);
+function seekBanner(req) {
+    var all=jsonarr(sysDefContentData.value);
+    var nsfw=Object.keys(jsonarr(sysDefNSFWContentData.value));
+    var safe=Object.keys(jsonarr(sysDefSafeContentData.value));
+    var rqs=((req.includes(':'))&&(req.split(':').length==2))?req.split(':')[0]:req; var arr=[]; for (idx in all) {
+        if (all[idx].toLowerCase().includes(rqs.toLowerCase())) {
+            arr.push(idx);
+        }
+    } var rqt=((req.includes(':'))&&(req.split(':').length==2))?req.split(':')[1]:rand(0,arr.length);
+    if ((req=='true')||(req==1)) {
+        setdata('banner',nsfw[rand(0,nsfw.length)]);
+    } else if ((req=='false')||(req==0)) {
+        setdata('banner',safe[rand(0,safe.length)]);
+    } else if (notEmpty(arr)) {
+        setdata('banner',arr[rqt]);
+    } else if (rqs=='') {
+        setdata('banner',safe[rand(0,safe.length)]);
     } else {
-        arh=[]; for (idx in ark) {
-            if (ark[idx].toLowerCase().includes(arb.toLowerCase())) { arh.push(idx); }
-        } setdata('banner',arh[rand(0,arh.length)]);
+        setdata('banner',nsfw[rand(0,nsfw.length)]);
     }
 }
 function seekModel(arb) {
