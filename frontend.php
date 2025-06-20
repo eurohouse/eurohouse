@@ -502,9 +502,9 @@ function seekMusic(elm) {
             if (mls[i].toLowerCase().includes(fln.toLowerCase())) { pls.push(mls[i]); }
         } fli=rand(0,pls.length-1);
     } if (isInt(fli)) {
-        omniListen(pls[fli],true,parseInt(fle)); break;
+        omniListen(pls[fli],true,parseInt(fle));
     } else if (fli=='*') {
-        omniListen(pls[fli],true,parseInt(fle)); break;
+        omniListen(pls[fli],true,parseInt(fle));
     }
 }
 function seekModel(arb) {
