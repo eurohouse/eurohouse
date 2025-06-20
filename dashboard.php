@@ -1,6 +1,6 @@
 <div class='topBarItem'>
     <p align='center' class='block'>
-    <input type="image" onmouseover="soundButton();" id="buttonRandom" class="power" onclick="seekMusic(omniBox.value);" src="<?=$prefix[3].'music.png';?>" title="<?=term('Random Track',$settings,$session);?>">
+    <input type="image" onmouseover="soundButton();" id="buttonRandom" class="power" onclick="if (authstate()) { seekMusic(omniBox.value); } else { songIndex(''); }" src="<?=$prefix[3].'music.png';?>" title="<?=term('Random Track',$settings,$session);?>">
     <select id="ErotoOlympus" style="width:44%;" onchange="setdata('background',ErotoOlympus.options[ErotoOlympus.selectedIndex].id);"><?php foreach ($userLocks['background'] as $key=>$val) { ?>
     <option disabled><?=titled($val,$session['units']);?></option>
     <?php foreach (catlist($key) as $value) { ?>
