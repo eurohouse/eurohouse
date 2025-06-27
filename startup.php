@@ -232,18 +232,16 @@ function world_clock() {
                 $('#prefsBtnUpdateTitle').attr('src',sysDefPrefix.value+'keyboard.png');
                 $('#prefsBtnUpdateTitles').attr('src',sysDefPrefix.value+'movie.png');
             } else if (requestMode.value=='sticky_notes') {
-                if (authstate()) {
-                    $('#myNotesApplyBtn').attr('src',sysDefPrefix.value+'return.png');
-                    $('#myNotesKbdBtn').attr('src',sysDefPrefix.value+'keyboard.png');
-                    $('#myNotesResetBtn').attr('src',sysDefPrefix.value+'backspace.png');
-                    $('#myNotesNewBtn').attr('src',sysDefPrefix.value+'new.png');
-                    $('#myNotesOpenBtn').attr('src',sysDefPrefix.value+'open.png');
-                    $('#myNotesSaveBtn').attr('src',sysDefPrefix.value+'save.png');
-                    notesMenu.innerHTML='<p align="center" class="block">'+notebookHTML(sysDefMetaList.value)+'</p>';
-                    myNotesRad.placeholder=finterm('Symbolic Digits');
-                    myNotesEnt.placeholder=finterm('Title');
-                    myNotesEnc.placeholder=finterm('Password');
-                }
+                $('#myNotesApplyBtn').attr('src',sysDefPrefix.value+'return.png');
+                $('#myNotesKbdBtn').attr('src',sysDefPrefix.value+'keyboard.png');
+                $('#myNotesResetBtn').attr('src',sysDefPrefix.value+'backspace.png');
+                $('#myNotesNewBtn').attr('src',sysDefPrefix.value+'new.png');
+                $('#myNotesOpenBtn').attr('src',sysDefPrefix.value+'open.png');
+                $('#myNotesSaveBtn').attr('src',sysDefPrefix.value+'save.png');
+                notesMenu.innerHTML='<p align="center" class="block">'+notebookHTML(sysDefMetaList.value)+'</p>';
+                myNotesRad.placeholder=finterm('Symbolic Digits');
+                myNotesEnt.placeholder=finterm('Title');
+                myNotesEnc.placeholder=finterm('Password');
             } else if (requestMode.value=='user_tutorial') {
                 helpMenu.innerHTML='<p align="center" class="block">'+helpbookHTML()+'</p>';
             } else if (requestMode.value=='text_editor') {
