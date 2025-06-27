@@ -1,0 +1,122 @@
+{
+    "v7.11.10-hotfix": {
+        "default": {
+            "title": "Eurohouse Developer Team (@eurohouse)",
+            "body": "We present to your attention some innovations in the Eurohouse web application. The most significant, in our humble opinion, is the improved large panel, which includes the transparency mode for the entire application, now located on the entire screen. Also added were improved and supplemented settings for the radius of the borders of elements, a changed design of the settings page, etc."
+        },
+        "RU": {
+            "title": "Команда разработчиков Eurohouse (@eurohouse)",
+            "body": "Предлагаем вашему вниманию некоторые нововведения в веб-приложение Eurohouse. Наиболее значимое, по нашему скромному мнению, это усовершенствованная большая панель, вмешающая режим прозрачности для всего приложения, теперь расположенная на весь экран. Также были добавлена улучшенная и дополненная настройка радиуса границ элементов, изменённый дизайн страницы настроек и т.п."
+        }
+    },
+    "v7.11.10": {
+        "default": {
+            "title": "Eurohouse Developer Team (@eurohouse)",
+            "body": "We, as a team of developers of web application of web desktop type, Eurohouse, are glad to present you some improvements and fixes of web application. Among them: new color theme Eurohouse Praline, variations of music albums Botticelli (cold music palette) and Orchestra (warm music palette) have been added to the macro of application account settings. Now the user can select separate collections of melodies, simply enter the command /eur:cool or /eur:warm. Also the functions of displaying the current date and time have been improved, using the necessary calendar (Gregorian, Julian, French Republican, etc.), depending on the localization chosen by the user."
+        },
+        "RU": {
+            "title": "Команда разработчиков Eurohouse (@eurohouse)",
+            "body": "Мы как команда разработчиков веб-приложения типа web desktop, Eurohouse, рада представить вам некоторые улучшения и исправления веб-приложения. Среди них: новая цветовая тема Eurohouse Пралине, добавлены вариации музыкальных альбомов Botticelli (холодная палитра музыки) и Orchestra (тёплая палитра музыки) в макрос настройки аккаунта приложения. Теперь пользователь может выбрать отдельные коллекции мелодий, просто ввести команду /eur:cool или /eur:warm. Также улучшены функции показа текущей даты и времени, используя нужный календарь (Григорианский, Юлианский, Французский Республиканский и пр.), в зависимости от выбранной пользователем локализации."
+        }
+    },
+    "v7.11.9-hotfix": {
+        "default": {
+            "title": "Eurohouse Developer Team (@eurohouse)",
+            "body": "Welcome to the updated country of our web application! It includes new interface style options, grouped and individualized style macros, fixed built-in functions following data output using AJAX in the application with scripts in space, in particular types and grouping of working data, prefixes of file formats, and fixes to following commands using backslashes."
+        },
+        "RU": {
+            "title": "Команда разработчиков Eurohouse (@eurohouse)",
+            "body": "Приветствуем вас с обновлённой версией нашего веб-приложения! Оно включает новые параметры стиля интерфейса, сгруппированные и индивидуализированные макросы стилей, исправлены встроенные функции, отвечающие за вывод данных посредством AJAX в приложение со скриптов на сервере, в частности типы и группировка передаваемых данных, префиксы файлов разных форматов, а также исправлены команды воспроизведения треков посредством обратных слешей."
+        }
+    },
+    "v7.11.9": {
+        "default": {
+            "title": "Eurohouse Developer Team (@eurohouse)",
+            "body": "This release of the Eurohouse web application is festive and was dedicated to the 80th anniversary of the Victory Day in the Second World War of the Allies of the anti-Hitler coalition. This release includes fixed functions for loading and saving account data in their backup copies, an improved mechanism for renaming accounts, the complexity of the source code and its understanding by the end user is reduced to a minimum, and many other innovations are already in the new version of our web desktop, web platform and web ecosystem."
+        },
+        "RU": {
+            "title": "Команда разработчиков Eurohouse (@eurohouse)",
+            "body": "Этот релиз веб-приложения Eurohouse является праздничным и был приурочен ко 80-летию Дня Победы во Второй мировой войне союзников по антигитлеровской коалиции. Этот релиз включает исправленные функции загрузки и сохранения данных аккаунтов в их резервных копиях, улучшенный механизм переименования аккаунтов, сложность исходного кода и его понимания конечным пользователем сведена к минимуму, и многие другие нововведения встречайте уже в новой версии нашего веб-декстопа, веб-платформы и веб-экосистемы."
+        }
+    },
+    "v7.11.8.4-fix": {
+        "default": {
+            "title": "Eurohouse Developer Team (@eurohouse)",
+            "body": "The innovations in this version of the Eurohouse web application include improved names of the main menu sections, unnecessary components have been removed, and you can now save user data and load it as much as you want. You can save data several times and continue your path from there at any time. Unnecessary sections of the source code have also been removed and it has become more minimalistic, simple, with clearer names of variables and functions."
+        },
+        "RU": {
+            "title": "Команда разработчиков Eurohouse (@eurohouse)",
+            "body": "Нововведения в этой версии веб-приложения Eurohouse включают усовершенствованные названия разделов главного меню, убраны ненужные компоненты, теперь можно сохранять данные пользователя и загружать их сколько вам захочется. При этом сохранить данные можно несколько раз и продолжить ваш путь оттуда в любое время. Также убраны ненужные участки исходного кода и он стал более минималистичным, простым, с более понятными названиями переменных и функций."
+        }
+    },
+    "v7.11.8.4": {
+        "default": {
+            "title": "Eurohouse Developer Team (@eurohouse)",
+            "body": "Here comes yet another month in spring, and so is a new version of our universal, multifunctional web application that replaces your desktop and the operating system of your mobile device. Meet innovations and new menu sections, such as viewing album or collection data, and along with it the user's playlist, more understandable functions in the client and server parts of the web application code, a new section for encapsulating user data - icons, more elaborate interface elements, panel columns, etc."
+        },
+        "RU": {
+            "title": "Команда разработчиков Eurohouse (@eurohouse)",
+            "body": "Начинается новый месяц весны, а вместе с ним и новая версия нашего универсального, многофункционального веб-приложения, заменяющего вам ваш рабочий стол и операционную систему вашего мобильного устройства. Встречайте нововведения и новые разделы меню, такие как просмотр данных альбома или коллекции, а вместе с этим и плэйлиста пользователя, более понятные функции в клиентской и серверной частях кода веб-приложения, новый раздел инкапсуляции данных пользователя - пиктограммы, более проработанные элементы интерфейса, колонки панелей и т.п."
+        }
+    },
+    "v7.11.8.3-fix": {
+        "default": {
+            "title": "Eurohouse Developer Team (@eurohouse)",
+            "body": "Innovations and code fixes of the Eurohouse web application are already in the version that became available to you on March 20. These include separate panels for different interface elements, an updated file manager interface with a column of access rights to files and directories, improved built-in application functions that work with user data, a new button in the login and password input panel that substitutes any existing user name on the server, updated icons and pictograms, and much more."
+        },
+        "RU": {
+            "title": "Команда разработчиков Eurohouse (@eurohouse)",
+            "body": "Нововведения и исправления кода веб-приложения Eurohouse уже в версии, ставшей доступной для вас с 20 марта. Это и отдельные панели для разных элементов интерфейса, и обновлённый интерфейс файлового менеджера со столбцом прав доступа к файлам и директориям, и улучшенные встроенные функции приложения, работающие с данными пользователей, и новая кнопка в панели ввода формы логина и пароля, подставляющая любое существующее имя пользователя на сервере, и обновлённые иконки и пиктограммы, и многое другое."
+        }
+    },
+    "v7.11.8.3": {
+        "default": {
+            "title": "Eurohouse Developer Team (@eurohouse)",
+            "body": "Congratulations to our lovely ladies on March 8! The Eurohouse development team has prepared a pleasant surprise for them in this application for the International Women's Day. Now it has 3 command line modes: start (command), chat and search. Each of these modes changes the logic of the command line, so when using it, pay attention to the icon on the left in front of the command line. The latest changes in the Eurohouse application include more minimalistic command line icons, more minified and less messy code, updated macros, a new News Feed menu that allows you to view the history of changes in this application for all time. One button is now an indicator of the current command line mode and allows you to switch between them. Many bugs in the application have been fixed."
+        },
+        "RU": {
+            "title": "Команда разработчиков Eurohouse (@eurohouse)",
+            "body": "Поздравляем наших милых дам с 8 марта! Команда разработчиков Eurohouse подготовила им к Международному женскому дню приятный сюрприз в данном приложении. Теперь в нём 3 режима командной строки: start (command), chat и search. Каждый такой режим меняет логику работы командной строки, поэтому при её использовании обращайте внимание на иконку слева перед командной строкой. Последние изменения в приложении Eurohouse включают более минималистичные иконки командной строки, более минифицированный и менее беспорядочный код, обновлённые макросы, новое меню Лента новостей, позволяющее просматривать историю изменений в данном приложении за всё время. Одна кнопка теперь является индикатором текущего режима командной строки и позволяет переключаться между ними. Исправлены многие баги приложения."
+        }
+    },
+    "v7.11.8.2": {
+        "default": {
+            "title": "Eurohouse Developer Team (@eurohouse)",
+            "body": "Spring has come, which means it's time for you to experience new pleasant impressions that the Eurohouse browser desktop project can give you. Eurohouse theme style macros now include displaying the web application on fonts. 2 new themes include elegant luxurious fonts: the pistachio theme includes a Roman serif font, and the wine red theme will spoil you with an elegant El Messiri typeface. 2 old themes include simpler, minimalist fonts: the standard gray theme includes the standard Eurohouse Flexo font, and the Imperial style is the only style in the collection that comes with the Helvetica font (it is not in Microsoft products and is supplied separately, included in Apple fonts). The application has also reduced its code, making it more minified and easier to understand for third parties. Helper functions have appeared that help remove unnecessary users. There are also functions that work with user names and their projects, which localize them, translating them into the desired languages. There is also a new menu section where you can track the keys you press on your keyboard."
+        },
+        "RU": {
+            "title": "Команда разработчиков Eurohouse (@eurohouse)",
+            "body": "Пришла весна, а значит пора и вам испытать новые приятные впечатления, которые может вам подарить проект браузерного рабочего стола Eurohouse. Макросы стилей тем Eurohouse теперь включают отображение веб-приложения на шрифтах. 2 новые темы включают элегантные роскошные шрифты: фисташковая тема включает романский шрифт с засечками, а винная красная тема побалует вас изящной гарнитурой El Messiri. 2 старые темы включают более простые, минималистичные шрифты: стандартная серая тема включает стандартный для Eurohouse шрифт Flexo, а стиль Imperial - это единственный стиль в коллекции, который поставляется со шрифтом Helvetica (его нет в продуктах Microsoft и он поставляется отдельно, включён в шрифты Apple). Приложение также сократило свой код, делая его более минифицированным и удобным для понимания третьими лицами. Появились функции-хелперы, помогающие удалить ненужных пользователей. Появились также функции, работающие с названиями пользователей и их проектов, которые локализуют их, переводя на нужные языки. Также появился новый раздел меню, в котором вы можете отследить нажимаемые клавиши клавиатуры."
+        }
+    },
+    "v7.11.8.1": {
+        "default": {
+            "title": "Eurohouse Developer Team (@eurohouse)",
+            "body": "New changes in the Eurohouse application. Now the user name and icon are also shown on the Welcome Page, as well as in the Main Menu. Macros have become more logical and each line in them configured a certain aspect of the application. Encapsulation lists, limiting the displayed content, are also in the corresponding sections of the macros. Now you can not only play a certain melody at the moment, but also add the desired melodies to the playlist. So the encapsulation of melodies gets an additional layer, without it the melody is either repeated again, or any random one plays within the encapsulation of the played melodies. When each melody finishes playing, the turn goes to the next melody in the user's playlist."
+        },
+        "RU": {
+            "title": "Команда разработчиков Eurohouse (@eurohouse)",
+            "body": "Новые изменения в приложении Eurohouse. Теперь название пользователя и его иконка показываются также на Странице приветствия, также как и в Главном меню. Макросы стали более логичными и каждая строка в них настраивала определённый аспект приложения. Списки инкапсуляции, ограничивающее отображаемый контент, также в соответствующих разделах макросов. Теперь вы можете не только играть определённую мелодию в данный момент, но и также добавлять нужные мелодии в плейлист. Так инкапсуляция мелодий приобретает ещё дополнительный слой, без него мелодия либо повторяется вновь, либо играет любая случайная в рамках инкапсуляции по проигрываемым мелодиям. Когда каждая мелодия заканчивает свое воспроизведение, очередь достаётся следующей мелодии в плэйлисте пользователя."
+        }
+    },
+    "v7.11.8.0": {
+        "default": {
+            "title": "Eurohouse Developer Team (@eurohouse)",
+            "body": "The new version of the Eurohouse application has added significant changes. Among the recently made changes are 4 web application themes, 2 of which are new, and 2 are successors to older versions of the application. Among the newly added themes are pistachio and wine red themes, as a tribute to the tradition of Western European countries and an example of inspiration for their exquisite dishes and delicacies. Two old themes are the standard gray \"mouse\" color theme, which also looks elegant against the backdrop of picturesque landscapes, city streets and chic interiors of palaces, estates and chalets of Europe. The second theme was added in the style of the Eurohouse logo color, called Imperial. A statistics section was added for the IP addresses from which each user entered the application. Help and user manual were added. The currency and username denial now include a special syntax and can be adjusted to the needs of the user. Usernames can now be translated into different languages."
+        },
+        "RU": {
+            "title": "Команда разработчиков Eurohouse (@eurohouse)",
+            "body": "В новой версии приложения Eurohouse добавлены значительные изменения. Среди недавно внесённых изменений - появились 4 темы веб-приложения, среди которых 2 являются новыми, а ещё 2 являются наследницами более старых версий приложения. Среди новых добавленных тем - фисташковая и винная красная темы, как дань традиции странам Западной Европы и образец вдохновения их изысканным блюдам и деликатесам. Две старые темы - это стандартная серая \"мышиного\" цвета тема, которая также выглядит элегантно на фоне живописных ландшафтов, городских улиц и шикарных интерьеров дворцов, поместий и шале Европы. Вторая тема была добавлена в стиле цвета логотипа Eurohouse, называется Imperial. Была добавлен раздел статистики для IP-адресов, с которых заходил каждый пользователь в приложение. Была добавлена справка и руководство пользователя. Обоначение валюты и имени пользователя теперь включает особый синтаксис и может подстраиваться под нужды пользователя. Теперь имена пользователей могут переводиться на разные языки."
+        }
+    },
+    "v7.0": {
+        "default": {
+            "title": "Eurohouse Developer Team (@eurohouse)",
+            "body": "We have developed a new, seventh version of Eurohouse, and it also includes many innovations. These include new resources for downloading packages using Git, and the distinction between the background sound playback mode and the visual effect of an old movie, which are now configured separately, and an improved function for displaying the size of the directory, which even takes into account hidden files. Text notes use end-to-end encryption by default, and the password for each of them is not saved anywhere and is used to decrypt the text. Sensitive user data, including their correspondence in the chat, is also encrypted so that they cannot be decoded from the outside. A mechanism for the market of goods and services has been added, which is linked to the user's inventory, so that everyone can sell and buy something here. The quantity of goods and the mechanism for working with them have been added, as well as 3 types of transactions: commodity-money exchange, barter exchange and gift. The notes section is not available to unauthorized users."
+        },
+        "RU": {
+            "title": "Команда разработчиков Eurohouse (@eurohouse)",
+            "body": "Мы разработали новую, седьмую версию Eurohouse, и она также включает многие нововведения. Это и новые ресурсы для докачивая пакетов при помощи Git, и разграничение режима проигрывания фонового звука и визуального эффекта старого кино, которые теперь настраиваются отдельно, и улучшенная функция отображения размера диркетории, которая учитывает даже скрытые файлы. Текстовые заметки используют сквозное шифрование по умолчанию, а пароль к каждой из них нигде не сохраняется и используется для расшифровки текста. Чувствительные данные пользователей, включая их переписку в чате, шифруются также, чтобы извне нельзя было их декодировать. Добавлен механизм рынка товаров и услуг, который сопряжен с инвентарём пользователя, что каждый может здесь что-то продавать и покупать. Добавлено количество товара и механизм работы с ним, а также 3 типа трансзакций: товарно-денежный обмен, бартерный обмен и подарок. Раздел заметок недоступен неавторизованным пользователям."
+        }
+    }
+}
