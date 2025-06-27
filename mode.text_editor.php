@@ -2,19 +2,20 @@
 <!-- GR: Επεξεργαστής κειμένου; CY: Επεξεργαστής κειμένου; FR: Éditeur de texte; BE: Éditeur de texte; DE: Texteditor; AT: Texteditor; CH: Compositor Textum; IT: Editor de text; ES: Editor de texto; MX: Editor de texto; PT: Editor de texto; BR: Editor de texto; RO: Editor de text; MD: Editor de text; RU: Текстовый редактор; NP: ཡི་གེ་རྩོམ་སྒྲིག་པ།; RS: Текст едитор; UA: Текстовий редактор; IN: पाठ संपादक; TR: Metin düzeltici; LK: पाठ सम्पादक; CN: 文本编辑器; KR: 텍스트 에디터; JP: テキスト編集者; AE: محرر النص -->
 <!-- <ref> -->
 <!-- true -->
+<?php if (isUserRoot($suUser)) { ?>
 <script>
 function replaceText(stri) {
-    var str = document.getElementById('content').value;
-    var stro = document.getElementById('replacebox').value;
-    var strp = str.toString().replace(stri, stro);
-    document.getElementById('content').value = strp;
+    var str=document.getElementById('content').value;
+    var stro=document.getElementById('replacebox').value;
+    var strp=str.toString().replace(stri,stro);
+    document.getElementById('content').value=strp;
     countText();
 }
 function replaceTextAll(stri) {
-    var str = document.getElementById('content').value;
-    var stro = document.getElementById('replacebox').value;
-    var strp = str.toString().replaceAll(stri, stro);
-    document.getElementById('content').value = strp;
+    var str=document.getElementById('content').value;
+    var stro=document.getElementById('replacebox').value;
+    var strp=str.toString().replaceAll(stri,stro);
+    document.getElementById('content').value=strp;
     countText();
 }
 function countText() {
@@ -81,3 +82,4 @@ $homeDocumentIcon=$themePrefix.'home.png'; ?>
 <input type="image" id="textEdRep" onmouseover="soundButton();" class="power" onclick="replaceText(findbox.value); countText();" src="<?=$prefix[3].'text.png';?>">
 <input type="image" id="textEdRepAll" onmouseover="soundButton();" class="power" onclick="replaceTextAll(findbox.value); countText();" src="<?=$prefix[3].'copy.png';?>">
 <br><label id="statusBar" style="width:98%;"></label></p>
+<?php } ?>

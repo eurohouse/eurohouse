@@ -91,10 +91,11 @@ function world_clock() {
             if (requestMode.value=='volume_control') {
                 audioVolInd.value=mixers[0]; audioRatInd.value=mixers[1]; videoVolInd.value=mixers[2]; videoRatInd.value=mixers[3];
             } document.querySelector(':root').style.setProperty('--bicolor',sysDefAccent.value);
-            sysDefMsgMaxCount.value=parseInt(Object.keys(filterMessages(sysDefMyMsgboxData.value,uidm,sysDefFind.value)).length-1); sysDefMsgCounter.value=(sysDefReverse.value!=0)?((parseInt(sysDefMsgCounter.value)<=0)?sysDefMsgMaxCount.value:(parseInt(sysDefMsgCounter.value)-1)):((parseInt(sysDefMsgCounter.value)>=sysDefMsgMaxCount.value)?0:(parseInt(sysDefMsgCounter.value)+1));
-            sysDefMsgCurrent.value=(sysDefCypher.value!='')?enmorse(Object.values(filterMessages(sysDefMyMsgboxData.value,uidm,sysDefFind.value,'msg'))[sysDefMsgCounter.value],uidm,sysDefCypher.value):Object.values(filterMessages(sysDefMyMsgboxData.value,uidm,sysDefFind.value,'msg'))[sysDefMsgCounter.value];
-            $('#showUsUrgent').text(sysDefMsgCurrent.value);
-            if (sysDefLoop.value!=sysDefPostBackEff.value) {
+            if (authstate()) {
+                sysDefMsgMaxCount.value=parseInt(Object.keys(filterMessages(sysDefMyMsgboxData.value,uidm,sysDefFind.value)).length-1); sysDefMsgCounter.value=(sysDefReverse.value!=0)?((parseInt(sysDefMsgCounter.value)<=0)?sysDefMsgMaxCount.value:(parseInt(sysDefMsgCounter.value)-1)):((parseInt(sysDefMsgCounter.value)>=sysDefMsgMaxCount.value)?0:(parseInt(sysDefMsgCounter.value)+1));
+                sysDefMsgCurrent.value=(sysDefCypher.value!='')?enmorse(Object.values(filterMessages(sysDefMyMsgboxData.value,uidm,sysDefFind.value,'msg'))[sysDefMsgCounter.value],uidm,sysDefCypher.value):Object.values(filterMessages(sysDefMyMsgboxData.value,uidm,sysDefFind.value,'msg'))[sysDefMsgCounter.value];
+                $('#showUsUrgent').text(sysDefMsgCurrent.value);
+            } if (sysDefLoop.value!=sysDefPostBackEff.value) {
                 if (sysDefLoop.value!=0) {
                     playAudio(backgroundPlayer,sysDefBackgroundSound.value);
                 } else { pauseAudio(backgroundPlayer); }
@@ -150,9 +151,13 @@ function world_clock() {
             } var uidm=sysDefSessionID.value,bndm=strarr(sysDefBindData.value,';',':')[uidm];
             if (authstate()) {
                 omniBox.placeholder=finterm('Type command or expression and press ENTER');
+            } else {
+                omniBoxAuthLogin.placeholder=finterm('Username');
+                omniBoxAuthPass.placeholder=finterm('Password');
             } if (requestMode.value=='messenger') {
-                msgBox.innerHTML='<p>'+messengerHTML(sysDefMyMsgboxData.value,uidm,sysDefFind.value)+'</p>';
-                composeMessage.placeholder=finterm("What's on your mind?");
+                if (authstate()) {
+                    msgBox.innerHTML='<p>'+messengerHTML(sysDefMyMsgboxData.value,uidm,sysDefFind.value)+'</p>'; composeMessage.placeholder=finterm("What's on your mind?");
+                }
             } else if (requestMode.value=='news_feed') {
                 newsBox.innerHTML='<p>'+jsonWhatsNewHTML()+'</p>';
             } else if (requestMode.value=='bookkeeping') {
@@ -232,21 +237,25 @@ function world_clock() {
                 $('#prefsBtnUpdateTitle').attr('src',sysDefPrefix.value+'keyboard.png');
                 $('#prefsBtnUpdateTitles').attr('src',sysDefPrefix.value+'movie.png');
             } else if (requestMode.value=='sticky_notes') {
-                $('#myNotesApplyBtn').attr('src',sysDefPrefix.value+'return.png');
-                $('#myNotesKbdBtn').attr('src',sysDefPrefix.value+'keyboard.png');
-                $('#myNotesResetBtn').attr('src',sysDefPrefix.value+'backspace.png');
-                $('#myNotesNewBtn').attr('src',sysDefPrefix.value+'new.png');
-                $('#myNotesOpenBtn').attr('src',sysDefPrefix.value+'open.png');
-                $('#myNotesSaveBtn').attr('src',sysDefPrefix.value+'save.png');
-                notesMenu.innerHTML='<p align="center" class="block">'+notebookHTML(sysDefMetaList.value)+'</p>';
-                myNotesRad.placeholder=finterm('Symbolic Digits');
-                myNotesEnt.placeholder=finterm('Title');
-                myNotesEnc.placeholder=finterm('Password');
+                if (authstate()) {
+                    $('#myNotesApplyBtn').attr('src',sysDefPrefix.value+'return.png');
+                    $('#myNotesKbdBtn').attr('src',sysDefPrefix.value+'keyboard.png');
+                    $('#myNotesResetBtn').attr('src',sysDefPrefix.value+'backspace.png');
+                    $('#myNotesNewBtn').attr('src',sysDefPrefix.value+'new.png');
+                    $('#myNotesOpenBtn').attr('src',sysDefPrefix.value+'open.png');
+                    $('#myNotesSaveBtn').attr('src',sysDefPrefix.value+'save.png');
+                    notesMenu.innerHTML='<p align="center" class="block">'+notebookHTML(sysDefMetaList.value)+'</p>';
+                    myNotesRad.placeholder=finterm('Symbolic Digits');
+                    myNotesEnt.placeholder=finterm('Title');
+                    myNotesEnc.placeholder=finterm('Password');
+                }
             } else if (requestMode.value=='user_tutorial') {
                 helpMenu.innerHTML='<p align="center" class="block">'+helpbookHTML()+'</p>';
             } else if (requestMode.value=='text_editor') {
-                $('#textEdRep').attr('src',sysDefPrefix.value+'new.png');
-                $('#textEdRepAll').attr('src',sysDefPrefix.value+'copy.png');
+                if (authstate()) {
+                    $('#textEdRep').attr('src',sysDefPrefix.value+'new.png');
+                    $('#textEdRepAll').attr('src',sysDefPrefix.value+'copy.png');
+                }
             }
         },
     });

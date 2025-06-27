@@ -15,6 +15,7 @@
 <input type="image" class="power" onmouseover="soundButton();" src="<?=$prefix[3].'return.png';?>" onclick="compose(sysDefSessionID.value,composeMessage.value);">
 <input type="image" class="power" onmouseover="soundButton();" src="<?=$prefix[3].'keyboard.png';?>" onclick="document.getElementById('composeMessage').focus();">
 <input type="image" class="power" onmouseover="soundButton();" src="<?=$prefix[3].'backspace.png';?>" onclick="document.getElementById('composeMessage').value = ''; document.getElementById('composeMessage').focus();"></p>
-</div><?php } ?>
+</div>
 <div class='customPanel' id='msgBox' style="width:100%;height:85%;left:0px;top:0px;overflow-y:scroll;">
 </div>
+<?php } ?>
