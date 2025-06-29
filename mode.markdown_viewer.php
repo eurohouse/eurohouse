@@ -42,7 +42,7 @@ function countText() {
 <p align='center'>
 <textarea class="text" id="markdownTest" style="width:100%;height:90%;" onkeydown="if (event.keyCode==27) { this.value='';
 } else if (event.keyCode==8) { handleInput(this.value);
-} else if (event.keyCode==46) { handleInput(this.value); }" onchange="handleInput(this.value,true); markdownToHTMLParse();" oninput="handleInput(this.value,true); markdownToHTMLParse();"><?=$content;?></textarea><br>
+} else if (event.keyCode==46) { handleInput(this.value); }" oninput="handleInput(this.value,true); markdownToHTMLParse();"><?=$content;?></textarea><br>
 <input class="text" id="findbox" style="width:36%;" type="text" value="" onkeydown="if (event.keyCode==13) { replacebox.focus();
 } else if (event.keyCode==27) { this.value=''; markdownToHTMLParse();
 } else if (event.keyCode==8) { handleInput(this.value);
