@@ -26,7 +26,7 @@ function countText() {
 <div class="markdownContent">
 <p align='center'>
     <textarea class="text" id="markdownTest" style="width:100%;height:100%;" onkeydown="if (event.keyCode==27) { this.value=''; }" onchange="markdownToHTMLParse();" oninput="countText();">
-        <?=$content;?>
+        
     </textarea>
 </p>
 </div>
