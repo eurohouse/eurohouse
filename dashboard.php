@@ -111,7 +111,7 @@
     <?php foreach (explode(',',$session['units_list']) as $selID) { ?>
         <option id="<?=$selID;?>" <?php if ($session['units']==$selID) { ?> selected <?php } ?>><?=$selID;?></option>
     <?php } ?></select>
-    <select id="setTheme" style="width:37%;" onchange="setdata('theme',setTheme.options[setTheme.selectedIndex].id); window.location.reload();">
+    <select id="setTheme" style="width:38%;" onchange="setdata('theme',setTheme.options[setTheme.selectedIndex].id); window.location.reload();">
     <?php foreach ((str_replace('./','',(glob('./*.start.png')))) as $key=>$value) { ?>
         <option id="<?=explode('.',$value)[0];?>" <?php if ($session['theme']==explode('.',$value)[0]) { ?> selected <?php } ?>><?=explode('.',$value)[0];?></option>
     <?php } ?></select>
