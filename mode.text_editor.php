@@ -52,26 +52,20 @@ $homeDocumentIcon=$themePrefix.'home.png'; ?>
 <img style="width:5%;position:relative;" loading="lazy" src="<?=$deleteDocumentIcon;?>" onmouseover="soundButton();" id="deleteButton" onclick="del(filename.value,sysDefSessionID.value); omniRead(requestMode.value,filename.value,'false');">
 <img style="width:5%;position:relative;" loading="lazy" src="<?=$homeDocumentIcon;?>" onmouseover="soundButton();" id="homeButton" onclick="omniBack(sysDefParent.value);"><br>
 <input class="text" id="filename" name="<?=$request['mode'];?>" style="width:45%;" type="text" value="<?=$request['input'];?>" onkeydown="if (event.keyCode==13) {
-    content.value=loadFile(filename.value); countText();
-} else if (event.keyCode==27) {
-    this.value='';
+    omniRead(requestMode.value,filename.value,'false');
+} else if (event.keyCode==27) { this.value='';
 } else if (event.keyCode==113) {
-    set(filename.value,encodeURIComponent(content.value),sysDefSessionID.value); content.value=loadFile(filename.value); countText();
+    set(filename.value,encodeURIComponent(content.value),sysDefSessionID.value); omniRead(requestMode.value,filename.value,'false');
 }">
 <input class="text" id="doto" name="<?=$request['mode'];?>" style="width:45%;" type="text" value="" onkeydown="if (event.keyCode==13) {
     copy(filename.value,doto.value,sysDefSessionID.value);
-    content.value=loadFile(doto.value);
-    filename.value=doto.value; doto.value=''; countText();
-} else if (event.keyCode==27) {
-    this.value='';
+    omniRead(requestMode.value,doto.value,'false');
+} else if (event.keyCode==27) { this.value='';
 } else if (event.keyCode==113) {
     move(filename.value,doto.value,sysDefSessionID.value);
-    content.value=loadFile(doto.value);
-    filename.value=doto.value; doto.value=''; countText();
+    omniRead(requestMode.value,doto.value,'false');
 }"><br>
-<textarea class="text" id="content" style="width:100%;height:50%;" onkeydown="if (event.keyCode==27) {
-    this.value='';
-}" oninput="countText();">
+<textarea class="text" id="content" style="width:100%;height:50%;" onkeydown="if (event.keyCode==27) { this.value=''; }" oninput="countText();">
     <?=$content;?>
 </textarea><br>
 <input class="text" id="findbox" style="width:36%;" type="text" value="" onkeydown="if (event.keyCode==13) {
