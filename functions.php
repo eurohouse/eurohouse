@@ -95,7 +95,8 @@ function express(array $for) {
             } $filepass=str_replace('./','',(glob('./*.md')));
             foreach ($filepass as $file) {
                 if (file_exists($file)) {
-                    chmod($file,0777); unlink($file);
+                    chmod($file,0777); rename($file,$repo.'.md');
+                    chmod($repo.'.md',0777);
                 }
             } $filerest=str_replace('./','',(glob('./*.txt.bak')));
             foreach ($filerest as $file) {
