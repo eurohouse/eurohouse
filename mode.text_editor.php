@@ -66,9 +66,7 @@ $homeDocumentIcon=$themePrefix.'home.png'; ?>
     move(filename.value,doto.value,sysDefSessionID.value);
     omniRead(requestMode.value,doto.value,'false');
 }"><br>
-<textarea class="text" id="content" style="width:100%;height:50%;" onkeydown="if (event.keyCode==27) { this.value=''; }" oninput="countText();">
-    <?=$content;?>
-</textarea><br>
+<textarea class="text" id="content" style="width:100%;height:50%;" onkeydown="if (event.keyCode==27) { this.value=''; }" oninput="countText();"><?=$content;?></textarea><br>
 <input class="text" id="findbox" style="width:36%;" type="text" value="" onkeydown="if (event.keyCode==13) {
     replacebox.focus();
 } else if (event.keyCode==27) { this.value=''; }">

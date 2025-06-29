@@ -40,9 +40,7 @@ function countText() {
 <div class="bivalviaLeft" id="markdownPage"></div>
 <div class="bivalviaRight">
 <p align='center'>
-<textarea class="text" id="markdownTest" style="width:100%;height:90%;" onkeydown="if (event.keyCode==27) { this.value=''; }" onchange="markdownToHTMLParse();" oninput="markdownToHTMLParse();">
-    <?=$content;?>
-</textarea><br>
+<textarea class="text" id="markdownTest" style="width:100%;height:90%;" onkeydown="if (event.keyCode==27) { this.value=''; }" onchange="markdownToHTMLParse();" oninput="markdownToHTMLParse();"><?=$content;?></textarea><br>
 <input class="text" id="findbox" style="width:36%;" type="text" value="" onkeydown="if (event.keyCode==13) { replacebox.focus();
 } else if (event.keyCode==27) { this.value=''; markdownToHTMLParse(); }">
 <input class="text" id="replacebox" style="width:36%;" type="text" value="" onkeydown="if (event.keyCode==13) { replaceText(); markdownToHTMLParse();
