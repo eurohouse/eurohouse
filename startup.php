@@ -122,7 +122,8 @@ function world_clock() {
             $('#buttonPlay').attr('src',sysDefPrefix.value+((audioPlayer.paused!=true)?'pause.png':'play.png'));
             $('#buttonMuteBack').attr('src',sysDefPrefix.value+'disk.png');
             $('#buttonMenuStyle').attr('src',sysDefPrefix.value+((sysDefIcons.value!=0)?'menu.png':'list.png')); $('#buttonUpdate').attr('src',sysDefPrefix.value+'world.png');
-            $('#buttonUserStatus').attr('src',sysDefPrefix.value+"<?=(isAuthorized())?'anonym.png':'user.png';?>"); $('#buttonEscape').attr('src',sysDefPrefix.value+'escape.png');
+            $('#buttonUserStatus').attr('src',sysDefPrefix.value+'user.png');
+            $('#buttonEscape').attr('src',sysDefPrefix.value+'escape.png');
             if (((sysDefObserve.value!=0)&&(sysDefSpectate.value!=0))||((sysDefObserve.value!=0)&&(sysDefSpectate.value==0))) {
                 $('#powerButton').show();$('.panel').hide();
                 $('.customPanel').hide();$('.upperGap').hide();
