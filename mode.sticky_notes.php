@@ -72,7 +72,7 @@ function countNote() {
 <div class="notesMenu" id="notesMenu"></div>
 <div class="notesContent">
 <p align='center'>
-<textarea id="myNotesDoc" style="width:100%;height:95%;" placeholder="<?=term('',$settings,$session);?>" onkeydown="if (event.keyCode==27) {
+<textarea id="myNotesDoc" style="width:100%;height:80%;" placeholder="<?=term('',$settings,$session);?>" onkeydown="if (event.keyCode==27) {
     newNote();
 } else if (event.keyCode==8) { handleInput(this.value);
 } else if (event.keyCode==46) { handleInput(this.value);
