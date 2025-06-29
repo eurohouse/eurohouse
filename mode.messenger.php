@@ -11,7 +11,7 @@
     handleInput(this.value);
 } else if (event.keyCode==46) {
     handleInput(this.value);
-}" oninput="handleInput(this.value, true);">
+}" oninput="handleInput(this.value,true);">
 <input type="image" class="power" onmouseover="soundButton();" src="<?=$prefix[3].'return.png';?>" onclick="compose(sysDefSessionID.value,composeMessage.value);">
 <input type="image" class="power" onmouseover="soundButton();" src="<?=$prefix[3].'keyboard.png';?>" onclick="document.getElementById('composeMessage').focus();">
 <input type="image" class="power" onmouseover="soundButton();" src="<?=$prefix[3].'backspace.png';?>" onclick="document.getElementById('composeMessage').value = ''; document.getElementById('composeMessage').focus();"></p>

@@ -54,12 +54,12 @@ function countNote() {
 } else if (event.keyCode==27) { this.value='';
 } else if (event.keyCode==8) { handleInput(this.value);
 } else if (event.keyCode==46) { handleInput(this.value);
-}" oninput="handleInput(this.value, true);">
+}" oninput="handleInput(this.value,true);">
 <input class="text" id="myNotesEnc" style="width:32%;" type="password" placeholder="<?=term('Password',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) { openNote(myNotesEnt.value);
 } else if (event.keyCode==27) { this.value=''; myNotesEnt.focus();
 } else if (event.keyCode==8) { handleInput(this.value);
 } else if (event.keyCode==46) { handleInput(this.value);
-}" oninput="handleInput(this.value, true);">
+}" oninput="handleInput(this.value,true);">
 <input type="image" id="myNotesNewBtn" onmouseover="soundButton();" class="power" onclick="newNote();" src="<?=$prefix[3].'new.png';?>">
 <input type="image" id="myNotesOpenBtn" onmouseover="soundButton();" class="power" onclick="openNote(myNotesEnt.value);" src="<?=$prefix[3].'open.png';?>">
 <input type="image" id="myNotesSaveBtn" onmouseover="soundButton();" class="power" onclick="saveNote(myNotesEnt.value);" src="<?=$prefix[3].'save.png';?>">
@@ -74,11 +74,15 @@ function countNote() {
 } else if (event.keyCode==46) { handleInput(this.value);
 }" oninput="handleInput(this.value,true); countNote();" onchange="countNote();"></textarea><br>
 <input class="text" id="findbox" style="width:36%;" type="text" value="" onkeydown="if (event.keyCode==13) { replacebox.focus();
-} else if (event.keyCode==27) { this.value=''; }">
+} else if (event.keyCode==27) { this.value='';
+} else if (event.keyCode==8) { handleInput(this.value);
+} else if (event.keyCode==46) { handleInput(this.value); }">
 <input class="text" id="replacebox" style="width:36%;" type="text" value="" onkeydown="if (event.keyCode==13) { replaceNote(); countText();
-} else if (event.keyCode==27) { findbox.focus(); this.value=''; }">
-<input type="image" id="textEdRep" onmouseover="soundButton();" class="power" onclick="replaceNote(); countText();" src="<?=$prefix[3].'text.png';?>">
-<input type="image" id="textEdRepAll" onmouseover="soundButton();" class="power" onclick="replaceNoteAll(); countText();" src="<?=$prefix[3].'copy.png';?>">
+} else if (event.keyCode==27) { findbox.focus(); this.value='';
+} else if (event.keyCode==8) { handleInput(this.value);
+} else if (event.keyCode==46) { handleInput(this.value); }">
+<input type="image" id="textEdRep" onmouseover="soundButton();" class="power" onclick="replaceNote(); countText();" oninput="handleInput(this.value,true);" src="<?=$prefix[3].'text.png';?>">
+<input type="image" id="textEdRepAll" onmouseover="soundButton();" class="power" onclick="replaceNoteAll(); countText();" oninput="handleInput(this.value,true);" src="<?=$prefix[3].'copy.png';?>">
 </p></div>
 </div><br>
 <label id='numBits' style="width:98%;"></label>

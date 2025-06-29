@@ -66,13 +66,19 @@ $homeDocumentIcon=$themePrefix.'home.png'; ?>
     move(filename.value,doto.value,sysDefSessionID.value);
     omniRead(requestMode.value,doto.value,'false');
 }"><br>
-<textarea class="text" id="content" style="width:100%;height:50%;" onkeydown="if (event.keyCode==27) { this.value=''; }" oninput="countText();"><?=$content;?></textarea><br>
+<textarea class="text" id="content" style="width:100%;height:50%;" onkeydown="if (event.keyCode==27) { this.value='';
+} else if (event.keyCode==8) { handleInput(this.value);
+} else if (event.keyCode==46) { handleInput(this.value); }" oninput="handleInput(this.value,true); countText();"><?=$content;?></textarea><br>
 <input class="text" id="findbox" style="width:36%;" type="text" value="" onkeydown="if (event.keyCode==13) {
     replacebox.focus();
-} else if (event.keyCode==27) { this.value=''; }">
+} else if (event.keyCode==27) { this.value='';
+} else if (event.keyCode==8) { handleInput(this.value);
+} else if (event.keyCode==46) { handleInput(this.value); }" oninput="handleInput(this.value,true);">
 <input class="text" id="replacebox" style="width:36%;" type="text" value="" onkeydown="if (event.keyCode==13) {
     replaceText(); countText();
-} else if (event.keyCode==27) { findbox.focus(); this.value=''; }">
+} else if (event.keyCode==27) { findbox.focus(); this.value='';
+} else if (event.keyCode==8) { handleInput(this.value);
+} else if (event.keyCode==46) { handleInput(this.value); }" oninput="handleInput(this.value,true);">
 <input type="image" id="textEdRep" onmouseover="soundButton();" class="power" onclick="replaceText(); countText();" src="<?=$prefix[3].'text.png';?>">
 <input type="image" id="textEdRepAll" onmouseover="soundButton();" class="power" onclick="replaceTextAll(); countText();" src="<?=$prefix[3].'copy.png';?>"><br>
 <label id="statusBar" style="width:98%;"></label>
