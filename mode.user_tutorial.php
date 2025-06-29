@@ -20,13 +20,13 @@ function countText() {
     if (file_exists($request['input'])) {
         $content=file_get_contents($request['input']);
     }
-}
+} ?>
 <div class="markdownRow">
 <div class="markdownPage" id="markdownPage"></div>
 <div class="markdownContent">
 <p align='center'>
     <textarea class="text" id="markdownTest" style="width:100%;height:100%;" onkeydown="if (event.keyCode==27) { this.value=''; }" onchange="markdownToHTMLParse();" oninput="countText();">
-        
+        <?=$content;?>
     </textarea>
 </p>
 </div>
