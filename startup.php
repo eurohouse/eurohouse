@@ -103,7 +103,7 @@ function world_clock() {
             $('#powerButton').attr('src',sysDefPrefix.value+'power.png');
             $('#buttonPrev').attr('src',sysDefPrefix.value+'rew.png');
             $('#buttonNext').attr('src',sysDefPrefix.value+'ff.png');
-            $('#buttonLock').attr('src',sysDefPrefix.value+((sysDefLock.value!=0)?'key.png':'lock.png')); $('#buttonLockRequest').attr('src',sysDefPrefix.value+((sysDefRequestLock.value!='false')?'restore.png':'maximize.png'));
+            $('#buttonLock').attr('src',sysDefPrefix.value+((sysDefLock.value!=0)?'key.png':'lock.png')); $('#buttonLockRequest').attr('src',sysDefPrefix.value+((requestLock.value!='false')?'restore.png':'maximize.png'));
             $('#buttonOnReload').attr('src',sysDefPrefix.value+((sysDefReload.value!=0)?'bluetooth.png':'radio.png')); $('#buttonSongIndex').attr('src',sysDefPrefix.value+((sysDefSongIndex.value=='random')?'shuffle.png':'update.png')); $('#buttonPitched').attr('src',sysDefPrefix.value+((sysDefPitchLock.value!=0)?'midi.png':'volume.png'));
             $('#buttonObserve').attr('src',sysDefPrefix.value+'power.png');
             $('#buttonSpectate').attr('src',sysDefPrefix.value+'unpower.png');
