@@ -44,7 +44,7 @@ function countText() {
     <?=$content;?>
 </textarea><br>
 <input class="text" id="findbox" style="width:36%;" type="text" value="" onkeydown="if (event.keyCode==13) { replacebox.focus();
-} else if (event.keyCode==27) { this.value=''; }">
+} else if (event.keyCode==27) { this.value=''; markdownToHTMLParse(); }">
 <input class="text" id="replacebox" style="width:36%;" type="text" value="" onkeydown="if (event.keyCode==13) { replaceText(); markdownToHTMLParse();
 } else if (event.keyCode==27) { findbox.focus(); this.value=''; }">
 <input type="image" id="textEdRep" onmouseover="soundButton();" class="power" onclick="replaceText(); markdownToHTMLParse();" src="<?=$prefix[3].'text.png';?>">
