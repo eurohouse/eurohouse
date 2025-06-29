@@ -4,7 +4,7 @@
     <meta name="viewport" content="<?=$viewportParam;?>">
     <meta charset="UTF-8">
     <title><?=$session['title'].' (@'.$sessionID.') · Eurohouse UX/UI';?></title>
-    <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="<?=$prefix[3].'.'.$session['avatar'].'.png';?>" type="image/x-icon">
     <?php include 'wardrobe.php';
     foreach ($settings['libraries']['domestic'] as $val) { ?>
         <script src="<?=$val;?>"></script>
