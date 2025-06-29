@@ -248,6 +248,8 @@ function world_clock() {
                     myNotesRad.placeholder=finterm('Symbolic Digits');
                     myNotesEnt.placeholder=finterm('Title');
                     myNotesEnc.placeholder=finterm('Password');
+                    $('#textEdRep').attr('src',sysDefPrefix.value+'new.png');
+                    $('#textEdRepAll').attr('src',sysDefPrefix.value+'copy.png');
                 }
             } else if (requestMode.value=='user_tutorial') {
                 helpMenu.innerHTML='<p align="center" class="block">'+helpbookHTML()+'</p>';
