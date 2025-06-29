@@ -75,6 +75,7 @@ function world_clock() {
         success: function(data) {
             $('#currentTime').val(pager(data,sysDefTimedisp.value));
             $('#alarmTime').val((pager(data,2)!='00:00')?pager(data,2):hhmmss(audioPlayer.currentTime,true));
+            document.getElementById('favicon').href=((isDarkMode())?'ava.':'abc.')+sysDefAvatar.value+'.png';
             $('#sysDefAccent').val(pager(data,3));
             $('#sysDefEffects').val(pager(data,4));
             $('#sysDefMixers').val(pager(data,5));

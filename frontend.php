@@ -1,4 +1,7 @@
 <script>
+function isDarkMode() {
+    return ((window.matchMedia)&&(window.matchMedia('(prefers-color-scheme: dark)').matches));
+}
 function lockdata() {
     var obj={
         <?php $iter=0; foreach ($locks as $key=>$value) {
