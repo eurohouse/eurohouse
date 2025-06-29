@@ -68,26 +68,22 @@ function countNote() {
 <input type="image" id="myNotesOpenBtn" onmouseover="soundButton();" class="power" onclick="openNote(myNotesEnt.value);" src="<?=$prefix[3].'open.png';?>">
 <input type="image" id="myNotesSaveBtn" onmouseover="soundButton();" class="power" onclick="saveNote(myNotesEnt.value);" src="<?=$prefix[3].'save.png';?>">
 </p>
-<p align='center'>
 <div class="notesRow">
 <div class="notesMenu" id="notesMenu"></div>
 <div class="notesContent">
 <p align='center'>
-<textarea id="myNotesDoc" style="width:100%;height:100%;" placeholder="<?=term('',$settings,$session);?>" onkeydown="if (event.keyCode==27) {
+<textarea id="myNotesDoc" style="width:100%;height:95%;" placeholder="<?=term('',$settings,$session);?>" onkeydown="if (event.keyCode==27) {
     newNote();
 } else if (event.keyCode==8) { handleInput(this.value);
 } else if (event.keyCode==46) { handleInput(this.value);
-}" oninput="handleInput(this.value,true); countNote();" onchange="countNote();"></textarea>
-</p>
-</div>
-</div><br>
-<input class="text" id="findbox" style="width:36%;" type="text" value="" onkeydown="if (event.keyCode==13) {
-    replacebox.focus();
+}" oninput="handleInput(this.value,true); countNote();" onchange="countNote();"></textarea><br>
+<input class="text" id="findbox" style="width:36%;" type="text" value="" onkeydown="if (event.keyCode==13) { replacebox.focus();
 } else if (event.keyCode==27) { this.value=''; }">
-<input class="text" id="replacebox" style="width:36%;" type="text" value="" onkeydown="if (event.keyCode==13) {
-    replaceNote(); countText();
+<input class="text" id="replacebox" style="width:36%;" type="text" value="" onkeydown="if (event.keyCode==13) { replaceNote(); countText();
 } else if (event.keyCode==27) { findbox.focus(); this.value=''; }">
 <input type="image" id="textEdRep" onmouseover="soundButton();" class="power" onclick="replaceNote(); countText();" src="<?=$prefix[3].'text.png';?>">
-<input type="image" id="textEdRepAll" onmouseover="soundButton();" class="power" onclick="replaceNoteAll(); countText();" src="<?=$prefix[3].'copy.png';?>"><br>
+<input type="image" id="textEdRepAll" onmouseover="soundButton();" class="power" onclick="replaceNoteAll(); countText();" src="<?=$prefix[3].'copy.png';?>">
+</p></div>
+</div><br>
 <label id='numBits' style="width:98%;"></label>
-</p><?php } ?>
+<?php } ?>
