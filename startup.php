@@ -253,11 +253,6 @@ function world_clock() {
                     $('#textEdRep').attr('src',sysDefPrefix.value+'new.png');
                     $('#textEdRepAll').attr('src',sysDefPrefix.value+'copy.png');
                 }
-            } else if (requestMode.value=='user_tutorial') {
-                var converter=new showdown.Converter(),
-                text='# hello, markdown!',
-                html=converter.makeHtml(text);
-                helpMenu.innerHTML=html;
             } else if (requestMode.value=='text_editor') {
                 if (authstate()) {
                     $('#textEdRep').attr('src',sysDefPrefix.value+'new.png');
