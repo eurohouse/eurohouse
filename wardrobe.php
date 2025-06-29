@@ -144,16 +144,16 @@ body {
     border: none; border-radius: 0px; position: relative;
     background-color: var(--qucolor); color: var(--backtextcolor);
 }
-.notesMenu {
+.bivalviaLeft {
     float: left; overflow-y: scroll; width: 20%; flex: 0%;
 }
-.notesContent {
+.bivalviaRight {
     float: right; width: 80%; flex: 0%;
 }
-.notesRow {
+.bivalviaRow {
     display: flex; height: 70%;
 }
-.notesRow:after {
+.bivalviaRow:after {
     content: ""; display: table; clear: both;
 }
 .overlay {
