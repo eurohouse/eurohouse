@@ -93,7 +93,7 @@ function omniRead(mode,input,lock) {
 function omniGroup(group) {
     omniRequest('browse_europedia',requestSort.value,group,requestAngle.value,requestInput.value,requestOutput.value,requestArgs.value,requestLock.value,omniRef(),requestPath.value);
 }
-function invertLock() {
+function invertLockRequest() {
     var lock=(requestLock.value=='true')?'false':'true';
     omniRequest(requestMode.value,requestSort.value,requestGroup.value,requestAngle.value,requestInput.value,requestOutput.value,requestArgs.value,lock,omniRef(),requestPath.value);
 }
