@@ -29,7 +29,7 @@
         } else if (event.keyCode==115) { seekMusic(omniBox.value);
         } else if (event.keyCode==118) { if (sysDefBanner.value!='') { setdata('banner',''); } else { seekBanner(omniBox.value); }} keyPressed();" oninput="handleInput(this.value,true);">
         <input type="image" onmouseover="soundButton();" id="buttonEnter" class="power" onclick="omniEnter();" src="<?=$prefix[3].'return.png';?>" title="<?=term('Enter Command/Message',$settings,$session);?>">
-        <input type="image" onmouseover="soundButton();" id="buttonUserStatus" class="power" onclick="if (authstate()) { omniAuthRequest('signout','',''); } else { omniAuthRequest('signin',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString()); }" src="<?=$prefix[3].((isAuthorized())?'user.png':'anonym.png');?>" title="<?=term('Sign In/Out',$settings,$session);?>">
+        <input type="image" onmouseover="soundButton();" id="buttonUserStatus" class="power" onclick="if (authstate()) { omniAuthRequest('signout','',''); } else { omniAuthRequest('signin',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString()); }" src="<?=$prefix[3].((isAuthorized())?'anonym.png':'user.png');?>" title="<?=term('Sign In/Out',$settings,$session);?>">
         <input type="image" onmouseover="soundButton();" id="buttonBackspace" class="power" onclick="document.getElementById('omniBox').value='';
         document.getElementById('omniBox').focus();" src="<?=$prefix[3].'backspace.png';?>" title="<?=term('Clear Console',$settings,$session);?>">
     <?php } else { ?>
