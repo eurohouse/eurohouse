@@ -3,6 +3,6 @@
 <!-- <ref> -->
 <!-- true -->
 <p align='center'>
-<iframe id="inlineFrameExample" title="Inline Frame Example" style="width:auto;height:100%;position:relative;" src="<?=$request['input'];?>">
+<iframe id="inlineFrameExample" title="Inline Frame Example" style="width:70%;height:100%;position:relative;" src="<?=$request['input'];?>">
 </p>
 </iframe>
