@@ -67,14 +67,7 @@ function express(array $for) {
             $user=parseRequestURI($pkg)['user'];
         } $socketOpen=fsockopen($host,80,$errno,$errstr,10);
         if ($socketOpen!=false) {
-            $fileback=str_replace('./','',(glob('./*.txt')));
-            foreach ($fileback as $file) {
-                if (file_exists($file)) {
-                    chmod($file,0777);
-                    rename($file,$file.'.bak');
-                    chmod($file.'.bak',0777);
-                }
-            } if (file_exists($repo.'.pkg')) {
+            if (file_exists($repo.'.pkg')) {
                 $package=fileopen($repo.'.pkg');
                 $files=explode(';',$pkgfile['files']);
                 foreach ($files as $file) {
@@ -83,28 +76,15 @@ function express(array $for) {
                     }
                 } chmod($repo.'.pkg',0777); unlink($repo.'.pkg');
             } if (file_exists($repo)) {
-                chmod($repo,0777); rename($repo,$repo.'.d');
+                chmod($repo,0777); rename($repo,$repo.'-backup');
             } if ($branch!='') {
                 exec('git clone -b '.$branch.' '.$prot.'://'.$host.'/'.$user.'/'.$repo);
             } else {
                 exec('git clone '.$prot.'://'.$host.'/'.$user.'/'.$repo);
             } chmod($repo,0777); exec('mv '.$repo.'/* $PWD');
             exec('chmod -vR 777 .'); exec('rm -vr '.$repo);
-            if (file_exists($repo.'.d')) {
-                chmod($repo.'.d',0777); rename($repo.'.d',$repo);
-            } $filepass=str_replace('./','',(glob('./*.md')));
-            foreach ($filepass as $file) {
-                if (file_exists($file)) {
-                    chmod($file,0777); copy($file,$repo.'.md');
-                    unlink($file); chmod($repo.'.md',0777);
-                }
-            } $filerest=str_replace('./','',(glob('./*.txt.bak')));
-            foreach ($filerest as $file) {
-                if (file_exists($file)) {
-                    chmod($file,0777);
-                    $newfile=str_replace('.txt.bak','.txt',$file);
-                    rename($file,$newfile); chmod($newfile,0777);
-                }
+            if (file_exists($repo.'-backup')) {
+                chmod($repo.'-backup',0777); rename($repo.'-backup',$repo);
             }
         }
     }
