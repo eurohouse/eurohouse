@@ -34,7 +34,7 @@
         <input type="image" onmouseover="soundButton();" id="buttonUserStatus" class="power" onclick="if (authstate()) { omniAuthRequest('signout','',''); } else { omniAuthRequest('signin',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString()); }" src="<?=$prefix[3].'escape.png';?>" title="<?=term('Sign In/Out',$settings,$session);?>">
     <?php } else { ?>
         <input type="image" onmouseover="soundButton();" id="buttonSuggest" class="power" onclick="omniSuggest();" src="<?=$prefix[3].'user.png';?>" title="<?=term('Suggest Username',$settings,$session);?>">
-        <input type='text' id="omniBoxAuthLogin" style="width:32%;" placeholder="<?=term('Username',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) {
+        <input type='text' id="omniBoxAuthLogin" style="width:31%;" placeholder="<?=term('Username',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) {
             omniBoxAuthPass.value=''; omniBoxAuthPass.focus();
         } else if (event.keyCode==27) { omniBoxAuthLogin.value='';
         } else if (event.keyCode==8) { handleInput(this.value);
@@ -111,11 +111,11 @@
     <?php foreach (explode(',',$session['units_list']) as $selID) { ?>
         <option id="<?=$selID;?>" <?php if ($session['units']==$selID) { ?> selected <?php } ?>><?=$selID;?></option>
     <?php } ?></select>
-    <select id="setTheme" style="width:32%;" onchange="setdata('theme',setTheme.options[setTheme.selectedIndex].id); window.location.reload();">
+    <select id="setTheme" style="width:34%;" onchange="setdata('theme',setTheme.options[setTheme.selectedIndex].id); window.location.reload();">
     <?php foreach ((str_replace('./','',(glob('./*.start.png')))) as $key=>$value) { ?>
         <option id="<?=explode('.',$value)[0];?>" <?php if ($session['theme']==explode('.',$value)[0]) { ?> selected <?php } ?>><?=explode('.',$value)[0];?></option>
     <?php } ?></select>
-    <input type="image" onmouseover="soundButton();" id="buttonLockRequest" class="power" onclick="invertLockRequest();" src="<?=$prefix[3].(($request['lock']!='false')?'restore.png':'maximize.png');?>" title="<?=term('Lock/Unlock Hidden Elements',$settings,$session);?>">
+    <input type="image" onmouseover="soundButton();" id="buttonLockRequest" class="power" onclick="invertLockRequest();" src="<?=$prefix[3].(($request['lock']!='false')?'restore.png':'maximize.png');?>" title="<?=term('Expand/Collapse Enhanced View',$settings,$session);?>">
     <input type="image" onmouseover="soundButton();" id="buttonMenuStyle" class="power" onclick="setdata('icons',flip(sysDefIcons.value)); window.location.reload();" src="<?=$prefix[3].(($session['icons']!=0)?'menu.png':'list.png');?>" title="<?=term('Icons/List Menu View',$settings,$session);?>">
     <input type="image" onmouseover="soundButton();" id="buttonUpdate" class="power" onclick="systemUpdate(sysDefBackload.value); window.location.reload();" src="<?=$prefix[3].'world.png';?>" title="<?=term('Eurohouse Update',$settings,$session);?>">
     <input type="image" onmouseover="soundButton();" id="buttonEscape" class="power" onclick="omniBack(sysDefParent.value);" src="<?=$prefix[3].'escape.png';?>" title="<?=term('Go Back',$settings,$session);?>">
