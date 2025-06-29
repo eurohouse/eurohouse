@@ -2,44 +2,40 @@
 <!-- GR: Σημειώσεις; CY: Σημειώσεις; FR: Remarques; BE: Remarques; DE: Anmerkungen; AT: Anmerkungen; CH: Explorare Notae; IT: Note adesive; ES: Notas adhesivas; MX: Notas adhesivas; PT: Lembretes; BR: Lembretes; RO: Note lipicioase; MD: Note lipicioase; RU: Заметки; NP: སྦྱར་བའི་དྲན་ཐོ།; RS: Напомене; UA: Замітки; IN: स्टिकी नोट; TR: Yapışkan notlar; LK: चिपचिपा टिप्पणियाँ; CN: 便利贴; KR: 부착 노트; JP: ポストイット; AE: ورق ملاحظات -->
 <?php if (isAuthorized()) { ?>
 <script>
-function newNote() { myNotesDoc.value='';countNote(); }
+function newNote() { myNotesDoc.value=''; countNote(); }
 function openNote(id) {
     myNotesEnt.value=id; var ci=obfstr(CryptoJS.SHA256(myNotesEnc.value));
-    var cd=sysDefNumeric.value; myNotesDoc.value=decode(metadata()[encode(id,'',cd)],ci,cd);
-    countNote();
+    var cd=sysDefNumeric.value; myNotesDoc.value=decode(metadata()[encode(id,'',cd)],ci,cd); countNote();
 }
 function saveNote(id) {
     var ci=obfstr(CryptoJS.SHA256(myNotesEnc.value));
     var cd=myNotesRad.value; setmeta(encode(id,'',cd),encode(myNotesDoc.value,ci,cd));
 }
 function deleteNote(id) {
-    var cd=sysDefNumeric.value;delmeta(encode(id,'',cd));
+    var cd=sysDefNumeric.value; delmeta(encode(id,'',cd));
 }
 function replaceNote() {
-    var str=document.getElementById('myNotesDoc').value;
-    var stri=document.getElementById('findbox').value;
-    var stro=document.getElementById('replacebox').value;
+    var str=myNotesDoc.value;
+    var stri=findbox.value;
+    var stro=replacebox.value;
     var strp=str.toString().replace(stri,stro);
-    document.getElementById('myNotesDoc').value=strp;
-    countText();
+    myNotesDoc.value=strp; countText();
 }
 function replaceNoteAll() {
-    var str=document.getElementById('myNotesDoc').value;
-    var stri=document.getElementById('findbox').value;
-    var stro=document.getElementById('replacebox').value;
+    var str=myNotesDoc.value;
+    var stri=findbox.value;
+    var stro=replacebox.value;
     var strp=str.toString().replaceAll(stri,stro);
-    document.getElementById('myNotesDoc').value=strp;
-    countText();
+    myNotesDoc.value=strp; countText();
 }
 function countNote() {
-    var sourceChars=document.getElementById('myNotesRad').value;
-    var sourceText=document.getElementById('myNotesDoc').value;
+    var sourceChars=myNotesRad.value;
+    var sourceText=myNotesDoc.value;
     var bitsCount=sourceChars.length;
     var charsCount=sourceText.length;
     var linesCount=sourceText.split(/\r?\n/).length;
     var wordsCount=sourceText.split(/ /).length;
-    var statusBar='BITS = '+bitsCount+'; CHARS = '+charsCount+'; LINES = '+linesCount+'; WORDS = '+wordsCount;
-    document.getElementById('numBits').innerHTML=statusBar;
+    var statusBar='BITS = '+bitsCount+'; CHARS = '+charsCount+'; LINES = '+linesCount+'; WORDS = '+wordsCount; numBits.innerHTML=statusBar;
 }
 </script>
 <p align='center' class='block'>
@@ -68,9 +64,9 @@ function countNote() {
 <input type="image" id="myNotesOpenBtn" onmouseover="soundButton();" class="power" onclick="openNote(myNotesEnt.value);" src="<?=$prefix[3].'open.png';?>">
 <input type="image" id="myNotesSaveBtn" onmouseover="soundButton();" class="power" onclick="saveNote(myNotesEnt.value);" src="<?=$prefix[3].'save.png';?>">
 </p>
-<div class="notesRow">
-<div class="notesMenu" id="notesMenu"></div>
-<div class="notesContent">
+<div class="bivalviaRow">
+<div class="bivalviaLeft" id="notesMenu"></div>
+<div class="bivalviaRight">
 <p align='center'>
 <textarea id="myNotesDoc" style="width:100%;height:80%;" placeholder="<?=term('',$settings,$session);?>" onkeydown="if (event.keyCode==27) {
     newNote();

@@ -8,6 +8,20 @@ function markdownToHTMLParse() {
     text=markdownTest.value; html=converter.makeHtml(text);
     markdownPage.innerHTML=html;
 }
+function replaceText() {
+    var str=markdownTest.value;
+    var stri=findbox.value;
+    var stro=replacebox.value;
+    var strp=str.toString().replace(stri,stro);
+    markdownTest.value=strp; countText();
+}
+function replaceTextAll() {
+    var str=markdownTest.value;
+    var stri=findbox.value;
+    var stro=replacebox.value;
+    var strp=str.toString().replaceAll(stri,stro);
+    markdownTest.value=strp; countText();
+}
 function countText() {
     var sourceText=markdownTest.value;
     var charsCount=sourceText.length;
@@ -25,10 +39,15 @@ function countText() {
 <div class="bivalviaLeft" id="markdownPage"></div>
 <div class="bivalviaRight">
 <p align='center'>
-    <textarea class="text" id="markdownTest" style="width:100%;height:90%;" onkeydown="if (event.keyCode==27) { this.value=''; }" onchange="markdownToHTMLParse();" oninput="countText();">
-        <?=$content;?>
-    </textarea>
-</p>
-</div>
-</div>
+<textarea class="text" id="markdownTest" style="width:100%;height:90%;" onkeydown="if (event.keyCode==27) { this.value=''; }" onchange="markdownToHTMLParse();" oninput="countText();">
+    <?=$content;?>
+</textarea><br>
+<input class="text" id="findbox" style="width:36%;" type="text" value="" onkeydown="if (event.keyCode==13) { replacebox.focus();
+} else if (event.keyCode==27) { this.value=''; }">
+<input class="text" id="replacebox" style="width:36%;" type="text" value="" onkeydown="if (event.keyCode==13) { replaceNote(); countText();
+} else if (event.keyCode==27) { findbox.focus(); this.value=''; }">
+<input type="image" id="textEdRep" onmouseover="soundButton();" class="power" onclick="replaceNote(); countText();" src="<?=$prefix[3].'text.png';?>">
+<input type="image" id="textEdRepAll" onmouseover="soundButton();" class="power" onclick="replaceNoteAll(); countText();" src="<?=$prefix[3].'copy.png';?>">
+</p></div>
+</div><br>
 <label id="statusBar" style="width:98%;"></label>
