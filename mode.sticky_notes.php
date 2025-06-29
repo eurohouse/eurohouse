@@ -15,6 +15,22 @@ function saveNote(id) {
 function deleteNote(id) {
     var cd=sysDefNumeric.value;delmeta(encode(id,'',cd));
 }
+function replaceNote() {
+    var str=document.getElementById('myNotesDoc').value;
+    var stri=document.getElementById('findbox').value;
+    var stro=document.getElementById('replacebox').value;
+    var strp=str.toString().replace(stri,stro);
+    document.getElementById('myNotesDoc').value=strp;
+    countText();
+}
+function replaceNoteAll() {
+    var str=document.getElementById('myNotesDoc').value;
+    var stri=document.getElementById('findbox').value;
+    var stro=document.getElementById('replacebox').value;
+    var strp=str.toString().replaceAll(stri,stro);
+    document.getElementById('myNotesDoc').value=strp;
+    countText();
+}
 function countNote() {
     var sourceChars=document.getElementById('myNotesRad').value;
     var sourceText=document.getElementById('myNotesDoc').value;
@@ -64,5 +80,13 @@ function countNote() {
 </p>
 </div>
 </div><br>
+<input class="text" id="findbox" style="width:36%;" type="text" value="" onkeydown="if (event.keyCode==13) {
+    replacebox.focus();
+} else if (event.keyCode==27) { this.value=''; }">
+<input class="text" id="replacebox" style="width:36%;" type="text" value="" onkeydown="if (event.keyCode==13) {
+    replaceNote(); countText();
+} else if (event.keyCode==27) { findbox.focus(); this.value=''; }">
+<input type="image" id="textEdRep" onmouseover="soundButton();" class="power" onclick="replaceNote(); countText();" src="<?=$prefix[3].'text.png';?>">
+<input type="image" id="textEdRepAll" onmouseover="soundButton();" class="power" onclick="replaceNoteAll(); countText();" src="<?=$prefix[3].'copy.png';?>"><br>
 <label id='numBits' style="width:98%;"></label>
 <?php } ?>
