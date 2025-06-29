@@ -6,8 +6,10 @@ window.onload=function() {
         window.history.replaceState(null,null,window.location.href);
     } if ((sysDefAutoplay.value==1)&&(sysDefPlaying.value==1)) {
         omniListen(demorse(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value));
-    } if (requestMode.value=='media_player') { replayVideo(video); }
-    if (requestMode.value=='text_editor') { countText(); }
+    } if (requestMode.value=='media_player') { replayVideo(video);
+    } else if (requestMode.value=='text_editor') { countText();
+    } else if (requestMode.value=='sticky_notes') { countNote();
+    } else if (requestMode.value=='markdown_viewer') { markdownToHTMLParse(); }
 }
 $(document).ready(function() {
     <?php foreach ($settings['intervals'] as $key=>$val) { ?>
