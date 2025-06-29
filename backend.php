@@ -15,14 +15,9 @@ $nuUser=$settings['reserve']['unauthorized'];
 $suUser=$settings['reserve']['superuser'];
 $sessionID=whichSession($nuUser);
 setcookie('user',$sessionID,time()+$settings['lifetime']['cookie_lengthen']);
-$session=arropen($sessionID.'_session.json',json_encode($settings['defaults']),'DEFAULT'); $metadata=arropen($sessionID.'_metadata.json',json_encode($settings['metadata']),'CUSTOM');
-$finLang=terms($settings,$session);
-$tutorial=arropen('tutorial.json',"{\"\":\"\"}",'CUSTOM');
-$newsData=arropen('changelog.json',"{\"\":\"\"}",'CUSTOM');
-$bindData=arropen('binding.json');
-$powersData=arropen('dominion.json');
-$automateData=arropen('automator.json');
-$toolboxData=arropen('toolbox.json');
+$session=arropen($sessionID.'_session.json',json_encode($settings['defaults']),'DEFAULT'); $metadata=arropen($sessionID.'_metadata.json',json_encode($settings['metadata']),'CUSTOM'); $finLang=terms($settings,$session);
+$bindData=arropen('binding.json'); $powersData=arropen('dominion.json');
+$automateData=arropen('automator.json'); $toolboxData=arropen('toolbox.json');
 date_default_timezone_set(dec_tz($session['timezone']));
 $request=$postRequest=[];
 foreach ($settings['initialize']['GET'] as $requestID=>$requestValue) { $request[$requestID]=($_GET[$requestID])?$_GET[$requestID]:$requestValue; }

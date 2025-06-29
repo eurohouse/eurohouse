@@ -47,8 +47,10 @@
         "data":".json,.xml,.yaml,.yml,.bak",
         "font":".ttf,.ttc,.otf,.woff,.woff2,.fon,.pf2",
         "script":".js,.css,.ts,.csv,.htm,.html,.php,.cs,.ps1,.cpp,.sh,.c,.h,.java,.py",
+        "markdown":".md,.markdown",
         "image":".bmp,.dib,.gif,.ico,.cur,.ani,.jpg,.jpeg,.psd,.svg,.webp,.png,.tif,.tiff,.jif,.jfif,.heic,.heif,.raw",
-        "archive":".zip,.7z,.rar,.bz2,.bin,.cue,.jar,.mdf,.mds,.iso,.dmg,.img,.ccd,.sub,.nrg",
+        "archive":".zip,.7z,.rar,.bz2,.jar",
+        "disk_image":".bin,.cue,.mdf,.mds,.iso,.dmg,.img,.ccd,.sub,.nrg",
         "book":".pdf,.djvu,.epub,.fb2,.azw,.mobi",
         "binary":".lnk,.uri,.url,.exe,.dll,.ocx,.sys,.drv"
     },

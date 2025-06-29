@@ -350,14 +350,6 @@ function messengerHTML(str,usr,mask='#') {
         ard="<p><input type='image' class='power' onmouseover='soundButton();' src='"+epr+"trash.png"+"' onclick='"+fu0+"'> "+ark+" <input type='image' class='power' onmouseover='soundButton();' src='"+epr+"copy.png"+"' onclick='"+fu1+"'><br>"+arv+"</p>"+ard;
     } return ard;
 }
-function jsonWhatsNewHTML() {
-    var arr=jsonarr(sysDefNewsData.value),ard=abk=abl='';
-    for (el in arr) {
-        abk=((arr[el]!==undefined)&&(arr[el][sysDefUnits.value]!==undefined)&&(arr[el][sysDefUnits.value]['title']!==undefined))?arr[el][sysDefUnits.value]['title']:((arr[el]['default']['title']!==undefined)?arr[el]['default']['title']:'');
-        abl=((arr[el]!==undefined)&&(arr[el][sysDefUnits.value]!==undefined)&&(arr[el][sysDefUnits.value]['body']!==undefined))?arr[el][sysDefUnits.value]['body']:((arr[el]['default']['body']!==undefined)?arr[el]['default']['body']:'');
-        ard=ard+abk+' · '+el+"<br>"+abl+"<br>";
-    } return ard;
-}
 function activeHoursHTML(id) {
     var str=timezoner(id,'active_hours');
     var arr=(str.includes(','))?str.split(','):[str];
@@ -450,13 +442,6 @@ function notebookHTML(str) {
         arl="<input type='button' onmouseover='soundButton();' style='width:80%;' onclick='openNote(&#34;"+elt+"&#34;,&#34;&#34;,&#34;"+eln+"&#34;);' value='"+elt+"'>";
         arl+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"trash.png"+"' onclick='deleteNote(&#34;"+elt+"&#34;,&#34;&#34;,&#34;"+eln+"&#34;);'>";
         ard=ard+arl+'<br>';
-    } return ard;
-}
-function helpbookHTML() {
-    var obj=jsonarr(sysDefTutorData.value),ard=arl=elt='';
-    var epr=sysDefPrefix.value; for (el in obj) {
-        elt=((obj[el]!==undefined)&&(obj[el][sysDefUnits.value]!==undefined)&&(obj[el][sysDefUnits.value]['title']!==undefined))?obj[el][sysDefUnits.value]['title']:((obj[el]['default']['title']!==undefined)?obj[el]['default']['title']:''); arl="<input type='button' onmouseover='soundButton();' style='width:80%;' onclick='openHelpPage(&#34;"+el+"&#34;);' value='"+elt+"'>";
-        arl+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"info.png"+"' onclick='omniPath(&#34;tutorial.json&#34;,&#34;"+el+"&#34;,&#34;false&#34;);'>"; ard=ard+arl+'<br>';
     } return ard;
 }
 function seekBanner(req) {

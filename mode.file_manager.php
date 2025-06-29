@@ -74,6 +74,9 @@ foreach ($index as $key=>$value) {
         } elseif (in_array($mediaFileExtension,removeFileExtDots($settings['collections']['script']))) {
             $themedIcon=$themePrefix.'script.png';
             $themedLink="javascript:omniRead('text_editor',%22".$mediaFilename."%22,'false');";
+        } elseif (in_array($mediaFileExtension,removeFileExtDots($settings['collections']['markdown']))) {
+            $themedIcon=$themePrefix.'help.png';
+            $themedLink="javascript:omniRead('markdown_viewer',%22".$mediaFilename."%22,'false');";
         } elseif (in_array($mediaFileExtension,removeFileExtDots($settings['collections']['archive']))) {
             $themedIcon=$themePrefix.'archive.png';
             $themedLink="javascript:omniRead('text_editor',%22".$mediaFilename."%22,'true');";

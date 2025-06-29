@@ -30,18 +30,14 @@ function databox() {
             $('#sysDefUsersList').val(pager(data,9));
             $('#sysDefPublicUserData').val(pager(data,10));
             $('#sysDefMetaData').val(pager(data,11));
-            $('#sysDefTutorData').val(pager(data,12));
-            $('#sysDefNewsData').val(pager(data,13));
-            $('#sysDefHdiData').val(pager(data,14));
-            $('#sysDefNSFWModelData').val(pager(data,15));
-            $('#sysDefNSFWContentData').val(pager(data,16));
-            $('#sysDefSafeModelData').val(pager(data,17));
-            $('#sysDefSafeContentData').val(pager(data,18));
+            $('#sysDefHdiData').val(pager(data,12));
+            $('#sysDefNSFWModelData').val(pager(data,13));
+            $('#sysDefNSFWContentData').val(pager(data,14));
+            $('#sysDefSafeModelData').val(pager(data,15));
+            $('#sysDefSafeContentData').val(pager(data,16));
             $('#sysDefModelData').val(arrjson({...jsonarr(sysDefNSFWModelData.value), ...jsonarr(sysDefSafeModelData.value)}));
             $('#sysDefContentData').val(arrjson({...jsonarr(sysDefNSFWContentData.value), ...jsonarr(sysDefSafeContentData.value)}));
-            $('#sysDefMetaList').val(Object.keys(jsonarr(sysDefMetaData.value)).join(' | '));
-            $('#sysDefTutorList').val(Object.keys(jsonarr(sysDefTutorData.value)).join(' | '));
-            var powersData=strarr(sysDefPowersData.value,';',':');
+            $('#sysDefMetaList').val(Object.keys(jsonarr(sysDefMetaData.value)).join(' | ')); var powersData=strarr(sysDefPowersData.value,';',':');
             sysDefMyPowersState.value=powersData[sysDefSessionID.value];
             var bindData=strarr(sysDefBindData.value,';',':');
             sysDefMyBindState.value=bindData[sysDefSessionID.value];
@@ -160,8 +156,6 @@ function world_clock() {
                 if (authstate()) {
                     msgBox.innerHTML='<p>'+messengerHTML(sysDefMyMsgboxData.value,uidm,sysDefFind.value)+'</p>'; composeMessage.placeholder=finterm("What's on your mind?");
                 }
-            } else if (requestMode.value=='news_feed') {
-                newsBox.innerHTML='<p>'+jsonWhatsNewHTML()+'</p>';
             } else if (requestMode.value=='bookkeeping') {
                 bookkeep_disp.innerHTML='<table style="width:100%;position:relative;"><thead><th style="width:25%;">'+finterm('Agent')+'</th><th style="width:25%;">'+finterm('Debit')+'</th><th style="width:25%;">'+finterm('Credit')+'</th><th style="width:25%;">'+finterm('Balance')+'</th></thead><tbody>'+bookkeepingHTML(sysDefMyBookData.value)+'</tbody></table>';
             } else if (requestMode.value=='accessibility') {

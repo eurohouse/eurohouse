@@ -86,9 +86,6 @@
         <input type='hidden' id="sysDefToolData" value="<?=valstr($toolboxData,';',':');?>">
         <input type='hidden' id="sysDefMyToolState" value="<?=$toolboxData[$sessionID];?>">
         <input type='hidden' id="sysDefMetaData" value="<?=json_encode($metadata,JSON_UNESCAPED_UNICODE);?>"><input type='hidden' id="sysDefMetaList" value="<?=implode(' | ',array_keys($metadata));?>">
-        <input type='hidden' id="sysDefTutorData" value="<?=json_encode($tutorial,JSON_UNESCAPED_UNICODE);?>">
-        <input type='hidden' id="sysDefTutorList" value="<?=implode(' | ',array_keys($tutorial));?>">
-        <input type='hidden' id="sysDefNewsData" value="<?=json_encode($newsData,JSON_UNESCAPED_UNICODE);?>">
         <input type='hidden' id="sysDefMsgCounter" value="0">
         <input type='hidden' id="sysDefMsgMaxCount" value="0">
         <input type='hidden' id="sysDefMsgCurrent" value="">
