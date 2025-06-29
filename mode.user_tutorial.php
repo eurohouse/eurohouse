@@ -45,10 +45,10 @@ function countText() {
 </textarea><br>
 <input class="text" id="findbox" style="width:36%;" type="text" value="" onkeydown="if (event.keyCode==13) { replacebox.focus();
 } else if (event.keyCode==27) { this.value=''; }">
-<input class="text" id="replacebox" style="width:36%;" type="text" value="" onkeydown="if (event.keyCode==13) { replaceText(); countText();
+<input class="text" id="replacebox" style="width:36%;" type="text" value="" onkeydown="if (event.keyCode==13) { replaceText(); markdownToHTMLParse();
 } else if (event.keyCode==27) { findbox.focus(); this.value=''; }">
-<input type="image" id="textEdRep" onmouseover="soundButton();" class="power" onclick="replaceText(); countText();" src="<?=$prefix[3].'text.png';?>">
-<input type="image" id="textEdRepAll" onmouseover="soundButton();" class="power" onclick="replaceTextAll(); countText();" src="<?=$prefix[3].'copy.png';?>">
+<input type="image" id="textEdRep" onmouseover="soundButton();" class="power" onclick="replaceText(); markdownToHTMLParse();" src="<?=$prefix[3].'text.png';?>">
+<input type="image" id="textEdRepAll" onmouseover="soundButton();" class="power" onclick="replaceTextAll(); markdownToHTMLParse();" src="<?=$prefix[3].'copy.png';?>">
 </p></div>
 </div><br>
 <label id="statusBar" style="width:98%;"></label>
