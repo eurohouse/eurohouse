@@ -68,6 +68,7 @@ function countNote() {
 <input type="image" id="myNotesOpenBtn" onmouseover="soundButton();" class="power" onclick="openNote(myNotesEnt.value);" src="<?=$prefix[3].'open.png';?>">
 <input type="image" id="myNotesSaveBtn" onmouseover="soundButton();" class="power" onclick="saveNote(myNotesEnt.value);" src="<?=$prefix[3].'save.png';?>">
 </p>
+<p align='center'>
 <div class="notesRow">
 <div class="notesMenu" id="notesMenu"></div>
 <div class="notesContent">
@@ -89,4 +90,4 @@ function countNote() {
 <input type="image" id="textEdRep" onmouseover="soundButton();" class="power" onclick="replaceNote(); countText();" src="<?=$prefix[3].'text.png';?>">
 <input type="image" id="textEdRepAll" onmouseover="soundButton();" class="power" onclick="replaceNoteAll(); countText();" src="<?=$prefix[3].'copy.png';?>"><br>
 <label id='numBits' style="width:98%;"></label>
-<?php } ?>
+</p><?php } ?>
