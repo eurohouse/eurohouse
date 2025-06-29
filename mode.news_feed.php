@@ -3,6 +3,6 @@
 <!-- <ref> -->
 <!-- true -->
 <p align='center'>
-<iframe id="inlineFrameExample" title="Inline Frame Example" style="width:70%;height:100%;position:relative;" src="<?=$request['input'];?>">
+<iframe id="inlineframe" allow="fullscreen" title="Inline Frame Example" style="width:70%;height:100%;position:relative;" src="<?=$request['input'];?>" onclick="inlineframe.requestFullscreen();">
 </p>
 </iframe>
