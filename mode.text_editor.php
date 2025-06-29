@@ -43,14 +43,14 @@ $deleteDocumentIcon=$themePrefix.'trash.png';
 $infoDocumentIcon=$themePrefix.'info.png';
 $homeDocumentIcon=$themePrefix.'home.png'; ?>
 <p align='center'>
-<img style="width:9%;position:relative;" loading="lazy" src="<?=$newDocumentIcon;?>" onmouseover="soundButton();" id="newButton" onclick="content.value=''; countText();">
-<img style="width:9%;position:relative;" loading="lazy" src="<?=$openDocumentIcon;?>" onmouseover="soundButton();" id="openButton" onclick="omniRead(requestMode.value,filename.value,'false');">
-<img style="width:9%;position:relative;" loading="lazy" src="<?=$saveDocumentIcon;?>" onmouseover="soundButton();" id="saveButton" onclick="set(filename.value,encodeURIComponent(content.value),sysDefSessionID.value); omniRead(requestMode.value,filename.value,'false');">
-<img style="width:9%;position:relative;" loading="lazy" src="<?=$mkdirDocumentIcon;?>" onmouseover="soundButton();" id="mkdirButton" onclick="mkdir(filename.value,sysDefSessionID.value); omniRead(requestMode.value,filename.value,'false');">
-<img style="width:9%;position:relative;" loading="lazy" src="<?=$moveDocumentIcon;?>" onmouseover="soundButton();" id="moveButton" onclick="move(filename.value,doto.value,sysDefSessionID.value); omniRead(requestMode.value,doto.value,'false');">
-<img style="width:9%;position:relative;" loading="lazy" src="<?=$copyDocumentIcon;?>" onmouseover="soundButton();" id="copyButton" onclick="copy(filename.value,doto.value,sysDefSessionID.value); omniRead(requestMode.value,doto.value,'false');">
-<img style="width:9%;position:relative;" loading="lazy" src="<?=$deleteDocumentIcon;?>" onmouseover="soundButton();" id="deleteButton" onclick="del(filename.value,sysDefSessionID.value); omniRead(requestMode.value,filename.value,'false');">
-<img style="width:9%;position:relative;" loading="lazy" src="<?=$homeDocumentIcon;?>" onmouseover="soundButton();" id="homeButton" onclick="omniBack(sysDefParent.value);"><br>
+<img style="width:5%;position:relative;" loading="lazy" src="<?=$newDocumentIcon;?>" onmouseover="soundButton();" id="newButton" onclick="content.value=''; countText();">
+<img style="width:5%;position:relative;" loading="lazy" src="<?=$openDocumentIcon;?>" onmouseover="soundButton();" id="openButton" onclick="omniRead(requestMode.value,filename.value,'false');">
+<img style="width:5%;position:relative;" loading="lazy" src="<?=$saveDocumentIcon;?>" onmouseover="soundButton();" id="saveButton" onclick="set(filename.value,encodeURIComponent(content.value),sysDefSessionID.value); omniRead(requestMode.value,filename.value,'false');">
+<img style="width:5%;position:relative;" loading="lazy" src="<?=$mkdirDocumentIcon;?>" onmouseover="soundButton();" id="mkdirButton" onclick="mkdir(filename.value,sysDefSessionID.value); omniRead(requestMode.value,filename.value,'false');">
+<img style="width:5%;position:relative;" loading="lazy" src="<?=$moveDocumentIcon;?>" onmouseover="soundButton();" id="moveButton" onclick="move(filename.value,doto.value,sysDefSessionID.value); omniRead(requestMode.value,doto.value,'false');">
+<img style="width:5%;position:relative;" loading="lazy" src="<?=$copyDocumentIcon;?>" onmouseover="soundButton();" id="copyButton" onclick="copy(filename.value,doto.value,sysDefSessionID.value); omniRead(requestMode.value,doto.value,'false');">
+<img style="width:5%;position:relative;" loading="lazy" src="<?=$deleteDocumentIcon;?>" onmouseover="soundButton();" id="deleteButton" onclick="del(filename.value,sysDefSessionID.value); omniRead(requestMode.value,filename.value,'false');">
+<img style="width:5%;position:relative;" loading="lazy" src="<?=$homeDocumentIcon;?>" onmouseover="soundButton();" id="homeButton" onclick="omniBack(sysDefParent.value);"><br>
 <input class="text" id="filename" name="<?=$request['mode'];?>" style="width:45%;" type="text" value="<?=$request['input'];?>" onkeydown="if (event.keyCode==13) {
     content.value=loadFile(filename.value); countText();
 } else if (event.keyCode==27) {
