@@ -2,7 +2,7 @@
     <p align='center' class='block'>
     <input type="image" onmouseover="soundButton();" id="buttonMusic" class="power" onclick="var objCmdTxt=(authstate())?omniBox:omniBoxAuthLogin; seekMusic(objCmdTxt.value);" src="<?=$prefix[3].'music.png';?>" title="<?=term('Random Track',$settings,$session);?>">
     <input type="image" onmouseover="soundButton();" id="buttonBanner" class="power" onclick="var objCmdTxt=(authstate())?omniBox:omniBoxAuthLogin; if (sysDefBanner.value!='') { setdata('banner',''); } else { seekBanner(objCmdTxt.value); }" src="<?=$prefix[3].(($session['banner']!='')?'paint.png':'image.png');?>" title="<?=term('Random Banner',$settings,$session);?>">
-    <select id="ErotoOlympus" style="width:40%;" onchange="setdata('background',ErotoOlympus.options[ErotoOlympus.selectedIndex].id);"><?php foreach ($userLocks['background'] as $key=>$val) { ?>
+    <select id="ErotoOlympus" style="width:42%;" onchange="setdata('background',ErotoOlympus.options[ErotoOlympus.selectedIndex].id);"><?php foreach ($userLocks['background'] as $key=>$val) { ?>
     <option disabled><?=titled($val,$session['units']);?></option>
     <?php foreach (catlist($key) as $value) { ?>
     <option id="<?=$value;?>" <?php if ((explode('.',$value)[0]==explode('.',$background)[0])&&(explode('.',$value)[1]==explode('.',$background)[1])) { ?> selected="selected" <?php } ?>><?=titler($value,$settings,$session);?></option><?php }} ?>
@@ -63,7 +63,7 @@
 <div class='topBarItem'>
     <p align='center' class='block'>
     <input type="image" onmouseover="soundButton();" id="buttonAutoplay" class="power" onclick="setdata('autoplay',flip(sysDefAutoplay.value));" src="<?=$prefix[3].(($session['autoplay'])?'autopause.png':'autoplay.png');?>" title="<?=term('Enable Autoplay',$settings,$session);?>">
-    <input type='button' id="currentTime" style="width:46%;" onclick="setdata('timedisp',flip(sysDefTimedisp.value));" value="<?=date(($session['timedisp']!=0)?$session['date_format']:$session['time_format']);?>">
+    <input type='button' id="currentTime" style="width:50%;" onclick="setdata('timedisp',flip(sysDefTimedisp.value));" value="<?=date(($session['timedisp']!=0)?$session['date_format']:$session['time_format']);?>">
     <input type="image" id="buttonPrev" onmouseover="soundButton();" class="power" onclick="songIndex('prev');" src="<?=$prefix[3].'rew.png';?>" title="<?=term('Previous Track',$settings,$session);?>">
     <input type="image" id="buttonNext" onmouseover="soundButton();" class="power" onclick="songIndex('next');" src="<?=$prefix[3].'ff.png';?>" title="<?=term('Next Track',$settings,$session);?>">
     <input type="image" onmouseover="soundButton();" id="buttonVintage" class="power" onclick="setdata('vintage',flip(sysDefVintage.value));" src="<?=$prefix[3].'diamante.png';?>" title="<?=term('Enable Vintage Effects',$settings,$session);?>">
