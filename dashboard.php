@@ -35,7 +35,7 @@
     <?php } else { ?>
         <input type="image" onmouseover="soundButton();" id="buttonCommand" class="power" onclick="seekCode(omniBoxAuthLogin.value);" src="<?=$prefix[3].'start.png';?>" title="<?=term('Random Code',$settings,$session);?>">
         <input type="image" onmouseover="soundButton();" id="buttonSuggest" class="power" onclick="omniSuggest();" src="<?=$prefix[3].'dice.png';?>" title="<?=term('Suggest Username',$settings,$session);?>">
-        <input type='text' id="omniBoxAuthLogin" style="width:28%;" placeholder="<?=term('Username',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) {
+        <input type='text' id="omniBoxAuthLogin" style="width:30%;" placeholder="<?=term('Username',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) {
             omniBoxAuthPass.value=''; omniBoxAuthPass.focus();
         } else if (event.keyCode==27) { omniBoxAuthLogin.value='';
         } else if (event.keyCode==8) { handleInput(this.value);
@@ -44,7 +44,7 @@
         } else if (event.keyCode==115) { seekBanner(omniBoxAuthLogin.value);
         } else if (event.keyCode==118) { seekCode(omniBoxAuthLogin.value);
         } keyPressed();" oninput="handleInput(this.value,true);">
-        <input type='password' id="omniBoxAuthPass" style="width:28%;" placeholder="<?=term('Password',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) {
+        <input type='password' id="omniBoxAuthPass" style="width:30%;" placeholder="<?=term('Password',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) {
             if (event.code=='NumpadEnter') {
                 omniAuthRequest('signup',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString());
             } else {
@@ -101,7 +101,7 @@
     <?php foreach (explode(',',$session['units_list']) as $selID) { ?>
         <option id="<?=$selID;?>" <?php if ($session['units']==$selID) { ?> selected <?php } ?>><?=$selID;?></option>
     <?php } ?></select>
-    <select id="setTheme" style="width:38%;" onchange="setdata('theme',setTheme.options[setTheme.selectedIndex].id); window.location.reload();">
+    <select id="setTheme" style="width:37%;" onchange="setdata('theme',setTheme.options[setTheme.selectedIndex].id); window.location.reload();">
     <?php foreach ((str_replace('./','',(glob('./*.start.png')))) as $key=>$value) { ?>
         <option id="<?=explode('.',$value)[0];?>" <?php if ($session['theme']==explode('.',$value)[0]) { ?> selected <?php } ?>><?=explode('.',$value)[0];?></option>
     <?php } ?></select>
