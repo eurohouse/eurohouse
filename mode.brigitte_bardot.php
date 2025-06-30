@@ -2,7 +2,7 @@
 <!-- CH: Brigitta Bardot; RU: Брижит Бардо; UA: Бріжит Бардо -->
 <?php $degKoeff=(isset($settings['locale']['angle'][$units]['coefficient']))?$settings['locale']['angle'][$units]['coefficient']:$settings['locale']['angle']['default']['coefficient'];$degPreSign=(isset($settings['locale']['angle'][$units]['sign']['pre']))?$settings['locale']['angle'][$units]['sign']['pre']:$settings['locale']['angle']['default']['sign']['pre'];$degSign=(isset($settings['locale']['angle'][$units]['sign']['post']))?$settings['locale']['angle'][$units]['sign']['post']:$settings['locale']['angle']['default']['sign']['post']; ?>
 <p align="center">
-<?php if ($session['nsfw']==0) {
+<?php if ($session['nsfw']!=0) {
     if (horizontal($request['angle'],360)==0) { ?>
         <a href="<?=$portfolioPrefix.'left0.png';?>">
             <img style="width:6%;" src="<?=$portfolioPrefix.'left0.png';?>">

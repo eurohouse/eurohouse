@@ -3,8 +3,7 @@
 <!-- <ref> -->
 <!-- true -->
 <?php
-$iconSize=50; $flagSize=2**(1+($session['nsfw']));
-$ssLC=$settings['locale'];
+$iconSize=50; $flagSize=4; $ssLC=$settings['locale'];
 $exemplarArr=exemplar(str_replace('./','',(glob('./*.models.json'))));
 $contentsArr=exemplar(str_replace('./','',(glob('./*.contents.json'))));
 $ssUN=$session['units'];
