@@ -312,12 +312,10 @@ function wallpaper_engine() {
         success: function(data) {
             $('#sysDefVarsArr').val(pager(data,5));
             $('body').css('background-image','url('+((pager(data,12)!='')?pager(data,12):pager(data,1))+')');
-            $('#buttonAugment').attr('src',sysDefPrefix.value+(((sysDefVarsArr.value.split(';').length)>1)?((sysDefEntry.value!='')?'diamond.png':'heart.png'):((sysDefEntry.value!='')?'club.png':'spade.png')));
             document.title=pager(data,0)+' (@'+sysDefSessionID.value+') · Eurohouse UX/UI';
             document.querySelector(':root').style.setProperty('--position',pager(data,4));
             $('#userAvatarBadge').attr('src',pager(data,8));
             $('#buttonReticle').attr('src',sysDefRet1Prefix.value+sysDefReticle.value+'.png');
-            $('#buttonDice').attr('src',sysDefPrefix.value+'dice.png');
             $('#chooseReticle1').attr('name',sysDefReticleChoice1.value);
             $('#chooseReticle2').attr('name',sysDefReticleChoice2.value);
             $('#chooseReticle3').attr('name',sysDefReticleChoice3.value);
@@ -339,8 +337,7 @@ function wallpaper_engine() {
                 if ($request['mode']=='main_menu') { ?>
                     $('#projectTitle').text(pager(data,0).toUpperCase());
                     $('#showingAvatarNow').attr('src',pager(data,9));
-                <?php } ?>
-            $('#showUsText').text(pager(data,7));
+                <?php } ?> $('#showUsText').text(pager(data,7));
             <?php } else { ?>
                 $('#articleHead').text(pager(data,6).toUpperCase());
                 $('#articleBody').text(pager(data,7));
