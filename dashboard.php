@@ -1,5 +1,5 @@
 <div class='topBarItem'>
-    <p align='center'>
+    <p align='center' class='block'>
     <input type="image" onmouseover="soundButton();" id="buttonMusic" class="power" onclick="var objCmdTxt=(authstate())?omniBox:omniBoxAuthLogin; seekMusic(objCmdTxt.value);" src="<?=$prefix[3].'music.png';?>" title="<?=term('Random Track',$settings,$session);?>">
     <input type="image" onmouseover="soundButton();" id="buttonBanner" class="power" onclick="var objCmdTxt=(authstate())?omniBox:omniBoxAuthLogin; if (sysDefBanner.value!='') { setdata('banner',''); } else { seekBanner(objCmdTxt.value); }" src="<?=$prefix[3].(($session['banner']!='')?'paint.png':'image.png');?>" title="<?=term('Random Banner',$settings,$session);?>">
     <select id="ErotoOlympus" style="width:40%;" onchange="setdata('background',ErotoOlympus.options[ErotoOlympus.selectedIndex].id);"><?php foreach ($userLocks['background'] as $key=>$val) { ?>
@@ -18,7 +18,7 @@
     </p>
 </div>
 <div class='topBarItem'>
-    <p align='center'>
+    <p align='center' class='block'>
     <?php if (isAuthorized()) { ?>
         <input type="image" onmouseover="soundButton();" id="buttonCommand" class="power" onclick="var objCmdTxt=(authstate())?omniBox:omniBoxAuthLogin; seekCode(objCmdTxt.value);" src="<?=$prefix[3].'start.png';?>" title="<?=term('Random Code',$settings,$session);?>">
         <input type='text' id="omniBox" style="width:63%;" placeholder="<?=term('Type command or expression and press ENTER',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) { omniEnter(); } else if (event.keyCode==27) { omniBox.value='';
@@ -61,7 +61,7 @@
     </p>
 </div>
 <div class='topBarItem'>
-    <p align='center'>
+    <p align='center' class='block'>
     <input type="image" onmouseover="soundButton();" id="buttonAutoplay" class="power" onclick="setdata('autoplay',flip(sysDefAutoplay.value));" src="<?=$prefix[3].(($session['autoplay'])?'autopause.png':'autoplay.png');?>" title="<?=term('Enable Autoplay',$settings,$session);?>">
     <input type='button' id="currentTime" style="width:46%;" onclick="setdata('timedisp',flip(sysDefTimedisp.value));" value="<?=date(($session['timedisp']!=0)?$session['date_format']:$session['time_format']);?>">
     <input type="image" id="buttonPrev" onmouseover="soundButton();" class="power" onclick="songIndex('prev');" src="<?=$prefix[3].'rew.png';?>" title="<?=term('Previous Track',$settings,$session);?>">
@@ -71,7 +71,7 @@
     </p>
 </div>
 <div class='topBarItem'>
-    <p align='center'>
+    <p align='center' class='block'>
     <input type='button' id="alarmTime" style="width:28%;" onclick="setdata('memo',''); pauseAudio(alarmPlayer);" value="00:00">
     <select id="avatarPicker" style="width:42%;" onchange="setdata('avatar',avatarPicker.options[avatarPicker.selectedIndex].id); if (sysDefReload.value!=0) { window.location.reload(); }"><?php foreach ($userLocks['avatar'] as $key=>$value) { ?>
     <option id="<?=explode('.', $value)[1];?>" <?php if ($session['avatar']==explode('.',$value)[1]) { ?> selected <?php } ?>><?=explode('.',$value)[1];?></option><?php } ?>
@@ -82,7 +82,7 @@
     </p>
 </div>
 <div class='topBarItem'>
-    <p align='center'>
+    <p align='center' class='block'>
     <input type="image" onmouseover="soundButton();" id="buttonAutomator" class="power" onclick="automate(sysDefSessionID.value);" src="<?=$prefix[3].(($automateData[$sessionID]=='auto')?'wheel.png':'steer.png');?>" title="<?=term('Enable User Auto Mode',$settings,$session);?>">
     <input type='button' id="showUsInfoPower" style="width:34%;" value="<?=intval($powersData[$sessionID]);?>">
     <input type="image" onmouseover="soundButton();" id="buttonBroke" class="power" onclick="var uli=(sysDefUsersList.value).split(','),bdi=strarr(sysDefBindData.value,';',':'); delete uli[sysDefSessionID.value]; if (bdi[sysDefSessionID.value]!=sysDefSessionID.value) { bind(sysDefSessionID.value,sysDefSessionID.value); } else { bind(sysDefSessionID.value,uli[rand(0,(uli.length))]); }" src="<?=$prefix[3].'chain.png';?>" title="<?=term('Bind/Unbind Another User',$settings,$session);?>">
@@ -92,7 +92,7 @@
     </p>
 </div>
 <div class='topBarItem'>
-    <p align='center'>
+    <p align='center' class='block'>
     <input type="image" id="userAvatarBadge" onmouseover="soundButton();" class="power" src="<?=$prefix[1].$session['avatar'].'.png';?>" onclick="setdata('face',flip(sysDefFace.value)); window.location.reload();" title="<?=term('Show/Hide User Avatar',$settings,$session);?>">
     <select id="setUnits" style="width:14%;" onchange="setdata('units',setUnits.options[setUnits.selectedIndex].id); if (sysDefReload.value!=0) { window.location.reload(); }">
     <?php foreach (explode(',',$session['units_list']) as $selID) { ?>
