@@ -5,15 +5,7 @@
     $index=explode(',',$session['menu']);
     $appIndex=str_replace('./','',(glob('./*.pkg')));
 } else { $index=str_replace('./','',(glob('./mode.*.php'))); }
-?>
-<?php if (($session['bardot']==1)&&($session['nsfw']!=0)) { ?>
-    <p align="center">
-        <img onmouseover="soundButton();" id="showingBardotLNow" name="brigitte_bardot" style="height:54%;" onclick="omniGo(this.name);" src="<?=$portfolioPrefix.'left0.png';?>">
-        <img onmouseover="soundButton();" id="showingBardotNow" name="" style="height:54%;" onclick="omniGo(this.name);" src="<?=$portfolioPrefix.'head.png';?>">
-        <img onmouseover="soundButton();" id="showingBardotRNow" name="preferences" style="height:54%;" onclick="omniGo(this.name);" src="<?=$portfolioPrefix.'right0.png';?>">
-    </p>
-<?php } else { 
-    if ($session['face']==1) { ?>
+if ($session['face']==1) { ?>
     <div class='customPanel'>
         <p align="center">
             <img onmouseover="soundButton();" id="showingAvatarNow" name="" style="height:24%;" onclick="omniGo(this.name);" src="<?=$prefix[0].$session['avatar'].'.png';?>">
@@ -23,7 +15,4 @@
     <div class='customPanel' style="width:100%;height:54%;left:0px;top:0px;overflow-y:scroll;">
         <?php include 'menu_items.php'; ?>
     </div>
-    <?php } else {
-        include 'menu_items.php';
-    }
-} ?>
+<?php } else { include 'menu_items.php'; } ?>
