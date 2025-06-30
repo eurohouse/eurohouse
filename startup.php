@@ -331,9 +331,7 @@ function wallpaper_engine() {
             $('#buttonAutomator').attr('src',sysDefPrefix.value+((sysDefMyAutoState.value=='auto')?'wheel.png':'steer.png')); var chainIcon='chain';
             if (sysDefMyPowersState.value<=-666) {
                 delete_user(sysDefSessionID.value);omniAuthRequest('signout','','');
-            } chainIcon=(arraySearch(sysDefSessionID.value,jsonarr(sysDefBindData.value))!=false)?((sysDefMyBindState.value!=sysDefSessionID.value)?'unbroke':'unchain'):((sysDefMyBindState.value!=sysDefSessionID.value)?'broke':'chain');
-            $('#buttonBroke').attr('src',sysDefPrefix.value+chainIcon+'.png');
-            $('#showUsInfoPower').val(format_currency(sysDefMyPowersState.value));
+            } $('#showUsInfoPower').val(format_currency(sysDefMyPowersState.value));
             $('#showUsInfoBond').val(format_currency(sysDefSessionID.value,''));
             <?php if (file_exists('mode.'.$request['mode'].'.php')) {
                 if ($request['mode']=='main_menu') { ?>

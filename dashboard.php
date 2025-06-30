@@ -2,7 +2,7 @@
     <p align='center' class='block'>
     <input type="image" onmouseover="soundButton();" id="buttonMusic" class="power" onclick="var objCmdTxt=(authstate())?omniBox:omniBoxAuthLogin; seekMusic(objCmdTxt.value);" src="<?=$prefix[3].'music.png';?>" title="<?=term('Random Track',$settings,$session);?>">
     <input type="image" onmouseover="soundButton();" id="buttonBanner" class="power" onclick="var objCmdTxt=(authstate())?omniBox:omniBoxAuthLogin; if (sysDefBanner.value!='') { setdata('banner',''); } else { seekBanner(objCmdTxt.value); }" src="<?=$prefix[3].(($session['banner']!='')?'paint.png':'image.png');?>" title="<?=term('Random Banner',$settings,$session);?>">
-    <select id="ErotoOlympus" style="width:42%;" onchange="setdata('background',ErotoOlympus.options[ErotoOlympus.selectedIndex].id);"><?php foreach ($userLocks['background'] as $key=>$val) { ?>
+    <select id="ErotoOlympus" style="width:41%;" onchange="setdata('background',ErotoOlympus.options[ErotoOlympus.selectedIndex].id);"><?php foreach ($userLocks['background'] as $key=>$val) { ?>
     <option disabled><?=titled($val,$session['units']);?></option>
     <?php foreach (catlist($key) as $value) { ?>
     <option id="<?=$value;?>" <?php if ((explode('.',$value)[0]==explode('.',$background)[0])&&(explode('.',$value)[1]==explode('.',$background)[1])) { ?> selected="selected" <?php } ?>><?=titler($value,$settings,$session);?></option><?php }} ?>
@@ -87,9 +87,8 @@
 <div class='topBarItem'>
     <p align='center' class='block'>
     <input type="image" onmouseover="soundButton();" id="buttonAutomator" class="power" onclick="automate(sysDefSessionID.value);" src="<?=$prefix[3].(($automateData[$sessionID]=='auto')?'wheel.png':'steer.png');?>" title="<?=term('Enable User Auto Mode',$settings,$session);?>">
-    <input type='button' id="showUsInfoPower" style="width:34%;" value="<?=intval($powersData[$sessionID]);?>">
-    <input type="image" onmouseover="soundButton();" id="buttonBroke" class="power" onclick="var uli=(sysDefUsersList.value).split(','),bdi=strarr(sysDefBindData.value,';',':'); delete uli[sysDefSessionID.value]; if (bdi[sysDefSessionID.value]!=sysDefSessionID.value) { bind(sysDefSessionID.value,sysDefSessionID.value); } else { bind(sysDefSessionID.value,uli[rand(0,(uli.length))]); }" src="<?=$prefix[3].'chain.png';?>" title="<?=term('Bind/Unbind Another User',$settings,$session);?>">
-    <input type="image" onmouseover="soundButton();" id="buttonReticle" class="power" onclick="dominate(sysDefSessionID.value,strarr(sysDefBindData.value,';',':')[sysDefSessionID.value],strarr(sysDefToolData.value,';',':')[sysDefSessionID.value]); playAudio(hitPlayer,sysDefHitSound.value);" src="<?=$prefix[5].$session['reticle'].'.png';?>" title="<?=term('Hit Another User',$settings,$session);?>">
+    <input type='button' id="showUsInfoPower" style="width:32%;" value="<?=intval($powersData[$sessionID]);?>">
+    <input type="image" onmouseover="soundButton();" id="buttonReticle" class="power" onclick="var uli=(sysDefUsersList.value).split(','),bdi=strarr(sysDefBindData.value,';',':'); delete uli[sysDefSessionID.value]; if (bdi[sysDefSessionID.value]!=sysDefSessionID.value) { bind(sysDefSessionID.value,sysDefSessionID.value); } else { bind(sysDefSessionID.value,uli[rand(0,(uli.length))]); } dominate(sysDefSessionID.value,strarr(sysDefBindData.value,';',':')[sysDefSessionID.value],strarr(sysDefToolData.value,';',':')[sysDefSessionID.value]); playAudio(hitPlayer,sysDefHitSound.value);" src="<?=$prefix[5].$session['reticle'].'.png';?>" title="<?=term('Hit Another User',$settings,$session);?>">
     <input type='button' id="showUsInfoBond" style="width:28%;" onclick="clip(sysDefSessionID.value);" value="<?=$sessionID;?>">
     <input type="image" onmouseover="soundButton();" id="buttonSpectate" class="power" onclick="setdata('spectate',flip(sysDefSpectate.value));" src="<?=$prefix[3].'unpower.png';?>" title="<?=term('Spectate Mode',$settings,$session);?>">
     </p>
