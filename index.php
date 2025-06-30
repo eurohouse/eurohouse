@@ -116,7 +116,7 @@
         </div>
         <div class='upperGap'>
             <span id='showUsUrgent' class="urgent" onclick="clip(this.innerText);"></span>
-            <audio id="audioPlayer" style="width:80%;position:relative;" preservesPitch="<?=boolval($session['pitch_lock']);?>" volume="<?=$session['audio_volume'];?>" playbackRate="<?=$session['audio_speed'];?>" onended="if (sysDefAutoplay.value!=0) { songIndex(sysDefSongIndex.value); }" ontimeupdate="savePlayState();" onpause="setdata('playing',0); $('#buttonPlay').attr('src',sysDefPrefix.value+'play.png');" onplay="setdata('playing',1); $('#buttonPlay').attr('src',sysDefPrefix.value+'pause.png');" onvolumechange="setdata('audio_volume',this.volume);" onratechange="setdata('audio_speed',this.playbackRate);">
+            <audio id="audioPlayer" style="width:80%;position:relative;" preservesPitch="<?=boolval($session['preserves_pitch']);?>" volume="<?=$session['audio_volume'];?>" playbackRate="<?=$session['audio_speed'];?>" onended="if (sysDefAutoplay.value!=0) { songIndex(sysDefSongIndex.value); }" ontimeupdate="savePlayState();" onpause="setdata('playing',0); $('#buttonPlay').attr('src',sysDefPrefix.value+'play.png');" onplay="setdata('playing',1); $('#buttonPlay').attr('src',sysDefPrefix.value+'pause.png');" onvolumechange="setdata('audio_volume',this.volume);" onratechange="setdata('audio_speed',this.playbackRate);">
         </div>
         <div class='panel'>
             <?php include (file_exists('mode.'.$request['mode'].'.php'))?'mode.'.$request['mode'].'.php':'welcome_screen.php'; ?>

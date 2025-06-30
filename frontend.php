@@ -28,14 +28,14 @@ function setdata(ent,val) {
         echo "sysDef".snakeToCamel($key).".value=obj['".$key."'];";
     } ?> if (ent=='audio_volume') { audioPlayer.volume=val; }
     if (ent=='audio_speed') { audioPlayer.playbackRate=val; }
-    if (ent=='pitch_lock') {
+    if (ent=='preserves_pitch') {
         audioPlayer.preservesPitch=(val!=0)?true:false;
     } if (requestMode.value=='sticky_notes') {
         if (ent=='numeric') { myNotesRad.value=val; }
     } if (requestMode.value=='media_player') {
         if (ent=='video_volume') { video.volume=val; }
         if (ent=='video_speed') { video.playbackRate=val; }
-        if (ent=='pitch_lock') {
+        if (ent=='preserves_pitch') {
             video.preservesPitch=(val!=0)?true:false;
         }
     } if (requestMode.value=='volume_control') {
