@@ -87,9 +87,9 @@
 <div class='topBarItem'>
     <p align='center' class='block'>
     <input type="image" onmouseover="soundButton();" id="buttonAutomator" class="power" onclick="automate(sysDefSessionID.value);" src="<?=$prefix[3].(($automateData[$sessionID]=='auto')?'wheel.png':'steer.png');?>" title="<?=term('Enable User Auto Mode',$settings,$session);?>">
-    <input type='button' id="showUsInfoPower" style="width:32%;" value="<?=intval($powersData[$sessionID]);?>">
+    <input type='button' id="showUsInfoPower" style="width:34%;" value="<?=intval($powersData[$sessionID]);?>">
     <input type="image" onmouseover="soundButton();" id="buttonReticle" class="power" onclick="var uli=(sysDefUsersList.value).split(','),bdi=strarr(sysDefBindData.value,';',':'); delete uli[sysDefSessionID.value]; if (bdi[sysDefSessionID.value]!=sysDefSessionID.value) { bind(sysDefSessionID.value,sysDefSessionID.value); } else { bind(sysDefSessionID.value,uli[rand(0,(uli.length))]); } dominate(sysDefSessionID.value,strarr(sysDefBindData.value,';',':')[sysDefSessionID.value],strarr(sysDefToolData.value,';',':')[sysDefSessionID.value]); playAudio(hitPlayer,sysDefHitSound.value);" src="<?=$prefix[5].$session['reticle'].'.png';?>" title="<?=term('Hit Another User',$settings,$session);?>">
-    <input type='button' id="showUsInfoBond" style="width:32%;" onclick="clip(sysDefSessionID.value);" value="<?=$sessionID;?>">
+    <input type='button' id="showUsInfoBond" style="width:34%;" onclick="clip(sysDefSessionID.value);" value="<?=$sessionID;?>">
     <input type="image" onmouseover="soundButton();" id="buttonSpectate" class="power" onclick="setdata('spectate',flip(sysDefSpectate.value));" src="<?=$prefix[3].'unpower.png';?>" title="<?=term('Spectate Mode',$settings,$session);?>">
     </p>
 </div>
