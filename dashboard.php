@@ -20,8 +20,9 @@
 <div class='topBarItem'>
     <p align='center' class='block'>
     <?php if (isAuthorized()) { ?>
-        <input type="image" onmouseover="soundButton();" id="buttonCommand" class="power" onclick="var objCmdTxt=(authstate())?omniBox:omniBoxAuthLogin; seekCode(objCmdTxt.value);" src="<?=$prefix[3].'start.png';?>" title="<?=term('Random Code',$settings,$session);?>">
-        <input type='text' id="omniBox" style="width:63%;" placeholder="<?=term('Type command or expression and press ENTER',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) { omniEnter(); } else if (event.keyCode==27) { omniBox.value='';
+        <input type="image" onmouseover="soundButton();" id="buttonCommand" class="power" onclick="seekCode(omniBox.value);" src="<?=$prefix[3].'start.png';?>" title="<?=term('Random Code',$settings,$session);?>">
+        <input type="image" onmouseover="soundButton();" id="buttonCompose" class="power" onclick="compose(sysDefSessionID.value,omniBox.value);" src="<?=$prefix[3].'forward.png';?>" title="<?=term('Compose Message',$settings,$session);?>">
+        <input type='text' id="omniBox" style="width:58%;" placeholder="<?=term('Type command or expression and press ENTER',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) { omniEnter(); } else if (event.keyCode==27) { omniBox.value='';
         } else if (event.keyCode==8) { handleInput(this.value);
         } else if (event.keyCode==46) { handleInput(this.value);
         } else if (event.keyCode==113) { seekCode(omniBox.value);
@@ -31,8 +32,9 @@
         <input type="image" onmouseover="soundButton();" id="buttonAuth" class="power" onclick="if (authstate()) { omniAuthRequest('signout','',''); } else { omniAuthRequest('signin',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString()); }" src="<?=$prefix[3].'user.png';?>" title="<?=term('Sign In/Out',$settings,$session);?>">
         <input type="image" onmouseover="soundButton();" id="buttonBackspace" class="power" onclick="omniBox.value=''; omniBox.focus();" src="<?=$prefix[3].'backspace.png';?>" title="<?=term('Clear Console',$settings,$session);?>">
     <?php } else { ?>
-        <input type="image" onmouseover="soundButton();" id="buttonCommand" class="power" onclick="omniSuggest();" src="<?=$prefix[3].'start.png';?>" title="<?=term('Suggest Username',$settings,$session);?>">
-        <input type='text' id="omniBoxAuthLogin" style="width:31%;" placeholder="<?=term('Username',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) {
+        <input type="image" onmouseover="soundButton();" id="buttonCommand" class="power" onclick="seekCode(omniBoxAuthLogin.value);" src="<?=$prefix[3].'start.png';?>" title="<?=term('Random Code',$settings,$session);?>">
+        <input type="image" onmouseover="soundButton();" id="buttonSuggest" class="power" onclick="omniSuggest();" src="<?=$prefix[3].'dice.png';?>" title="<?=term('Suggest Username',$settings,$session);?>">
+        <input type='text' id="omniBoxAuthLogin" style="width:28%;" placeholder="<?=term('Username',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) {
             omniBoxAuthPass.value=''; omniBoxAuthPass.focus();
         } else if (event.keyCode==27) { omniBoxAuthLogin.value='';
         } else if (event.keyCode==8) { handleInput(this.value);
@@ -41,7 +43,7 @@
         } else if (event.keyCode==115) { seekMusic(omniBoxAuthLogin.value);
         } else if (event.keyCode==118) { seekBanner(omniBoxAuthLogin.value);
         } keyPressed();" oninput="handleInput(this.value,true);">
-        <input type='password' id="omniBoxAuthPass" style="width:31%;" placeholder="<?=term('Password',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) {
+        <input type='password' id="omniBoxAuthPass" style="width:28%;" placeholder="<?=term('Password',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) {
             if (event.code=='NumpadEnter') {
                 omniAuthRequest('signup',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString());
             } else {
