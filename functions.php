@@ -297,16 +297,15 @@ function themed(string $theme,string $assets='head'): bool {
         $basket=$basket&&file_exists($theme.$val.'.png');
     } return $basket;
 }
-function daily($name,$add,$hour): string {
-    $num=str_replace('./','',(glob('./'.explode('.',$name)[0].'.'.explode('.',$name)[1].'.{00,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23}.png',GLOB_BRACE)));
-    $fin=sprintf("%02d",(floor(count($num)*($hour/24))));
-    $back=($add!='')?((file_exists(explode('.',$name)[0].'.'.explode('.', $name)[1].'.'.$fin.$add.'.png'))?explode('.',$name)[0].'.'.explode('.',$name)[1].'.'.$fin.$add.'.png':explode('.',$name)[0].'.'.explode('.', $name)[1].'.'.$fin.'.png'):explode('.',$name)[0].'.'.explode('.',$name)[1].'.'.$fin.'.png'; return $back;
+function daily($name,$hour): string {
+    $num=str_replace('./','',(glob('./'.explode('.',$name)[0].'.'.explode('.',$name)[1].'.{00,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23}.png',GLOB_BRACE))); $fin=sprintf("%02d",(floor(count($num)*($hour/24))));
+    $back=explode('.',$name)[0].'.'.explode('.',$name)[1].'.'.$fin.'.png'; return $back;
 }
 function getback(array $ses) {
-    return ($ses['banner']!='')?$ses['banner']:daily($ses['background'],$ses['entry'],(($ses['lock'])?sprintf("%02d",$ses['hour']):((($ses['benchmark']>0)&&($ses['benchmark']<5))?hourize(date('s'),date('i'),$ses['benchmark']):date('H'))));
+    return ($ses['banner']!='')?$ses['banner']:daily($ses['background'],((($ses['benchmark']>0)&&($ses['benchmark']<5))?hourize(date('s'),date('i'),$ses['benchmark']):date('H')));
 }
 function getways($name,array $ses) {
-    return ($ses['nsfw']!=0)?implode(';',str_replace(explode('.',$name)[0].'.'.explode('.',$name)[1].'.'.substr(explode('.',$name)[2],0,2),'',str_replace('.png','',str_replace('./','',(glob('./'.explode('.',$name)[0].'.'.explode('.',$name)[1].'.'.substr(explode('.',$name)[2],0,2).'*.png')))))):'';
+    return implode(';',str_replace(explode('.',$name)[0].'.'.explode('.',$name)[1].'.'.substr(explode('.',$name)[2],0,2),'',str_replace('.png','',str_replace('./','',(glob('./'.explode('.',$name)[0].'.'.explode('.',$name)[1].'.'.substr(explode('.',$name)[2],0,2).'*.png'))))));
 }
 function modelcard($id,$cont,$exem,$ses,$sti) {
     $uni=$ses['units']; $loc=$sti['locale']; $voc=$sti['vocabulary'];

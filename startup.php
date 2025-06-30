@@ -93,8 +93,8 @@ function world_clock() {
                 audioVolInd.value=mixers[0]; audioRatInd.value=mixers[1]; videoVolInd.value=mixers[2]; videoRatInd.value=mixers[3];
             } document.querySelector(':root').style.setProperty('--bicolor',sysDefAccent.value);
             if (authstate()) {
-                sysDefMsgMaxCount.value=parseInt(Object.keys(filterMessages(sysDefMyMsgboxData.value,uidm,sysDefFind.value)).length-1); sysDefMsgCounter.value=(sysDefReverse.value!=0)?((parseInt(sysDefMsgCounter.value)<=0)?sysDefMsgMaxCount.value:(parseInt(sysDefMsgCounter.value)-1)):((parseInt(sysDefMsgCounter.value)>=sysDefMsgMaxCount.value)?0:(parseInt(sysDefMsgCounter.value)+1));
-                sysDefMsgCurrent.value=(sysDefCypher.value!='')?enmorse(Object.values(filterMessages(sysDefMyMsgboxData.value,uidm,sysDefFind.value,'msg'))[sysDefMsgCounter.value],uidm,sysDefCypher.value):Object.values(filterMessages(sysDefMyMsgboxData.value,uidm,sysDefFind.value,'msg'))[sysDefMsgCounter.value];
+                sysDefMsgMaxCount.value=parseInt(Object.keys(filterMessages(sysDefMyMsgboxData.value,uidm,sysDefFind.value)).length-1); sysDefMsgCounter.value=(sysDefReadBackwards.value!=0)?((parseInt(sysDefMsgCounter.value)<=0)?sysDefMsgMaxCount.value:(parseInt(sysDefMsgCounter.value)-1)):((parseInt(sysDefMsgCounter.value)>=sysDefMsgMaxCount.value)?0:(parseInt(sysDefMsgCounter.value)+1));
+                sysDefMsgCurrent.value=Object.values(filterMessages(sysDefMyMsgboxData.value,uidm,sysDefFind.value,'msg'))[sysDefMsgCounter.value];
                 $('#showUsUrgent').text(sysDefMsgCurrent.value);
             } if (sysDefLoop.value!=sysDefPostBackEff.value) {
                 if (sysDefLoop.value!=0) {
@@ -116,7 +116,7 @@ function world_clock() {
             $('#buttonPlay').attr('src',sysDefPrefix.value+((audioPlayer.paused!=true)?'pause.png':'play.png'));
             $('#buttonPrev').attr('src',sysDefPrefix.value+'rew.png');
             $('#buttonNext').attr('src',sysDefPrefix.value+'ff.png');
-            $('#buttonPitch').attr('src',sysDefPrefix.value+((sysDefPitchLock.value!=0)?'midi.png':'volume.png'));
+            $('#buttonPitch').attr('src',sysDefPrefix.value+((sysDefPreservesPitch.value!=0)?'midi.png':'volume.png'));
             $('#buttonVintage').attr('src',sysDefPrefix.value+'diamante.png');
             $('#buttonMute').attr('src',sysDefPrefix.value+'disk.png');
             $('#buttonGloss').attr('src',sysDefPrefix.value+((sysDefGloss.value!=0)?'parfum.png':'deparfum.png'));

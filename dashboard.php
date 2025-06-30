@@ -75,7 +75,7 @@
     <input type='button' id="alarmTime" style="width:28%;" onclick="setdata('memo',''); pauseAudio(alarmPlayer);" value="00:00">
     <input type="image" id="buttonPlay" onmouseover="soundButton();" class="power" onclick="if (sysDefPlaying.value==1) { omniPause(); } else { omniListen(demorse(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value)); }" src="<?=$prefix[3].(($session['playing']!=0)?'pause.png':'play.png');?>" title="<?=term('Audio Play/Pause',$settings,$session);?>">
     <input type="image" id="buttonMute" onmouseover="soundButton();" class="power" onclick="setdata('loop',flip(sysDefLoop.value));" src="<?=$prefix[3].'disk.png';?>" title="<?=term('Enable Loop Music',$settings,$session);?>">
-    <input type="image" onmouseover="soundButton();" id="buttonPitch" class="power" onclick="setdata('pitch_lock',flip(sysDefPitchLock.value));" src="<?=$prefix[3].(($session['pitch_lock']!=0)?'midi.png':'volume.png');?>" title="<?=term('Preserve Pitch',$settings,$session);?>">
+    <input type="image" onmouseover="soundButton();" id="buttonPitch" class="power" onclick="setdata('preserves_pitch',flip(sysDefPreservesPitch.value));" src="<?=$prefix[3].(($session['preserves_pitch']!=0)?'midi.png':'volume.png');?>" title="<?=term('Preserve Pitch',$settings,$session);?>">
     <select id="avatarPicker" style="width:42%;" onchange="setdata('avatar',avatarPicker.options[avatarPicker.selectedIndex].id); if (sysDefReload.value!=0) { window.location.reload(); }"><?php foreach ($userLocks['avatar'] as $key=>$value) { ?>
     <option id="<?=explode('.', $value)[1];?>" <?php if ($session['avatar']==explode('.',$value)[1]) { ?> selected <?php } ?>><?=explode('.',$value)[1];?></option><?php } ?>
     </select>

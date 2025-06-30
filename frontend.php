@@ -343,14 +343,12 @@ function filterMessages(str,usr,mask='#') {
     } return arf;
 }
 function messengerHTML(str,usr,mask='#') {
-    var arr=filterMessages(str,usr,mask),ard='',fu0=fu1=ark=arv='';
+    var arr=filterMessages(str,usr,mask),ard=fu0=fu1='';
     var usr=sysDefSessionID.value,epr=sysDefPrefix.value;
-    var cyp=sysDefCypher.value; for (el in arr) {
-        ark=(cyp!='')?enmorse(el,usr,cyp):el;
-        arv=(cyp!='')?enmorse(arr[el],usr,cyp):arr[el];
+    for (el in arr) {
         fu0="clearJournal(&#39;"+enmorse(el,usr)+"&#39;,&#39;"+sysDefMyMsgboxData.value+"&#39;,&#39;msgbox&#39;);";
-        fu1="clip(&#39;"+arv+"&#39;);";
-        ard="<p><input type='image' class='power' onmouseover='soundButton();' src='"+epr+"trash.png"+"' onclick='"+fu0+"'> "+ark+" <input type='image' class='power' onmouseover='soundButton();' src='"+epr+"copy.png"+"' onclick='"+fu1+"'><br>"+arv+"</p>"+ard;
+        fu1="clip(&#39;"+arr[el]+"&#39;);";
+        ard="<p><input type='image' class='power' onmouseover='soundButton();' src='"+epr+"trash.png"+"' onclick='"+fu0+"'> "+el+" <input type='image' class='power' onmouseover='soundButton();' src='"+epr+"copy.png"+"' onclick='"+fu1+"'><br>"+arr[el]+"</p>"+ard;
     } return ard;
 }
 function activeHoursHTML(id) {
@@ -897,7 +895,7 @@ function dominate(usr,id,art='') {
 }
 function replayVideo(obj) {
     obj.pause(); obj.load(); obj.play();
-    setdata('pitch_lock',sysDefPitchLock.value);
+    setdata('preserves_pitch',sysDefPreservesPitch.value);
     setdata('video_volume',sysDefVideoVolume.value);
     setdata('video_speed',sysDefVideoSpeed.value);
 }
@@ -909,7 +907,7 @@ function omniListen(input,scratch=false,pos=false) {
         if (scratch) { audioPlayer.currentTime=0;
         } else { audioPlayer.currentTime=parseInt(sysDefCurrent.value); }
     } setdata('melody',enmorse(input,sysDefSessionID.value,sysDefNumeric.value));
-    setdata('pitch_lock',sysDefPitchLock.value);
+    setdata('preserves_pitch',sysDefPreservesPitch.value);
     setdata('audio_volume',sysDefAudioVolume.value);
     setdata('audio_speed',sysDefAudioSpeed.value);
 }
