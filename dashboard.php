@@ -66,7 +66,7 @@
 <div class='topBarItem'>
     <p align='center' class='block'>
     <input type="image" onmouseover="soundButton();" id="buttonAutoplay" class="power" onclick="setdata('autoplay',flip(sysDefAutoplay.value));" src="<?=$prefix[3].(($session['autoplay'])?'autopause.png':'autoplay.png');?>" title="<?=term('Enable Autoplay',$settings,$session);?>">
-    <input type='button' id="currentTime" style="width:52%;" onclick="setdata('timedisp',flip(sysDefTimedisp.value));" value="<?=date(($session['timedisp']!=0)?$session['date_format']:$session['time_format']);?>">
+    <input type='button' id="currentTime" style="width:51%;" onclick="setdata('timedisp',flip(sysDefTimedisp.value));" value="<?=date(($session['timedisp']!=0)?$session['date_format']:$session['time_format']);?>">
     <input type="image" id="buttonPrev" onmouseover="soundButton();" class="power" onclick="songIndex('prev');" src="<?=$prefix[3].'rew.png';?>" title="<?=term('Previous Track',$settings,$session);?>">
     <input type="image" id="buttonNext" onmouseover="soundButton();" class="power" onclick="songIndex('next');" src="<?=$prefix[3].'ff.png';?>" title="<?=term('Next Track',$settings,$session);?>">
     <input type="image" onmouseover="soundButton();" id="buttonVintage" class="power" onclick="setdata('vintage',flip(sysDefVintage.value));" src="<?=$prefix[3].'diamante.png';?>" title="<?=term('Enable Vintage Effects',$settings,$session);?>">
@@ -75,7 +75,7 @@
 </div>
 <div class='topBarItem'>
     <p align='center' class='block'>
-    <input type='button' id="alarmTime" style="width:28%;" onclick="setdata('memo',''); pauseAudio(alarmPlayer);" value="00:00">
+    <input type='button' id="alarmTime" style="width:27%;" onclick="setdata('memo',''); pauseAudio(alarmPlayer);" value="00:00">
     <input type="image" id="buttonPlay" onmouseover="soundButton();" class="power" onclick="if (sysDefPlaying.value==1) { omniPause(); } else { omniListen(demorse(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value)); }" src="<?=$prefix[3].(($session['playing']!=0)?'pause.png':'play.png');?>" title="<?=term('Audio Play/Pause',$settings,$session);?>">
     <input type="image" id="buttonMute" onmouseover="soundButton();" class="power" onclick="setdata('loop',flip(sysDefLoop.value));" src="<?=$prefix[3].'disk.png';?>" title="<?=term('Enable Loop Music',$settings,$session);?>">
     <input type="image" onmouseover="soundButton();" id="buttonPitch" class="power" onclick="setdata('preserves_pitch',flip(sysDefPreservesPitch.value));" src="<?=$prefix[3].(($session['preserves_pitch']!=0)?'midi.png':'volume.png');?>" title="<?=term('Preserve Pitch',$settings,$session);?>">
@@ -89,7 +89,7 @@
     <input type="image" onmouseover="soundButton();" id="buttonAutomator" class="power" onclick="automate(sysDefSessionID.value);" src="<?=$prefix[3].(($automateData[$sessionID]=='auto')?'wheel.png':'steer.png');?>" title="<?=term('Enable User Auto Mode',$settings,$session);?>">
     <input type='button' id="showUsInfoPower" style="width:35%;" value="<?=intval($powersData[$sessionID]);?>">
     <input type="image" onmouseover="soundButton();" id="buttonReticle" class="power" onclick="var uli=(sysDefUsersList.value).split(','),bdi=strarr(sysDefBindData.value,';',':'); delete uli[sysDefSessionID.value]; if (bdi[sysDefSessionID.value]!=sysDefSessionID.value) { bind(sysDefSessionID.value,sysDefSessionID.value); } else { bind(sysDefSessionID.value,uli[rand(0,(uli.length))]); } dominate(sysDefSessionID.value,strarr(sysDefBindData.value,';',':')[sysDefSessionID.value],strarr(sysDefToolData.value,';',':')[sysDefSessionID.value]); playAudio(hitPlayer,sysDefHitSound.value);" src="<?=$prefix[5].$session['reticle'].'.png';?>" title="<?=term('Hit Another User',$settings,$session);?>">
-    <input type='button' id="showUsInfoBond" style="width:35%;" onclick="clip(sysDefSessionID.value);" value="<?=$sessionID;?>">
+    <input type='button' id="showUsInfoBond" style="width:34%;" onclick="clip(sysDefSessionID.value);" value="<?=$sessionID;?>">
     <input type="image" onmouseover="soundButton();" id="buttonSpectate" class="power" onclick="setdata('spectate',flip(sysDefSpectate.value));" src="<?=$prefix[3].'unpower.png';?>" title="<?=term('Spectate Mode',$settings,$session);?>">
     </p>
 </div>
