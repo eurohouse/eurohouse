@@ -2,7 +2,7 @@
     <p align='center' class='block'>
     <input type="image" onmouseover="soundButton();" id="buttonMusic" class="power" onclick="var objCmdTxt=(authstate())?omniBox:omniBoxAuthLogin; seekMusic(objCmdTxt.value);" src="<?=$prefix[3].'music.png';?>" title="<?=term('Random Track',$settings,$session);?>">
     <input type="image" onmouseover="soundButton();" id="buttonBanner" class="power" onclick="var objCmdTxt=(authstate())?omniBox:omniBoxAuthLogin; if (sysDefBanner.value!='') { setdata('banner',''); } else { seekBanner(objCmdTxt.value); }" src="<?=$prefix[3].(($session['banner']!='')?'paint.png':'image.png');?>" title="<?=term('Random Banner',$settings,$session);?>">
-    <select id="ErotoOlympus" style="width:38%;" onchange="setdata('background',ErotoOlympus.options[ErotoOlympus.selectedIndex].id);"><?php foreach ($userLocks['background'] as $key=>$val) { ?>
+    <select id="ErotoOlympus" style="width:40%;" onchange="setdata('background',ErotoOlympus.options[ErotoOlympus.selectedIndex].id);"><?php foreach ($userLocks['background'] as $key=>$val) { ?>
     <option disabled><?=titled($val,$session['units']);?></option>
     <?php foreach (catlist($key) as $value) { ?>
     <option id="<?=$value;?>" <?php if ((explode('.',$value)[0]==explode('.',$background)[0])&&(explode('.',$value)[1]==explode('.',$background)[1])) { ?> selected="selected" <?php } ?>><?=titler($value,$settings,$session);?></option><?php }} ?>
@@ -28,8 +28,8 @@
         } else if (event.keyCode==115) { seekMusic(omniBox.value);
         } else if (event.keyCode==118) { if (sysDefBanner.value!='') { setdata('banner',''); } else { seekBanner(omniBox.value); }} keyPressed();" oninput="handleInput(this.value,true);">
         <input type="image" onmouseover="soundButton();" id="buttonEnter" class="power" onclick="omniEnter();" src="<?=$prefix[3].'return.png';?>" title="<?=term('Enter Command/Message',$settings,$session);?>">
-        <input type="image" onmouseover="soundButton();" id="buttonBackspace" class="power" onclick="omniBox.value=''; omniBox.focus();" src="<?=$prefix[3].'backspace.png';?>" title="<?=term('Clear Console',$settings,$session);?>">
         <input type="image" onmouseover="soundButton();" id="buttonAuth" class="power" onclick="if (authstate()) { omniAuthRequest('signout','',''); } else { omniAuthRequest('signin',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString()); }" src="<?=$prefix[3].'user.png';?>" title="<?=term('Sign In/Out',$settings,$session);?>">
+        <input type="image" onmouseover="soundButton();" id="buttonBackspace" class="power" onclick="omniBox.value=''; omniBox.focus();" src="<?=$prefix[3].'backspace.png';?>" title="<?=term('Clear Console',$settings,$session);?>">
     <?php } else { ?>
         <input type="image" onmouseover="soundButton();" id="buttonCommand" class="power" onclick="omniSuggest();" src="<?=$prefix[3].'start.png';?>" title="<?=term('Suggest Username',$settings,$session);?>">
         <input type='text' id="omniBoxAuthLogin" style="width:31%;" placeholder="<?=term('Username',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) {
