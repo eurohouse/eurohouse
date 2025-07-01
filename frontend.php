@@ -180,8 +180,9 @@ function userRestore(id) {
 function remove_entry(id,obj,name,complex=false,dy=';',dx=':') {
     var rawData=(isObject(obj))?obj.value:obj;
     var resarr=(complex)?jsonarr(rawData):strarr((rawData),dy,dx);
-    delete resarr[id]; set(name+'.json',JSON.stringify(resarr),'rw');
-    obj.value=(complex)?arrjson(resarr):arrstr(resarr,dy,dx);
+    if (notNull(resarr[id])) {
+        delete resarr[id]; set(name+'.json',JSON.stringify(resarr),'rw');
+    } obj.value=(complex)?arrjson(resarr):arrstr(resarr,dy,dx);
 }
 function reset_entry(id,obj,name,mode='',complex=false,dy=';',dx=':') {
     var rawData=(isObject(obj))?obj.value:obj;
@@ -194,9 +195,6 @@ function reset_entry(id,obj,name,mode='',complex=false,dy=';',dx=':') {
         } else if (mode=='m') { resarr[id]='manual'; }
     } set(name+'.json',JSON.stringify(resarr),'rw');
     obj.value=(complex)?arrjson(resarr):arrstr(resarr,dy,dx);
-}
-function user_exists(id) {
-    return ((sysDefUsersList.value).split(',').includes(id));
 }
 function delete_user(id) {
     bind(sysDefSessionID.value,sysDefSessionID.value);

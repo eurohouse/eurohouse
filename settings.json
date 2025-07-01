@@ -43,7 +43,7 @@
         "sound":".wav,.ac3,.snd,.au,.aif,.aiff,.oga,.wma,.m4a,.mka",
         "video":".mp4,.mkv,.webm,.3gp", "movie": ".mov,.quote,.wmv,.avi",
         "midi":".mid,.midi,.rmi",
-        "data":".json,.xml,.yaml,.yml,.bak",
+        "data":".json,.xml,.yaml,.yml,.bak,.plist",
         "font":".ttf,.ttc,.otf,.woff,.woff2,.fon,.pf2",
         "script":".js,.css,.ts,.csv,.htm,.html,.php,.cs,.ps1,.cpp,.sh,.c,.h,.java,.py",
         "markdown":".md,.markdown",
