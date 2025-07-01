@@ -193,7 +193,7 @@ function textopen($name,$default='') {
 }
 function fileopen($name,$default='') {
     $content=(file_exists($name))?file_get_contents($name):$default;
-    if ((class_exists(SimpleXMLElement))&&(@xmlToArray(new SimpleXMLElement($content)))) {
+    if ((class_exists('SimpleXMLElement'))&&(@xmlToArray(new SimpleXMLElement($content)))) {
         $result=xmlToArray(new SimpleXMLElement($content));
     } elseif (@unserialize($content)!==false) {
         $result=unserialize($content);
