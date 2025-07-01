@@ -193,9 +193,7 @@ function textopen($name,$default='') {
 }
 function fileopen($name,$default='') {
     $content=(file_exists($name))?file_get_contents($name):$default;
-    if ((class_exists('SimpleXMLElement'))&&(@xmlToArray(new SimpleXMLElement($content))!==null)) {
-        $result=xmlToArray(new SimpleXMLElement($content));
-    } elseif (@unserialize($content)!==false) {
+    if (@unserialize($content)!==false) {
         $result=unserialize($content);
     } elseif (@json_decode($content,true)!=null) {
         $result=json_decode($content,true);
