@@ -157,17 +157,13 @@ function initDataDirs($str='tmp') {
         }
     }
 }
-function paging($name,$opt=[0,2]): array {
-    $arr=preg_split("/\r\n|\n|\r/",(file_get_contents($name)));$obj=[]; foreach ($opt as $n) { $obj[$n]=$arr[$n]; } return $obj;
-}
-function pages($name): array {
-    return preg_split("/\r\n|\n|\r/",(file_get_contents($name)));
-}
-function xmlconv($xml) {
-    $fabric=(new NavigatorFabric())->setXml($xml);
-    $converter=$fabric->makeConverter();
-    $arrayRepresentationOfXml=$converter->toArray();
-    return $arrayRepresentationOfXml;
+function paging($name,$opt=[]): array {
+    $arr=preg_split("/\r\n|\n|\r/",(file_get_contents($name)));
+    $obj=[]; if (!empty($opt)) {
+        foreach ($opt as $n) { $obj[$n]=$arr[$n]; }
+    } else {
+        foreach ($arr as $n=>$m) { $obj[$n]=$m; }
+    } return $obj;
 }
 function textopen($name,$default='') {
     $fileOpen=(file_exists($name))?file_get_contents($name):$default;
@@ -175,9 +171,7 @@ function textopen($name,$default='') {
 }
 function fileopen($name,$default='') {
     $content=(file_exists($name))?file_get_contents($name):$default;
-    if (@xmlconv($content)!==false) {
-        $result=xmlconv($content);
-    } elseif (@unserialize($content)!==false) {
+    if (@unserialize($content)!==false) {
         $result=unserialize($content);
     } elseif (@json_decode($content,true)!=null) {
         $result=json_decode($content,true)

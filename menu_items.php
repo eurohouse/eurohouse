@@ -3,7 +3,7 @@
     <p align='center' class='block'>
     <?php foreach ($index as $key=>$value) {
         if (file_exists('mode.'.$value.'.php')) {
-            $menuItemFile=paging('mode.'.$value.'.php', [0,1]);
+            $menuItemFile=paging('mode.'.$value.'.php',[0,1]);
             $menuItemIcon=annotationString($menuItemFile[0]);
             $elementIcon=(themed($themePrefix, $menuItemIcon))?$themePrefix.$menuItemIcon.'.png':$portfolioPrefix.$menuItemIcon.'.png';
             $menuItemLangPack=annotationString($menuItemFile[1]);
