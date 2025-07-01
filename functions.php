@@ -193,6 +193,8 @@ function fileopen($name,$default='') {
         $result=unserialize($content);
     } elseif (@json_decode($content,true)!=null) {
         $result=json_decode($content,true);
+    } elseif (@yaml_parse($content)!==false) {
+        $result=yaml_parse($content);
     } elseif (@xmlparse(new SimpleXMLElement(file_get_contents($name)))!=null) {
         $result=xmlparse(new SimpleXMLElement(file_get_contents($name)));
     } elseif (@paging($name)!==null) {
