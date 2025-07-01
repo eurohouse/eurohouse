@@ -64,7 +64,7 @@ foreach ($index as $key=>$value) {
             $themedLink="javascript:playMIDI(%22".$mediaFilename."%22);";
         } elseif (in_array($mediaFileExtension,removeFileExtDots($settings['collections']['image']))) {
             $themedIcon=(path_rel($mediaFilename))?$mediaFilename:$themePrefix.'image.png';
-            $themedLink=$themedIcon;
+            $themedLink="javascript:omniRead('document_viewer',%22".$mediaFilename."%22,'true');";
         } elseif (in_array($mediaFileExtension,removeFileExtDots($settings['collections']['font']))) {
             $themedIcon=$themePrefix.'font.png';
             $themedLink="javascript:omniRead('font_book',%22".$mediaFilename."%22,'true');";
