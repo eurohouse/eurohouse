@@ -166,26 +166,22 @@ function paging($name,$opt=[]): array {
     } return $obj;
 }
 function xmlToArray(SimpleXMLElement $xml): array {
-    $parser=function (SimpleXMLElement $xml,array $collection=[]) use (&$parser) {
-        $nodes=$xml->children();
-        $attributes=$xml->attributes();
+    $parser=function(SimpleXMLElement $xml,array $collection=[]) use (&$parser) {
+        $nodes=$xml->children(); $attributes=$xml->attributes();
         if (0!==count($attributes)) {
             foreach ($attributes as $attrName=>$attrValue) {
                 $collection['attributes'][$attrName]=strval($attrValue);
             }
-        }
-        if (0===$nodes->count()) {
+        } if (0===$nodes->count()) {
             $collection['value']=strval($xml);
             return $collection;
-        }
-        foreach ($nodes as $nodeName=>$nodeValue) {
+        } foreach ($nodes as $nodeName=>$nodeValue) {
             if (count($nodeValue->xpath('../'.$nodeName))<2) {
                 $collection[$nodeName]=$parser($nodeValue);
                 continue;
             } $collection[$nodeName][]=$parser($nodeValue);
         } return $collection;
-    };
-    return [ $xml->getName()=>$parser($xml) ];
+    }; return [ $xml->getName()=>$parser($xml) ];
 }
 function textopen($name,$default='') {
     $fileOpen=(file_exists($name))?file_get_contents($name):$default;
@@ -197,6 +193,8 @@ function fileopen($name,$default='') {
         $result=unserialize($content);
     } elseif (@json_decode($content,true)!=null) {
         $result=json_decode($content,true);
+    } elseif (@xmlparse(new SimpleXMLElement(file_get_contents($name)))!=null) {
+        $result=xmlparse(new SimpleXMLElement(file_get_contents($name)));
     } elseif (@paging($name)!==null) {
         $result=paging($name);
     } else { $result=$content; }
