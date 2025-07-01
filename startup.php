@@ -107,7 +107,7 @@ function world_clock() {
             $('#buttonMenu').attr('src',sysDefPrefix.value+((sysDefIcons.value!=0)?'menu.png':'list.png'));
             $('#buttonUpdate').attr('src',sysDefPrefix.value+'world.png');
             $('#buttonCommand').attr('src',sysDefPrefix.value+'start.png');
-            $('#buttonCompose').attr('src',sysDefPrefix.value+'forward.png');
+            $('#buttonCompose').attr('src',sysDefPrefix.value+'morse.png');
             $('#buttonSuggest').attr('src',sysDefPrefix.value+'dice.png');
             $('#buttonMusic').attr('src',sysDefPrefix.value+'music.png');
             $('#buttonBanner').attr('src',sysDefPrefix.value+((sysDefBanner.value!='')?'paint.png':'image.png'));

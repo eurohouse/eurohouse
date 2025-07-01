@@ -21,7 +21,7 @@
     <p align='center' class='block'>
     <?php if (isAuthorized()) { ?>
         <input type="image" onmouseover="soundButton();" id="buttonCommand" class="power" onclick="seekCode(omniBox.value);" src="<?=$prefix[3].'start.png';?>" title="<?=term('Random Code',$settings,$session);?>">
-        <input type="image" onmouseover="soundButton();" id="buttonCompose" class="power" onclick="compose(sysDefSessionID.value,omniBox.value);" src="<?=$prefix[3].'forward.png';?>" title="<?=term('Compose Message',$settings,$session);?>">
+        <input type="image" onmouseover="soundButton();" id="buttonCompose" class="power" onclick="compose(sysDefSessionID.value,omniBox.value);" src="<?=$prefix[3].'morse.png';?>" title="<?=term('Compose Message',$settings,$session);?>">
         <input type='text' id="omniBox" style="width:52%;" placeholder="<?=term('Type command or expression and press ENTER',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) { omniEnter(); } else if (event.keyCode==27) { omniBox.value='';
         } else if (event.keyCode==8) { handleInput(this.value);
         } else if (event.keyCode==46) { handleInput(this.value);
