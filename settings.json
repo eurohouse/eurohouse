@@ -36,8 +36,7 @@
     "libraries": {
         "domestic": [
             "backend.js","frontend.js","tablesort.js","requests.js","commands.js","jquery.js", "crypto.js","XRegExp.js","showdown.js","statistics.js","nerdamer.js","algebra.js","calculus.js","solve.js"
-        ],
-        "foreign": [ "https://www.midijs.net/lib/midi.js" ]
+        ], "foreign": [ "https://www.midijs.net/lib/midi.js" ]
     },
     "collections": {
         "music":".mp3,.aac,.ogg,.flac,.alac,.cda,.wma,.m4a,.mka",

@@ -163,13 +163,28 @@ function paging($name,$opt=[0,2]): array {
 function pages($name): array {
     return preg_split("/\r\n|\n|\r/",(file_get_contents($name)));
 }
+function xmlconv($xml) {
+    $fabric=(new NavigatorFabric())->setXml($xml);
+    $converter=$fabric->makeConverter();
+    $arrayRepresentationOfXml=$converter->toArray();
+    return $arrayRepresentationOfXml;
+}
 function textopen($name,$default='') {
     $fileOpen=(file_exists($name))?file_get_contents($name):$default;
     return ($fileOpen!='')?$fileOpen:$default;
 }
 function fileopen($name,$default='') {
-    $fileOpen=(file_exists($name))?file_get_contents($name):$default;
-    return (@unserialize($fileOpen)!==false)?unserialize($fileOpen):((@json_decode($fileOpen,true)!=null)?json_decode($fileOpen,true):(((@paging($name)!==null)?paging($name):$fileOpen)));
+    $content=(file_exists($name))?file_get_contents($name):$default;
+    if (@xmlconv($content)!==false) {
+        $result=xmlconv($content);
+    } elseif (@unserialize($content)!==false) {
+        $result=unserialize($content);
+    } elseif (@json_decode($content,true)!=null) {
+        $result=json_decode($content,true)
+    } elseif (@paging($name)!==null) {
+        $result=paging($name);
+    } else { $result=$content; }
+    return $result;
 }
 function arropen($name,$default="{\"\":\"\"}",$exec='') {
     if (!file_exists($name)) {

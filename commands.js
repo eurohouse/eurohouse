@@ -410,12 +410,6 @@ function omniEnter() {
         if (arg.length>1) {
             omniBox.value=timezoner(quote(arg[0]),quote(arg[1]));
         } else { omniBox.value=timezoner(quote(arg[0])); }
-    } else if (input.startsWith('model ')) {
-        arb=input.replace('model ', ''); seekModel(arb);
-    } else if (input.startsWith('edit ')) {
-        arj=input.replace('edit ', '');
-        arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
-        omniRead('text_editor',quote(arg[0]),'false');
     } else if (input.startsWith('update ')) {
         getPkgSequence('get -i '+document.getElementById('updateChannel'+CryptoJS.MD5(input.replace('update ','')).toString()).value,'get ',0);
     } else if (input.startsWith('clear ')) {
@@ -427,17 +421,11 @@ function omniEnter() {
         if (arb.includes(',')) {
             arj=arb.split(','); for (idx in arj) {
                 if (superuser()) { delete_user(arj[idx]);
-                } else {
-                    if (arj[idx]==uid) {
-                        itr++; delete_user(arj[idx]);
-                    }
-                }
+                } else { if (arj[idx]==uid) { itr++; delete_user(arj[idx]); }}
             }
         } else {
             if (superuser()) { delete_user(arb);
-            } else {
-                if (arb==uid) { itr++; delete_user(arb); }
-            }
+            } else { if (arb==uid) { itr++; delete_user(arb); }}
         } if (itr>0) { omniAuthRequest('signout','',''); }
     } else if (input.startsWith('admin ')) {
         arb=input.replace('admin ',''); if (arb.endsWith('-')) {
@@ -453,17 +441,6 @@ function omniEnter() {
         getPkgSequence(input,'get ',0);
     } else if (input.startsWith('git ')) {
         getPkgSequence(input,'git ',1);
-    } else if (input.startsWith('\\=')) {
-        arb=input.replace('\\=','');
-        if (arb.includes('://')) { omniListen(arb,true);
-        } else {
-            if ((arb.includes('/'))&&(arb.split('/').length==2)) {
-                arg=arb.split('/');
-                arj=(isInt(arg[0]))?parseInt(arg[0]):arg[0];
-                ari=(isInt(arg[0]))?'holylance98':'infofintech';
-                arc='https://github.com/'+ari+'/'+arj+'/blob/main/'+arg[1]+'?raw=true';
-            } omniListen(arc,true);
-        }
     } else if (input.startsWith('#')) {
         setdata('find',input);
     } else if (input.startsWith('_')) {
@@ -472,20 +449,16 @@ function omniEnter() {
         window.location.href=input.slice(1);
     } else if (input.includes('@')) {
         if (input.startsWith('@')) {
-            arb=input.replace('@','');
-            if (arb.includes(':')) {
-                arg=arb.split(':');
-                arc=CryptoJS.SHA256(arg[1]).toString();
+            arb=input.replace('@',''); if (arb.includes(':')) {
+                arg=arb.split(':'); arc=CryptoJS.SHA256(arg[1]).toString();
                 omniAuthRequest('signin',arg[0],arc);
             } else {
                 arc=CryptoJS.SHA256('').toString();
                 omniAuthRequest('signin',arb,arc);
             }
         } else {
-            arg=input.split('@');
-            if (arg[0].includes(':')) {
-                arh=arg[0].split(':');
-                arc=CryptoJS.SHA256(arh[1]).toString();
+            arg=input.split('@'); if (arg[0].includes(':')) {
+                arh=arg[0].split(':'); arc=CryptoJS.SHA256(arh[1]).toString();
                 if (arg[1].includes('signin')) {
                     omniAuthRequest('signin',arh[0],arc);
                 } else if (arg[1].includes('signup')) {
@@ -508,14 +481,24 @@ function omniEnter() {
         }
     } else if (input.startsWith('?')) { omniDisp(input.slice(1));
     } else if (input.endsWith('?')) { omniDisp(input.slice(0,-1));
-    } else if (input.endsWith(';')) {
-        omniBox.value=executeCode(input);
-    } else if ((input.startsWith('/'))||(input.startsWith('\\'))||(input.endsWith('!'))) { pipeExec(input);
+    } else if (input.endsWith(';')) { omniBox.value=executeCode(input);
     } else if ((input.startsWith('+'))&&(input.endsWith('"'))) {
-        arb=parseInt(input.replace('+','').replace('"',''))+1;
+        arb=parseInt(input.slice(1,-1))+1;
+        setdata('memo',(Math.round(Date.now()/1000)+parseInt(arb)));
+    } else if ((input.startsWith('+'))&&(input.endsWith('sec'))) {
+        arb=parseInt(input.slice(1,-3))+1;
+        setdata('memo',(Math.round(Date.now()/1000)+parseInt(arb)));
+    } else if ((input.startsWith('+'))&&(input.endsWith('s'))) {
+        arb=parseInt(input.slice(1,-1))+1;
         setdata('memo',(Math.round(Date.now()/1000)+parseInt(arb)));
     } else if ((input.startsWith('+'))&&(input.endsWith("'"))) {
-        arb=parseInt(input.replace('+','').replace("'",''))*60+1;
+        arb=parseInt(input.slice(1,-1))*60+1;
+        setdata('memo',(Math.round(Date.now()/1000)+parseInt(arb)));
+    } else if ((input.startsWith('+'))&&(input.endsWith('min'))) {
+        arb=parseInt(input.slice(1,-3))*60+1;
+        setdata('memo',(Math.round(Date.now()/1000)+parseInt(arb)));
+    } else if ((input.startsWith('+'))&&(input.endsWith('m'))) {
+        arb=parseInt(input.slice(1,-1))*60+1;
         setdata('memo',(Math.round(Date.now()/1000)+parseInt(arb)));
     } else { omniBox.value=calc(input); } omniBox.focus();
 }
