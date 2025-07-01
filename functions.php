@@ -174,7 +174,7 @@ function fileopen($name,$default='') {
     if (@unserialize($content)!==false) {
         $result=unserialize($content);
     } elseif (@json_decode($content,true)!=null) {
-        $result=json_decode($content,true)
+        $result=json_decode($content,true);
     } elseif (@paging($name)!==null) {
         $result=paging($name);
     } else { $result=$content; }
