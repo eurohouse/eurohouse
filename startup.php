@@ -10,7 +10,7 @@ window.onload=function() {
     } else if (requestMode.value=='text_editor') { countText();
     } else if (requestMode.value=='sticky_notes') { countNote();
     } else if (requestMode.value=='markdown_viewer') { markdownToHTMLParse(); }
-    delete_user('');
+    delete_user(''); delete_user('undefined');
 }
 $(document).ready(function() {
     <?php foreach ($settings['intervals'] as $key=>$val) { ?>
