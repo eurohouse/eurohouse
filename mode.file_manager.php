@@ -85,7 +85,7 @@ foreach ($index as $key=>$value) {
             $themedLink="javascript:omniRead('text_editor',%22".$mediaFilename."%22,'true');";
         } elseif (in_array($mediaFileExtension,removeFileExtDots($settings['collections']['book']))) {
             $themedIcon=$themePrefix.'book.png';
-            $themedLink=$mediaFilename;
+            $themedLink="javascript:omniRead('document_viewer',%22".$mediaFilename."%22,'true');";
         } elseif ($mediaFileExtension=='pkg') {
             $mediaFileData=fileopen($mediaFilename);
             $themedLink=(isset($mediaFileData['run'])&&($mediaFileData['run']!=""))?$mediaFileData['run']:"index.php?mode=object_info&sort=&group=&angle=".$request['angle']."&input=".$mediaFilename."&output=".$request['output']."&args=&lock=false&ref=".$request['mode']."&path=".$request['path'];
