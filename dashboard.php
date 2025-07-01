@@ -29,7 +29,7 @@
         } else if (event.keyCode==115) { seekBanner(omniBox.value);
         } else if (event.keyCode==118) { seekCode(omniBox.value);
         } keyPressed();" oninput="handleInput(this.value,true);">
-        <input type="image" onmouseover="soundButton();" id="buttonEnter" class="power" onclick="omniEnter();" src="<?=$prefix[3].'return.png';?>" title="<?=term('Enter Command/Message',$settings,$session);?>">
+        <input type="image" onmouseover="soundButton();" id="buttonEnter" class="power" onclick="omniEnter();" src="<?=$prefix[3].'return.png';?>" title="<?=term('Execute Command',$settings,$session);?>">
         <input type="image" onmouseover="soundButton();" id="buttonAuth" class="power" onclick="if (authstate()) { omniAuthRequest('signout','',''); } else { omniAuthRequest('signin',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString()); }" src="<?=$prefix[3].'user.png';?>" title="<?=term('Sign In/Out',$settings,$session);?>">
         <input type="image" onmouseover="soundButton();" id="buttonBackspace" class="power" onclick="omniBox.value=''; omniBox.focus();" src="<?=$prefix[3].'backspace.png';?>" title="<?=term('Clear Console',$settings,$session);?>">
     <?php } else { ?>
