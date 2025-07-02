@@ -21,7 +21,7 @@
     <p align='center' class='block'>
     <?php if (isAuthorized()) { ?>
         <input type="image" onmouseover="soundButton();" id="buttonAuth" class="power" onclick="if (authstate()) { omniAuthRequest('signout','',''); } else { omniAuthRequest('signin',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString()); }" src="<?=$prefix[3].'user.png';?>" title="<?=term('Sign In/Out',$settings,$session);?>">
-        <input type='text' id="omniBox" style="width:52%;" placeholder="<?=term('Type command or expression and press ENTER',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) { omniEnter(omniBox.value);
+        <input type='text' id="omniBox" style="width:56%;" placeholder="<?=term('Type command or expression and press ENTER',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) { omniEnter(omniBox.value);
         } else if (event.keyCode==27) { omniBox.value='';
         } else if (event.keyCode==8) { handleInput(this.value);
         } else if (event.keyCode==46) { handleInput(this.value);
