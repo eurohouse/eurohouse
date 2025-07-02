@@ -218,8 +218,8 @@ function pipeExec(input) {
         }
     }
 }
-function omniEnter() {
-    var input=omniBox.value,arb=arc=ari=arj='';
+function omniEnter(input) {
+    var arb=arc=ari=arj='';
     var itr=0,itd=0,arg=[],arh=[],ark={};
     var uid=sysDefSessionID.value;
     if (input.toLowerCase()=='reload') { window.location.reload();

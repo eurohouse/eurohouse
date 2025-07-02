@@ -20,19 +20,19 @@
 <div class='topBarItem'>
     <p align='center' class='block'>
     <?php if (isAuthorized()) { ?>
-        <input type="image" onmouseover="soundButton();" id="buttonCommand" class="power" onclick="seekCode(omniBox.value);" src="<?=$prefix[3].'start.png';?>" title="<?=term('Random Code',$settings,$session);?>">
-        <input type='text' id="omniBox" style="width:52%;" placeholder="<?=term('Type command or expression and press ENTER',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) { omniEnter(); } else if (event.keyCode==27) { omniBox.value=''; } else if (event.keyCode==8) { handleInput(this.value);
+        <input type="image" onmouseover="soundButton();" id="buttonAuth" class="power" onclick="if (authstate()) { omniAuthRequest('signout','',''); } else { omniAuthRequest('signin',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString()); }" src="<?=$prefix[3].'user.png';?>" title="<?=term('Sign In/Out',$settings,$session);?>">
+        <input type='text' id="omniBox" style="width:52%;" placeholder="<?=term('Type command or expression and press ENTER',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) { omniEnter(omniBox.value);
+        } else if (event.keyCode==27) { omniBox.value='';
+        } else if (event.keyCode==8) { handleInput(this.value);
         } else if (event.keyCode==46) { handleInput(this.value);
         } else if (event.keyCode==113) { seekMusic(omniBox.value);
         } else if (event.keyCode==115) { seekBanner(omniBox.value);
-        } else if (event.keyCode==118) { seekCode(omniBox.value);
         } keyPressed();" oninput="handleInput(this.value,true);">
-        <input type="image" onmouseover="soundButton();" id="buttonEnter" class="power" onclick="omniEnter();" src="<?=$prefix[3].'return.png';?>" title="<?=term('Execute Command',$settings,$session);?>">
+        <input type="image" onmouseover="soundButton();" id="buttonEnter" class="power" onclick="omniEnter(omniBox.value);" src="<?=$prefix[3].'return.png';?>" title="<?=term('Execute Command',$settings,$session);?>">
         <input type="image" onmouseover="soundButton();" id="buttonCompose" class="power" onclick="compose(sysDefSessionID.value,omniBox.value);" src="<?=$prefix[3].'keyboard.png';?>" title="<?=term('Compose Message',$settings,$session);?>">
-        <input type="image" onmouseover="soundButton();" id="buttonAuth" class="power" onclick="if (authstate()) { omniAuthRequest('signout','',''); } else { omniAuthRequest('signin',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString()); }" src="<?=$prefix[3].'user.png';?>" title="<?=term('Sign In/Out',$settings,$session);?>">
         <input type="image" onmouseover="soundButton();" id="buttonBackspace" class="power" onclick="omniBox.value=''; omniBox.focus();" src="<?=$prefix[3].'backspace.png';?>" title="<?=term('Clear Console',$settings,$session);?>">
     <?php } else { ?>
-        <input type="image" onmouseover="soundButton();" id="buttonCommand" class="power" onclick="seekCode(omniBoxAuthLogin.value);" src="<?=$prefix[3].'start.png';?>" title="<?=term('Random Code',$settings,$session);?>">
+        <input type="image" onmouseover="soundButton();" id="buttonCommand" class="power" onclick="omniEnter(omniBoxAuthLogin.value);" src="<?=$prefix[3].'start.png';?>" title="<?=term('Execute Command',$settings,$session);?>">
         <input type="image" onmouseover="soundButton();" id="buttonSuggest" class="power" onclick="omniSuggest();" src="<?=$prefix[3].'dice.png';?>" title="<?=term('Suggest Username',$settings,$session);?>">
         <input type='text' id="omniBoxAuthLogin" style="width:30%;" placeholder="<?=term('Username',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) {
             omniBoxAuthPass.value=''; omniBoxAuthPass.focus();
@@ -41,20 +41,15 @@
         } else if (event.keyCode==46) { handleInput(this.value);
         } else if (event.keyCode==113) { seekMusic(omniBoxAuthLogin.value);
         } else if (event.keyCode==115) { seekBanner(omniBoxAuthLogin.value);
-        } else if (event.keyCode==118) { seekCode(omniBoxAuthLogin.value);
         } keyPressed();" oninput="handleInput(this.value,true);">
         <input type='password' id="omniBoxAuthPass" style="width:30%;" placeholder="<?=term('Password',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) {
-            if (event.code=='NumpadEnter') {
-                omniAuthRequest('signup',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString());
-            } else {
-                omniAuthRequest('signin',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString());
-            }
-        } else if (event.keyCode==27) { omniBoxAuthPass.value=''; omniBoxAuthLogin.focus();
+            omniAuthRequest('signin',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString());
+        } else if (event.keyCode==27) {
+            omniBoxAuthPass.value=''; omniBoxAuthLogin.focus();
         } else if (event.keyCode==8) { handleInput(this.value);
         } else if (event.keyCode==46) { handleInput(this.value);
         } else if (event.keyCode==113) { seekMusic(omniBoxAuthPass.value);
         } else if (event.keyCode==115) { seekBanner(omniBoxAuthPass.value);
-        } else if (event.keyCode==118) { seekCode(omniBoxAuthLogin.value);
         } keyPressed();" oninput="handleInput(this.value,true);">
         <input type="image" onmouseover="soundButton();" id="buttonAuth" class="power" onclick="if (authstate()) { omniAuthRequest('signout','',''); } else { omniAuthRequest('signin',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString()); }" src="<?=$prefix[3].'user.png';?>" title="<?=term('Sign In/Out',$settings,$session);?>">
         <input type="image" onmouseover="soundButton();" id="buttonRegister" class="power" onclick="omniAuthRequest('signup',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString());" src="<?=$prefix[3].'book.png';?>" title="<?=term('Sign Up/Create Account',$settings,$session);?>">
