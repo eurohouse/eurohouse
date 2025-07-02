@@ -481,6 +481,8 @@ function omniEnter() {
         }
     } else if (input.startsWith('?')) { omniDisp(input.slice(1));
     } else if (input.endsWith('?')) { omniDisp(input.slice(0,-1));
+    } else if (!(input.startsWith(':'))&&!(input.endsWith(':'))) {
+        seekCode(input);
     } else if (input.endsWith(';')) { omniBox.value=executeCode(input);
     } else if ((input.startsWith('+'))&&(input.endsWith('"'))) {
         arb=parseInt(input.slice(1,-1))+1;
