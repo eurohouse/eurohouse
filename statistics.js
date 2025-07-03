@@ -61,9 +61,9 @@ function highscore(mode) {
     var pm=sysDefPrefix.value,am=sysDefAva1Prefix.value;
     if (mode=='bind') {
         objHTML=sysDefBindData,objText=objHTML.value,obj=jsonarr(objText);
-        ordered=Object.keys(obj).sort().reduce(
+        ordered=(notNull(obj))?Object.keys(obj).sort().reduce(
             (obd,key) => { obd[key]=obj[key]; return obd; }, {}
-        ); for (indi in ordered) {
+        ):{}; for (indi in ordered) {
             if ((ordered[indi]!==undefined)||(indi!='')) {
                 res+="<input type='image' class='power' onmouseover='soundButton();' src='"+am+timezoner(indi,'at')+".png"+"' onclick='clip(&#34;"+timezoner(indi,'at')+"&#34;);'>";
                 res+="<input type='button' onmouseover='soundButton();' style='width:36%;' value='"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
@@ -76,9 +76,9 @@ function highscore(mode) {
         }
     } else if (mode=='auto') {
         objHTML=sysDefAutoData,objText=objHTML.value,obj=jsonarr(objText);
-        ordered=Object.keys(obj).sort().reduce(
+        ordered=(notNull(obj))?Object.keys(obj).sort().reduce(
             (obd,key) => { obd[key]=obj[key]; return obd; }, {}
-        ); for (indi in ordered) {
+        ):{}; for (indi in ordered) {
             if ((ordered[indi]!==undefined)||(indi!='')) {
                 res+="<input type='image' class='power' onmouseover='soundButton();' src='"+am+timezoner(indi,'at')+".png"+"' onclick='clip(&#34;"+timezoner(indi,'at')+"&#34;);'>";
                 res+="<input type='button' onmouseover='soundButton();' style='width:34%;' value='"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
@@ -91,9 +91,9 @@ function highscore(mode) {
         }
     } else if (mode=='tool') {
         objHTML=sysDefToolData,objText=objHTML.value,obj=jsonarr(objText);
-        ordered=Object.keys(obj).sort().reduce(
+        ordered=(notNull(obj))?Object.keys(obj).sort().reduce(
             (obd,key) => { obd[key]=obj[key]; return obd; }, {}
-        ); for (indi in ordered) {
+        ):{}; for (indi in ordered) {
             if ((ordered[indi]!==undefined)||(indi!='')) {
                 data=jsonarr(openJournal(indi,sysDefStoreJSONs));
                 if ((data[ordered[indi]]!==undefined)&&(typeof(data[ordered[indi]])=='object')&&(ordered[indi]!='')) {
@@ -136,9 +136,9 @@ function highscore(mode) {
             var lei=((((lem+lef)/2)-20)/65),ei=(((((mysm+mysf)/2)/15)+(((eysm+eysf)/2)/18))/2),ii=((Math.log((gnim+gnif)/2)-Math.log(100))/Math.log(750));
             obj[et]['Human Development Index']=superRound((lei*ei*ii)**(1/3));
             obj[et]['Gross National Income']['Both']=superRound((gnim+gnif)/2);
-        } sortable=Object.fromEntries(
+        } sortable=(notNull(obj))?Object.fromEntries(
             Object.entries(obj).sort(([,a],[,b])=>b['Human Development Index']-a['Human Development Index'])
-        ); for (indi in sortable) {
+        ):{}; for (indi in sortable) {
             if ((sortable[indi]!==undefined)&&(indi!='')) {
                 res+="<input type='image' class='power' onmouseover='soundButton();' src='Flag."+indi+".png"+"' onclick='clip(&#34;"+indi+"&#34;);'>";
                 res+="<input type='button' onmouseover='soundButton();' style='width:24%;' value='"+sortable[indi]['Human Development Index']+"' onclick='clip(&#34;"+sortable[indi]['Human Development Index']+"&#34;);'>";
@@ -148,9 +148,9 @@ function highscore(mode) {
         }
     } else if (mode=='powers') {
         objHTML=sysDefPowersData,objText=objHTML.value,obj=jsonarr(objText);
-        sortable=Object.fromEntries(
+        sortable=(notNull(obj))?Object.fromEntries(
             Object.entries(obj).sort(([,a],[,b])=>b-a)
-        ); for (indi in sortable) {
+        ):{}; for (indi in sortable) {
             if ((sortable[indi]!==undefined)||(indi!='')) {
                 res+="<input type='image' class='power' onmouseover='soundButton();' src='"+am+timezoner(indi,'at')+".png"+"' onclick='clip(&#34;"+timezoner(indi,'at')+"&#34;);'>";
                 res+="<input type='button' onmouseover='soundButton();' style='width:24%;' value='"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
@@ -163,9 +163,9 @@ function highscore(mode) {
         }
     } else if (mode=='time') {
         objText=sysDefPublicUserData.value,obj=jsonarr(objText)['time'];
-        sortable=Object.fromEntries(
+        sortable=(notNull(obj))?Object.fromEntries(
             Object.entries(obj).sort(([,a],[,b])=>b-a)
-        ); for (indi in sortable) {
+        ):{}; for (indi in sortable) {
             if ((sortable[indi]!==undefined)||(indi!='')) {
                 res+="<input type='image' class='power' onmouseover='soundButton();' src='"+am+timezoner(indi,'at')+".png"+"' onclick='clip(&#34;"+timezoner(indi,'at')+"&#34;);'>";
                 res+="<input type='button' onmouseover='soundButton();' style='width:24%;' value='"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
@@ -174,9 +174,9 @@ function highscore(mode) {
         }
     } else if (mode=='date') {
         objText=sysDefPublicUserData.value,obj=jsonarr(objText)['date'];
-        sortable=Object.fromEntries(
+        sortable=(notNull(obj))?Object.fromEntries(
             Object.entries(obj).sort(([,a],[,b])=>b-a)
-        ); for (indi in sortable) {
+        ):{}; for (indi in sortable) {
             if ((sortable[indi]!==undefined)||(indi!='')) {
                 res+="<input type='image' class='power' onmouseover='soundButton();' src='"+am+timezoner(indi,'at')+".png"+"' onclick='clip(&#34;"+timezoner(indi,'at')+"&#34;);'>";
                 res+="<input type='button' onmouseover='soundButton();' style='width:24%;' value='"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
