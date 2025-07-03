@@ -72,7 +72,8 @@
         <input type='hidden' id="sysDefPublicUserData" value="">
         <input type='hidden' id="sysDefLockData" value="">
         <input type='hidden' id="sysDefLockIcons" value="">
-        <input type='hidden' id="sysDefIsSession" value="<?=isAuthorized();?>"><input type='hidden' id="sysDefSessionID" value="<?=$sessionID;?>">
+        <input type='hidden' id="sysDefIsSession" value="<?=isAuthorized();?>">
+        <input type='hidden' id="sysDefSessionID" value="<?=$sessionID;?>">
         <input type='hidden' id="sysDefPostBackEff" value="0">
         <input type='hidden' id="sysDefPostTickEff" value="0">
         <input type='hidden' id="sysDefVarsArr" value="">
