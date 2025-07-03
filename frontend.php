@@ -307,21 +307,21 @@ function activeHoursHTML(id) {
 function gradButton(id,elem='fore') {
     var res=''; if (elem=='fore') {
         if (timezoner(id,'gloss')!=0) {
-            res="border-radius:"+timezoner(id,'border_radius')+";background:linear-gradient("+timezoner(id,'gradient_fore')+"deg, "+timezoner(id,'fore_color')+" 0%, "+timezoner(id,'arc_fore_color')+" 100%);font_color:"+timezoner(id,'fore_text_color')+";";
+            res="border-radius:"+timezoner(id,'border_radius')+";background:linear-gradient("+timezoner(id,'gradient_fore')+"deg, "+timezoner(id,'fore_color')+" 0%, "+timezoner(id,'arc_fore_color')+" 100%);font_color:"+timezoner(id,'fore_text_color')+";box-shadow:"+timezoner(id,'box_shadow')+";";
         } else {
-            res="border-radius:"+timezoner(id,'border_radius')+";background-color:"+timezoner(id,'fore_color')+";font_color:"+timezoner(id,'fore_text_color')+";";
+            res="border-radius:"+timezoner(id,'border_radius')+";background-color:"+timezoner(id,'fore_color')+";font_color:"+timezoner(id,'fore_text_color')+";box-shadow:"+timezoner(id,'box_shadow')+";";
         }
     } else if (elem=='input') {
         if (timezoner(id,'gloss')!=0) {
-            res="border-radius:"+timezoner(id,'text_border_radius')+";background:linear-gradient("+timezoner(id,'gradient_input')+"deg, "+timezoner(id,'input_color')+" 0%, "+timezoner(id,'arc_input_color')+" 100%);font_color:"+timezoner(id,'input_text_color')+";";
+            res="border-radius:"+timezoner(id,'text_border_radius')+";background:linear-gradient("+timezoner(id,'gradient_input')+"deg, "+timezoner(id,'input_color')+" 0%, "+timezoner(id,'arc_input_color')+" 100%);font_color:"+timezoner(id,'input_text_color')+";box-shadow:"+timezoner(id,'box_shadow')+";";
         } else {
-            res="border-radius:"+timezoner(id,'text_border_radius')+";background-color:"+timezoner(id,'input_color')+";font_color:"+timezoner(id,'input_text_color')+";";
+            res="border-radius:"+timezoner(id,'text_border_radius')+";background-color:"+timezoner(id,'input_color')+";font_color:"+timezoner(id,'input_text_color')+";box-shadow:"+timezoner(id,'box_shadow')+";";
         }
     } else if (elem=='button') {
         if (timezoner(id,'gloss')!=0) {
-            res="border-radius:"+timezoner(id,'border_radius')+";background:linear-gradient("+timezoner(id,'gradient_button')+"deg, "+timezoner(id,'fore_color')+" 0%, "+timezoner(id,'arc_fore_color')+" 100%);font_color:"+timezoner(id,'fore_text_color')+";";
+            res="border-radius:"+timezoner(id,'border_radius')+";background:linear-gradient("+timezoner(id,'gradient_button')+"deg, "+timezoner(id,'fore_color')+" 0%, "+timezoner(id,'arc_fore_color')+" 100%);font_color:"+timezoner(id,'fore_text_color')+";box-shadow:"+timezoner(id,'box_shadow')+";";
         } else {
-            res="border-radius:"+timezoner(id,'border_radius')+";background-color:"+timezoner(id,'fore_color')+";font_color:"+timezoner(id,'fore_text_color')+";";
+            res="border-radius:"+timezoner(id,'border_radius')+";background-color:"+timezoner(id,'fore_color')+";font_color:"+timezoner(id,'fore_text_color')+";box-shadow:"+timezoner(id,'box_shadow')+";";
         }
     } return res;
 }

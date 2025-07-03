@@ -17,7 +17,7 @@
         "superuser": "root"
     },
     "public_user_data": [
-        "avatar","active_hours","timezone","gloss","border_radius","text_border_radius","fore_color","fore_text_color","arc_fore_color","input_color","input_text_color","arc_input_color","gradient_fore","gradient_input","gradient_button"
+        "avatar","active_hours","timezone","gloss","border_radius","text_border_radius","fore_color","fore_text_color","arc_fore_color","input_color","input_text_color","arc_input_color","gradient_fore","gradient_input","gradient_button","box_shadow","text_box_shadow"
     ],
     "viewport": {
         "width": "device-width", "initial-scale": "1.0",
