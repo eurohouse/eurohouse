@@ -2,7 +2,7 @@ function scores(mode) {
     var files={'bind':'binding','call':'calling','auto':'automator','tool':'toolbox','powers':'dominion','hdi':'i18n'};
     var micro=['bind','call','auto','tool','powers'];
     var dataObject=document.getElementById('sysDef'+ucfirst(mode)+'Data').value;
-    var dataText=dataobj.value; var filename=files[mode]+'.json';
+    var dataText=dataObject.value; var filename=files[mode]+'.json';
     var obj=(notNull(micro[mode]))?strarr(dataText,';',':'):jsonarr(dataText);
     var res='',sortable={},ordered={},data={};
     var pm=sysDefPrefix.value,am=sysDefAva1Prefix.value;
