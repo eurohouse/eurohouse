@@ -77,13 +77,13 @@
         <input type='hidden' id="sysDefPostTickEff" value="0">
         <input type='hidden' id="sysDefVarsArr" value="">
         <input type='hidden' id="sysDefUsersList" value="">
-        <input type='hidden' id="sysDefBindData" value="<?=valstr($bindData,';',':');?>">
+        <input type='hidden' id="sysDefBindData" value="<?=json_encode($bindData,JSON_UNESCAPED_UNICODE);?>">
         <input type='hidden' id="sysDefMyBindState" value="<?=$bindData[$sessionID];?>">
-        <input type='hidden' id="sysDefPowersData" value="<?=valstr($powersData,';',':');?>">
+        <input type='hidden' id="sysDefPowersData" value="<?=json_encode($powersData,JSON_UNESCAPED_UNICODE);?>">
         <input type='hidden' id="sysDefMyPowersState" value="<?=$powersData[$sessionID];?>">
-        <input type='hidden' id="sysDefAutoData" value="<?=valstr($automateData,';',':');?>">
+        <input type='hidden' id="sysDefAutoData" value="<?=json_encode($automateData,JSON_UNESCAPED_UNICODE);?>">
         <input type='hidden' id="sysDefMyAutoState" value="<?=$automateData[$sessionID];?>">
-        <input type='hidden' id="sysDefToolData" value="<?=valstr($toolboxData,';',':');?>">
+        <input type='hidden' id="sysDefToolData" value="<?=json_encode($toolboxData,JSON_UNESCAPED_UNICODE);?>">
         <input type='hidden' id="sysDefMyToolState" value="<?=$toolboxData[$sessionID];?>">
         <input type='hidden' id="sysDefMetaData" value="<?=json_encode($metadata,JSON_UNESCAPED_UNICODE);?>"><input type='hidden' id="sysDefMetaList" value="<?=implode(' | ',array_keys($metadata));?>">
         <input type='hidden' id="sysDefMsgCounter" value="0">
@@ -91,9 +91,9 @@
         <input type='hidden' id="sysDefMsgCurrent" value="">
         <input type='hidden' id="sysDefCodexBox" value="<?=implode('//',(str_replace('./','',(glob('./*.mac')))));?>">
         <input type='hidden' id="sysDefSpeechBox" value="<?=implode('//',(str_replace('./','',(glob('./*.pro')))));?>">
-        <input type='hidden' id="sysDefPostBindData" value="<?=valstr($bindData,';',':');?>">
-        <input type='hidden' id="sysDefPostPowersData" value="<?=valstr($powersData,';',':');?>">
-        <input type='hidden' id="sysDefPostToolData" value="<?=valstr($toolboxData,';',':');?>">
+        <input type='hidden' id="sysDefPostBindData" value="<?=json_encode($bindData,JSON_UNESCAPED_UNICODE);?>">
+        <input type='hidden' id="sysDefPostPowersData" value="<?=json_encode($powersData,JSON_UNESCAPED_UNICODE);?>">
+        <input type='hidden' id="sysDefPostToolData" value="<?=json_encode($toolboxData,JSON_UNESCAPED_UNICODE);?>">
         <input type='hidden' id="sysDefPostMyMsgboxData" value="">
         <input type='hidden' id="sysDefPostMyBookData" value="">
         <input type='hidden' id='sysDefAvatarIcons' value="<?=implode(';',(str_replace('./','',(glob('./'.$prefix[0].'*.png')))));?>">

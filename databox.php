@@ -40,10 +40,10 @@ foreach ($poweredData as $key=>$value) {
 } $usersList=array_keys($poweredData);natcasesort($usersList);
 /* ¶ 0 */ echo $cookie."\r\n\r\n".
 /* ¶ 1 */ implode(',',$pref)."\r\n\r\n".
-/* ¶ 2 */ valstr($bindingData,';',':')."\r\n\r\n".
-/* ¶ 3 */ valstr($poweredData,';',':')."\r\n\r\n".
-/* ¶ 4 */ valstr($autoData,';',':')."\r\n\r\n".
-/* ¶ 5 */ valstr($toolData,';',':')."\r\n\r\n".
+/* ¶ 2 */ json_encode($bindingData,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
+/* ¶ 3 */ json_encode($poweredData,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
+/* ¶ 4 */ json_encode($autoData,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
+/* ¶ 5 */ json_encode($toolData,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
 /* ¶ 6 */ json_encode($userLocks,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
 /* ¶ 7 */ implode('//',(str_replace('./','',(glob('./*.mac')))))."\r\n\r\n".
 /* ¶ 8 */ implode('//',(str_replace('./','',(glob('./*.pro')))))."\r\n\r\n".

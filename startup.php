@@ -39,13 +39,13 @@ function databox() {
             $('#sysDefSafeContentData').val(pager(data,16));
             $('#sysDefModelData').val(arrjson({...jsonarr(sysDefNSFWModelData.value), ...jsonarr(sysDefSafeModelData.value)}));
             $('#sysDefContentData').val(arrjson({...jsonarr(sysDefNSFWContentData.value), ...jsonarr(sysDefSafeContentData.value)}));
-            $('#sysDefMetaList').val(Object.keys(jsonarr(sysDefMetaData.value)).join(' | ')); var powersData=strarr(sysDefPowersData.value,';',':');
+            $('#sysDefMetaList').val(Object.keys(jsonarr(sysDefMetaData.value)).join(' | ')); var powersData=jsonarr(sysDefPowersData.value);
             sysDefMyPowersState.value=powersData[sysDefSessionID.value];
-            var bindData=strarr(sysDefBindData.value,';',':');
+            var bindData=jsonarr(sysDefBindData.value);
             sysDefMyBindState.value=bindData[sysDefSessionID.value];
-            var autoData=strarr(sysDefAutoData.value,';',':');
+            var autoData=jsonarr(sysDefAutoData.value);
             sysDefMyAutoState.value=autoData[sysDefSessionID.value];
-            var toolData=strarr(sysDefToolData.value,';',':');
+            var toolData=jsonarr(sysDefToolData.value);
             sysDefMyToolState.value=toolData[sysDefSessionID.value];
             sysDefPrefix.value=(sysDefPrefData.value).split(',')[3]; sysDefAva0Prefix.value=(sysDefPrefData.value).split(',')[0]; sysDefAva1Prefix.value=(sysDefPrefData.value).split(',')[1]; sysDefPic0Prefix.value=(sysDefPrefData.value).split(',')[2]; sysDefPic1Prefix.value=(sysDefPrefData.value).split(',')[3]; sysDefRet0Prefix.value=(sysDefPrefData.value).split(',')[4]; sysDefRet1Prefix.value=(sysDefPrefData.value).split(',')[5];
             if (sysDefBindData.value!=sysDefPostBindData.value) { playAudio(bindPlayer,sysDefBindSound.value); } sysDefPostBindData.value=sysDefBindData.value;
@@ -86,7 +86,7 @@ function world_clock() {
             var effects=jsonarr(sysDefEffects.value);
             var mixers=jsonarr(sysDefMixers.value);
             var uidm=sysDefSessionID.value;
-            var bndm=strarr(sysDefBindData.value,';',':')[uidm];
+            var bndm=jsonarr(sysDefBindData.value)[uidm];
             $('#sysDefLockIcons').val(pager(data,8));
             $('#sysDefDataLoad').val(pager(data,9));
             if (requestMode.value=='volume_control') {
@@ -154,7 +154,8 @@ function world_clock() {
             if ((pager(data,2)=='--:--')&&(sysDefMemo.value!='')) {
                 playAudio(alarmPlayer,sysDefAlarmSound.value);
                 setdata('memo','');
-            } var uidm=sysDefSessionID.value,bndm=strarr(sysDefBindData.value,';',':')[uidm];
+            } var uidm=sysDefSessionID.value;
+            var bndm=jsonarr(sysDefBindData.value)[uidm];
             if (authstate()) {
                 omniBox.placeholder=finterm('Type command or expression and press ENTER');
             } else {
@@ -349,10 +350,10 @@ function wallpaper_engine() {
     });
 }
 function automator() {
-    var autoPower=strarr(sysDefAutoData.value,';',':');
-    var bindPower=strarr(sysDefBindData.value,';',':');
-    var tabPower=strarr(sysDefPowersData.value,';',':');
-    var toolPower=strarr(sysDefToolData.value,';',':');
+    var autoPower=jsonarr(sysDefAutoData.value);
+    var bindPower=jsonarr(sysDefBindData.value);
+    var tabPower=jsonarr(sysDefPowersData.value);
+    var toolPower=jsonarr(sysDefToolData.value);
     var userList=(sysDefUsersList.value).split(',');
     var subName=userList[rand(0,userList.length)];
     var objName=userList[rand(0,userList.length)];

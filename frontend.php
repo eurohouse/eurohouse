@@ -66,13 +66,13 @@ function authstate() {
     return (sysDefIsSession.value!=false);
 }
 function cancelled(id) {
-    var pwr=strarr(sysDefPowersData.value,';',':');
+    var pwr=jsonarr(sysDefPowersData.value);
     var res=false; if ((pwr[id]!==undefined)&&(isNum(pwr[id]))) {
         res=(pwr[id]<0);
     } return res;
 }
 function enoughfor(id,prix) {
-    var pwr=strarr(sysDefPowersData.value,';',':');
+    var pwr=jsonarr(sysDefPowersData.value);
     var res=true; if (isNum(prix)) {
         res=(pwr[id]>=parseFloat(prix));
     } return res;
@@ -177,16 +177,16 @@ function userRestore(id) {
         omniListen(demorse(fsess['melody'],id,fsess['numeric']),false,parseInt(fsess['current']));
     }
 }
-function remove_entry(id,obj,name,complex=false,dy=';',dx=':') {
+function remove_entry(id,obj,name) {
     var rawData=(isObject(obj))?obj.value:obj;
-    var resarr=(complex)?jsonarr(rawData):strarr((rawData),dy,dx);
+    var resarr=jsonarr(rawData);
     if (notNull(resarr[id])) {
         delete resarr[id]; set(name+'.json',JSON.stringify(resarr),'rw');
-    } obj.value=(complex)?arrjson(resarr):arrstr(resarr,dy,dx);
+    } obj.value=arrjson(resarr);
 }
-function reset_entry(id,obj,name,mode='',complex=false,dy=';',dx=':') {
+function reset_entry(id,obj,name,mode='') {
     var rawData=(isObject(obj))?obj.value:obj;
-    var resarr=(complex)?jsonarr(rawData):strarr((rawData),dy,dx);
+    var resarr=jsonarr(rawData);
     if (!notNull(resarr[id])) {
         if (mode=='i') { resarr[id]=id;
         } else if (mode=='e') { resarr[id]='';
@@ -194,7 +194,7 @@ function reset_entry(id,obj,name,mode='',complex=false,dy=';',dx=':') {
         } else if (mode=='a') { resarr[id]='auto';
         } else if (mode=='m') { resarr[id]='manual'; }
     } set(name+'.json',JSON.stringify(resarr),'rw');
-    obj.value=(complex)?arrjson(resarr):arrstr(resarr,dy,dx);
+    obj.value=arrjson(resarr);
 }
 function delete_user(id) {
     bind(sysDefSessionID.value,sysDefSessionID.value);
@@ -222,11 +222,11 @@ function delete_user(id) {
     del(id+'_files','rw');
 }
 function transfer_entry(id,to,obj,name,onlyAssignID=false) {
-    var objData=strarr(obj.value,';',':');
+    var objData=jsonarr(obj.value);
     objData[to]=(onlyAssignID)?to:objData[id];
     if (id!=to) { delete objData[id]; }
     set(name+'.json',JSON.stringify(objData),'rw');
-    obj.value=arrstr(objData,';',':');
+    obj.value=arrjson(objData);
 }
 function rename_user(id,to,pass,perm) {
     bind(id,id); bind(to,to); del(id+'_files/password','rw');
@@ -269,10 +269,10 @@ function administer(entry,mode='+') {
         var micro=['bind','auto','tool','powers'];
         var sub={'bind':'i','auto':'manual|auto','tool':'e','powers':'n'},sum=qua=div=1;
         var tempObj=obj={},tempData=temp='';
-        var counts=strarr(sysDefPowersData.value,';',':');
+        var counts=jsonarr(sysDefPowersData.value,';',':');
         if (notNull(sub[entry])) {
             tempObj=document.getElementById('sysDef'+ucfirst(entry)+'Data'),tempData=tempObj.value;
-            obj=(micro.includes(entry))?strarr(tempData,';',':'):jsonarr(tempData);
+            obj=jsonarr(tempData);
             sum=arrsum(Object.values(obj));
             qua=Object.keys(obj).length;
             div=Math.round(sum/qua);
@@ -290,12 +290,12 @@ function administer(entry,mode='+') {
                     }
                 }
             } if (notNull(obj)) {
-                set(files[entry]+'.json',JSON.stringify(obj),'rw'); tempObj.value=(micro.includes(entry))?arrstr(obj,';',':'):arrjson(obj);
+                set(files[entry]+'.json',JSON.stringify(obj),'rw'); tempObj.value=arrjson(obj);
             }
         } else {
             for (temp in sub) {
                 tempObj=document.getElementById('sysDef'+ucfirst(temp)+'Data'),tempData=tempObj.value;
-                obj=(micro.includes(temp))?strarr(tempData,';',':'):jsonarr(tempData);
+                obj=jsonarr(tempData);
                 sum=arrsum(Object.values(obj));
                 qua=Object.keys(obj).length;
                 div=Math.round(sum/qua);
@@ -315,7 +315,7 @@ function administer(entry,mode='+') {
                         }
                     }
                 } if (notNull(obj)) {
-                    set(files[temp]+'.json',JSON.stringify(obj),'rw'); tempObj.value=(micro.includes(temp))?arrstr(obj,';',':'):arrjson(obj);
+                    set(files[temp]+'.json',JSON.stringify(obj),'rw'); tempObj.value=arrjson(obj);
                 }
             }
         }
@@ -326,7 +326,7 @@ function highscore(mode) {
     var micro=['bind','call','auto','tool','powers'];
     var text=document.getElementById('sysDef'+ucfirst(mode)+'Data').value;
     console.log(text);
-    var obj=(micro[mode]!==undefined)?strarr(text,';',':'):jsonarr(text);
+    var obj=jsonarr(text);
     var res='',sortable={},ordered={},data={};
     var pm=sysDefPrefix.value,am=sysDefAva1Prefix.value;
     if (mode=='bind') {
@@ -757,20 +757,20 @@ function isInMenu(list,item) {
     return (arr.indexOf(item)>-1);
 }
 function bind(usr,id) {
-    var obj=strarr(sysDefBindData.value,';',':');
+    var obj=jsonarr(sysDefBindData.value);
     obj[usr]=id; set('binding.json',JSON.stringify(obj),'rw');
-    sysDefBindData.value=arrstr(obj,';',':');
+    sysDefBindData.value=arrjson(obj);
 }
 function equip(usr,tool='') {
-    var obj=strarr(sysDefToolData.value,';',':');
+    var obj=jsonarr(sysDefToolData.value);
     obj[usr]=tool; set('toolbox.json',JSON.stringify(obj),'rw');
-    sysDefToolData.value=arrstr(obj,';',':');
+    sysDefToolData.value=arrjson(obj);
 }
 function automate(usr) {
-    var obj=strarr(sysDefAutoData.value,';',':');
+    var obj=jsonarr(sysDefAutoData.value);
     obj[usr]=(sysDefMyAutoState.value=='auto')?'manual':'auto';
     set('automator.json',JSON.stringify(obj),'rw');
-    sysDefAutoData.value=arrstr(obj,';',':');
+    sysDefAutoData.value=arrjson(obj);
 }
 function localizedTitle(id,ent='title') {
     var mono=loadFile(id+'_files/session.json',ent);
@@ -905,7 +905,7 @@ function fixPrice(sen,rec,deb,cre) {
     var tran1=openJournal(sen,sysDefBookJSONs);
     var tran2=openJournal(rec,sysDefBookJSONs);
     var trans1=jsonarr(tran1),trans2=jsonarr(tran2);
-    var stat=strarr(sysDefPowersData.value,';',':');
+    var stat=jsonarr(sysDefPowersData.value);
     var statD=(isNum(stat[sen]))?parseFloat(stat[sen]):0;
     var statC=(isNum(stat[rec]))?parseFloat(stat[rec]):0;
     var statDr=parseFloat(statD),statCr=parseFloat(statC);
@@ -939,10 +939,10 @@ function fixPrice(sen,rec,deb,cre) {
     } set('./'+sen+'_files/book.json',encodeURIComponent(JSON.stringify(trans1)),'rw');
     set('./'+rec+'_files/book.json',encodeURIComponent(JSON.stringify(trans2)),'rw');
     set('dominion.json',JSON.stringify(stat),'rw');
-    sysDefPowersData.value=arrstr(stat,';',':');
+    sysDefPowersData.value=arrjson(stat);
 }
 function charge(usr,art='') {
-    var powersData=strarr(sysDefPowersData.value,';',':');
+    var powersData=jsonarr(sysDefPowersData.value);
     var userMarket=jsonarr(openJournal(usr,sysDefStoreJSONs));
     var force=amount=series=finite=0;
     var usrPwr=(isNum(powersData[usr]))?parseFloat(powersData[usr]):0;
@@ -970,11 +970,11 @@ function charge(usr,art='') {
             } else { usrPwr+=force; }
         } powersData[usr]=usrPwr;
         set('./'+usr+'_files/store.json',encodeURIComponent(JSON.stringify(userMarket)),'rw'); set('dominion.json',JSON.stringify(powersData),'rw');
-        sysDefPowersData.value=arrstr(powersData,';',':');
+        sysDefPowersData.value=arrjson(powersData);
     }
 }
 function dominate(usr,id,art='') {
-    var powersData=strarr(sysDefPowersData.value,';',':');
+    var powersData=jsonarr(sysDefPowersData.value);
     var userMarket=jsonarr(openJournal(usr,sysDefStoreJSONs));
     var force=amount=series=finite=0;
     var usrPwr=(isNum(powersData[usr]))?parseFloat(powersData[usr]):0;
@@ -1006,7 +1006,7 @@ function dominate(usr,id,art='') {
             } powersData[usr]=usrPwr; powersData[id]=idPwr;
             set('./'+usr+'_files/store.json',encodeURIComponent(JSON.stringify(userMarket)),'rw');
             set('dominion.json',JSON.stringify(powersData),'rw');
-            sysDefPowersData.value=arrstr(powersData,';',':');
+            sysDefPowersData.value=arrjson(powersData);
         }
     }
 }
