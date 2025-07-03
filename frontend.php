@@ -1078,8 +1078,7 @@ function keyPressed() {
     }
 }
 function omniEnter() {
-    console.log(calc(input));
-    omniBox.value=calc(input);
+    omniBox.value=calc(omniBox.value);
     omniBox.focus();
 }
 function getPkgSequence(input,cmdword,isRepo=0,isDbg=0) {
