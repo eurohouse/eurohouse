@@ -1082,17 +1082,11 @@ function omniEnter(obj) {
     var itr=0,itd=0,arg=[],arh=[],ark={};
     var uid=sysDefSessionID.value;
     if (input.toLowerCase()=='reload') { window.location.reload();
-    } else if (input.toLowerCase()=='refresh') {
-        window.location.reload();
+    } else if (input.toLowerCase()=='refresh') { window.location.reload();
     } else if (input.toLowerCase()=='upload') {
         document.getElementById('filebrowser').click(); return false;
-    } else if (input.toLowerCase()=='save') {
-        userBackup(uid);
-    } else if (input.toLowerCase()=='load') {
-        userRestore(uid);
-    } else if (input.toLowerCase()=='play') {
-        omniListen(demorse(sysDefMelody.value,uid,sysDefNumeric.value));
-    } else if (input.toLowerCase()=='pause') { omniPause();
+    } else if (input.toLowerCase()=='save') { userBackup(uid);
+    } else if (input.toLowerCase()=='load') { userRestore(uid);
     } else if (input.toLowerCase()=='nightcore') {
         arb=superRound((parseFloat(sysDefAudioSpeed.value)+0.05),2);
         arc=(arb>1.5)?1.5:arb; setdata('audio_speed',arc);
@@ -1108,12 +1102,6 @@ function omniEnter(obj) {
     } else if (input.toLowerCase()=='nsfw') { omniSort('nsfw');
     } else if (input.toLowerCase()=='safe') { omniSort('safe');
     } else if (input.toLowerCase()=='all') { omniSort('');
-    } else if (input.toLowerCase()=='model') {
-        arg=Object.keys(jsonarr(sysDefModelData.value));
-        omniGroup(arg[rand(0,arg.length)]);
-    } else if (input==':') {
-        arg=Object.keys(jsonarr(sysDefContentData.value));
-        setdata('banner',arg[rand(0,arg.length)]);
     } else if (input=='\\=') {
         obj.value='\\='+demorse(sysDefMelody.value,uid,sysDefNumeric.value);
     } else if ((input.startsWith('"'))&&(input.endsWith('"'))) {
@@ -1292,10 +1280,6 @@ function omniEnter(obj) {
         } else if (arb.endsWith('+')) {
             arc=arb.replace('+',''); administer(arc,'+');
         }
-    } else if (input.startsWith('bind ')) {
-        bind(uid,input.replace('bind ',''));
-    } else if (input.startsWith('equip ')) {
-        equip(uid,input.replace('equip ',''));
     } else if (input.startsWith('get ')) {
         getPkgSequence(input,'get ',0);
     } else if (input.startsWith('git ')) {
@@ -1346,19 +1330,7 @@ function omniEnter(obj) {
     } else if ((input.startsWith('+'))&&(input.endsWith('"'))) {
         arb=parseInt(input.slice(1,-1))+1;
         setdata('memo',(Math.round(Date.now()/1000)+parseInt(arb)));
-    } else if ((input.startsWith('+'))&&(input.endsWith('sec'))) {
-        arb=parseInt(input.slice(1,-3))+1;
-        setdata('memo',(Math.round(Date.now()/1000)+parseInt(arb)));
-    } else if ((input.startsWith('+'))&&(input.endsWith('s'))) {
-        arb=parseInt(input.slice(1,-1))+1;
-        setdata('memo',(Math.round(Date.now()/1000)+parseInt(arb)));
     } else if ((input.startsWith('+'))&&(input.endsWith("'"))) {
-        arb=parseInt(input.slice(1,-1))*60+1;
-        setdata('memo',(Math.round(Date.now()/1000)+parseInt(arb)));
-    } else if ((input.startsWith('+'))&&(input.endsWith('min'))) {
-        arb=parseInt(input.slice(1,-3))*60+1;
-        setdata('memo',(Math.round(Date.now()/1000)+parseInt(arb)));
-    } else if ((input.startsWith('+'))&&(input.endsWith('m'))) {
         arb=parseInt(input.slice(1,-1))*60+1;
         setdata('memo',(Math.round(Date.now()/1000)+parseInt(arb)));
     } else { obj.value=calc(input); } obj.focus();
