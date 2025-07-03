@@ -322,10 +322,10 @@ function administer(entry,mode='+') {
 }
 function highscore(mode) {
     var files={'bind':'binding.json','call':'calling.json','auto':'automator.json','tool':'toolbox.json','powers':'dominion.json','hdi':'i18n.json'};
-    var text=document.getElementById('sysDef'+snakeToCamel(mode)+'Data').value;
-    var obj=jsonarr(text),res='',sortable={},ordered={},data={};
+    var objHTML={},objText='',obj={},res='',sortable={},ordered={},data={};
     var pm=sysDefPrefix.value,am=sysDefAva1Prefix.value;
     if (mode=='bind') {
+        objHTML=sysDefBindData,objText=objHTML.value,obj=jsonarr(objText);
         ordered=Object.keys(obj).sort().reduce(
             (obd,key) => { obd[key]=obj[key]; return obd; }, {}
         ); for (indi in ordered) {
@@ -335,11 +335,12 @@ function highscore(mode) {
                 res+="<input type='button' onmouseover='soundButton();' style='width:42%;' value='"+ordered[indi]+"' onclick='clip(&#34;"+ordered[indi]+"&#34;);'>";
                 res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+((ordered[indi]!=indi)?"broke.png":"chain.png")+"' onclick='bind(&#34;"+sysDefSessionID.value+"&#34;,&#34;"+indi+"&#34;);'>";
                 if (superuser()) {
-                    res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+text+"&#34;,&#34;"+files[mode]+"&#34;);'>";
+                    res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+objText+"&#34;,&#34;"+files[mode]+"&#34;);'>";
                 } res+="<br>";
             }
         }
     } else if (mode=='auto') {
+        objHTML=sysDefAutoData,objText=objHTML.value,obj=jsonarr(objText);
         ordered=Object.keys(obj).sort().reduce(
             (obd,key) => { obd[key]=obj[key]; return obd; }, {}
         ); for (indi in ordered) {
@@ -349,11 +350,12 @@ function highscore(mode) {
                 res+="<input type='button' onmouseover='soundButton();' style='width:40%;' value='"+((ordered[indi]).toUpperCase())+"' onclick='clip(&#34;"+((ordered[indi]).toUpperCase())+"&#34;);'>";
                 res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+((ordered[indi]=='auto')?"wheel.png":"steer.png")+"' onclick='automate(&#34;"+indi+"&#34;);'>";
                 if (superuser()) {
-                    res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+text+"&#34;,&#34;"+files[mode]+"&#34;);'>";
+                    res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+objText+"&#34;,&#34;"+files[mode]+"&#34;);'>";
                 } res+="<br>";
             }
         }
     } else if (mode=='tool') {
+        objHTML=sysDefToolData,objText=objHTML.value,obj=jsonarr(objText);
         ordered=Object.keys(obj).sort().reduce(
             (obd,key) => { obd[key]=obj[key]; return obd; }, {}
         ); for (indi in ordered) {
@@ -370,12 +372,13 @@ function highscore(mode) {
                     res+="<input type='button' onmouseover='soundButton();' style='width:30%;' value='"+ordered[indi]+"' onclick='clip(&#34;"+ordered[indi]+"&#34;);'>";
                     res+="<input type='button' onmouseover='soundButton();' style='width:23%;' value='"+toolTableau+"' onclick='clip(&#34;"+toolTableau+"&#34;);'>";
                     if (superuser()) {
-                        res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+text+"&#34;,&#34;"+files[mode]+"&#34;);'>";
+                        res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+objText+"&#34;,&#34;"+files[mode]+"&#34;);'>";
                     } res+="<br>";
                 }
             }
         }
     } else if (mode=='hdi') {
+        objHTML=sysDefHDIData,objText=objHTML.value,obj=jsonarr(objText);
         for (et in obj) {
             var lem,lef,mysm,mysf,eysm,eysf,gnim,gnif;
             if ((obj[et]['Life Expectancy']!==undefined)&&(typeof(obj[et]['Life Expectancy'])=='object')) {
@@ -409,9 +412,8 @@ function highscore(mode) {
                 res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+"info.png"+"' onclick='omniPath(&#34;i18n.json&#34;,&#34;"+indi+"&#34;,&#34;false&#34;);'><br>";
             }
         }
-    } else if (mode=='public_user') {
-
     } else if (mode=='powers') {
+        objHTML=sysDefPowersData,objText=objHTML.value,obj=jsonarr(objText);
         sortable=Object.fromEntries(
             Object.entries(obj).sort(([,a],[,b])=>b-a)
         ); for (indi in sortable) {
@@ -419,10 +421,36 @@ function highscore(mode) {
                 res+="<input type='image' class='power' onmouseover='soundButton();' src='"+am+timezoner(indi,'at')+".png"+"' onclick='clip(&#34;"+timezoner(indi,'at')+"&#34;);'>";
                 res+="<input type='button' onmouseover='soundButton();' style='width:24%;' value='"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
                 res+="<input type='button' onmouseover='soundButton();' style='width:50%;' value='"+format_currency(sortable[indi])+"' onclick='clip(&#34;"+sortable[indi]+"&#34;);'>";
-                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+(cancelled(ordered[indi])?"hole.png":"heart.png")+"' onclick='automate(&#34;"+indi+"&#34;);'>";
+                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+(cancelled(ordered[indi])?"hole.png":"heart.png")+"';
                 if (superuser()) {
-                    res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+text+"&#34;,&#34;"+files[mode]+"&#34;);'>";
+                    res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+objText+"&#34;,&#34;"+files[mode]+"&#34;);'>";
                 } res+="<br>";
+            }
+        }
+    } else if (mode=='time') {
+        objText=sysDefPublicUserData.value,obj=jsonarr(objText)['time'];
+        sortable=Object.fromEntries(
+            Object.entries(obj).sort(([,a],[,b])=>b-a)
+        ); for (indi in sortable) {
+            if ((sortable[indi]!==undefined)||(indi!='')) {
+                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+am+timezoner(indi,'at')+".png"+"' onclick='clip(&#34;"+timezoner(indi,'at')+"&#34;);'>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:24%;' value='"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:50%;' value='"+sortable[indi]+"' onclick='clip(&#34;"+sortable[indi]+"&#34;);'>";
+                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+(cancelled(ordered[indi])?"hole.png":"heart.png")+"';
+                res+="<br>";
+            }
+        }
+    } else if (mode=='date') {
+        objText=sysDefPublicUserData.value,obj=jsonarr(objText)['date'];
+        sortable=Object.fromEntries(
+            Object.entries(obj).sort(([,a],[,b])=>b-a)
+        ); for (indi in sortable) {
+            if ((sortable[indi]!==undefined)||(indi!='')) {
+                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+am+timezoner(indi,'at')+".png"+"' onclick='clip(&#34;"+timezoner(indi,'at')+"&#34;);'>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:24%;' value='"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:50%;' value='"+sortable[indi]+"' onclick='clip(&#34;"+sortable[indi]+"&#34;);'>";
+                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+(cancelled(ordered[indi])?"hole.png":"heart.png")+"';
+                res+="<br>";
             }
         }
     } return res;
