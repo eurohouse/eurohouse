@@ -1077,8 +1077,8 @@ function keyPressed() {
         pressedCode.innerText=event.code;
     }
 }
-function omniEnter(input) {
-    var arb=arc=ari=arj='';
+function omniEnter(obj) {
+    var arb=arc=ari=arj='',input=obj.value;
     var itr=0,itd=0,arg=[],arh=[],ark={};
     var uid=sysDefSessionID.value;
     if (input.toLowerCase()=='reload') { window.location.reload();
@@ -1115,7 +1115,7 @@ function omniEnter(input) {
         arg=Object.keys(jsonarr(sysDefContentData.value));
         setdata('banner',arg[rand(0,arg.length)]);
     } else if (input=='\\=') {
-        omniBox.value='\\='+demorse(sysDefMelody.value,uid,sysDefNumeric.value);
+        obj.value='\\='+demorse(sysDefMelody.value,uid,sysDefNumeric.value);
     } else if ((input.startsWith('"'))&&(input.endsWith('"'))) {
         compose(sysDefSessionID.value,input.replace('"','').slice(0,-1));
     } else if (input.startsWith('store ')) {
@@ -1188,25 +1188,25 @@ function omniEnter(input) {
         arj=input.replace('encode ','');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
         if (arg.length==3) {
-            omniBox.value="decode \""+enmorse(quote(arg[0]),quote(arg[1]),quote(arg[2]))+"\" \""+quote(arg[1])+"\" \""+quote(arg[2])+"\"";
+            obj.value="decode \""+enmorse(quote(arg[0]),quote(arg[1]),quote(arg[2]))+"\" \""+quote(arg[1])+"\" \""+quote(arg[2])+"\"";
         }
     } else if (input.startsWith('decode ')) {
         arj=input.replace('decode ','');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
         if (arg.length==3) {
-            omniBox.value="encode \""+demorse(quote(arg[0]),quote(arg[1]),quote(arg[2]))+"\" \""+quote(arg[1])+"\" \""+quote(arg[2])+"\"";
+            obj.value="encode \""+demorse(quote(arg[0]),quote(arg[1]),quote(arg[2]))+"\" \""+quote(arg[1])+"\" \""+quote(arg[2])+"\"";
         }
     } else if (input.startsWith('decbase ')) {
         arj=input.replace('decbase ','');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
         if (arg.length==2) {
-            omniBox.value="basedec \""+decbase(quote(arg[0]),quote(arg[1]))+"\" \""+quote(arg[1])+"\"";
+            obj.value="basedec \""+decbase(quote(arg[0]),quote(arg[1]))+"\" \""+quote(arg[1])+"\"";
         }
     } else if (input.startsWith('basedec ')) {
         arj=input.replace('basedec ','');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
         if (arg.length==2) {
-            omniBox.value="decbase \""+basedec(quote(arg[0]),quote(arg[1]))+"\" \""+quote(arg[1])+"\"";
+            obj.value="decbase \""+basedec(quote(arg[0]),quote(arg[1]))+"\" \""+quote(arg[1])+"\"";
         }
     } else if (input.startsWith('chmod ')) {
         itd=(superuser())?'rw':uid; arj=input.replace('chmod ','');
@@ -1253,22 +1253,22 @@ function omniEnter(input) {
         arj=input.replace('read ', '');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
         if (arg.length==2) {
-            omniBox.value=loadFile(quote(arg[0]),quote(arg[1]));
+            obj.value=loadFile(quote(arg[0]),quote(arg[1]));
         } else {
-            omniBox.value=loadFile(quote(arg[0]));
+            obj.value=loadFile(quote(arg[0]));
         }
     } else if (input.startsWith('timezoner ')) {
         arj=input.replace('timezoner ', '');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
         if (arg.length>1) {
-            omniBox.value=timezoner(quote(arg[0]),quote(arg[1]));
-        } else { omniBox.value=timezoner(quote(arg[0])); }
+            obj.value=timezoner(quote(arg[0]),quote(arg[1]));
+        } else { obj.value=timezoner(quote(arg[0])); }
     } else if (input.startsWith('tz ')) {
         arj=input.replace('tz ', '');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
         if (arg.length>1) {
-            omniBox.value=timezoner(quote(arg[0]),quote(arg[1]));
-        } else { omniBox.value=timezoner(quote(arg[0])); }
+            obj.value=timezoner(quote(arg[0]),quote(arg[1]));
+        } else { obj.value=timezoner(quote(arg[0])); }
     } else if (input.startsWith('update ')) {
         getPkgSequence('get -i '+document.getElementById('updateChannel'+CryptoJS.MD5(input.replace('update ','')).toString()).value,'get ',0);
     } else if (input.startsWith('clear ')) {
@@ -1340,7 +1340,7 @@ function omniEnter(input) {
         }
     } else if (input.startsWith('?')) { omniDisp(input.slice(1));
     } else if (input.endsWith('?')) { omniDisp(input.slice(0,-1));
-    } else if (input.endsWith(';')) { omniBox.value=executeCode(input);
+    } else if (input.endsWith(';')) { obj.value=executeCode(input);
     } else if (!(input.startsWith(':'))&&!(input.endsWith(':'))) {
         seekCode(input);
     } else if ((input.startsWith('+'))&&(input.endsWith('"'))) {
@@ -1361,7 +1361,7 @@ function omniEnter(input) {
     } else if ((input.startsWith('+'))&&(input.endsWith('m'))) {
         arb=parseInt(input.slice(1,-1))*60+1;
         setdata('memo',(Math.round(Date.now()/1000)+parseInt(arb)));
-    } else { omniBox.value=calc(input); } omniBox.focus();
+    } else { obj.value=calc(input); } obj.focus();
 }
 function getPkgSequence(input,cmdword,isRepo=0,isDbg=0) {
     var preQuery=input.replace(cmdword,'');

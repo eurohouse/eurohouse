@@ -43,6 +43,6 @@
 <input type="button" onmouseover="soundButton();" style="width:40px;height:40px;" onclick="omniBox.value+=',';" value=",">
 <input type="button" onmouseover="soundButton();" style="width:40px;height:40px;" onclick="omniBox.value+='+';" value="+">
 <input type="button" onmouseover="soundButton();" style="width:40px;height:40px;" onclick="omniBox.value+='y';" value="y">
-<input type="image" class="power" onmouseover="soundButton();" style="width:40px;height:40px;top:14px;" onclick="omniEnter(omniBox.value);" src="<?=$prefix[3].'return.png';?>">
+<input type="image" class="power" onmouseover="soundButton();" style="width:40px;height:40px;top:14px;" onclick="omniEnter((authstate())?omniBox:omniBoxAuthLogin);" src="<?=$prefix[3].'return.png';?>">
 </p>
 
