@@ -30,12 +30,9 @@ $publicUserData=[]; foreach ($poweredData as $key=>$value) {
     } date_default_timezone_set(dec_tz($testArr['timezone']));
     $publicUserData['hh'][$key]=date('H'); $publicUserData['hour'][$key]=date('H');
     $publicUserData['date'][$key]=chooseCalendar(time(),$testArr,$userSettings); $publicUserData['time'][$key]=timedate(time(),$testArr,$userSettings);
-    $publicUserData['tz'][$key]=$testArr['timezone'];
-    $publicUserData['timezone'][$key]=$testArr['timezone'];
-    $publicUserData['wh'][$key]=$testArr['active_hours'];
-    $publicUserData['active_hours'][$key]=$testArr['active_hours'];
-    $publicUserData['at'][$key]=$testArr['avatar'];
-    $publicUserData['avatar'][$key]=$testArr['avatar'];
+    foreach ($userSettings['public_user_data'] as $pub) {
+        $publicUserData[$pub][$key]=$testArr[$pub];
+    }
 } $usersList=array_keys($poweredData);natcasesort($usersList);
 /* ¶ 0 */ echo $cookie."\r\n\r\n".
 /* ¶ 1 */ implode(',',$pref)."\r\n\r\n".

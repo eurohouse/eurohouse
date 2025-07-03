@@ -305,8 +305,9 @@ function activeHoursHTML(id) {
     } else { res=''; } return res;
 }
 function statsIndicatorsHTML() {
-    var arr={"bind":"chain","auto":"steer","tool":"parfum","powers":"money","hdi":"world","date":"calendar","time":"time","work":"settings"},arl="";
-    for (item in arr) {
+    var arr={
+        "bind":"chain","auto":"steer","tool":"parfum","powers":"money","hdi":"world","date":"calendar","time":"time","work":"settings"
+    }; var arl=""; for (item in arr) {
         arl+="<input type='image' class='power' onmouseover='soundButton();' src='"+sysDefPrefix.value+arr[item]+".png"+"' onclick='setdata(&#34;stats&#34;,&#34;"+item+"&#34;);'>";
     } return arl;
 }
