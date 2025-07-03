@@ -335,8 +335,8 @@ function highscore(mode) {
         ); for (indi in ordered) {
             if ((ordered[indi]!==undefined)||(indi!='')) {
                 res+="<input type='image' class='power' onmouseover='soundButton();' src='"+am+timezoner(indi,'at')+".png"+"' onclick='clip(&#34;"+timezoner(indi,'at')+"&#34;);'>";
-                res+="<input type='button' onmouseover='soundButton();' style='width:35%;' value='"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
-                res+="<input type='button' onmouseover='soundButton();' style='width:34%;' value='"+ordered[indi]+"' onclick='clip(&#34;"+ordered[indi]+"&#34;);'>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:36%;' value='"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:42%;' value='"+ordered[indi]+"' onclick='clip(&#34;"+ordered[indi]+"&#34;);'>";
                 res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+((ordered[indi]!=indi)?"broke.png":"chain.png")+"' onclick='bind(&#34;"+sysDefSessionID.value+"&#34;,&#34;"+indi+"&#34;);'>";
                 if (superuser()) {
                     res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+text+"&#34;,&#34;"+files[mode]+"&#34;);'>";
