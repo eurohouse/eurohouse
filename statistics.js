@@ -65,8 +65,8 @@ function highscore(mode) {
             (obd,key) => { obd[key]=obj[key]; return obd; }, {}
         ):{}; for (indi in ordered) {
             if ((ordered[indi]!==undefined)||(indi!='')) {
-                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+am+timezoner(indi,'at')+".png"+"' onclick='clip(&#34;"+timezoner(indi,'at')+"&#34;);'>";
-                res+="<input type='button' onmouseover='soundButton();' style='width:36%;border-radius:"+timezoner(indi,'border_radius')+";background:linear-gradient("+timezoner(indi,'gradient_fore')+"deg, "+timezoner(indi,'fore_color')+" 0%, "+timezoner(indi,'arc_fore_color')+" 100%);font_color:"+timezoner(indi,'fore_text_color')+";' value='"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
+                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+am+timezoner(indi,'avatar')+".png"+"' onclick='clip(&#34;"+timezoner(indi,'avatar')+"&#34;);'>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:36%;"+gradButton(indi)+"' value='"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
                 res+="<input type='button' onmouseover='soundButton();' style='width:42%;' value='"+ordered[indi]+"' onclick='clip(&#34;"+ordered[indi]+"&#34;);'>";
                 res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+((ordered[indi]!=indi)?"broke.png":"chain.png")+"' onclick='bind(&#34;"+sysDefSessionID.value+"&#34;,&#34;"+indi+"&#34;);'>";
                 if (superuser()) {
