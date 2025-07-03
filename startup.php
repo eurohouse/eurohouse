@@ -224,7 +224,7 @@ function world_clock() {
             } else if (requestMode.value=='font_book') {
                 fontBook24Pt.innerText=fontBook22Pt.innerText=fontBook20Pt.innerText=fontBook18Pt.innerText=fontBook16Pt.innerText=fontBook14Pt.innerText=sysDefPangram.value;
             } else if (requestMode.value=='statistics') {
-                $('#switchBtnAuto').attr('src',sysDefPrefix.value+'steer.png'); $('#switchBtnBind').attr('src',sysDefPrefix.value+'chain.png'); $('#switchBtnTool').attr('src',sysDefPrefix.value+'parfum.png'); $('#switchBtnScore').attr('src',sysDefPrefix.value+'money.png'); $('#switchBtnHDI').attr('src',sysDefPrefix.value+'heart.png'); $('#switchBtnModel').attr('src',sysDefPrefix.value+'user.png'); $('#switchBtnIP').attr('src',sysDefPrefix.value+'world.png');
+                stats_mode_switch.innerHTML=statsIndicatorsHTML();
             } else if (requestMode.value=='preferences') {
                 $('#prefsBtnApply').attr('src',sysDefPrefix.value+'return.png');
                 $('#prefsBtnUpdate').attr('src',sysDefPrefix.value+'lock.png');

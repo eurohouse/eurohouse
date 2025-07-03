@@ -304,10 +304,16 @@ function activeHoursHTML(id) {
         } res=arl+"</p>";
     } else { res=''; } return res;
 }
+function statsIndicatorsHTML() {
+    var arr={"bind":"chain","auto":"steer","tool":"parfum","powers":"money","hdi":"world","date":"calendar","time":"time"},arl="";
+    for (item in arr) {
+        arl+="<input type='image' class='power' onmouseover='soundButton();' src='"+sysDefPrefix.value+arr[item]+".png"+"' onclick='setdata(&#34;stats&#34;,&#34;"+item+"&#34;);'>";
+    } return arl;
+}
 function lockIndicatorsHTML() {
-    var ob=((jsonarr(sysDefLockData.value)!==undefined)&&(jsonarr(sysDefLockData.value)!==null))?jsonarr(sysDefLockData.value):{},ch=Object.keys(ob||{});
-    var lic=jsonarr(sysDefLockIcons.value),epr=sysDefPrefix.value,arl=""; for (iu in ch) {
-        arl+="<input type='image' class='power' onmouseover='soundButton();' onmouseover='soundButton();' src='"+epr+lic[ch[iu]]+".png"+"' onclick='setdata(&#34;album&#34;,&#34;"+ch[iu]+"&#34;);'>";
+    var obj=((jsonarr(sysDefLockData.value)!==undefined)&&(jsonarr(sysDefLockData.value)!==null))?jsonarr(sysDefLockData.value):{},sel=Object.keys(obj||{});
+    var icons=jsonarr(sysDefLockIcons.value),arl=""; for (item in ch) {
+        arl+="<input type='image' class='power' onmouseover='soundButton();' src='"+sysDefPrefix.value+icons[sel[item]]+".png"+"' onclick='setdata(&#34;album&#34;,&#34;"+sel[item]+"&#34;);'>";
     } return arl;
 }
 function indexAvatars(id) {
