@@ -1333,7 +1333,10 @@ function omniEnter(obj) {
     } else if (input.endsWith('min')) {
         arb=parseInt(input.slice(0,-3))*60+1;
         setdata('memo',(Math.round(Date.now()/1000)+parseInt(arb)));
-    } else { obj.value=calc(input); } obj.focus();
+    } else {
+        console.log(calc(input));
+        obj.value=calc(input);
+    } obj.focus();
 }
 function getPkgSequence(input,cmdword,isRepo=0,isDbg=0) {
     var preQuery=input.replace(cmdword,'');
