@@ -175,7 +175,7 @@ function world_clock() {
                 var upn=decipher(sysDefPlaylist.value,uidm,sysDefNumeric.value,'arr');
                 var arl="",plCol=sysDefPlaylistColumns.value;
                 for (iu in upn) {
-                    arl+="<a href='javascript:setdata(%22playlist%22,playlistNext(%22"+rfc3986(alb[iu])+"%22));omniListen(%22"+rfc3986(upn[iu])+"%22,true);'>"+(parseInt(iu)+1)+'. '+upn[iu]+"</a><br>";
+                    arl+="<a href='javascript:setdata(%22playlist%22,playlistNext(%22"+rfc3986(alb[iu])+"%22));'>"+(parseInt(iu)+1)+'. '+upn[iu]+"</a><br>";
                 } currentPlaylist.innerHTML=arl;
                 currentPlaylist.setAttribute('style','-webkit-columns:'+plCol+';-moz-columns:'+plCol+';columns:'+plCol+';');
                 var alb=lockarr(sysDefAlbum.value),arl="";
