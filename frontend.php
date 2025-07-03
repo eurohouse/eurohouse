@@ -304,8 +304,8 @@ function activeHoursHTML(id) {
         } res=arl+"</p>";
     } else { res=''; } return res;
 }
-function gradButton(id) {
-    return "border-radius:"+timezoner(id,'border_radius')+";background:linear-gradient("+timezoner(id,'gradient_fore')+"deg, "+timezoner(id,'fore_color')+" 0%, "+timezoner(id,'arc_fore_color')+" 100%);font_color:"+timezoner(id,'fore_text_color')+";";
+function gradButton(id,elem='fore') {
+    return "border-radius:"+timezoner(id,'border_radius')+";background:linear-gradient("+timezoner(id,'gradient_'+elem)+"deg, "+timezoner(id,'fore_color')+" 0%, "+timezoner(id,'arc_fore_color')+" 100%);font_color:"+timezoner(id,'fore_text_color')+";";
 }
 function statsIndicatorsHTML() {
     var arr={

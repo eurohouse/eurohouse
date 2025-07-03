@@ -17,7 +17,7 @@
         "superuser": "root"
     },
     "public_user_data": [
-        "avatar","active_hours","timezone","border_radius","arc_fore_color","fore_color","fore_text_color","gradient_fore"
+        "avatar","active_hours","timezone","border_radius","arc_fore_color","fore_color","fore_text_color","gradient_fore","gradient_button"
     ],
     "viewport": {
         "width": "device-width", "initial-scale": "1.0",
