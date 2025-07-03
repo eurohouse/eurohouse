@@ -32,7 +32,7 @@ $publicUserData=[]; foreach ($poweredData as $key=>$value) {
     $publicUserData['date'][$key]=chooseCalendar(time(),$testArr,$userSettings); $publicUserData['time'][$key]=timedate(time(),$testArr,$userSettings);
     $publicUserData['tz'][$key]=$testArr['timezone'];
     $publicUserData['timezone'][$key]=$testArr['timezone'];
-    $publicUserData['ah'][$key]=$testArr['active_hours'];
+    $publicUserData['wh'][$key]=$testArr['active_hours'];
     $publicUserData['active_hours'][$key]=$testArr['active_hours'];
     $publicUserData['at'][$key]=$testArr['avatar'];
     $publicUserData['avatar'][$key]=$testArr['avatar'];

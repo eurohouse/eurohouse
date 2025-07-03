@@ -183,5 +183,16 @@ function highscore(mode) {
                 res+="<input type='button' onmouseover='soundButton();' style='width:50%;' value='"+sortable[indi]+"' onclick='clip(&#34;"+sortable[indi]+"&#34;);'><br>";
             }
         }
+    } else if (mode=='work') {
+        objText=sysDefPublicUserData.value,obj=jsonarr(objText)['wh'];
+        sortable=Object.fromEntries(
+            Object.entries(obj).sort(([,a],[,b])=>b-a)
+        ); for (indi in sortable) {
+            if ((sortable[indi]!==undefined)||(indi!='')) {
+                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+am+timezoner(indi,'at')+".png"+"' onclick='clip(&#34;"+timezoner(indi,'at')+"&#34;);'>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:24%;' value='"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:50%;' value='"+sortable[indi]+"' onclick='clip(&#34;"+sortable[indi]+"&#34;);'><br>";
+            }
+        }
     } return res;
 }
