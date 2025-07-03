@@ -378,8 +378,7 @@ function highscore(mode) {
             }
         }
     } else if (mode=='hdi') {
-        objHTML=sysDefHDIData,objText=objHTML.value,obj=jsonarr(objText);
-        for (et in obj) {
+        obj=jsonarr(sysDefHdiData.value); for (et in obj) {
             var lem,lef,mysm,mysf,eysm,eysf,gnim,gnif;
             if ((obj[et]['Life Expectancy']!==undefined)&&(typeof(obj[et]['Life Expectancy'])=='object')) {
                 lem=obj[et]['Life Expectancy']['Male'];
