@@ -1327,11 +1327,11 @@ function omniEnter(obj) {
     } else if (input.endsWith(';')) { obj.value=executeCode(input);
     } else if (!(input.startsWith(':'))&&!(input.endsWith(':'))) {
         seekCode(input);
-    } else if ((input.startsWith('+'))&&(input.endsWith('"'))) {
-        arb=parseInt(input.slice(1,-1))+1;
+    } else if (input.endsWith('sec')) {
+        arb=parseInt(input.slice(0,-3))+1;
         setdata('memo',(Math.round(Date.now()/1000)+parseInt(arb)));
-    } else if ((input.startsWith('+'))&&(input.endsWith("'"))) {
-        arb=parseInt(input.slice(1,-1))*60+1;
+    } else if (input.endsWith('min')) {
+        arb=parseInt(input.slice(0,-3))*60+1;
         setdata('memo',(Math.round(Date.now()/1000)+parseInt(arb)));
     } else { obj.value=calc(input); } obj.focus();
 }
