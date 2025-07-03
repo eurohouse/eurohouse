@@ -351,8 +351,8 @@ function highscore(mode) {
                 res+="<input type='image' class='power' onmouseover='soundButton();' src='"+am+timezoner(indi,'at')+".png"+"' onclick='clip(&#34;"+timezoner(indi,'at')+"&#34;);'>";
                 res+="<input type='button' onmouseover='soundButton();' style='width:34%;' value='"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
                 res+="<input type='button' onmouseover='soundButton();' style='width:40%;' value='"+((ordered[indi]).toUpperCase())+"' onclick='clip(&#34;"+((ordered[indi]).toUpperCase())+"&#34;);'>";
+                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+((ordered[indi]=='auto')?"wheel.png":"steer.png")+"' onclick='automate(&#34;"+indi+"&#34;);'>";
                 if (superuser()) {
-                    res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+((ordered[indi]=='auto')?"wheel.png":"steer.png")+"' onclick='automate(&#34;"+indi+"&#34;);'>";
                     res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+text+"&#34;,&#34;"+files[mode]+"&#34;);'>";
                 } res+="<br>";
             }
@@ -421,7 +421,7 @@ function highscore(mode) {
                 res+="<input type='image' class='power' onmouseover='soundButton();' src='"+am+timezoner(indi,'at')+".png"+"' onclick='clip(&#34;"+timezoner(indi,'at')+"&#34;);'>";
                 res+="<input type='button' onmouseover='soundButton();' style='width:24%;' value='"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
                 res+="<input type='button' onmouseover='soundButton();' style='width:50%;' value='"+format_currency(sortable[indi])+"' onclick='clip(&#34;"+sortable[indi]+"&#34;);'>";
-                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+(isCancelled(ordered[indi])?"hole.png":"heart.png")+"' onclick='automate(&#34;"+indi+"&#34;);'>";
+                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+(cancelled(ordered[indi])?"hole.png":"heart.png")+"' onclick='automate(&#34;"+indi+"&#34;);'>";
                 if (superuser()) {
                     res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+text+"&#34;,&#34;"+files[mode]+"&#34;);'>";
                 } res+="<br>";
