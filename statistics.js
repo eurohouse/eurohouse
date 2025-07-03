@@ -16,7 +16,7 @@ function scores(mode) {
                 res+="<input type='button' onmouseover='soundButton();' style='width:34%;' value='"+ordered[indi]+"' onclick='clip(&#34;"+ordered[indi]+"&#34;);'>";
                 res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+"chain.png"+"' onclick='bind(&#34;"+sysDefSessionID.value+"&#34;,&#34;"+indi+"&#34;);'>";
                 if (superuser()) {
-                    res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+dataObject+"&#34;,&#34;"+filename+"&#34;);'>";
+                    res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+dataText+"&#34;,&#34;"+filename+"&#34;);'>";
                 } res+="<br>";
             }
         }
@@ -29,7 +29,7 @@ function scores(mode) {
                 res+="<input type='button' onmouseover='soundButton();' style='width:34%;' value='"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
                 res+="<input type='button' onmouseover='soundButton();' style='width:45%;' value='"+((ordered[indi]).toUpperCase())+"' onclick='clip(&#34;"+((ordered[indi]).toUpperCase())+"&#34;);'>";
                 if (superuser()) {
-                    res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+dataObject+"&#34;,&#34;"+filename+"&#34;);'>";
+                    res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+dataText+"&#34;,&#34;"+filename+"&#34;);'>";
                 } res+="<br>";
             }
         }
@@ -50,7 +50,7 @@ function scores(mode) {
                     res+="<input type='button' onmouseover='soundButton();' style='width:30%;' value='"+ordered[indi]+"' onclick='clip(&#34;"+ordered[indi]+"&#34;);'>";
                     res+="<input type='button' onmouseover='soundButton();' style='width:23%;' value='"+toolTableau+"' onclick='clip(&#34;"+toolTableau+"&#34;);'>";
                     if (superuser()) {
-                        res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+dataObject+"&#34;,&#34;"+filename+"&#34;);'>";
+                        res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+dataText+"&#34;,&#34;"+filename+"&#34;);'>";
                     } res+="<br>";
                 }
             }
@@ -98,7 +98,7 @@ function scores(mode) {
                 res+="<input type='button' onmouseover='soundButton();' style='width:24%;' value='"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
                 res+="<input type='button' onmouseover='soundButton();' style='width:54%;' value='"+format_currency(sortable[indi])+"' onclick='clip(&#34;"+sortable[indi]+"&#34;);'>";
                 if (superuser()) {
-                    res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+dataObject+"&#34;,&#34;"+filename+"&#34;);'>";
+                    res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+dataText+"&#34;,&#34;"+filename+"&#34;);'>";
                 } res+="<br>";
             }
         }
