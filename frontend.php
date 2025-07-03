@@ -312,7 +312,7 @@ function statsIndicatorsHTML() {
 }
 function lockIndicatorsHTML() {
     var obj=((jsonarr(sysDefLockData.value)!==undefined)&&(jsonarr(sysDefLockData.value)!==null))?jsonarr(sysDefLockData.value):{},sel=Object.keys(obj||{});
-    var icons=jsonarr(sysDefLockIcons.value),arl=""; for (item in ch) {
+    var icons=jsonarr(sysDefLockIcons.value),arl=""; for (item in sel) {
         arl+="<input type='image' class='power' onmouseover='soundButton();' src='"+sysDefPrefix.value+icons[sel[item]]+".png"+"' onclick='setdata(&#34;album&#34;,&#34;"+sel[item]+"&#34;);'>";
     } return arl;
 }
