@@ -24,8 +24,7 @@ foreach ($listDefCont as $key=>$value) {
 $userBook=jsonopen('./'.$cookie.'_files/book.json',true);
 $userStore=jsonopen('./'.$cookie.'_files/store.json',true);
 $localesArr=arropen('./i18n.json');
-$publicUserData=['times'=>[],'timezones'=>[],'avatars'=>[]];
-foreach ($poweredData as $key=>$value) {
+$publicUserData=[]; foreach ($poweredData as $key=>$value) {
     if (file_exists($key.'_files/session.json')) {
         $testArr=arropen($key.'_files/session.json',json_encode($userSettings['defaults']),'DEFAULT');
     } date_default_timezone_set(dec_tz($testArr['timezone']));
