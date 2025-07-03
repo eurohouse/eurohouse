@@ -1110,8 +1110,6 @@ function omniEnter() {
     } else if (input.startsWith('?')) { omniDisp(input.slice(1));
     } else if (input.endsWith('?')) { omniDisp(input.slice(0,-1));
     } else if (input.endsWith(';')) { omniBox.value=executeCode(input);
-    } else if (!(input.startsWith(':'))&&!(input.endsWith(':'))) {
-        seekCode(input);
     } else {
         console.log(calc(input));
         omniBox.value=calc(input);
