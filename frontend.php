@@ -1078,8 +1078,44 @@ function keyPressed() {
     }
 }
 function omniEnter() {
-    omniBox.value=calc(omniBox.value);
-    omniBox.focus();
+    var arb=arc=ari=arj='';
+    var input=(authstate())?omniBox.value:omniBoxAuthLogin.value;
+    var itr=0,itd=0,arg=[],arh=[],ark={};
+    var uid=sysDefSessionID.value;
+    if (input.toLowerCase()=='upload') {
+        document.getElementById('filebrowser').click(); return false;
+    } else if (input.toLowerCase()=='save') { userBackup(uid);
+    } else if (input.toLowerCase()=='load') { userRestore(uid);
+    } else if (input.toLowerCase()=='nsfw') { omniSort('nsfw');
+    } else if (input.toLowerCase()=='safe') { omniSort('safe');
+    } else if (input.toLowerCase()=='all') { omniSort('');
+    } else if (input.toLowerCase().startsWith('tz ')) {
+        arj=input.replace('tz ', '');
+        arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
+        if (arg.length>1) {
+            omniBox.value=timezoner(quote(arg[0]),quote(arg[1]));
+        } else { omniBox.value=timezoner(quote(arg[0])); }
+    } else if (input.startsWith('clear ')) {
+        clearJournal(input.replace('clear ',''),sysDefMyMsgboxData,'msgbox');
+    } else if (input.startsWith('erase ')) {
+        clearJournal(input.replace('erase ',''),sysDefMyBookData,'book');
+    } else if (input.startsWith('get ')) {
+        getPkgSequence(input,'get ',0);
+    } else if (input.startsWith('git ')) {
+        getPkgSequence(input,'git ',1);
+    } else if (input.startsWith('#')) {
+        setdata('find',input);
+    } else if (input.startsWith('_')) {
+        omniGo(input.replace('_',''));
+    } else if (input.startsWith('?')) { omniDisp(input.slice(1));
+    } else if (input.endsWith('?')) { omniDisp(input.slice(0,-1));
+    } else if (input.endsWith(';')) { omniBox.value=executeCode(input);
+    } else if (!(input.startsWith(':'))&&!(input.endsWith(':'))) {
+        seekCode(input);
+    } else {
+        console.log(calc(input));
+        omniBox.value=calc(input);
+    } omniBox.focus();
 }
 function getPkgSequence(input,cmdword,isRepo=0,isDbg=0) {
     var preQuery=input.replace(cmdword,'');
