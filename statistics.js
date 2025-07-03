@@ -1,68 +1,62 @@
-function scores(sta) {
-    var sto={'bind':'binding','call':'calling','auto':'automator','tool':'toolbox','powers':'dominion','hdi':'i18n'};
-    var sti={'bind':'μ','call':'μ','auto':'μ','tool':'μ','powers':'μ'},rid=sysDefSessionID.value;
-    var ept=document.getElementById('sysDef'+ucfirst(sta)+'Data'),arr=ept.value,eps=sto[sta]+'.json',obj={}; if (sti[sta]!==undefined) {
-        if (sti[sta]=='μ') { obj=strarr(arr,';',':');
-        } else { obj=jsonarr(arr); }
-    } else { obj=jsonarr(arr); }
-    var res='',sortable={},ordered={};
-    var dat=af={},at='',am=se=fo=ex=em=0;
-    var epr=sysDefPrefix.value,eax=sysDefAva1Prefix.value;
-    if (sta=='bind') {
+function scores(mode) {
+    var files={'bind':'binding','call':'calling','auto':'automator','tool':'toolbox','powers':'dominion','hdi':'i18n'};
+    var micro=['bind','call','auto','tool','powers'];
+    var ept=document.getElementById('sysDef'+ucfirst(mode)+'dataa'),arr=ept.value;
+    var filename=files[mode]+'.json';
+    var obj=(notNull(micro[mode]))?strarr(arr,';',':'):jsonarr(arr);
+    var res='',sortable={},ordered={},data={};
+    var pm=sysDefPrefix.value,am=sysDefAva1Prefix.value;
+    if (mode=='bind') {
         ordered=Object.keys(obj).sort().reduce(
             (obd,key) => { obd[key]=obj[key]; return obd; }, {}
         ); for (indi in ordered) {
             if ((ordered[indi]!==undefined)||(indi!='')) {
-                af=(ordered[indi]!=indi)?"@"+ordered[indi]:"SELF";
-                at=loadFile(indi+'_files/session.json','avatar');
-                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+eax+at+".png"+"' onclick='clip(&#34;"+at+"&#34;);'>";
-                res+="<input type='button' onmouseover='soundButton();' style='width:35%;' value='@"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
-                res+="<input type='button' onmouseover='soundButton();' style='width:34%;' value='"+af+"' onclick='clip(&#34;"+af+"&#34;);'>";
-                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"chain.png"+"' onclick='bind(&#34;"+rid+"&#34;,&#34;"+indi+"&#34;);'>";
+                var bind=(ordered[indi]!=indi)?ordered[indi]:indi;
+                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+am+timezoner(indi,'at')+".png"+"' onclick='clip(&#34;"+timezoner(indi,'at')+"&#34;);'>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:35%;' value='"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:34%;' value='"+bind+"' onclick='clip(&#34;"+bind+"&#34;);'>";
+                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+"chain.png"+"' onclick='bind(&#34;"+sysDefSessionID.value+"&#34;,&#34;"+indi+"&#34;);'>";
                 if (superuser()) {
-                    res+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;);'>";
+                    res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+filename+"&#34;);'>";
                 } res+="<br>";
             }
         }
-    } else if (sta=='auto') {
+    } else if (mode=='auto') {
         ordered=Object.keys(obj).sort().reduce(
             (obd,key) => { obd[key]=obj[key]; return obd; }, {}
         ); for (indi in ordered) {
             if ((ordered[indi]!==undefined)||(indi!='')) {
-                af=(ordered[indi]=='auto')?"AUTO":"MANUAL";
-                at=loadFile(indi+'_files/session.json','avatar');
-                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+eax+at+".png"+"' onclick='clip(&#34;"+at+"&#34;);'>";
-                res+="<input type='button' onmouseover='soundButton();' style='width:34%;' value='@"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
-                res+="<input type='button' onmouseover='soundButton();' style='width:45%;' value='"+af+"' onclick='clip(&#34;"+af+"&#34;);'>";
+                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+am+timezoner(indi,'at')+".png"+"' onclick='clip(&#34;"+timezoner(indi,'at')+"&#34;);'>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:34%;' value='"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:45%;' value='"+((ordered[indi]).toUpperCase())+"' onclick='clip(&#34;"+((ordered[indi]).toUpperCase())+"&#34;);'>";
                 if (superuser()) {
-                    res+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;);'>";
+                    res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+filename+"&#34;);'>";
                 } res+="<br>";
             }
         }
-    } else if (sta=='tool') {
+    } else if (mode=='tool') {
         ordered=Object.keys(obj).sort().reduce(
             (obd,key) => { obd[key]=obj[key]; return obd; }, {}
         ); for (indi in ordered) {
             if ((ordered[indi]!==undefined)||(indi!='')) {
-                dat=jsonarr(openJournal(indi,sysDefStoreJSONs));
-                if ((dat[ordered[indi]]!==undefined)&&(typeof(dat[ordered[indi]])=='object')&&(ordered[indi]!='')) {
-                    ex=((dat[ordered[indi]]['finite']!==undefined)&&(isInt(dat[ordered[indi]]['finite']))&&(dat[ordered[indi]]['finite']==1))?1:0;
-                    am=((dat[ordered[indi]]['amount']!==undefined)&&(isInt(dat[ordered[indi]]['amount']))&&(dat[ordered[indi]]['amount']>0))?parseInt(dat[ordered[indi]]['amount']):0;
-                    se=((dat[ordered[indi]]['series']!==undefined)&&(isInt(dat[ordered[indi]]['series']))&&(dat[ordered[indi]]['series']>1))?parseInt(dat[ordered[indi]]['series'])+'x':'x';
-                    fo=((dat[ordered[indi]]['force']!==undefined)&&(isNum(dat[ordered[indi]]['force']))&&(dat[ordered[indi]]['force']>0))?parseFloat(dat[ordered[indi]]['force']):0;
-                    em=(ex!=0)?am+'/'+se+fo:se+fo;
-                    at=loadFile(indi+'_files/session.json','avatar');
-                    res+="<input type='image' class='power' onmouseover='soundButton();' src='"+eax+at+".png"+"' onclick='clip(&#34;"+at+"&#34;);'>";
-                    res+="<input type='button' onmouseover='soundButton();' style='width:26%;' value='@"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
+                data=jsonarr(openJournal(indi,sysDefStoreJSONs));
+                if ((data[ordered[indi]]!==undefined)&&(typeof(data[ordered[indi]])=='object')&&(ordered[indi]!='')) {
+                    var finite=((data[ordered[indi]]['finite']!==undefined)&&(isInt(data[ordered[indi]]['finite']))&&(data[ordered[indi]]['finite']==1))?1:0;
+                    var amount=((data[ordered[indi]]['amount']!==undefined)&&(isInt(data[ordered[indi]]['amount']))&&(data[ordered[indi]]['amount']>0))?parseInt(data[ordered[indi]]['amount']):0;
+                    var series=((data[ordered[indi]]['series']!==undefined)&&(isInt(data[ordered[indi]]['series']))&&(data[ordered[indi]]['series']>1))?parseInt(data[ordered[indi]]['series'])+'x':'x';
+                    var force=((data[ordered[indi]]['force']!==undefined)&&(isNum(data[ordered[indi]]['force']))&&(data[ordered[indi]]['force']>0))?parseFloat(data[ordered[indi]]['force']):0;
+                    var toolTableau=(finite!=0)?amount+'/'+series+force:series+force;
+                    res+="<input type='image' class='power' onmouseover='soundButton();' src='"+am+timezoner(indi,'at')+".png"+"' onclick='clip(&#34;"+timezoner(indi,'at')+"&#34;);'>";
+                    res+="<input type='button' onmouseover='soundButton();' style='width:26%;' value='"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
                     res+="<input type='button' onmouseover='soundButton();' style='width:30%;' value='"+ordered[indi]+"' onclick='clip(&#34;"+ordered[indi]+"&#34;);'>";
-                    res+="<input type='button' onmouseover='soundButton();' style='width:23%;' value='"+em+"' onclick='clip(&#34;"+em+"&#34;);'>";
+                    res+="<input type='button' onmouseover='soundButton();' style='width:23%;' value='"+toolTableau+"' onclick='clip(&#34;"+toolTableau+"&#34;);'>";
                     if (superuser()) {
-                        res+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;);'>";
+                        res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+filename+"&#34;);'>";
                     } res+="<br>";
                 }
             }
         }
-    } else if (sta=='hdi') {
+    } else if (mode=='hdi') {
         for (et in obj) {
             var lem,lef,mysm,mysf,eysm,eysf,gnim,gnif;
             if ((obj[et]['Life Expectancy']!==undefined)&&(typeof(obj[et]['Life Expectancy'])=='object')) {
@@ -93,20 +87,19 @@ function scores(sta) {
                 res+="<input type='image' class='power' onmouseover='soundButton();' src='Flag."+indi+".png"+"' onclick='clip(&#34;"+indi+"&#34;);'>";
                 res+="<input type='button' onmouseover='soundButton();' style='width:24%;' value='"+sortable[indi]['Human Development Index']+"' onclick='clip(&#34;"+sortable[indi]['Human Development Index']+"&#34;);'>";
                 res+="<input type='button' onmouseover='soundButton();' style='width:40%;' value='"+format_currency((parseFloat(sortable[indi]['Gross National Income']['Both'])),4)+"' onclick='clip(&#34;"+sortable[indi]['Gross National Income']['Both']+"&#34;);'>";
-                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"info.png"+"' onclick='omniPath(&#34;i18n.json&#34;,&#34;"+indi+"&#34;,&#34;false&#34;);'><br>";
+                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+"info.png"+"' onclick='omniPath(&#34;i18n.json&#34;,&#34;"+indi+"&#34;,&#34;false&#34;);'><br>";
             }
         }
-    } else if (sta=='powers') {
+    } else if (mode=='powers') {
         sortable=Object.fromEntries(
             Object.entries(obj).sort(([,a],[,b])=>b-a)
         ); for (indi in sortable) {
             if ((sortable[indi]!==undefined)||(indi!='')) {
-                at=loadFile(indi+'_files/session.json','avatar');
-                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+eax+at+".png"+"' onclick='clip(&#34;"+at+"&#34;);'>";
-                res+="<input type='button' onmouseover='soundButton();' style='width:24%;' value='@"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
+                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+am+timezoner(indi,'at')+".png"+"' onclick='clip(&#34;"+timezoner(indi,'at')+"&#34;);'>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:24%;' value='"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
                 res+="<input type='button' onmouseover='soundButton();' style='width:54%;' value='"+format_currency(sortable[indi])+"' onclick='clip(&#34;"+sortable[indi]+"&#34;);'>";
                 if (superuser()) {
-                    res+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+eps+"&#34;);'>";
+                    res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+arr+"&#34;,&#34;"+filename+"&#34;);'>";
                 } res+="<br>";
             }
         }

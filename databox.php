@@ -35,7 +35,7 @@ foreach ($poweredData as $key=>$value) {
     $publicUserData['timezone'][$key]=$testArr['timezone'];
     $publicUserData['ah'][$key]=$testArr['active_hours'];
     $publicUserData['active_hours'][$key]=$testArr['active_hours'];
-    $publicUserData['av'][$key]=$testArr['avatar'];
+    $publicUserData['at'][$key]=$testArr['avatar'];
     $publicUserData['avatar'][$key]=$testArr['avatar'];
 } $usersList=array_keys($poweredData);natcasesort($usersList);
 /* ¶ 0 */ echo $cookie."\r\n\r\n".
