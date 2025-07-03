@@ -359,7 +359,7 @@ function automator() {
     var subMarket=objMarket={},subSelect=objSelect='';
     var subMarketCount=objMarketCount=0;
     if (requestMode.value=='statistics') {
-        userStats.innerHTML=scores(sysDefStats.value);
+        userStats.innerHTML=highscore(sysDefStats.value);
     } if ((subName!='')&&(objName!='')&&(isInt(tabPower[subName]))&&(tabPower[subName]>=0)&&(autoPower[subName]=='auto')) {
         subMarket=jsonarr(openJournal(subName,sysDefStoreJSONs));
         subMarketCount=Object.keys(subMarket).length;
