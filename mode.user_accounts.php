@@ -1,6 +1,6 @@
 <!-- user -->
 <!-- GR: Λογαριασμοί χρηστών; CY: Λογαριασμοί χρηστών; DE: Benutzerkonten; AT: Benutzerkonten; FR: Comptes utilisateur; BE: Comptes utilisateur; CH: Explorare Usuarem; IT: Profili utente; LK: उपयोक्तृलेखाः; TR: Kullanıcı hesapları; IN: उपयोगकर्ता खाते; PT: Contas de utilizador; BR: Contas de usuário; ES: Cuentas de usuario; MX: Cuentas de usuario; RO: Conturi de utilizator; MD: Conturi de utilizator; UA: Облікові записи користувачів; NP: སྤྱོད་མཁན་གྱི་ཁ་བྱང་།; RU: Учётные записи пользователей; RS: Кориснички налози; CN: 用户账户经理; KR: 사용자 계정; JP: ユーザーアカウント; AE: حسابات المستخدمين -->
-<?php $indexUsers=str_replace('_session.json','',(str_replace('./','',(glob('./*_session.json'))))); ?>
+<?php $indexUsers=str_replace('./','',(glob('./*_files',GLOB_ONLYDIR))); ?>
 <table style="width:100%;" id="table">
 <thead>
     <tr>
@@ -30,7 +30,7 @@
 <tbody>
 <?php
 foreach ($indexUsers as $key=>$value) {
-    $profData=(@json_decode(file_get_contents($value.'_session.json'),true)!=null)?json_decode(file_get_contents($value.'_session.json'),true):$settings['defaults'];
+    $profData=(@json_decode(file_get_contents($value.'_files/session.json'),true)!=null)?json_decode(file_get_contents($value.'_files/session.json'),true):$settings['defaults'];
     $profIcon=(file_exists($prefix[0].$profData['avatar'].'.png'))?$prefix[0].$profData['avatar'].'.png':$prefix[0].$settings['defaults']['avatar'].'.png';
     ?>
     <tr>
@@ -52,11 +52,11 @@ foreach ($indexUsers as $key=>$value) {
                     if ($value==$sessionID) { ?>
                         <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="delete_user(sysDefSessionID.value);" src="<?=$prefix[3].'trash.png';?>">
                     <?php } else { ?>
-                        <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name+'_session.json','','false');" src="<?=$prefix[3].'info.png';?>">
+                        <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name+'_files/session.json','','false');" src="<?=$prefix[3].'info.png';?>">
                     <?php }
                 }
             } else { ?>
-                <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name+'_session.json','','false');" src="<?=$prefix[3].'info.png';?>">
+                <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name+'_files/session.json','','false');" src="<?=$prefix[3].'info.png';?>">
         <?php } ?>
         </p>
         </td>

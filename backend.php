@@ -15,7 +15,7 @@ $nuUser=$settings['reserve']['unauthorized'];
 $suUser=$settings['reserve']['superuser'];
 $sessionID=whichSession($nuUser);
 setcookie('user',$sessionID,time()+$settings['lifetime']['cookie_lengthen']);
-$session=arropen($sessionID.'_session.json',json_encode($settings['defaults']),'DEFAULT'); $metadata=arropen($sessionID.'_metadata.json',json_encode($settings['metadata']),'CUSTOM'); $finLang=terms($settings,$session);
+$session=arropen($sessionID.'_files/session.json',json_encode($settings['defaults']),'DEFAULT'); $metadata=arropen($sessionID.'_files/metadata.json',json_encode($settings['metadata']),'CUSTOM'); $finLang=terms($settings,$session);
 $bindData=arropen('binding.json'); $powersData=arropen('dominion.json');
 $automateData=arropen('automator.json'); $toolboxData=arropen('toolbox.json');
 date_default_timezone_set(dec_tz($session['timezone']));
@@ -30,5 +30,5 @@ if ((!empty($_FILES['file']['tmp_name']))&&(!empty($_POST['path']))) { $filename
 } $prefix=prefixes($session); $themePrefix=(file_exists($session['theme'].'.pkg'))?$session['theme'].'.':$prefix[3];
 $portfolioPrefix=(($themePrefix=='iec')||($themePrefix=='iso'))?'org.':((themed($themePrefix,'head,left0,left90,left180,left270,right0,right90,right180,right270'))?$themePrefix:'org.');
 $background=getback($session);
-$locks=arropen($sessionID.'_lock.json',json_encode($settings['locks']),'DEFAULT');
+$locks=arropen($sessionID.'_files/lock.json',json_encode($settings['locks']),'DEFAULT');
 $userLocks=userlocks($locks,$settings['collections'],$prefix);

@@ -1,7 +1,5 @@
 <?php include 'functions.php';
 $userSettings=fileopen('settings.json');
-$nu=$userSettings['reserve']['unauthorized'];
-$su=$userSettings['reserve']['superuser'];
 $dataLoad=$userSettings['dataload'];
 $poweredData=arropen('dominion.json');
 $usersList=array_keys($poweredData); natcasesort($usersList);

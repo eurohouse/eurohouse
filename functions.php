@@ -3,12 +3,12 @@ function wasAuthRequest() {
     if ((isset($_POST['auth']))&&(isset($_POST['login']))&&(isset($_POST['password']))) {
         $auth=$_POST['auth'];$login=$_POST['login'];$pass=$_POST['password'];
         if (($auth=='signup')&&($login!='')&&($pass!='')) {
-            if (!file_exists($login.'_password')) {
-                file_put_contents($login.'_password',$pass);
-                chmod($login.'_password',0777);
+            if (!file_exists($login.'_files/password')) {
+                file_put_contents($login.'_files/password',$pass);
+                chmod($login.'_files/password',0777);
             }
         } elseif (($auth=='signin')&&($login!='')&&($pass!='')) {
-            $logpass=textopen($login.'_password','');
+            $logpass=textopen($login.'_files/password','');
             if ($pass==$logpass) {
                 $_SESSION['user']=$login;
             }

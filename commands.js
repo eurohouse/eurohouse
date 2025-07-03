@@ -296,7 +296,7 @@ function omniEnter(input) {
             if ((ark[quote(arg[1])]!==undefined)&&(typeof(ark[quote(arg[1])])=='object')&&(quote(arg[0])!='amount')) {
                 itr=(arg.length>2)?((isNum(quote(arg[2])))?parseFloat(quote(arg[2])):quote(arg[2])):ark[quote(arg[1])][quote(arg[0])]; ark[quote(arg[1])][quote(arg[0])]=itr;
             }
-        }} set('./'+uid+'_store.json',encodeURIComponent(JSON.stringify(ark)),'rw');
+        }} set('./'+uid+'_files/store.json',encodeURIComponent(JSON.stringify(ark)),'rw');
     } else if (input.startsWith('sell ')) {
         arj=input.replace('sell ','');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
