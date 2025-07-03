@@ -192,7 +192,7 @@ function highscore(mode) {
             if ((sortable[indi]!==undefined)||(indi!='')) {
                 res+="<input type='image' class='power' onmouseover='soundButton();' style='"+gradButton(indi,'button')+"' src='"+am+timezoner(indi,'avatar')+".png"+"' onclick='clip(&#34;"+timezoner(indi,'avatar')+"&#34;);'>";
                 res+="<input type='button' onmouseover='soundButton();' style='width:24%;"+gradButton(indi)+"' value='"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
-                res+="<input type='text' onmouseover='soundButton();' style='width:50%;"+gradButton(indi,'input')+"' value='"+sortable[indi]+"' onclick='clip(&#34;"+sortable[indi]+"&#34;);'><br>";
+                res+="<input type='text' onmouseover='soundButton();' style='width:50%;"+gradButton(indi,'input')+"' disabled value='"+sortable[indi]+"' onclick='clip(&#34;"+sortable[indi]+"&#34;);'><br>";
             }
         }
     } return res;
