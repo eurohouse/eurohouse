@@ -305,7 +305,13 @@ function activeHoursHTML(id) {
     } else { res=''; } return res;
 }
 function gradButton(id,elem='fore') {
-    return "border-radius:"+timezoner(id,'border_radius')+";background:linear-gradient("+timezoner(id,'gradient_'+elem)+"deg, "+timezoner(id,'fore_color')+" 0%, "+timezoner(id,'arc_fore_color')+" 100%);font_color:"+timezoner(id,'fore_text_color')+";";
+    var res=''; if (elem=='fore') {
+        res="border-radius:"+timezoner(id,'border_radius')+";background:linear-gradient("+timezoner(id,'gradient_fore')+"deg, "+timezoner(id,'fore_color')+" 0%, "+timezoner(id,'arc_fore_color')+" 100%);font_color:"+timezoner(id,'fore_text_color')+";";
+    } else if (elem=='input') {
+        res="border-radius:"+timezoner(id,'text_border_radius')+";background:linear-gradient("+timezoner(id,'gradient_input')+"deg, "+timezoner(id,'input_color')+" 0%, "+timezoner(id,'arc_input_color')+" 100%);font_color:"+timezoner(id,'input_text_color')+";";
+    } else if (elem=='button') {
+        res="border-radius:"+timezoner(id,'border_radius')+";background:linear-gradient("+timezoner(id,'gradient_button')+"deg, "+timezoner(id,'fore_color')+" 0%, "+timezoner(id,'arc_fore_color')+" 100%);font_color:"+timezoner(id,'fore_text_color')+";";
+    } return res;
 }
 function statsIndicatorsHTML() {
     var arr={
