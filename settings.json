@@ -35,7 +35,7 @@
     "locks_thumb": [ "background","avatar","pictogram","reticle" ],
     "libraries": {
         "domestic": [
-            "backend.js","frontend.js","tablesort.js","requests.js","jquery.js","crypto.js","XRegExp.js","showdown.js","nerdamer.js","algebra.js","calculus.js","solve.js"
+            "backend.js","frontend.js","tablesort.js","requests.js","jquery.js","crypto.js","XRegExp.js","showdown.js","nerdamer.js","algebra.js","calculus.js","solve.js","statistics.js"
         ], "foreign": [ "https://www.midijs.net/lib/midi.js" ]
     },
     "collections": {
