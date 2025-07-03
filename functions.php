@@ -3,7 +3,9 @@ function wasAuthRequest() {
     if ((isset($_POST['auth']))&&(isset($_POST['login']))&&(isset($_POST['password']))) {
         $auth=$_POST['auth'];$login=$_POST['login'];$pass=$_POST['password'];
         if (($auth=='signup')&&($login!='')&&($pass!='')) {
-            if (!file_exists($login.'_files/password')) {
+            if (!file_exists($login)) {
+                mkdir($login.'_files'); chmod($login.'_files',0777);
+            } if (!file_exists($login.'_files/password')) {
                 file_put_contents($login.'_files/password',$pass);
                 chmod($login.'_files/password',0777);
             }
