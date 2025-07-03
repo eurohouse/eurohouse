@@ -329,13 +329,13 @@ function statsIndicatorsHTML() {
     var arr={
         "bind":"chain","auto":"steer","tool":"parfum","powers":"money","hdi":"world","date":"calendar","time":"time","work":"settings"
     }; var arl=""; for (item in arr) {
-        arl+="<input type='image' class='power' style='"+gradButton(sysDefSessionID.value)+"' onmouseover='soundButton();' src='"+sysDefPrefix.value+arr[item]+".png"+"' onclick='setdata(&#34;stats&#34;,&#34;"+item+"&#34;);'>";
+        arl+="<input type='image' class='power' style='"+gradButton(sysDefSessionID.value,'button')+"' onmouseover='soundButton();' src='"+sysDefPrefix.value+arr[item]+".png"+"' onclick='setdata(&#34;stats&#34;,&#34;"+item+"&#34;);'>";
     } return arl;
 }
 function lockIndicatorsHTML() {
     var obj=((jsonarr(sysDefLockData.value)!==undefined)&&(jsonarr(sysDefLockData.value)!==null))?jsonarr(sysDefLockData.value):{},sel=Object.keys(obj||{});
     var icons=jsonarr(sysDefLockIcons.value),arl=""; for (item in sel) {
-        arl+="<input type='image' class='power' style='"+gradButton(sysDefSessionID.value)+"' onmouseover='soundButton();' src='"+sysDefPrefix.value+icons[sel[item]]+".png"+"' onclick='setdata(&#34;album&#34;,&#34;"+sel[item]+"&#34;);'>";
+        arl+="<input type='image' class='power' style='"+gradButton(sysDefSessionID.value,'button')+"' onmouseover='soundButton();' src='"+sysDefPrefix.value+icons[sel[item]]+".png"+"' onclick='setdata(&#34;album&#34;,&#34;"+sel[item]+"&#34;);'>";
     } return arl;
 }
 function indexAvatars(id) {
