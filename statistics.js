@@ -80,12 +80,12 @@ function highscore(mode) {
             (obd,key) => { obd[key]=obj[key]; return obd; }, {}
         ):{}; for (indi in ordered) {
             if ((ordered[indi]!==undefined)||(indi!='')) {
-                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+am+timezoner(indi,'avatar')+".png"+"' onclick='clip(&#34;"+timezoner(indi,'avatar')+"&#34;);'>";
-                res+="<input type='button' onmouseover='soundButton();' style='width:34%;' value='"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
-                res+="<input type='button' onmouseover='soundButton();' style='width:40%;' value='"+((ordered[indi]).toUpperCase())+"' onclick='clip(&#34;"+((ordered[indi]).toUpperCase())+"&#34;);'>";
-                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+((ordered[indi]=='auto')?"wheel.png":"steer.png")+"' onclick='automate(&#34;"+indi+"&#34;);'>";
+                res+="<input type='image' class='power' onmouseover='soundButton();' style='"+gradButton(indi,'button')+"' src='"+am+timezoner(indi,'avatar')+".png"+"' onclick='clip(&#34;"+timezoner(indi,'avatar')+"&#34;);'>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:34%;"+gradButton(indi)+"' value='"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
+                res+="<input type='text' onmouseover='soundButton();' style='width:40%;"+gradButton(indi,'input')+"' disabled value='"+((ordered[indi]).toUpperCase())+"' onclick='clip(&#34;"+((ordered[indi]).toUpperCase())+"&#34;);'>";
+                res+="<input type='image' class='power' onmouseover='soundButton();' style='"+gradButton(indi,'button')+"' src='"+pm+((ordered[indi]=='auto')?"wheel.png":"steer.png")+"' onclick='automate(&#34;"+indi+"&#34;);'>";
                 if (superuser()) {
-                    res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+objText+"&#34;,&#34;"+files[mode]+"&#34;);'>";
+                    res+="<input type='image' class='power' onmouseover='soundButton();' style='"+gradButton(indi,'button')+"' src='"+pm+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+objText+"&#34;,&#34;"+files[mode]+"&#34;);'>";
                 } res+="<br>";
             }
         }
@@ -102,12 +102,13 @@ function highscore(mode) {
                     var series=((data[ordered[indi]]['series']!==undefined)&&(isInt(data[ordered[indi]]['series']))&&(data[ordered[indi]]['series']>1))?parseInt(data[ordered[indi]]['series'])+'x':'x';
                     var force=((data[ordered[indi]]['force']!==undefined)&&(isNum(data[ordered[indi]]['force']))&&(data[ordered[indi]]['force']>0))?parseFloat(data[ordered[indi]]['force']):0;
                     var toolTableau=(finite!=0)?amount+'/'+series+force:series+force;
-                    res+="<input type='image' class='power' onmouseover='soundButton();' src='"+am+timezoner(indi,'avatar')+".png"+"' onclick='clip(&#34;"+timezoner(indi,'avatar')+"&#34;);'>";
-                    res+="<input type='button' onmouseover='soundButton();' style='width:26%;' value='"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
-                    res+="<input type='button' onmouseover='soundButton();' style='width:30%;' value='"+ordered[indi]+"' onclick='clip(&#34;"+ordered[indi]+"&#34;);'>";
-                    res+="<input type='button' onmouseover='soundButton();' style='width:23%;' value='"+toolTableau+"' onclick='clip(&#34;"+toolTableau+"&#34;);'>";
+                    res+="<input type='image' class='power' onmouseover='soundButton();' style='"+gradButton(indi,'button')+"' src='"+am+timezoner(indi,'avatar')+".png"+"' onclick='clip(&#34;"+timezoner(indi,'avatar')+"&#34;);'>";
+                    res+="<input type='button' onmouseover='soundButton();' style='width:26%;"+gradButton(indi)+"' value='"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
+                    res+="<input type='button' onmouseover='soundButton();' style='width:30%;"+gradButton(indi)+"' value='"+ordered[indi]+"' onclick='clip(&#34;"+ordered[indi]+"&#34;);'>";
+                    res+="<input type='text' onmouseover='soundButton();' style='width:23%;"+gradButton(indi,'input')+"' disabled value='"+toolTableau+"' onclick='clip(&#34;"+toolTableau+"&#34;);'>";
                     if (superuser()) {
-                        res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+objText+"&#34;,&#34;"+files[mode]+"&#34;);'>";
+                        res+="<input type='image' class='power' onmouseover='soundButton();' style='"+gradButton(indi,'button')+"' src='"+pm+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+objText+"&#34;,&#34;"+files[mode]+"&#34;);'>";
+                        res+="<input type='image' class='power' onmouseover='soundButton();' style='"+gradButton(indi,'button')+"' src='"+pm+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+objText+"&#34;,&#34;"+files[mode]+"&#34;);'>";
                     } res+="<br>";
                 }
             }
@@ -140,10 +141,10 @@ function highscore(mode) {
             Object.entries(obj).sort(([,a],[,b])=>b['Human Development Index']-a['Human Development Index'])
         ):{}; for (indi in sortable) {
             if ((sortable[indi]!==undefined)&&(indi!='')) {
-                res+="<input type='image' class='power' onmouseover='soundButton();' src='Flag."+indi+".png"+"' onclick='clip(&#34;"+indi+"&#34;);'>";
-                res+="<input type='button' onmouseover='soundButton();' style='width:24%;' value='"+sortable[indi]['Human Development Index']+"' onclick='clip(&#34;"+sortable[indi]['Human Development Index']+"&#34;);'>";
-                res+="<input type='button' onmouseover='soundButton();' style='width:40%;' value='"+format_currency((parseFloat(sortable[indi]['Gross National Income']['Both'])),4)+"' onclick='clip(&#34;"+sortable[indi]['Gross National Income']['Both']+"&#34;);'>";
-                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+"info.png"+"' onclick='omniPath(&#34;i18n.json&#34;,&#34;"+indi+"&#34;,&#34;false&#34;);'><br>";
+                res+="<input type='image' class='power' onmouseover='soundButton();' style='"+gradButton(indi,'button')+"' src='Flag."+indi+".png"+"' onclick='clip(&#34;"+indi+"&#34;);'>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:24%;"+gradButton(indi)+"' value='"+sortable[indi]['Human Development Index']+"' onclick='clip(&#34;"+sortable[indi]['Human Development Index']+"&#34;);'>";
+                res+="<input type='text' onmouseover='soundButton();' style='width:40%;"+gradButton(indi,'input')+"' disabled value='"+format_currency((parseFloat(sortable[indi]['Gross National Income']['Both'])),4)+"' onclick='clip(&#34;"+sortable[indi]['Gross National Income']['Both']+"&#34;);'>";
+                res+="<input type='image' class='power' onmouseover='soundButton();' style='"+gradButton(indi,'button')+"' src='"+pm+"info.png"+"' onclick='omniPath(&#34;i18n.json&#34;,&#34;"+indi+"&#34;,&#34;false&#34;);'><br>";
             }
         }
     } else if (mode=='powers') {
@@ -152,12 +153,12 @@ function highscore(mode) {
             Object.entries(obj).sort(([,a],[,b])=>b-a)
         ):{}; for (indi in sortable) {
             if ((sortable[indi]!==undefined)||(indi!='')) {
-                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+am+timezoner(indi,'avatar')+".png"+"' onclick='clip(&#34;"+timezoner(indi,'avatar')+"&#34;);'>";
-                res+="<input type='button' onmouseover='soundButton();' style='width:24%;' value='"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
-                res+="<input type='button' onmouseover='soundButton();' style='width:50%;' value='"+format_currency(sortable[indi])+"' onclick='clip(&#34;"+sortable[indi]+"&#34;);'>";
-                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+((cancelled(ordered[indi]))?"hole.png":"heart.png")+"'>";
+                res+="<input type='image' class='power' onmouseover='soundButton();' style='"+gradButton(indi,'button')+"' src='"+am+timezoner(indi,'avatar')+".png"+"' onclick='clip(&#34;"+timezoner(indi,'avatar')+"&#34;);'>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:24%;"+gradButton(indi)+"' value='"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
+                res+="<input type='text' onmouseover='soundButton();' style='width:50%;"+gradButton(indi,'input')+"' disabled value='"+format_currency(sortable[indi])+"' onclick='clip(&#34;"+sortable[indi]+"&#34;);'>";
+                res+="<input type='image' class='power' onmouseover='soundButton();' style='"+gradButton(indi,'button')+"' src='"+pm+((cancelled(ordered[indi]))?"hole.png":"heart.png")+"'>";
                 if (superuser()) {
-                    res+="<input type='image' class='power' onmouseover='soundButton();' src='"+pm+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+objText+"&#34;,&#34;"+files[mode]+"&#34;);'>";
+                    res+="<input type='image' class='power' onmouseover='soundButton();' style='"+gradButton(indi,'button')+"' src='"+pm+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+objText+"&#34;,&#34;"+files[mode]+"&#34;);'>";
                 } res+="<br>";
             }
         }
@@ -167,9 +168,9 @@ function highscore(mode) {
             Object.entries(obj).sort(([,a],[,b])=>b-a)
         ):{}; for (indi in sortable) {
             if ((sortable[indi]!==undefined)||(indi!='')) {
-                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+am+timezoner(indi,'avatar')+".png"+"' onclick='clip(&#34;"+timezoner(indi,'avatar')+"&#34;);'>";
-                res+="<input type='button' onmouseover='soundButton();' style='width:24%;' value='"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
-                res+="<input type='button' onmouseover='soundButton();' style='width:50%;' value='"+sortable[indi]+"' onclick='clip(&#34;"+sortable[indi]+"&#34;);'><br>";
+                res+="<input type='image' class='power' onmouseover='soundButton();' style='"+gradButton(indi,'button')+"' src='"+am+timezoner(indi,'avatar')+".png"+"' onclick='clip(&#34;"+timezoner(indi,'avatar')+"&#34;);'>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:24%;"+gradButton(indi)+"' value='"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
+                res+="<input type='text' onmouseover='soundButton();' style='width:50%;"+gradButton(indi,'input')+"' disabled value='"+sortable[indi]+"' onclick='clip(&#34;"+sortable[indi]+"&#34;);'><br>";
             }
         }
     } else if (mode=='date') {
@@ -178,9 +179,9 @@ function highscore(mode) {
             Object.entries(obj).sort(([,a],[,b])=>b-a)
         ):{}; for (indi in sortable) {
             if ((sortable[indi]!==undefined)||(indi!='')) {
-                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+am+timezoner(indi,'avatar')+".png"+"' onclick='clip(&#34;"+timezoner(indi,'avatar')+"&#34;);'>";
-                res+="<input type='button' onmouseover='soundButton();' style='width:24%;' value='"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
-                res+="<input type='button' onmouseover='soundButton();' style='width:50%;' value='"+sortable[indi]+"' onclick='clip(&#34;"+sortable[indi]+"&#34;);'><br>";
+                res+="<input type='image' class='power' onmouseover='soundButton();' style='"+gradButton(indi,'button')+"' src='"+am+timezoner(indi,'avatar')+".png"+"' onclick='clip(&#34;"+timezoner(indi,'avatar')+"&#34;);'>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:24%;"+gradButton(indi)+"' value='"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
+                res+="<input type='text' onmouseover='soundButton();' style='width:50%;"+gradButton(indi,'input')+"' disabled value='"+sortable[indi]+"' onclick='clip(&#34;"+sortable[indi]+"&#34;);'><br>";
             }
         }
     } else if (mode=='work') {
@@ -189,9 +190,9 @@ function highscore(mode) {
             Object.entries(obj).sort(([,a],[,b])=>b-a)
         ):{}; for (indi in sortable) {
             if ((sortable[indi]!==undefined)||(indi!='')) {
-                res+="<input type='image' class='power' onmouseover='soundButton();' src='"+am+timezoner(indi,'avatar')+".png"+"' onclick='clip(&#34;"+timezoner(indi,'avatar')+"&#34;);'>";
-                res+="<input type='button' onmouseover='soundButton();' style='width:24%;' value='"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
-                res+="<input type='button' onmouseover='soundButton();' style='width:50%;' value='"+sortable[indi]+"' onclick='clip(&#34;"+sortable[indi]+"&#34;);'><br>";
+                res+="<input type='image' class='power' onmouseover='soundButton();' style='"+gradButton(indi,'button')+"' src='"+am+timezoner(indi,'avatar')+".png"+"' onclick='clip(&#34;"+timezoner(indi,'avatar')+"&#34;);'>";
+                res+="<input type='button' onmouseover='soundButton();' style='width:24%;"+gradButton(indi)+"' value='"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
+                res+="<input type='text' onmouseover='soundButton();' style='width:50%;"+gradButton(indi,'input')+"' value='"+sortable[indi]+"' onclick='clip(&#34;"+sortable[indi]+"&#34;);'><br>";
             }
         }
     } return res;
