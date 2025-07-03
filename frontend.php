@@ -871,21 +871,20 @@ function omniListen(input,scratch=false,pos=false) {
     setdata('audio_speed',sysDefAudioSpeed.value);
 }
 function songIndex(mode='') {
-    var lxn=lockarr('music'),nxp=sysDefPlaylist.value;
-    var nxt=(nxp.includes(' | '))?nxp.split(' | '):((nxp!='')?[nxp]:[]);
-    var mel=demorse(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value);
-    var ind=arraySearch(((mel.startsWith(requestPath.value+'/'))?mel.replace(requestPath.value+'/',''):mel),lxn);
-    if (nxp!='') {
-        if (nxt[0]!='') {
-            omniListen(demorse(nxt[0],sysDefSessionID.value,sysDefNumeric.value),true);
-        } setdata('playlist',arrangeMenu(sysDefPlaylist.value,nxt[0],' | '));
+    var music=lockarr('music'),playlist=sysDefPlaylist.value;
+    var next=(playlist.includes(' | '))?playlist.split(' | '):((playlist!='')?[playlist]:[]),melody=demorse(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value);
+    var index=arraySearch(((melody.startsWith(requestPath.value+'/'))?melody.replace(requestPath.value+'/',''):melody),music); if (playlist!='') {
+        if (next[0]!='') {
+            omniListen(demorse(next[0],sysDefSessionID.value,sysDefNumeric.value),true);
+        } setdata('playlist',arrangeMenu(sysDefPlaylist.value,next[0],' | '));
     } else {
         if (mode=='next') {
-            omniListen((((ind>=(lxn.length-1))||(ind===false))?lxn[0]:lxn[parseInt(ind)+1]),true);
+            omniListen((((index>=(music.length-1))||(index===false))?music[0]:music[parseInt(index)+1]),true);
         } else if (mode=='prev') {
-            omniListen((((ind<=0)||(ind===false))?lxn[lxn.length-1]:lxn[parseInt(ind)-1]),true);
-        } else if (mode=='random') { omniListen(lxn[rand(0,lxn.length)],true);
-        } else { omniListen(mel,true); }
+            omniListen((((index<=0)||(index===false))?music[music.length-1]:music[parseInt(index)-1]),true);
+        } else if (mode=='random') {
+            omniListen(music[rand(0,music.length)],true);
+        } else { omniListen(melody,true); }
     }
 }
 function omniPause() { pauseAudio(audioPlayer); }
