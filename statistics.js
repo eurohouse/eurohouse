@@ -184,7 +184,7 @@ function highscore(mode) {
             }
         }
     } else if (mode=='work') {
-        objText=sysDefPublicUserData.value,obj=jsonarr(objText)['wh'];
+        objText=sysDefPublicUserData.value,obj=jsonarr(objText)['active_hours'];
         sortable=(notNull(obj))?Object.fromEntries(
             Object.entries(obj).sort(([,a],[,b])=>b-a)
         ):{}; for (indi in sortable) {
