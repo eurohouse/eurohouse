@@ -346,9 +346,9 @@ function indexAvatars(id) {
     } return arr;
 }
 function storeUsers() {
-    var userList=(sysDefUsersList.value).split(',');
-    var usr=sysDefSessionID.value,arl=""; for (id in userList) {
-        arl+="<input type='button' onmouseover='soundButton();' style='"+gradButton(id,'button')+"' onclick='bind(&#34;"+usr+"&#34;,&#34;"+id+"&#34;);' value='"+id+"'>";
+    var users=(sysDefUsersList.value).split(',');
+    var usr=sysDefSessionID.value,arl=""; for (i=0; i<users.length; i++) {
+        arl+="<input type='button' onmouseover='soundButton();' style='"+gradButton(users[id],'button')+"' onclick='bind(&#34;"+usr+"&#34;,&#34;"+users[id]+"&#34;);' value='"+users[id]+"'>";
     } return arl;
 }
 function storeInventoryHTML(id) {
