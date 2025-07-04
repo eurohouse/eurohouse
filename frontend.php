@@ -300,7 +300,7 @@ function activeHoursHTML(id) {
     var arr=(str.includes(','))?str.split(','):[str];
     var arl=res=''; if (str!='') {
         arl="<p align='center'>"; for (el in arr) {
-            arl+="<input type='button' onmouseover='soundButton();' value='"+arr[el]+"'>";
+            arl+="<input type='button' onmouseover='soundButton();' style='"+gradButton(id)+"' value='"+arr[el]+"'>";
         } res=arl+"</p>";
     } else { res=''; } return res;
 }
