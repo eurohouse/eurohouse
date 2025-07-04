@@ -345,6 +345,12 @@ function indexAvatars(id) {
         }
     } return arr;
 }
+function storeUsers() {
+    var userList=(sysDefUsersList.value).split(',');
+    var usr=sysDefSessionID.value,arl=""; for (id in userList) {
+        arl+="<input type='button' onmouseover='soundButton();' style='"+gradButton(id,'button')+"' onclick='bind(&#34;"+usr+"&#34;,&#34;"+id+"&#34;);' value='"+id+"'>";
+    } return arl;
+}
 function storeInventoryHTML(id) {
     var arr=jsonarr(openJournal(id,sysDefStoreJSONs));
     var ard=arl='',eld={},fu0=fu1='';

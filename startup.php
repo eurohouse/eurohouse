@@ -219,8 +219,10 @@ function world_clock() {
                 var stoDop='<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+finterm('Name')+'</th><th style="width:7%;">'+finterm('Amount')+'</th><th style="width:3%;">'+finterm('Price')+'</th></thead><tbody>'+storeInventoryHTML(uidm)+'</tbody></table>';
                 store_disp.innerHTML=stoDop;
             } else if (requestMode.value=='point_of_sale') {
+                var stoTab="<p align='center'>"+storeUsers()+"</p>";
                 var stoInf="<p align='center'>"+finterm('The market is closed.')+"</p><p align='center'>"+finterm('Active Hours:')+"</p>"+activeHoursHTML(bndm);
-                var stoDop='<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+finterm('Name')+'</th><th style="width:7%;">'+finterm('Amount')+'</th><th style="width:3%;">'+finterm('Price')+'</th></thead><tbody>'+storeInventoryHTML(bndm)+'</tbody></table>'; store_disp.innerHTML=(uidm!=bndm)?((is_store_open(bndm))?stoDop:stoInf):stoDop;
+                var stoDop='<table style="width:100%;position:relative;"><thead><th style="width:5%;">'+finterm('Name')+'</th><th style="width:7%;">'+finterm('Amount')+'</th><th style="width:3%;">'+finterm('Price')+'</th></thead><tbody>'+storeInventoryHTML(bndm)+'</tbody></table>';
+                store_disp.innerHTML=stoTab+((uidm!=bndm)?((is_store_open(bndm))?stoDop:stoInf):stoDop);
             } else if (requestMode.value=='font_book') {
                 fontBook24Pt.innerText=fontBook22Pt.innerText=fontBook20Pt.innerText=fontBook18Pt.innerText=fontBook16Pt.innerText=fontBook14Pt.innerText=sysDefPangram.value;
             } else if (requestMode.value=='statistics') {
