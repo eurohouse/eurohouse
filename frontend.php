@@ -348,7 +348,7 @@ function indexAvatars(id) {
 function storeUsers() {
     var users=(sysDefUsersList.value).split(',');
     var usr=sysDefSessionID.value,arl=""; for (i=0; i<users.length; i++) {
-        arl+="<input type='button' onmouseover='soundButton();' style='"+gradButton(users[i],'fore')+"' onclick='bind(&#34;"+usr+"&#34;,&#34;"+users[i]+"&#34;);' value='"+users[i]+"'>";
+        arl+="<input type='button' onmouseover='soundButton();' style='"+gradButton(users[i])+"' onclick='bind(&#34;"+usr+"&#34;,&#34;"+users[i]+"&#34;);' value='"+users[i]+"'>";
     } return arl;
 }
 function storeInventoryHTML(id) {
