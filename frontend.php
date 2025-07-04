@@ -1109,6 +1109,14 @@ function omniEnter() {
         } else {
             obj.value=loadFile(quote(arg[0]));
         }
+    } else if (input.startsWith('obj ')) {
+        itd=(superuser())?'rw':uid; arj=input.replace('obj ', '');
+        arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
+        if (arg.length==4) {
+            obj(quote(arg[0]),quote(arg[1]),quote(arg[2]),quote(arg[3]),itd);
+        } else if (arg.length==3) {
+            obj(quote(arg[0]),quote(arg[1]),quote(arg[2]),'',itd);
+        } else { obj(quote(arg[0]),quote(arg[1]),'','',itd); }
     } else if (input.startsWith('timezoner ')) {
         arj=input.replace('timezoner ', '');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
