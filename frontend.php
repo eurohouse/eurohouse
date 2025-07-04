@@ -156,23 +156,23 @@ function timezoner(id,ent='hour') {
     return ((notEmpty(arr[ent]))&&(notNull(arr[ent][id])))?arr[ent][id]:'';
 }
 function isInBackup(id) {
-    var fsess=jsonarr(loadFile(id+'_files/session_saved.json'));
-    var flock=jsonarr(loadFile(id+'_files/lock_saved.json'));
+    var fsess=jsonarr(loadFile(id+'_files/session.json.sav'));
+    var flock=jsonarr(loadFile(id+'_files/lock.json.sav'));
     return (isObject(fsess)&&isObject(flock));
 }
 function userBackup(id) {
-    copy(id+'_files/session.json',id+'_files/session_saved.json','rw');
-    copy(id+'_files/lock.json',id+'_files/lock_saved.json','rw');
-    var fsess=jsonarr(loadFile(id+'_files/session_saved.json'));
-    var flock=jsonarr(loadFile(id+'_files/lock_saved.json'));
+    copy(id+'_files/session.json',id+'_files/session.json.sav','rw');
+    copy(id+'_files/lock.json',id+'_files/lock.json.sav','rw');
+    var fsess=jsonarr(loadFile(id+'_files/session.json.sav'));
+    var flock=jsonarr(loadFile(id+'_files/lock.json.sav'));
 }
 function userRestore(id) {
     var fsess=flock={}; if (isInBackup(id)) {
-        copy(id+'_files/session_saved.json',id+'_files/session.json','rw');
-        copy(id+'_files/lock_saved.json',id+'_files/lock.json','rw');
-        fsess=jsonarr(loadFile(id+'_files/session_saved.json'));
+        copy(id+'_files/session.json.sav',id+'_files/session.json','rw');
+        copy(id+'_files/lock.json.sav',id+'_files/lock.json','rw');
+        fsess=jsonarr(loadFile(id+'_files/session.json.sav'));
         for (idx in fsess) { setdata(idx,fsess[idx]); }
-        flock=jsonarr(loadFile(id+'_files/lock_saved.json'));
+        flock=jsonarr(loadFile(id+'_files/lock.json.sav'));
         for (idx in flock) { setlock(idx,flock[idx]); }
         omniListen(demorse(fsess['melody'],id,fsess['numeric']),false,parseInt(fsess['current']));
     }
@@ -202,8 +202,8 @@ function delete_user(id) {
     remove_entry(id,sysDefPowersData,'dominion');
     remove_entry(id,sysDefAutoData,'automator');
     remove_entry(id,sysDefToolData,'toolbox');
-    del(id+'_files/lock_saved.json','rw');
-    del(id+'_files/session_saved.json','rw');
+    del(id+'_files/lock.json.sav','rw');
+    del(id+'_files/session.json.sav','rw');
     del(id+'_files/msgbox.json.bak','rw');
     del(id+'_files/book.json.bak','rw');
     del(id+'_files/store.json.bak','rw');
