@@ -1113,10 +1113,10 @@ function omniEnter() {
         itd=(superuser())?'rw':uid; arj=input.replace('obj ', '');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
         if (arg.length==4) {
-            obj(quote(arg[0]),quote(arg[1]),quote(arg[2]),quote(arg[3]),itd);
+            objDataWork(quote(arg[0]),quote(arg[1]),quote(arg[2]),quote(arg[3]),itd);
         } else if (arg.length==3) {
-            obj(quote(arg[0]),quote(arg[1]),quote(arg[2]),'',itd);
-        } else { obj(quote(arg[0]),quote(arg[1]),'','',itd); }
+            objDataWork(quote(arg[0]),quote(arg[1]),quote(arg[2]),'',itd);
+        } else { objDataWork(quote(arg[0]),quote(arg[1]),'','',itd); }
     } else if (input.startsWith('timezoner ')) {
         arj=input.replace('timezoner ', '');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
