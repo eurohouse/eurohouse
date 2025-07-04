@@ -381,17 +381,6 @@ function format_currency(val,mode=0) {
         }
     } return res;
 }
-function format_number(num,prec=0,delim='',decim=',') {
-    var res=res1=res2=res3=''; if (isExp(num)) { res=num;
-    } else if (isFloat(num)) {
-        res1=parseInt(num).toString();
-        res2=(num.toString().replace(res1+'.','')).toString();
-        res3=(res1.replace(/\B(?=(\d{3})+(?!\d))/g,delim));
-        res=(prec>0)?(res3+decim+(res2.slice(0,prec))):res1;
-    } else if (isInt(num)) {
-        res=num.toString().replace(/\B(?=(\d{3})+(?!\d))/g,delim);
-    } else { res=num; } return res;
-}
 function bookkeepingHTML(str) {
     var arr=jsonarr(str),ard=arl='',arf={},eld=[];
     if (notEmpty(arr)) {
