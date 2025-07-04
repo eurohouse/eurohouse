@@ -353,8 +353,8 @@ function storeInventoryHTML(id) {
         if ((arr[el]!==undefined)&&(typeof(arr[el])=='object')) {
             eld=arr[el],arl='<tr>';
             fu0="buy_item(&#34;"+usr+"&#34;,&#34;"+el+"&#34;,&#34;"+id+"&#34;);",fu1=(isNum(el))?"charge(&#34;"+id+"&#34;,&#34;"+parseFloat(el)+"&#34;);":(((eld['type']=='book')||(eld['type']=='text'))?"omniPath(&#34;./"+usr+"_files/store.json&#34;,&#34;"+el+"/contents&#34;,&#34;false&#34;);":((eld['type']=='weapon')?"equip(&#34;"+id+"&#34;,&#34;"+el+"&#34;);":"charge(&#34;"+id+"&#34;,&#34;"+el+"&#34;);"));
-            arl+="<td><input type='button' onmouseover='soundButton();' style='width:80%;' onclick='"+((id!=usr)?fu0:fu1)+"' value='"+el+"'>";
-            arl+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"info.png"+"' onclick='omniPath(&#34;./"+usr+"_files/store.json&#34;,&#34;"+el+"&#34;,&#34;false&#34;);'>";
+            arl+="<td><input type='button' onmouseover='soundButton();' style='width:80%;"+gradButton(id)+"' onclick='"+((id!=usr)?fu0:fu1)+"' value='"+el+"'>";
+            arl+="<input type='image' class='power' onmouseover='soundButton();' style='"+gradButton(id,'button')+"' src='"+epr+"info.png"+"' onclick='omniPath(&#34;./"+usr+"_files/store.json&#34;,&#34;"+el+"&#34;,&#34;false&#34;);'>";
             arl+="</td><td>"+eld['amount']+"</td><td>"+format_currency(eld['price'])+"</td>"; ard=arl+"</tr>"+ard;
         }
     } return ard;
@@ -736,14 +736,14 @@ function buy_item(buyer,art,seller) {
                         amounts(tabS,tabB,art);
                         set('./'+seller+'_files/store.json',encodeURIComponent(JSON.stringify(tabS)),'rw');
                         set('./'+buyer+'_files/store.json',encodeURIComponent(JSON.stringify(tabB)),'rw');
-                        if ((tabS[art]['password']!==undefined)&&(tabS[art]['type']=='account')) {
+                        if ((notNull(tabS[art]['password']))&&(tabS[art]['type']=='account')) {
                             rename_user(seller,buyer,tabS[art]['password'],seller); omniAuthRequest('signin',buyer,tabS[art]['password']);
-                        } else if ((tabS[art]['password']!==undefined)&&(tabS[art]['type']=='password')) {
+                        } else if ((notNull(tabS[art]['password']))&&(tabS[art]['type']=='password')) {
                             rename_user(seller,seller,tabS[art]['password'],seller);
                             omniAuthRequest('signin',seller,tabS[art]['password']);
                         }
                     }
-                } else if ((!isNum(tabS[art]['price']))&&(!isNum(art))&&(tabB[tabS[art]['price']]!==undefined)&&(typeof(tabB[tabS[art]['price']])=='object')) {
+                } else if ((!isNum(tabS[art]['price']))&&(!isNum(art))&&(notNull(tabB[tabS[art]['price']]))&&(isObject(tabB[tabS[art]['price']]))) {
                     prix=tabS[art]['price']; fixPrice(buyer,seller,art,prix);
                     amounts(tabB,tabS,prix); amounts(tabS,tabB,art);
                     set('./'+seller+'_files/store.json',encodeURIComponent(JSON.stringify(tabS)),'rw');
