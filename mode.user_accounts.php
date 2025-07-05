@@ -39,9 +39,9 @@ foreach ($indexUsers as $key=>$value) {
                 <img style="width:50%;" src="<?=$profIcon;?>" loading="lazy" onmouseover="soundButton();">
             </a>
         </td>
-        <td><?=localizedTitle($profData,'title');?></td>
+        <td><?=titleCommand('[project}title]',$settings,$session);?></td>
         <td><?=titleCommand('[codename:project]',$settings,$session);?></td>
-        <td><?='@'.$value;?></td>
+        <td><?=$value;?></td>
         <td>
         <p align='center' class='block'>
             <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="bind(sysDefSessionID.value,this.name);" src="<?=$prefix[3].'chain.png';?>">
