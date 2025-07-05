@@ -459,14 +459,14 @@ function seekMusic(req) {
                 if (mls[i].toLowerCase().includes(fln.toLowerCase())) {
                     pls.push(mls[i]);
                 }
-            } if ((isInt(fli))&&(fli=='*')) { fli=rand(0,pls.length-1); }
+            } if ((!isInt(fli))&&(fli=='*')) { fli=rand(0,pls.length-1); }
         } else if (req.includes('?')) {
             fln=req.split('?')[0],fli=req.split('?')[1],fle=0;
             for (i=0; i<mls.length; i++) {
                 if (mls[i].toLowerCase().includes(fln.toLowerCase())) {
                     pls.push(mls[i]);
                 }
-            } if ((isInt(fli))&&(fli=='*')) { fli=rand(0,pls.length-1); }
+            } if ((!isInt(fli))&&(fli=='*')) { fli=rand(0,pls.length-1); }
         } else if (req.includes(':')) {
             fln=req.split(':')[0],fle=req.split(':')[1];
             for (i=0; i<mls.length; i++) {
