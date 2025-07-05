@@ -607,7 +607,7 @@ function wordfx($word,$sup,array $voc,array $ses) {
                 $res=(isset($loc['quarter'][$uni][$qM]))?$loc['quarter'][$uni][$qM]:$loc['quarter']['default'][$qM]; break;
             default:
                 // Get arbitrary user profile property
-                $res=titleCommand($full); break;
+                $res=titleCommand($full,$voc,$ses); break;
         } $word=str_replace($full,$res,$word);
     } return $word;
 }
