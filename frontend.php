@@ -447,8 +447,8 @@ function seekMusic(req) {
     } else if ((req.includes('/'))&&(req.split('/').length==2)) {
         arg=req.split('/'),arj=(isInt(arg[0]))?parseInt(arg[0]):arg[0];
         ari=(isInt(arg[0]))?'holylance98':'infofintech';
-        if (arg[1].includes(':')) {
-            itm=arg[1].split(':')[0],sec=arg[1].split(':')[1];
+        if (arg[1].includes('?')) {
+            itm=arg[1].split('?')[0],sec=arg[1].split('?')[1];
             arc='https://github.com/'+ari+'/'+arj+'/blob/main/'+itm+'?raw=true';
         } else {
             itm=arg[1],sec=0;
