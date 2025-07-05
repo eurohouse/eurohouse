@@ -616,16 +616,23 @@ function titleCommand($full,array $voc,array $ses) {
         $entl=str_replace(']','',str_replace('[','',$full));
         $entr=explode('|',$entl); foreach ($entr as $itm) {
             $itr=(strpos($itm,':')!==false)?str_replace(':','',$itm):$itm;
-            $itl=localizedTitle($ses,$itr);
+            $enti=(strpos($itr,'^')!==false)?explode('^',$itr)[0]:$itr;
+            $entj=(strpos($itr,'^')!==false)?explode('^',$itr)[1]:0;
+            $itl=localizedTitle($ses,$enti,$entj);
             $entd=titleColon($itl,true,$voc,$ses);
             if ($entd!='') { break; }
         } $res=$entd;
     } elseif (strpos($full,':')!==false) {
-        $entl=str_replace(':','',str_replace(']','',str_replace('[','',$full))); $itl=localizedTitle($ses,$entl);
+        $entl=str_replace(':','',str_replace(']','',str_replace('[','',$full)));
+        $enti=(strpos($entl,'^')!==false)?explode('^',$entl)[0]:$entl;
+        $entj=(strpos($entl,'^')!==false)?explode('^',$entl)[1]:0;
+        $itl=localizedTitle($ses,$enti,$entj);
         $res=titleColon($itl,true,$voc,$ses);
     } else {
         $entl=str_replace(']','',str_replace('[','',$full));
-        $itl=localizedTitle($ses,$entl,1);
+        $enti=(strpos($entl,'^')!==false)?explode('^',$entl)[0]:$entl;
+        $entj=(strpos($entl,'^')!==false)?explode('^',$entl)[1]:0;
+        $itl=localizedTitle($ses,$enti,$entj);
         $res=titleColon($itl,false,$voc,$ses);
     } return $res;
 }
