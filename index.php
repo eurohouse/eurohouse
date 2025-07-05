@@ -39,8 +39,8 @@
         foreach ($updateChannel as $key=>$value) { ?>
             <input type='hidden' id='<?='updateChannel'.md5($key);?>' value="<?=$value;?>">
         <?php }
-        foreach ($gamesChannel as $key=>$value) { ?>
-            <input type='hidden' id='<?='gamesChannel'.md5($key);?>' value="<?=$value;?>">
+        foreach ($downloadChannel as $key=>$value) { ?>
+            <input type='hidden' id='<?='downloadChannel'.md5($key);?>' value="<?=$value;?>">
         <?php }
         foreach ($dataLoad as $key=>$value) { ?>
             <input type='hidden' id='<?='sysDefMy'.ucfirst($value).'Data';?>' value="">
@@ -61,7 +61,8 @@
         <input type='hidden' id='sysDefPic1Prefix' value="<?=$prefix[3];?>">
         <input type='hidden' id='sysDefRet0Prefix' value="<?=$prefix[4];?>">
         <input type='hidden' id='sysDefRet1Prefix' value="<?=$prefix[5];?>">
-        <input type='hidden' id='sysDefNullUserName' value="<?=$nuUser;?>"><input type='hidden' id='sysDefSuperUserName' value="<?=$suUser;?>">
+        <input type='hidden' id='sysDefNullUserName' value="<?=$nulluser;?>">
+        <input type='hidden' id='sysDefSuperUserName' value="<?=$superuser;?>">
         <input type='hidden' id="sysDefHdiData" value="">
         <input type='hidden' id="sysDefNSFWModelData" value="">
         <input type='hidden' id="sysDefNSFWContentData" value="">

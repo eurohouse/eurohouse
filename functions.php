@@ -45,6 +45,11 @@ function platformName($ua) {
     elseif (preg_match('/windows|win32/i',$ua)) return 'Windows';
     return 'Other';
 }
+function thirdParty($ent='app_store',array $def) {
+    $arr=[]; foreach ($def[$ent] as $key=>$val) {
+        $arr[$key]=implode(' ',$val);
+    } return $arr;
+}
 function parseRequestURI($uri): array {
     $prot=explode('://',$uri)[0]; $rest=explode('://',$uri)[1];
     $parts=explode('/',$rest); $prest=$parts;

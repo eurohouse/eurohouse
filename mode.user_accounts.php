@@ -46,7 +46,7 @@ foreach ($indexUsers as $key=>$value) {
         <p align='center' class='block'>
             <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="bind(sysDefSessionID.value,this.name);" src="<?=$prefix[3].'chain.png';?>">
             <?php if (isAuthorized()) {
-                if (isUserRoot($suUser)) { ?>
+                if (isUserRoot($superuser)) { ?>
                     <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="delete_user(this.name);window.location.reload();" src="<?=$prefix[3].'trash.png';?>">
                 <?php } else {
                     if ($value==$sessionID) { ?>

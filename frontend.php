@@ -1143,6 +1143,8 @@ function omniEnter() {
         } else { obj.value=timezoner(quote(arg[0])); }
     } else if (input.startsWith('update ')) {
         getPkgSequence('get -i '+document.getElementById('updateChannel'+CryptoJS.MD5(input.replace('update ','')).toString()).value,'get ',0);
+    } else if (input.startsWith('download ')) {
+        getPkgSequence('get -i '+document.getElementById('downloadChannel'+CryptoJS.MD5(input.replace('download ','')).toString()).value,'get ',0);
     } else if (input.startsWith('clear ')) {
         clearJournal(input.replace('clear ',''),sysDefMyMsgboxData,'msgbox');
     } else if (input.startsWith('erase ')) {

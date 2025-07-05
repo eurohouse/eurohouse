@@ -278,90 +278,97 @@
         "MK": [ "Нд", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб" ]
     },
     "angles": [ 0, 90, 180, 270 ],
-    "get_games": {
-        "arcade": [
-            "https://github.com/infofintech/breakout",
-            "https://github.com/infofintech/bomberman",
-            "https://github.com/infofintech/snake",
-            "https://github.com/infofintech/tetris",
-            "https://github.com/infofintech/pacman",
-            "https://github.com/infofintech/mario",
-            "https://github.com/infofintech/pong"
-        ],
-        "gambling": [
-            "https://github.com/infofintech/aisleriot",
-            "https://github.com/infofintech/dice",
-            "https://github.com/infofintech/pool",
-            "https://github.com/infofintech/chess",
-            "https://github.com/infofintech/monopoly"
-        ],
-        "online/tools": [
-            "https://github.com/infofintech/photopea",
-            "https://github.com/infofintech/vectorpea"
-        ]
-    },
     "payload": {
-        "backward": [
-            "https://github.com/infofintech/system",
-            "https://github.com/eurohouse/eurohouse"
-        ],
-        "forward": [
-            "https://github.com/infofintech/system",
-            "https://github.com/infofintech/unix",
-            "https://github.com/infofintech/dos",
-            "https://github.com/infofintech/game",
-            "https://github.com/infofintech/avatar",
-            "https://github.com/infofintech/i18n",
-            "https://github.com/eurohouse/eurohouse"
-        ],
-        "public/icons": [
-            "https://github.com/infofintech/memphis",
-            "https://github.com/infofintech/redmond",
-            "https://github.com/infofintech/vista",
-            "https://github.com/infofintech/fluent",
-            "https://github.com/infofintech/gnome",
-            "https://github.com/infofintech/tango",
-            "https://github.com/infofintech/antu",
-            "https://github.com/infofintech/cupertino"
-        ],
-        "system/backgrounds": [
-            "https://github.com/infofintech/metro",
-            "https://github.com/infofintech/xp",
-            "https://github.com/infofintech/osx",
-            "https://github.com/infofintech/distro"
-        ],
-        "public/backgrounds": [
-            "https://github.com/infofintech/boutique",
-            "https://github.com/infofintech/emporio",
-            "https://github.com/infofintech/kunstkammer",
-            "https://github.com/infofintech/nemesis",
-            "https://github.com/infofintech/nightlife",
-            "https://github.com/infofintech/stellar"
-        ],
-        "public/misc": [
-            "https://github.com/infofintech/flicker",
-            "https://github.com/eurohouse/nestor"
-        ],
-        "eurohouse/wallpapers": [
-            "https://github.com/eurohouse/baron",
-            "https://github.com/eurohouse/cappuccino",
-            "https://github.com/eurohouse/epoque",
-            "https://github.com/eurohouse/mascarpone"
-        ],
-        "public/music": [
-            "https://github.com/infofintech/oldies",
-            "https://github.com/infofintech/aughts"
-        ],
-        "popcrush/music": [
-            "https://github.com/holylance98/2012",
-            "https://github.com/holylance98/2016",
-            "https://github.com/holylance98/2020",
-            "https://github.com/holylance98/2024"
-        ],
-        "eurohouse/music": [
-            "https://github.com/eurohouse/botticelli",
-            "https://github.com/eurohouse/orchestra"
-        ]
+        "app_store": {
+            "backward": [
+                "https://github.com/infofintech/system",
+                "https://github.com/eurohouse/eurohouse"
+            ],
+            "forward": [
+                "https://github.com/infofintech/system",
+                "https://github.com/infofintech/unix",
+                "https://github.com/infofintech/dos",
+                "https://github.com/infofintech/game",
+                "https://github.com/infofintech/avatar",
+                "https://github.com/infofintech/i18n",
+                "https://github.com/eurohouse/eurohouse"
+            ],
+            "public/icons": [
+                "https://github.com/infofintech/memphis",
+                "https://github.com/infofintech/redmond",
+                "https://github.com/infofintech/vista",
+                "https://github.com/infofintech/fluent",
+                "https://github.com/infofintech/gnome",
+                "https://github.com/infofintech/tango",
+                "https://github.com/infofintech/antu",
+                "https://github.com/infofintech/cupertino"
+            ],
+            "system/backgrounds": [
+                "https://github.com/infofintech/metro",
+                "https://github.com/infofintech/xp",
+                "https://github.com/infofintech/osx",
+                "https://github.com/infofintech/distro"
+            ],
+            "public/backgrounds": [
+                "https://github.com/infofintech/boutique",
+                "https://github.com/infofintech/emporio",
+                "https://github.com/infofintech/kunstkammer",
+                "https://github.com/infofintech/nemesis",
+                "https://github.com/infofintech/nightlife",
+                "https://github.com/infofintech/stellar"
+            ],
+            "public/misc": [
+                "https://github.com/infofintech/flicker",
+                "https://github.com/eurohouse/nestor"
+            ],
+            "eurohouse/wallpapers": [
+                "https://github.com/eurohouse/baron",
+                "https://github.com/eurohouse/cappuccino",
+                "https://github.com/eurohouse/epoque",
+                "https://github.com/eurohouse/mascarpone"
+            ],
+            "public/music": [
+                "https://github.com/infofintech/oldies",
+                "https://github.com/infofintech/aughts"
+            ],
+            "popcrush/music": [
+                "https://github.com/holylance98/2012",
+                "https://github.com/holylance98/2016",
+                "https://github.com/holylance98/2020",
+                "https://github.com/holylance98/2024"
+            ],
+            "eurohouse/music": [
+                "https://github.com/eurohouse/botticelli",
+                "https://github.com/eurohouse/orchestra"
+            ]
+        },
+        "play_store": {
+            "starter": [
+                "https://github.com/infofintech/aisleriot",
+                "https://github.com/infofintech/chess"
+            ],
+            "webxr": [
+                "https://github.com/infofintech/rollercoaster",
+                "https://github.com/infofintech/virtualcity"
+            ],
+            "casino": [
+                "https://github.com/infofintech/dice",
+                "https://github.com/infofintech/pool"
+            ],
+            "arcade": [
+                "https://github.com/infofintech/breakout",
+                "https://github.com/infofintech/bomberman",
+                "https://github.com/infofintech/snake",
+                "https://github.com/infofintech/tetris",
+                "https://github.com/infofintech/pacman",
+                "https://github.com/infofintech/mario",
+                "https://github.com/infofintech/pong"
+            ],
+            "online/tools": [
+                "https://github.com/infofintech/photopea",
+                "https://github.com/infofintech/vectorpea"
+            ]
+        }
     },
     "metadata": { "": "" },
     "defaults": {
