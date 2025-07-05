@@ -340,7 +340,7 @@ function daily($name,$hour): string {
     $back=explode('.',$name)[0].'.'.explode('.',$name)[1].'.'.$fin.'.png'; return $back;
 }
 function getback(array $ses) {
-    return ($ses['banner']!='')?$ses['banner']:daily($ses['background'],((($ses['benchmark']>0)&&($ses['benchmark']<5))?hourize(date('s'),date('i'),$ses['benchmark']):date('H')));
+    return ($ses['banner']!='')?$ses['banner']:daily($ses['background'],((($ses['benchmark']>0)&&($ses['benchmark']<3))?hourize(date('s'),date('i'),$ses['benchmark']):date('H')));
 }
 function getways($name,array $ses) {
     return implode(';',str_replace(explode('.',$name)[0].'.'.explode('.',$name)[1].'.'.substr(explode('.',$name)[2],0,2),'',str_replace('.png','',str_replace('./','',(glob('./'.explode('.',$name)[0].'.'.explode('.',$name)[1].'.'.substr(explode('.',$name)[2],0,2).'*.png'))))));
