@@ -619,7 +619,7 @@ function titleCommand($full,array $voc,array $ses) {
             $enti=(strpos($itr,'^')!==false)?explode('^',$itr)[0]:$itr;
             $entj=(strpos($itr,'^')!==false)?explode('^',$itr)[1]:0;
             $itl=localizedTitle($ses,$enti,$entj);
-            $entd=titleColon($itl,true,$voc,$ses);
+            $entd=titleColon($itl,(strpos($itm,':')!==false),$voc,$ses);
             if ($entd!='') { break; }
         } $res=$entd;
     } elseif (strpos($full,':')!==false) {
