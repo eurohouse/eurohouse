@@ -520,10 +520,13 @@ function seekImage(arb) {
     ark=jsonarr(sysDefContentData.value);
     if ((arb.includes('.'))&&(arb.split('.').length==3)) {
         window.location.href=arb+'.png';
-    } else if ((arb.includes(':'))&&(arb.split(':').length==2)) {
-        arh=[]; arg=arb.split(':'); for (idx in ark) {
-            if (ark[idx].toLowerCase().includes(arg[0].toLowerCase())) { arh.push(idx); }
-        } window.location.href=arh[arg[1]];
+    } else if ((arb.includes('!'))&&(arb.split('!').length==2)) {
+        arh=[]; arg=arb.split('!'); for (idx in ark) {
+            if (ark[idx].toLowerCase().includes(arg[0].toLowerCase())) {
+                arh.push(idx);
+            }
+        } ari=((!isInt(arg[1]))&&(arg[1]=='*'))?rand(0,arh.length):arg[1];
+        window.location.href=arh[ari];
     } else if ((arb=='true')||(arb==1)) {
         arg=Object.keys(jsonarr(sysDefNSFWContentData.value));
         window.location.href=arg[rand(0,arg.length)];
