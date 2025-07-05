@@ -1129,6 +1129,7 @@ function omniEnter() {
         } else if (arg.length==3) {
             objDataWork(quote(arg[0]),quote(arg[1]),quote(arg[2]),'',itd);
         } else { objDataWork(quote(arg[0]),quote(arg[1]),'','',itd); }
+        window.location.reload();
     } else if (input.startsWith('timezoner ')) {
         arj=input.replace('timezoner ', '');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
