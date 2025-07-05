@@ -40,7 +40,7 @@ foreach ($indexUsers as $key=>$value) {
             </a>
         </td>
         <td><?=localizedTitle($profData,'title');?></td>
-        <td><?=titleColon(localizedTitle($profData,'codename'),true,$settings,$session).localizedTitle($profData,'project');?></td>
+        <td><?=titleCommand('[codename:project|title]',$settings,$session);?></td>
         <td><?='@'.$value;?></td>
         <td>
         <p align='center' class='block'>

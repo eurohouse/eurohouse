@@ -607,22 +607,32 @@ function wordfx($word,$sup,array $voc,array $ses) {
                 $res=(isset($loc['quarter'][$uni][$qM]))?$loc['quarter'][$uni][$qM]:$loc['quarter']['default'][$qM]; break;
             default:
                 // Get arbitrary user profile property
-                if (strpos($full,':')!==false) {
-                    $entl=str_replace(':','',str_replace(']','',str_replace('[','',$full)));
-                    $itl=localizedTitle($ses,$entl);
-                    $res=titleColon($itl,true,$voc,$ses);
-                } elseif (strpos($full,'|')!==false) {
-                    $entl=str_replace(']','',str_replace('[','',$full)); $entr=explode('|',$entl);
-                    foreach ($entr as $ei=>$ed) {
-                        $entd=localizedTitle($ses,$ed);
-                        if ($entd!='') { break; }
-                    } $res=$entd;
-                } else {
-                    $entl=str_replace(']','',str_replace('[','',$full)); $itl=localizedTitle($ses,$entl,1);
-                    $res=titleColon($itl,false,$voc,$ses);
-                } break;
+                $res=titleCommand($full); break;
         } $word=str_replace($full,$res,$word);
     } return $word;
+}
+function titleCommand($full,array $voc,array $ses) {
+    if ((strpos($full,':')!==false)&&(strpos($full,'|')!==false)) {
+        $entl=str_replace(']','',str_replace('[','',$full));
+        $entr=explode('|',$entl); foreach ($entr as $itm) {
+            $itl=localizedTitle($ses,str_replace(':','',$itm));
+            $entd=titleColon($itl,true,$voc,$ses);
+            if ($entd!='') { break; }
+        } $res=$entd;
+    } elseif (strpos($full,':')!==false) {
+        $entl=str_replace(':','',str_replace(']','',str_replace('[','',$full))); $itl=localizedTitle($ses,$entl);
+        $res=titleColon($itl,true,$voc,$ses);
+    } elseif (strpos($full,'|')!==false) {
+        $entl=str_replace(']','',str_replace('[','',$full));
+        $entr=explode('|',$entl); foreach ($entr as $itm) {
+            $entd=localizedTitle($ses,$itm);
+            if ($entd!='') { break; }
+        } $res=$entd;
+    } else {
+        $entl=str_replace(']','',str_replace('[','',$full));
+        $itl=localizedTitle($ses,$entl,1);
+        $res=titleColon($itl,false,$voc,$ses);
+    } return $res;
 }
 function titleColon($itl,bool $cln=false,array $voc,array $ses) {
     $uni=$ses['units']; $vom=$voc['vocabulary']; $loc=$voc['locale'];
