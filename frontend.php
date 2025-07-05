@@ -419,13 +419,15 @@ function seekBanner(req) {
         var safe=Object.keys(jsonarr(sysDefSafeContentData.value));
         if ((req.includes('!'))&&(req.split('!').length==2)) {
             rqs=req.split('!')[0]; for (idx in all) {
-            if (all[idx].toLowerCase().includes(rqs.toLowerCase())) {
-                arr.push(idx);
+                if (all[idx].toLowerCase().includes(rqs.toLowerCase())) {
+                    arr.push(idx);
+                }
             } rqt=((!isInt(req.split('!')[1]))&&(req.split('!')[1]=='*'))?rand(0,arr.length):req.split('!')[1];
         } else {
             rqs=req; for (idx in all) {
-            if (all[idx].toLowerCase().includes(rqs.toLowerCase())) {
-                arr.push(idx);
+                if (all[idx].toLowerCase().includes(rqs.toLowerCase())) {
+                    arr.push(idx);
+                }
             } rqt=rand(0,arr.length);
         } if ((req=='true')||(req==1)) {
             setdata('banner',nsfw[rand(0,nsfw.length)]);
