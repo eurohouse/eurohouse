@@ -293,7 +293,7 @@
                 "https://github.com/infofintech/i18n",
                 "https://github.com/eurohouse/eurohouse"
             ],
-            "public/icons": [
+            "icons": [
                 "https://github.com/infofintech/memphis",
                 "https://github.com/infofintech/redmond",
                 "https://github.com/infofintech/vista",
@@ -303,13 +303,13 @@
                 "https://github.com/infofintech/antu",
                 "https://github.com/infofintech/cupertino"
             ],
-            "system/backgrounds": [
+            "backgrounds": [
                 "https://github.com/infofintech/metro",
                 "https://github.com/infofintech/xp",
                 "https://github.com/infofintech/osx",
                 "https://github.com/infofintech/distro"
             ],
-            "public/backgrounds": [
+            "wallpapers": [
                 "https://github.com/infofintech/boutique",
                 "https://github.com/infofintech/emporio",
                 "https://github.com/infofintech/kunstkammer",
@@ -317,29 +317,28 @@
                 "https://github.com/infofintech/nightlife",
                 "https://github.com/infofintech/stellar"
             ],
-            "public/misc": [
-                "https://github.com/infofintech/flicker",
-                "https://github.com/eurohouse/nestor"
-            ],
-            "eurohouse/wallpapers": [
+            "eurohouse": [
                 "https://github.com/eurohouse/baron",
                 "https://github.com/eurohouse/cappuccino",
                 "https://github.com/eurohouse/epoque",
                 "https://github.com/eurohouse/mascarpone"
             ],
-            "public/music": [
+            "music": [
                 "https://github.com/infofintech/oldies",
                 "https://github.com/infofintech/aughts"
             ],
-            "popcrush/music": [
+            "popcrush": [
                 "https://github.com/holylance98/2012",
                 "https://github.com/holylance98/2016",
                 "https://github.com/holylance98/2020",
                 "https://github.com/holylance98/2024"
             ],
-            "eurohouse/music": [
+            "symphony": [
                 "https://github.com/eurohouse/botticelli",
-                "https://github.com/eurohouse/orchestra"
+                "https://github.com/eurohouse/orchestra",
+            ],
+            "pleroma": [
+                "https://github.com/eurohouse/nestor"
             ]
         },
         "play_store": {
@@ -364,7 +363,8 @@
                 "https://github.com/infofintech/mario",
                 "https://github.com/infofintech/pong"
             ],
-            "online/tools": [
+            "tools": [
+                "https://github.com/infofintech/flicker",
                 "https://github.com/infofintech/photopea",
                 "https://github.com/infofintech/vectorpea"
             ]
