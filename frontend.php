@@ -1125,11 +1125,10 @@ function omniEnter() {
         itd=(superuser())?'rw':uid; arj=input.replace('obj ', '');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
         if (arg.length==4) {
-            objDataWork(quote(arg[0]),quote(arg[1]),quote(arg[2]),quote(arg[3]),itd);
+            objDataWork(quote(arg[0]),quote(arg[1]),quote(arg[2]),quote(arg[3]),itd,'r');
         } else if (arg.length==3) {
-            objDataWork(quote(arg[0]),quote(arg[1]),quote(arg[2]),'',itd);
-        } else { objDataWork(quote(arg[0]),quote(arg[1]),'','',itd); }
-        window.location.reload();
+            objDataWork(quote(arg[0]),quote(arg[1]),quote(arg[2]),'',itd,'r');
+        } else { objDataWork(quote(arg[0]),quote(arg[1]),'','',itd,'r'); }
     } else if (input.startsWith('timezoner ')) {
         arj=input.replace('timezoner ', '');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
