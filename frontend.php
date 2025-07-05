@@ -1215,7 +1215,7 @@ function omniEnter() {
     } else if (input.endsWith('?')) { omniDisp(input.slice(0,-1));
     } else if (input.endsWith(';')) { obj.value=executeCode(input);
     } else if (input.match(/([\w|\d|\s]*)(?:\?)([\d|\*]*)/gi)) { seekMusic(input);
-    } else if (input.match(/([\w|\d|\s]*)(?:\?)([\d|\*]*)/gi)) { seekImage(input);
+    } else if (input.match(/([\w|\d|\s]*)(?:\!)([\d|\*]*)/gi)) { seekImage(input);
     } else if (input.match(/(\w*)(?:\:)(\w*)/gi)) { seekCode(input);
     } else if (input.endsWith('sec')) {
         arb=parseInt(input.slice(0,-3))+1;
