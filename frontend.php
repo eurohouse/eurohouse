@@ -443,7 +443,7 @@ function seekCode(req) {
 }
 function urlGetData(url,arg='') {
     var urlParts=url.split('?');
-    var urlArgs=strarr(urlParts,'&','=');
+    var urlArgs=strarr(urlParts[1],'&','=');
     return (notNull(urlArgs[arg]))?urlArgs[arg]:'';
 }
 function seekMusic(req) {
