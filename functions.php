@@ -612,22 +612,17 @@ function wordfx($word,$sup,array $voc,array $ses) {
     } return $word;
 }
 function titleCommand($full,array $voc,array $ses) {
-    if ((strpos($full,':')!==false)&&(strpos($full,'|')!==false)) {
+    if (strpos($full,'|')!==false) {
         $entl=str_replace(']','',str_replace('[','',$full));
         $entr=explode('|',$entl); foreach ($entr as $itm) {
-            $itl=localizedTitle($ses,str_replace(':','',$itm));
+            $itr=(strpos($itm,':')!==false)?str_replace(':','',$itm):$itm;
+            $itl=localizedTitle($ses,$itr);
             $entd=titleColon($itl,true,$voc,$ses);
             if ($entd!='') { break; }
         } $res=$entd;
     } elseif (strpos($full,':')!==false) {
         $entl=str_replace(':','',str_replace(']','',str_replace('[','',$full))); $itl=localizedTitle($ses,$entl);
         $res=titleColon($itl,true,$voc,$ses);
-    } elseif (strpos($full,'|')!==false) {
-        $entl=str_replace(']','',str_replace('[','',$full));
-        $entr=explode('|',$entl); foreach ($entr as $itm) {
-            $entd=localizedTitle($ses,$itm);
-            if ($entd!='') { break; }
-        } $res=$entd;
     } else {
         $entl=str_replace(']','',str_replace('[','',$full));
         $itl=localizedTitle($ses,$entl,1);
