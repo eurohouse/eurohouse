@@ -39,7 +39,7 @@ foreach ($indexUsers as $key=>$value) {
                 <img style="width:50%;" src="<?=$profIcon;?>" loading="lazy" onmouseover="soundButton();">
             </a>
         </td>
-        <td><?=titleCommand('[project|title]',$settings,$profData);?></td>
+        <td><?=titleCommand('[title]',$settings,$profData);?></td>
         <td><?=titleCommand('[codename:]',$settings,$profData).titleCommand('[project]',$settings,$profData);?></td>
         <td><?=$value;?></td>
         <td>
