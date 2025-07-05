@@ -453,23 +453,32 @@ function seekMusic(req) {
         } omniListen(arc,true);
     } else {
         if ((req.includes('?'))&&(req.includes(':'))) {
-            fln=req.split('?')[0]; atr=req.split('?')[1];
+            fln=req.split('?')[0],atr=req.split('?')[1];
+            fli=atr.split(':')[0],fle=atr.split(':')[1];
             for (i=0; i<mls.length; i++) {
-                if (mls[i].toLowerCase().includes(fln.toLowerCase())) { pls.push(mls[i]); }
-            } fli=atr.split(':')[0]; fle=atr.split(':')[1];
+                if (mls[i].toLowerCase().includes(fln.toLowerCase())) {
+                    pls.push(mls[i]);
+                }
+            } if ((isInt(fli))&&(fli=='*')) { fli=rand(0,pls.length-1); }
         } else if (req.includes('?')) {
-            fln=req.split('?')[0]; fli=req.split('?')[1];
+            fln=req.split('?')[0],fli=req.split('?')[1],fle=0;
             for (i=0; i<mls.length; i++) {
-                if (mls[i].toLowerCase().includes(fln.toLowerCase())) { pls.push(mls[i]); }
-            } fle=0;
+                if (mls[i].toLowerCase().includes(fln.toLowerCase())) {
+                    pls.push(mls[i]);
+                }
+            } if ((isInt(fli))&&(fli=='*')) { fli=rand(0,pls.length-1); }
         } else if (req.includes(':')) {
-            fln=req.split(':')[0]; fle=req.split(':')[1];
+            fln=req.split(':')[0],fle=req.split(':')[1];
             for (i=0; i<mls.length; i++) {
-                if (mls[i].toLowerCase().includes(fln.toLowerCase())) { pls.push(mls[i]); }
+                if (mls[i].toLowerCase().includes(fln.toLowerCase())) {
+                    pls.push(mls[i]);
+                }
             } fli=rand(0,pls.length-1);
         } else {
-            fln=req; fle=0; for (i=0; i<mls.length; i++) {
-                if (mls[i].toLowerCase().includes(fln.toLowerCase())) { pls.push(mls[i]); }
+            fln=req,fle=0; for (i=0; i<mls.length; i++) {
+                if (mls[i].toLowerCase().includes(fln.toLowerCase())) {
+                    pls.push(mls[i]);
+                }
             } fli=rand(0,pls.length-1);
         } if (notEmpty(pls)) {
             omniListen(pls[fli],true,parseInt(fle));
