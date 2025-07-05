@@ -40,7 +40,7 @@ foreach ($indexUsers as $key=>$value) {
             </a>
         </td>
         <td><?=titleCommand('[title]',$settings,$profData);?></td>
-        <td><?=titleCommand('[codename:project|title]',$settings,$profData);?></td>
+        <td><?=titleCommand('[codename:]',$settings,$profData).titleCommand('[project|title]',$settings,$profData);?></td>
         <td><?=$value;?></td>
         <td>
         <p align='center' class='block'>
