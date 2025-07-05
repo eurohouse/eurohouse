@@ -442,15 +442,18 @@ function seekCode(req) {
     }
 }
 function seekMusic(req) {
-    var mls=lockarr('music'),pls=[];
+    var mls=lockarr('music'),pls=arg=[],arj=ari=arc=itm='',sec=0;
     if (req.includes('://')) { omniListen(req,true);
-    } else if (req.includes('/')) {
-        if (req.split('/').length==2) {
-            arg=req.split('/');
-            arj=(isInt(arg[0]))?parseInt(arg[0]):arg[0];
-            ari=(isInt(arg[0]))?'holylance98':'infofintech';
-            arc='https://github.com/'+ari+'/'+arj+'/blob/main/'+arg[1]+'?raw=true';
-        } omniListen(arc,true);
+    } else if ((req.includes('/'))&&(req.split('/').length==2)) {
+        arg=req.split('/'),arj=(isInt(arg[0]))?parseInt(arg[0]):arg[0];
+        ari=(isInt(arg[0]))?'holylance98':'infofintech';
+        if (arg[1].includes(':')) {
+            itm=arg[1].split(':')[0],sec=arg[1].split(':')[1];
+            arc='https://github.com/'+ari+'/'+arj+'/blob/main/'+itm+'?raw=true';
+        } else {
+            itm=arg[1],sec=0;
+            arc='https://github.com/'+ari+'/'+arj+'/blob/main/'+itm+'?raw=true';
+        } omniListen(arc,true,sec);
     } else {
         if ((req.includes('?'))&&(req.includes(':'))) {
             fln=req.split('?')[0],atr=req.split('?')[1];
