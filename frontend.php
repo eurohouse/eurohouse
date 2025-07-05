@@ -441,9 +441,14 @@ function seekCode(req) {
         }
     }
 }
+function urlGetData(url,arg='') {
+    var urlParts=url.split('?');
+    var urlArgs=strarr(urlParts,'&','=');
+    return (notNull(urlArgs[arg]))?urlArgs[arg]:'';
+}
 function seekMusic(req) {
     var mls=lockarr('music'),pls=arg=[],arj=ari=arc=itm='',sec=0;
-    if (req.includes('://')) { omniListen(req,true);
+    if (req.includes('://')) { omniListen(req,true,urlGetData(req,'sec'));
     } else if ((req.includes('/'))&&(req.split('/').length==2)) {
         arg=req.split('/'),arj=(isInt(arg[0]))?parseInt(arg[0]):arg[0];
         ari=(isInt(arg[0]))?'holylance98':'infofintech';
