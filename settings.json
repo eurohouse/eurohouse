@@ -287,7 +287,8 @@
             "forward": [
                 "https://github.com/infofintech/system",
                 "https://github.com/infofintech/unix",
-                "https://github.com/infofintech/dos",
+                "https://github.com/infofintech/bootfont",
+                "https://github.com/infofintech/media",
                 "https://github.com/infofintech/game",
                 "https://github.com/infofintech/avatar",
                 "https://github.com/infofintech/i18n",
