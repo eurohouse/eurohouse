@@ -211,7 +211,7 @@ function fileopen($name,$default='',$options='') {
     } elseif (@paging($name)!==null) {
         $res=paging($name);
     } else { $res=$content; }
-    return $result;
+    return $res;
 }
 function jsonopen($name,$empt=false) {
     $test=file_get_contents($name);
