@@ -202,38 +202,18 @@ function textopen($name,$default='') {
     $fileOpen=(file_exists($name))?file_get_contents($name):$default;
     return ($fileOpen!='')?$fileOpen:$default;
 }
-function fileopen($name,$default='') {
+function fileopen($name,$default='',$options='') {
     $content=(file_exists($name))?file_get_contents($name):$default;
     if (@unserialize($content)!==false) {
-        $result=unserialize($content);
+        $res=unserialize($content);
     } elseif (@json_decode($content,true)!=null) {
-        $result=json_decode($content,true);
+        $res=json_decode($content,true);
     } elseif (@paging($name)!==null) {
-        $result=paging($name);
-    } else { $result=$content; }
-    return $result;
-}
-function arropen($name,$default="{\"\":\"\"}",$exec='') {
-    if (!file_exists($name)) {
-        file_put_contents($name,$default);
-        chmod($name,0777);
-    } $test=file_get_contents($name);
-    if (@json_decode($test,true)!=null) {
-        file_put_contents($name.'.bak',$test);
-        chmod($name.'.bak',0777);
-    } else {
-        copy($name.'.bak',$name);
-        chmod($name,0777);
-    } if ($exec=='DEFAULT') {
-        $tryit=json_decode(file_get_contents($name),true);
-	file_put_contents($name,json_encode(mirrorArrays(json_decode($default,true),$tryit)));
-        chmod($name,0777); $res=$tryit;
-    } elseif ($exec=='JSON') {
-        $tryit=file_get_contents($name);$res=$tryit;
-    } else {
-        $tryit=json_decode(file_get_contents($name),true);
-        $res=$tryit;
-    } return $res;
+        $res=paging($name);
+    } else { $res=$content; }
+    if ((preg_match('/mirror/i',$options))&&(is_array($res))&&(@json_decode($default,true)!=null)) {
+        $result=json_encode(mirrorArrays(json_decode($default,true),$res));
+    } return $result;
 }
 function jsonopen($name,$empt=false) {
     $test=file_get_contents($name);
@@ -601,8 +581,8 @@ function wordfx($word,$sup,array $voc,array $ses) {
             case '[uname -r]': $res=php_uname('r'); break;
             case '[uname -v]': $res=php_uname('v'); break;
             case '[uname -m]': $res=php_uname('m'); break;
-            case '[app_version]': $res=arropen('eurohouse.pkg')['version']; break;
-            case '[sys_version]': $res=arropen('system.pkg')['version']; break;
+            case '[app_version]': $res=fileopen('eurohouse.pkg')['version']; break;
+            case '[sys_version]': $res=fileopen('system.pkg')['version']; break;
             case '[server_ip]': $res=$_SERVER['SERVER_ADDR']; break;
             case '[free_disk_space]':
                 // Get free disk space on web server

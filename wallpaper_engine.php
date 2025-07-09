@@ -1,7 +1,7 @@
 <?php include 'functions.php';
 $userSettings=fileopen('settings.json');
 $cookie=whichCookie($userSettings['reserve']['unauthorized']);
-$userData=arropen($cookie.'_files/session.json',json_encode($userSettings['defaults']),'DEFAULT'); date_default_timezone_set(dec_tz($userData['timezone']));
+$userData=fileopen($cookie.'_files/session.json',json_encode($userSettings['defaults']),'mirror'); date_default_timezone_set(dec_tz($userData['timezone']));
 $showFilename=getback($userData); $variations=getways($showFilename,$userData);
 $cont=exemplar(str_replace('./','',(glob('./*.contents.json'))));
 $exem=exemplar(str_replace('./','',(glob('./*.models.json'))));
