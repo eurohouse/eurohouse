@@ -1,13 +1,13 @@
 <?php include 'functions.php';
 $userSettings=fileopen('settings.json');
 $cookie=whichCookie($userSettings['reserve']['unauthorized']);
-$userData=arropen($cookie.'_files/session.json',json_encode($userSettings['defaults']),'DEFAULT');
-$bindingData=arropen('binding.json');
-$poweredData=arropen('dominion.json');
-$autoData=arropen('automator.json');
-$toolData=arropen('toolbox.json');
-$pref=prefixes($userData); $locksArr=arropen($cookie.'_files/lock.json',json_encode($userSettings['locks']),'DEFAULT');
-$userLocks=userlocks($locksArr,$userSettings['collections'],$pref); $notesArr=arropen($cookie.'_files/metadata.json',json_encode($userSettings['metadata']),'CUSTOM');
+$userData=fileopen($cookie.'_files/session.json',json_encode($userSettings['defaults']));
+$bindingData=fileopen('binding.json');
+$poweredData=fileopen('dominion.json');
+$autoData=fileopen('automator.json');
+$toolData=fileopen('toolbox.json');
+$pref=prefixes($userData); $locksArr=fileopen($cookie.'_files/lock.json',json_encode($userSettings['locks']));
+$userLocks=userlocks($locksArr,$userSettings['collections'],$pref); $notesArr=fileopen($cookie.'_files/metadata.json',json_encode($userSettings['metadata']));
 $listExem=exemplar(str_replace('./','',(glob('./*.models.json'))));
 foreach ($listExem as $key=>$value) {
     if (!isset($value['nsfw'])) { unset($listExem[$key]); }
@@ -23,10 +23,10 @@ foreach ($listDefCont as $key=>$value) {
 } $newsFeed=jsonopen('./'.$cookie.'_files/msgbox.json',true);
 $userBook=jsonopen('./'.$cookie.'_files/book.json',true);
 $userStore=jsonopen('./'.$cookie.'_files/store.json',true);
-$localesArr=arropen('./i18n.json');
+$localesArr=fileopen('./i18n.json');
 $publicUserData=[]; foreach ($poweredData as $key=>$value) {
     if (file_exists($key.'_files/session.json')) {
-        $testArr=arropen($key.'_files/session.json',json_encode($userSettings['defaults']),'DEFAULT');
+        $testArr=fileopen($key.'_files/session.json',json_encode($userSettings['defaults']));
     } date_default_timezone_set(dec_tz($testArr['timezone']));
     $publicUserData['hh'][$key]=date('H'); $publicUserData['hour'][$key]=date('H');
     $publicUserData['date'][$key]=chooseCalendar(time(),$testArr,$userSettings); $publicUserData['time'][$key]=timedate(time(),$testArr,$userSettings);
