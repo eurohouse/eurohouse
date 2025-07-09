@@ -1,11 +1,11 @@
 <?php include 'functions.php';
 $userSettings=fileopen('settings.json');
 $cookie=whichCookie($userSettings['reserve']['unauthorized']);
-$userData=fileopen($cookie.'_files/session.json',json_encode($userSettings['defaults']),'mirror');
+$userData=fileopen($cookie.'_files/session.json',json_encode($userSettings['defaults']));
 $bindingData=fileopen('binding.json'); $poweredData=fileopen('dominion.json');
 $autoData=fileopen('automator.json'); $toolData=fileopen('toolbox.json');
 $pref=prefixes($userData);
-$locksArr=fileopen($cookie.'_files/lock.json',json_encode($userSettings['locks']),'mirror');
+$locksArr=fileopen($cookie.'_files/lock.json',json_encode($userSettings['locks']));
 $userLocks=userlocks($locksArr,$userSettings['collections'],$pref); $notesArr=fileopen($cookie.'_files/metadata.json',json_encode($userSettings['metadata']));
 $listExem=exemplar(str_replace('./','',(glob('./*.models.json'))));
 foreach ($listExem as $key=>$value) {
@@ -25,7 +25,7 @@ $userStore=jsonopen('./'.$cookie.'_files/store.json',true);
 $localesArr=fileopen('./i18n.json');
 $publicUserData=[]; foreach ($poweredData as $key=>$value) {
     if (file_exists($key.'_files/session.json')) {
-        $testArr=fileopen($key.'_files/session.json',json_encode($userSettings['defaults']),'mirror');
+        $testArr=fileopen($key.'_files/session.json',json_encode($userSettings['defaults']));
     } date_default_timezone_set(dec_tz($testArr['timezone']));
     $publicUserData['hh'][$key]=date('H');
     $publicUserData['hour'][$key]=date('H');
