@@ -204,14 +204,20 @@ function textopen($name,$default='') {
 }
 function fileopen($name,$default='',$options='') {
     $content=(file_exists($name))?file_get_contents($name):$default;
+    $dest=(@json_decode($default,true)!=null)?json_decode($default,true):[];
     if (@unserialize($content)!==false) {
-        $res=unserialize($content);
+        $result=unserialize($content);
     } elseif (@json_decode($content,true)!=null) {
         $res=json_decode($content,true);
+        if (preg_match('/mirror/i',$options)) {
+            $result=json_encode(array_intersect_key($dest,$res),JSON_UNESCAPED_UNICODE);
+        } else {
+            $result=$res;
+        }
     } elseif (@paging($name)!==null) {
-        $res=paging($name);
-    } else { $res=$content; }
-    return $res;
+        $result=paging($name);
+    } else { $result=$content; }
+    return $result;
 }
 function jsonopen($name,$empt=false) {
     $test=file_get_contents($name);
