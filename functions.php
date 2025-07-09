@@ -211,7 +211,10 @@ function fileopen($name,$default='',$options='') {
     } elseif (@paging($name)!==null) {
         $res=paging($name);
     } else { $res=$content; }
-    return $res;
+    if ((preg_match('/mirror/i',$options))&&(is_array($res))&&(@json_decode($default,true)!=null)&&(is_array(json_decode($default,true)))) {
+        $tes=json_decode($default,true);
+        $result=json_encode(array_intersect_key($tes,$res),JSON_UNESCAPED_UNICODE);
+    } return $result;
 }
 function jsonopen($name,$empt=false) {
     $test=file_get_contents($name);
