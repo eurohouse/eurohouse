@@ -204,6 +204,7 @@ function textopen($name,$default='') {
 }
 function fileopen($name,$default='',$options='') {
     $content=(file_exists($name))?file_get_contents($name):$default;
+    $dest=(@json_decode($default,true)!=null)?json_decode($default,true):[];
     if (@unserialize($content)!==false) {
         $res=unserialize($content);
     } elseif (@json_decode($content,true)!=null) {
@@ -211,9 +212,8 @@ function fileopen($name,$default='',$options='') {
     } elseif (@paging($name)!==null) {
         $res=paging($name);
     } else { $res=$content; }
-    if ((preg_match('/mirror/i',$options))&&(is_array($res))&&(@json_decode($default,true)!=null)&&(is_array(json_decode($default,true)))) {
-        $tes=json_decode($default,true);
-        $result=json_encode(array_intersect_key($tes,$res),JSON_UNESCAPED_UNICODE);
+    if (preg_match('/mirror/i',$options)) {
+        $result=json_encode(array_intersect_key($dest,$res),JSON_UNESCAPED_UNICODE);
     } return $result;
 }
 function jsonopen($name,$empt=false) {
