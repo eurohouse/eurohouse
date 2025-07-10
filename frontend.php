@@ -423,8 +423,8 @@ function seekBanner(req) {
         var all=jsonarr(sysDefContentData.value),rqs=rqt='',rqd=arr=[];
         var nsfw=Object.keys(jsonarr(sysDefNSFWContentData.value));
         var safe=Object.keys(jsonarr(sysDefSafeContentData.value));
-        if ((req.includes(')'))&&(req.split(')').length==2)) {
-            rqd=req.split(')'); rqs=rqd[0]; for (idx in all) {
+        if ((req.includes('!'))&&(req.split('!').length==2)) {
+            rqd=req.split('!'); rqs=rqd[0]; for (idx in all) {
                 if (all[idx].toLowerCase().includes(rqs.toLowerCase())) {
                     arr.push(idx);
                 }
@@ -510,27 +510,6 @@ function seekMusic(req) {
         }
     }
 }
-function seekPlayNext(req) {
-    var mls=lockarr('music'),pls=arg=[],arj=ari=arc=itm='',sec=0;
-    if (req.includes(']')) {
-        fln=req.split(']')[0],fli=req.split(']')[1];
-        for (i=0; i<mls.length; i++) {
-            if (mls[i].toLowerCase().includes(fln.toLowerCase())) {
-                pls.push(mls[i]);
-            }
-        } if ((!isInt(fli))&&((fli=='*')||(fli==''))) { fli=rand(0,pls.length-1); }
-    } else {
-        fln=req; for (i=0; i<mls.length; i++) {
-            if (mls[i].toLowerCase().includes(fln.toLowerCase())) {
-                pls.push(mls[i]);
-            }
-        } fli=rand(0,pls.length-1);
-    } if (notEmpty(pls)) {
-        setdata('playlist',playlistNext(pls[fli]));
-    } else {
-        setdata('playlist',playlistNext(mls[rand(0,mls.length-1)]));
-    }
-}
 function seekModel(arb) {
     arh=[]; if (arb.includes(':')) {
         ark=jsonarr(sysDefModelData.value);
@@ -550,29 +529,6 @@ function seekModel(arb) {
                 arh.push(idx);
             }
         } omniGroup(arh[rand(0,arh.length)]);
-    }
-}
-function seekImage(arb) {
-    ark=jsonarr(sysDefContentData.value);
-    if ((arb.includes('.'))&&(arb.split('.').length==3)) {
-        window.location.href=arb+'.png';
-    } else if ((arb.includes('!'))&&(arb.split('!').length==2)) {
-        arh=[]; arg=arb.split('!'); for (idx in ark) {
-            if (ark[idx].toLowerCase().includes(arg[0].toLowerCase())) {
-                arh.push(idx);
-            }
-        } ari=((!isInt(arg[1]))&&(arg[1]=='*'))?rand(0,arh.length):arg[1];
-        window.location.href=arh[ari];
-    } else if ((arb=='true')||(arb==1)) {
-        arg=Object.keys(jsonarr(sysDefNSFWContentData.value));
-        window.location.href=arg[rand(0,arg.length)];
-    } else if ((arb=='false')||(arb==0)) {
-        arg=Object.keys(jsonarr(sysDefSafeContentData.value));
-        window.location.href=arg[rand(0,arg.length)];
-    } else {
-        arh=[]; for (idx in ark) {
-            if (ark[idx].toLowerCase().includes(arb.toLowerCase())) { arh.push(idx); }
-        } window.location.href=arh[rand(0,arh.length)];
     }
 }
 function toIso8601(num) {
@@ -1152,11 +1108,11 @@ function omniEnter() {
             obj.value=loadFile(quote(arg[0]));
         }
     } else if (input.startsWith('sort:')) {
-        omniSort(input.replace('sort:', ''));
+        omniSort(input.replace('sort:',''));
     } else if (input.startsWith('group:')) {
-        seekModel(input.replace('group:', ''));
+        seekModel(input.replace('group:',''));
     } else if (input.startsWith('model:')) {
-        seekModel(input.replace('model:', ''));
+        seekModel(input.replace('model:',''));
     } else if (input.startsWith('obj ')) {
         itd=(superuser())?'rw':uid; arj=input.replace('obj ', '');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
@@ -1208,6 +1164,10 @@ function omniEnter() {
         getPkgSequence(input,'git ',1);
     } else if (input.startsWith('#')) {
         setdata('find',input);
+    } else if (input.startsWith('&')) {
+        bind(sysDefSessionID.value,input.replace('&',''));
+    } else if (input.startsWith('$')) {
+        equip(sysDefSessionID.value,input.replace('$',''));
     } else if (input.startsWith('_')) {
         omniGo(input.replace('_',''));
     } else if (input.startsWith('=')) {
@@ -1246,8 +1206,7 @@ function omniEnter() {
         }
     } else if (input.startsWith('?')) { omniDisp(input.slice(1));
     } else if (input.endsWith(';')) { obj.value=executeCode(input);
-    } else if (input.match(/([\w|\d|\s]*)(?:\])([\d|\*]*)/gi)) { seekPlayNext(input);
-    } else if (input.match(/([\w|\d|\s]*)(?:\))([\d|\*]*)/gi)) { seekBanner(input);
+    } else if (input.match(/([\w|\d|\s]*)(?:\!)([\d|\*]*)/gi)) { seekBanner(input);
     } else if (input.match(/([\w|\d|\s]*)(?:\?)([\d|\*]*)/gi)) { seekMusic(input);
     } else if (input.match(/(\w*)(?:\:)(\w*)/gi)) { seekCode(input);
     } else if (input.endsWith('sec')) {
