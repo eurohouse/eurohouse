@@ -10,9 +10,6 @@ window.onload=function() {
     } else if (requestMode.value=='text_editor') { countText();
     } else if (requestMode.value=='sticky_notes') { countNote();
     } else if (requestMode.value=='markdown_viewer') { markdownToHTMLParse(); }
-    if (userNotFound(sysDefSessionID.value)) {
-        init_user(sysDefSessionID.value);
-    }
 }
 $(document).ready(function() {
     <?php foreach ($settings['intervals'] as $key=>$val) { ?>
@@ -42,7 +39,9 @@ function databox() {
             $('#sysDefSafeContentData').val(pager(data,16));
             $('#sysDefModelData').val(arrjson({...jsonarr(sysDefNSFWModelData.value), ...jsonarr(sysDefSafeModelData.value)}));
             $('#sysDefContentData').val(arrjson({...jsonarr(sysDefNSFWContentData.value), ...jsonarr(sysDefSafeContentData.value)}));
-            $('#sysDefMetaList').val(Object.keys(jsonarr(sysDefMetaData.value)).join(' | ')); var powersData=jsonarr(sysDefPowersData.value);
+            $('#sysDefMetaList').val(Object.keys(jsonarr(sysDefMetaData.value)).join(' | ')); if (userNotFound(sysDefSessionID.value)) {
+                init_user(sysDefSessionID.value);
+            } var powersData=jsonarr(sysDefPowersData.value);
             sysDefMyPowersState.value=powersData[sysDefSessionID.value];
             var bindData=jsonarr(sysDefBindData.value);
             sysDefMyBindState.value=bindData[sysDefSessionID.value];
