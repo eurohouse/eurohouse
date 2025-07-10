@@ -39,7 +39,7 @@ function databox() {
             $('#sysDefSafeContentData').val(pager(data,16));
             $('#sysDefModelData').val(arrjson({...jsonarr(sysDefNSFWModelData.value), ...jsonarr(sysDefSafeModelData.value)}));
             $('#sysDefContentData').val(arrjson({...jsonarr(sysDefNSFWContentData.value), ...jsonarr(sysDefSafeContentData.value)}));
-            $('#sysDefMetaList').val(Object.keys(jsonarr(sysDefMetaData.value)).join(' | ')); if (userNotFound(sysDefSessionID.value)) {
+            $('#sysDefMetaList').val(Object.keys(jsonarr(sysDefMetaData.value)).join(' | ')); if ((sysDefSessionID.value!='')&&(userNotFound(sysDefSessionID.value))) {
                 init_user(sysDefSessionID.value);
             } var powersData=jsonarr(sysDefPowersData.value);
             sysDefMyPowersState.value=powersData[sysDefSessionID.value];
