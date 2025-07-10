@@ -65,14 +65,14 @@ function superuser() {
 function authstate() {
     return (sysDefIsSession.value!=false);
 }
-function user_exists(id) {
+function userNotFound(id) {
     var pwr=jsonarr(sysDefPowersData.value);
-    var res=((pwr[id]!==undefined)&&(isNum(pwr[id])));
+    var res=(!notNull(pwr[id]));
     return res;
 }
 function cancelled(id) {
     var pwr=jsonarr(sysDefPowersData.value);
-    var res=false; if ((pwr[id]!==undefined)&&(isNum(pwr[id]))) {
+    var res=false; if ((notNull(pwr[id]))&&(isNum(pwr[id]))) {
         res=(pwr[id]<0);
     } return res;
 }
@@ -251,12 +251,11 @@ function rename_user(id,to,pass,perm) {
     }
 }
 function init_user(id,pass=null) {
-    if (!user_exists(id)) {
-        reset_entry(id,sysDefPowersData,'dominion','n');
-        reset_entry(id,sysDefBindData,'binding','i');
-        reset_entry(id,sysDefAutoData,'automator','m');
-        reset_entry(id,sysDefToolData,'toolbox','e');
-    } var msgData=jsonarr(openJournal(id,sysDefMsgboxJSONs));
+    reset_entry(id,sysDefPowersData,'dominion','n');
+    reset_entry(id,sysDefBindData,'binding','i');
+    reset_entry(id,sysDefAutoData,'automator','m');
+    reset_entry(id,sysDefToolData,'toolbox','e');
+    var msgData=jsonarr(openJournal(id,sysDefMsgboxJSONs));
     if (!notNull(msgData)) {
         mkdir('./'+id+'_files','rw');
         set('./'+id+'_files/msgbox.json',JSON.stringify({}),'rw');

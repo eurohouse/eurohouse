@@ -10,7 +10,9 @@ window.onload=function() {
     } else if (requestMode.value=='text_editor') { countText();
     } else if (requestMode.value=='sticky_notes') { countNote();
     } else if (requestMode.value=='markdown_viewer') { markdownToHTMLParse(); }
-    if (sysDefSessionID.value!='') { init_user(sysDefSessionID.value); }
+    if ((sysDefSessionID.value!='')&&(userNotFound(sysDefSessionID.value))) {
+        init_user(sysDefSessionID.value);
+    }
 }
 $(document).ready(function() {
     <?php foreach ($settings['intervals'] as $key=>$val) { ?>
