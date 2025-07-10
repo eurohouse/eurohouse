@@ -203,17 +203,17 @@ function textopen($name,$default='') {
     return ($fileOpen!='')?$fileOpen:$default;
 }
 function fileopen($name,$default='',$options='') {
-    $content=(file_exists($name))?file_get_contents($name):$default;
-    $dest=(@json_decode($default,true)!=null)?json_decode($default,true):[];
-    if (@unserialize($content)!==false) {
+    if (preg_match('/backup/i',$options)) {
+        if (!file_exists($name)) {
+            file_put_contents($name,$default);
+            chmod($name,0777);
+        } $content=file_get_contents($name);
+    } else {
+        $content=(file_exists($name))?file_get_contents($name):$default;
+    } if (@unserialize($content)!==false) {
         $result=unserialize($content);
     } elseif (@json_decode($content,true)!=null) {
-        $res=json_decode($content,true);
-        if (preg_match('/mirror/i',$options)) {
-            $result=json_encode(array_intersect_key($dest,$res),JSON_UNESCAPED_UNICODE);
-        } else {
-            $result=$res;
-        }
+        $result=json_decode($content,true);
     } elseif (@paging($name)!==null) {
         $result=paging($name);
     } else { $result=$content; }
@@ -233,14 +233,6 @@ function jsonopen($name,$empt=false) {
     } else { copy($name.'.bak',$name); chmod($name,0777);
     } return file_get_contents($name);
 }
-function mirrorArrays(array $src,array $des) {
-    foreach ($src as $key=>$val) {
-        if (!isset($des[$key])) { $des[$key]=$val; }
-    } foreach ($des as $key=>$val) {
-        if (!isset($src[$key])) { unset($des[$key]); }
-    } return $des;
-}
-
 function path_root($path) { return preg_match('/^([\/]+)$/i',$path); }
 function path_trim($path) { return str_replace('/','',$path); }
 function path_rel($path) {

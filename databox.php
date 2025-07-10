@@ -1,7 +1,7 @@
 <?php include 'functions.php';
 $userSettings=fileopen('settings.json');
 $cookie=whichCookie($userSettings['reserve']['unauthorized']);
-$userData=fileopen($cookie.'_files/session.json',json_encode($userSettings['defaults']),'mirror');
+$userData=fileopen($cookie.'_files/session.json',json_encode($userSettings['defaults']));
 $bindingData=fileopen('binding.json'); $poweredData=fileopen('dominion.json');
 $autoData=fileopen('automator.json'); $toolData=fileopen('toolbox.json');
 $pref=prefixes($userData);
