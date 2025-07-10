@@ -17,7 +17,7 @@ $nulluser=$settings['reserve']['unauthorized'];
 $superuser=$settings['reserve']['superuser'];
 $sessionID=whichSession($nulluser);
 setcookie('user',$sessionID,time()+$settings['lifetime']['cookie_lengthen']);
-$session=fileopen($sessionID.'_files/session.json',json_encode($settings['defaults'])); $metadata=fileopen($sessionID.'_files/metadata.json',json_encode($settings['metadata'])); $finLang=terms($settings,$session);
+$session=fileopen($sessionID.'_files/session.json',json_encode($settings['defaults']),'mirror'); $metadata=fileopen($sessionID.'_files/metadata.json',json_encode($settings['metadata'])); $finLang=terms($settings,$session);
 $bindData=fileopen('binding.json'); $powersData=fileopen('dominion.json');
 $automateData=fileopen('automator.json'); $toolboxData=fileopen('toolbox.json');
 date_default_timezone_set(dec_tz($session['timezone']));
@@ -27,4 +27,4 @@ foreach ($settings['initialize']['POST'] as $requestID=>$requestValue) { $postRe
 $prefix=prefixes($session); $themePrefix=(file_exists($session['theme'].'.pkg'))?$session['theme'].'.':$prefix[3];
 $portfolioPrefix=(($themePrefix=='iec')||($themePrefix=='iso'))?'org.':((themed($themePrefix,'head,left0,left90,left180,left270,right0,right90,right180,right270'))?$themePrefix:'org.');
 $background=getback($session);
-$locks=fileopen($sessionID.'_files/lock.json',json_encode($settings['locks'])); $userLocks=userlocks($locks,$settings['collections'],$prefix);
+$locks=fileopen($sessionID.'_files/lock.json',json_encode($settings['locks']),'mirror'); $userLocks=userlocks($locks,$settings['collections'],$prefix);

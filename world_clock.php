@@ -1,7 +1,7 @@
 <?php include 'functions.php';
 $userSettings=fileopen('settings.json');
 $cookie=whichCookie($userSettings['reserve']['unauthorized']);
-$userData=fileopen($cookie.'_files/session.json',json_encode($userSettings['defaults'])); $alarmInTime=($userData['memo']!='')?((time()>=$userData['memo'])?-1:($userData['memo']-time())):0;
+$userData=fileopen($cookie.'_files/session.json',json_encode($userSettings['defaults']),'mirror'); $alarmInTime=($userData['memo']!='')?((time()>=$userData['memo'])?-1:($userData['memo']-time())):0;
 $dateStr=chooseCalendar(time(),$userData,$userSettings);
 $timeStr=timedate(time(),$userData,$userSettings);
 if ($userData['vintage']!=0) {
