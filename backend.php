@@ -18,8 +18,10 @@ $superuser=$settings['reserve']['superuser'];
 $sessionID=whichSession($nulluser);
 setcookie('user',$sessionID,time()+$settings['lifetime']['cookie_lengthen']);
 $session=fileopen($sessionID.'_files/session.json',json_encode($settings['defaults']),'backup'); $metadata=fileopen($sessionID.'_files/metadata.json',json_encode($settings['metadata'])); $finLang=terms($settings,$session);
-$bindData=fileopen('binding.json'); $powersData=fileopen('dominion.json');
-$automateData=fileopen('automator.json'); $toolboxData=fileopen('toolbox.json');
+$bindData=fileopen('binding.json',json_encode([$sessionID=>$sessionID]));
+$powersData=fileopen('dominion.json',json_encode([$sessionID=>0]));
+$automateData=fileopen('automator.json',json_encode([$sessionID=>'manual']));
+$toolboxData=fileopen('toolbox.json',json_encode([$sessionID=>'']));
 date_default_timezone_set(dec_tz($session['timezone']));
 $request=$postRequest=[];
 foreach ($settings['initialize']['GET'] as $requestID=>$requestValue) { $request[$requestID]=($_GET[$requestID])?$_GET[$requestID]:$requestValue; }
