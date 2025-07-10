@@ -156,7 +156,7 @@ function highscore(mode) {
                 res+="<input type='image' class='power' onmouseover='soundButton();' style='"+gradButton(indi,'button')+"' src='"+am+timezoner(indi,'avatar')+".png"+"' onclick='clip(&#34;"+timezoner(indi,'avatar')+"&#34;);'>";
                 res+="<input type='button' onmouseover='soundButton();' style='width:24%;"+gradButton(indi)+"' value='"+indi+"' onclick='clip(&#34;"+indi+"&#34;);'>";
                 res+="<input type='text' onmouseover='soundButton();' style='width:50%;"+gradButton(indi,'input')+"' disabled value='"+format_currency(sortable[indi])+"' onclick='clip(&#34;"+sortable[indi]+"&#34;);'>";
-                res+="<input type='image' class='power' onmouseover='soundButton();' style='"+gradButton(indi,'button')+"' src='"+pm+((cancelled(ordered[indi]))?"hole.png":"heart.png")+"'>";
+                res+="<input type='image' class='power' onmouseover='soundButton();' style='"+gradButton(indi,'button')+"' src='"+pm+((cancelled(indi))?"hole.png":"heart.png")+"'>";
                 if (superuser()) {
                     res+="<input type='image' class='power' onmouseover='soundButton();' style='"+gradButton(indi,'button')+"' src='"+pm+"trash.png"+"' onclick='remove_entry(&#34;"+indi+"&#34;,&#34;"+objText+"&#34;,&#34;"+files[mode]+"&#34;);'>";
                 } res+="<br>";
