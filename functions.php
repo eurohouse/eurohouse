@@ -633,10 +633,10 @@ function titleColon($itl,bool $cln=false,array $voc,array $ses) {
     $vun=($cln)?(($itl!='')?((isset($vom[$uni][': ']))?$vom[$uni][': ']:': '):''):''; return (in_array($uni,$loc['colon_ind']))?$vun.$itl:$itl.$vun;
 }
 function localizedTitle(array $ses,$entl,$vari=0) {
-    $uni=$ses['units']; $entr=valarr($ses[$entl.'s'],';; ',':: ');
+    $uni=$ses['units']; $entr=valarr($ses[$entl.'s'],'; ',': ');
     if (isset($entr[$uni])) {
-        if (strpos($entr[$uni],'|')!==false) {
-            $itd=explode('|',$entr[$uni]);
+        if (strpos($entr[$uni],' | ')!==false) {
+            $itd=explode(' | ',$entr[$uni]);
             if (isset($itd[$vari])) {
                 $itl=$itd[$vari];
             } else { $itl=$itd[0]; }

@@ -647,7 +647,7 @@ function localizedTitle(id,ent='title') {
     var mono=loadFile(id+'_files/session.json',ent);
     var lang=loadFile(id+'_files/session.json','units');
     var trans=loadFile(id+'_files/session.json',ent+'s');
-    var tran=strarr(trans,';; ',':: ');
+    var tran=strarr(trans,'; ',': ');
     return (notNull(tran[lang]))?tran[lang]:mono;
 }
 function compose(usr,msg) {
