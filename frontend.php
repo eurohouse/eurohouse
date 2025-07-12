@@ -779,34 +779,34 @@ function fixPrice(sen,rec,deb,cre) {
     var stat=jsonarr(sysDefPowersData.value);
     var statD=(isNum(stat[sen]))?parseFloat(stat[sen]):0;
     var statC=(isNum(stat[rec]))?parseFloat(stat[rec]):0;
-    var statDr=trans1[Object.keys(trans1)[Object.keys(trans1).length-1]];
-    var statCr=trans2[Object.keys(trans2)[Object.keys(trans2).length-1]];
-    var bal1=((notNull(statDr.split(' | ')[4]))&&(isObject(trans1)))?statDr.split(' | ')[4]:statD; var bal2=((notNull(statCr.split(' | ')[4]))&&(isObject(trans1)))?statCr.split(' | ')[4]:statC;
-    var statDt,statCt,statK,statV,statDi,statCi,statDn,statCn,statT;
-    var statDv=statD-parseFloat(bal1),statCv=statC-parseFloat(bal2);
+    var lastD=((isObject(trans1))&&(trans1[Object.keys(trans1)[Object.keys(trans1).length-1]].includes(' | ')))?trans1[Object.keys(trans1)[Object.keys(trans1).length-1]]:(sen+' | '+rec+' | Balance | Start | 0 | OK');
+    var lastC=((isObject(trans2))&&(trans2[Object.keys(trans2)[Object.keys(trans2).length-1]].includes(' | ')))?trans2[Object.keys(trans2)[Object.keys(trans2).length-1]]:(rec+' | '+sen+' | Start | Balance | 0 | OK');
+    var bal1=(notNull(lastD.split(' | ')[4]))?lastD.split(' | ')[4]:statD;
+    var bal2=(notNull(lastC.split(' | ')[4]))?lastC.split(' | ')[4]:statC;
+    var deltaD,deltaC,statVal,text;
+    var rasD=statD-parseFloat(bal1),rasC=statC-parseFloat(bal2);
     if ((isNum(deb))&&!(isNum(cre))) {
-        statV=parseFloat(deb),statK=cre,statT=cre;
-        statD+=statV; statC-=statV;
-        statDi=parseFloat(bal1)+parseFloat(statDv)+statV;
-        statCi=parseFloat(bal2)+parseFloat(statCv)-statV;
+        statVal=parseFloat(deb),text=cre;
+        statD+=statVal; statC-=statVal;
+        deltaD=parseFloat(bal1)+parseFloat(rasD)+statVal;
+        deltaC=parseFloat(bal2)+parseFloat(rasC)-statVal;
     } else if (!(isNum(deb))&&(isNum(cre))) {
-        statV=parseFloat(cre),statK=deb,statT=deb;
-        statD-=statV; statC+=statV;
-        statDi=parseFloat(bal1)+parseFloat(statDv)-statV;
-        statCi=parseFloat(bal2)+parseFloat(statCv)+statV;
-    } else { statK=cre,statT=deb;
-        statDi=parseFloat(bal1)+parseFloat(statDv);
-        statCi=parseFloat(bal2)+parseFloat(statCv);
-    } statDn=Math.abs(statDi-parseFloat(bal1));
-    statCn=Math.abs(statCi-parseFloat(bal2));
-    statDt=(statDi==statD)?'OK':'ERR';
-    statCt=(statCi==statC)?'OK':'ERR';
+        statVal=parseFloat(cre),text=deb;
+        statD-=statVal; statC+=statVal;
+        deltaD=parseFloat(bal1)+parseFloat(rasD)-statVal;
+        deltaC=parseFloat(bal2)+parseFloat(rasC)+statVal;
+    } else {
+        deltaD=parseFloat(bal1)+parseFloat(rasD);
+        deltaC=parseFloat(bal2)+parseFloat(rasC);
+    } var diffD=Math.abs(deltaD-parseFloat(bal1));
+    var diffC=Math.abs(deltaC-parseFloat(bal2));
+    var statusD=(deltaD==statD)?'OK':'ERR',statusC=(deltaC==statC)?'OK':'ERR';
     stat[sen]=parseFloat(statD),stat[rec]=parseFloat(statC);
-    trans1[toIso8601(Date.now())+' UTC']=(statDi<parseFloat(bal1))?sen+' | '+rec+' | '+statT+' | '+statDn+' | '+statDi+' | '+statDt : sen+' | '+rec+' | '+statDn+' | '+statT+' | '+statDi+' | '+statDt;
-    trans2[toIso8601(Date.now())+' UTC']=(statCi<parseFloat(bal2))?rec+' | '+sen+' | '+statT+' | '+statCn+' | '+statCi+' | '+statCt : rec+' | '+sen+' | '+statCn+' | '+statT+' | '+statCi+' | '+statCt;
+    trans1[toIso8601(Date.now())+' UTC']=(deltaD<parseFloat(bal1))?(sen+' | '+rec+' | '+text+' | '+diffD+' | '+deltaD+' | '+statusD):(sen+' | '+rec+' | '+diffD+' | '+text+' | '+deltaD+' | '+statusD);
+    trans2[toIso8601(Date.now())+' UTC']=(deltaC<parseFloat(bal2))?(rec+' | '+sen+' | '+text+' | '+diffC+' | '+deltaC+' | '+statusC):(rec+' | '+sen+' | '+diffC+' | '+text+' | '+deltaC+' | '+statusC);
     if (!isNum(deb)&&!isNum(cre)) {
-        trans1[toIso8601(Date.now())+' UTC']=sen+' | '+rec+' | '+statT+' | '+statK+' | '+statDi+' | '+statDt;
-        trans2[toIso8601(Date.now())+' UTC']=rec+' | '+sen+' | '+statK+' | '+statT+' | '+statCi+' | '+statCt;
+        trans1[toIso8601(Date.now())+' UTC']=sen+' | '+rec+' | '+deb+' | '+cre+' | '+deltaD+' | '+statusD;
+        trans2[toIso8601(Date.now())+' UTC']=rec+' | '+sen+' | '+cre+' | '+deb+' | '+deltaC+' | '+statusC;
     } set('./'+sen+'_files/book.json',encodeURIComponent(JSON.stringify(trans1)),'rw');
     set('./'+rec+'_files/book.json',encodeURIComponent(JSON.stringify(trans2)),'rw');
     set('dominion.json',JSON.stringify(stat),'rw');
