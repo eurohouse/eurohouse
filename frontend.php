@@ -779,11 +779,11 @@ function fixPrice(sen,rec,deb,cre) {
     var stat=jsonarr(sysDefPowersData.value);
     var statD=(isNum(stat[sen]))?parseFloat(stat[sen]):0;
     var statC=(isNum(stat[rec]))?parseFloat(stat[rec]):0;
-    var statDr=parseFloat(statD),statCr=parseFloat(statC);
-    var bal1=((tran1=='{}')||(tran1==''))?statDr:(trans1[Object.keys(trans1)[Object.keys(trans1).length-1]]).split(' | ')[4];
-    var bal2=((tran2=='{}')||(tran2==''))?statCr:(trans2[Object.keys(trans2)[Object.keys(trans2).length-1]]).split(' | ')[4];
+    var statDr=trans1[Object.keys(trans1)[Object.keys(trans1).length-1]];
+    var statCr=trans2[Object.keys(trans2)[Object.keys(trans2).length-1]];
+    var bal1=((notNull(statDr.split(' | ')[4]))&&(isObject(trans1)))?statDr.split(' | ')[4]:statD; var bal2=((notNull(statCr.split(' | ')[4]))&&(isObject(trans1)))?statCr.split(' | ')[4]:statC;
     var statDt,statCt,statK,statV,statDi,statCi,statDn,statCn,statT;
-    var statDv=statDr-parseFloat(bal1),statCv=statCr-parseFloat(bal2);
+    var statDv=statD-parseFloat(bal1),statCv=statC-parseFloat(bal2);
     if ((isNum(deb))&&!(isNum(cre))) {
         statV=parseFloat(deb),statK=cre,statT=cre;
         statD+=statV; statC-=statV;
