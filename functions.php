@@ -120,11 +120,11 @@ function dir_size($path): int {
     } return $bytestotal;
 }
 /* PACKAGE MANAGER */
-function pkgFiles($pkg): array {
+function pkgFiles($pkg) {
     if (@json_decode(file_get_contents($pkg.'.package.json'),true)!=null) {
         $pkgf=json_decode(file_get_contents($pkg.'.package.json'),true);
-        $pkgl=(isset($pkgf['files']))?$pkgf['files']:'';
-    } else { $pkgl=''; } return explode(';',$pkgl);
+        $pkgl=(isset($pkgf['files']))?$pkgf['files']:[];
+    } else { $pkgl=[]; } return $pkgl;
 }
 function gitExec($url) {
     $urlPart=parse_url($url);
@@ -134,8 +134,7 @@ function gitExec($url) {
     if ($fsockopen!=false) {
         if (file_exists($urlEndPt.'.package.json')) {
             $package=(@json_decode(file_get_contents($urlEndPt.'.package.json'),true)!=null)?json_decode(file_get_contents($urlEndPt.'.package.json'),true):['files'=>''];
-            $files=explode(';',$package['files']);
-            foreach ($files as $file) {
+            foreach ($package['files'] as $file) {
                 if (file_exists($file)) {
                     chmod($file,0777); unlink($file);
                 }
