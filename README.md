@@ -2,7 +2,9 @@
 
 An elegant *web desktop* environment created by **Eurohouse**. Take it with you wherever you go. All files, user data and personal settings under your control. Presented with high quality *dynamic wallpaper* collections, this app will be a perfect addition to your workspace, no matter where you are now.
 
-> "Here’s to the crazy ones, the misfits, the rebels, the troublemakers, the round pegs in the square holes… the ones who see things differently — they’re not fond of rules… You can quote them, disagree with them, glorify or vilify them, but the only thing you can’t do is ignore them because they change things… they push the human race forward, and while some may see them as the crazy ones, we see genius, because the ones who are crazy enough to think that they can change the world, are the ones who do." - Steve Jobs, the founder and former CEO of Apple, Inc.
+> "Here’s to the crazy ones, the misfits, the rebels, the troublemakers, the round pegs in the square holes… the ones who see things differently — they’re not fond of rules… You can quote them, disagree with them, glorify or vilify them, but the only thing you can’t do is ignore them because they change things… they push the human race forward, and while some may see them as the crazy ones, we see genius, because the ones who are crazy enough to think that they can change the world, are the ones who do."
+>
+> - Steve Jobs, the founder and former CEO of Apple, Inc.
 
 ![Web App Screenshot](https://github.com/eurohouse/eurohouse/blob/rolling/eurohouse.screenshot.0000.png?raw=true)
 
