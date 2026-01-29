@@ -10,28 +10,28 @@ An elegant *web desktop* environment created by **Eurohouse**. Take it with you 
 
 The latest version of the web app features:
 
-* Advanced and comprehensive **ChatGPT** functionality powered by **Mistral AI**.
-  * Go to the **Artificial Intelligence** menu entry to make your own prompts to the **ChatGPT**-like interface and get results in the *markdown* output on the same page of the web app.
-  * To use the build-in *command-line* input in the top bar you must first *log-in* under certain *account* already existing in the app or create a new one. To cycle through existing *accounts* tap on **Dice** button left to the *login* and *password* fields while *unauthorized*.
-    * In certain menu entries like **Terminal**, **Artificial Intelligence** or **Calculator**, you can use separate text fields to perform tasks like calculate complex mathematical expressions, make prompts to build-in external **ChatGPT**-like **Mistral AI** API or do something normally requiring *command-line* interface.
-* Advanced music player supporting *dynamic playlists* and audio effects.
-  * Enter commands **ra--** or **ra++** to see if sound tempo and pitch changes.
-  * Get to some song using **keywords?index:position** command scheme.
-* Dynamic *wallpaper engine* showing *background images* on website *24/7*.
-  * List through the collections of installed thematic wallpapers.
-  * Read interesting *historical facts* and *articles* while some *background image* is being displayed in the web app. There is *marquee* displaying the article so you'll never miss it.
-  * Visit **Picture Gallery** menu entry to explore all the places, models and famous people in your library of installed *downloadable content* in the web app.
-    * Latest version of the web app includes search box in this menu entry, letting you to search objects or people easier by parts of their names, countries, packages containing them, etc.
-* A comprehensive and detailed *user account* personalization.
-  * Adjust every aspect of your *user profile*, including titles in different languages, type of calendar you want to use, *date and time* formats, data formatting options, used fonts for different **UTF-8** *character blocks*, characters used in text encoding/decoding, used icon theme, user interface styling options like colors, elements sizes, different sounds for different events in the app, menu display in icon/list view and more.
-* **End-to-end encryption* of messages and text notes leaving by users.
-  * In the **Sticky Notes**, you can create and manage your *text notes*, save them encrypted and open them decrypted with encryption key manually entered by user and saved nowhere in the app. Your *text notes* are only yours and nobody can access them if they don't know the *password* for your account.
-  * Same with *instant messages*. In unauthorized mode, reading and receiving messages not working, users must access their own accounts to access, read and write messages to other accounts. All this can be done through the **Messenger** menu entry, in any other case, top bar can show you all the messages in your inbox. All messages are being encrypted in order for recipients to make them only accessible for nobody but them. All messages are encoded with both . and - during *end-to-end-encryption*.
-* And more advanced features available in *command-line* text field.
-  * Make operations with files in the website web server working directory like you would on any Linux/Unix-like machine. Commands like **mv** (*move/rename*), **cp** (*copy*), **rm** (delete), **mkdir** (create directory), **touch** (create empty file) and more build-in commands are easy to perform if you know what you're doing.
-    * In latest versions of the web app, file operations are accessible with certain files containing username prefixes before filenames, which means that these files belong to ceratin users of the web app. Except superuser account which given **rw** attribute to all file operations no matter what file it is.
-    * In newest version of the web app, you can not only browse the content of JSON files containing multilevel associative arrays, but also create, remove, change records in them and make operations like pack and unpack content from such arrays into separate files, keeping source file path structures. Now you can do this not only via command-line, but also from the **Properties** menu.
-  * To *log-out* of your current account tap on **User** button left to the *command-line* text field.
+* Highly customizable web desktop environment.
+  * Set up styles, icon sets, fonts, sound effects, CSS colors and effects however you want.
+  * Use built-in command palette to set up profile data and settings, set up content limits per user by package names.
+* Multifunctional main menu easily configured.
+  * There are thumbnails, icons and list menu view modes.
+  * Main menu items can be configured as set of entries.
+* A built in wallpaper engine working based on current time.
+  * You can switch between wallpaper collection and series in the dropdown menu at top of the web app page.
+  * You can observe current background or hide current workspace by clicking on the Power-like buttons.
+  * Custom backgrounds can be set by user or switched to the daily wallpaper mode based on current time.
+* Feature-rich music player include playlists and albums.
+  * Albums are package with music files which are being played based on current user subscription content limits.
+  * Playlists are additional function: users can add and remove music tracks from playlist, and even if there are none, music can be played based on shuffle/repeat mode.
+* Some new and exciting content coming with background.
+  * There each background have a link to corresponding article attached to it in JSON files of installed wallpaper collections.
+  * Each article have various metadata, including titles and texts in different languages, avatar icon, country, also height, weight, body sizes and shoe size if it's a model, a person, mainly a woman with certain body parameters.
+* Many main menu entries with different functions.
+  * Sticky Notes for managing user's text notes.
+  * Messenger for messaging other users Twitter-like.
+  * Artificial Intelligence for AI functions in the app.
+  * Terminal for calculating mathematical expressions and getting their results.
+  * Calculator if you want to calculate mathematical expressions in an old-fashioned way.
 
 A registered domain name for the web app located in [https://belleepoqueinspo.ru](https://belleepoqueinspo.ru).
 
