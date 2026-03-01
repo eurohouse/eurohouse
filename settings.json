@@ -1,0 +1,610 @@
+{
+    "lifetime": {
+        "cookie_default": 0, "cookie_lengthen": 86400, "garbage_collector": 604800
+    },
+    "intervals": {
+        "subscriptions": 2500, "repository": 3000, "messenger": 2500,
+        "sticky_notes": 2000, "world_clock": 1000,
+        "visual_effects": 1500, "wallpaper_engine": 1500
+    },
+    "reserve": { "unauthorized": "anonymous", "superuser": "root" },
+    "viewport": {
+        "width": "device-width", "initial-scale": "1.0",
+        "maximum-scale": "1.0", "user-scalable": "0"
+    },
+    "subscriptions": {
+        "background": "!luxor,nestor,metro,distro,osx,xp",
+        "avatar": "avatar", "pictogram": "avatar",
+        "music": "botticelli,orchestra",
+        "font": "typography", "sound": "macos"
+    },
+    "libraries": {
+        "domestic": {
+            "backend.js": "", "frontend.js": "", "jquery.js": "",
+            "Crypto.js": "", "XRegExp.js": "", "marked.min.js": "",
+            "commands.js": "", "requests.js": "", "nerdamer.js": "",
+            "internalapi.js": "async", "externalapi.js": "async",
+            "algebra.js": "", "calculus.js": "",
+            "solve.js": "", "lodash.js": "async",
+            "HTMLSortTable.js": "async"
+            
+        }, "foreign": { "https://www.midijs.net/lib/midi.js": "async" }
+    },
+    "collections": {
+        "music": ".mp3,.aac,.ogg,.flac,.alac,.cda,.wma,.m4a,.mka",
+        "sound": ".wav,.ac3,.snd,.au,.aif,.aiff,.oga,.wma,.m4a,.mka,.caf,.m4r", "video": ".mp4,.mkv,.webm,.3gp",
+        "movie": ".mov,.quote,.wmv,.avi", "midi": ".mid,.midi,.rmi",
+        "data": ".json,.xml,.yaml,.yml,.bak,.plist,.sav",
+        "font": ".ttf,.ttc,.otf,.woff,.woff2,.fon,.pf2",
+        "script": ".js,.css,.ts,.csv,.htm,.html,.php,.cs,.ps1,.cpp,.sh,.c,.h,.java,.py", "markdown": ".md,.markdown",
+        "briefcase": ".bfc", "cabinet": ".cab",
+        "image": ".bmp,.dib,.gif,.ico,.cur,.ani,.jpg,.jpeg,.psd,.svg,.webp,.png,.tif,.tiff,.jif,.jfif,.heic,.heif,.raw",
+        "archive": ".zip,.7z,.rar,.bz2,.jar",
+        "disk_image": ".bin,.cue,.mdf,.mds,.iso,.dmg,.img,.ccd,.sub,.nrg",
+        "book": ".pdf,.djvu,.epub,.fb2,.azw,.mobi",
+        "binary": ".lnk,.uri,.url,.exe,.dll,.ocx,.sys,.drv"
+    },
+    "locale": {
+        "standards": {
+            "iso8601": { "default": "ISO 8601", "RU": "ИСО 8601", "RR": "ИСО 8601", "MK": "ИСО 8601", "RS": "ИСО 8601", "CN": "国际标准化组织8601", "TW": "國際標準化組織8601", "KR": "이소8601", "KP": "이소8601", "JP": "8601 規格", "AE": "ايزو ٨٦٠١", "SA": "ايزو ٨٦٠١", "IQ": "ايزو ٨٦٠١", "IR": "ايزو ٨٦٠١", "KW": "ايزو ٨٦٠١", "QA": "ايزو ٨٦٠١", "NP": "ISO ༨༦༠༡", "IN": "आईएसओ ८६०१", "LK": "ISO ८६०१ इति" },
+            "iso3166": { "default": "ISO 3166", "RU": "ИСО 3166", "RR": "ИСО 3166", "MK": "ИСО 3166", "RS": "ИСО 3166", "CN": "国际标准化组织3166", "TW": "國際標準化組織3166", "KR": "이소3166", "KP": "이소3166", "JP": "3166 規格", "AE": "ايزو ٣١٦٦", "SA": "ايزو ٣١٦٦", "IQ": "ايزو ٣١٦٦", "IR": "ايزو ٣١٦٦", "KW": "ايزو ٣١٦٦", "QA": "ايزو ٣١٦٦", "NP": "ISO ༣༡༦༦", "IN": "आईएसओ ३१६६", "LK": "ISO ३१६६ इति" }
+        },
+        "timezones": {
+            "Etc/GMT+11": { "default": "UTC-11:00" },
+            "Pacific/Niue": {
+                "default": "Pacific/Niue", "RU": "Тихий Океан/Ниуэ"
+            },
+            "Etc/GMT+10": { "default": "UTC-10:00" },
+            "Pacific/Honolulu": {
+                "default": "Pacific/Honolulu", "RU": "Тихий Океан/Гонолулу"
+            },
+            "Etc/GMT+9": { "default": "UTC-09:00" },
+            "America/Anchorage": {
+                "default": "America/Anchorage", "RU": "Америка/Анкоридж"
+            },
+            "Etc/GMT+8": { "default": "UTC-08:00" },
+            "America/Los_Angeles": {
+                "default": "America/Los Angeles", "RU": "Америка/Лос-Анджелес"
+            },
+            "Etc/GMT+7": { "default": "UTC-07:00" },
+            "America/Denver": {
+                "default": "America/Denver", "RU": "Америка/Денвер"
+            },
+            "Etc/GMT+6": { "default": "UTC-06:00" },
+            "America/Chicago": {
+                "default": "America/Chicago", "RU": "Америка/Чикаго"
+            },
+            "Etc/GMT+5": { "default": "UTC-05:00" },
+            "America/New_York": {
+                "default": "America/New York", "RU": "Америка/Нью-Йорк"
+            },
+            "Etc/GMT+4": { "default": "UTC-04:00" },
+            "America/Barbados": {
+                "default": "America/Barbados", "RU": "Америка/Барбадос"
+            },
+            "Etc/GMT+3": { "default": "UTC-03:00" },
+            "America/Sao_Paulo": {
+                "default": "America/Sao Paulo", "RU": "Америка/Сан-Паулу"
+            },
+            "Etc/GMT+2": { "default": "UTC-02:00" },
+            "America/Noronha": {
+                "default": "America/Noronha", "RU": "Америка/Норонья"
+            },
+            "Etc/GMT+1": { "default": "UTC-01:00" },
+            "Atlantic/Azores": {
+                "default": "Atlantic/Azores", "RU": "Атлантика/Азоры"
+            },
+            "Etc/GMT": { "default": "UTC±00:00" },
+            "Europe/London": {
+                "default": "Europe/London", "RU": "Европа/Лондон"
+            },
+            "Etc/GMT-1": { "default": "UTC+01:00" },
+            "Europe/Paris": {
+                "default": "Europe/Paris", "RU": "Европа/Париж"
+            },
+            "Etc/GMT-2": { "default": "UTC+02:00" },
+            "Europe/Athens": {
+                "default": "Europe/Athens", "RU": "Европа/Афины"
+            },
+            "Etc/GMT-3": { "default": "UTC+03:00" },
+            "Europe/Moscow": {
+                "default": "Europe/Moscow", "RU": "Европа/Москва"
+            },
+            "Etc/GMT-4": { "default": "UTC+04:00" },
+            "Asia/Dubai": {
+                "default": "Asia/Dubai", "RU": "Азия/Дубай"
+            },
+            "Etc/GMT-5": { "default": "UTC+05:00" },
+            "Asia/Dushanbe": {
+                "default": "Asia/Dushanbe", "RU": "Азия/Душанбе"
+            },
+            "Etc/GMT-6": { "default": "UTC+06:00" },
+            "Asia/Dhaka": {
+                "default": "Asia/Dhaka", "RU": "Азия/Дака"
+            },
+            "Etc/GMT-7": { "default": "UTC+07:00" },
+            "Asia/Bangkok": {
+                "default": "Asia/Bangkok", "RU": "Азия/Бангкок"
+            },
+            "Etc/GMT-8": { "default": "UTC+08:00" },
+            "Asia/Hong_Kong": {
+                "default": "Asia/Hong Kong", "RU": "Азия/Гонконг"
+            },
+            "Etc/GMT-9": { "default": "UTC+09:00" },
+            "Asia/Tokyo": {
+                "default": "Asia/Tokyo", "RU": "Азия/Токио"
+            },
+            "Etc/GMT-10": { "default": "UTC+10:00" },
+            "Asia/Vladivostok": {
+                "default": "Asia/Vladivostok", "RU": "Азия/Владивосток"
+            },
+            "Etc/GMT-11": { "default": "UTC+11:00" },
+            "Asia/Sakhalin": {
+                "default": "Asia/Sakhalin", "RU": "Азия/Сахалин"
+            },
+            "Etc/GMT-12": { "default": "UTC±12:00" },
+            "Asia/Kamchatka": {
+                "default": "Asia/Kamchatka", "RU": "Азия/Камчатка"
+            }
+        },
+        "profile": {
+            "types": {
+                "person": {
+                    "default": "Person", "CH": "Persona", "SP": "Persona", "RU": "Физическое лицо", "RR": "Лицо особное", "UA": "Фізична особа", "GR": "Πρόσωπο", "CY": "Πρόσωπο", "CN": "个性", "TW": "個性", "KR": "성격", "KP": "성격", "JP": "人格", "FR": "Personne", "BE": "Personne", "IT": "Persona", "TR": "Kişilik", "ES": "Persona", "MX": "Persona", "PT": "Pessoa", "BR": "Pessoa", "AE": "شخص", "SA": "شخص", "IQ": "شخص", "IR": "شخص", "KW": "شخص", "QA": "شخص", "IN": "व्यक्ति", "LK": "व्यक्ति", "TH": "บุคคล", "NP": "རང་གཤིས"
+                },
+                "entity": {
+                    "default": "Entity", "CH": "Societas", "SP": "Societas", "RU": "Юридическое лицо", "RR": "Лицо законосовное", "UA": "Юридична особа", "GR": "Κοινωνία", "CY": "Κοινωνία", "CN": "社会", "TW": "社會", "KR": "사회", "KP": "사회", "JP": "社会", "FR": "Société", "BE": "Société", "IT": "Società", "TR": "Toplum", "DE": "Gesellschaft", "AT": "Gesellschaft", "DR": "Gesellschaft", "ES": "Sociedad", "MX": "Sociedad", "PT": "Sociedade", "BR": "Sociedade", "AE": "مجتمع", "SA": "مجتمع", "IQ": "مجتمع", "IR": "مجتمع", "KW": "مجتمع", "QA": "مجتمع", "IN": "समाज", "LK": "समाज", "TH": "สังคม", "NP": "སྤྱི་ཚོགས"
+                }
+            },
+            "calendars": {
+                "Gregorian": {
+                    "default": "Gregorian Calendar", "CH": "Calendarium Gregorianum", "SP": "Calendarium Gregorianum", "RU": "Григорианский календарь", "RR": "Григориевъ календарь", "UA": "Григоріанський календар", "GR": "Γρηγοριανό Ημερολόγιο", "CY": "Γρηγοριανό Ημερολόγιο", "CN": "公历", "TW": "公曆", "KR": "그레고리력", "KP": "그레고리력", "JP": "グレゴリオ暦", "FR": "Calendrier grégorien", "BE": "Calendrier grégorien", "IT": "Calendario gregoriano", "TR": "Miladi Takvim", "DE": "Gregorianischer Kalender", "AT": "Gregorianischer Kalender", "DR": "Gregorianischer Kalender", "ES": "Calendario gregoriano", "MX": "Calendario gregoriano", "PT": "Calendário Gregoriano", "BR": "Calendário Gregoriano", "AE": "التقويم الميلادي", "SA": "التقويم الميلادي", "IQ": "التقويم الميلادي", "IR": "التقويم الميلادي", "KW": "التقويم الميلادي", "QA": "التقويم الميلادي", "IN": "जॉर्जियाई कैलेंडर", "LK": "ग्रेगोरियन पञ्चाङ्ग", "TH": "ปฏิทินเกรโกเรียน", "NP": "གྷི་རི་གྷོ་རི་ཡན་ལོ་ཐོ།"
+                },
+                "Julian": {
+                    "default": "Julian Calendar", "CH": "Calendarium Iulianum", "SP": "Calendarium Iulianum", "RU": "Юлианский календарь", "RR": "Юлиановъ календарь", "UA": "Юліанський календар", "GR": "Ιουλιανό Ημερολόγιο", "CY": "Ιουλιανό Ημερολόγιο", "CN": "儒略历", "TW": "儒略曆", "KR": "율리우스력", "KP": "율리우스력", "JP": "ユリウス暦", "FR": "Calendrier julien", "BE": "Calendrier julien", "IT": "Calendario giuliano", "TR": "Jülyen takvimi", "DE": "Julianischer Kalender", "AT": "Julianischer Kalender", "DR": "Julianischer Kalender", "ES": "Calendario juliano", "MX": "Calendario juliano", "PT": "Calendário juliano", "BR": "Calendário juliano", "AE": "التقويم اليولياني", "SA": "التقويم اليولياني", "IQ": "التقويم اليولياني", "IR": "التقويم اليولياني", "KW": "التقويم اليولياني", "QA": "التقويم اليولياني", "IN": "जूलियन कैलेंडर", "LK": "जूलियन कैलेण्डर", "TH": "ปฏิทินจูเลียน", "NP": "ཇུ་ལི་ཡན་ལོ་ཐོ།"
+                },
+                "French": {
+                    "default": "French Republican Calendar", "CH": "Calendarium Republicanum Francicum", "RU": "Французский республиканский календарь", "UA": "Французький республіканський календар", "GR": "Γαλλικό Ρεπουμπλικανικό Ημερολόγιο", "CY": "Γαλλικό Ρεπουμπλικανικό Ημερολόγιο", "CN": "法国共和历", "KR": "프랑스 공화국력", "JP": "フランス共和暦", "FR": "Calendrier républicain français", "BE": "Calendrier républicain français", "IT": "Calendario repubblicano francese", "TR": "Fransız Cumhuriyet Takvimi", "DE": "Französischer Republikanischer Kalender", "AT": "Französischer Republikanischer Kalender", "ES": "Calendario republicano francés", "MX": "Calendario republicano francés", "PT": "Calendário Republicano Francês", "BR": "Calendário Republicano Francês", "AE": "التقويم الجمهوري الفرنسي", "SA": "التقويم الجمهوري الفرنسي", "IQ": "التقويم الجمهوري الفرنسي", "IR": "التقويم الجمهوري الفرنسي", "KW": "التقويم الجمهوري الفرنسي", "QA": "التقويم الجمهوري الفرنسي", "IN": "फ्रेंच रिपब्लिकन कैलेंडर", "LK": "फ्रेंच रिपब्लिकन पञ्चाङ्ग", "TH": "ปฏิทินสาธารณรัฐฝรั่งเศส", "NP": "ཧྥ་རན་སིའི་སྤྱི་མཐུན་རྒྱལ་ཁབ་ཀྱི་ལོ་ཐོ།"
+                },
+                "Byzantine Julian": {
+                    "default": "Byzantine Julian Calendar", "CH": "Calendarium Byzantinum Iulianum", "RU": "Византийский Юлианский календарь", "UA": "Візантійський Юліанський календар", "GR": "Βυζαντινό Ιουλιανό Ημερολόγιο", "CY": "Βυζαντινό Ιουλιανό Ημερολόγιο", "CN": "拜占庭儒略历", "KR": "비잔틴 율리우스력", "JP": "ビザンチン・ユリウス", "FR": "Calendrier julien byzantin", "BE": "Calendrier julien byzantin", "IT": "Calendario giuliano bizantino", "TR": "Bizans Jülyen Takvimi", "DE": "Byzantinischer Julischer Kalender", "AT": "Byzantinischer Julischer Kalender", "ES": "Calendario juliano bizantino", "MX": "Calendario juliano bizantino", "PT": "Calendário Juliano Bizantino", "BR": "Calendário Juliano Bizantino", "AE": "التقويم البيزنطي اليولياني", "SA": "التقويم البيزنطي اليولياني", "IQ": "التقويم البيزنطي اليولياني", "IR": "التقويم البيزنطي اليولياني", "KW": "التقويم البيزنطي اليولياني", "QA": "التقويم البيزنطي اليولياني", "IN": "बीजान्टिन जूलियन कैलेंडर", "LK": "बाइजान्टिन जूलियन कैलेंडर", "TH": "ปฏิทินจูเลียนแบบไบแซนไทน์", "NP": "བྷེ་ཛན་ཊིན་གྱི་ཇུ་ལི་ཡན་ལོ་ཐོ།"
+                },
+                "Byzantine Gregorian": {
+                    "default": "Byzantine Gregorian Calendar", "CH": "Calendarium Byzantinum Gregorianum", "RU": "Византийский Григорианский календарь", "UA": "Візантійський Григоріанський календар", "GR": "Βυζαντινό Γρηγοριανό Ημερολόγιο", "CY": "Βυζαντινό Γρηγοριανό Ημερολόγιο", "CN": "拜占庭公历", "KR": "비잔틴 그레고리력", "JP": "ビザンチングレゴリオ暦", "FR": "Calendrier grégorien byzantin", "BE": "Calendrier grégorien byzantin", "IT": "Calendario gregoriano bizantino", "TR": "Bizans Gregoryen Takvimi", "DE": "Byzantinischer Gregorianischer Kalender", "AT": "Byzantinischer Gregorianischer Kalender", "ES": "Calendario gregoriano bizantino", "MX": "Calendario gregoriano bizantino", "PT": "Calendário Gregoriano Bizantino", "BR": "Calendário Gregoriano Bizantino", "AE": "التقويم البيزنطي الغريغوري", "SA": "التقويم البيزنطي الغريغوري", "IQ": "التقويم البيزنطي الغريغوري", "IR": "التقويم البيزنطي الغريغوري", "KW": "التقويم البيزنطي الغريغوري", "QA": "التقويم البيزنطي الغريغوري", "IN": "बीजान्टिन ग्रेगोरियन कैलेंडर", "LK": "बाइजान्टिन ग्रेगोरियन कैलेंडर", "TH": "ปฏิทินเกรกอเรียนแบบไบแซนไทน์", "NP": "བྷེ་ཛན་ཊིན་གྱི་གྷི་རི་གྷོ་རི་ཡན་ལོ་ཐོ།"
+                }
+            }
+        },
+        "anno": {
+            "default": "Age", "CH": "Anno", "VA": "Anno", "SP": "Anno", "TM": "ýyllar", "UZ": "yillar", "ES": "Años", "MX": "Años", "AR": "Años", "KZ": "жылдар", "IN": "साल", "LK": "वर्षाः", "NP": "ལོ", "TR": "yıllar", "MN": "жил", "ID": "tahun", "TH": "ปี", "IE": "blianta", "VN": "năm", "RU": "лет", "RR": "летъ", "UA": "років", "BY": "гадоў", "AZ": "illər", "RS": "године", "BG": "години", "IL": "שנים", "CZ": "let", "IT": "Anni", "DE": "Jahre", "AT": "Jahre", "DD": "Jahre", "DR": "Jahre", "PL": "lata", "PH": "taon", "FR": "Années", "BE": "Années", "MK": "години", "HU": "évre", "PT": "Anos", "BR": "Anos", "RO": "Ani", "MD": "Ani", "LI": "Jahre", "GR": "έτη", "CY": "έτη", "NL": "jaar", "ZA": "Jare", "KH": "ឆ្នាំ", "DK": "år", "NO": "år", "SE": "år", "GE": "წლები", "AL": "vjet", "CN": "岁", "TW": "歲", "KR": "나이", "KP": "나이", "JP": "岁", "AM": "տարի", "HR": "godina", "SA": "سنين", "AE": "سنين", "IQ": "سنين", "IR": "سنين", "MY": "tahun", "LT": "metų", "LV": "gadiem", "EE": "aastat", "FI": "vuotta", "IS": "ár", "MM": "နှစ်များ", "LU": "Joer", "CL": "Años", "AD": "Años", "MC": "Années", "MG": "taona", "SK": "rokov", "SI": "leta", "TJ": "сол", "KG": "жыл", "LA": "ປີ", "KW": "سنين", "QA": "سنين"
+        },
+        "days": {
+            "default": "days", "CH": "dies", "VA": "dies", "SP": "dies", "TM": "günler", "UZ": "kunlar", "ES": "días", "MX": "días", "AR": "días", "KZ": "күндер", "IN": "दिन", "LK": "दिवसाः", "NP": "ཉིན།", "TR": "günler", "MN": "өдрүүд", "ID": "hari", "TH": "วัน", "IE": "laethanta", "VN": "ngày", "RU": "дней", "RR": "дней", "UA": "дні", "BY": "дні", "AZ": "günlər", "RS": "дана", "BG": "дни", "IL": "ימים", "CZ": "dny", "IT": "giorni", "DE": "Tage", "AT": "Tage", "DD": "Tage", "DR": "Tage", "PL": "dni", "PH": "mga araw", "FR": "jours", "BE": "jours", "MK": "денови", "HU": "napok", "PT": "dias", "BR": "dias", "RO": "zile", "MD": "zile", "LI": "Tage", "GR": "ημέρες", "CY": "ημέρες", "NL": "dagen", "ZA": "dae", "KH": "ថ្ងៃ", "DK": "dage", "NO": "dager", "SE": "dagar", "GE": "დღეები", "AL": "ditë", "CN": "天", "TW": "天", "KR": "날", "KP": "날", "JP": "日", "AM": "օրեր", "HR": "dana", "SA": "أيام", "AE": "أيام", "IQ": "أيام", "IR": "أيام", "MY": "hari", "LT": "dienos", "LV": "dienas", "EE": "päevad", "FI": "päivää", "IS": "dagar", "MM": "ရက်များ", "LU": "Deeg", "CL": "días", "AD": "días", "MC": "jours", "MG": "andro", "SK": "dni", "SI": "dni", "TJ": "рӯзҳо", "KG": "күндөр", "LA": "ມື້", "KW": "أيام", "QA": "أيام"
+        },
+        "meter_ind": {
+            "space": [ "RU", "RR", "UA", "BG", "BY", "KZ", "KG", "ES", "MX", "AR", "FR", "BE", "TR", "PT", "BR", "RO", "MD", "IT", "MK", "RS", "SE", "NO", "DE", "AT", "DR", "LI", "LU", "ZA", "HU", "LT", "LV", "DK", "GE", "AM", "AZ", "AL", "IL", "CZ", "EE", "IS", "FI", "IE", "HR", "MY", "ID", "NL", "GR", "CY", "PH", "PL", "TH" ],
+            "concat": [ "CN", "JP", "KR", "AE", "SA", "IQ", "IR", "KW", "QA", "LA", "MM", "KH" ]
+        },
+        "colon_ind": [ "AE", "SA", "IQ", "IR", "KW", "QA" ],
+        "continent": {
+            "CH": { "Worldwide": "Orbis Terrarum", "Antarctica": "Terra Antarctica", "Europe": "Terra Europa", "Asia": "Terra Asiae", "Africa": "Terra Africa", "America": "Terra Americae", "Oceania": "Terra Australis" },
+            "SP": { "Worldwide": "Orbis Terrarum", "Antarctica": "Terra Antarctica", "Europe": "Terra Europa", "Asia": "Terra Asiae", "Africa": "Terra Africa", "America": "Terra Americae", "Oceania": "Terra Australis" },
+            "RU": { "Worldwide": "Международный", "Antarctica": "Антарктида", "Europe": "Европа", "Asia": "Азия", "Africa": "Африка", "America": "Америка", "Oceania": "Австралия и Океания" },
+            "UA": { "Worldwide": "По всьому світу", "Antarctica": "Антарктида", "Europe": "Європа", "Asia": "Азії", "Africa": "Африка", "America": "Америка", "Oceania": "Австралії та Океанії" },
+            "GR": { "Worldwide": "Παγκόσμιος", "Antarctica": "Ανταρκτική", "Europe": "Ευρώπη", "Asia": "Ασία", "Africa": "Αφρική", "America": "Αμερική", "Oceania": "Αυστραλία και Ωκεανία" },
+            "CY": { "Worldwide": "Παγκόσμιος", "Antarctica": "Ανταρκτική", "Europe": "Ευρώπη", "Asia": "Ασία", "Africa": "Αφρική", "America": "Αμερική", "Oceania": "Αυστραλία και Ωκεανία" },
+            "CN": { "Worldwide": "全世界", "Antarctica": "南极洲", "Europe": "欧洲", "Asia": "亚洲", "Africa": "非洲", "America": "美洲", "Oceania": "大洋洲" },
+            "TW": { "Worldwide": "全世界", "Antarctica": "南極洲", "Europe": "歐洲", "Asia": "亞洲", "Africa": "非洲", "America": "美洲", "Oceania": "大洋洲" },
+            "JP": { "Worldwide": "全世界", "Antarctica": "南極大陸", "Europe": "ヨーロッパ", "Asia": "アジア", "Africa": "アフリカ", "America": "アメリカ", "Oceania": "オセアニア" },
+            "KR": { "Worldwide": "세계적인", "Antarctica": "남극대륙", "Europe": "유럽", "Asia": "아시아", "Africa": "아프리카", "America": "아메리카", "Oceania": "오세아니아" },
+            "KP": { "Worldwide": "세계적인", "Antarctica": "남극대륙", "Europe": "유럽", "Asia": "아시아", "Africa": "아프리카", "America": "아메리카", "Oceania": "오세아니아" }
+        },
+        "size": { "B": { "RU": { "sign": "Б" }, "RR": { "sign": "Б" }, "UA": { "sign": "Б" }, "CN": { "sign": "字节" }, "TW": { "sign": "位元組" }, "JP": { "sign": "字节" }, "KR": { "sign": "바이트" }, "KP": { "sign": "바이트" } }, "KB": { "RU": { "sign": "КБ", "value": 1024 }, "RR": { "sign": "КБ", "value": 1024 }, "UA": { "sign": "кБ", "value": 1000 }, "US": { "sign": "kB", "value": 1000 }, "GB": { "sign": "KiB", "value": 1024 }, "CN": { "sign": "千字节" }, "TW": { "sign": "千位元組" }, "JP": { "sign": "千字节" }, "KR": { "sign": "킬로바이트" }, "KP": { "sign": "킬로바이트" } }, "MB": { "RU": { "sign": "МБ", "value": 1048576 }, "RR": { "sign": "МБ", "value": 1048576 }, "UA": { "sign": "мБ", "value": 1000000 }, "US": { "sign": "mB", "value": 1000000 }, "GB": { "sign": "MiB", "value": 1048576 }, "CN": { "sign": "兆字节" }, "TW": { "sign": "百萬位元組" }, "JP": { "sign": "兆字节" }, "KR": { "sign": "메가바이트" }, "KP": { "sign": "메가바이트" } }, "GB": { "RU": { "sign": "ГБ", "value": 1073741824 }, "RR": { "sign": "ГБ", "value": 1073741824 }, "UA": { "sign": "гБ", "value": 1000000000 }, "US": { "sign": "gB", "value": 1000000000 }, "GB": { "sign": "GiB", "value": 1073741824 }, "CN": { "sign": "吉字节" }, "TW": { "sign": "吉字節" }, "JP": { "sign": "吉字节" }, "KR": { "sign": "기가바이트" }, "KP": { "sign": "기가바이트" } }, "TB": { "RU": { "sign": "ТБ", "value": 1099511627776 }, "RR": { "sign": "ТБ", "value": 1099511627776 }, "UA": { "sign": "тБ", "value": 1000000000000 }, "US": { "sign": "tB", "value": 1000000000000 }, "GB": { "sign": "TiB", "value": 1099511627776 }, "CN": { "sign": "太字节" }, "TW": { "sign": "太位元組" }, "JP": { "sign": "太字节" }, "KR": { "sign": "테라바이트" }, "KP": { "sign": "테라바이트" } }, "PB": { "RU": { "sign": "ПБ", "value": 1125899906842624 }, "RR": { "sign": "ПБ", "value": 1125899906842624 }, "UA": { "sign": "пБ", "value": 1000000000000000 }, "US": { "sign": "pB", "value": 1000000000000000 }, "GB": { "sign": "PiB", "value": 1125899906842624 }, "CN": { "sign": "拍字节" }, "TW": { "sign": "拍位元組" }, "JP": { "sign": "拍字节" }, "KR": { "sign": "페타바이트" }, "KP": { "sign": "페타바이트" } }, "EB": { "RU": { "sign": "ЕБ", "value": 1152921504606847000 }, "RR": { "sign": "ЕБ", "value": 1152921504606847000 }, "UA": { "sign": "эБ", "value": 1000000000000000000 }, "US": { "sign": "eB", "value": 1000000000000000000 }, "GB": { "sign": "EiB", "value": 1152921504606847000 }, "CN": { "sign": "外字节" }, "TW": { "sign": "外字节" }, "JP": { "sign": "外字节" }, "KR": { "sign": "외부 바이트" }, "KP": { "sign": "외부 바이트" } }, "ZB": { "RU": { "sign": "ЗБ", "value": 1.1805916207174113e+21 }, "RR": { "sign": "ЗБ", "value": 1.1805916207174113e+21 }, "UA": { "sign": "зБ", "value": 1e+21 }, "US": { "sign": "zB", "value": 1e+21 }, "GB": { "sign": "ZiB", "value": 1.1805916207174113e+21 }, "CN": { "sign": "泽字节" }, "TW": { "sign": "澤字節" }, "JP": { "sign": "泽字节" }, "KR": { "sign": "제타바이트" }, "KP": { "sign": "제타바이트" } }, "YB": { "RU": { "sign": "ЙБ", "value": 1.2089258196146292e+24 }, "RR": { "sign": "ЙБ", "value": 1.2089258196146292e+24 }, "UA": { "sign": "йБ", "value": 1e+24 }, "US": { "sign": "yB", "value": 1e+24 }, "GB": { "sign": "YiB", "value": 1.2089258196146292e+24 }, "CN": { "sign": "八字节" }, "TW": { "sign": "八位元組" }, "JP": { "sign": "八字节" }, "KR": { "sign": "여덟 바이트" }, "KP": { "sign": "여덟 바이트" } }},
+        "length": { "default": { "sign": "m", "coefficient": 1 }, "GR": { "sign": "μέτρα", "coefficient": 1 }, "CY": { "sign": "μέτρα", "coefficient": 1 }, "RU": { "sign": "м", "coefficient": 1 }, "RR": { "sign": "м", "coefficient": 1 }, "UA": { "sign": "м", "coefficient": 1 }, "BY": { "sign": "м", "coefficient": 1 }, "BG": { "sign": "м", "coefficient": 1 }, "RS": { "sign": "м", "coefficient": 1 }, "MK": { "sign": "м", "coefficient": 1 }, "CN": { "sign": "米", "coefficient": 1 }, "TW": { "sign": "米", "coefficient": 1 }, "KR": { "sign": "미터", "coefficient": 1 }, "KP": { "sign": "미터", "coefficient": 1 }, "JP": { "sign": "米", "coefficient": 1 }, "AE": { "sign": "متر", "coefficient": 1 }, "SA": { "sign": "متر", "coefficient": 1 }, "IQ": { "sign": "متر", "coefficient": 1 }, "IR": { "sign": "متر", "coefficient": 1 }, "KW": { "sign": "متر", "coefficient": 1 }, "QA": { "sign": "متر", "coefficient": 1 }, "GB": { "sign": "ft", "inch": "true", "coefficient": 3.28084 }, "US": { "sign": "ft", "inch": "true", "coefficient": 3.28084 }, "LR": { "sign": "ft", "inch": "true", "coefficient": 3.28084 }, "MM": { "sign": "ft", "inch": "true", "coefficient": 3.28084 }},
+        "body_sizes": { "default": { "sign": "cm", "coefficient": 1 }, "GR": { "sign": "εκ", "coefficient": 1 }, "CY": { "sign": "εκ", "coefficient": 1 }, "RU": { "sign": "см", "coefficient": 1 }, "RR": { "sign": "см", "coefficient": 1 }, "UA": { "sign": "см", "coefficient": 1 }, "BY": { "sign": "см", "coefficient": 1 }, "BG": { "sign": "см", "coefficient": 1 }, "RS": { "sign": "см", "coefficient": 1 }, "MK": { "sign": "см", "coefficient": 1 }, "CN": { "sign": "厘米", "coefficient": 1 }, "TW": { "sign": "公分", "coefficient": 1 }, "KR": { "sign": "센티", "coefficient": 1 }, "KP": { "sign": "센티", "coefficient": 1 }, "JP": { "sign": "厘米", "coefficient": 1 }, "AE": { "sign": "سم", "coefficient": 1 }, "SA": { "sign": "سم", "coefficient": 1 }, "IQ": { "sign": "سم", "coefficient": 1 }, "IR": { "sign": "سم", "coefficient": 1 }, "KW": { "sign": "سم", "coefficient": 1 }, "QA": { "sign": "سم", "coefficient": 1 }, "GB": { "sign": "in", "inch": "true", "coefficient": 0.393701 }, "US": { "sign": "in", "inch": "true", "coefficient": 0.393701 }, "LR": { "sign": "in", "inch": "true", "coefficient": 0.393701 }, "MM": { "sign": "in", "inch": "true", "coefficient": 0.393701 }},
+        "mass": { "default": { "sign": "kg", "coefficient": 1 }, "GR": { "sign": "κιλά", "coefficient": 1 }, "CY": { "sign": "κιλά", "coefficient": 1 }, "RU": { "sign": "кг", "coefficient": 1 }, "RR": { "sign": "кг", "coefficient": 1 }, "UA": { "sign": "кг", "coefficient": 1 }, "BY": { "sign": "кг", "coefficient": 1 }, "BG": { "sign": "кг", "coefficient": 1 }, "RS": { "sign": "кг", "coefficient": 1 }, "MK": { "sign": "кг", "coefficient": 1 }, "CN": { "sign": "千克", "coefficient": 1 }, "TW": { "sign": "公斤", "coefficient": 1 }, "KR": { "sign": "킬로그램", "coefficient": 1 }, "KP": { "sign": "킬로그램", "coefficient": 1 }, "JP": { "sign": "千克", "coefficient": 1 }, "AE": { "sign": "كجم", "coefficient": 1 }, "SA": { "sign": "كجم", "coefficient": 1 }, "IQ": { "sign": "كجم", "coefficient": 1 }, "IR": { "sign": "كجم", "coefficient": 1 }, "KW": { "sign": "كجم", "coefficient": 1 }, "QA": { "sign": "كجم", "coefficient": 1 }, "GB": { "sign": "lb", "coefficient": 2.20462 }, "US": { "sign": "lb", "coefficient": 2.20462 }, "LR": { "sign": "lb", "coefficient": 2.20462 }, "MM": { "sign": "lb", "coefficient": 2.20462 }},
+        "shoe_size": { "default": 31, "US": 0, "GB": -2, "JP": 16, "CN": 31 },
+        "angle": { "default": { "sign": { "pre": "", "post": "°" }, "coefficient": 1 }, "GB": { "sign": { "pre": "", "post": "%" }, "coefficient": 0.2777777777777778 }, "FR": { "sign": { "pre": "", "post": "%" }, "coefficient": 0.2777777777777778 }, "US": { "sign": { "pre": "", "post": "" }, "coefficient": 0.01746031746031746 }, "LR": { "sign": { "pre": "", "post": "" }, "coefficient": 0.01746031746031746 }, "MM": { "sign": { "pre": "", "post": "" }, "coefficient": 0.01746031746031746 }},
+        "french": {
+            "default": [ "Vendémiaire", "Brumaire", "Frimaire", "Nivôse", "Pluviôse", "Ventôse", "Germinal", "Floréal", "Prairial", "Messidor", "Thermidor", "Fructidor", "Les jours complémentaires" ],
+            "DE": [ "Vendémiaire", "Brumaire", "Frimaire", "Nivôse", "Pluviôse", "Ventôse", "Germinal", "Floréal", "Prairial", "Messidor", "Thermidor", "Fructidor", "Die Komplementärtage" ],
+            "AT": [ "Vendémiaire", "Brumaire", "Frimaire", "Nivôse", "Pluviôse", "Ventôse", "Germinal", "Floréal", "Prairial", "Messidor", "Thermidor", "Fructidor", "Die Komplementärtage" ],
+            "DR": [ "Vendémiaire", "Brumaire", "Frimaire", "Nivôse", "Pluviôse", "Ventôse", "Germinal", "Floréal", "Prairial", "Messidor", "Thermidor", "Fructidor", "Die Komplementärtage" ],
+            "IT": [ "Vendémiaire", "Brumaire", "Frimaire", "Nivôse", "Pluviôse", "Ventôse", "Germinal", "Floréal", "Prairial", "Messidor", "Thermidor", "Fructidor", "I giorni complementari" ],
+            "ES": [ "Vendémiaire", "Brumaire", "Frimaire", "Nivôse", "Pluviôse", "Ventôse", "Germinal", "Floréal", "Prairial", "Messidor", "Thermidor", "Fructidor", "Los días complementarios" ],
+            "MX": [ "Vendémiaire", "Brumaire", "Frimaire", "Nivôse", "Pluviôse", "Ventôse", "Germinal", "Floréal", "Prairial", "Messidor", "Thermidor", "Fructidor", "Los días complementarios" ],
+            "PT": [ "Vendémiaire", "Brumaire", "Frimaire", "Nivôse", "Pluviôse", "Ventôse", "Germinal", "Floréal", "Prairial", "Messidor", "Thermidor", "Fructidor", "Os dias complementares" ],
+            "BR": [ "Vendémiaire", "Brumaire", "Frimaire", "Nivôse", "Pluviôse", "Ventôse", "Germinal", "Floréal", "Prairial", "Messidor", "Thermidor", "Fructidor", "Os dias complementares" ],
+            "RO": [ "Vendémiaire", "Brumaire", "Frimaire", "Nivôse", "Pluviôse", "Ventôse", "Germinal", "Floréal", "Prairial", "Messidor", "Thermidor", "Fructidor", "Zilele complementare" ],
+            "MD": [ "Vendémiaire", "Brumaire", "Frimaire", "Nivôse", "Pluviôse", "Ventôse", "Germinal", "Floréal", "Prairial", "Messidor", "Thermidor", "Fructidor", "Zilele complementare" ],
+            "GR": [ "Βεντεμαίρ", "Μπρυμαίρ", "Φριμαίρ", "Νιβόζε", "Πλουβιόζη", "Βεντόζη", "Γερμιναλ", "Φλορεάλ", "Πράιριαλ", "Μεσσιδόρ", "Θερμιδώρ", "Φρουκτιδόρ", "Σανσκουλόττες" ],
+            "CY": [ "Βεντεμαίρ", "Μπρυμαίρ", "Φριμαίρ", "Νιβόζε", "Πλουβιόζη", "Βεντόζη", "Γερμιναλ", "Φλορεάλ", "Πράιριαλ", "Μεσσιδόρ", "Θερμιδώρ", "Φρουκτιδόρ", "Σανσκουλόττες" ],
+            "RU": [ "вандемьера", "брюмера", "фримера", "нивоза", "плювиоза", "вантоза", "жерминаля", "флореаля", "прериаля", "мессидора", "термидора", "фрюктидора", "санкюлотида" ],
+            "RR": [ "вандемьера", "брюмера", "фримера", "нивоза", "плювиоза", "вантоза", "жерминаля", "флореаля", "прериаля", "мессидора", "термидора", "фрюктидора", "санкюлотида" ],
+            "UA": [ "вандем'єра", "брюмера", "фрімера", "нівоза", "плювіоза", "вантоза", "жерміналю", "флореалю", "преріалю", "месидору", "термідору", "фрюктидору", "санкюлотиду" ],
+            "BY": [ "вандэм'ера", "брумера", "фрымера", "ніваза", "плювіёза", "вантоза", "жэрміналя", "фларэаля", "прэрыяля", "месідора", "тэрмідора", "фрюктыдора", "санкюлатыда" ],
+            "BG": [ "Вандемиере", "Брумер", "Фримере", "Нивоза", "Плувиоза", "Вантозе", "Жерминал", "Флореал", "Прериал", "Месидор", "Термидор", "Фруктидор", "Санскулотид" ],
+            "RS": [ "Вендемиере", "Брумаире", "Фримере", "Нивоса", "Плувиоса", "Вантосе", "Герминал", "Флореал", "Праириал", "Месидоре", "Тхермидор", "Фруцтидор", "Сансцулотид" ],
+            "MK": [ "вандемьера", "брюмера", "фримера", "нивоза", "плювиоза", "вантоза", "жерминаля", "флореаля", "прериаля", "мессидора", "термидора", "фрюктидора", "санкюлотида" ],
+            "CN": [ "葡月", "雾月", "霜月", "雪月", "雨月", "风月", "生发月", "花朵月", "牧月", "梅西月", "热月", "果月", "额外的日子" ],
+            "TW": [ "葡月", "霧月", "霜月", "雪月", "雨月", "風月", "生髮月", "花朵月", "牧月", "梅西月", "熱月", "果月", "額外的日子" ],
+            "JP": [ "ヴァンデミエール", "ブリュメール", "フリメール", "ニヴォーズ", "プルビオーズ", "ヴァントーズ", "ジェルミナル", "フロレアル", "プレリアル", "メシドール", "テルミドール", "フルクチドール", "追加の日数" ],
+            "KR": [ "방데미에르", "브뤼메르", "프리메르", "니보스", "플루비오즈", "방토스", "제르미날", "플로레알", "프레리알", "메시도르", "테르미도르", "프룩티도르", "과격 공화주의자" ],
+            "KP": [ "방데미에르", "브뤼메르", "프리메르", "니보스", "플루비오즈", "방토스", "제르미날", "플로레알", "프레리알", "메시도르", "테르미도르", "프룩티도르", "과격 공화주의자" ]
+        },
+        "month": {
+            "default": [ "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" ],
+            "CH": [ "Ianuarius", "Februarius", "Martius", "Aprilis", "Maius", "Juniius", "Quintilis", "Sextilis", "September", "October", "November", "December" ],
+            "SP": [ "Ianuarius", "Februarius", "Martius", "Aprilis", "Maius", "Juniius", "Quintilis", "Sextilis", "September", "October", "November", "December" ],
+            "GR": [ "Ιανουάριος", "Φεβρουάριος", "Μάρτιος", "Απρίλιος", "Ενδέχεται", "Ιούνιος", "Ιούλιος", "Αύγουστος", "Σεπτέμβριος", "Οκτώβριος", "Νοέμβριος", "Δεκέμβριος" ],
+            "CY": [ "Ιανουάριος", "Φεβρουάριος", "Μάρτιος", "Απρίλιος", "Ενδέχεται", "Ιούνιος", "Ιούλιος", "Αύγουστος", "Σεπτέμβριος", "Οκτώβριος", "Νοέμβριος", "Δεκέμβριος" ],
+            "DE": [ "Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember" ],
+            "AT": [ "Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember" ],
+            "DR": [ "Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember" ],
+            "FR": [ "Janvier", "Février", "Mars", "Avril", "Peut", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre" ],
+            "BE": [ "Janvier", "Février", "Mars", "Avril", "Peut", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre" ],
+            "IT": [ "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre" ],
+            "ES": [ "enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre" ],
+            "MX": [ "enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre" ],
+            "PT": [ "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" ],
+            "BR": [ "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" ],
+            "RO": [ "ianuarie", "februarie", "martie", "aprilie", "mai", "iunie", "iulie", "august", "septembrie", "octombrie", "noiembrie", "decembrie" ],
+            "MD": [ "ianuarie", "februarie", "martie", "aprilie", "mai", "iunie", "iulie", "august", "septembrie", "octombrie", "noiembrie", "decembrie" ],
+            "RU": [ "января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря" ],
+            "RR": [ "Просинца", "Сѣченя", "Сухаго", "Цвѣтня", "Травена", "Изока", "Червеня", "Серпеня", "Вресеня", "Листопада", "Груденя", "Студеня" ],
+            "UA": [ "січня", "лютого", "березня", "квітня", "травня", "червня", "липня", "серпня", "вересня", "жовтня", "листопада", "грудня" ],
+            "BY": [ "Студзень", "Люты", "Сакавік", "Красавік", "Май", "Чэрвень", "Ліпень", "Аўгуст", "Верасень", "Кастрычнік", "Лістапад", "Снежань" ],
+            "BG": [ "Януари", "Февруари", "Март", "Април", "Май", "Юни", "Юли", "Август", "Септември", "Октомври", "Ноември", "Декември" ],
+            "RS": [ "Јануар", "Фебруар", "Март", "Април", "Мај", "Јун", "Јул", "Август", "Септембар", "Октобар", "Новембар", "Децембар" ],
+            "MK": [ "Јануари", "Февруари", "Март", "Април", "Мај", "Јуни", "Јули", "Август", "Септември", "Октомври", "Ноември", "Декември" ],
+            "CN": [ "1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月" ],
+            "TW": [ "1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月" ],
+            "JP": [ "1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月" ],
+            "KR": [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월" ],
+            "KP": [ "1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월" ]
+        },
+        "quarter": {
+            "default": [ "Winter", "Spring", "Summer", "Fall" ],
+            "CH": [ "Hiems", "Ver", "Aestas", "Autumna" ],
+            "SP": [ "Hiems", "Ver", "Aestas", "Autumna" ],
+            "GR": [ "Χειμώνας", "Ανοιξη", "Καλοκαίρι", "Φθινόπωρο" ],
+            "CY": [ "Χειμώνας", "Ανοιξη", "Καλοκαίρι", "Φθινόπωρο" ],
+            "FR": [ "Hiver", "Printemps", "Été", "Automne" ],
+            "BE": [ "Hiver", "Printemps", "Été", "Automne" ],
+            "DE": [ "Winter", "Frühling", "Sommer", "Herbst" ],
+            "AT": [ "Winter", "Frühling", "Sommer", "Herbst" ],
+            "DR": [ "Winter", "Frühling", "Sommer", "Herbst" ],
+            "IT": [ "Inverno", "Primavera", "Estate", "Autunno" ],
+            "RO": [ "Iarna", "Primăvara", "Vara", "Toamna" ],
+            "MD": [ "Iarna", "Primăvara", "Vara", "Toamna" ],
+            "PT": [ "Inverno", "Primavera", "Verão", "Outono" ],
+            "BR": [ "Inverno", "Primavera", "Verão", "Outono" ],
+            "ES": [ "Otoño", "invierno", "Primavera", "Verano" ],
+            "MX": [ "Otoño", "invierno", "Primavera", "Verano" ],
+            "RU": [ "Зима", "Весна", "Лето", "Осень" ],
+            "RR": [ "Зима", "Весна", "Лѣто", "Осень" ],
+            "UA": [ "Зима", "Весна", "Літо", "Осінь" ],
+            "BY": [ "Зіма", "Вясна", "Лета", "Восень" ],
+            "BG": [ "Зима", "Пролет", "Лято", "Есен" ],
+            "RS": [ "Зима", "Пролеће", "Лето", "Јесен" ],
+            "MK": [ "Зима", "Пролет", "Лето", "Есен" ],
+            "CN": [ "冬天", "春天", "夏天", "秋天" ],
+            "TW": [ "冬天", "春天", "夏天", "秋天" ],
+            "KR": [ "겨울", "태엽", "여름", "가을" ],
+            "KP": [ "겨울", "태엽", "여름", "가을" ],
+            "JP": [ "冬天", "春天", "夏天", "秋天" ],
+            "AE": [ "شتاء", "ربيع", "صيف", "خريف" ],
+            "SA": [ "شتاء", "ربيع", "صيف", "خريف" ],
+            "IQ": [ "شتاء", "ربيع", "صيف", "خريف" ],
+            "IR": [ "شتاء", "ربيع", "صيف", "خريف" ],
+            "KW": [ "شتاء", "ربيع", "صيف", "خريف" ],
+            "QA": [ "شتاء", "ربيع", "صيف", "خريف" ]
+        },
+        "semester": {
+            "default": [ "Fall/Winter", "Spring/Summer" ],
+            "CH": [ "Autumna/Hiems", "Ver/Aestas" ],
+            "SP": [ "Autumna/Hiems", "Ver/Aestas" ],
+            "GR": [ "Φθινόπωρο/Χειμώνας", "Ανοιξη/Καλοκαίρι" ],
+            "CY": [ "Φθινόπωρο/Χειμώνας", "Ανοιξη/Καλοκαίρι" ],
+            "FR": [ "Automne/Hiver", "Printemps/Été" ],
+            "BE": [ "Automne/Hiver", "Printemps/Été" ],
+            "DE": [ "Herbst/Winter", "Frühling/Sommer" ],
+            "AT": [ "Herbst/Winter", "Frühling/Sommer" ],
+            "DR": [ "Herbst/Winter", "Frühling/Sommer" ],
+            "IT": [ "Autunno/Inverno", "Primavera/Estate" ],
+            "RO": [ "Toamna/Iarna", "Primăvara/Vara" ],
+            "MD": [ "Toamna/Iarna", "Primăvara/Vara" ],
+            "PT": [ "Outono/Inverno", "Primavera/Verão" ],
+            "BR": [ "Outono/Inverno", "Primavera/Verão" ],
+            "ES": [ "Otoño/invierno", "Primavera/Verano" ],
+            "MX": [ "Otoño/invierno", "Primavera/Verano" ],
+            "RU": [ "Осень-Зима", "Весна-Лето" ],
+            "RR": [ "Осень-Зима", "Весна-Лѣто" ],
+            "UA": [ "Осінь-Зима", "Весна-Літо" ],
+            "BY": [ "Восень/Зіма", "Вясна/Лета" ],
+            "BG": [ "Есен/Зима", "Пролет/Лято" ],
+            "RS": [ "Јесен/Зима", "Пролеће/Лето" ],
+            "MK": [ "Есен/Зима", "Пролет/Лето" ],
+            "CN": [ "秋天/冬天", "春天/夏天" ],
+            "TW": [ "秋天/冬天", "春天/夏天" ],
+            "KR": [ "가을/겨울", "태엽/여름" ],
+            "KP": [ "가을/겨울", "태엽/여름" ],
+            "JP": [ "秋天/冬天", "春天/夏天" ],
+            "AE": [ "الخريف/الشتاء", "الربيع/الصيف" ],
+            "SA": [ "الخريف/الشتاء", "الربيع/الصيف" ],
+            "IQ": [ "الخريف/الشتاء", "الربيع/الصيف" ],
+            "IR": [ "الخريف/الشتاء", "الربيع/الصيف" ],
+            "KW": [ "الخريف/الشتاء", "الربيع/الصيف" ],
+            "QA": [ "الخريف/الشتاء", "الربيع/الصيف" ]
+        },
+        "weekday": {
+            "default": [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ],
+            "CH": [ "Dominica", "Lunae", "Martis", "Mercurii", "Iovis", "Veneris", "Sabbato" ],
+            "SP": [ "Dominica", "Lunae", "Martis", "Mercurii", "Iovis", "Veneris", "Sabbato" ],
+            "GR": [ "Κυριακή", "Δευτέρα", "Τρίτη", "Τετάρτη", "Πέμπτη", "Παρασκευή", "Σάββατο" ],
+            "CY": [ "Κυριακή", "Δευτέρα", "Τρίτη", "Τετάρτη", "Πέμπτη", "Παρασκευή", "Σάββατο" ],
+            "FR": [ "Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi" ],
+            "BE": [ "Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi" ],
+            "DE": [ "Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag" ],
+            "AT": [ "Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag" ],
+            "DR": [ "Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag" ],
+            "IT": [ "Domenica", "Lunedi", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato" ],
+            "RO": [ "duminică", "luni", "marţi", "miercuri", "joi", "vineri", "sâmbătă" ],
+            "MD": [ "duminică", "luni", "marţi", "miercuri", "joi", "vineri", "sâmbătă" ],
+            "PT": [ "Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado" ],
+            "BR": [ "Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado" ],
+            "ES": [ "Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado" ],
+            "MX": [ "Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado" ],
+            "RU": [ "Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота" ],
+            "RR": [ "Недѣля", "Понедельникъ", "Вторникъ", "Среда", "Четвертокъ", "Пятокъ", "Суббота" ],
+            "UA": [ "Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота" ],
+            "BY": [ "Нядзеля", "Панядзелак", "Аўторак", "Серада", "Чацвер", "Пятніца", "Субота" ],
+            "BG": [ "неделя", "понеделник", "вторник", "сряда", "четвъртък", "петък", "събота" ],
+            "RS": [ "Недеља", "Понедељак", "Уторак", "Среда", "Четвртак", "Петак", "Субота" ],
+            "MK": [ "Недела", "Понеделник", "Вторник", "Среда", "Четврток", "Петок", "Сабота" ],
+            "IN": [ "रवि", "सोम", "मंगल", "बुध", "गुरु", "शुक्र", "शनि" ],
+            "LK": [ "सूर्य", "मोन", "मंगल", "बुध", "थु", "फ्री", "सत्" ],
+            "CN": [ "日", "月", "火", "水", "木", "金", "土" ],
+            "TW": [ "日", "月", "火", "水", "木", "金", "土" ],
+            "KR": [ "일", "월", "화", "수", "목", "금", "토" ],
+            "KP": [ "일", "월", "화", "수", "목", "금", "토" ],
+            "JP": [ "日", "月", "火", "水", "木", "金", "土" ],
+            "AE": [ "السبت", "الجمعة", "الخميس", "الاربعاء", "الثلاثاء", "الاثنين", "الاحد" ],
+            "SA": [ "السبت", "الجمعة", "الخميس", "الاربعاء", "الثلاثاء", "الاثنين", "الاحد" ],
+            "IQ": [ "السبت", "الجمعة", "الخميس", "الاربعاء", "الثلاثاء", "الاثنين", "الاحد" ],
+            "IR": [ "السبت", "الجمعة", "الخميس", "الاربعاء", "الثلاثاء", "الاثنين", "الاحد" ],
+            "KW": [ "السبت", "الجمعة", "الخميس", "الاربعاء", "الثلاثاء", "الاثنين", "الاحد" ],
+            "QA": [ "السبت", "الجمعة", "الخميس", "الاربعاء", "الثلاثاء", "الاثنين", "الاحد" ]
+        }
+    },
+    "angles": [ 0, 90, 180, 270 ],
+    "payload": {
+        "app_store": {
+            "backward": {
+                "https://github.com/infofintech/system": [
+                    "https://gitlab.com/openwebstd/infofintech/system",
+                    "https://gitverse.ru/infofintech/system"
+                ],
+                "https://github.com/eurohouse/eurohouse": [
+                    "https://gitlab.com/openwebstd/eurohouse/eurohouse",
+                    "https://gitverse.ru/eurohouse/eurohouse"
+                ]
+            },
+            "forward": {
+                "https://github.com/infofintech/system": [
+                    "https://gitlab.com/openwebstd/infofintech/system",
+                    "https://gitverse.ru/infofintech/system"
+                ],
+                "https://github.com/infofintech/typography": [
+                    "https://gitlab.com/openwebstd/infofintech/typography"
+                ],
+                "https://github.com/infofintech/bootfont": [
+                    "https://gitlab.com/openwebstd/infofintech/bootfont"
+                ],
+                "https://github.com/infofintech/media": [
+                    "https://gitlab.com/openwebstd/infofintech/media"
+                ],
+                "https://github.com/infofintech/macos": [
+                    "https://gitlab.com/openwebstd/infofintech/macos"
+                ],
+                "https://github.com/infofintech/midi": [
+                    "https://gitlab.com/openwebstd/infofintech/midi"
+                ],
+                "https://github.com/infofintech/avatar": [
+                    "https://gitlab.com/openwebstd/infofintech/avatar",
+                    "https://gitverse.ru/infofintech/avatar"
+                ],
+                "https://github.com/infofintech/i18n": [
+                    "https://gitlab.com/openwebstd/infofintech/i18n",
+                    "https://gitverse.ru/infofintech/i18n"
+                ],
+                "https://github.com/eurohouse/eurohouse": [
+                    "https://gitlab.com/openwebstd/eurohouse/eurohouse",
+                    "https://gitverse.ru/eurohouse/eurohouse"
+                ]
+            },
+            "iconpack": {
+                "https://github.com/infofintech/memphis": [],
+                "https://github.com/infofintech/redmond": [],
+                "https://github.com/infofintech/vista": [],
+                "https://github.com/infofintech/fluent": [],
+                "https://github.com/infofintech/gnome": [],
+                "https://github.com/infofintech/tango": [],
+                "https://github.com/infofintech/antu": [],
+                "https://github.com/infofintech/cupertino": []
+            },
+            "desktop": {
+                "https://github.com/infofintech/metro": [],
+                "https://github.com/infofintech/xp": [],
+                "https://github.com/infofintech/osx": [],
+                "https://github.com/infofintech/distro": []
+            },
+            "theme": {
+                "https://github.com/infofintech/gta": [
+                    "https://gitlab.com/openwebstd/infofintech/gta"
+                ],
+                "https://github.com/infofintech/postal2": [],
+                "https://github.com/infofintech/rtcw": [],
+                "https://github.com/infofintech/spore": []
+            },
+            "eurohouse": {
+                "https://github.com/eurohouse/baron": [],
+                "https://github.com/eurohouse/cappuccino": [],
+                "https://github.com/eurohouse/epoque": [],
+                "https://github.com/eurohouse/mascarpone": [],
+                "https://github.com/eurohouse/nestor": []
+            },
+            "global": {
+                "https://github.com/infofintech/boutique": [],
+                "https://github.com/infofintech/emporio": [],
+                "https://github.com/infofintech/kunstkammer": [],
+                "https://github.com/infofintech/nemesis": [],
+                "https://github.com/infofintech/nightlife": [],
+                "https://github.com/infofintech/stellar": []
+            },
+            "museum": {
+                "https://github.com/infofintech/classic": [
+                    "https://gitlab.com/openwebstd/infofintech/classic"
+                ],
+                "https://github.com/infofintech/oldies": [
+                    "https://gitlab.com/openwebstd/infofintech/oldies"
+                ],
+                "https://github.com/infofintech/aughts": [
+                    "https://gitlab.com/openwebstd/infofintech/aughts"
+                ]
+            },
+            "almanac": {
+                "https://github.com/eurohouse/botticelli": [
+                    "https://gitlab.com/openwebstd/eurohouse/botticelli"
+                ],
+                "https://github.com/eurohouse/orchestra": [
+                    "https://gitlab.com/openwebstd/eurohouse/orchestra"
+                ]
+            },
+            "annual": {
+                "https://github.com/holylance98/spaceship": [
+                    "https://gitlab.com/holylance98/spaceship"
+                ],
+                "https://github.com/holylance98/hollywood": [
+                    "https://gitlab.com/holylance98/hollywood"
+                ],
+                "https://github.com/holylance98/daydream": [
+                    "https://gitlab.com/holylance98/daydream"
+                ],
+                "https://github.com/holylance98/sunshine": [
+                    "https://gitlab.com/holylance98/sunshine"
+                ]
+            }
+        },
+        "play_store": {
+            "starter": {
+                "https://github.com/infofintech/aisleriot": [
+                    "https://gitlab.com/openwebstd/infofintech/aisleriot",
+                    "https://gitverse.ru/infofintech/aisleriot"
+                ],
+                "https://github.com/infofintech/chess": [
+                    "https://gitlab.com/openwebstd/infofintech/chess",
+                    "https://gitverse.ru/infofintech/chess"
+                ],
+                "https://github.com/infofintech/dice": [
+                    "https://gitlab.com/openwebstd/infofintech/dice"
+                ],
+                "https://github.com/infofintech/pool": [
+                    "https://gitlab.com/openwebstd/infofintech/pool"
+                ],
+                "https://github.com/infofintech/fight": [
+                    "https://gitlab.com/openwebstd/infofintech/fight"
+                ],
+                "https://github.com/infofintech/sudoku": [
+                    "https://gitlab.com/openwebstd/infofintech/sudoku"
+                ],
+                "https://github.com/infofintech/monopoly": [
+                    "https://gitlab.com/openwebstd/infofintech/monopoly"
+                ],
+                "https://github.com/infofintech/rollercoaster": [
+                    "https://gitlab.com/openwebstd/infofintech/rollercoaster"
+                ]
+            },
+            "arcade": {
+                "https://github.com/infofintech/breakout": [],
+                "https://github.com/infofintech/bomberman": [],
+                "https://github.com/infofintech/snake": [],
+                "https://github.com/infofintech/tetris": [],
+                "https://github.com/infofintech/pacman": [],
+                "https://github.com/infofintech/mario": [],
+                "https://github.com/infofintech/pong": []
+            },
+            "tools": {
+                "https://github.com/infofintech/flicker": [
+                    "https://gitlab.com/openwebstd/infofintech/flicker",
+                    "https://gitverse.ru/infofintech/flicker"
+                ],
+                "https://github.com/infofintech/photopea": [
+                    "https://gitlab.com/openwebstd/infofintech/photopea",
+                    "https://gitverse.ru/infofintech/photopea"
+                ],
+                "https://github.com/infofintech/vectorpea": [
+                    "https://gitlab.com/openwebstd/infofintech/vectorpea",
+                    "https://gitverse.ru/infofintech/vectorpea"
+                ],
+                "https://github.com/infofintech/ipgeolocation": [
+                    "https://gitlab.com/openwebstd/infofintech/ipgeolocation",
+                    "https://gitverse.ru/infofintech/ipgeolocation"
+                ],
+                "https://github.com/infofintech/bible": [
+                    "https://gitlab.com/openwebstd/infofintech/bible",
+                    "https://gitverse.ru/infofintech/bible"
+                ]
+            }
+        }
+    },
+    "metadata": { "": "" },
+    "defaults": {
+        "timezone": "RXRjL0dNVA==", "units": "EU", "units_list": "EU,US", "date_format": "Y-m-d", "time_format": "H:i:s", "currency": "^x~p.^y~", "melody": "", "locations": "london uk, paris ile de france, new york usa", "duration": 0, "current": 0, "playing": 0, "shuffle": 0, "numeric": "0123456789ABCDEF", "autoplay": 0, "timedisp": 0, "slideshow": 0, "read_backwards": 0, "play_backwards": 0, "preserves_pitch": 0, "calendar": "Gregorian", "mute": 0, "apps": 0, "observe": 0, "spectate": 0, "vintage": 0, "loop": 0, "roman": 0, "marquee_speed": 500, "title": "", "codename": "", "project": "", "titles": "", "codenames": "", "projects": "", "type": "person", "avatar": "NULL", "border_radius": "9px", "text_border_radius": "9px", "gradient_fore": 180, "gradient_input": 180, "gradient_button": 180, "magnitude": 5, "box_shadow": "inset 0px 0px #FFFFFF, inset 0px 0px #FFFFFF", "text_box_shadow": "inset 0px 0px #FFFFFF, inset 0px 0px #FFFFFF", "text_shadow": "#DD4D76 3px 3px 3px, #DD4D76 -3px -3px 3px, #DD4D76 3px -3px 3px, #DD4D76 -3px 3px 3px", "back_size": 16, "fore_size": 16, "input_size": 16, "head1_size": 19, "head2_size": 18, "head3_size": 17, "disp_size": 20, "priv1_size": 16, "priv2_size": 16, "priv3_size": 16, "opacity": 32, "blur": 0, "brightness": 100, "saturation": 100, "contrast": 100, "sepia": 0, "grayscale": 0, "hue": 0, "specimen": "Q F S H Æ Ø Ð Ñ ʒ ʊ ʎ ɸ Σ Φ Ω Θ Г З Х Б خالد 인 방 학 적 の あ ぱ オ 中 英 阿 网 რ Ֆ ט भो 🍷 ☕️ 🍾 🍫", "pangram_ascii": "The quick brown fox jumps over the lazy dog.", "pangram_latin": "Kŕdeľ šťastných ďatľov učí pri ústí Váhu mĺkveho koňa obhrýzať kôru a žrať čerstvé mäso.", "pangram_phone": "ðə kwɪk braʊn fɒks ʤʌmps ˈəʊvə ðə ˈleɪzi dɒɡ.", "pangram_greek": "Γκόλφω, βάδιζε μπροστά ξανθή ψυχή!", "pangram_cyril": "Съешь ещё этих мягких французских булок, да выпей же чаю.", "pangram_arabi": "קזחסטן ארץ מעלפת, גדושה בכי.", "pangram_korea": "키스의 고유 조건은 입술끼리 만나야 하고 특별한 기술은 필요치 않다.", "pangram_china": "天 地 星 空 山 川 峰 谷 雲 霧 室 苔 人 犬 上 末 硫黄 猿 生ふせよ 榎の枝を 慣れ居て", "pangram_other": "ঊনিশে কার্তিক রাত্র সাড়ে আট ঘটিকায় ভৈরবনিবাসী ব্যাংকের ক্ষুদ্র ঋণগ্রস্ত অভাবী দুঃস্থ পৌঢ় কৃষক এজাজ মিঞা হাতের কাছে ঔষধ থাকিতেও ঐ ঋণের ডরেই চোখে ঝাপসা দেখিয়া বুকের যন্ত্রণায় ঈষৎ কাঁপিয়া উঠিয়া উঠানে বিছানো ধূসর রঙের ফরাশের উপর ঢলিয়া পড়িলেন।", "pangram_emoji": "😀🤮🤠😡😠🤬😈👿💀☠️💩🤡👹👺👻👽👾🤖😺🙈🙉🙊💋💌💘💝💖💗💓💞💕❤️🧡💛💚💙💜🤎🖤🤍💯💢💥💣", "font_ascii": "Flexo-Bold.ttf", "font_latin": "Flexo-Bold.ttf", "font_phone": "Helvetica-Bold.ttf", "font_greek": "ClearSans-Bold.ttf", "font_cyril": "ClearSans-Bold.ttf", "font_arabi": "NotoSansArabic-Bold.ttf", "font_korea": "NotoSansKR-Bold.ttf", "font_japan": "NotoSansJP-Bold.ttf", "font_other": "Arialunib.ttf", "font_emoji": "Twemoji.ttf", "back_color": "#C0BFC0", "fore_color": "#605F60", "input_color": "#E5E5E5", "back_text_color": "#FFFFFF", "fore_text_color": "#FFFFFF", "input_text_color": "#000000", "blank_color": "#FFFFFF", "blank_text_color": "#000000", "arc_fore_color": "#403F40", "arc_input_color": "#D5D5D5", "theme": "iso", "menu_view": "list", "menu": "file_manager,preferences", "playlist": "", "memo": "", "background": "", "background_buffer": "", "find": "#", "stats": "hdi", "album": "music", "playlist_columns": 2, "album_columns": 3, "position": "50% 25%", "active_hours": "", "audio_volume": 1, "audio_speed": 1, "video_volume": 1, "video_speed": 1, "alarm_sound": "iPhone.wav", "ticking_sound": "timer.wav", "background_sound": "vinyl.wav", "focus_sound": "Mouse-Keys-ON.m4r", "type_sound": "Sticky-Keys-Locked.m4r", "error_sound": "Basso.m4r", "notify_sound": "burn_complete.m4r", "click_sound": "Blow.m4r"
+    },
+    "initialize": {
+        "GET": {
+            "mode": "", "sort": "", "group": "", "angle": 0,
+            "input": "", "output": "", "args": "", "lock": "true",
+            "ref": "menu", "path": "/"
+        },
+        "POST": { "auth": "", "login": "", "password": "" }
+    },
+    "pangram": {
+        "default": "ascii", "FR": "latin", "BE": "latin", "DE": "latin", "AT": "latin", "IT": "latin", "ES": "latin", "MX": "latin", "RO": "latin", "MD": "latin", "HU": "latin", "CZ": "latin", "PL": "latin", "GR": "greek", "CY": "greek", "NO": "latin", "SE": "latin", "FI": "latin", "RU": "cyril", "UA": "cyril", "RS": "cyril", "BG": "cyril", "BY": "cyril", "CN": "china", "JP": "china", "KR": "korea", "VN": "latin", "GE": "other", "SA": "arabi", "AE": "arabi", "IL": "arabi", "quote": "arabi", "KW": "arabi", "IN": "other", "LK": "other", "NP": "other", "TH": "other", "AM": "other"
+    },
+    "vocabulary": {
+        "CH": {
+            "birthday in":"natalis in","What's on your mind?":"Quid in animo tuo est?","Ask artificial intelligence anything":"Interroga quidlibet ab intelligentia artificiali","Type any mathematical expression":"Quamlibet expressionem mathematicam scribe","Search certain files in the directory":"Quaerere certos fasciculos in directorio","Type anything and press ENTER":"Quidlibet scribe et clavem \"ENTER\" preme.","Search certain models or objects by keywords":"Quaerere exempla vel res certas per verba clavis","Set certain weather locations":"Loca certa tempestatum constitue","Apply Settings": "Applicare Occasus", "Apply Dimensions": "Applicare Dimensiones", "Apply Style Configuration": "Applicare Stylum Configurationis", "Update Password": "Renovatio Secretum", "Reload Page": "Reddite Pagina", "Reset Defaults": "Propago Defectus", "Reset Default Fonts": "Propago Defecto Typographia", "Reset Default Languages": "Propago Defecto Linguae", "Update Titles": "Renovatio Inscriptiones", "Update Localized Titles": "Renovatio Inscriptiones Locales", "Update Settings": "Renovatio Occasus", "Go Back/Go Forward": "Retrocede/Progredere", "Spectate Mode": "Spectare Modus", "Sign In/Out": "Authenticare", "Press any key to continue...": "Preme aliqua clavis pergere...", "Sign Up/Create Account": "Crea Persona", "Eurohouse Update": "Renovatio Programma", "Icons/List Menu View": "Pollex/Index Menu Visum", "Symbolic Digits": "Symbolae Digitorum", "Show Third-Party Apps": "Ostendere Tertium Programmas", "Expand/Collapse Enhanced View": "Dilatare/Collapse Consectetur Visum", "Show/Hide User Avatar": "Ostendere Icona Usuarum", "Hit Another User": "Impetum Alius Usuario", "Bind/Unbind Another User": "Ligere Alius Usuario", "Enable User Auto Mode": "Admitte Usuario Auto Modus", "Mute Audio": "Mutus Audio", "Incoming Call": "Vocatio Ineuntes", "Preserve Pitch": "Audio Serva Resina", "Enable Loop Music": "Admitte Musica Laqueus", "Random Track": "Musica Fortuitus", "Random Background": "Fonto Pantalla Fortuitus", "Random Code": "Codex Fortuitus", "Audio Play/Pause": "Audio Ludus/Pausa", "Enable Autoplay": "Admitte Auto Ludus", "Go My Way": "L'Adultère", "Suggest Username": "Suggesto Usuario Nomen", "Compose Message": "Nuntium Compone", "Enable Vintage Effects": "Admitte Effectus Vintage", "Previous Track": "Praevius Musica", "Next Track": "Proximus Musica", "Slideshow Wallpapers": "Ire Per Diurnum Pantalla Series", "Clear Sign In Form": "Erado Authenticare Forma", "Clear Console": "Erado Consolum", "Focus On Console": "Ire Per Consolum", "Execute Command": "Executo Mandatum", "Set Up Background": "Fonto Pantalla Constituere", "Observe Background View": "Observo Pantalla Visum", "With/Without Page Reload": "Alter Modus Pagina Redditum", "Audio Playlist Shuffle/Repeat": "Audio Playlist Shuffle/Repetere", "Lock On Wallpaper Position": "Obfirmo de Wallpaper Position", "Age": "Aetas", "Days": "Dies", "HDI": "IHD", "Average": "Mediocris", "Expected": "Expectata", "(": "(", ")": ")", "GNI PPP per capita": "CNR PAP capitarius", "Total elements:": "Quantitas Elementorum:", "Free disk space:": "Liberum Orbis Spatium:", "Titles:": "Inscriptiones:", ": ": ": ", "Localized Titles:": "Inscriptiones Locales:", "Functional Elements:": "Elementa Functiones:", "Choose Calendar:": "Calendarium Elige:", "Choose Time Zone:": "Zonam Temporis Elige:", "Signature Elements:": "Elementa Signatura:", "Sound Effects:": "Sonus Occasus:", "Title": "Titulus", "Codename": "Codus Nomen", "Project Name": "Opus Nomen", "Localized Titles": "Titulus Localis", "Localized Codenames": "Codus Nomen Localis", "Localized Project Names": "Opus Nomen Localis", "Date Format": "Diem Formatus", "Time Format": "Tempus Formatus", "Localizations": "Linguarum", "Menu Items": "Menu Index", "Active Hours": "Hora Activum", "Currency": "Monetae", "Delimiter": "Separator", "Height": "Altitudo", "Weight": "Pondus", "Shoe Size": "Calceus Mole", "Body Sizes": "Calceus Corpus", "Your Reticles:": "Genera Reticuli:", "Description": "Descriptio", "Icon": "Signum", "Name": "Nomen", "Size": "Magnitudo", "Rights": "Iura", "Actions": "Actiones", "Image": "Imago", "Flag": "Vexillum", "Type": "Exemplar", "Date": "Diem", "Apply": "Applicare", "Update": "Renovatio", "Reset": "Propago", "Clear": "Purgo", "Specimen Text": "Specimen", "Specimen Text:": "Specimen:", "Font Configuration:": "Typographicum Occasus:", "User Interface:": "Aspectus Occasus:", "Color Scheme:": "Colores Occasus:", "Update Password:": "Renovatio Secretum:", "Username": "Nomen Usoris", "Password": "Secretum", "Article": "Articulus", "Amount": "Quantitas", "Price": "Pretium", "Opacity": "Opacitas", "Blur": "Macula", "Bright": "Lumen", "Saturate": "Saturitas", "Contrast": "Diversitas", "Sepia": "Sepia", "Grayscale": "Nigrum et Album", "Hue": "Pigmentum", "Location": "Locus", "Coordinates": "Coordinatae", "Date/Time": "Dies/Tempus", "Temperature": "Temperatura", "Precipitation": "Praecipitatio", "Wind Speed": "Velocitas Venti", "Pressure": "Pressio", "Cloud Cover": "Nubibus Tegmen", "Sunrise/Sunset": "Ortus/Occasus Solis", "Conditions": "Conditiones", "Custom Numeric Digits:": "Numerus Digitorum Arbitrarium:", "Server-Wide User Statistics:": "Nodus Usuari Statistica:", "Audio Volume": "Sonus Volumen", "Audio Speed": "Sonus Tempo", "Video Volume": "Video Volumen", "Video Speed": "Video Tempo", "Alarm Volume": "Terrorus Volumen", "Timer Volume": "Temporis Volumen", "Loop Volume": "Pantalla Volumen", "Rest Volume": "Miscellus Volumen", "Input": "Inputum", "Output": "Exitus", "Birthday": "Dia Natale"
+        },
+        "SP": {
+            "birthday in":"natalis in","What's on your mind?":"Quid in animo tuo est?","Ask artificial intelligence anything":"Interroga quidlibet ab intelligentia artificiali","Type any mathematical expression":"Quamlibet expressionem mathematicam scribe","Search certain files in the directory":"Quaerere certos fasciculos in directorio","Type anything and press ENTER":"Quidlibet scribe et clavem \"ENTER\" preme.","Search certain models or objects by keywords":"Quaerere exempla vel res certas per verba clavis","Set certain weather locations":"Loca certa tempestatum constitue","Apply Settings": "Applicare Occasus", "Apply Dimensions": "Applicare Dimensiones", "Apply Style Configuration": "Applicare Stylum Configurationis", "Update Password": "Renovatio Secretum", "Reload Page": "Reddite Pagina", "Reset Defaults": "Propago Defectus", "Reset Default Fonts": "Propago Defecto Typographia", "Reset Default Languages": "Propago Defecto Linguae", "Update Titles": "Renovatio Inscriptiones", "Update Localized Titles": "Renovatio Inscriptiones Locales", "Update Settings": "Renovatio Occasus", "Go Back/Go Forward": "Retrocede/Progredere", "Spectate Mode": "Spectare Modus", "Sign In/Out": "Authenticare", "Press any key to continue...": "Preme aliqua clavis pergere...", "Sign Up/Create Account": "Crea Persona", "Eurohouse Update": "Renovatio Programma", "Icons/List Menu View": "Pollex/Index Menu Visum", "Symbolic Digits": "Symbolae Digitorum", "Show Third-Party Apps": "Ostendere Tertium Programmas", "Expand/Collapse Enhanced View": "Dilatare/Collapse Consectetur Visum", "Show/Hide User Avatar": "Ostendere Icona Usuarum", "Hit Another User": "Impetum Alius Usuario", "Bind/Unbind Another User": "Ligere Alius Usuario", "Enable User Auto Mode": "Admitte Usuario Auto Modus", "Mute Audio": "Mutus Audio", "Incoming Call": "Vocatio Ineuntes", "Preserve Pitch": "Audio Serva Resina", "Enable Loop Music": "Admitte Musica Laqueus", "Random Track": "Musica Fortuitus", "Random Background": "Fonto Pantalla Fortuitus", "Random Code": "Codex Fortuitus", "Audio Play/Pause": "Audio Ludus/Pausa", "Enable Autoplay": "Admitte Auto Ludus", "Go My Way": "L'Adultère", "Suggest Username": "Suggesto Usuario Nomen", "Compose Message": "Nuntium Compone", "Enable Vintage Effects": "Admitte Effectus Vintage", "Previous Track": "Praevius Musica", "Next Track": "Proximus Musica", "Slideshow Wallpapers": "Ire Per Diurnum Pantalla Series", "Clear Sign In Form": "Erado Authenticare Forma", "Clear Console": "Erado Consolum", "Focus On Console": "Ire Per Consolum", "Execute Command": "Executo Mandatum", "Set Up Background": "Fonto Pantalla Constituere", "Observe Background View": "Observo Pantalla Visum", "With/Without Page Reload": "Alter Modus Pagina Redditum", "Audio Playlist Shuffle/Repeat": "Audio Playlist Shuffle/Repetere", "Lock On Wallpaper Position": "Obfirmo de Wallpaper Position", "Age": "Aetas", "Days": "Dies", "HDI": "IHD", "Average": "Mediocris", "Expected": "Expectata", "(": "(", ")": ")", "GNI PPP per capita": "CNR PAP capitarius", "Total elements:": "Quantitas Elementorum:", "Free disk space:": "Liberum Orbis Spatium:", "Titles:": "Inscriptiones:", ": ": ": ", "Localized Titles:": "Inscriptiones Locales:", "Functional Elements:": "Elementa Functiones:", "Choose Calendar:": "Calendarium Elige:", "Choose Time Zone:": "Zonam Temporis Elige:", "Signature Elements:": "Elementa Signatura:", "Sound Effects:": "Sonus Occasus:", "Title": "Titulus", "Codename": "Codus Nomen", "Project Name": "Opus Nomen", "Localized Titles": "Titulus Localis", "Localized Codenames": "Codus Nomen Localis", "Localized Project Names": "Opus Nomen Localis", "Date Format": "Diem Formatus", "Time Format": "Tempus Formatus", "Localizations": "Linguarum", "Menu Items": "Menu Index", "Active Hours": "Hora Activum", "Currency": "Monetae", "Delimiter": "Separator", "Height": "Altitudo", "Weight": "Pondus", "Shoe Size": "Calceus Mole", "Body Sizes": "Calceus Corpus", "Your Reticles:": "Genera Reticuli:", "Description": "Descriptio", "Icon": "Signum", "Name": "Nomen", "Size": "Magnitudo", "Rights": "Iura", "Actions": "Actiones", "Image": "Imago", "Flag": "Vexillum", "Type": "Exemplar", "Date": "Diem", "Apply": "Applicare", "Update": "Renovatio", "Reset": "Propago", "Clear": "Purgo", "Specimen Text": "Specimen", "Specimen Text:": "Specimen:", "Font Configuration:": "Typographicum Occasus:", "User Interface:": "Aspectus Occasus:", "Color Scheme:": "Colores Occasus:", "Update Password:": "Renovatio Secretum:", "Username": "Nomen Usoris", "Password": "Secretum", "Article": "Articulus", "Amount": "Quantitas", "Price": "Pretium", "Opacity": "Opacitas", "Blur": "Macula", "Bright": "Lumen", "Saturate": "Saturitas", "Contrast": "Diversitas", "Sepia": "Sepia", "Grayscale": "Nigrum et Album", "Hue": "Pigmentum", "Location": "Locus", "Coordinates": "Coordinatae", "Date/Time": "Dies/Tempus", "Temperature": "Temperatura", "Precipitation": "Praecipitatio", "Wind Speed": "Velocitas Venti", "Pressure": "Pressio", "Cloud Cover": "Nubibus Tegmen", "Sunrise/Sunset": "Ortus/Occasus Solis", "Conditions": "Conditiones", "Custom Numeric Digits:": "Numerus Digitorum Arbitrarium:", "Server-Wide User Statistics:": "Nodus Usuari Statistica:", "Audio Volume": "Sonus Volumen", "Audio Speed": "Sonus Tempo", "Video Volume": "Video Volumen", "Video Speed": "Video Tempo", "Alarm Volume": "Terrorus Volumen", "Timer Volume": "Temporis Volumen", "Loop Volume": "Pantalla Volumen", "Rest Volume": "Miscellus Volumen", "Input": "Inputum", "Output": "Exitus", "Birthday": "Dia Natale"
+        },
+        "VA": {
+            "birthday in":"natalis in","What's on your mind?":"Quid in animo tuo est?","Ask artificial intelligence anything":"Interroga quidlibet ab intelligentia artificiali","Type any mathematical expression":"Quamlibet expressionem mathematicam scribe","Search certain files in the directory":"Quaerere certos fasciculos in directorio","Type anything and press ENTER":"Quidlibet scribe et clavem \"ENTER\" preme.","Search certain models or objects by keywords":"Quaerere exempla vel res certas per verba clavis","Set certain weather locations":"Loca certa tempestatum constitue","Apply Settings": "Applicare Occasus", "Apply Dimensions": "Applicare Dimensiones", "Apply Style Configuration": "Applicare Stylum Configurationis", "Update Password": "Renovatio Secretum", "Reload Page": "Reddite Pagina", "Reset Defaults": "Propago Defectus", "Reset Default Fonts": "Propago Defecto Typographia", "Reset Default Languages": "Propago Defecto Linguae", "Update Titles": "Renovatio Inscriptiones", "Update Localized Titles": "Renovatio Inscriptiones Locales", "Update Settings": "Renovatio Occasus", "Go Back/Go Forward": "Retrocede/Progredere", "Spectate Mode": "Spectare Modus", "Sign In/Out": "Authenticare", "Press any key to continue...": "Preme aliqua clavis pergere...", "Sign Up/Create Account": "Crea Persona", "Eurohouse Update": "Renovatio Programma", "Icons/List Menu View": "Pollex/Index Menu Visum", "Symbolic Digits": "Symbolae Digitorum", "Show Third-Party Apps": "Ostendere Tertium Programmas", "Expand/Collapse Enhanced View": "Dilatare/Collapse Consectetur Visum", "Show/Hide User Avatar": "Ostendere Icona Usuarum", "Hit Another User": "Impetum Alius Usuario", "Bind/Unbind Another User": "Ligere Alius Usuario", "Enable User Auto Mode": "Admitte Usuario Auto Modus", "Mute Audio": "Mutus Audio", "Incoming Call": "Vocatio Ineuntes", "Preserve Pitch": "Audio Serva Resina", "Enable Loop Music": "Admitte Musica Laqueus", "Random Track": "Musica Fortuitus", "Random Background": "Fonto Pantalla Fortuitus", "Random Code": "Codex Fortuitus", "Audio Play/Pause": "Audio Ludus/Pausa", "Enable Autoplay": "Admitte Auto Ludus", "Go My Way": "L'Adultère", "Suggest Username": "Suggesto Usuario Nomen", "Compose Message": "Nuntium Compone", "Enable Vintage Effects": "Admitte Effectus Vintage", "Previous Track": "Praevius Musica", "Next Track": "Proximus Musica", "Slideshow Wallpapers": "Ire Per Diurnum Pantalla Series", "Clear Sign In Form": "Erado Authenticare Forma", "Clear Console": "Erado Consolum", "Focus On Console": "Ire Per Consolum", "Execute Command": "Executo Mandatum", "Set Up Background": "Fonto Pantalla Constituere", "Observe Background View": "Observo Pantalla Visum", "With/Without Page Reload": "Alter Modus Pagina Redditum", "Audio Playlist Shuffle/Repeat": "Audio Playlist Shuffle/Repetere", "Lock On Wallpaper Position": "Obfirmo de Wallpaper Position", "Age": "Aetas", "Days": "Dies", "HDI": "IHD", "Average": "Mediocris", "Expected": "Expectata", "(": "(", ")": ")", "GNI PPP per capita": "CNR PAP capitarius", "Total elements:": "Quantitas Elementorum:", "Free disk space:": "Liberum Orbis Spatium:", "Titles:": "Inscriptiones:", ": ": ": ", "Localized Titles:": "Inscriptiones Locales:", "Functional Elements:": "Elementa Functiones:", "Choose Calendar:": "Calendarium Elige:", "Choose Time Zone:": "Zonam Temporis Elige:", "Signature Elements:": "Elementa Signatura:", "Sound Effects:": "Sonus Occasus:", "Title": "Titulus", "Codename": "Codus Nomen", "Project Name": "Opus Nomen", "Localized Titles": "Titulus Localis", "Localized Codenames": "Codus Nomen Localis", "Localized Project Names": "Opus Nomen Localis", "Date Format": "Diem Formatus", "Time Format": "Tempus Formatus", "Localizations": "Linguarum", "Menu Items": "Menu Index", "Active Hours": "Hora Activum", "Currency": "Monetae", "Delimiter": "Separator", "Height": "Altitudo", "Weight": "Pondus", "Shoe Size": "Calceus Mole", "Body Sizes": "Calceus Corpus", "Your Reticles:": "Genera Reticuli:", "Description": "Descriptio", "Icon": "Signum", "Name": "Nomen", "Size": "Magnitudo", "Rights": "Iura", "Actions": "Actiones", "Image": "Imago", "Flag": "Vexillum", "Type": "Exemplar", "Date": "Diem", "Apply": "Applicare", "Update": "Renovatio", "Reset": "Propago", "Clear": "Purgo", "Specimen Text": "Specimen", "Specimen Text:": "Specimen:", "Font Configuration:": "Typographicum Occasus:", "User Interface:": "Aspectus Occasus:", "Color Scheme:": "Colores Occasus:", "Update Password:": "Renovatio Secretum:", "Username": "Nomen Usoris", "Password": "Secretum", "Article": "Articulus", "Amount": "Quantitas", "Price": "Pretium", "Opacity": "Opacitas", "Blur": "Macula", "Bright": "Lumen", "Saturate": "Saturitas", "Contrast": "Diversitas", "Sepia": "Sepia", "Grayscale": "Nigrum et Album", "Hue": "Pigmentum", "Location": "Locus", "Coordinates": "Coordinatae", "Date/Time": "Dies/Tempus", "Temperature": "Temperatura", "Precipitation": "Praecipitatio", "Wind Speed": "Velocitas Venti", "Pressure": "Pressio", "Cloud Cover": "Nubibus Tegmen", "Sunrise/Sunset": "Ortus/Occasus Solis", "Conditions": "Conditiones", "Custom Numeric Digits:": "Numerus Digitorum Arbitrarium:", "Server-Wide User Statistics:": "Nodus Usuari Statistica:", "Audio Volume": "Sonus Volumen", "Audio Speed": "Sonus Tempo", "Video Volume": "Video Volumen", "Video Speed": "Video Tempo", "Alarm Volume": "Terrorus Volumen", "Timer Volume": "Temporis Volumen", "Loop Volume": "Pantalla Volumen", "Rest Volume": "Miscellus Volumen", "Input": "Inputum", "Output": "Exitus", "Birthday": "Dia Natale"
+        },
+        "GR": {
+            "birthday in":"γενέθλια σε","What's on your mind?":"Τι έχεις στο μυαλό σου;","Ask artificial intelligence anything":"Ρωτήστε την τεχνητή νοημοσύνη για οτιδήποτε","Type any mathematical expression":"Πληκτρολογήστε οποιαδήποτε μαθηματική παράσταση","Search certain files in the directory":"Αναζήτηση σε συγκεκριμένα αρχεία στον κατάλογο","Type anything and press ENTER":"Πληκτρολογήστε οτιδήποτε και πατήστε ENTER","Search certain models or objects by keywords":"Αναζήτηση συγκεκριμένων μοντέλων ή αντικειμένων με λέξεις-κλειδιά","Set certain weather locations":"Ορίστε συγκεκριμένες τοποθεσίες καιρού","Apply Settings": "Εφαρμόστε Ρυθμίσεις", "Apply Dimensions": "Εφαρμογή Διαστάσεων", "Apply Style Configuration": "Εφαρμογή διαμόρφωσης στυλ", "Update Password": "Ενημέρωση κωδικού πρόσβασης", "Reload Page": "Επαναφόρτωση σελίδας", "Reset Defaults": "Επαναφορά προεπιλογών", "Reset Default Fonts": "Επαναφορά προεπιλεγμένων γραμματοσειρών", "Reset Default Languages": "Επαναφορά προεπιλεγμένων γλωσσών", "Update Titles": "Ενημέρωση τίτλων", "Update Localized Titles": "Ενημέρωση τοπικών τίτλων", "Update Settings": "Ενημερώστε τις Ρυθμίσεις", "Go Back/Go Forward": "Πίσω/Μετάβαση Εμπρός", "Spectate Mode": "Λειτουργία θέαμα", "Sign In/Out": "Είσοδος/Αποσύνδεση", "Press any key to continue...": "Πατήστε οποιοδήποτε πλήκτρο για να συνεχίσετε...", "Sign Up/Create Account": "Εγγραφή/Δημιουργία λογαριασμού", "Eurohouse Update": "Ενημέρωση εφαρμογής Ιστού", "Icons/List Menu View": "Εικονίδια/Προβολή μενού λίστας", "Symbolic Digits": "Συμβολικά Ψηφία", "Show Third-Party Apps": "Εμφάνιση εφαρμογών τρίτων", "Expand/Collapse Enhanced View": "Ανάπτυξη/Σύμπτυξη βελτιωμένης προβολής", "Show/Hide User Avatar": "Εμφάνιση/Απόκρυψη Avatar χρήστη", "Hit Another User": "Πατήστε Άλλος χρήστης", "Bind/Unbind Another User": "Δέσμευση/Αποδέσμευση άλλου χρήστη", "Enable User Auto Mode": "Ενεργοποίηση αυτόματης λειτουργίας χρήστη", "Mute Audio": "Σίγαση ήχου", "Incoming Call": "Εισερχόμενη κλήση", "Preserve Pitch": "Διατήρηση γηπέδου", "Enable Loop Music": "Ενεργοποιήστε τη μουσική βρόχου", "Random Track": "Τυχαίο κομμάτι", "Random Background": "Τυχαίο πανό", "Random Code": "Τυχαίος Κώδικας", "Audio Play/Pause": "Αναπαραγωγή/Παύση ήχου", "Enable Autoplay": "Ενεργοποίηση αυτόματης αναπαραγωγής", "Go My Way": "Πήγαινε με τον δικό μου τρόπο", "Suggest Username": "Προτείνετε το όνομα χρήστη", "Compose Message": "Σύνταξη μηνύματος", "Enable Vintage Effects": "Ενεργοποίηση Vintage Εφέ", "Previous Track": "Προηγούμενο κομμάτι", "Next Track": "Επόμενο κομμάτι", "Slideshow Wallpapers": "Ταπετσαρίες προβολής διαφανειών", "Clear Sign In Form": "Εκκαθάριση φόρμας σύνδεσης", "Clear Console": "Εκκαθάριση κονσόλας", "Focus On Console": "Εστίαση στην κονσόλα", "Execute Command": "Εισαγάγετε Εντολή", "Set Up Background": "Ρύθμιση πανό", "Observe Background View": "", "With/Without Page Reload": "Με/Χωρίς Επαναφόρτωση σελίδας", "Audio Playlist Shuffle/Repeat": "Αναπαραγωγή/Επανάληψη λίστας αναπαραγωγής ήχου", "Lock On Wallpaper Position": "Θέση κλειδώματος ταπετσαρίας", "Age": "Γερνώ", "Days": "Ημέρες", "HDI": "ΔΑΑ", "Average": "Διάμεσος", "Expected": "Αναμενόμενο", "(": "(", ")": ")", "GNI PPP per capita": "ΑΕΕ ΙΑΔ κατά κεφαλήν", "Total elements:": "Αριθμός αρχείων:", "Free disk space:": "Ελεύθερος χώρος δίσκου:", "Titles:": "Επιγραφές:", "Localized Titles:": "Τοπικές επιγραφές:", ": ": ": ", "Description:": "Περιγραφή:", "Functional Elements:": "Λειτουργικά Στοιχεία:", "Choose Calendar:": "Επιλέξτε Ημερολόγιο:", "Choose Time Zone:": "Επιλέξτε Ζώνη Ώρας:", "Signature Elements:": "Στοιχεία Υπογραφής:", "Sound Effects:": "Ρυθμίσεις ήχου:", "Title": "Τίτλος", "Codename": "Κωδικό όνομα", "Project Name": "Όνομα έργου", "Localized Titles": "Τοπικοί τίτλοι", "Localized Codenames": "Τοπικά κωδικοποιημένα ονόματα", "Localized Project Names": "Τοπικά ονόματα έργων", "Date Format": "Μορφή ημερομηνίας", "Time Format": "Μορφή ώρας", "Localizations": "Γλώσσες", "Menu Items": "Ευρετήριο μενού", "Active Hours": "Ενεργές Ώρες", "Currency": "Νόμισμα", "Delimiter": "Διαχωριστής", "Height": "Υψος", "Weight": "Βάρος", "Shoe Size": "Μέγεθος παπουτσιού", "Body Sizes": "Μεγέθη σώματος", "Your Reticles:": "Κατάλογος Σταθμών:", "Description": "Περιγραφή", "Icon": "Εικόνισμα", "Name": "Ονομα", "Size": "Μέγεθος", "Rights": "Τρόπος", "Actions": "Ενέργειες", "Image": "Εικόνα", "Flag": "Σημαία", "Type": "Τύπος", "Date": "Ημέρα", "Apply": "Ισχύουν", "Update": "Εκσυγχρονίζω", "Reset": "Επαναφορά", "Clear": "Καθαρίστε", "Specimen Text": "Δείγμα κειμένου", "Specimen Text:": "Δείγμα κειμένου:", "Font Configuration:": "Τυπογραφικές ρυθμίσεις:", "User Interface:": "Ρυθμίσεις διεπαφής χρήστη:", "Color Scheme:": "Ρυθμίσεις χρωμάτων:", "Update Password:": "Ενημέρωση κωδικού πρόσβασης:", "Username": "Σύνδεση", "Password": "Κωδικός", "Article": "Αρθρο", "Amount": "Ποσότητα", "Price": "Τιμή", "Opacity": "Αδιαφάνεια", "Blur": "Θολούρα", "Bright": "Λάμψη", "Saturate": "Κορεσμός", "Contrast": "Πολυμορφία", "Sepia": "Καστανόχρους", "Grayscale": "Μονόχρωμος", "Hue": "Απόχρωση", "Location": "Τοποθεσία", "Coordinates": "Συντεταγμένες", "Date/Time": "Ημερομηνία/Ώρα", "Temperature": "Θερμοκρασία", "Precipitation": "Κατακρήμνιση", "Wind Speed": "Ταχύτητα ανέμου", "Pressure": "Πίεση", "Cloud Cover": "Νεφοκάλυψη", "Sunrise/Sunset": "Ανατολή/Δύση ηλίου", "Conditions": "Συνθήκες", "Custom Numeric Digits:": "Αυθαίρετα ψηφία αριθμών:", "Server-Wide User Statistics:": "Στατιστικά χρηστών σε επίπεδο διακομιστή:", "Audio Volume": "Ένταση ήχου", "Audio Speed": "Ταχύτητα ήχου", "Video Volume": "Ένταση βίντεο", "Video Speed": "Ταχύτητα βίντεο", "Alarm Volume": "Ένταση συναγερμού", "Timer Volume": "Ένταση χρονοδιακόπτη", "Loop Volume": "Ένταση βρόχου", "Rest Volume": "Ένταση ηρεμίας", "Input": "Εισαγωγή", "Output": "Παραγωγή", "Birthday": "Γενέθλια"
+        },
+        "CY": {
+            "birthday in":"γενέθλια σε","What's on your mind?":"Τι έχεις στο μυαλό σου;","Ask artificial intelligence anything":"Ρωτήστε την τεχνητή νοημοσύνη για οτιδήποτε","Type any mathematical expression":"Πληκτρολογήστε οποιαδήποτε μαθηματική παράσταση","Search certain files in the directory":"Αναζήτηση σε συγκεκριμένα αρχεία στον κατάλογο","Type anything and press ENTER":"Πληκτρολογήστε οτιδήποτε και πατήστε ENTER","Search certain models or objects by keywords":"Αναζήτηση συγκεκριμένων μοντέλων ή αντικειμένων με λέξεις-κλειδιά","Set certain weather locations":"Ορίστε συγκεκριμένες τοποθεσίες καιρού","Apply Settings": "Εφαρμόστε Ρυθμίσεις", "Apply Dimensions": "Εφαρμογή Διαστάσεων", "Apply Style Configuration": "Εφαρμογή διαμόρφωσης στυλ", "Update Password": "Ενημέρωση κωδικού πρόσβασης", "Reload Page": "Επαναφόρτωση σελίδας", "Reset Defaults": "Επαναφορά προεπιλογών", "Reset Default Fonts": "Επαναφορά προεπιλεγμένων γραμματοσειρών", "Reset Default Languages": "Επαναφορά προεπιλεγμένων γλωσσών", "Update Titles": "Ενημέρωση τίτλων", "Update Localized Titles": "Ενημέρωση τοπικών τίτλων", "Update Settings": "Ενημερώστε τις Ρυθμίσεις", "Go Back/Go Forward": "Πίσω/Μετάβαση Εμπρός", "Spectate Mode": "Λειτουργία θέαμα", "Sign In/Out": "Είσοδος/Αποσύνδεση", "Press any key to continue...": "Πατήστε οποιοδήποτε πλήκτρο για να συνεχίσετε...", "Sign Up/Create Account": "Εγγραφή/Δημιουργία λογαριασμού", "Eurohouse Update": "Ενημέρωση εφαρμογής Ιστού", "Icons/List Menu View": "Εικονίδια/Προβολή μενού λίστας", "Symbolic Digits": "Συμβολικά Ψηφία", "Show Third-Party Apps": "Εμφάνιση εφαρμογών τρίτων", "Expand/Collapse Enhanced View": "Ανάπτυξη/Σύμπτυξη βελτιωμένης προβολής", "Show/Hide User Avatar": "Εμφάνιση/Απόκρυψη Avatar χρήστη", "Hit Another User": "Πατήστε Άλλος χρήστης", "Bind/Unbind Another User": "Δέσμευση/Αποδέσμευση άλλου χρήστη", "Enable User Auto Mode": "Ενεργοποίηση αυτόματης λειτουργίας χρήστη", "Mute Audio": "Σίγαση ήχου", "Incoming Call": "Εισερχόμενη κλήση", "Preserve Pitch": "Διατήρηση γηπέδου", "Enable Loop Music": "Ενεργοποιήστε τη μουσική βρόχου", "Random Track": "Τυχαίο κομμάτι", "Random Background": "Τυχαίο πανό", "Random Code": "Τυχαίος Κώδικας", "Audio Play/Pause": "Αναπαραγωγή/Παύση ήχου", "Enable Autoplay": "Ενεργοποίηση αυτόματης αναπαραγωγής", "Go My Way": "Πήγαινε με τον δικό μου τρόπο", "Suggest Username": "Προτείνετε το όνομα χρήστη", "Compose Message": "Σύνταξη μηνύματος", "Enable Vintage Effects": "Ενεργοποίηση Vintage Εφέ", "Previous Track": "Προηγούμενο κομμάτι", "Next Track": "Επόμενο κομμάτι", "Slideshow Wallpapers": "Ταπετσαρίες προβολής διαφανειών", "Clear Sign In Form": "Εκκαθάριση φόρμας σύνδεσης", "Clear Console": "Εκκαθάριση κονσόλας", "Focus On Console": "Εστίαση στην κονσόλα", "Execute Command": "Εισαγάγετε Εντολή", "Set Up Background": "Ρύθμιση πανό", "Observe Background View": "", "With/Without Page Reload": "Με/Χωρίς Επαναφόρτωση σελίδας", "Audio Playlist Shuffle/Repeat": "Αναπαραγωγή/Επανάληψη λίστας αναπαραγωγής ήχου", "Lock On Wallpaper Position": "Θέση κλειδώματος ταπετσαρίας", "Age": "Γερνώ", "Days": "Ημέρες", "HDI": "ΔΑΑ", "Average": "Διάμεσος", "Expected": "Αναμενόμενο", "(": "(", ")": ")", "GNI PPP per capita": "ΑΕΕ ΙΑΔ κατά κεφαλήν", "Total elements:": "Αριθμός αρχείων:", "Free disk space:": "Ελεύθερος χώρος δίσκου:", "Titles:": "Επιγραφές:", "Localized Titles:": "Τοπικές επιγραφές:", ": ": ": ", "Description:": "Περιγραφή:", "Functional Elements:": "Λειτουργικά Στοιχεία:", "Choose Calendar:": "Επιλέξτε Ημερολόγιο:", "Choose Time Zone:": "Επιλέξτε Ζώνη Ώρας:", "Signature Elements:": "Στοιχεία Υπογραφής:", "Sound Effects:": "Ρυθμίσεις ήχου:", "Title": "Τίτλος", "Codename": "Κωδικό όνομα", "Project Name": "Όνομα έργου", "Localized Titles": "Τοπικοί τίτλοι", "Localized Codenames": "Τοπικά κωδικοποιημένα ονόματα", "Localized Project Names": "Τοπικά ονόματα έργων", "Date Format": "Μορφή ημερομηνίας", "Time Format": "Μορφή ώρας", "Localizations": "Γλώσσες", "Menu Items": "Ευρετήριο μενού", "Active Hours": "Ενεργές Ώρες", "Currency": "Νόμισμα", "Delimiter": "Διαχωριστής", "Height": "Υψος", "Weight": "Βάρος", "Shoe Size": "Μέγεθος παπουτσιού", "Body Sizes": "Μεγέθη σώματος", "Your Reticles:": "Κατάλογος Σταθμών:", "Description": "Περιγραφή", "Icon": "Εικόνισμα", "Name": "Ονομα", "Size": "Μέγεθος", "Rights": "Τρόπος", "Actions": "Ενέργειες", "Image": "Εικόνα", "Flag": "Σημαία", "Type": "Τύπος", "Date": "Ημέρα", "Apply": "Ισχύουν", "Update": "Εκσυγχρονίζω", "Reset": "Επαναφορά", "Clear": "Καθαρίστε", "Specimen Text": "Δείγμα κειμένου", "Specimen Text:": "Δείγμα κειμένου:", "Font Configuration:": "Τυπογραφικές ρυθμίσεις:", "User Interface:": "Ρυθμίσεις διεπαφής χρήστη:", "Color Scheme:": "Ρυθμίσεις χρωμάτων:", "Update Password:": "Ενημέρωση κωδικού πρόσβασης:", "Username": "Σύνδεση", "Password": "Κωδικός", "Article": "Αρθρο", "Amount": "Ποσότητα", "Price": "Τιμή", "Opacity": "Αδιαφάνεια", "Blur": "Θολούρα", "Bright": "Λάμψη", "Saturate": "Κορεσμός", "Contrast": "Πολυμορφία", "Sepia": "Καστανόχρους", "Grayscale": "Μονόχρωμος", "Hue": "Απόχρωση", "Location": "Τοποθεσία", "Coordinates": "Συντεταγμένες", "Date/Time": "Ημερομηνία/Ώρα", "Temperature": "Θερμοκρασία", "Precipitation": "Κατακρήμνιση", "Wind Speed": "Ταχύτητα ανέμου", "Pressure": "Πίεση", "Cloud Cover": "Νεφοκάλυψη", "Sunrise/Sunset": "Ανατολή/Δύση ηλίου", "Conditions": "Συνθήκες", "Custom Numeric Digits:": "Αυθαίρετα ψηφία αριθμών:", "Server-Wide User Statistics:": "Στατιστικά χρηστών σε επίπεδο διακομιστή:", "Audio Volume": "Ένταση ήχου", "Audio Speed": "Ταχύτητα ήχου", "Video Volume": "Ένταση βίντεο", "Video Speed": "Ταχύτητα βίντεο", "Alarm Volume": "Ένταση συναγερμού", "Timer Volume": "Ένταση χρονοδιακόπτη", "Loop Volume": "Ένταση βρόχου", "Rest Volume": "Ένταση ηρεμίας", "Input": "Εισαγωγή", "Output": "Παραγωγή", "Birthday": "Γενέθλια"
+        },
+        "RR": {
+            "birthday in":"день рождения через","What's on your mind?":"О чём вы думаете?","Ask artificial intelligence anything":"Спросите искусственный интеллект что-нибудь","Type any mathematical expression":"Введите любое математическое выражение","Search certain files in the directory":"Поиск файлов в заданной директории","Type anything and press ENTER":"Введите команду и нажмите ENTER","Search certain models or objects by keywords":"Поиск моделей и объектов по ключевым словам","Set certain weather locations":"Установите список местоположений для сервиса погоды","Apply Settings": "Применить настройки", "Apply Dimensions": "Применить размеры элементов", "Apply Style Configuration": "Применить конфигурацию стилей", "Update Password": "Обновить пароль", "Reload Page": "Обновить страницу", "Reset Defaults": "Восстановить настройки по умолчанию", "Reset Default Fonts": "Восстановить стандартные шрифты", "Reset Default Languages": "Восстановить стандартные языки", "Update Titles": "Обновить названия", "Update Localized Titles": "Обновить локализованные названия", "Update Settings": "Обновить настройки", "Go Back/Go Forward": "Вернуться Назад/Идти Вперёд", "Spectate Mode": "Режим наблюдения", "Sign In/Out": "Войти в аккаунт/Выйти", "Press any key to continue...": "Нажмите любую клавишу, чтобы продолжить...", "Sign Up/Create Account": "Создать аккаунт", "Eurohouse Update": "Обновить Eurohouse", "Icons/List Menu View": "Вид меню иконки/список", "Symbolic Digits": "Символы знаков разрядов", "Show Third-Party Apps": "Показывать установленные приложения", "Expand/Collapse Enhanced View": "Показать/скрыть расширенный интерфейс", "Show/Hide User Avatar": "Показать/скрыть иконку пользователя", "Hit Another User": "Атаковать пользователя", "Bind/Unbind Another User": "Схватить/бросить пользователя", "Enable User Auto Mode": "Режим бота пользователя", "Mute Audio": "Выключить звук", "Incoming Call": "Входящий звонок/будильник", "Preserve Pitch": "Сохранять высоту звука", "Enable Loop Music": "Включить фоновую музыку", "Random Track": "Случайный трек", "Random Background": "Случайный баннер", "Random Code": "Случайный код", "Audio Play/Pause": "Воспроизвести/пауза трека", "Enable Autoplay": "Автовоспроизведение трека", "Go My Way": "Идти другими тропами", "Suggest Username": "Предложить имя пользователя", "Compose Message": "Отправить сообщение", "Enable Vintage Effects": "Эффект старого кино", "Previous Track": "Предыдущий трек", "Next Track": "Следующий трек", "Slideshow Wallpapers": "Слайд-шоу серии фоновых изображений", "Clear Sign In Form": "Очистить форму авторизации", "Clear Console": "Очистить консоль", "Focus On Console": "Сфокусироваться на консоли", "Execute Command": "Выполнить команду", "Set Up Background": "Установить баннер", "Observe Background View": "Вид на фоновое изображение", "With/Without Page Reload": "Режим с перезагрузкой страницы", "Audio Playlist Shuffle/Repeat": "Плейлист перемешать/повтор", "Lock On Wallpaper Position": "Поставить изображение на временную позицию", "Age": "Возраст", "Days": "День рождения", "HDI": "ИЧР", "Average": "лет образования", "Expected": "лет обучения", "(": "(", ")": ")", "GNI PPP per capita": "ВНД на душу населения (ППС)", "Total elements:": "Всего элементов:", "Free disk space:": "Свободно места на диске:", "Titles:": "Названия:", "Localized Titles:": "Названия на других языках:", ": ": ": ", "Description:": "Описание:", "Functional Elements:": "Функциональные элементы:", "Choose Calendar:": "Выберите календарь:", "Choose Time Zone:": "Настройка временной зоны:", "Signature Elements:": "Элементы фирменного стиля:", "Sound Effects:": "Звуковая схема:", "Title": "Название", "Codename": "Кодовое имя", "Project Name": "Имя проекта", "Localized Titles": "Локализованные названия", "Localized Codenames": "Локализованные кодовые имена", "Localized Project Names": "Локализованные имена проектов", "Date Format": "Формат даты", "Time Format": "Формат времени", "Localizations": "Локализации", "Menu Items": "Элементы меню", "Active Hours": "Часы работы", "Currency": "Валюта", "Delimiter": "Разделитель тысяч", "Height": "Рост", "Weight": "Вес", "Shoe Size": "Размер", "Body Sizes": "Размеры", "Your Reticles:": "Выбор прицела:", "Description": "Описание", "Icon": "Значок", "Name": "Имя", "Size": "Размер", "Rights": "Права", "Actions": "Действия", "Image": "Фото", "Flag": "Флаг", "Type": "Тип", "Date": "Дата", "Apply": "Применить", "Update": "Обновить", "Reset": "Сброс", "Clear": "Очистить", "Specimen Text": "Образец текста", "Specimen Text:": "Образец текста:", "Font Configuration:": "Настройка шрифтов:", "User Interface:": "Настройки интерфейса:", "Color Scheme:": "Используемые цвета:", "Update Password:": "Смена пароля:", "Username": "Логин", "Password": "Пароль", "Article": "Артикул", "Amount": "Кол-во", "Price": "Цена", "Opacity": "Заливка", "Blur": "Размытие", "Bright": "Яркость", "Saturate": "Насыщение", "Contrast": "Контраст", "Sepia": "Сепия", "Grayscale": "Чёрно-белый", "Hue": "Оттенок", "Location": "Место", "Coordinates": "Координаты", "Date/Time": "Дата/Время", "Temperature": "Температура", "Precipitation": "Осадки", "Wind Speed": "Ветер", "Pressure": "Давление", "Cloud Cover": "Облачность", "Sunrise/Sunset": "Восход/Закат", "Conditions": "Погода", "Custom Numeric Digits:": "Цифры разрядов чисел:", "Server-Wide User Statistics:": "Статистика пользователей на сервере:", "Audio Volume": "Громкость аудио", "Audio Speed": "Скорость аудио", "Video Volume": "Громкость видео", "Video Speed": "Скорость видео", "Alarm Volume": "Громкость звонка", "Timer Volume": "Громкость таймера", "Loop Volume": "Фоновая громкость", "Rest Volume": "Громкость звуков", "Input": "Ввод", "Output": "Вывод", "Birthday": "Дата рождения"
+        },
+        "RU": {
+            "birthday in":"день рождения через","What's on your mind?":"О чём вы думаете?","Ask artificial intelligence anything":"Спросите искусственный интеллект что-нибудь","Type any mathematical expression":"Введите любое математическое выражение","Search certain files in the directory":"Поиск файлов в заданной директории","Type anything and press ENTER":"Введите команду и нажмите ENTER","Search certain models or objects by keywords":"Поиск моделей и объектов по ключевым словам","Set certain weather locations":"Установите список местоположений для сервиса погоды","Apply Settings": "Применить настройки", "Apply Dimensions": "Применить размеры элементов", "Apply Style Configuration": "Применить конфигурацию стилей", "Update Password": "Обновить пароль", "Reload Page": "Обновить страницу", "Reset Defaults": "Восстановить настройки по умолчанию", "Reset Default Fonts": "Восстановить стандартные шрифты", "Reset Default Languages": "Восстановить стандартные языки", "Update Titles": "Обновить названия", "Update Localized Titles": "Обновить локализованные названия", "Update Settings": "Обновить настройки", "Go Back/Go Forward": "Вернуться Назад/Идти Вперёд", "Spectate Mode": "Режим наблюдения", "Sign In/Out": "Войти в аккаунт/Выйти", "Press any key to continue...": "Нажмите любую клавишу, чтобы продолжить...", "Sign Up/Create Account": "Создать аккаунт", "Eurohouse Update": "Обновить Eurohouse", "Icons/List Menu View": "Вид меню иконки/список", "Symbolic Digits": "Символы знаков разрядов", "Show Third-Party Apps": "Показывать установленные приложения", "Expand/Collapse Enhanced View": "Показать/скрыть расширенный интерфейс", "Show/Hide User Avatar": "Показать/скрыть иконку пользователя", "Hit Another User": "Атаковать пользователя", "Bind/Unbind Another User": "Схватить/бросить пользователя", "Enable User Auto Mode": "Режим бота пользователя", "Mute Audio": "Выключить звук", "Incoming Call": "Входящий звонок/будильник", "Preserve Pitch": "Сохранять высоту звука", "Enable Loop Music": "Включить фоновую музыку", "Random Track": "Случайный трек", "Random Background": "Случайный баннер", "Random Code": "Случайный код", "Audio Play/Pause": "Воспроизвести/пауза трека", "Enable Autoplay": "Автовоспроизведение трека", "Go My Way": "Идти другими тропами", "Suggest Username": "Предложить имя пользователя", "Compose Message": "Отправить сообщение", "Enable Vintage Effects": "Эффект старого кино", "Previous Track": "Предыдущий трек", "Next Track": "Следующий трек", "Slideshow Wallpapers": "Слайд-шоу серии фоновых изображений", "Clear Sign In Form": "Очистить форму авторизации", "Clear Console": "Очистить консоль", "Focus On Console": "Сфокусироваться на консоли", "Execute Command": "Выполнить команду", "Set Up Background": "Установить баннер", "Observe Background View": "Вид на фоновое изображение", "With/Without Page Reload": "Режим с перезагрузкой страницы", "Audio Playlist Shuffle/Repeat": "Плейлист перемешать/повтор", "Lock On Wallpaper Position": "Поставить изображение на временную позицию", "Age": "Возраст", "Days": "День рождения", "HDI": "ИЧР", "Average": "лет образования", "Expected": "лет обучения", "(": "(", ")": ")", "GNI PPP per capita": "ВНД на душу населения (ППС)", "Total elements:": "Всего элементов:", "Free disk space:": "Свободно места на диске:", "Titles:": "Названия:", "Localized Titles:": "Названия на других языках:", ": ": ": ", "Description:": "Описание:", "Functional Elements:": "Функциональные элементы:", "Choose Calendar:": "Выберите календарь:", "Choose Time Zone:": "Настройка временной зоны:", "Signature Elements:": "Элементы фирменного стиля:", "Sound Effects:": "Звуковая схема:", "Title": "Название", "Codename": "Кодовое имя", "Project Name": "Имя проекта", "Localized Titles": "Локализованные названия", "Localized Codenames": "Локализованные кодовые имена", "Localized Project Names": "Локализованные имена проектов", "Date Format": "Формат даты", "Time Format": "Формат времени", "Localizations": "Локализации", "Menu Items": "Элементы меню", "Active Hours": "Часы работы", "Currency": "Валюта", "Delimiter": "Разделитель тысяч", "Height": "Рост", "Weight": "Вес", "Shoe Size": "Размер", "Body Sizes": "Размеры", "Your Reticles:": "Выбор прицела:", "Description": "Описание", "Icon": "Значок", "Name": "Имя", "Size": "Размер", "Rights": "Права", "Actions": "Действия", "Image": "Фото", "Flag": "Флаг", "Type": "Тип", "Date": "Дата", "Apply": "Применить", "Update": "Обновить", "Reset": "Сброс", "Clear": "Очистить", "Specimen Text": "Образец текста", "Specimen Text:": "Образец текста:", "Font Configuration:": "Настройка шрифтов:", "User Interface:": "Настройки интерфейса:", "Color Scheme:": "Используемые цвета:", "Update Password:": "Смена пароля:", "Username": "Логин", "Password": "Пароль", "Article": "Артикул", "Amount": "Кол-во", "Price": "Цена", "Opacity": "Заливка", "Blur": "Размытие", "Bright": "Яркость", "Saturate": "Насыщение", "Contrast": "Контраст", "Sepia": "Сепия", "Grayscale": "Чёрно-белый", "Hue": "Оттенок", "Location": "Место", "Coordinates": "Координаты", "Date/Time": "Дата/Время", "Temperature": "Температура", "Precipitation": "Осадки", "Wind Speed": "Ветер", "Pressure": "Давление", "Cloud Cover": "Облачность", "Sunrise/Sunset": "Восход/Закат", "Conditions": "Погода", "Custom Numeric Digits:": "Цифры разрядов чисел:", "Server-Wide User Statistics:": "Статистика пользователей на сервере:", "Audio Volume": "Громкость аудио", "Audio Speed": "Скорость аудио", "Video Volume": "Громкость видео", "Video Speed": "Скорость видео", "Alarm Volume": "Громкость звонка", "Timer Volume": "Громкость таймера", "Loop Volume": "Фоновая громкость", "Rest Volume": "Громкость звуков", "Input": "Ввод", "Output": "Вывод", "Birthday": "Дата рождения"
+        },
+        "CN": {
+            "birthday in":"生日","What's on your mind?":"你在想什么？","Ask artificial intelligence anything":"问人工智能任何问题","Type any mathematical expression":"输入任意数学表达式","Search certain files in the directory":"在目录中搜索特定文件","Type anything and press ENTER":"输入任何内容并按回车键。","Search certain models or objects by keywords":"通过关键词搜索特定型号或对象","Set certain weather locations":"设置特定天气位置","Apply Settings": "应用设置", "Apply Dimensions": "应用尺寸", "Apply Style Configuration": "应用样式配置", "Update Password": "更新密码", "Reload Page": "刷新页面", "Reset Defaults": "重置默认值", "Reset Default Fonts": "重置默认字体", "Reset Default Languages": "重置默认语言", "Update Titles": "更新标题", "Update Localized Titles": "更新本地化标题", "Update Settings": "更新设置", "Go Back/Go Forward": "后退/前进", "Spectate Mode": "观战模式", "Sign In/Out": "登录/退出", "Press any key to continue...": "按任意键继续...", "Sign Up/Create Account": "注册/创建账户", "Eurohouse Update": "更新应用程序", "Icons/List Menu View": "图标/列表菜单视图", "Symbolic Digits": "符号数字", "Show Third-Party Apps": "显示第三方应用程序", "Expand/Collapse Enhanced View": "展开/折叠增强视图", "Show/Hide User Avatar": "显示/隐藏用户头像", "Hit Another User": "击中另一个用户", "Bind/Unbind Another User": "绑定/解绑另一个用户", "Enable User Auto Mode": "启用用户自动模式", "Mute Audio": "静音", "Incoming Call": "来电", "Preserve Pitch": "音频保留音高", "Enable Loop Music": "启用循环音乐", "Random Track": "随机轨迹", "Random Background": "随机横幅", "Random Code": "随机码", "Audio Play/Pause": "音频播放/暂停", "Enable Autoplay": "启用自动播放", "Go My Way": "走我的路", "Suggest Username": "建议用户名", "Compose Message": "撰写消息", "Enable Vintage Effects": "启用老式效果", "Previous Track": "上一曲目", "Next Track": "下一曲目", "Slideshow Wallpapers": "幻灯片播放每日壁纸系列", "Clear Sign In Form": "清除授权表格", "Clear Console": "清除控制台", "Focus On Console": "关注控制台", "Execute Command": "执行命令", "Set Up Background": "设置横幅", "Observe Background View": "观察背景视图", "With/Without Page Reload": "有/没有页面重新加载", "Audio Playlist Shuffle/Repeat": "音频播放列表随机播放/重复播放", "Lock On Wallpaper Position": "锁定墙纸位置", "Age": "年龄", "Days": "生日前几天", "HDI": "人类发展指数", "Average": "平均的", "Expected": "预期的", "(": "（", ")": "）", "GNI PPP per capita": "人均国民总收入购买力平价", "Total elements:": "元素数量：", "Free disk space:": "可用磁盘空间：", "Titles:": "铭文列表：", "Localized Titles:": "本地化铭文列表：", ": ": "：", "Description:": "描述您的个人资料：", "Functional Elements:": "功能元素：", "Choose Calendar:": "选择日历：", "Choose Time Zone:": "选择时区：", "Signature Elements:": "标志性风格元素：", "Sound Effects:": "声音方案：", "Title": "标题", "Codename": "代号", "Project Name": "项目名称", "Localized Titles": "本地化标题", "Localized Codenames": "本地化代号", "Localized Project Names": "本地化项目名称", "Date Format": "日期格式", "Time Format": "时间格式", "Localizations": "本地化列表", "Menu Items": "菜单元素列表", "Active Hours": "活跃时间", "Currency": "货币", "Delimiter": "千位分隔符", "Height": "高度", "Weight": "加权", "Shoe Size": "鞋码", "Body Sizes": "体型", "Your Reticles:": "十字线的选择：", "Description": "描述", "Icon": "图标", "Name": "姓名", "Size": "尺寸", "Rights": "特权", "Actions": "行动", "Image": "图像", "Flag": "旗帜", "Type": "类型", "Date": "日", "Apply": "申请", "Update": "更新", "Reset": "复位", "Clear": "清除", "Specimen Text": "显示文本示例", "Specimen Text:": "显示文本示例：", "Font Configuration:": "字体配置：", "User Interface:": "用户界面设置：", "Color Scheme:": "配色方案：", "Update Password:": "修改密码：", "Username": "用户名", "Password": "密码", "Article": "文章", "Amount": "数量", "Price": "价格", "Opacity": "不透明度", "Blur": "模糊", "Bright": "亮度", "Saturate": "饱和", "Contrast": "对比", "Sepia": "棕褐色", "Grayscale": "灰度", "Hue": "色调", "Location": "地点", "Coordinates": "坐标", "Date/Time": "日期/时间", "Temperature": "温度", "Precipitation": "沉淀", "Wind Speed": "风速", "Pressure": "压力", "Cloud Cover": "云层覆盖", "Sunrise/Sunset": "日出/日落", "Conditions": "状况", "Custom Numeric Digits:": "任意数字：", "Server-Wide User Statistics:": "全服务器用户统计：", "Audio Volume": "声音大小", "Audio Speed": "音频速度", "Video Volume": "视频音量", "Video Speed": "视频速度", "Alarm Volume": "报警音量", "Timer Volume": "定时器音量", "Loop Volume": "循环音量", "Rest Volume": "剩余体积", "Input": "输入", "Output": "输出", "Birthday": "生日"
+        },
+        "KP": {
+            "birthday in":"생일","What's on your mind?":"무슨 생각을 하고 계신가요?","Ask artificial intelligence anything":"인공지능에게 무엇이든 물어보세요","Type any mathematical expression":"임의의 수학적 표현식을 입력하세요.","Search certain files in the directory":"해당 디렉터리 내의 특정 파일을 검색합니다.","Type anything and press ENTER":"아무거나 입력하고 엔터 키를 누르세요","Search certain models or objects by keywords":"키워드를 사용하여 특정 모델이나 개체를 검색하세요.","Set certain weather locations":"키워드를 사용하여 특정 모델이나 개체를 검색하세요.","Apply Settings": "설정 적용", "Apply Dimensions": "치수 적용", "Apply Style Configuration": "스타일 구성 적용", "Update Password": "비밀번호 업데이트", "Reload Page": "페이지 다시 로드", "Reset Defaults": "기본값 재설정", "Reset Default Fonts": "기본 글꼴 재설정", "Reset Default Languages": "기본 언어 재설정", "Update Titles": "제목 업데이트", "Update Localized Titles": "지역화된 제목 업데이트", "Update Settings": "업데이트 설정", "Go Back/Go Forward": "뒤로 가기/앞으로 가기", "Spectate Mode": "관전 모드", "Sign In/Out": "로그인/로그아웃", "Press any key to continue...": "계속하려면 아무 키나 누르세요...", "Sign Up/Create Account": "가입/계정 생성", "Eurohouse Update": "웹 앱 업데이트", "Icons/List Menu View": "아이콘/목록 메뉴 보기", "Symbolic Digits": "상징적인 숫자", "Show Third-Party Apps": "타사 앱 표시", "Expand/Collapse Enhanced View": "확장/축소 향상된 보기", "Show/Hide User Avatar": "사용자 아바타 표시/숨기기", "Hit Another User": "다른 사용자를 때리다", "Bind/Unbind Another User": "다른 사용자 바인딩/바인드 해제", "Enable User Auto Mode": "사용자 자동 모드 활성화", "Mute Audio": "오디오 음소거", "Incoming Call": "수신 전화", "Preserve Pitch": "오디오 피치 유지", "Enable Loop Music": "루프 음악 사용", "Random Track": "랜덤 트랙", "Random Background": "랜덤 배너", "Random Code": "무작위 코드", "Audio Play/Pause": "오디오 재생/일시 중지", "Enable Autoplay": "자동 재생 활성화", "Go My Way": "내 길을 가자", "Suggest Username": "사용자 이름을 제안하십시오", "Compose Message": "메시지 작성", "Enable Vintage Effects": "빈티지 효과 사용", "Previous Track": "이전 트랙", "Next Track": "다음 트랙", "Slideshow Wallpapers": "배경 화면을 통한 슬라이드 쇼", "Clear Sign In Form": "명확한 로그인 양식", "Clear Console": "콘솔 지우기", "Focus On Console": "콘솔에 집중하다", "Execute Command": "명령 실행", "Set Up Background": "배너 설정", "Observe Background View": "배경 보기 관찰", "With/Without Page Reload": "페이지 새로 고침 여부", "Audio Playlist Shuffle/Repeat": "오디오 재생 목록 셔플/반복", "Lock On Wallpaper Position": "잠금화면 위치", "Age": "나이", "Days": "생일 며칠 전", "HDI": "인간 개발 지수", "Average": "평균", "Expected": "예상되는", "(": "(", ")": ")", "GNI PPP per capita": "1인당 GNI 구매력평가", "Total elements:": "원소의 양:", "Free disk space:": "디스크 여유 공간:", "Titles:": "비문 목록:", "Localized Titles:": "지역화된 비문 목록:", ": ": ":", "Description:": "프로필을 설명하세요:", "Functional Elements:": "기능적 요소:", "Choose Calendar:": "달력:", "Choose Time Zone:": "시간대:", "Signature Elements:": "시그니처 스타일 요소:", "Sound Effects:": "사운드 구성표:", "Title": "제목", "Codename": "코드명", "Project Name": "프로젝트 이름", "Localized Titles": "지역화된 제목", "Localized Codenames": "지역화된 코드명", "Localized Project Names": "지역화된 프로젝트 이름", "Date Format": "날짜 형식", "Time Format": "시간 형식", "Localizations": "지역화 목록", "Menu Items": "메뉴 항목", "Active Hours": "활동 시간", "Currency": "통화", "Delimiter": "천 단위 구분 기호", "Height": "높은", "Weight": "가중", "Shoe Size": "신발 사이즈", "Body Sizes": "신체 사이즈", "Your Reticles:": "십자선 선택:", "Description": "설명", "Icon": "상", "Name": "이름", "Size": "크기", "Rights": "특권", "Actions": "행동", "Image": "영상", "Flag": "배너", "Type": "유형", "Date": "날짜", "Apply": "적용하다", "Update": "고쳐 쓰다", "Reset": "초기화", "Clear": "분명한", "Specimen Text": "텍스트 예시 표시", "Specimen Text:": "텍스트 예시 표시:", "Font Configuration:": "글꼴 구성:", "User Interface:": "사용자 인터페이스 설정:", "Color Scheme:": "착색 방식:", "Update Password:": "비밀번호 변경:", "Username": "사용자 이름", "Password": "비밀번호", "Article": "기사", "Amount": "수량", "Price": "가격", "Opacity": "불투명", "Blur": "희미한", "Bright": "명도", "Saturate": "포화", "Contrast": "비교됨", "Sepia": "갈색", "Grayscale": "그레이스케일", "Hue": "음정", "Change your current username...": "현재 사용자 이름 변경...", "Set a password for your account...": "귀하의 계정에 대한 새로운 비밀번호...", "Custom Numeric Digits:": "임의의 숫자 자릿수:", "Server-Wide User Statistics:": "서버 전체 사용자 통계:", "Audio Volume": "사운드 볼륨", "Audio Speed": "오디오 속도", "Video Volume": "비디오 볼륨", "Video Speed": "비디오 속도", "Alarm Volume": "알람 볼륨", "Timer Volume": "타이머 볼륨", "Loop Volume": "루프 볼륨", "Rest Volume": "휴식 볼륨", "Input": "입력", "Output": "산출", "Birthday": "생일"
+        },
+        "KR": {
+            "birthday in":"생일","What's on your mind?":"무슨 생각을 하고 계신가요?","Ask artificial intelligence anything":"인공지능에게 무엇이든 물어보세요","Type any mathematical expression":"임의의 수학적 표현식을 입력하세요.","Search certain files in the directory":"해당 디렉터리 내의 특정 파일을 검색합니다.","Type anything and press ENTER":"아무거나 입력하고 엔터 키를 누르세요","Search certain models or objects by keywords":"키워드를 사용하여 특정 모델이나 개체를 검색하세요.","Set certain weather locations":"키워드를 사용하여 특정 모델이나 개체를 검색하세요.","Apply Settings": "설정 적용", "Apply Dimensions": "치수 적용", "Apply Style Configuration": "스타일 구성 적용", "Update Password": "비밀번호 업데이트", "Reload Page": "페이지 다시 로드", "Reset Defaults": "기본값 재설정", "Reset Default Fonts": "기본 글꼴 재설정", "Reset Default Languages": "기본 언어 재설정", "Update Titles": "제목 업데이트", "Update Localized Titles": "지역화된 제목 업데이트", "Update Settings": "업데이트 설정", "Go Back/Go Forward": "뒤로 가기/앞으로 가기", "Spectate Mode": "관전 모드", "Sign In/Out": "로그인/로그아웃", "Press any key to continue...": "계속하려면 아무 키나 누르세요...", "Sign Up/Create Account": "가입/계정 생성", "Eurohouse Update": "웹 앱 업데이트", "Icons/List Menu View": "아이콘/목록 메뉴 보기", "Symbolic Digits": "상징적인 숫자", "Show Third-Party Apps": "타사 앱 표시", "Expand/Collapse Enhanced View": "확장/축소 향상된 보기", "Show/Hide User Avatar": "사용자 아바타 표시/숨기기", "Hit Another User": "다른 사용자를 때리다", "Bind/Unbind Another User": "다른 사용자 바인딩/바인드 해제", "Enable User Auto Mode": "사용자 자동 모드 활성화", "Mute Audio": "오디오 음소거", "Incoming Call": "수신 전화", "Preserve Pitch": "오디오 피치 유지", "Enable Loop Music": "루프 음악 사용", "Random Track": "랜덤 트랙", "Random Background": "랜덤 배너", "Random Code": "무작위 코드", "Audio Play/Pause": "오디오 재생/일시 중지", "Enable Autoplay": "자동 재생 활성화", "Go My Way": "내 길을 가자", "Suggest Username": "사용자 이름을 제안하십시오", "Compose Message": "메시지 작성", "Enable Vintage Effects": "빈티지 효과 사용", "Previous Track": "이전 트랙", "Next Track": "다음 트랙", "Slideshow Wallpapers": "배경 화면을 통한 슬라이드 쇼", "Clear Sign In Form": "명확한 로그인 양식", "Clear Console": "콘솔 지우기", "Focus On Console": "콘솔에 집중하다", "Execute Command": "명령 실행", "Set Up Background": "배너 설정", "Observe Background View": "배경 보기 관찰", "With/Without Page Reload": "페이지 새로 고침 여부", "Audio Playlist Shuffle/Repeat": "오디오 재생 목록 셔플/반복", "Lock On Wallpaper Position": "잠금화면 위치", "Age": "나이", "Days": "생일 며칠 전", "HDI": "인간 개발 지수", "Average": "평균", "Expected": "예상되는", "(": "(", ")": ")", "GNI PPP per capita": "1인당 GNI 구매력평가", "Total elements:": "원소의 양:", "Free disk space:": "디스크 여유 공간:", "Titles:": "비문 목록:", "Localized Titles:": "지역화된 비문 목록:", ": ": ":", "Description:": "프로필을 설명하세요:", "Functional Elements:": "기능적 요소:", "Choose Calendar:": "달력:", "Choose Time Zone:": "시간대:", "Signature Elements:": "시그니처 스타일 요소:", "Sound Effects:": "사운드 구성표:", "Title": "제목", "Codename": "코드명", "Project Name": "프로젝트 이름", "Localized Titles": "지역화된 제목", "Localized Codenames": "지역화된 코드명", "Localized Project Names": "지역화된 프로젝트 이름", "Date Format": "날짜 형식", "Time Format": "시간 형식", "Localizations": "지역화 목록", "Menu Items": "메뉴 항목", "Active Hours": "활동 시간", "Currency": "통화", "Delimiter": "천 단위 구분 기호", "Height": "높은", "Weight": "가중", "Shoe Size": "신발 사이즈", "Body Sizes": "신체 사이즈", "Your Reticles:": "십자선 선택:", "Description": "설명", "Icon": "상", "Name": "이름", "Size": "크기", "Rights": "특권", "Actions": "행동", "Image": "영상", "Flag": "배너", "Type": "유형", "Date": "날짜", "Apply": "적용하다", "Update": "고쳐 쓰다", "Reset": "초기화", "Clear": "분명한", "Specimen Text": "텍스트 예시 표시", "Specimen Text:": "텍스트 예시 표시:", "Font Configuration:": "글꼴 구성:", "User Interface:": "사용자 인터페이스 설정:", "Color Scheme:": "착색 방식:", "Update Password:": "비밀번호 변경:", "Username": "사용자 이름", "Password": "비밀번호", "Article": "기사", "Amount": "수량", "Price": "가격", "Opacity": "불투명", "Blur": "희미한", "Bright": "명도", "Saturate": "포화", "Contrast": "비교됨", "Sepia": "갈색", "Grayscale": "그레이스케일", "Hue": "음정", "Change your current username...": "현재 사용자 이름 변경...", "Set a password for your account...": "귀하의 계정에 대한 새로운 비밀번호...", "Custom Numeric Digits:": "임의의 숫자 자릿수:", "Server-Wide User Statistics:": "서버 전체 사용자 통계:", "Audio Volume": "사운드 볼륨", "Audio Speed": "오디오 속도", "Video Volume": "비디오 볼륨", "Video Speed": "비디오 속도", "Alarm Volume": "알람 볼륨", "Timer Volume": "타이머 볼륨", "Loop Volume": "루프 볼륨", "Rest Volume": "휴식 볼륨", "Input": "입력", "Output": "산출", "Birthday": "생일"
+        },
+        "JP": {
+            "birthday in":"誕生日","What's on your mind?":"何を考えているの？","Ask artificial intelligence anything":"人工知能に何でも聞いてください","Type any mathematical expression":"任意の数式を入力してください","Search certain files in the directory":"ディレクトリ内の特定のファイルを検索する","Type anything and press ENTER":"何か入力してEnterキーを押します","Search certain models or objects by keywords":"キーワードで特定のモデルまたはオブジェクトを検索する","Set certain weather locations":"特定の天気の場所を設定する","Apply Settings": "設定を適用", "Apply Dimensions": "寸法を適用する", "Apply Style Configuration": "スタイル設定を適用する", "Update Password": "パスワードを更新", "Reload Page": "ページを再読み込み", "Reset Defaults": "デフォルトをリセット", "Reset Default Fonts": "デフォルトフォントをリセット", "Reset Default Languages": "デフォルト言語をリセット", "Update Titles": "タイトルの更新", "Update Localized Titles": "ローカライズされたタイトルの更新", "Update Settings": "設定の更新", "Go Back/Go Forward": "戻る/進む", "Spectate Mode": "観戦モード", "Sign In/Out": "サインイン/サインアウト", "Press any key to continue...": "続行するには任意のキーを押してください...", "Sign Up/Create Account": "サインアップ/アカウント作成", "Eurohouse Update": "ウェブアプリの更新", "Icons/List Menu View": "メニュー要素の表示", "Symbolic Digits": "記号数字", "Show Third-Party Apps": "サードパーティ製アプリを表示", "Expand/Collapse Enhanced View": "拡張ビューを展開/折りたたむ", "Show/Hide User Avatar": "ユーザーアバターの表示/非表示", "Hit Another User": "別のユーザーを攻撃する", "Bind/Unbind Another User": "別のユーザーをバインド/バインド解除する", "Enable User Auto Mode": "ユーザー自動モードを有効にする", "Mute Audio": "音声をミュートする", "Incoming Call": "着信", "Preserve Pitch": "ピッチを維持する", "Enable Loop Music": "ループ音楽を有効にする", "Random Track": "ランダムトラック", "Random Background": "ランダムバナー", "Random Code": "ランダムコード", "Audio Play/Pause": "音声の再生/一時停止", "Enable Autoplay": "自動再生を有効にする", "Go My Way": "我が道を行く", "Suggest Username": "ユーザー名を提案します", "Compose Message": "メッセージを作成", "Enable Vintage Effects": "ビンテージ効果を有効にする", "Previous Track": "前のトラック", "Next Track": "次のトラック", "Slideshow Wallpapers": "スライドショー壁紙", "Clear Sign In Form": "サインインフォームをクリア", "Clear Console": "コンソールをクリア", "Focus On Console": "コンソールに焦点を当てる", "Execute Command": "コマンド実行", "Set Up Background": "バナーの設定", "Observe Background View": "背景ビューを観察", "With/Without Page Reload": "ページの再読み込みの有無", "Audio Playlist Shuffle/Repeat": "オーディオプレイリストのシャッフル/リピート", "Lock On Wallpaper Position": "ロックオン壁紙コレクション", "Age": "年齢", "Days": "誕生日の数日前", "HDI": "人間開発指数", "Average": "平均", "Expected": "期待される", "(": "（", ")": "）", "GNI PPP per capita": "一人当たりGNI PPP", "Total elements:": "要素の量:", "Free disk space:": "空きディスク容量:", "Titles:": "碑文リスト:", "Localized Titles:": "ローカライズされた碑文のリスト:", ": ": ":", "Description:": "あなたのプロフィールを説明してください:", "Functional Elements:": "機能要素:", "Choose Calendar:": "カレンダー：", "Choose Time Zone:": "タイムゾーン:", "Signature Elements:": "シグネチャー スタイル要素:", "Sound Effects:": "サウンドスキーム:", "Title": "タイトル", "Codename": "コードネーム", "Project Name": "プロジェクト名", "Localized Titles": "ローカライズされたタイトル", "Localized Codenames": "ローカライズされたコードネーム", "Localized Project Names": "ローカライズされたプロジェクト名", "Date Format": "日付形式", "Time Format": "時刻形式", "Localizations": "ローカリゼーションリスト", "Menu Items": "メニュー項目一覧", "Active Hours": "活動時間", "Currency": "通貨", "Delimiter": "千の位区切り", "Height": "高い", "Weight": "加重", "Shoe Size": "靴のサイズ", "Body Sizes": "ボディサイズ", "Your Reticles:": "十字線の選択:", "Description": "説明", "Icon": "アイコン", "Name": "名前", "Size": "サイズ", "Rights": "特権", "Actions": "アクション", "Image": "画像", "Flag": "バナー", "Type": "タイプ", "Date": "日", "Apply": "適用する", "Update": "更新する", "Reset": "リセット", "Clear": "クリア", "Specimen Text": "テキストの例を表示", "Specimen Text:": "テキストの例を表示:", "Font Configuration:": "フォント構成:", "User Interface:": "ユーザーインターフェース設定:", "Color Scheme:": "カラーリングスキーム:", "Update Password:": "パスワードを変更する:", "Username": "ユーザー名", "Password": "パスワード", "Article": "記事", "Amount": "量", "Price": "価格", "Opacity": "不透明度", "Blur": "漠然", "Bright": "輝度", "Saturate": "飽和", "Contrast": "比較した", "Sepia": "茶色", "Grayscale": "グレースケール", "Hue": "トーン", "Change your current username...": "現在のユーザー名を変更する...", "Set a password for your account...": "アカウントの新しいパスワード...", "Custom Numeric Digits:": "任意の数字の桁数:", "Server-Wide User Statistics:": "サーバー全体のユーザー統計:", "Audio Volume": "音量", "Audio Speed": "音声速度", "Video Volume": "ビデオの音量", "Video Speed": "ビデオ速度", "Alarm Volume": "アラーム音量", "Timer Volume": "タイマー音量", "Loop Volume": "ループボリューム", "Rest Volume": "休息時の音量", "Input": "入力", "Output": "出力", "Birthday": "誕生日"
+        }
+    }
+}

@@ -1,0 +1,9 @@
+# Music 1 (2012-2015); _music: spaceship;
+# Music 2 (2016-2019); _music: hollywood;
+# Music 3 (2020-2023); _music: daydream;
+# Music 4 (2024-present); _music: sunshine;
+# Design UI; border_radius: 5px; text_border_radius: 5px; back_color: #B5CBDB; fore_color: #3D91EF; input_color: #DDDDDD; back_text_color: #FFFFFF; fore_text_color: #FFFFFF; input_text_color: #000000; blank_color: #FFFFFF; blank_text_color: #000000; arc_fore_color: #315EE0; arc_input_color: #E0E0E0; gradient_button_button: 180; box_shadow: inset 0px 0px #FFFFFF, inset 0px 0px #FFFFFF; text_box_shadow: inset 0px 0px #000000, inset 0px 0px #000000; text_shadow: #000000 1px 1px 1px, #000000 -1px -1px 1px, #000000 1px -1px 1px, #000000 -1px 1px 1px;
+# Video; _background: metro; opacity: 32; background: ; background_buffer: metro.win10.00.png; pangram_ascii: Jackdaws love my big sphinx of quartz.; pangram_cyril: Съешь ещё этих мягких французских булок, да выпей же чаю.;
+# Audio; _sound: media; mute: 0; alarm_sound: Windows Ringin.wav; ticking_sound: Windows Ding.wav; background_sound: Aaron Goldberg - OAM's blues.wma; focus_sound: Windows Menu Command.wav; type_sound: Windows Menu Command.wav; error_sound: Windows Ding.wav; notify_sound: Windows Information Bar.wav; click_sound: Windows Balloon.wav;
+# Font; _font: bootfont; font_ascii: Seguisb.ttf; font_latin: Seguisb.ttf; font_phone: Helvetica-Bold.ttf; font_greek: Seguisb.ttf; font_cyril: Seguisb.ttf; font_arabi: Arialunib.ttf; font_korea: Arialunib.ttf; font_japan: Arialunib.ttf; font_other: Arialunib.ttf; font_emoji: Seguiemj.ttf;
+# UX; theme: fluent; menu: file_manager,picture_gallery,font_book,preferences,terminal,sticky_notes,media_player,artificial_intelligence,visual_effects,messenger,text_editor,app_store,recycle_bin,play_store,album_tracklist,calculator,properties,localization,user_accounts,weather,statistics,date_and_time,personalization,volume_control; face: 0; icons: 1; apps: 1;
