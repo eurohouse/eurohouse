@@ -147,7 +147,7 @@ async function analyzeMultipleRepositories(repoUrls) {
 async function chatGPTAI(input) {
     let reply,image,audio; if (!isLocalhost()) {
         image=($('body').css('background-image')).replace(/^url\(['"]?(.*?)['"]?\)$/i,'$1');
-        audio=sysDefMelody.value;
+        audio=atob(sysDefMelody.value);
     } try {
         if (input.includes('https://github.com/')) {
             const repoUrls=input.match(/https:\/\/github\.com\/[^\s]+/g)||[];
