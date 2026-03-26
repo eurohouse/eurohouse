@@ -150,11 +150,10 @@ async function chatGPTAI(input) {
         audioElem=document.querySelector('#audioPlayer');
         if (audioElem&&audioElem.src) {
             audioInfo=`
-                Audio URL: ${audioElement.src}
-                Status: ${isPlaying?'Playing':'Paused'}
-                Position: ${currentTime.toFixed(1)}s/${duration.toFixed(1)}s
-                Title: ${audioElement.title||'Unknown'}
-                Artist: ${audioElement.artist||'Unknown'}
+                Audio URL: ${audioElem.src}
+                Status: ${audioElem.paused?'Paused':'Playing'}
+                Position: ${hhmmss(audioElem.currentTime)}
+                Duration: ${hhmmss(audioElem.duration)}
             `;
         }
     } try {
