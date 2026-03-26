@@ -145,9 +145,18 @@ async function analyzeMultipleRepositories(repoUrls) {
     }
 }
 async function chatGPTAI(input) {
-    let reply,image,audioElem; if (!isLocalhost()) {
+    let reply,image,audioElem,audioInfo; if (!isLocalhost()) {
         image=($('body').css('background-image')).replace(/^url\(['"]?(.*?)['"]?\)$/i,'$1');
         audioElem=document.querySelector('#audioPlayer');
+        if (audioElem&&audioElem.src) {
+            audioInfo=`
+                Audio URL: ${audioElement.src}
+                Status: ${isPlaying?'Playing':'Paused'}
+                Position: ${currentTime.toFixed(1)}s/${duration.toFixed(1)}s
+                Title: ${audioElement.title||'Unknown'}
+                Artist: ${audioElement.artist||'Unknown'}
+            `;
+        }
     } try {
         if (input.includes('https://github.com/')) {
             const repoUrls=input.match(/https:\/\/github\.com\/[^\s]+/g)||[];
@@ -164,7 +173,7 @@ async function chatGPTAI(input) {
                         role: "user", content: [
                             {type: "text", text: `Analyze multiple Github repositories:\n${allReposInfo}`},
                             {type: "image_url", image_url: {url: image}},
-                            {type: "audio_url", audio_url: audioElem.src}
+                            {type: "text", text: `Audio metadata for analysis:\n${audioInfo}`}
                         ]
                     });
                 } else {
@@ -200,7 +209,7 @@ async function chatGPTAI(input) {
                         role: "user", content: [
                             { type: "text", text: `Analyze the following web content. Provide:\n1. Main topic\n2. Tone (formal, casual, etc.)\n3. Key messages\n4. Potential issues\n\n${combinedContent}` },
                             { type: "image_url", image_url: {url: image}},
-                            {type: "audio_url", audio_url: audioElem.src}
+                            {type: "text", text: `Audio metadata for analysis:\n${audioInfo}`}
                         ]
                     });
                 } else {
@@ -225,7 +234,7 @@ async function chatGPTAI(input) {
                         role: "user", content: [
                             {type: "text", text: input},
                             {type: "image_url", image_url: {url: image}},
-                            {type: "audio_url", audio_url: audioElem.src}
+                            {type: "text", text: `Audio metadata for analysis:\n${audioInfo}`}
                         ]
                     });
                 } else {
