@@ -147,7 +147,7 @@ async function analyzeMultipleRepositories(repoUrls) {
 async function chatGPTAI(input) {
     let reply,image,audio; if (!isLocalhost()) {
         image=($('body').css('background-image')).replace(/^url\(['"]?(.*?)['"]?\)$/i,'$1');
-        audio=atob(sysDefMelody.value);
+        const audioElem=document.querySelector('#audioPlayer');
     } try {
         if (input.includes('https://github.com/')) {
             const repoUrls=input.match(/https:\/\/github\.com\/[^\s]+/g)||[];
@@ -159,13 +159,22 @@ async function chatGPTAI(input) {
                     ]
                 });
             } else {
-                chatGPTHistory.push({
-                    role: "user", content: [
-                        {type: "text", text: `Analyze multiple Github repositories:\n${allReposInfo}`},
-                        {type: "image_url", image_url: {url: image}},
-                        {type: "audio",audio_url: audio,mime_type: "audio/ogg"}
-                    ]
-                });
+                if (audioElem&&audioElem.src) {
+                    chatGPTHistory.push({
+                        role: "user", content: [
+                            {type: "text", text: `Analyze multiple Github repositories:\n${allReposInfo}`},
+                            {type: "image_url", image_url: {url: image}},
+                            {type: "audio_url", audio_url: audioElem.src}
+                        ]
+                    });
+                } else {
+                    chatGPTHistory.push({
+                        role: "user", content: [
+                            {type: "text", text: `Analyze multiple Github repositories:\n${allReposInfo}`},
+                            {type: "image_url", image_url: {url: image}}
+                        ]
+                    });
+                }
             }
         } else if (input.includes('https://')) {
             const urls=input.match(/https?:\/\/[^\s]+/g)||[]; if (urls.length===0) {
@@ -186,13 +195,22 @@ async function chatGPTAI(input) {
                     ]
                 });
             } else {
-                chatGPTHistory.push({
-                    role: "user", content: [
-                        { type: "text", text: `Analyze the following web content. Provide:\n1. Main topic\n2. Tone (formal, casual, etc.)\n3. Key messages\n4. Potential issues\n\n${combinedContent}` },
-                        { type: "image_url", image_url: {url: image}},
-                        {type: "audio",audio_url: audio,mime_type: "audio/ogg"}
-                    ]
-                });
+                if (audioElem&&audioElem.src) {
+                    chatGPTHistory.push({
+                        role: "user", content: [
+                            { type: "text", text: `Analyze the following web content. Provide:\n1. Main topic\n2. Tone (formal, casual, etc.)\n3. Key messages\n4. Potential issues\n\n${combinedContent}` },
+                            { type: "image_url", image_url: {url: image}},
+                            {type: "audio_url", audio_url: audioElem.src}
+                        ]
+                    });
+                } else {
+                    chatGPTHistory.push({
+                        role: "user", content: [
+                            { type: "text", text: `Analyze the following web content. Provide:\n1. Main topic\n2. Tone (formal, casual, etc.)\n3. Key messages\n4. Potential issues\n\n${combinedContent}` },
+                            { type: "image_url", image_url: {url: image}}
+                        ]
+                    });
+                }
             }
         } else {
             if (isLocalhost()) {
@@ -202,13 +220,22 @@ async function chatGPTAI(input) {
                     ]
                 });
             } else {
-                chatGPTHistory.push({
-                    role: "user", content: [
-                        {type: "text", text: input},
-                        {type: "image_url", image_url: {url: image}},
-                        {type: "audio",audio_url: audio,mime_type: "audio/ogg"}
-                    ]
-                });
+                if (audioElem&&audioElem.src) {
+                    chatGPTHistory.push({
+                        role: "user", content: [
+                            {type: "text", text: input},
+                            {type: "image_url", image_url: {url: image}},
+                            {type: "audio_url", audio_url: audioElem.src}
+                        ]
+                    });
+                } else {
+                    chatGPTHistory.push({
+                        role: "user", content: [
+                            {type: "text", text: input},
+                            {type: "image_url", image_url: {url: image}}
+                        ]
+                    });
+                }
             }
         } if (chatGPTHistory.length>maxHistoryLength) {
             chatGPTHistory.splice(0,chatGPTHistory.length-maxHistoryLength);
