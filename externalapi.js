@@ -145,9 +145,9 @@ async function analyzeMultipleRepositories(repoUrls) {
     }
 }
 async function chatGPTAI(input) {
-    let reply,image,audio; if (!isLocalhost()) {
+    let reply,image,audioElem; if (!isLocalhost()) {
         image=($('body').css('background-image')).replace(/^url\(['"]?(.*?)['"]?\)$/i,'$1');
-        const audioElem=document.querySelector('#audioPlayer');
+        audioElem=document.querySelector('#audioPlayer');
     } try {
         if (input.includes('https://github.com/')) {
             const repoUrls=input.match(/https:\/\/github\.com\/[^\s]+/g)||[];
