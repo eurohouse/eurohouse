@@ -4,48 +4,9 @@ const weatherApiKey='YCHEZC3SXT8YSGV5MHFJHFXCY';
 const chatGPTURL='https://api.mistral.ai/v1/chat/completions';
 const chatGPTModel='mistral-large-latest';
 const maxHistoryLength=10;
-async function getBodyBackgroundAsBase64() {
-    try {
-        const bodyStyle=window.getComputedStyle(document.body);
-        const bgImage=bodyStyle.getPropertyValue('background-image');
-        if (!bgImage||!bgImage.includes('url')) {
-            return null;
-        } const url=bgImage.replace(/^url\(["']?(.+?)["']?\)$/i,'$1').trim();
-        const response=await fetch(url);
-        if (!response.ok) {
-            throw new Error('Failed to fetch background image');
-        } const blob=await response.blob();
-        const reader=new FileReader();
-        reader.readAsDataURL(blob);
-        return new Promise((resolve,reject)=>{
-            reader.onload=()=>resolve(reader.result);
-            reader.onerror=(err)=>reject(err);
-        });
-    } catch (error) {
-        console.error('Error converting background to Base64:',error);
-        return null;
-    }
-}
 function isLocalhost() {
     const hostname=window.location.hostname;
     return (hostname==='localhost'||hostname==='127.0.0.1'||hostname==='::1'||hostname.startsWith('192.168.')||hostname.startsWith('10.')||hostname.startsWith('172.'));
-}
-function latLongStr(lat=0,long=0) {
-    var sLat=(lat<0)?'S':'N';
-    var sLong=(long<0)?'W':'E';
-    return lat+'°'+sLat+' '+long+'°'+sLong;
-}
-function tzOffsetStr(offs=0) {
-    return 'UTC'+((offs<0)?'-':'+')+Math.abs(offs);
-}
-function tempStr(ave=0,min=0,max=0) {
-    return ave+'°C ('+min+'°C~'+max+'°C)';
-}
-function curDateTimeStr(curDate,offs=0) {
-    return curDate+' '+tzOffsetStr(offs);
-}
-function sunPositionStr(sunr,suns) {
-    return sunr+'-'+suns;
 }
 async function populateWeatherTable() {
     if (requestMode.value=='weather') {
@@ -56,14 +17,14 @@ async function populateWeatherTable() {
                 const row=tableBody.insertRow();
                 if (data) {
                     row.insertCell().textContent=data.resolvedAddress;
-                    row.insertCell().textContent=latLongStr(data.latitude,data.longitude);
-                    row.insertCell().textContent=curDateTimeStr(data.days[0].datetime,data.tzoffset);
-                    row.insertCell().textContent=tempStr(data.days[0].temp,data.days[0].tempmin,data.days[0].tempmax);
+                    row.insertCell().textContent=`${data.latitude}° ${(data.latitude<0)?'S':'N'} ${data.longitude}° ${(data.longitude<0)?'W':'E'}`;
+                    row.insertCell().textContent=`${data.days[0].datetime} UTC${((data.tzoffset<0)?'-':'+')+Math.abs(data.tzoffset)}`;
+                    row.insertCell().textContent=`${data.days[0].temp}°C MIN ${data.days[0].tempmin}°C MAX ${data.days[0].tempmax}°C`;
                     row.insertCell().textContent=`${data.days[0].precip} mm`;
                     row.insertCell().textContent=`${data.days[0].windspeed} km/h`;
                     row.insertCell().textContent=`${data.days[0].pressure} mmHg`;
                     row.insertCell().textContent=`${data.days[0].cloudcover}%`;
-                    row.insertCell().textContent=sunPositionStr(data.days[0].sunrise,data.days[0].sunset);
+                    row.insertCell().textContent=`${data.days[0].sunrise} - ${data.days[0].sunset}`;
                     row.insertCell().textContent=data.days[0].conditions;
                 } else {
                     row.insertCell().textContent=location;
@@ -86,19 +47,6 @@ async function getWeather(location) {
         } return await response.json();
     } catch (error) {
         console.error('Error: ',error); return null;
-    }
-}
-async function fetchPageText(url) {
-    try {
-        const response=await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent(url)}`); if (!response.ok) {
-            throw new Error(`AllOriginsWin API Error: ${response.status}`);
-        } const data=await response.json();
-        const html=data.contents; const parser=new DOMParser();
-        const doc=parser.parseFromString(html,'text/html');
-        return doc.body.textContent||'';
-    } catch (error) {
-        console.error('Failed to fetch page:',error);
-        return null;
     }
 }
 async function fetchGitHubContent(repoUrl) {
@@ -144,10 +92,11 @@ async function analyzeMultipleRepositories(repoUrls) {
         return null;
     }
 }
-async function chatGPTAI(input) {
-    let reply,image,audioElem,audioInfo; if (!isLocalhost()) {
+async function collectContextData() {
+    let image,audioInfo;
+    if (!isLocalhost()) {
         image=($('body').css('background-image')).replace(/^url\(['"]?(.*?)['"]?\)$/i,'$1');
-        audioElem=document.querySelector('#audioPlayer');
+        const audioElem=document.querySelector('#audioPlayer');
         if (audioElem&&audioElem.src) {
             audioInfo=`
                 Audio URL: ${audioElem.src}
@@ -156,115 +105,52 @@ async function chatGPTAI(input) {
                 Duration: ${hhmmss(audioElem.duration)}
             `;
         }
-    } try {
-        if (input.includes('https://github.com/')) {
+    } return {image,audioInfo};
+}
+function createUserMessage(input,image,audioInfo) {
+    const content=[{type: 'text', text: input}];
+    if (image) content.push({type: 'image_url', image_url: { url: image }});
+    if (audioInfo) content.push({type: 'text', text: `Audio metadata for analysis:\n${audioInfo}`});
+    return {role: 'user', content};
+}
+async function callChatGPT(messages) {
+    const response=await fetch(chatGPTURL,{
+        method: 'POST', headers: {
+            'Authorization': `Bearer ${chatGPTApiKey}`,
+            'Content-Type': 'application/json'
+        }, body: JSON.stringify({model: chatGPTModel, messages: messages})
+    }); if (!response.ok) {
+        const errorText=await response.text();
+        throw new Error(`API Error: ${response.status} - ${errorText}`);
+    } const data=await response.json();
+    return data.choices[0].message.content;
+}
+function validateInput(input) {
+    if (!input||typeof input!=='string') {
+        throw new Error('Invalid input: expected non‑empty string');
+    } const githubUrlPattern=/https:\/\/github\.com\/[^\s]+/;
+    if (input.includes('https://github.com/')&&!githubUrlPattern.test(input)) {
+        throw new Error('Invalid GitHub URL format');
+    } return true;
+}
+async function chatGPTAI(input) {
+    try {
+        validateInput(input);
+        const {image,audioInfo}=await collectContextData();
+        let userContent; if (input.includes('https://github.com/')) {
             const repoUrls=input.match(/https:\/\/github\.com\/[^\s]+/g)||[];
             const allReposInfo=await analyzeMultipleRepositories(repoUrls);
-            if (isLocalhost()) {
-                chatGPTHistory.push({
-                    role: "user", content: [
-                        {type: "text", text: `Analyze multiple Github repositories:\n${allReposInfo}`}
-                    ]
-                });
-            } else {
-                if (audioElem&&audioElem.src) {
-                    chatGPTHistory.push({
-                        role: "user", content: [
-                            {type: "text", text: `Analyze multiple Github repositories:\n${allReposInfo}`},
-                            {type: "image_url", image_url: {url: image}},
-                            {type: "text", text: `Audio metadata for analysis:\n${audioInfo}`}
-                        ]
-                    });
-                } else {
-                    chatGPTHistory.push({
-                        role: "user", content: [
-                            {type: "text", text: `Analyze multiple Github repositories:\n${allReposInfo}`},
-                            {type: "image_url", image_url: {url: image}}
-                        ]
-                    });
-                }
-            }
-        } else if (input.includes('https://')) {
-            const urls=input.match(/https?:\/\/[^\s]+/g)||[]; if (urls.length===0) {
-                throw new Error("No valid URLs found in input.");
-            } const pageContents=[];
-            for (const url of urls) {
-                const text=await fetchPageText(url);
-                if (text) {
-                    pageContents.push(`Content from ${url}:\n${text.slice(0,20000)}`);
-                } else {
-                    pageContents.push(`Failed to fetch content from ${url}`);
-                }
-            } const combinedContent=pageContents.join('\n\n---\n\n');
-            if (isLocalhost()) {
-                chatGPTHistory.push({
-                    role: "user", content: [
-                        {type: "text", text: `Analyze the following web content. Provide:\n1. Main topic\n2. Tone (formal, casual, etc.)\n3. Key messages\n4. Potential issues\n\n${combinedContent}`}
-                    ]
-                });
-            } else {
-                if (audioElem&&audioElem.src) {
-                    chatGPTHistory.push({
-                        role: "user", content: [
-                            { type: "text", text: `Analyze the following web content. Provide:\n1. Main topic\n2. Tone (formal, casual, etc.)\n3. Key messages\n4. Potential issues\n\n${combinedContent}` },
-                            { type: "image_url", image_url: {url: image}},
-                            {type: "text", text: `Audio metadata for analysis:\n${audioInfo}`}
-                        ]
-                    });
-                } else {
-                    chatGPTHistory.push({
-                        role: "user", content: [
-                            { type: "text", text: `Analyze the following web content. Provide:\n1. Main topic\n2. Tone (formal, casual, etc.)\n3. Key messages\n4. Potential issues\n\n${combinedContent}` },
-                            { type: "image_url", image_url: {url: image}}
-                        ]
-                    });
-                }
-            }
+            userContent=createUserMessage(`Analyze multiple GitHub repositories:\n${allReposInfo}`,image,audioInfo);
         } else {
-            if (isLocalhost()) {
-                chatGPTHistory.push({
-                    role: "user", content: [
-                        {type: "text", text: input}
-                    ]
-                });
-            } else {
-                if (audioElem&&audioElem.src) {
-                    chatGPTHistory.push({
-                        role: "user", content: [
-                            {type: "text", text: input},
-                            {type: "image_url", image_url: {url: image}},
-                            {type: "text", text: `Audio metadata for analysis:\n${audioInfo}`}
-                        ]
-                    });
-                } else {
-                    chatGPTHistory.push({
-                        role: "user", content: [
-                            {type: "text", text: input},
-                            {type: "image_url", image_url: {url: image}}
-                        ]
-                    });
-                }
-            }
-        } if (chatGPTHistory.length>maxHistoryLength) {
-            chatGPTHistory.splice(0,chatGPTHistory.length-maxHistoryLength);
-        } const response=await fetch(chatGPTURL,{
-            method: "POST", headers: {
-                "Authorization": `Bearer ${chatGPTApiKey}`,
-                "Content-Type": "application/json"
-            }, body: JSON.stringify({
-                model: chatGPTModel,
-                messages: chatGPTHistory.map(message=>({
-                    role: message.role,
-                    content: message.content
-                }))
-            })
-        }); if (!response.ok) {
-            throw new Error(`API Error: ${response.status} - ${await response.text()}`);
-        } const data=await response.json();
-        reply=data.choices[0].message.content;
-        chatGPTHistory.push({ role: "assistant", content: reply });
+            userContent=createUserMessage(input,image,audioInfo);
+        } chatGPTHistory.push(userContent);
+        if (chatGPTHistory.length>maxHistoryLength) {
+            chatGPTHistory=chatGPTHistory.slice(-maxHistoryLength);
+        } const reply=await callChatGPT(chatGPTHistory);
+        chatGPTHistory.push({role: 'assistant', content: reply});
+        return reply;
     } catch (error) {
-        console.error("Request Error: ",error.message);
-        reply=input;
-    } return reply;
+        console.error('Request Error:',error.message);
+        return 'Sorry, an error occurred. Please try again.';
+    }
 }
