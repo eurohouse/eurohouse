@@ -302,6 +302,8 @@ function omniEnter() {
             getPkgSequence('get -i '+document.getElementById('downloadChannel'+CryptoJS.MD5(input.replace('ps ','')).toString()).value,'get ',0);
         } else if (input.startsWith('clear ')) {
             clearJournal(input.replace('clear ',''),sysDefMyMessengerData,'messenger');
+        } else if (input.startsWith('erase ')) {
+            clearJournal(input.replace('erase ',''),sysDefIpData,'visitors',true);
         } else if (input.startsWith('get ')) {
             getPkgSequence(input,'get ',0);
         } else if (input.startsWith('git ')) {

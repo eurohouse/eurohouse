@@ -127,7 +127,7 @@ function delmeta(ent) {
     var obj=metadata(); delete obj[ent];
     set(sysDefSessionID.value+'_files/metadata.json',JSON.stringify(obj),'rw');
 }
-function clearJournal(id,obj,name) {
+function clearJournal(id,obj,name,isRoot=false) {
     var resarr=(isObject(obj))?jsonarr(obj.value):jsonarr(obj);
     var lastElem=Object.keys(resarr).length-1; if (isInt(id)) {
         var absNum=Math.abs(id),numDiff=(lastElem-absNum);
@@ -137,7 +137,7 @@ function clearJournal(id,obj,name) {
                     delete resarr[Object.keys(resarr)[0]];
                 }
             }
-        } else {
+        } else if (id>0) {
             for (i=lastElem; i>numDiff; i--) {
                 if (notNull(resarr[Object.keys(resarr)[i]])) {
                     delete resarr[Object.keys(resarr)[i]];
@@ -146,7 +146,11 @@ function clearJournal(id,obj,name) {
         }
     } else {
         if (notNull(resarr[id])) { delete resarr[id]; }
-    } set('./'+sysDefSessionID.value+'_files/'+name+'.json',encodeURIComponent(JSON.stringify(resarr)),'rw');
+    } if (isRoot&&superuser()) {
+        set('./'+name+'.json',encodeURIComponent(JSON.stringify(resarr)),'rw');
+    } else {
+        set('./'+sysDefSessionID.value+'_files/'+name+'.json',encodeURIComponent(JSON.stringify(resarr)),'rw');
+    }
 }
 function openJournal(id,obj) {
     var resarr=(isObject(obj))?jsonarr(obj.value):jsonarr(obj);
