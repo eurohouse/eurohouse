@@ -13,12 +13,12 @@
         <input type="text" id="setSpecimen" style="width:68%;" placeholder="<?=term('Specimen Text',$settings,$session);?>" value="<?=$session['specimen'];?>" onkeydown="if (event.keyCode==13) {
             setdata('specimen',encodeURIComponent(this.value));
         } else if (event.keyCode==27) {
-            this.value='Q F S H Æ Ø Ð Ñ ʒ ʊ ʎ ɸ Σ Φ Ω Θ Г З Х Б خالد 인 방 학 적 の あ ぱ オ 中 英 阿 网 რ Ֆ ט भो 🍷 ☕️ 🍾 🍫';
+            this.value='QFSHGR ÆØÐÑÇÊ ʒʊʎɸʃŋ ΣΦΩΘΞΨ ГЗХБЮЖ عليخالد 인방학적괴굠 のあぱオヰカ 中英რՖטभो 🍷☕️🍾🍫🍍🌴';
         } else if (event.keyCode==8) { handleInput(this.value);
         } else if (event.keyCode==46) { handleInput(this.value);
         }" oninput="handleInput(this.value,true);">
         <input type='image' onmouseover="soundButton();" class="power" onclick="setdata('specimen',encodeURIComponent(setSpecimen.value));" src="<?=$prefix[3].'return.png';?>" title="<?=term('Update',$settings,$session);?>">
-        <input type='image' onmouseover="soundButton();" class="power" onclick="setSpecimen.value='Q F S H Æ Ø Ð Ñ ʒ ʊ ʎ ɸ Σ Φ Ω Θ Г З Х Б خالد 인 방 학 적 の あ ぱ オ 中 英 阿 网 რ Ֆ ט भो 🍷 ☕️ 🍾 🍫';" src="<?=$prefix[3].'backspace.png';?>" title="<?=term('Clear',$settings,$session);?>"></span><br>
+        <input type='image' onmouseover="soundButton();" class="power" onclick="setSpecimen.value='QFSHGR ÆØÐÑÇÊ ʒʊʎɸʃŋ ΣΦΩΘΞΨ ГЗХБЮЖ عليخالد 인방학적괴굠 のあぱオヰカ 中英რՖטभो 🍷☕️🍾🍫🍍🌴';" src="<?=$prefix[3].'backspace.png';?>" title="<?=term('Clear',$settings,$session);?>"></span><br>
         <label><?=term('Font Configuration:',$settings,$session);?></label><br>
         <select id="setUTF0" style="width:15%;" onchange="setdata('font_ascii',setUTF0.options[setUTF0.selectedIndex].id);">
         <?php foreach ($userSubscr['font'] as $key=>$value) { ?>
@@ -111,7 +111,7 @@
         <input type="text" id="setTextShadow" style="width:68%;" placeholder="<?=term('Text Shadow',$settings,$session);?>" value="<?=$session['text_shadow'];?>" onkeydown="if (event.keyCode==13) {
             setdata('text_shadow',this.value);
         } else if (event.keyCode==27) {
-            this.value='#000000 3px 3px 3px, #000000 -3px -3px 3px, #000000 3px -3px 3px, #000000 -3px 3px 3px';
+            this.value='#000000 1px 1px 1px, #000000 -1px -1px 1px, #000000 1px -1px 1px, #000000 -1px 1px 1px';
         } else if (event.keyCode==8) { handleInput(this.value);
         } else if (event.keyCode==46) { handleInput(this.value);
         }" oninput="handleInput(this.value,true);"><br>
