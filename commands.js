@@ -419,8 +419,8 @@ function omniEnter() {
             omniBox.value=executeCode(input);
         } else if (/\[.*?\]/gi.test(input)) {
             omniBox.value=setCalculator.evaluate(input);
-        } else { omniBox.value=solveSystem(input); } omniBox.focus();
-    }
+        } else { omniBox.value=solveSystem(input); }
+    } omniBox.focus();
 }
 function getPkgSequence(input,cmdword,isRepo=0,isDbg=0) {
     var preQuery=input.replace(cmdword,'');
