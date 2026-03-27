@@ -17,14 +17,14 @@ async function populateWeatherTable() {
                 const row=tableBody.insertRow();
                 if (data) {
                     row.insertCell().textContent=data.resolvedAddress;
-                    row.insertCell().textContent=`${data.latitude}° ${(data.latitude<0)?'S':'N'} ${data.longitude}° ${(data.longitude<0)?'W':'E'}`;
+                    row.insertCell().textContent=`${data.latitude}°${(data.latitude<0)?'S':'N'} ${data.longitude}°${(data.longitude<0)?'W':'E'}`;
                     row.insertCell().textContent=`${data.days[0].datetime} UTC${((data.tzoffset<0)?'-':'+')+Math.abs(data.tzoffset)}`;
-                    row.insertCell().textContent=`${data.days[0].temp}°C MIN ${data.days[0].tempmin}°C MAX ${data.days[0].tempmax}°C`;
-                    row.insertCell().textContent=`${data.days[0].precip} mm`;
-                    row.insertCell().textContent=`${data.days[0].windspeed} km/h`;
-                    row.insertCell().textContent=`${data.days[0].pressure} mmHg`;
+                    row.insertCell().textContent=`${data.days[0].tempmin}<${data.days[0].temp}>${data.days[0].tempmax}°C`;
+                    row.insertCell().textContent=`${data.days[0].precip}mm`;
+                    row.insertCell().textContent=`${data.days[0].windspeed}km/h`;
+                    row.insertCell().textContent=`${data.days[0].pressure}mmHg`;
                     row.insertCell().textContent=`${data.days[0].cloudcover}%`;
-                    row.insertCell().textContent=`${data.days[0].sunrise} - ${data.days[0].sunset}`;
+                    row.insertCell().textContent=`${data.days[0].sunrise}-${data.days[0].sunset}`;
                     row.insertCell().textContent=data.days[0].conditions;
                 } else {
                     row.insertCell().textContent=location;
