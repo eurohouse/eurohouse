@@ -29,13 +29,13 @@
     <?php } else { ?>
         <input type="image" onmouseover="soundButton();" id="buttonSuggest" class="power" onclick="soundClick(); omniSuggest();" src="<?=$prefix[3].'dice.png';?>" title="<?=term('Suggest Username',$settings,$session);?>">
         <input type="image" onmouseover="soundButton();" id="buttonCode" class="power" onclick="soundClick(); var objCmdTxt=(authstate())?omniBox:omniBoxAuthLogin; seekCode(objCmdTxt.value); objCmdTxt.focus();" src="<?=$prefix[3].'code.png';?>" title="<?=term('Random Code',$settings,$session);?>">
-        <input type='text' id="omniBoxAuthLogin" style="width:33%;" placeholder="<?=term('Username',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) {
+        <input type='text' id="omniBoxAuthLogin" style="width:29%;" placeholder="<?=term('Username',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) {
             omniBoxAuthPass.value=''; omniBoxAuthPass.focus();
         } else if (event.keyCode==27) { omniBoxAuthLogin.value='';
         } else if (event.keyCode==8) { handleInput(this.value);
         } else if (event.keyCode==46) { handleInput(this.value);
         }" oninput="handleInput(this.value,true);">
-        <input type='password' id="omniBoxAuthPass" style="width:32%;" placeholder="<?=term('Password',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) {
+        <input type='password' id="omniBoxAuthPass" style="width:28%;" placeholder="<?=term('Password',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) {
             omniAuthRequest('signin',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString());
         } else if (event.keyCode==27) {
             omniBoxAuthPass.value=''; omniBoxAuthLogin.focus();
