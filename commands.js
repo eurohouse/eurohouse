@@ -104,7 +104,7 @@ function omniEnter() {
     } else {
         if ((input.toLowerCase()=='upload')||(input.toLowerCase()=='up')) {
             document.getElementById('filebrowser').click(); return false;
-        if ((input.toLowerCase()=='reload')||(input.toLowerCase()=='refresh')) {
+        } else if ((input.toLowerCase()=='reload')||(input.toLowerCase()=='refresh')) {
             window.location.reload();
         } else if (input.toLowerCase()=='this') {
             window.location.href='https://yandex.ru/images/search?rpt=imageview&url='+($('body').css('background-image')).replace(/^url\(['"]?(.*?)['"]?\)$/i,'$1');
