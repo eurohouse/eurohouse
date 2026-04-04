@@ -80,7 +80,7 @@
         <div class='topbar'><?php
         if (file_exists('mode.'.$request['mode'].'.php')) {
             $isModeNull=0;
-            $curModeFile=paging('mode.'.$request['mode'].'.php',[2,3]);
+            $curModeFile=selectedLines('mode.'.$request['mode'].'.php',[2,3]);
             if (strpos($curModeFile[2],'-->')!==false) {
                 $curMode1=str_replace(' -->','',str_replace('<!-- ','',$curModeFile[2]));
                 $parent=($curMode1=='<ref>')?$request['ref']:$curMode1;

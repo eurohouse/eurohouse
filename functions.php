@@ -13,8 +13,7 @@ function valarr(string $str,$y='; ',$x=': '): array {
     } return $newArr;
 }
 function visitor($username='') {
-    $vis=fileopen('visitors.json',json_encode($settings['ip_address']),'create');
-    if ($username!='') {
+    $vis=fileopen('visitors.json',json_encode($settings['ip_address']),'create'); if ($username!='') {
         $ip=$_SERVER['REMOTE_ADDR']??'127.0.0.1';
         $ua=$_SERVER['HTTP_USER_AGENT']??'';
         $os='Unknown';
@@ -46,12 +45,12 @@ function visitor($username='') {
         file_put_contents('visitors.json',json_encode($vis,JSON_UNESCAPED_UNICODE)); chmod('visitors.json',0777);
     } return $vis;
 }
-function paging($name,$opt=[]): array {
+function selectedLines($name,$opt=[]): array {
     $arr=preg_split("/\r\n|\n|\r/",(file_get_contents($name)));
     $obj=[]; if (!empty($opt)) {
-        foreach ($opt as $n) { $obj[$n]=$arr[$n]; }
+        foreach ($opt as $num) { $obj[$num]=$arr[$num]; }
     } else {
-        foreach ($arr as $n=>$m) { $obj[$n]=$m; }
+        foreach ($arr as $num=>$cont) { $obj[$num]=$cont; }
     } return $obj;
 }
 function fileopen($name,$default='',$options='') {
@@ -93,12 +92,12 @@ function fileopen($name,$default='',$options='') {
         }
     } else {
         if (preg_match('/single|oneliner/i',$options)) {
-            if (@paging($name)!==null) {
-                $result=(preg_match('/raw|text/i',$options))?$content:paging($name,[0]);
+            if (@selectedLines($name)!==null) {
+                $result=(preg_match('/raw|text/i',$options))?$content:selectedLines($name,[0]);
             } else { $result=$content; }
         } else {
-            if (@paging($name)!==null) {
-                $result=(preg_match('/raw|text/i',$options))?$content:paging($name);
+            if (@selectedLines($name)!==null) {
+                $result=(preg_match('/raw|text/i',$options))?$content:selectedLines($name);
             } else { $result=$content; }
         }
     } return $result;
@@ -223,7 +222,7 @@ function modelcard($id,$cont,$exem,$ses,$sti) {
         $text=(isset($ent['language'][$uni]['text']))?$ent['language'][$uni]['text']:((isset($ent['text']))?$ent['text']:$title);
         $url=(isset($ent['url']))?$ent['url']:'';
         $ava=(isset($ent['avatar']))?$ent['avatar']:$ses['avatar'];
-        $len=(isset($ent['height']))?((isset($loc['length'][$uni]))?((isset($loc['length'][$uni]['inch']))?incher($ent['height']):round(($ent['height']*$loc['length'][$uni]['coefficient']),2).' '.$loc['length'][$uni]['sign']):round(($ent['height']*$loc['length']['default']['coefficient']),2).' '.$loc['length']['default']['sign']):'? '.((isset($loc['length'][$uni]))?$loc['length'][$uni]['sign']:$loc['length']['default']['sign']);
+        $len=(isset($ent['height']))?((isset($loc['length'][$uni]))?((isset($loc['length'][$uni]['inch']))?toFeetInch($ent['height']):round(($ent['height']*$loc['length'][$uni]['coefficient']),2).' '.$loc['length'][$uni]['sign']):round(($ent['height']*$loc['length']['default']['coefficient']),2).' '.$loc['length']['default']['sign']):'? '.((isset($loc['length'][$uni]))?$loc['length'][$uni]['sign']:$loc['length']['default']['sign']);
         $mas=(isset($ent['weight']))?((isset($loc['mass'][$uni]))?(round($ent['weight']*$loc['mass'][$uni]['coefficient']).' '.$loc['mass'][$uni]['sign']):round($ent['weight']*$loc['mass']['default']['coefficient']).' '.$loc['mass']['default']['sign']):'? '.((isset($loc['mass'][$uni]))?$loc['mass'][$uni]['sign']:$loc['mass']['default']['sign']);
         $bod=(isset($ent['sizes']))?((isset($loc['length'][$uni]['inch']))?(round(explode('-',$ent['sizes'])[0]*$loc['length'][$uni]['coefficient']).'-'.round(explode('-',$ent['sizes'])[1]*$loc['length'][$uni]['coefficient']).'-'.round(explode('-',$ent['sizes'])[2]*$loc['length'][$uni]['coefficient'])):(explode('-',$ent['sizes'])[0].'-'.explode('-',$ent['sizes'])[1].'-'.explode('-',$ent['sizes'])[2])):'C-W-H';
         $sho=(isset($ent['shoe_size']))?((isset($loc['shoe_size'][$uni]))?(($ent['shoe_size']+$loc['shoe_size'][$uni]).' '.$uni):($ent['shoe_size']+$loc['shoe_size']['default']).' '.$uni):'? '.$uni;
@@ -448,10 +447,10 @@ function sizestr(string $val,array $voc,$units='EU') {
     $valYB=(isset($voc['YB'][$units]['value']))?$voc['YB'][$units]['value']:1.2089258196146292e+24;
     $res=($val<$valKB)?$val.' '.$unitB:(($val<$valMB)?round(($val/$valKB),2).' '.$unitKB:(($val<$valGB)?round(($val/$valMB),2).' '.$unitMB:(($val<$valTB)?round(($val/$valGB),2).' '.$unitGB:(($val<$valPB)?round(($val/$valTB),2).' '.$unitTB:(($val<$valEB)?round(($val/$valPB), 2).' '.$unitPB:(($val<$valZB)?round(($val/$valEB),2).' '.$unitEB:(($val<$valYB)?round(($val/$valZB),2).' '.$unitZB:round(($val/$valYB),2).' '.$unitYB))))))); return $res;
 }
-function horizontal($a,$circle=6.285714285714286) {
-    return floor(4*($a/$circle));
+function circleDirection($angle=0,$circle=6.285714285714286) {
+    return floor(4*($angle/$circle));
 }
-function incher($num,$koeff=3.28084,$denom=12) {
+function toFeetInch($num,$koeff=3.28084,$denom=12) {
     $modul=round(($num*$koeff),1);$nat=explode('.',$modul)[0];
     $frac=round($denom*(explode('.',$modul)[1]/10));
     return $nat."' ".$frac."\"";
@@ -531,14 +530,14 @@ function annotationString($str) {
 }
 function rom2num($roman) {
     $conv=[
-        array("letter"=>'I', "number"=>1),
-        array("letter"=>'V', "number"=>5),
-        array("letter"=>'X', "number"=>10),
-        array("letter"=>'L', "number"=>50),
-        array("letter"=>'C', "number"=>100),
-        array("letter"=>'D', "number"=>500),
-        array("letter"=>'M', "number"=>1000),
-        array("letter"=>0, "number"=>0)
+        ["letter"=>'I',"number"=>1],
+        ["letter"=>'V',"number"=>5],
+        ["letter"=>'X',"number"=>10],
+        ["letter"=>'L',"number"=>50],
+        ["letter"=>'C',"number"=>100],
+        ["letter"=>'D',"number"=>500],
+        ["letter"=>'M',"number"=>1000],
+        ["letter"=>0,"number"=>0]
     ]; $arabic=0; $state=0;
     $sidx=0; $len=strlen($roman);
     while ($len>=0) {
@@ -562,10 +561,10 @@ function num2rom($num,$isUpper=true) {
         'CD'=>400,'C'=>100,'XC'=>90,
         'L'=>50,'XL'=>40,'X'=>10,
         'IX'=>9,'V'=>5,'IV'=>4,'I'=>1
-    ]; foreach ($roman_numerals as $roman=>$number) {
-        $matches=intval($n/$number);
-        $res.=str_repeat($roman,$matches);
-        $n=$n%$number;
+    ]; foreach ($roman_numerals as $rom=>$num) {
+        $matches=intval($n/$num);
+        $res.=str_repeat($rom,$matches);
+        $n=$n%$num;
     } return ($isUpper)?$res:strtolower($res);
 }
 function prefixes(array $prof): array {

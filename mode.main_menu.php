@@ -10,7 +10,7 @@ if ($request['lock']=='true') {
         <div class='grid-container'>
         <?php foreach ($index as $key=>$value) {
             if (file_exists('mode.'.$value.'.php')) {
-                $menuItemFile=paging('mode.'.$value.'.php',[0,1]);
+                $menuItemFile=selectedLines('mode.'.$value.'.php',[0,1]);
                 $menuItemIcon=annotationString($menuItemFile[0]);
                 $elementIcon=(themed($themePrefix, $menuItemIcon))?$themePrefix.$menuItemIcon.'.png':$ersatzPrefix.$menuItemIcon.'.png';
                 $menuItemLangPack=annotationString($menuItemFile[1]);
@@ -54,7 +54,7 @@ if ($request['lock']=='true') {
         <p align='center' class='block'>
         <?php foreach ($index as $key=>$value) {
             if (file_exists('mode.'.$value.'.php')) {
-                $menuItemFile=paging('mode.'.$value.'.php',[0,1]);
+                $menuItemFile=selectedLines('mode.'.$value.'.php',[0,1]);
                 $menuItemIcon=annotationString($menuItemFile[0]);
                 $elementIcon=(themed($themePrefix, $menuItemIcon))?$themePrefix.$menuItemIcon.'.png':$ersatzPrefix.$menuItemIcon.'.png';
                 $menuItemLangPack=annotationString($menuItemFile[1]);
@@ -79,7 +79,7 @@ if ($request['lock']=='true') {
     <?php } else {
         foreach ($index as $key=>$value) {
             if (file_exists('mode.'.$value.'.php')) {
-                $menuItemFile=paging('mode.'.$value.'.php',[1]);
+                $menuItemFile=selectedLines('mode.'.$value.'.php',[1]);
                 $menuItemLangPack=annotationString($menuItemFile[1]);
                 $menuItemLangArr=explode('; ',$menuItemLangPack); $menuItemLangNew=[];
                 foreach ($menuItemLangArr as $menuItemLangStr) {
@@ -109,7 +109,7 @@ if ($request['lock']=='true') {
         <?php foreach ($index as $key=>$value) {
             $menuElementName=str_replace('mode.','',basename($value,'.php'));$currentMenuItems=explode(',',$session['menu']);
             $statusFound=(array_search($menuElementName,$currentMenuItems)!==false)?'min':'plus';
-            $menuItemFile=paging('mode.'.$menuElementName.'.php',[0,1]);
+            $menuItemFile=selectedLines('mode.'.$menuElementName.'.php',[0,1]);
             $menuItemIcon=annotationString($menuItemFile[0]);
             $elementIcon=(themed($themePrefix,$menuItemIcon))?$themePrefix.$menuItemIcon.'.png':$ersatzPrefix.$menuItemIcon.'.png';
             $menuItemLangPack=annotationString($menuItemFile[1]);
@@ -135,7 +135,7 @@ if ($request['lock']=='true') {
         <?php foreach ($index as $key=>$value) {
             $menuElementName=str_replace('mode.','',basename($value,'.php'));$currentMenuItems=explode(',',$session['menu']);
             $statusFound=(array_search($menuElementName,$currentMenuItems)!==false)?'min':'plus';
-            $menuItemFile=paging('mode.'.$menuElementName.'.php',[0,1]);
+            $menuItemFile=selectedLines('mode.'.$menuElementName.'.php',[0,1]);
             $menuItemIcon=annotationString($menuItemFile[0]);
             $elementIcon=(themed($themePrefix,$menuItemIcon))?$themePrefix.$menuItemIcon.'.png':$ersatzPrefix.$menuItemIcon.'.png';
             $menuItemLangPack=annotationString($menuItemFile[1]);
@@ -149,7 +149,7 @@ if ($request['lock']=='true') {
         <?php } ?></p>
     <?php } else {
         foreach ($index as $key=>$value) {
-            $menuElementName=str_replace('mode.','',basename($value,'.php'));$currentMenuItems=explode(',',$session['menu']);$statusFound=(array_search($menuElementName,$currentMenuItems)!==false)?'min':'plus';$menuItemFile=paging('mode.'.$menuElementName.'.php',[1]);$menuItemLangPack=annotationString($menuItemFile[1]);$menuItemLangArr=explode('; ',$menuItemLangPack);$menuItemLangNew=[];
+            $menuElementName=str_replace('mode.','',basename($value,'.php'));$currentMenuItems=explode(',',$session['menu']);$statusFound=(array_search($menuElementName,$currentMenuItems)!==false)?'min':'plus';$menuItemFile=selectedLines('mode.'.$menuElementName.'.php',[1]);$menuItemLangPack=annotationString($menuItemFile[1]);$menuItemLangArr=explode('; ',$menuItemLangPack);$menuItemLangNew=[];
             foreach ($menuItemLangArr as $menuItemLangStr) {
                 $menuItemLangKey=explode(': ',$menuItemLangStr)[0];$menuItemLangVal=explode(': ',$menuItemLangStr)[1];$menuItemLangNew[$menuItemLangKey] = $menuItemLangVal;
             } ?>
