@@ -117,7 +117,7 @@ class SetCalculator {
             throw new Error('Expression must start with a set');
         }
 
-        let currentSets = [this.parseSet(tokens[0])];
+        let currentResult = this.parseSet(tokens[0]);
         let pos = 1;
 
         while (pos < tokens.length) {
@@ -136,18 +136,15 @@ class SetCalculator {
             pos++;
 
             if (op === '->') {
-                currentSets.push(nextSet);
+                // Для отображения сохраняем цепочку множеств
+                currentResult = this.applyMappingChain([currentResult, nextSet]);
             } else {
-                const mapped = this.applyMappingChain(currentSets);
-                const nextResult = this.applyOperation(op, mapped, nextSet);
-                currentSets = [nextResult];
+                // Применяем операцию к текущему результату и следующему множеству
+                currentResult = this.applyOperation(op, currentResult, nextSet);
             }
         }
 
-        if (currentSets.length > 1) {
-            return this.formatSet(this.applyMappingChain(currentSets));
-        }
-        return this.formatSet(currentSets[0]);
+        return this.formatSet(currentResult);
     }
 
     formatSet(set) {
@@ -159,8 +156,8 @@ class SetCalculator {
                 // Сортировка: числа по возрастанию, строки — лексикографически
                 const sorted = [...set].sort((a, b) => {
                     if (typeof a === 'number' && typeof b === 'number') return a - b;
-            if (typeof a === 'string' && typeof b === 'string') return a.localeCompare(b);
-            // Если типы разные, преобразуем к строке
+                    if (typeof a === 'string' && typeof b === 'string') return a.localeCompare(b);
+                    // Если типы разные, преобразуем к строке
             return String(a).localeCompare(String(b));
         });
                 return `[${sorted.join(',')}]`;
@@ -172,6 +169,7 @@ class SetCalculator {
 }
 
 const setCalculator = new SetCalculator();
+
 
 class VectorExpressionProcessor {
     constructor() { this.vectors={}; this.nextVectorId=0; }
