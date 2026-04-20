@@ -1,176 +1,119 @@
 class SetCalculator {
     tokenize(expr) {
-        return expr.replace(/\s+/g, '')
+        return expr.replace(/\s+/g,'')
             .match(/\[[^\[\]]*\]|[&|~^]|->/g)
-            ?.filter(token => token.length > 0) || [];
-    }
-
-    isSetToken(token) { return /^\[.*\]$/.test(token); }
-
+            ?.filter(token=>token.length>0)||[];
+    } isSetToken(token) { return /^\[.*\]$/.test(token); }
     parseSet(setStr) {
         if (!this.isSetToken(setStr)) {
             throw new Error(`Invalid set format: ${setStr}`);
-        }
-        const content = setStr.slice(1, -1).trim();
-        if (content === '') return [];
-        return content.split(',').map(item => {
-            item = item.trim();
-            if (/^-?\d+$/.test(item)) return parseInt(item, 10);
-            if (/^['"].*['"]$/.test(item)) return item.slice(1, -1);
+        } const content=setStr.slice(1,-1).trim();
+        if (content==='') return [];
+        return content.split(',').map(item=>{
+            item=item.trim();
+            if (/^-?\d+$/.test(item)) return parseInt(item,10);
+            if (/^['"].*['"]$/.test(item)) return item.slice(1,-1);
             return item;
         });
     }
-
-    applyOperation(op, left, right) {
-        // Преобразуем массивы в Set для операций
-        const leftSet = new Set(left);
-        const rightSet = new Set(right);
-
+    applyOperation(op,left,right) {
+        const leftSet=new Set(left);
+        const rightSet=new Set(right);
         switch (op) {
             case '&':
-                // Пересечение: элементы, присутствующие в обоих множествах
-                return [...leftSet].filter(x => rightSet.has(x));
+                return [...leftSet].filter(x=>rightSet.has(x));
             case '|':
-                // Объединение: все уникальные элементы из обоих множеств
-                return [...new Set([...left, ...right])];
+                return [...new Set([...left,...right])];
             case '~':
-                // Разность: элементы из left, отсутствующие в right
-                return [...leftSet].filter(x => !rightSet.has(x));
+                return [...leftSet].filter(x=>!rightSet.has(x));
             case '^':
-                // Симметричная разность: (left - right) ∪ (right - left)
-                const diff1 = [...leftSet].filter(x => !rightSet.has(x));
-                const diff2 = [...rightSet].filter(x => !leftSet.has(x));
-                return [...new Set([...diff1, ...diff2])];
+                const diff1=[...leftSet].filter(x=>!rightSet.has(x));
+                const diff2=[...rightSet].filter(x=>!leftSet.has(x));
+                return [...new Set([...diff1,...diff2])];
             default:
                 throw new Error(`Unknown operator: ${op}`);
         }
     }
-
     applyMappingChain(sets) {
-        const length = sets[0].length;
-        for (let i = 1; i < sets.length; i++) {
-            if (sets[i].length !== length) {
+        const length=sets[0].length;
+        for (let i=1; i<sets.length; i++) {
+            if (sets[i].length!==length) {
                 throw new Error(
-                    `Mapping requires sets of equal length. ` +
-                    `Set 0: ${length}, Set ${i}: ${sets[i].length}`
+                    `Mapping requires sets of equal length. `+`Set 0: ${length}, Set ${i}: ${sets[i].length}`
                 );
             }
-        }
-        const result = [];
-        for (let i = 0; i < length; i++) {
-            const chain = sets.map(set => set[i]);
+        } const result=[];
+        for (let i=0; i<length; i++) {
+            const chain=sets.map(set=>set[i]);
             result.push(chain.join(':'));
-        }
-        return result;
+        } return result;
     }
-
     reverseMapping(setStr) {
-        const parsed = this.parseSet(setStr);
-        if (parsed.length === 0) {
+        const parsed=this.parseSet(setStr);
+        if (parsed.length===0) {
             throw new Error('Cannot reverse mapping: empty set');
-        }
-        if (!parsed.every(item => typeof item === 'string')) {
+        } if (!parsed.every(item=>typeof item==='string')) {
             throw new Error('Cannot reverse mapping: all elements must be strings');
-        }
-        if (!parsed.every(item => item.includes(':'))) {
+        } if (!parsed.every(item=>item.includes(':'))) {
             throw new Error('Cannot reverse mapping: input must be a set of colon-separated strings');
-        }
-
-        const splitChains = parsed.map(item => item.split(':'));
-        const numSets = splitChains[0].length;
-        const length = splitChains.length;
-
-        if (!splitChains.every(chain => chain.length === numSets)) {
+        } const splitChains=parsed.map(item=>item.split(':'));
+        const numSets=splitChains[0].length; const length=splitChains.length;
+        if (!splitChains.every(chain=>chain.length===numSets)) {
             throw new Error('Inconsistent mapping chains: all elements must have the same number of parts');
-        }
-
-        // Группируем элементы по позициям в цепочке
-        const grouped = Array.from({ length: numSets }, (_, setIndex) =>
-            Array.from({ length }, (_, itemIndex) => splitChains[itemIndex][setIndex])
-        );
-
-        return grouped.map(set => {
+        } const grouped=Array.from({length:numSets},(_,setIndex)=>
+            Array.from({length},(_,itemIndex)=>splitChains[itemIndex][setIndex])
+        ); return grouped.map(set=>{
             return `[${set.join(',')}]`;
         }).join('->');
     }
-
     evaluate(expr) {
-        if (!expr || !expr.trim()) return '[]';
-        const tokens = this.tokenize(expr);
-        if (tokens.length === 0) return '[]';
-
-        if (tokens.length === 1 && this.isSetToken(tokens[0])) {
-            const parsedSet = this.parseSet(tokens[0]);
-            if (parsedSet.length > 0 && parsedSet.every(item => typeof item === 'string' && item.includes(':'))) {
+        if (!expr||!expr.trim()) return '[]';
+        const tokens=this.tokenize(expr);
+        if (tokens.length===0) return '[]';
+        if (tokens.length===1&&this.isSetToken(tokens[0])) {
+            const parsedSet=this.parseSet(tokens[0]);
+            if (parsedSet.length>0&&parsedSet.every(item=>typeof item==='string'&&item.includes(':'))) {
                 try {
                     return this.reverseMapping(tokens[0]);
                 } catch (error) {
-                    console.warn('Reverse mapping failed, falling back to normal formatting:', error.message);
+                    console.warn('Reverse mapping failed, falling back to normal formatting:',error.message);
                     return this.formatSet(parsedSet);
                 }
             } else {
                 return this.formatSet(parsedSet);
             }
-        }
-
-        if (!this.isSetToken(tokens[0])) {
+        } if (!this.isSetToken(tokens[0])) {
             throw new Error('Expression must start with a set');
-        }
-
-        let currentResult = this.parseSet(tokens[0]);
-        let pos = 1;
-
-        while (pos < tokens.length) {
-            const op = tokens[pos];
-            pos++;
-
-            if (!['&', '|', '~', '^', '->'].includes(op)) {
+        } let currentResult=this.parseSet(tokens[0]); let pos=1;
+        while (pos<tokens.length) {
+            const op=tokens[pos]; pos++;
+            if (!['&','|','~','^','->'].includes(op)) {
                 throw new Error(`Invalid operator: ${op}`);
-            }
-
-            if (pos >= tokens.length || !this.isSetToken(tokens[pos])) {
+            } if (pos>=tokens.length||!this.isSetToken(tokens[pos])) {
                 throw new Error('Expected set after operator');
-            }
-
-            const nextSet = this.parseSet(tokens[pos]);
-            pos++;
-
-            if (op === '->') {
-                // Для отображения сохраняем цепочку множеств
-                currentResult = this.applyMappingChain([currentResult, nextSet]);
+            } const nextSet=this.parseSet(tokens[pos]); pos++;
+            if (op==='->') {
+                currentResult=this.applyMappingChain([currentResult,nextSet]);
             } else {
-                // Применяем операцию к текущему результату и следующему множеству
-                currentResult = this.applyOperation(op, currentResult, nextSet);
+                currentResult=this.applyOperation(op,currentResult,nextSet);
             }
-        }
-
-        return this.formatSet(currentResult);
+        } return this.formatSet(currentResult);
     }
-
     formatSet(set) {
         if (Array.isArray(set)) {
-            const hasMappingChains = set.length > 0 && set.every(item => typeof item === 'string' && item.includes(':'));
+            const hasMappingChains=set.length>0&&set.every(item=>typeof item==='string'&&item.includes(':'));
             if (hasMappingChains) {
                 return `[${set.join(',')}]`;
             } else {
-                // Сортировка: числа по возрастанию, строки — лексикографически
-                const sorted = [...set].sort((a, b) => {
-                    if (typeof a === 'number' && typeof b === 'number') return a - b;
-                    if (typeof a === 'string' && typeof b === 'string') return a.localeCompare(b);
-                    // Если типы разные, преобразуем к строке
-            return String(a).localeCompare(String(b));
-        });
-                return `[${sorted.join(',')}]`;
+                const sorted=[...set].sort((a,b)=>{
+                    if (typeof a==='number'&&typeof b==='number') return a-b;
+                    if (typeof a==='string'&&typeof b==='string') return a.localeCompare(b);
+                    return String(a).localeCompare(String(b));
+                }); return `[${sorted.join(',')}]`;
             }
-        }
-        // Для не-массивов (на всякий случай)
-        return `[${String(set)}]`;
+        } return `[${String(set)}]`;
     }
-}
-
-const setCalculator = new SetCalculator();
-
-
+} const setCalculator=new SetCalculator();
 class VectorExpressionProcessor {
     constructor() { this.vectors={}; this.nextVectorId=0; }
     process(input) {
