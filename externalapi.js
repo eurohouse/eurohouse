@@ -120,9 +120,9 @@ async function chatGPTAI(input) {
         let userContent; if (input.includes('https://github.com/')) {
             const repoUrls=input.match(/https:\/\/github\.com\/[^\s,.<>;"']+/g)||[];
             const allReposInfo=await analyzeMultipleRepositories(repoUrls);
-            userContent=((sysDefMelody.value!="")&&(sysDefPlaying.value!=0))?createUserMessage(`${input}\n${sysDefMelody.value}\n${allReposInfo}`,userContext):createUserMessage(`${input}\n${allReposInfo}`,userContext);
+            userContent=((utob(sysDefMelody.value)!="")&&(sysDefPlaying.value!=0))?createUserMessage(`${input}\n${utob(sysDefMelody.value)}\n${allReposInfo}`,userContext):createUserMessage(`${input}\n${allReposInfo}`,userContext);
         } else {
-            userContent=((sysDefMelody.value!="")&&(sysDefPlaying.value!=0))?createUserMessage(`${input}\n${sysDefMelody.value}`,userContext):createUserMessage(input,userContext);
+            userContent=((utob(sysDefMelody.value)!="")&&(sysDefPlaying.value!=0))?createUserMessage(`${input}\n${utob(sysDefMelody.value)}`,userContext):createUserMessage(input,userContext);
         } chatGPTHistory.push(userContent);
         if (chatGPTHistory.length>10) {
             chatGPTHistory=chatGPTHistory.slice(-10);
