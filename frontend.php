@@ -336,7 +336,7 @@ function populateIpStats(req='') {
 }
 function playlistCollectionHTML() {
     if (requestMode.value=='album_tracklist') {
-        var upn=readPlaylist(); var arl="",plCol=sysDefPlaylistColumns.value; for (iu in upn) {
+        var upn=readPlaylist(); var arl="",plCol=((isMobileUserAgent())?1:sysDefPlaylistColumns.value); for (iu in upn) {
             arl+="<a href='javascript:omniListen(%22"+rfc3986(upn[iu])+"%22,true);'>"+(parseInt(iu)+1)+'. '+upn[iu]+"</a><br>";
         } currentPlaylist.innerHTML=arl;
         currentPlaylist.setAttribute('style','-webkit-columns:'+plCol+';-moz-columns:'+plCol+';columns:'+plCol+';');
@@ -346,8 +346,7 @@ function albumCollectionHTML() {
     if (requestMode.value=='album_tracklist') {
         var epr=ept='',alr=indexAvatars(sysDefAlbum.value);
         var alb=subscription(sysDefAlbum.value),arl="";
-        var albCol=(((sysDefAlbum.value=='avatar')||(sysDefAlbum.value=='pictogram'))?1:sysDefAlbumColumns.value);
-        if (sysDefAlbum.value=='music') {
+        var albCol=((((sysDefAlbum.value=='avatar')||(sysDefAlbum.value=='pictogram'))||(isMobileUserAgent()))?1:sysDefAlbumColumns.value); if (sysDefAlbum.value=='music') {
             for (iu in alb) {
                 elid=CryptoJS.SHA256(alb[iu]).toString();
                 arl+="<a id='albumEl"+elid+"' href='javascript:setdata(%22playlist%22,playlistNext(%22"+rfc3986(alb[iu])+"%22));'>"+(parseInt(iu)+1)+'. '+alb[iu]+"</a><br>";
