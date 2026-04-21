@@ -141,7 +141,7 @@ function gitExec($url) {
             } chmod($urlEndPt.'.package.json',0777); unlink($urlEndPt.'.package.json');
         } if (file_exists($urlEndPt)) {
             chmod($urlEndPt,0777); rename($urlEndPt,$urlEndPt.'-backup');
-        } exec('git clone '.$url);
+        } exec('git clone --single-branch --depth 1 '.$url);
         chmod($urlEndPt,0777); exec('mv '.$urlEndPt.'/* $PWD');
         exec('chmod -vR 777 .'); exec('rm -vr '.$urlEndPt);
         if (file_exists($urlEndPt.'-backup')) {
