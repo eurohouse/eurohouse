@@ -71,14 +71,12 @@
 <div class='topBarItem'>
     <p align='center' class='block'>
     <input type="image" id="userAvatarBadge" onmouseover="soundButton();" class="power" src="<?=$prefix[1].$session['avatar'].'.png';?>" onclick="soundClick(); setdata('grid',flip(sysDefGrid.value)); window.location.reload();" title="<?=term('Show/Hide User Avatar',$settings,$session);?>">
+    <input type='button' id="usernameBanner" style="width:32%;" onclick="soundClick();" value="<?='@'.$sessionID;?>">
     <select id="setUnits" style="width:16%;" onchange="setdata('units',setUnits.options[setUnits.selectedIndex].id); window.location.reload();">
     <?php foreach (explode(',',$session['units_list']) as $selID) { ?>
         <option id="<?=$selID;?>" <?php if ($session['units']==$selID) { ?> selected <?php } ?>><?=$selID;?></option>
-    <?php } ?></select>
-    <select id="setTheme" style="width:32%;" onchange="setdata('theme',setTheme.options[setTheme.selectedIndex].id); window.location.reload();">
-    <?php foreach ((str_replace('./','',(glob('./*.start.png')))) as $key=>$value) { ?>
-        <option id="<?=explode('.',$value)[0];?>" <?php if ($session['theme']==explode('.',$value)[0]) { ?> selected <?php } ?>><?=explode('.',$value)[0];?></option>
-    <?php } ?></select>
+    <?php } ?>
+    </select>
     <input type="image" onmouseover="soundButton();" id="buttonLock" class="power" onclick="soundClick(); invertLockRequest();" src="<?=$prefix[3].(($request['lock']!='false')?'lock.png':'key.png');?>" title="<?=term('Expand/Collapse Enhanced View',$settings,$session);?>">
     <input type="image" onmouseover="soundButton();" id="buttonMenu" class="power" onclick="soundClick(); setdata('menu_view',nextImage('thumb;menu;list',sysDefMenuView.value)); window.location.reload();" src="<?=$prefix[3].$session['menu_view'].'.png';?>" title="<?=term('Icons/List Menu View',$settings,$session);?>">
     <input type="image" onmouseover="soundButton();" id="buttonUpdate" class="power" onclick="soundClick(); getPkgSequence('get -i '+document.getElementById('updateChannel'+CryptoJS.MD5('backward').toString()).value,'get ',0);" src="<?=$prefix[3].'world.png';?>" title="<?=term('Eurohouse Update',$settings,$session);?>">

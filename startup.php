@@ -99,7 +99,8 @@ function world_clock() {
             var effects=jsonarr(sysDefEffects.value);
             $('#sysDefPangram').val(pager(data,5));
             $('#sysDefIpData').val(pager(data,6));
-            var uidm=sysDefSessionID.value; if (authstate()) {
+            var uidm=sysDefSessionID.value;
+            $('#usernameBanner').val(uidm); if (authstate()) {
                 sysDefMsgMaxCount.value=parseInt(Object.keys(filterMessages(sysDefMyMessengerData.value,uidm,sysDefFind.value)).length-1);
                 sysDefMsgCounter.value=(sysDefReadBackwards.value!=0)?((parseInt(sysDefMsgCounter.value)<=0)?sysDefMsgMaxCount.value:(parseInt(sysDefMsgCounter.value)-1)):((parseInt(sysDefMsgCounter.value)>=sysDefMsgMaxCount.value)?0:(parseInt(sysDefMsgCounter.value)+1));
                 sysDefMsgCurrent.value=Object.values(filterMessages(sysDefMyMessengerData.value,uidm,sysDefFind.value,'msg'))[sysDefMsgCounter.value];
@@ -109,8 +110,7 @@ function world_clock() {
                     playAudio(backgroundPlayer,sysDefBackgroundSound.value);
                 } else { pauseAudio(backgroundPlayer); }
             } sysDefPostBackEff.value=sysDefLoop.value;
-            document.querySelector(':root').style.setProperty('--bicolor',alphaHex(sysDefBackColor.value,sysDefOpacity.value));
-            $('#powerButton').attr('src',sysDefPrefix.value+'power.png');
+            document.querySelector(':root').style.setProperty('--bicolor',alphaHex(sysDefBackColor.value,sysDefOpacity.value)); $('#powerButton').attr('src',sysDefPrefix.value+'power.png');
             $('#buttonObserve').attr('src',sysDefPrefix.value+'power.png');
             $('#buttonSpectate').attr('src',sysDefPrefix.value+'unpower.png');
             $('#buttonMenu').attr('src',sysDefPrefix.value+sysDefMenuView.value+'.png');
