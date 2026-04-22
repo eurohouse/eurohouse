@@ -220,7 +220,7 @@ function wallpaper_engine() {
             var faviconList=document.querySelectorAll('link[rel="icon"], link[rel="shortcut icon"]');
             faviconList.forEach(function(element) {
 	            element.setAttribute('href',((isDarkMode())?'ava.':'abc.')+sysDefAvatar.value+'.png');
-            }); $('#userAvatarBadge').attr('src',sysDefAva1Prefix.value+sysDefAvatar.value+'.png');
+            }); $('#userAvatarBadge').attr('src',sysDefAvaPrefix.value+sysDefAvatar.value+'.png');
             <?php if (file_exists('mode.'.$request['mode'].'.php')) { ?>
                 $('#showUsText').html(pager(data,4));
             <?php } else { ?>
