@@ -71,7 +71,7 @@
 <div class='topBarItem'>
     <p align='center' class='block'>
     <input type="image" id="userAvatarBadge" onmouseover="soundButton();" class="power" src="<?=$prefix[1].$session['avatar'].'.png';?>" onclick="soundClick(); setdata('grid',flip(sysDefGrid.value)); window.location.reload();" title="<?=term('Show/Hide User Avatar',$settings,$session);?>">
-    <input type='button' id="usernameBanner" style="width:32%;" onclick="soundClick();" value="<?='@'.$sessionID;?>">
+    <input type='button' id="usernameBanner" style="width:32%;" onclick="soundClick();" value="<?=$sessionID;?>">
     <select id="setUnits" style="width:16%;" onchange="setdata('units',setUnits.options[setUnits.selectedIndex].id); window.location.reload();">
     <?php foreach (explode(',',$session['units_list']) as $selID) { ?>
         <option id="<?=$selID;?>" <?php if ($session['units']==$selID) { ?> selected <?php } ?>><?=$selID;?></option>
