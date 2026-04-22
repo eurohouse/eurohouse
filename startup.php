@@ -58,7 +58,7 @@ function repository() {
         url: 'repository.php',
         success: function(data) {
             $('#sysDefContentData').val(pager(data,0));
-            $('#sysDefModelData').val(pager(data,0));
+            $('#sysDefModelData').val(pager(data,1));
         }
     });
 }
