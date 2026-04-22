@@ -2,7 +2,6 @@ function seekImage(req) {
     if (sysDefBackground.value!='') {
         setdata('background','');
     } else {
-        var mod=jsonarr(sysDefModelData.value);
         var all=jsonarr(sysDefContentData.value);
         var rqs=rqt=md='',rqd=arr=mt=[];
         if ((req.includes('?'))&&(req.split('?').length==2)) {

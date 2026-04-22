@@ -41,7 +41,7 @@
         foreach ($downloadChannel as $key=>$value) { ?>
             <input type='hidden' id='<?='downloadChannel'.md5($key);?>' value="<?=$value;?>">
         <?php } ?>
-        <input type='hidden' id='sysDefPangram' value="">
+        <input type='hidden' id='sysDefPangram' value="<?=$session['pangram_'.(($settings['pangram'][$session['units']])?$settings['pangram'][$session['units']]:$settings['pangram']['default'])];?>">
         <input type='hidden' id='sysDefEffects' value="">
         <input type='hidden' id='sysDefBackload' value="<?=$backloadString;?>">
         <input type='hidden' id='sysDefPrefData' value="<?=valstr($prefix,';',':');?>">
@@ -52,9 +52,8 @@
         <input type='hidden' id='sysDefPic1Prefix' value="<?=$prefix[3];?>">
         <input type='hidden' id='sysDefNullUserName' value="<?=$nulluser;?>">
         <input type='hidden' id='sysDefSuperUserName' value="<?=$superuser;?>">
-        <input type='hidden' id="sysDefModelData" value="">
         <input type='hidden' id="sysDefContentData" value="">
-        <input type='hidden' id="sysDefIpData" value="<?=json_encode($vis,JSON_UNESCAPED_UNICODE);?>">
+        <input type='hidden' id="sysDefIpData" value="<?=json_encode($visitors,JSON_UNESCAPED_UNICODE);?>">
         <input type='hidden' id="sysDefSubscriptions" value="<?=json_encode($userSubscr,JSON_UNESCAPED_UNICODE);?>">
         <input type='hidden' id="sysDefIsSession" value="<?=isAuthorized();?>">
         <input type='hidden' id="sysDefSessionID" value="<?=$sessionID;?>">

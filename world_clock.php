@@ -13,11 +13,11 @@ if ($userData['vintage']!=0) {
         "grains 0.5s steps(1) infinite"
     ];
 } else { $videoArr=["none","none","none","none","none","none"]; }
-$uni=$userData['units']; $vis=visitor(); echo
+$uni=$userData['units']; $visitors=visitor(); echo
 /* ¶ 0 */ timedate(time(),$userData,$userSettings)."\r\n\r\n".
 /* ¶ 1 */ chooseCalendar(time(),$userData,$userSettings)."\r\n\r\n".
 /* ¶ 2 */ hhmmss($alarmInTime)."\r\n\r\n".
 /* ¶ 3 */ timedate(time(),$userData,$userSettings,'hhmmss')."\r\n\r\n".
 /* ¶ 4 */ json_encode($videoArr,JSON_UNESCAPED_UNICODE)."\r\n\r\n".
 /* ¶ 5 */ $userData['pangram_'.(($userSettings['pangram'][$uni])?$userSettings['pangram'][$uni]:$userSettings['pangram']['default'])]."\r\n\r\n".
-/* ¶ 6 */ json_encode($vis,JSON_UNESCAPED_UNICODE);
+/* ¶ 6 */ json_encode($visitors,JSON_UNESCAPED_UNICODE);

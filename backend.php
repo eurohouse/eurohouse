@@ -29,4 +29,5 @@ $portfolioPrefix=(($themePrefix=='iec')||($themePrefix=='iso'))?'org.':((themed(
 $background=dailyWallpaper($session);
 $subscr=fileopen($sessionID.'_files/subscription.json',json_encode($settings['subscriptions']),'create');
 $userSubscr=userSubscr($subscr,$settings['collections'],$prefix);
-$usersList=str_replace('_files','',str_replace('./','',(glob('./*_files',GLOB_ONLYDIR)))); natcasesort($usersList); $vis=visitor($sessionID);
+$usersList=str_replace('_files','',str_replace('./','',(glob('./*_files',GLOB_ONLYDIR)))); natcasesort($usersList);
+$visitors=visitor($sessionID);

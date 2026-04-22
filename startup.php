@@ -58,7 +58,6 @@ function repository() {
         url: 'repository.php',
         success: function(data) {
             $('#sysDefContentData').val(pager(data,0));
-            $('#sysDefModelData').val(pager(data,1));
         }
     });
 }
@@ -96,14 +95,12 @@ function world_clock() {
                 playAudio(alarmPlayer,sysDefAlarmSound.value);
                 setdata('memo','');
             } $('#sysDefEffects').val(pager(data,4));
-            var effects=jsonarr(sysDefEffects.value);
             $('#sysDefPangram').val(pager(data,5));
             $('#sysDefIpData').val(pager(data,6));
-            var uidm=sysDefSessionID.value;
-            $('#usernameBanner').val(uidm); if (authstate()) {
-                sysDefMsgMaxCount.value=parseInt(Object.keys(filterMessages(sysDefMyMessengerData.value,uidm,sysDefFind.value)).length-1);
+            $('#usernameBanner').val(sysDefSessionID.value); if (authstate()) {
+                sysDefMsgMaxCount.value=parseInt(Object.keys(filterMessages(sysDefMyMessengerData.value,sysDefSessionID.value,sysDefFind.value)).length-1);
                 sysDefMsgCounter.value=(sysDefReadBackwards.value!=0)?((parseInt(sysDefMsgCounter.value)<=0)?sysDefMsgMaxCount.value:(parseInt(sysDefMsgCounter.value)-1)):((parseInt(sysDefMsgCounter.value)>=sysDefMsgMaxCount.value)?0:(parseInt(sysDefMsgCounter.value)+1));
-                sysDefMsgCurrent.value=Object.values(filterMessages(sysDefMyMessengerData.value,uidm,sysDefFind.value,'msg'))[sysDefMsgCounter.value];
+                sysDefMsgCurrent.value=Object.values(filterMessages(sysDefMyMessengerData.value,sysDefSessionID.value,sysDefFind.value,'msg'))[sysDefMsgCounter.value];
                 $('#showUsUrgent').text(sysDefMsgCurrent.value);
             } if (sysDefLoop.value!=sysDefPostBackEff.value) {
                 if (sysDefLoop.value!=0) {
@@ -147,15 +144,15 @@ function world_clock() {
                     $('.lowerGap').show(); $('.topbar').show();
                 }
             } document.querySelector(':root').style.setProperty('--marquee-animation','scrollMarquee '+sysDefMarqueeSpeed.value+'s linear infinite');
-            document.querySelector(':root').style.setProperty('--backdrop-filter',effects[0]);
-            document.querySelector(':root').style.setProperty('--backdrop-opacity',effects[1]);
-            document.querySelector(':root').style.setProperty('--overlay-before-bg',effects[2]);
-            document.querySelector(':root').style.setProperty('--overlay-before-ani',effects[3]);
-            document.querySelector(':root').style.setProperty('--overlay-after-bg',effects[4]);
-            document.querySelector(':root').style.setProperty('--overlay-after-ani',effects[5]);
+            document.querySelector(':root').style.setProperty('--backdrop-filter',jsonarr(sysDefEffects.value)[0]);
+            document.querySelector(':root').style.setProperty('--backdrop-opacity',jsonarr(sysDefEffects.value)[1]);
+            document.querySelector(':root').style.setProperty('--overlay-before-bg',jsonarr(sysDefEffects.value)[2]);
+            document.querySelector(':root').style.setProperty('--overlay-before-ani',jsonarr(sysDefEffects.value)[3]);
+            document.querySelector(':root').style.setProperty('--overlay-after-bg',jsonarr(sysDefEffects.value)[4]);
+            document.querySelector(':root').style.setProperty('--overlay-after-ani',jsonarr(sysDefEffects.value)[5]);
             if (requestMode.value=='messenger') {
                 if (authstate()) {
-                    msgBox.innerHTML='<p>'+messengerHTML(sysDefMyMessengerData.value,uidm,sysDefFind.value)+'</p>';
+                    msgBox.innerHTML='<p>'+messengerHTML(sysDefMyMessengerData.value,sysDefSessionID.value,sysDefFind.value)+'</p>';
                 }
             } else if (requestMode.value=='date_and_time') {
                 hourInd.style.width=(100*((pager(data,3)).split(':')[0]/23))+'%';
@@ -222,7 +219,6 @@ function wallpaper_engine() {
         url: 'wallpaper_engine.php',
         success: function(data) {
             $('body').css('background-image','url('+pager(data,1)+')');
-            var uidm=sysDefSessionID.value;
             document.querySelector(':root').style.setProperty('--position',sysDefPosition.value);
             var faviconList=document.querySelectorAll('link[rel="icon"], link[rel="shortcut icon"]');
             faviconList.forEach(function(element) {
@@ -236,7 +232,7 @@ function wallpaper_engine() {
                 $('#articleLink').text(pager(data,5));
                 $('#articleLink').attr('href',pager(data,5));
                 $('#showingAvatarNow').attr('src',pager(data,2));
-            <?php } ?> document.title=pager(data,0)+' (@'+uidm+') · Eurohouse UX/UI';
+            <?php } ?> document.title=pager(data,0)+' (@'+sysDefSessionID.value+') · Eurohouse UX/UI';
         }
     });
 }
