@@ -366,7 +366,7 @@ function albumCollectionHTML() {
                 arl+="<a href='javascript:omniPath("+epr+".collection.json%22,%22%22,%22false%22);'>"+ept+"</a><br>";
             }
         } else if (sysDefAlbum.value=='avatar') {
-            epr=sysDefAva1Prefix.value; for (iu in alr) {
+            epr=sysDefAvaPrefix.value; for (iu in alr) {
                 arl+="<input type='image' class='power' src='"+epr+alr[iu]+".png' title='"+alr[iu]+"' onclick='setdata(&#34;avatar&#34;,&#34;"+alr[iu]+"&#34;);'>";
             }
         } else if (sysDefAlbum.value=='pictogram') {

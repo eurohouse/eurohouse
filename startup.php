@@ -44,11 +44,8 @@ function subscriptions() {
         url: 'subscriptions.php',
         success: function(data) {
             $('#sysDefPrefData').val(pager(data,0));
+            sysDefAvaPrefix.value=(sysDefPrefData.value).split(',')[1];
             sysDefPrefix.value=(sysDefPrefData.value).split(',')[3];
-            sysDefAva0Prefix.value=(sysDefPrefData.value).split(',')[0];
-            sysDefAva1Prefix.value=(sysDefPrefData.value).split(',')[1];
-            sysDefPic0Prefix.value=(sysDefPrefData.value).split(',')[2];
-            sysDefPic1Prefix.value=(sysDefPrefData.value).split(',')[3];
             $('#sysDefSubscriptions').val(pager(data,1));
         }
     });

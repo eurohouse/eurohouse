@@ -25,8 +25,7 @@ foreach ($settings['initialize']['GET'] as $requestID=>$requestValue) { $request
 foreach ($settings['initialize']['POST'] as $requestID=>$requestValue) { $postRequest[$requestID]=($_POST[$requestID])?$_POST[$requestID]:$requestValue; } wasFileRequest();
 $prefix=prefixes($session); $themePrefix=(file_exists($session['theme'].'.package.json'))?$session['theme'].'.':$prefix[3];
 $ersatzPrefix=(($themePrefix=='iec')||($themePrefix=='iso'))?'org.':((themed($themePrefix,'head'))?$themePrefix:'org.');
-$portfolioPrefix=(($themePrefix=='iec')||($themePrefix=='iso'))?'org.':((themed($themePrefix,'torso,left0,left90,left180,left270,right0,right90,right180,right270'))?$themePrefix:'org.');
-$background=dailyWallpaper($session);
+$portfolioPrefix=(($themePrefix=='iec')||($themePrefix=='iso'))?'org.':((themed($themePrefix,'torso,left0,left90,left180,left270,right0,right90,right180,right270'))?$themePrefix:'org.'); $background=dailyWallpaper($session);
 $subscr=fileopen($sessionID.'_files/subscription.json',json_encode($settings['subscriptions']),'create');
 $userSubscr=userSubscr($subscr,$settings['collections'],$prefix);
 $usersList=str_replace('_files','',str_replace('./','',(glob('./*_files',GLOB_ONLYDIR)))); natcasesort($usersList);

@@ -572,9 +572,7 @@ function prefixes(array $prof): array {
         (isColorLight($prof['back_text_color']))?'ava.':'abc.',
         (isColorLight($prof['fore_text_color']))?'ava.':'abc.',
         (isColorLight($prof['back_text_color']))?'iso.':'iec.',
-        (isColorLight($prof['fore_text_color']))?'iso.':'iec.',
-        (isColorLight($prof['back_text_color']))?'rtd.':'rtc.',
-        (isColorLight($prof['fore_text_color']))?'rtd.':'rtc.'
+        (isColorLight($prof['fore_text_color']))?'iso.':'iec.'
     ];
 }
 function snakeToSpaces($str) {

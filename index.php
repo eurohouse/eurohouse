@@ -45,11 +45,8 @@
         <input type='hidden' id='sysDefEffects' value="">
         <input type='hidden' id='sysDefBackload' value="<?=$backloadString;?>">
         <input type='hidden' id='sysDefPrefData' value="<?=valstr($prefix,';',':');?>">
+        <input type='hidden' id='sysDefAvaPrefix' value="<?=$prefix[1];?>">
         <input type='hidden' id='sysDefPrefix' value="<?=$prefix[3];?>">
-        <input type='hidden' id='sysDefAva0Prefix' value="<?=$prefix[0];?>">
-        <input type='hidden' id='sysDefAva1Prefix' value="<?=$prefix[1];?>">
-        <input type='hidden' id='sysDefPic0Prefix' value="<?=$prefix[2];?>">
-        <input type='hidden' id='sysDefPic1Prefix' value="<?=$prefix[3];?>">
         <input type='hidden' id='sysDefNullUserName' value="<?=$nulluser;?>">
         <input type='hidden' id='sysDefSuperUserName' value="<?=$superuser;?>">
         <input type='hidden' id="sysDefContentData" value="">

@@ -6,16 +6,14 @@ $userData=fileopen($cookie.'_files/profile.json',json_encode($userSettings['defa
 $showFilename=dailyWallpaper($userData); $uni=$userData['units'];
 $cont=exemplar(str_replace('./','',(glob('./*.contents.json'))));
 $exem=exemplar(str_replace('./','',(glob('./*.models.json'))));
-$pref=prefixes($userData);
 if (isset($cont[$showFilename])) {
-    $ent=$exem[$cont[$showFilename]];
-    $mod=modelcard($cont[$showFilename],$cont,$exem,$userData,$userSettings); $showHead=$mod['title'];
-    $showBody=$mod['text']; $showURL=$mod['url'];
-    $assignAvatar=$pref[0].$mod['avatar'].'.png';
+    $card=modelcard($cont[$showFilename],$cont,$exem,$userData,$userSettings);
+    $showHead=$card['title']; $showBody=$card['text']; $showURL=$card['url'];
+    $assignAvatar=prefixes($userData)[0].$card['avatar'].'.png';
 } else {
     $showHead=localizedTitle($userData,'title');
     $showBody=titleCommand('[codename:]',$userSettings,$userData).titleCommand('[project|title]',$userSettings,$userData); $showURL="";
-    $assignAvatar=$pref[0].$userData['avatar'].'.png';
+    $assignAvatar=prefixes($userData)[0].$userData['avatar'].'.png';
 } echo
 /* ¶ 0 */ localizedTitle($userData,'title')."\r\n\r\n".
 /* ¶ 1 */ $showFilename."\r\n\r\n".
