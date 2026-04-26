@@ -13,10 +13,10 @@
 <table id="ipTable" style="width:100%;">
 <thead>
     <tr>
-        <th style="width:4%;">
+        <th style="width:2%;">
             <?=term('Country',$settings,$session);?>
         </th>
-        <th style="width:8%;">
+        <th style="width:10%;">
             <a href="javascript:SortTable(1,'T','','ipTable');">
                 <?=term('IP Address',$settings,$session);?>
             </a>
