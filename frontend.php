@@ -319,10 +319,9 @@ function populateIpStats(req='') {
             if (countryIso) {
                 const img=document.createElement('img');
                 img.src=`Flag.${countryIso.toUpperCase()}.png`;
-                img.style.height='80px'; countryCell.appendChild(img);
+                img.style.height='90%'; countryCell.appendChild(img);
             } row.insertCell().textContent=ipElem;
-            row.insertCell().textContent=ipTab[ipElem]['os'];
-            row.insertCell().textContent=ipTab[ipElem]['browser'];
+            row.insertCell().textContent=ipTab[ipElem]['platform'];
             row.insertCell().textContent=ipTab[ipElem]['user'];
         } const tfoot=document.createElement('tfoot');
         tfoot.id='ipFoot'; const footerRow=tfoot.insertRow();
