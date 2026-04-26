@@ -319,7 +319,7 @@ function populateIpStats(req='') {
             if (countryIso) {
                 const img=document.createElement('img');
                 img.src=`Flag.${countryIso.toUpperCase()}.png`;
-                img.style.height='32px';
+                img.style.height='100%'; img.style.width='auto';
                 img.alt=`Flag of ${countryIso}`;
                 img.onerror=()=>{
                     img.style.display='none';
