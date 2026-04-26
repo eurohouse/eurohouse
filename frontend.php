@@ -312,8 +312,7 @@ function populateIpStats(req='') {
                     }
                 }
             }
-        } const count=Object.keys(ipTab).length;
-        Object.keys(ipTab).forEach(ipElem=>{
+        } Object.keys(ipTab).forEach(ipElem=>{
             const row=tableBody.insertRow();
             const countryCell=row.insertCell();
             const countryIso=ipTab[ipElem]['country'];
