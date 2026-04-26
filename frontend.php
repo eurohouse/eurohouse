@@ -319,13 +319,11 @@ function populateIpStats(req='') {
             if (countryIso) {
                 const img=document.createElement('img');
                 img.src=`Flag.${countryIso.toUpperCase()}.png`;
-                img.style.height='100%'; img.style.width='auto';
-                img.style.position='relative';
-                img.style.left='0'; img.style.top='0';
+                img.classList.add('flag');
                 img.alt=`Flag of ${countryIso}`;
                 img.onerror=()=>{
                     img.style.display='none';
-                    countryCell.textContent = countryIso;
+                    countryCell.textContent=countryIso;
                 }; countryCell.appendChild(img);
             } else {
                 countryCell.textContent='N/A';

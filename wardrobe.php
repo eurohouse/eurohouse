@@ -133,6 +133,14 @@ body {
 .grid-label {
     margin: 0; padding: 0; position: relative;
 }
+.flag {
+    position: relative;
+    height: 100%;
+    width: auto;
+    max-height: 64px;
+    display: block;
+    margin: 0 auto;
+}
 @media (max-width: 1880px) {
     .grid-container {
         grid-template-columns: repeat(7,1fr);
