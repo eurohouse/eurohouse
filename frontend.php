@@ -312,18 +312,26 @@ function populateIpStats(req='') {
                     }
                 }
             }
-        } count=Object.keys(ipTab).length; for (const ipElem in ipTab) {
+        } const count=Object.keys(ipTab).length;
+        Object.keys(ipTab).forEach(ipElem=>{
             const row=tableBody.insertRow();
             const countryCell=row.insertCell();
             const countryIso=ipTab[ipElem]['country'];
             if (countryIso) {
                 const img=document.createElement('img');
                 img.src=`Flag.${countryIso.toUpperCase()}.png`;
-                img.style.height='90%'; countryCell.appendChild(img);
+                img.style.height='32px';
+                img.alt=`Flag of ${countryIso}`;
+                img.onerror=()=>{
+                    img.style.display='none';
+                    countryCell.textContent = countryIso;
+                }; countryCell.appendChild(img);
+            } else {
+                countryCell.textContent='N/A';
             } row.insertCell().textContent=ipElem;
             row.insertCell().textContent=ipTab[ipElem]['platform'];
             row.insertCell().textContent=ipTab[ipElem]['user'];
-        } const tfoot=document.createElement('tfoot');
+        }); const tfoot=document.createElement('tfoot');
         tfoot.id='ipFoot'; const footerRow=tfoot.insertRow();
         const footerCell=footerRow.insertCell(); footerCell.colSpan=5;
         footerCell.style.textAlign='center';
