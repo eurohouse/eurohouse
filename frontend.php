@@ -320,6 +320,8 @@ function populateIpStats(req='') {
                 const img=document.createElement('img');
                 img.src=`Flag.${countryIso.toUpperCase()}.png`;
                 img.style.height='100%'; img.style.width='auto';
+                img.style.position='relative';
+                img.style.left='0'; img.style.top='0';
                 img.alt=`Flag of ${countryIso}`;
                 img.onerror=()=>{
                     img.style.display='none';
