@@ -329,7 +329,8 @@ function populateIpStats(req='') {
             } else {
                 countryCell.textContent='N/A';
             } row.insertCell().textContent=ipElem;
-            row.insertCell().textContent=ipTab[ipElem]['platform'];
+            row.insertCell().textContent=ipTab[ipElem]['os'];
+            row.insertCell().textContent=ipTab[ipElem]['browser'];
             row.insertCell().textContent=ipTab[ipElem]['user'];
         }); const tfoot=document.createElement('tfoot');
         tfoot.id='ipFoot'; const footerRow=tfoot.insertRow();
