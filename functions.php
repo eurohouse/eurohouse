@@ -14,7 +14,7 @@ function valarr(string $str,$y='; ',$x=': '): array {
 }
 function visitor($username='') {
     $vis=fileopen('visitors.json',json_encode($settings['ip_address']),'create'); if ($username!='') {
-        $ip=$_SERVER['REMOTE_ADDR']??'127.0.0.1';
+        $ip=$_SERVER['REMOTE_ADDR']??'127.0.0.1'; $srv=$_SERVER['SERVER_ADDR']??'127.0.0.1';
         $ua=$_SERVER['HTTP_USER_AGENT']??''; $system='Unknown';
         if (preg_match('/Windows NT 10.0/i',$ua)) $system='Windows 10';
         elseif (preg_match('/Windows NT 6.3/i',$ua)) $system='Windows 8.1';
@@ -35,9 +35,9 @@ function visitor($username='') {
         $country='UN'; $context=stream_context_create(['http'=>['timeout'=>5]]);
         $response=@file_get_contents("https://ipapi.co/$ip/country_code/",false,$context);
         if ($response!==false) { $country=trim($response); }
-        $vis[$_SERVER['REMOTE_ADDR']]=[
-            'user'=>$username,'country'=>$country,
-            'platform'=>$system.' '.$browser
+        $vis[$username.'@'.$ip]=[
+            'country'=>$country,'remote_addr'=>$ip,'server_addr'=>$srv,
+            'platform'=>$system.' '.$browser,'username'=>$username,'system'=>$system,'browser'=>$browser
         ]; if (isset($vis[0])) { unset($vis[0]); }
         file_put_contents('visitors.json',json_encode($vis,JSON_UNESCAPED_UNICODE)); chmod('visitors.json',0777);
     } return $vis;

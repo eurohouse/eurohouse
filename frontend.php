@@ -307,7 +307,7 @@ function populateIpStats(req='') {
                 }
             } else {
                 for (const ipElem in ipTab) {
-                    if (req.toString()!=ipTab[ipElem]['user']) {
+                    if (req.toString()!=ipTab[ipElem]['username']) {
                         delete ipTab[ipElem];
                     }
                 }
@@ -329,10 +329,9 @@ function populateIpStats(req='') {
                 countryCell.textContent='N/A';
             } row.insertCell().textContent=ipElem;
             row.insertCell().textContent=ipTab[ipElem]['platform'];
-            row.insertCell().textContent=ipTab[ipElem]['user'];
         }); const tfoot=document.createElement('tfoot');
         tfoot.id='ipFoot'; const footerRow=tfoot.insertRow();
-        const footerCell=footerRow.insertCell(); footerCell.colSpan=4;
+        const footerCell=footerRow.insertCell(); footerCell.colSpan=3;
         footerCell.style.textAlign='center';
         footerCell.style.fontWeight='normal';
         footerCell.style.padding='10px';

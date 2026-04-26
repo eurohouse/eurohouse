@@ -16,19 +16,14 @@
         <th style="width:2%;">
             <?=term('Country',$settings,$session);?>
         </th>
-        <th style="width:8%;">
+        <th style="width:10%;">
             <a href="javascript:SortTable(1,'T','','ipTable');">
                 <?=term('Address',$settings,$session);?>
             </a>
         </th>
-        <th style="width:10%;">
+        <th style="width:12%;">
             <a href="javascript:SortTable(2,'T','','ipTable');">
                 <?=term('Platform',$settings,$session);?>
-            </a>
-        </th>
-        <th style="width:6%;">
-            <a href="javascript:SortTable(3,'T','','ipTable');">
-                <?=term('Username',$settings,$session);?>
             </a>
         </th>
     </tr>
