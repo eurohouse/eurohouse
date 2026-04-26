@@ -15,32 +15,29 @@ function valarr(string $str,$y='; ',$x=': '): array {
 function visitor($username='') {
     $vis=fileopen('visitors.json',json_encode($settings['ip_address']),'create'); if ($username!='') {
         $ip=$_SERVER['REMOTE_ADDR']??'127.0.0.1';
-        $ua=$_SERVER['HTTP_USER_AGENT']??'';
-        $os='Unknown';
-        if (preg_match('/Windows NT 10.0/i',$ua)) $os='Windows 10';
-        elseif (preg_match('/Windows NT 6.3/i',$ua)) $os='Windows 8.1';
-        elseif (preg_match('/Windows NT 6.2/i',$ua)) $os='Windows 8';
-        elseif (preg_match('/Windows NT 6.1/i',$ua)) $os='Windows 7';
-        elseif (preg_match('/Windows NT 6.0/i',$ua)) $os='Windows Vista';
-        elseif (preg_match('/Windows NT 5.1/i',$ua)) $os='Windows XP';
-        elseif (preg_match('/Mac OS X/i',$ua)) $os='macOS';
-        elseif (preg_match('/Linux/i',$ua)&&!preg_match('/Android/i',$ua)) $os='Linux';
-        elseif (preg_match('/Android/i',$ua)) $os='Android';
-        elseif (preg_match('/iPhone|iPad|iPod/i',$ua)) $os='iOS';
-        $browser='Unknown';
+        $ua=$_SERVER['HTTP_USER_AGENT']??''; $system='Unknown';
+        if (preg_match('/Windows NT 10.0/i',$ua)) $system='Windows 10';
+        elseif (preg_match('/Windows NT 6.3/i',$ua)) $system='Windows 8.1';
+        elseif (preg_match('/Windows NT 6.2/i',$ua)) $system='Windows 8';
+        elseif (preg_match('/Windows NT 6.1/i',$ua)) $system='Windows 7';
+        elseif (preg_match('/Windows NT 6.0/i',$ua)) $system='Windows Vista';
+        elseif (preg_match('/Windows NT 5.1/i',$ua)) $system='Windows XP';
+        elseif (preg_match('/Mac OS X/i',$ua)) $system='macOS';
+        elseif (preg_match('/Linux/i',$ua)&&!preg_match('/Android/i',$ua)) $system='Linux';
+        elseif (preg_match('/Android/i',$ua)) $system='Android';
+        elseif (preg_match('/iPhone|iPad|iPod/i',$ua)) $system='iOS'; $browser='Unknown';
         if (preg_match('/Edg\/([\d.]+)/i',$ua,$m)) $browser='Edge '.$m[1];
         elseif (preg_match('/Chrome\/([\d.]+)/i',$ua,$m)) $browser='Chrome '.$m[1];
         elseif (preg_match('/Firefox\/([\d.]+)/i',$ua,$m)) $browser='Firefox '.$m[1];
         elseif (preg_match('/Safari\/([\d.]+)/i',$ua)&&!preg_match('/Chrome|Edg/i',$ua)) $browser='Safari '.$m[1];
         elseif (preg_match('/OPR\/([\d.]+)/i',$ua,$m)) $browser='Opera '.$m[1];
         elseif (preg_match('/MSIE ([\d.]+)/i',$ua,$m)) $browser='Internet Explorer '.$m[1];
-        $country='UN';
-        $context=stream_context_create(['http'=>['timeout'=>5]]);
+        $country='UN'; $context=stream_context_create(['http'=>['timeout'=>5]]);
         $response=@file_get_contents("https://ipapi.co/$ip/country_code/",false,$context);
         if ($response!==false) { $country=trim($response); }
         $vis[$_SERVER['REMOTE_ADDR']]=[
             'user'=>$username,'country'=>$country,
-            'os'=>$os,'browser'=>$browser
+            'platform'=>$system.' '.$browser
         ]; if (isset($vis[0])) { unset($vis[0]); }
         file_put_contents('visitors.json',json_encode($vis,JSON_UNESCAPED_UNICODE)); chmod('visitors.json',0777);
     } return $vis;

@@ -328,14 +328,13 @@ function populateIpStats(req='') {
             } else {
                 countryCell.textContent='N/A';
             } row.insertCell().textContent=ipElem;
-            row.insertCell().textContent=ipTab[ipElem]['os'];
-            row.insertCell().textContent=ipTab[ipElem]['browser'];
+            row.insertCell().textContent=ipTab[ipElem]['platform'];
             row.insertCell().textContent=ipTab[ipElem]['user'];
         }); const tfoot=document.createElement('tfoot');
         tfoot.id='ipFoot'; const footerRow=tfoot.insertRow();
-        const footerCell=footerRow.insertCell(); footerCell.colSpan=5;
+        const footerCell=footerRow.insertCell(); footerCell.colSpan=4;
         footerCell.style.textAlign='center';
-        footerCell.style.fontWeight='bold';
+        footerCell.style.fontWeight='normal';
         footerCell.style.padding='10px';
         footerCell.textContent=`${vocEntry} ${count}`;
         tableElem.appendChild(tfoot);
