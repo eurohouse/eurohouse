@@ -21,17 +21,17 @@
                 <th style="width:8%;">
                     <?=term('Location',$settings,$session);?>
                 </th>
-                <th style="width:20%;">
+                <th style="width:16%;">
                     <a href="javascript:SortTable(1,'T','','weatherTable');">
                         <?=term('Coordinates',$settings,$session);?>
                     </a>
                 </th>
-                <th style="width:20%;">
+                <th style="width:10%;">
                     <a href="javascript:SortTable(2,'T','','weatherTable');">
                         <?=term('Temperature',$settings,$session);?>
                     </a>
                 </th>
-                <th style="width:20%;">
+                <th style="width:5%;">
                     <a href="javascript:SortTable(3,'T','','weatherTable');">
                         <?=term('Cloud Cover',$settings,$session);?>
                     </a>
