@@ -15,7 +15,6 @@ function valarr(string $str,$y='; ',$x=': '): array {
 function visitor($username='') {
     $visitors=fileopen('visitors.json',json_encode($settings['ip_address']),'create');
     if ($username!='') {
-        $ip=getWebAddr(); $srv=getWebAddr('server');
         $serverAddr=$_SERVER['SERVER_ADDR']??'::1';
         $remoteAddr=$_SERVER['REMOTE_ADDR']??'::1';
         $serverPort=$_SERVER['SERVER_PORT']??'80';
