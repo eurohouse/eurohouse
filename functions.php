@@ -636,8 +636,8 @@ function wordfx($word,$sup,array $voc,array $ses) {
             case '[uname -r]': $res=php_uname('r'); break;
             case '[uname -v]': $res=php_uname('v'); break;
             case '[uname -m]': $res=php_uname('m'); break;
-            case '[server_ip]': $res=getCurrentWebAddr('server'); break;
-            case '[remote_ip]': $res=getCurrentWebAddr(); break;
+            case '[server_addr]': $res=getCurrentWebAddr('server'); break;
+            case '[remote_addr]': $res=getCurrentWebAddr(); break;
             case '[server_sock]': $res=getCurrentWebAddr('server','socket'); break;
             case '[remote_sock]': $res=getCurrentWebAddr('client','socket'); break;
             case '[free_disk_space]':

@@ -7,8 +7,8 @@ if ($request['lock']!='false') {
     if ((path_root($request['input']))||($request['input']=='')) {
         $objFile=[
             'free_disk_space'=>sizestr(disk_free_space('/'),$settings['locale']['size'],$session['units']),
-            'server_ip'=>getCurrentWebAddr('server'),
-            'remote_ip'=>getCurrentWebAddr(),
+            'server_addr'=>getCurrentWebAddr('server'),
+            'remote_addr'=>getCurrentWebAddr(),
             'server_sock'=>getCurrentWebAddr('server','socket'),
             'remote_sock'=>getCurrentWebAddr('client','socket'),
             'uname'=>[
