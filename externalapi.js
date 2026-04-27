@@ -41,7 +41,7 @@ async function populateWeatherTable() {
 }
 async function getWeather(location) {
     const isoCode=sysDefUnits.value; const apiKey='YCHEZC3SXT8YSGV5MHFJHFXCY';
-    const response=null; try {
+    let response=null; try {
         if ((isoCode=='US')||(isoCode=='LR')||(isoCode=='MM')) {
             response=await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=us&lang=en&key=${apiKey}`);
         } else if ((isoCode=='GB')||(isoCode=='UK')) {
