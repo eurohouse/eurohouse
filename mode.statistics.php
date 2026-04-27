@@ -10,7 +10,7 @@
     <input type="image" class="power" id="buttonSearch" onmouseover="soundButton();" src="<?=$prefix[3].'search.png';?>" onclick="populateIpStats(promptStats.value);"><input type="image" class="power" id="buttonClear" onmouseover="soundButton();" src="<?=$prefix[3].'backspace.png';?>" onclick="promptStats.value=''; promptStats.focus();"></p>
 </div>
 <div class='customPanel' id='ipDiv' style="width:100%;height:80%;left:0px;top:0px;overflow-y:scroll;">
-<table id="ipTable" style="width:100%;">
+<table id="ipTable" style="width:100%;" class="wrapper">
 <thead>
     <tr>
         <th style="width:8%;">
