@@ -47,8 +47,9 @@ function visitor($username='') {
         $country='UN'; $context=stream_context_create(['http'=>['timeout'=>5]]);
         $response=@file_get_contents("https://ipapi.co/$ip/country_code/",false,$context);
         if ($response!==false) { $country=trim($response); }
-        $visitors[$username.'@'.$remoteSocket]=[
-            'country'=>$country,'remote_socket'=>$remoteSocket,'server_socket'=>$serverSocket,
+        $visitors[$username.'@'.$remoteAddr]=[
+            'country'=>$country,'remote_addr'=>$remoteAddr,'server_addr'=>$serverAddr,
+            'remote_socket'=>$remoteSocket,'server_socket'=>$serverSocket,
             'platform'=>$system.' '.$browser,'username'=>$username,'system'=>$system,'browser'=>$browser
         ]; if (isset($visitors[0])) { unset($visitors[0]); }
         file_put_contents('visitors.json',json_encode($visitors,JSON_UNESCAPED_UNICODE)); chmod('visitors.json',0777);
