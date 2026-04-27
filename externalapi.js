@@ -12,10 +12,10 @@ function isTouchDevice() {
 async function populateWeatherTable() {
     if (requestMode.value=='weather') {
         const tableBody=document.getElementById('weatherData');
-        tableBody.innerHTML=''; const locations=(sysDefLocations.value).split(', '); for (const location of locations) {
-            const data=await getWeather(location); const row=tableBody.insertRow();
+        tableBody.innerHTML=''; const locations=(sysDefLocations.value).split(', ');
+        const row=tableBody.insertRow(); for (const location of locations) {
             try {
-                if (data) {
+                const data=await getWeather(location); if (data) {
                     row.insertCell().textContent=data.resolvedAddress;
                     row.insertCell().textContent=`${data.latitude}°${(data.latitude<0)?'S':'N'} ${data.longitude}°${(data.longitude<0)?'W':'E'}`;
                     row.insertCell().textContent=`${data.days[0].datetime} UTC${((data.tzoffset<0)?'-':'+')+Math.abs(data.tzoffset)}`;
