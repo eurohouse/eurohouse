@@ -30,7 +30,7 @@
 </thead>
 <tbody id="ipData"></tbody>
 <tfoot id="ipFoot">
-    <tr><th style="width:25%;" colspan="5">
+    <tr><th style="width:25%;" colspan="3">
         <?=term('Total elements:',$settings,$session).' 0';?>
     </th></tr>
 </tfoot>

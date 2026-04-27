@@ -11,8 +11,14 @@ function isTouchDevice() {
 }
 async function populateWeatherTable() {
     if (requestMode.value=='weather') {
+        let vocEntry=localizedVocWord();
+        const tableElem=document.getElementById('weatherTable');
         const tableBody=document.getElementById('weatherData');
-        tableBody.innerHTML=''; const locations=(sysDefLocations.value).split(', ');
+        tableBody.innerHTML='';
+        const existingTfoot=document.getElementById('weatherFoot');
+        if (existingTfoot) { existingTfoot.remove(); }
+        const locations=(sysDefLocations.value).split(', ');
+        let count=locations.length;
         for (const location of locations) {
              const row=tableBody.insertRow(); try {
                 const data=await getWeather(location); if (data) {
@@ -31,7 +37,14 @@ async function populateWeatherTable() {
                 row.insertCell().colSpan=5;
                 row.insertCell().textContent='Error fetching data';
             }
-        }
+        } const tfoot=document.createElement('tfoot');
+        tfoot.id='weatherFoot'; const footerRow=tfoot.insertRow();
+        const footerCell=footerRow.insertCell(); footerCell.colSpan=5;
+        footerCell.style.textAlign='center';
+        footerCell.style.fontWeight='normal';
+        footerCell.style.padding='10px';
+        footerCell.textContent=`${vocEntry} ${count}`;
+        tableElem.appendChild(tfoot);
     }
 }
 async function getWeather(location) {

@@ -44,5 +44,10 @@
             </tr>
         </thead>
         <tbody id="weatherData"></tbody>
+        <tfoot id="weatherFoot">
+            <tr><th style="width:25%;" colspan="5">
+                <?=term('Total elements:',$settings,$session).' 0';?>
+            </th></tr>
+        </tfoot>
     </table>
 </div>
