@@ -40,9 +40,7 @@ async function populateWeatherTable() {
     }
 }
 async function getWeather(location) {
-    const isoCode=sysDefSessionUnits.value;
-    const apiKey='YCHEZC3SXT8YSGV5MHFJHFXCY';
-    try {
+    const isoCode=sysDefUnits.value; const apiKey='YCHEZC3SXT8YSGV5MHFJHFXCY'; try {
         if ((isoCode=='US')||(isoCode=='LR')||(isoCode=='MM')) {
             const response=await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=us&lang=en&key=${apiKey}`);
         } else if ((isoCode=='GB')||(isoCode=='UK')) {
