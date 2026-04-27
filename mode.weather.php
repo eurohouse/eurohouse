@@ -18,16 +18,29 @@
     <table id="weatherTable" style="width:100%;">
         <thead>
             <tr>
-                <th><?=term('Location',$settings,$session);?></th>
-                <th><?=term('Coordinates',$settings,$session);?></th>
-                <th><?=term('Date/Time',$settings,$session);?></th>
-                <th><?=term('Temperature',$settings,$session);?></th>
-                <th><?=term('Precipitation',$settings,$session);?></th>
-                <th><?=term('Wind Speed',$settings,$session);?></th>
-                <th><?=term('Pressure',$settings,$session);?></th>
-                <th><?=term('Cloud Cover',$settings,$session);?></th>
-                <th><?=term('Sunrise/Sunset',$settings,$session);?></th>
-                <th><?=term('Conditions',$settings,$session);?></th>
+                <th style="width:8%;">
+                    <?=term('Location',$settings,$session);?>
+                </th>
+                <th style="width:20%;">
+                    <a href="javascript:SortTable(1,'T','','weatherTable');">
+                        <?=term('Coordinates',$settings,$session);?>
+                    </a>
+                </th>
+                <th style="width:20%;">
+                    <a href="javascript:SortTable(2,'T','','weatherTable');">
+                        <?=term('Temperature',$settings,$session);?>
+                    </a>
+                </th>
+                <th style="width:20%;">
+                    <a href="javascript:SortTable(3,'T','','weatherTable');">
+                        <?=term('Cloud Cover',$settings,$session);?>
+                    </a>
+                </th>
+                <th style="width:20%;">
+                    <a href="javascript:SortTable(4,'T','','weatherTable');">
+                        <?=term('Conditions',$settings,$session);?>
+                    </a>
+                </th>
             </tr>
         </thead>
         <tbody id="weatherData"></tbody>

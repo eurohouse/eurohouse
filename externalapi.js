@@ -18,22 +18,17 @@ async function populateWeatherTable() {
                 const data=await getWeather(location); if (data) {
                     row.insertCell().textContent=data.resolvedAddress;
                     row.insertCell().textContent=`${data.latitude}°${(data.latitude<0)?'S':'N'} ${data.longitude}°${(data.longitude<0)?'W':'E'}`;
-                    row.insertCell().textContent=`${data.days[0].datetime} UTC${((data.tzoffset<0)?'-':'+')+Math.abs(data.tzoffset)}`;
-                    row.insertCell().textContent=`${data.days[0].tempmin}~${data.days[0].temp}~${data.days[0].tempmax}°C`;
-                    row.insertCell().textContent=`${data.days[0].precip}mm`;
-                    row.insertCell().textContent=`${data.days[0].windspeed}km/h`;
-                    row.insertCell().textContent=`${data.days[0].pressure}mmHg`;
+                    row.insertCell().textContent=`${data.days[0].tempmin} ${data.days[0].temp} ${data.days[0].tempmax}°C`;
                     row.insertCell().textContent=`${data.days[0].cloudcover}%`;
-                    row.insertCell().textContent=`${data.days[0].sunrise}~${data.days[0].sunset}`;
                     row.insertCell().textContent=data.days[0].conditions;
                 } else {
                     row.insertCell().textContent=location;
-                    row.insertCell().colSpan=9;
+                    row.insertCell().colSpan=5;
                     row.insertCell().textContent='Error fetching data';
                 }
             } catch (error) {
                 console.error(`Error fetching weather for ${location}:`,error); row.insertCell().textContent=location;
-                row.insertCell().colSpan=9;
+                row.insertCell().colSpan=5;
                 row.insertCell().textContent='Error fetching data';
             }
         }
