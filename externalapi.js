@@ -41,9 +41,20 @@ async function populateWeatherTable() {
     }
 }
 async function getWeather(location) {
+    const isoCode=sysDefSessionUnits.value;
+    const apiKey='YCHEZC3SXT8YSGV5MHFJHFXCY';
     try {
-        const response=await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=metric&key=YCHEZC3SXT8YSGV5MHFJHFXCY`);
-        if (!response.ok) {
+        if ((isoCode=='US')||(isoCode=='LR')||(isoCode=='MM')) {
+            const response=await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=us&lang=en&key=${apiKey}`);
+        } else if ((isoCode=='GB')||(isoCode=='UK')) {
+            const response=await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=uk&lang=en&key=${apiKey}`);
+        } else if ((isoCode=='UN')||(isoCode=='EU')||(isoCode=='AQ')) {
+            const response=await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=base&lang=en&key=${apiKey}`);
+        } else if ((isoCode=='AE')||(isoCode=='SA')||(isoCode=='IQ')||(isoCode=='IR')||(isoCode=='KW')||(isoCode=='QA')) {
+            const response=await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=metric&lang=en&key=${apiKey}`);
+        } else {
+            const response=await fetch(`https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=metric&lang=${isoCode.toLowerCase()}&key=${apiKey}`);
+        } if (!response.ok) {
             throw new Error('Error getting data');
         } return await response.json();
     } catch (error) {
