@@ -12,9 +12,23 @@ function valarr(string $str,$y='; ',$x=': '): array {
         $newArr[$newStr[0]]=$newStr[1];
     } return $newArr;
 }
+function getWebAddr($mode='client') {
+    $serverAddr=$_SERVER['SERVER_ADDR']??'::1';
+    $remoteAddr=$_SERVER['REMOTE_ADDR']??'::1';
+    $serverPort=$_SERVER['SERVER_PORT']??'80';
+    $remotePort=$_SERVER['REMOTE_PORT']??'80';
+    $addr=($mode=='server')?$serverAddr:$remoteAddr;
+    $port=($mode=='server')?$serverPort:$remotePort;
+    if (filter_var($addr,FILTER_VALIDATE_IP,FILTER_FLAG_IPV4)) {
+        $ipv4=$addr; return $ipv4.':'.$port;
+    } elseif (filter_var($addr,FILTER_VALIDATE_IP,FILTER_FLAG_IPV6)) {
+        $ipv6=$addr; return '['.$ipv6.']:'.$port;
+    }
+}
 function visitor($username='') {
-    $vis=fileopen('visitors.json',json_encode($settings['ip_address']),'create'); if ($username!='') {
-        $ip=$_SERVER['REMOTE_ADDR']??'127.0.0.1'; $srv=$_SERVER['SERVER_ADDR']??'127.0.0.1';
+    $visitors=fileopen('visitors.json',json_encode($settings['ip_address']),'create');
+    if ($username!='') {
+        $ip=getWebAddr(); $srv=getWebAddr('server');
         $ua=$_SERVER['HTTP_USER_AGENT']??''; $system='Unknown';
         if (preg_match('/Windows NT 10.0/i',$ua)) $system='Windows 10';
         elseif (preg_match('/Windows NT 6.3/i',$ua)) $system='Windows 8.1';
@@ -35,12 +49,12 @@ function visitor($username='') {
         $country='UN'; $context=stream_context_create(['http'=>['timeout'=>5]]);
         $response=@file_get_contents("https://ipapi.co/$ip/country_code/",false,$context);
         if ($response!==false) { $country=trim($response); }
-        $vis[$username.'@'.$ip]=[
-            'country'=>$country,'remote_addr'=>$ip,'server_addr'=>$srv,
+        $visitors[$username.'@'.$ip]=[
+            'country'=>$country,'remote_socket'=>$ip,'server_socket'=>$srv,
             'platform'=>$system.' '.$browser,'username'=>$username,'system'=>$system,'browser'=>$browser
-        ]; if (isset($vis[0])) { unset($vis[0]); }
+        ]; if (isset($visitors[0])) { unset($visitors[0]); }
         file_put_contents('visitors.json',json_encode($vis,JSON_UNESCAPED_UNICODE)); chmod('visitors.json',0777);
-    } return $vis;
+    } return $visitors;
 }
 function selectedLines($name,$opt=[]): array {
     $arr=preg_split("/\r\n|\n|\r/",(file_get_contents($name)));
