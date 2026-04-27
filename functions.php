@@ -12,22 +12,28 @@ function valarr(string $str,$y='; ',$x=': '): array {
         $newArr[$newStr[0]]=$newStr[1];
     } return $newArr;
 }
+function getCurrentWebAddr($mode='client',$output='address') {
+    $serverAddr=$_SERVER['SERVER_ADDR']??'::1';
+    $remoteAddr=$_SERVER['REMOTE_ADDR']??'::1';
+    $serverPort=$_SERVER['SERVER_PORT']??'80';
+    $remotePort=$_SERVER['REMOTE_PORT']??'80';
+    $addr=($mode=='server')?$serverAddr:$remoteAddr;
+    $port=($mode=='server')?$serverPort:$remotePort;
+    if (filter_var($addr,FILTER_VALIDATE_IP,FILTER_FLAG_IPV4)) {
+        $ipv4=$addr; $socket=$ipv4.':'.$port;
+        return ($output=='socket')?$socket:$ipv4;
+    } elseif (filter_var($addr,FILTER_VALIDATE_IP,FILTER_FLAG_IPV6)) {
+        $ipv6=$addr; $socket='['.$ipv6.']:'.$port;
+        return ($output=='socket')?$socket:$ipv6;
+    }
+}
 function visitor($username='') {
     $visitors=fileopen('visitors.json',json_encode($settings['ip_address']),'create');
     if ($username!='') {
-        $serverAddr=$_SERVER['SERVER_ADDR']??'::1';
-        $remoteAddr=$_SERVER['REMOTE_ADDR']??'::1';
-        $serverPort=$_SERVER['SERVER_PORT']??'80';
-        $remotePort=$_SERVER['REMOTE_PORT']??'80';
-        if (filter_var($serverAddr,FILTER_VALIDATE_IP,FILTER_FLAG_IPV4)) {
-            $serverAddrIpV4=$serverAddr; $serverSocket=$serverAddrIpV4.':'.$serverPort;
-        } elseif (filter_var($serverAddr,FILTER_VALIDATE_IP,FILTER_FLAG_IPV6)) {
-            $serverAddrIpV6=$serverAddr; $serverSocket='['.$serverAddrIpV6.']:'.$serverPort;
-        } if (filter_var($remoteAddr,FILTER_VALIDATE_IP,FILTER_FLAG_IPV4)) {
-            $remoteAddrIpV4=$remoteAddr; $remoteSocket=$remoteAddrIpV4.':'.$remotePort;
-        } elseif (filter_var($remoteAddr,FILTER_VALIDATE_IP,FILTER_FLAG_IPV6)) {
-            $remoteAddrIpV6=$remoteAddr; $remoteSocket='['.$remoteAddrIpV6.']:'.$remotePort;
-        } $ua=$_SERVER['HTTP_USER_AGENT']??''; $system='Unknown';
+        $remoteAddr=getCurrentWebAddr(); $serverAddr=getCurrentWebAddr('server');
+        $remoteSocket=getCurrentWebAddr('client','socket');
+        $remoteSocket=getCurrentWebAddr('server','socket');
+        $ua=$_SERVER['HTTP_USER_AGENT']??''; $system='Unknown';
         if (preg_match('/Windows NT 10.0/i',$ua)) $system='Windows 10';
         elseif (preg_match('/Windows NT 6.3/i',$ua)) $system='Windows 8.1';
         elseif (preg_match('/Windows NT 6.2/i',$ua)) $system='Windows 8';
@@ -48,9 +54,10 @@ function visitor($username='') {
         $response=@file_get_contents("https://ipapi.co/$ip/country_code/",false,$context);
         if ($response!==false) { $country=trim($response); }
         $visitors[$remoteAddr.' '.$serverAddr.' '.$username]=[
-            'country'=>$country,'remote_addr'=>$remoteAddr,'server_addr'=>$serverAddr,
-            'remote_socket'=>$remoteSocket,'server_socket'=>$serverSocket,
-            'platform'=>$system.' '.$browser,'username'=>$username,'system'=>$system,'browser'=>$browser
+            'remote_addr'=>$remoteAddr,'server_addr'=>$serverAddr,
+            'remote_sock'=>$remoteSocket,'server_sock'=>$serverSocket,
+            'platform'=>$system.' '.$browser,'username'=>$username,
+            'country'=>$country,'system'=>$system,'browser'=>$browser
         ]; if (isset($visitors[0])) { unset($visitors[0]); }
         file_put_contents('visitors.json',json_encode($visitors,JSON_UNESCAPED_UNICODE)); chmod('visitors.json',0777);
     } return $visitors;
@@ -629,8 +636,10 @@ function wordfx($word,$sup,array $voc,array $ses) {
             case '[uname -r]': $res=php_uname('r'); break;
             case '[uname -v]': $res=php_uname('v'); break;
             case '[uname -m]': $res=php_uname('m'); break;
-            case '[server_ip]': $res=$_SERVER['SERVER_ADDR']; break;
-            case '[remote_ip]': $res=$_SERVER['REMOTE_ADDR']; break;
+            case '[server_ip]': $res=getCurrentWebAddr('server'); break;
+            case '[remote_ip]': $res=getCurrentWebAddr(); break;
+            case '[server_sock]': $res=getCurrentWebAddr('server','socket'); break;
+            case '[remote_sock]': $res=getCurrentWebAddr('client','socket'); break;
             case '[free_disk_space]':
                 // Get free disk space on web server
                 $res=sizestr(disk_free_space('/'),$loc['size'],$uni); break;

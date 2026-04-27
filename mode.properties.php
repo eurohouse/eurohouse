@@ -7,8 +7,10 @@ if ($request['lock']!='false') {
     if ((path_root($request['input']))||($request['input']=='')) {
         $objFile=[
             'free_disk_space'=>sizestr(disk_free_space('/'),$settings['locale']['size'],$session['units']),
-            'server_ip'=>$_SERVER['SERVER_ADDR'],
-            'remote_ip'=>$_SERVER['REMOTE_ADDR'],
+            'server_ip'=>getCurrentWebAddr('server'),
+            'remote_ip'=>getCurrentWebAddr(),
+            'server_sock'=>getCurrentWebAddr('server','socket'),
+            'remote_sock'=>getCurrentWebAddr('client','socket'),
             'uname'=>[
                 'a'=>php_uname('a'),'m'=>php_uname('m'),
                 'n'=>php_uname('n'),'r'=>php_uname('r'),
