@@ -47,7 +47,7 @@ function visitor($username='') {
         $country='UN'; $context=stream_context_create(['http'=>['timeout'=>5]]);
         $response=@file_get_contents("https://ipapi.co/$ip/country_code/",false,$context);
         if ($response!==false) { $country=trim($response); }
-        $visitors[$username.'@'.$remoteAddr]=[
+        $visitors[$remoteAddr.' '.$username]=[
             'country'=>$country,'remote_addr'=>$remoteAddr,'server_addr'=>$serverAddr,
             'remote_socket'=>$remoteSocket,'server_socket'=>$serverSocket,
             'platform'=>$system.' '.$browser,'username'=>$username,'system'=>$system,'browser'=>$browser
