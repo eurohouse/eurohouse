@@ -19,11 +19,13 @@ function visitor($username='') {
         $remoteAddr=$_SERVER['REMOTE_ADDR']??'::1';
         $serverPort=$_SERVER['SERVER_PORT']??'80';
         $remotePort=$_SERVER['REMOTE_PORT']??'80';
-        if (filter_var($addr,FILTER_VALIDATE_IP,FILTER_FLAG_IPV4)) {
+        if (filter_var($serverAddr,FILTER_VALIDATE_IP,FILTER_FLAG_IPV4)) {
             $serverAddrIpV4=$serverAddr; $serverSocket=$serverAddrIpV4.':'.$serverPort;
-            $remoteAddrIpV4=$remoteAddr; $remoteSocket=$remoteAddrIpV4.':'.$remotePort;
-        } elseif (filter_var($addr,FILTER_VALIDATE_IP,FILTER_FLAG_IPV6)) {
+        } elseif (filter_var($serverAddr,FILTER_VALIDATE_IP,FILTER_FLAG_IPV6)) {
             $serverAddrIpV6=$serverAddr; $serverSocket='['.$serverAddrIpV6.']:'.$serverPort;
+        } if (filter_var($remoteAddr,FILTER_VALIDATE_IP,FILTER_FLAG_IPV4)) {
+            $remoteAddrIpV4=$remoteAddr; $remoteSocket=$remoteAddrIpV4.':'.$remotePort;
+        } elseif (filter_var($remoteAddr,FILTER_VALIDATE_IP,FILTER_FLAG_IPV6)) {
             $remoteAddrIpV6=$remoteAddr; $remoteSocket='['.$remoteAddrIpV6.']:'.$remotePort;
         } $ua=$_SERVER['HTTP_USER_AGENT']??''; $system='Unknown';
         if (preg_match('/Windows NT 10.0/i',$ua)) $system='Windows 10';
