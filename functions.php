@@ -33,25 +33,25 @@ function visitor($username='') {
         $remoteAddr=getCurrentWebAddr(); $serverAddr=getCurrentWebAddr('server');
         $remoteSocket=getCurrentWebAddr('client','socket');
         $remoteSocket=getCurrentWebAddr('server','socket');
-        $ua=$_SERVER['HTTP_USER_AGENT']??''; $system='Unknown';
-        if (preg_match('/Windows NT 10.0/i',$ua)) $system='Windows 10';
-        elseif (preg_match('/Windows NT 6.3/i',$ua)) $system='Windows 8.1';
-        elseif (preg_match('/Windows NT 6.2/i',$ua)) $system='Windows 8';
-        elseif (preg_match('/Windows NT 6.1/i',$ua)) $system='Windows 7';
-        elseif (preg_match('/Windows NT 6.0/i',$ua)) $system='Windows Vista';
-        elseif (preg_match('/Windows NT 5.1/i',$ua)) $system='Windows XP';
-        elseif (preg_match('/Mac OS X/i',$ua)) $system='macOS';
-        elseif (preg_match('/Linux/i',$ua)&&!preg_match('/Android/i',$ua)) $system='Linux';
-        elseif (preg_match('/Android/i',$ua)) $system='Android';
-        elseif (preg_match('/iPhone|iPad|iPod/i',$ua)) $system='iOS'; $browser='Unknown';
-        if (preg_match('/Edg\/([\d.]+)/i',$ua,$m)) $browser='Edge '.$m[1];
-        elseif (preg_match('/Chrome\/([\d.]+)/i',$ua,$m)) $browser='Chrome '.$m[1];
-        elseif (preg_match('/Firefox\/([\d.]+)/i',$ua,$m)) $browser='Firefox '.$m[1];
-        elseif (preg_match('/Safari\/([\d.]+)/i',$ua)&&!preg_match('/Chrome|Edg/i',$ua)) $browser='Safari '.$m[1];
-        elseif (preg_match('/OPR\/([\d.]+)/i',$ua,$m)) $browser='Opera '.$m[1];
-        elseif (preg_match('/MSIE ([\d.]+)/i',$ua,$m)) $browser='Internet Explorer '.$m[1];
+        $userAgent=$_SERVER['HTTP_USER_AGENT']??''; $system='Unknown';
+        if (preg_match('/Windows NT 10.0/i',$userAgent)) $system='Windows 10';
+        elseif (preg_match('/Windows NT 6.3/i',$userAgent)) $system='Windows 8.1';
+        elseif (preg_match('/Windows NT 6.2/i',$userAgent)) $system='Windows 8';
+        elseif (preg_match('/Windows NT 6.1/i',$userAgent)) $system='Windows 7';
+        elseif (preg_match('/Windows NT 6.0/i',$userAgent)) $system='Windows Vista';
+        elseif (preg_match('/Windows NT 5.1/i',$userAgent)) $system='Windows XP';
+        elseif (preg_match('/Mac OS X/i',$userAgent)) $system='macOS';
+        elseif (preg_match('/Linux/i',$userAgent)&&!preg_match('/Android/i',$userAgent)) $system='Linux';
+        elseif (preg_match('/Android/i',$userAgent)) $system='Android';
+        elseif (preg_match('/iPhone|iPad|iPod/i',$userAgent)) $system='iOS'; $browser='Unknown';
+        if (preg_match('/Edg\/([\d.]+)/i',$userAgent,$version)) $browser='Edge '.$version[1];
+        elseif (preg_match('/Chrome\/([\d.]+)/i',$userAgent,$version)) $browser='Chrome '.$version[1];
+        elseif (preg_match('/Firefox\/([\d.]+)/i',$userAgent,$version)) $browser='Firefox '.$version[1];
+        elseif (preg_match('/Safari\/([\d.]+)/i',$userAgent)&&!preg_match('/Chrome|Edg/i',$userAgent)) $browser='Safari '.$version[1];
+        elseif (preg_match('/OPR\/([\d.]+)/i',$userAgent,$version)) $browser='Opera '.$version[1];
+        elseif (preg_match('/MSIE ([\d.]+)/i',$userAgent,$version)) $browser='Internet Explorer '.$version[1];
         $country='UN'; $context=stream_context_create(['http'=>['timeout'=>5]]);
-        $response=@file_get_contents("https://ipapi.co/$ip/country_code/",false,$context);
+        $response=@file_get_contents("https://ipapi.co/$remoteAddr/country_code/",false,$context);
         if ($response!==false) { $country=trim($response); }
         $visitors[$remoteAddr.' '.$serverAddr.' '.$username]=[
             'remote_addr'=>$remoteAddr,'server_addr'=>$serverAddr,
