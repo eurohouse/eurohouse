@@ -13,9 +13,8 @@ async function populateWeatherTable() {
     if (requestMode.value=='weather') {
         const tableBody=document.getElementById('weatherData');
         tableBody.innerHTML=''; const locations=(sysDefLocations.value).split(', '); for (const location of locations) {
+            const data=await getWeather(location); const row=tableBody.insertRow();
             try {
-                const data=await getWeather(location);
-                const row=tableBody.insertRow();
                 if (data) {
                     row.insertCell().textContent=data.resolvedAddress;
                     row.insertCell().textContent=`${data.latitude}°${(data.latitude<0)?'S':'N'} ${data.longitude}°${(data.longitude<0)?'W':'E'}`;
