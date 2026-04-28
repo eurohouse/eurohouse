@@ -1,0 +1,53 @@
+<!-- weather -->
+<!-- GR: Μετεωρολογία; CY: Μετεωρολογία; FR: Prévisions météorologiques; DE: Wettervorhersage; BE: Prévisions météorologiques; AT: Wettervorhersage; CH: Praedictio tempestatis; ES: Pronóstico del tiempo; MX: Pronóstico del tiempo; PT: Previsão do tempo; BR: Previsão do tempo; RO: Prognoza meteo; MD: Prognoza meteo; IT: Previsioni del tempo; RU: Прогноз погоды; TR: Hava tahmini; NP: གནམ་གཤིས་སྔོན་བརྡ།; IN: मौसम पूर्वानुमान; LK: मौसमस्य पूर्वानुमानम्; UA: Прогноз погоди; RS: Временска прогноза; CN: 天气预报; KR: 날씨 예보; JP: 天気予報; AE: توقعات الطقس -->
+<div class='customPanel' style="width:100%;height:15%;left:0px;top:0px;">
+    <p align='center' class='block'>
+    <input type="text" id="promptWeather" style="width:62%;" placeholder="<?=term("Set certain weather locations",$settings,$session);?>" value="<?=$session['locations'];?>" onkeydown="if (event.keyCode==13) {
+        setdata('locations',promptWeather.value);
+        populateWeatherTable();
+    } else if (event.keyCode==27) {
+        document.getElementById('promptWeather').value='';
+    } else if (event.keyCode==8) {
+        handleInput(this.value);
+    } else if (event.keyCode==46) {
+        handleInput(this.value);
+    }" oninput="handleInput(this.value,true);">
+    <input type="image" class="power" id="buttonSearch" onmouseover="soundButton();" src="<?=$prefix[3].'search.png';?>" onclick="soundClick(); setdata('locations',promptWeather.value); populateWeatherTable();"><input type="image" class="power" id="buttonBackspace" onmouseover="soundButton();" src="<?=$prefix[3].'backspace.png';?>" onclick="soundClick(); promptWeather.value=''; promptWeather.focus();"></p>
+</div>
+<div class='customPanel' id='weatherWidget' style="width:100%;height:80%;left:0px;top:0px;overflow-y:scroll;">
+    <table id="weatherTable" style="width:100%;">
+        <thead>
+            <tr>
+                <th style="width:8%;">
+                    <?=term('Location',$settings,$session);?>
+                </th>
+                <th style="width:16%;">
+                    <a href="javascript:SortTable(1,'T','','weatherTable');">
+                        <?=term('Coordinates',$settings,$session);?>
+                    </a>
+                </th>
+                <th style="width:10%;">
+                    <a href="javascript:SortTable(2,'T','','weatherTable');">
+                        <?=term('Temperature',$settings,$session);?>
+                    </a>
+                </th>
+                <th style="width:5%;">
+                    <a href="javascript:SortTable(3,'T','','weatherTable');">
+                        <?=term('Cloud Cover',$settings,$session);?>
+                    </a>
+                </th>
+                <th style="width:20%;">
+                    <a href="javascript:SortTable(4,'T','','weatherTable');">
+                        <?=term('Conditions',$settings,$session);?>
+                    </a>
+                </th>
+            </tr>
+        </thead>
+        <tbody id="weatherData"></tbody>
+        <tfoot id="weatherFoot">
+            <tr><th style="width:25%;" colspan="5">
+                <?=term('Total elements:',$settings,$session).' 0';?>
+            </th></tr>
+        </tfoot>
+    </table>
+</div>
