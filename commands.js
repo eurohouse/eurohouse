@@ -60,13 +60,21 @@ function seekMusic(req) {
                 }
             } fli=rand(0,pls.length);
         } if (notEmpty(pls)) {
-            if (fle=='+') {
+            if ((fle=='+')&&(fli=='+')) {
+                setdata('playlist',playlistNext(pls[rand(0,pls.length)]));
+            } else if (fle=='+') {
                 setdata('playlist',playlistNext(pls[fli]));
+            } else if (fli=='+') {
+                setdata('playlist',playlistNext(pls[rand(0,pls.length)])); 
             } else {
                 omniListen(pls[fli],true,parseInt(fle));
             }
         } else {
-            if (fle=='+') {
+            if ((fle=='+')&&(fli=='+')) {
+                setdata('playlist',playlistNext(mls[rand(0,mls.length)]));
+            } else if (fle=='+') {
+                setdata('playlist',playlistNext(mls[rand(0,mls.length)]));
+            } else if (fli=='+') {
                 setdata('playlist',playlistNext(mls[rand(0,mls.length)]));
             } else {
                 omniListen(mls[rand(0,mls.length)],true,parseInt(fle));
