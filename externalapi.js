@@ -23,7 +23,7 @@ async function populateWeatherTable() {
              const row=tableBody.insertRow(); try {
                 const data=await getWeather(location); if (data) {
                     row.insertCell().textContent=data.resolvedAddress;
-                    row.insertCell().textContent=`${data.latitude}°${(data.latitude<0)?'S':'N'} ${data.longitude}°${(data.longitude<0)?'W':'E'}`;
+                    row.insertCell().textContent=`${data.latitude}°${(data.latitude<0)?'S':'N'} ${data.longitude}°${(data.longitude<0)?'W':'E'}`; const isoCode=sysDefUnits.value;
                     if ((isoCode=='US')||(isoCode=='LR')||(isoCode=='MM')) {
                         row.insertCell().textContent=`${data.days[0].tempmin}°F ${data.days[0].temp}°F ${data.days[0].tempmax}°F`;
                     } else if ((isoCode=='UN')||(isoCode=='EU')||(isoCode=='AQ')) {
