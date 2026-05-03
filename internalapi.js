@@ -114,155 +114,6 @@ class SetCalculator {
         } return `[${String(set)}]`;
     }
 } const setCalculator=new SetCalculator();
-class VectorExpressionProcessor {
-    constructor() { this.vectors={}; this.nextVectorId=0; }
-    process(input) {
-        try {
-            const expression=this._extractVectors(input);
-            const resultVector=this._evaluateExpression(expression);
-            return this._formatVector(resultVector);
-        } catch (error) {
-            throw new Error(`Ошибка обработки выражения: ${error.message}`);
-        }
-    }
-    _extractVectors(input) {
-        const vectorMatches=input.match(/\{[^}]+\}/g)||[];
-        let expression=input;
-        vectorMatches.forEach(vectorStr=>{
-            const placeholder=this._createVectorPlaceholder();
-            const vector=this._parseVector(vectorStr.slice(1,-1));
-            this.vectors[placeholder]=vector;
-            expression=expression.replace(vectorStr,placeholder);
-        }); return expression;
-    }
-    _createVectorPlaceholder() {
-        const placeholder=`VECTOR_${this.nextVectorId}`;
-        this.nextVectorId++; return placeholder;
-    }
-    _parseVector(str) {
-        return str.split(';').map(coord=>{
-            try {
-                return Number(Function('"use strict"; return ('+coord.trim()+')')());
-            } catch (error) {
-                throw new Error(`Ошибка в координате "${coord}": ${error.message}`);
-            }
-        });
-    }
-    _formatVector(vector) { return '{'+vector.join(';')+'}'; }
-    _evaluateExpression(expr) {
-        expr=expr.replace(/\s+/g,'');
-        while (expr.includes('(')) {
-            expr=expr.replace(/\([^()]+\)/g,match=>{
-                const inner=match.slice(1,-1);
-                return this._evaluateSimpleExpression(inner);
-            });
-        } return this._evaluateSimpleExpression(expr);
-    }
-    _evaluateSimpleExpression(expr) {
-        const tokens=expr.match(/(VECTOR_\d+|\*\*|[+\-*/()]|\d+(?:\.\d+)?)/g)||[];
-        const tokenValues=tokens.map(token=>{
-            if (token.startsWith('VECTOR_')) {
-                return this.vectors[token];
-            } else if (!isNaN(token)) {
-                return parseFloat(token);
-            } else { return token; }
-        }); for (let i=tokenValues.length-1; i>=0; i--) {
-            if (tokenValues[i]==='**') {
-                const left=tokenValues[i-1];
-                const right=tokenValues[i+1];
-                tokenValues.splice(i-1,3,this._applyOperation(left,right,'**'));
-                i-=2;
-            }
-        } for (let i=0; i<tokenValues.length; i++) {
-            if (['*','/'].includes(tokenValues[i])) {
-                const op=tokenValues[i];
-                const left=tokenValues[i-1];
-                const right=tokenValues[i+1];
-                tokenValues.splice(i-1,3,this._applyOperation(left,right,op));
-                i--;
-            }
-        } for (let i=0; i<tokenValues.length; i++) {
-            if (['+','-'].includes(tokenValues[i])) {
-                const op=tokenValues[i];
-                const left=tokenValues[i-1];
-                const right=tokenValues[i+1];
-                tokenValues.splice(i-1,3,this._applyOperation(left,right,op));
-                i--;
-            }
-        } if (tokenValues.length!==1) {
-            throw new Error('Некорректное выражение');
-        } return tokenValues[0];
-    }
-    _applyOperation(left,right,operator) {
-        if (Array.isArray(left)&&Array.isArray(right)) {
-            if (left.length!==right.length) {
-                throw new Error('Векторы должны иметь одинаковую размерность');
-            } switch (operator) {
-                case '+':
-                    return left.map((val,i)=>val+right[i]);
-                case '-':
-                    return left.map((val,i)=>val-right[i]);
-                case '*':
-                    return left.map((val,i)=>val*right[i]);
-                case '/':
-                    return left.map((val,i)=>{
-                        if (right[i]===0) throw new Error('Деление на ноль');
-                        return val/right[i];
-                    });
-                case '**':
-                    return left.map((val,i)=>Math.pow(val,right[i]));
-                default:
-                    throw new Error(`Неподдерживаемая операция: ${operator}`);
-            }
-        } else if (Array.isArray(left)&&!Array.isArray(right)) {
-            switch (operator) {
-                case '+':
-                    return left.map(val=>val+right);
-                case '-':
-                    return left.map(val=>val-right);
-                case '*':
-                    return left.map(val=>val*right);
-                case '/':
-                    if (right===0) throw new Error('Деление на ноль');
-                    return left.map(val=>val/right);
-                case '**':
-                    return left.map(val=>Math.pow(val,right));
-                default:
-                    throw new Error(`Неподдерживаемая операция: ${operator}`);
-            }
-        } else if (!Array.isArray(left)&&Array.isArray(right)) {
-            switch (operator) {
-                case '+':
-                    return right.map(val=>left+val);
-                case '-':
-                    return right.map(val=>left-val);
-                case '*':
-                    return right.map(val=>left*val);
-                case '/':
-                    return right.map(val=>{
-                        if (val===0) throw new Error('Деление на ноль');
-                        return left / val;
-                    });
-                case '**':
-                    return right.map(val=>Math.pow(left,val));
-                default:
-                    throw new Error(`Неподдерживаемая операция: ${operator}`);
-            }
-        } else {
-            switch (operator) {
-                case '+': return left+right;
-                case '-': return left-right;
-                case '*': return left*right;
-                case '/':
-                    if (right===0) throw new Error('Деление на ноль');
-                    return left/right;
-                case '**': return Math.pow(left,right);
-                default:
-                    throw new Error(`Неподдерживаемая операция: ${operator}`);
-            }
-        }
-    }
-} const vectorProcessor=new VectorExpressionProcessor();
 class ChemicalEquationBalancer {
     constructor() { this.elements=new Set(); }
     parseFormula(formula) {
@@ -393,22 +244,22 @@ class ChemicalEquationBalancer {
             }
         } return Object.values(elementCounts).every(count => count === 0);
     }
-} const balancer=new ChemicalEquationBalancer();
+} const chemicalBalancer=new ChemicalEquationBalancer();
+function calculate(expr) {
+    var result=''; if (/\[.*?\]/gi.test(expr)) {
+        result=setCalculator.evaluate(expr);
+    } else if (/[A-Z]+/g.test(expr)) {
+        result=chemicalBalancer.balance(expr);
+    } else { result=solveSystem(expr); }
+    return result;
+}
 function populateCommandIO() {
     if (requestMode.value==='terminal') {
         const tableBody=document.getElementById('commandData');
         const row=tableBody.insertRow();
         row.insertCell().textContent=promptExec.value;
         try {
-            if (/\[.*?\]/gi.test(promptExec.value)) {
-                row.insertCell().textContent=setCalculator.evaluate(promptExec.value);
-            } else if (/\{.*?\}/gi.test(promptExec.value)) {
-                row.insertCell().textContent=vectorProcessor.process(promptExec.value);
-            } else if (/[A-Z]+/g.test(promptExec.value)) {
-                row.insertCell().textContent=balancer.balance(promptExec.value);
-            } else {
-                row.insertCell().textContent=solveSystem(promptExec.value);
-            }
+            row.insertCell().textContent=calculate(promptExec.value);
         } catch (error) {
             row.insertCell().textContent=`${error.message}`;
         }

@@ -462,8 +462,7 @@ function localizedTitle(id,ent='title') {
     return (tranStep.includes(' | '))?tranStep.split(' | ')[0]:tranStep;
 }
 function processMessage(arr,sen,rec,msg='',index=0) {
-    arr[enmorse(localizedTitle(sen)+' (@'+sen+') · '+toIso8601(Date.now()+index*1000)+' UTC',rec)]=enmorse(replaceLineBreaks(msg),rec);
-    return arr;
+    arr[enmorse(localizedTitle(sen)+' (@'+sen+') · '+toIso8601(Date.now()+index*1000)+' UTC',rec)]=enmorse(replaceLineBreaks(msg),rec); return arr;
 }
 function compose(usr,msg) {
     var addr=(msg!=null)?msg.match(/(@\w*)/g):'';
@@ -471,12 +470,9 @@ function compose(usr,msg) {
     var id=sen=rec=req=msglt='',msgbox={},msgbr=msglr=[];
     var senT=recT=usrT=''; if (addr!=null) {
         for (it in addr) {
-            id=addr[it].replace('@','');
-            init_user(id);
-            sen=(argv!=null)?id:usr;
-            rec=(argv!=null)?usr:id;
-            senT=localizedTitle(sen);
-            recT=localizedTitle(rec);
+            id=addr[it].replace('@',''); init_user(id);
+            sen=(argv!=null)?id:usr; rec=(argv!=null)?usr:id;
+            senT=localizedTitle(sen); recT=localizedTitle(rec);
             msgbox=openJournal(rec,sysDefMessengerJSONs);
             msgarr=jsonarr(msgbox);
             if (msg.match(/\r?\n/)!=null) {
@@ -485,7 +481,8 @@ function compose(usr,msg) {
                     if (argv!=null) {
                         msglr.push('@'+usr);
                         for (idx in argv) {
-                            req=argv[idx].toString().replace('{','').replace('}',''); msglr.push('['+solveSystem(req).toString()+']');
+                            req=argv[idx].toString().replace('{','').replace('}','');
+                            msglr.push(calculate(req).toString());
                         } msglt=msglr.join(' ');
                     } else { msglt=msgbr[j]; }
                     msgarr=processMessage(msgarr,sen,rec,msglt,j);
@@ -494,7 +491,8 @@ function compose(usr,msg) {
                 if (argv!=null) {
                     msglr.push('@'+usr);
                     for (idx in argv) {
-                        req=argv[idx].toString().replace('{','').replace('}',''); msglr.push('['+solveSystem(req).toString()+']');
+                        req=argv[idx].toString().replace('{','').replace('}','');
+                        msglr.push(calculate(req).toString());
                     } msglt=msglr.join(' ');
                 } else { msglt=msg; }
                 msgarr=processMessage(msgarr,sen,rec,msglt);
@@ -509,7 +507,8 @@ function compose(usr,msg) {
                 if (argv!=null) {
                     msglr.push('@'+usr);
                     for (idx in argv) {
-                        req=argv[idx].toString().replace('{','').replace('}',''); msglr.push('['+solveSystem(req).toString()+']');
+                        req=argv[idx].toString().replace('{','').replace('}','');
+                        msglr.push(calculate(req).toString());
                     } msglt=msglr.join(' ');
                 } else { msglt=msgbr[j]; }
                 msgarr=processMessage(msgarr,usr,usr,msglt,j);
@@ -518,7 +517,8 @@ function compose(usr,msg) {
             if (argv!=null) {
                 msglr.push('@'+usr);
                 for (idx in argv) {
-                    req=argv[idx].toString().replace('{','').replace('}',''); msglr.push('['+solveSystem(req).toString()+']');
+                    req=argv[idx].toString().replace('{','').replace('}','');
+                    msglr.push(calculate(req).toString());
                 } msglt=msglr.join(' ');
             } else { msglt=msg; }
             msgarr=processMessage(msgarr,usr,usr,msglt);

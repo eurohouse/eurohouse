@@ -3,15 +3,7 @@
 <div class='customPanel' style="width:100%;height:15%;left:0px;top:0px;">
     <p align='center' class='block'>
     <input type="text" id="calcExpr" style="width:62%;" placeholder="<?=term("Type any mathematical expression",$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) {
-        if (/\[.*?\]/gi.test(calcExpr.value)) {
-            calcExpr.value=setCalculator.evaluate(calcExpr.value);
-        } else if (/\{.*?\}/gi.test(calcExpr.value)) {
-            calcExpr.value=vectorProcessor.process(calcExpr.value);
-        } else if (/[A-Z]+/g.test(calcExpr.value)) {
-            calcExpr.value=balancer.balance(calcExpr.value);
-        } else {
-            calcExpr.value=solveSystem(calcExpr.value);
-        }
+        calcExpr.value=calculate(calcExpr.value);
     } else if (event.keyCode==27) {
         document.getElementById('calcExpr').value='';
     } else if (event.keyCode==8) {
@@ -19,15 +11,7 @@
     } else if (event.keyCode==46) {
         handleInput(this.value);
     }" oninput="handleInput(this.value,true);">
-    <input type="image" class="power" id="buttonEnter" onmouseover="soundButton();" src="<?=$prefix[3].'return.png';?>" onclick="soundClick(); if (/\[.*?\]/gi.test(calcExpr.value)) {
-        calcExpr.value=setCalculator.evaluate(calcExpr.value);
-    } else if (/\{.*?\}/gi.test(calcExpr.value)) {
-        calcExpr.value=vectorProcessor.process(calcExpr.value);
-    } else if (/[A-Z]+/g.test(calcExpr.value)) {
-        calcExpr.value=balancer.balance(calcExpr.value);
-    } else {
-        calcExpr.value=solveSystem(calcExpr.value);
-    }">
+    <input type="image" class="power" id="buttonEnter" onmouseover="soundButton();" src="<?=$prefix[3].'return.png';?>" onclick="soundClick(); calcExpr.value=calculate(calcExpr.value);">
     <input type="image" class="power" id="buttonBackspace" onmouseover="soundButton();" src="<?=$prefix[3].'backspace.png';?>" onclick="soundClick(); calcExpr.value=''; calcExpr.focus();"></p>
 </div>
 <div class='customPanel' style="width:100%;height:80%;left:0px;top:0px;overflow-y:scroll;">
@@ -86,13 +70,5 @@
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='y';" value="y">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='C';" value="C">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='D';" value="D">
-<input type="image" class="power" onmouseover="soundButton();" onclick="soundClick(); if (/\[.*?\]/gi.test(calcExpr.value)) {
-    calcExpr.value=setCalculator.evaluate(calcExpr.value);
-} else if (/\{.*?\}/gi.test(calcExpr.value)) {
-    calcExpr.value=vectorProcessor.process(calcExpr.value);
-} else if (/[A-Z]+/g.test(calcExpr.value)) {
-    calcExpr.value=balancer.balance(calcExpr.value);
-} else {
-    calcExpr.value=solveSystem(calcExpr.value);
-}" src="<?=$prefix[3].'return.png';?>">
+<input type="image" class="power" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value=calculate(calcExpr.value);" src="<?=$prefix[3].'return.png';?>">
 </p></div>

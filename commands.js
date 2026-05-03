@@ -451,13 +451,7 @@ function omniEnter() {
         }
     } else if (input.endsWith(';')) {
         omniBox.value=executeCode(input);
-    } else if (/\[.*?\]/gi.test(input)) {
-        omniBox.value=setCalculator.evaluate(input);
-    } else if (/\{.*?\}/gi.test(input)) {
-        omniBox.value=vectorProcessor.process(input);
-    } else if (/[A-Z]+/g.test(input)) {
-        omniBox.value=balancer.balance(input);
-    } else { omniBox.value=solveSystem(input); }
+    } else { omniBox.value=calculate(input); }
     omniBox.focus();
 }
 function getPkgSequence(input,cmdword,isRepo=0,isDbg=0) {
