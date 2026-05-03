@@ -143,6 +143,6 @@ async function chatGPTAI(input) {
         return reply;
     } catch (error) {
         console.error('Sorry, an error occurred. Please try again.');
-        return null;
+        return input;
     }
 }
