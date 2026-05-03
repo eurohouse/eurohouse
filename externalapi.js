@@ -107,11 +107,11 @@ async function analyzeMultipleRepositories(repoUrls) {
     }
 }
 async function collectContextData() {
-    return (isLocalhost())?null:($('body').css('background-image')).replace(/^url\(['"]?(.*?)['"]?\)$/i,'$1');
+    return ($('body').css('background-image')).replace(/^url\(['"]?(.*?)['"]?\)$/i,'$1');
 }
 function createUserMessage(input,imgUrl) {
     const content=[{type: 'text', text: input}];
-    if (notNull(imgUrl)) content.push({type: 'image_url', image_url: { url: imgUrl }});
+    if (imgUrl) content.push({type: 'image_url', image_url: { url: imgUrl }});
     return {role: 'user', content};
 }
 async function callChatGPT(messages) {
