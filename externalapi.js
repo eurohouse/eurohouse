@@ -107,12 +107,7 @@ async function analyzeMultipleRepositories(repoUrls) {
     }
 }
 async function collectContextData() {
-    if (isLocalhost()) {
-        console.error('Cannot access Mistral API via localhost.');
-        return null;
-    } else {
-        return ($('body').css('background-image')).replace(/^url\(['"]?(.*?)['"]?\)$/i,'$1');
-    }
+    return (isLocalhost())?null:($('body').css('background-image')).replace(/^url\(['"]?(.*?)['"]?\)$/i,'$1');
 }
 function createUserMessage(input,imgUrl) {
     const content=[{type: 'text', text: input}];
