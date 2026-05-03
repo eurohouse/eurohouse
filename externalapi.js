@@ -24,8 +24,13 @@ async function populateWeatherTable() {
                 const data=await getWeather(location); if (data) {
                     row.insertCell().textContent=data.resolvedAddress;
                     row.insertCell().textContent=`${data.latitude}°${(data.latitude<0)?'S':'N'} ${data.longitude}°${(data.longitude<0)?'W':'E'}`;
-                    row.insertCell().textContent=`${data.days[0].tempmin} ${data.days[0].temp} ${data.days[0].tempmax}°C`;
-                    row.insertCell().textContent=`${data.days[0].cloudcover}%`;
+                    if ((isoCode=='US')||(isoCode=='LR')||(isoCode=='MM')) {
+                        row.insertCell().textContent=`${data.days[0].tempmin}°F ${data.days[0].temp}°F ${data.days[0].tempmax}°F`;
+                    } else if ((isoCode=='UN')||(isoCode=='EU')||(isoCode=='AQ')) {
+                        row.insertCell().textContent=`${data.days[0].tempmin}K ${data.days[0].temp}K ${data.days[0].tempmax}K`;
+                    } else {
+                        row.insertCell().textContent=`${data.days[0].tempmin}°C ${data.days[0].temp}°C ${data.days[0].tempmax}°C`;
+                    } row.insertCell().textContent=`${data.days[0].cloudcover}%`;
                     row.insertCell().textContent=data.days[0].conditions;
                 } else {
                     row.insertCell().textContent=location;
