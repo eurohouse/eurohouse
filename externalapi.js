@@ -173,9 +173,7 @@ async function AI(input) {
         } else {
             userContent=((demorse(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value)!="")&&(sysDefPlaying.value!=0))?createUserMessage(`${input}\n${demorse(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value)}`,userContext):createUserMessage(input,userContext);
         } historyArr.push(userContent);
-        if (historyArr.length>10) {
-            historyArr=historyArr.slice(-10);
-        } const reply=await callOpenRouter(historyArr);
+        const reply=await callOpenRouter(historyArr);
         historyArr.push({role: 'assistant', content: reply});
         set(sysDefSessionID.value+'_files/artificial_intelligence.json',JSON.stringify(historyArr),'rw');
         return reply;
