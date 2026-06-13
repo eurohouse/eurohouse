@@ -8,6 +8,9 @@ function isMobileUserAgent() {
 function isTouchDevice() {
     return (('ontouchstart' in window)||(navigator.maxTouchPoints>0));
 }
+function sleep(ms=1000) {
+    return new Promise(resolve=>setTimeout(resolve,ms));
+}
 function populateNestedWeatherTable(content) {
     const nestedTable=document.createElement('table');
     nestedTable.style.borderCollapse='collapse';
@@ -34,7 +37,7 @@ async function populateWeatherTable() {
         let vocEntry=localizedVocWord();
         const tableElem=document.getElementById('weatherTable');
         const tableBody=document.getElementById('weatherData');
-	tableElem.setAttribute('class','wrapper'); tableBody.innerHTML='';
+	    tableElem.setAttribute('class','wrapper'); tableBody.innerHTML='';
         const existingTfoot=document.getElementById('weatherFoot');
         if (existingTfoot) { existingTfoot.remove(); }
         const locations=(sysDefLocations.value).split(', ');
@@ -45,19 +48,19 @@ async function populateWeatherTable() {
                     row.insertCell().textContent=data.resolvedAddress;
                     const isoCode=sysDefUnits.value; const nestedCell=row.insertCell();
                     if ((isoCode=='US')||(isoCode=='LR')||(isoCode=='MM')) {
-			nestedCell.appendChild(populateNestedWeatherTable({'🔥':`${data.days[0].tempmax}°F`,'🌡️':`${data.days[0].temp}°F`,'❄️':`${data.days[0].tempmin}°F`}));
+			            nestedCell.appendChild(populateNestedWeatherTable({'🔥':`${data.days[0].tempmax}°F`,'🌡️':`${data.days[0].temp}°F`,'❄️':`${data.days[0].tempmin}°F`}));
                     } else if ((isoCode=='UN')||(isoCode=='EU')||(isoCode=='AQ')) {
-			nestedCell.appendChild(populateNestedWeatherTable({'🔥':`${data.days[0].tempmax}K`,'🌡️':`${data.days[0].temp}K`,'❄️':`${data.days[0].tempmin}K`}));
+			            nestedCell.appendChild(populateNestedWeatherTable({'🔥':`${data.days[0].tempmax}K`,'🌡️':`${data.days[0].temp}K`,'❄️':`${data.days[0].tempmin}K`}));
                     } else {
-			nestedCell.appendChild(populateNestedWeatherTable({'🔥':`${data.days[0].tempmax}°C`,'🌡️':`${data.days[0].temp}°C`,'❄️':`${data.days[0].tempmin}°C`}));
+			            nestedCell.appendChild(populateNestedWeatherTable({'🔥':`${data.days[0].tempmax}°C`,'🌡️':`${data.days[0].temp}°C`,'❄️':`${data.days[0].tempmin}°C`}));
                     } nestedCell.style.textAlign='center';
-        	    nestedCell.style.fontWeight='normal';
- 		    row.insertCell().textContent=data.days[0].conditions;
+        	        nestedCell.style.fontWeight='normal';
+ 		            row.insertCell().textContent=data.days[0].conditions;
                 } else {
                     row.insertCell().textContent=location;
                     row.insertCell().colSpan=3;
                     row.insertCell().textContent='Error fetching data';
-                }
+                } await sleep(1000);
             } catch (error) {
                 console.error(`Error fetching weather for ${location}:`,error); row.insertCell().textContent=location;
                 row.insertCell().colSpan=3;
@@ -105,7 +108,7 @@ async function fetchGitHubContent(repoUrl) {
             name: data.name, owner: data.owner.login,
             description: data.description, stars: data.stargazers_count,
             forks: data.forks_count, language: data.language
-        };
+        }; await sleep(500);
     } catch (error) {
         console.error('GitHub API Error: ',error); return null;
     }
@@ -133,51 +136,89 @@ async function analyzeMultipleRepositories(repoUrls) {
     }
 }
 async function collectContextData() {
-    return (!isLocalhost())?($('body').css('background-image')).replace(/^url\(['"]?(.*?)['"]?\)$/i,'$1'):'';
+    return {
+        imgUrl: (!isLocalhost())?($('body').css('background-image')).replace(/^url\(['"]?(.*?)['"]?\)$/i,'$1'):'',
+        audioUrl: (!isLocalhost())?(audioPlayer.src).replace(/^url\(['"]?(.*?)['"]?\)$/i,'$1'):sysDefMelody.value
+    }
 }
-function createUserMessage(input,imgUrl='') {
-    const content=[{type: 'text', text: input}];
-    if (notBlank(imgUrl)) content.push({type: 'image_url', image_url: { url: imgUrl }});
-    return {role: 'user', content};
+function createUserMessage(input,options={}) {
+    const content=[{ type: 'text', text: input }];
+    if (options.imgUrl&&notBlank(options.imgUrl)) {
+        content.push({
+            type: 'image_url',
+            image_url: { url: options.imgUrl }
+        });
+    }
+    if (options.imageData) {
+        content.push({
+            type: 'image',
+            image: options.imageData
+        });
+    }
+    if (options.documentUrl) {
+        content.push({
+            type: 'document',
+            document_url: { url: options.documentUrl }
+        });
+    }
+    if (options.audioUrl) {
+        content.push({
+            type: 'audio',
+            audio_url: { url: options.audioUrl }
+        });
+    }
+    if (options.videoUrl) {
+        content.push({
+            type: 'video',
+            video_url: { url: options.videoUrl }
+        });
+    } return { role: 'user', content };
 }
-async function callOpenRouter(messages) {
+async function callOpenRouter(messages,maxRetries=3) {
     const apiKey=demorse(sysDefSecret.value,sysDefSessionID.value,sysDefNumeric.value);
     if (!apiKey||apiKey.trim()==='') {
         throw new Error('OpenRouter API key is missing or invalid. Please check your settings.');
-    } const response=await fetch('https://openrouter.ai/api/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-            'Authorization': `Bearer ${apiKey}`,
-            'Content-Type': 'application/json',
-            'HTTP-Referer': window.location.href,
-            'X-Title': 'Eurohouse UX/UI'
-        },
-        body: JSON.stringify({
-            model: sysDefModel.value,
-            messages: messages
-        })
-    }); if (!response.ok) {
-        const errorText=await response.text();
-        throw new Error(`API Error: ${response.status} - ${errorText}`);
-    } const data=await response.json();
-    return data.choices[0].message.content;
+    } let retries=0; while (retries<maxRetries) {
+        try {
+            const response=await fetch('https://openrouter.ai/api/v1/chat/completions',{
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${apiKey}`,
+                    'Content-Type': 'application/json',
+                    'HTTP-Referer': window.location.href,
+                    'X-Title': 'Eurohouse UX/UI'
+                },
+                body: JSON.stringify({
+                    model: sysDefModel.value,
+                    messages: messages
+                })
+            }); if (!response.ok) {
+                const errorText=await response.text();
+                if (response.status===429&&retries<maxRetries-1) {
+                    retries++; const retryAfter=parseInt(response.headers.get('Retry-After'))||(1000*retries);
+                    await sleep(retryAfter); continue;
+                } throw new Error(`API Error: ${response.status} - ${errorText}`);
+            } const data=await response.json(); return data.choices[0].message.content;
+        } catch (error) {
+            if (retries>=maxRetries-1) throw error; await sleep(2000); retries++;
+        }
+    } throw new Error('Max retries exceeded');
 }
 async function AI(input) {
     try {
         let historyArr=jsonarr(loadFile(sysDefSessionID.value+'_files/artificial_intelligence.json'));
         let userContext=await collectContextData();
+        let currentMelody=demorse(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value);
         let userContent; if (input.includes('https://github.com/')) {
             const repoUrls=input.match(/https:\/\/github\.com\/[^\s,.<>;"']+/g)||[];
             const allReposInfo=await analyzeMultipleRepositories(repoUrls);
-            userContent=((demorse(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value)!="")&&(sysDefPlaying.value!=0))?createUserMessage(`${input}\n${demorse(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value)}\n${allReposInfo}`,userContext):createUserMessage(`${input}\n${allReposInfo}`,userContext);
+            userContent=((demorse(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value)!="")&&(sysDefPlaying.value!=0))?createUserMessage(`${input}\n${allReposInfo}`,userContext):createUserMessage(`${input}\n${allReposInfo}`,userContext);
         } else {
-            userContent=((demorse(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value)!="")&&(sysDefPlaying.value!=0))?createUserMessage(`${input}\n${demorse(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value)}`,userContext):createUserMessage(input,userContext);
+            userContent=((currentMelody!="")&&(sysDefPlaying.value!=0))?createUserMessage(`${input}`,userContext):createUserMessage(`${input}`,userContext);
         } historyArr.push(userContent);
         const reply=await callOpenRouter(historyArr);
         historyArr.push({role: 'assistant', content: reply});
         set(sysDefSessionID.value+'_files/artificial_intelligence.json',JSON.stringify(historyArr),'rw');
         return reply;
-    } catch (error) {
-        return input;
-    }
+    } catch (error) { return input; }
 }
