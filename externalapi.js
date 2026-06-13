@@ -153,7 +153,7 @@ async function callOpenRouter(messages) {
             'X-Title': 'My Weather & GitHub App'
         },
         body: JSON.stringify({
-            model: 'google/veo-3.1-fast',
+            model: 'nex-agi/nex-n2-pro:free',
             messages: messages
         })
     }); if (!response.ok) {
