@@ -143,31 +143,31 @@ async function collectContextData() {
 }
 function createUserMessage(input,options={}) {
     const content=[{ type: 'text', text: input }];
-    if (options.imgUrl&&notBlank(options.imgUrl)) {
+    if (notBlank(options.imgUrl)) {
         content.push({
             type: 'image_url',
             image_url: { url: options.imgUrl }
         });
     }
-    if (options.imageData) {
+    if (notNull(options.imageData)) {
         content.push({
             type: 'image',
             image: options.imageData
         });
     }
-    if (options.documentUrl) {
+    if (notNull(options.documentUrl)) {
         content.push({
             type: 'document',
             document_url: { url: options.documentUrl }
         });
     }
-    if (options.audioUrl) {
+    if (notBlank(options.audioUrl)) {
         content.push({
             type: 'audio',
             audio_url: { url: options.audioUrl }
         });
     }
-    if (options.videoUrl) {
+    if (notNull(options.videoUrl)) {
         content.push({
             type: 'video',
             video_url: { url: options.videoUrl }
