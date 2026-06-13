@@ -150,7 +150,7 @@ async function callOpenRouter(messages) {
             'X-Title': 'My Weather & GitHub App'
         },
         body: JSON.stringify({
-            model: 'openai/gpt-4o-mini',
+            model: 'deepseek/deepseek-r1',
             messages: messages
         })
     }); if (!response.ok) {
