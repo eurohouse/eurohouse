@@ -150,7 +150,7 @@ async function callOpenRouter(messages) {
             'Authorization': `Bearer ${apiKey}`,
             'Content-Type': 'application/json',
             'HTTP-Referer': window.location.href,
-            'X-Title': 'My Weather & GitHub App'
+            'X-Title': 'Eurohouse UX/UI'
         },
         body: JSON.stringify({
             model: sysDefModel.value,
