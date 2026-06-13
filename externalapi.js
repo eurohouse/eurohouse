@@ -153,7 +153,7 @@ async function callOpenRouter(messages) {
             'X-Title': 'My Weather & GitHub App'
         },
         body: JSON.stringify({
-            model: 'nex-agi/nex-n2-pro:free',
+            model: sysDefModel.value,
             messages: messages
         })
     }); if (!response.ok) {
