@@ -141,7 +141,10 @@ function createUserMessage(input,imgUrl='') {
     return {role: 'user', content};
 }
 async function callOpenRouter(messages) {
-    const response=await fetch('https://openrouter.ai/api/v1/chat/completions', {
+    const apiKey=demorse(sysDefSecret.value,sysDefSessionID.value,sysDefNumeric.value);
+    if (!apiKey||apiKey.trim()==='') {
+        throw new Error('OpenRouter API key is missing or invalid. Please check your settings.');
+    } const response=await fetch('https://openrouter.ai/api/v1/chat/completions', {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${demorse(sysDefSecret.value,sysDefSessionID.value,sysDefNumeric.value)}`,
@@ -177,12 +180,6 @@ async function AI(input) {
         set(sysDefSessionID.value+'_files/artificial_intelligence.json',JSON.stringify(historyArr),'rw');
         return reply;
     } catch (error) {
-        if (error.message.includes('404')) {
-            console.error('API endpoint not found. Check the URL.');
-        } else if (error.message.includes('Payment Required')) {
-            console.error('Payment required. Please check your OpenRouter balance.');
-        } else {
-            console.error('AI error:',error);
-        } return input;
+        return input;
     }
 }
