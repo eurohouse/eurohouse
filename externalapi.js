@@ -135,39 +135,10 @@ async function analyzeMultipleRepositories(repoUrls) {
         return null;
     }
 }
-async function getAudioAsBase64(audioSrc) {
-    try {
-        const response=await fetch(audioSrc);
-        const blob=await response.blob();
-        return await new Promise((resolve,reject)=>{
-            const reader=new FileReader();
-            reader.onload=()=>{
-                const base64String=reader.result.split(',')[1];
-                resolve(base64String);
-            };
-            reader.onerror=reject;
-            reader.readAsDataURL(blob);
-        });
-    } catch (error) {
-        console.error('Error fetching audio:',error);
-        return null;
-    }
-}
 async function collectContextData() {
-    const audioObj=document.querySelector('audio')||document.getElementById('audioPlayer');
-    const audioSrc=audioObj?audioObj.src:null; var obj={};
+    let obj={};
     obj.imgUrl=(!isLocalhost())?($('body').css('background-image')).replace(/^url\(['"]?(.*?)['"]?\)$/i,'$1'):'';
-    if (audioSrc) {
-        const audioBase64=await getAudioAsBase64(audioSrc);
-        if (audioBase64) {
-            obj.audio=(!isLocalhost())?audioBase64.replace(/^url\(['"]?(.*?)['"]?\)$/i,'$1'):'';
-            console.log('Аудио успешно закодировано в base64');
-        } else {
-            console.error('Не удалось закодировать аудио в base64');
-        }
-    } else {
-        console.error('Аудиоисточник не найден');
-    } return obj;
+    return obj;
 }
 function createUserMessage(input,options={}) {
     const content=[{ type: 'text', text: input }];
@@ -240,9 +211,9 @@ async function AI(input) {
         let userContent; if (input.includes('https://github.com/')) {
             const repoUrls=input.match(/https:\/\/github\.com\/[^\s,.<>;"']+/g)||[];
             const allReposInfo=await analyzeMultipleRepositories(repoUrls);
-            userContent=((demorse(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value)!="")&&(sysDefPlaying.value!=0))?createUserMessage(`${input}\n${allReposInfo}`,userContext):createUserMessage(`${input}\n${allReposInfo}`,userContext);
+            userContent=((demorse(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value)!="")&&(sysDefPlaying.value!=0))?createUserMessage(`${input}\n${allReposInfo}`,userContext):createUserMessage(`${input}\n${allReposInfo}\n${currentMelody}`,userContext);
         } else {
-            userContent=((currentMelody!="")&&(sysDefPlaying.value!=0))?createUserMessage(`${input}`,userContext):createUserMessage(`${input}`,userContext);
+            userContent=((currentMelody!="")&&(sysDefPlaying.value!=0))?createUserMessage(`${input}`,userContext):createUserMessage(`${input}\n${currentMelody}`,userContext);
         } historyArr.push(userContent);
         const reply=await callOpenRouter(historyArr);
         historyArr.push({role: 'assistant', content: reply});
