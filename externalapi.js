@@ -177,7 +177,12 @@ async function AI(input) {
         set(sysDefSessionID.value+'_files/artificial_intelligence.json',JSON.stringify(historyArr),'rw');
         return reply;
     } catch (error) {
-        console.error('Sorry, an error occurred. Please try again.');
-        return input;
+        if (error.message.includes('404')) {
+            console.error('API endpoint not found. Check the URL.');
+        } else if (error.message.includes('Payment Required')) {
+            console.error('Payment required. Please check your OpenRouter balance.');
+        } else {
+            console.error('AI error:',error);
+        } return input;
     }
 }
