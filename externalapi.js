@@ -147,13 +147,13 @@ async function callOpenRouter(messages) {
     } const response=await fetch('https://openrouter.ai/api/v1/chat/completions', {
         method: 'POST',
         headers: {
-            'Authorization': `Bearer ${demorse(sysDefSecret.value,sysDefSessionID.value,sysDefNumeric.value)}`,
+            'Authorization': `Bearer ${apiKey}`,
             'Content-Type': 'application/json',
             'HTTP-Referer': window.location.href,
             'X-Title': 'My Weather & GitHub App'
         },
         body: JSON.stringify({
-            model: 'nvidia/llama-nemotron-rerank-vl-1b-v2:free',
+            model: 'google/veo-3.1-fast',
             messages: messages
         })
     }); if (!response.ok) {
