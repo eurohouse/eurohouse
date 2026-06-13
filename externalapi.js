@@ -135,53 +135,39 @@ async function analyzeMultipleRepositories(repoUrls) {
         return null;
     }
 }
-function isValidUrl(string) {
-    try {
-        new URL(string);
-        return true;
-    } catch (_) {
-        return false;
-    }
-}
-function getBackgroundImageUrl() {
-    const body=document.body;
-    const style=window.getComputedStyle(body);
-    const backgroundImage=style.backgroundImage;
-    if (backgroundImage&&backgroundImage!=='none') {
-        return backgroundImage
-            .replace(/^url\(["']?)(.*?)\1\)$/i,'$2')
-            .trim();
-    } return '';
-}
 async function getAudioAsBase64(audioSrc) {
     try {
-        const response = await fetch(audioSrc);
-        const blob = await response.blob();
-        return await new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onload = () => {
-                // Убираем префикс data:audio/...;base64,
-                const base64String = reader.result.split(',')[1];
+        const response=await fetch(audioSrc);
+        const blob=await response.blob();
+        return await new Promise((resolve,reject)=>{
+            const reader=new FileReader();
+            reader.onload=()=>{
+                const base64String=reader.result.split(',')[1];
                 resolve(base64String);
             };
-            reader.onerror = reject;
+            reader.onerror=reject;
             reader.readAsDataURL(blob);
         });
     } catch (error) {
-        console.error('Error fetching audio:', error);
+        console.error('Error fetching audio:',error);
         return null;
     }
 }
 async function collectContextData() {
-    const audioPlayer=document.querySelector('audio')||document.getElementById('audioPlayer');
-    let audioUrl=''; if (audioPlayer&&audioPlayer.src) {
-        if (isValidUrl(audioPlayer.src)) {
-            audioUrl=audioPlayer.src;
+    const audioObj=document.querySelector('audio')||document.getElementById('audioPlayer');
+    const audioSrc=audioObj?audioObj.src:null; var obj={};
+    obj.imgUrl=(!isLocalhost())?($('body').css('background-image')).replace(/^url\(['"]?(.*?)['"]?\)$/i,'$1'):'';
+    if (audioSrc) {
+        const audioBase64=await getAudioAsBase64(audioSrc);
+        if (audioBase64) {
+            obj.audio=(!isLocalhost())?audioBase64.replace(/^url\(['"]?(.*?)['"]?\)$/i,'$1'):'';
+            console.log('Аудио успешно закодировано в base64');
+        } else {
+            console.error('Не удалось закодировать аудио в base64');
         }
-    } return {
-        imgUrl: (!isLocalhost())?getBackgroundImageUrl():'',
-        audio: (!isLocalhost())?getAudioAsBase64(audioUrl):''
-    }
+    } else {
+        console.error('Аудиоисточник не найден');
+    } return obj;
 }
 function createUserMessage(input,options={}) {
     const content=[{ type: 'text', text: input }];
@@ -203,7 +189,7 @@ function createUserMessage(input,options={}) {
             document_url: { url: options.document }
         });
     }
-    if (notBlank(options.audio)) {
+    if (notNull(options.audio)) {
         content.push({
             type: 'audio',
             audio_url: { url: options.audio }
