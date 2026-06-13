@@ -211,9 +211,9 @@ async function AI(input) {
         let userContent; if (input.includes('https://github.com/')) {
             const repoUrls=input.match(/https:\/\/github\.com\/[^\s,.<>;"']+/g)||[];
             const allReposInfo=await analyzeMultipleRepositories(repoUrls);
-            userContent=((demorse(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value)!="")&&(sysDefPlaying.value!=0))?createUserMessage(`${input}\n${allReposInfo}`,userContext):createUserMessage(`${input}\n${allReposInfo}\n${currentMelody}`,userContext);
+            userContent=((currentMelody!="")&&(sysDefPlaying.value!=0))?createUserMessage(`${input}\n${allReposInfo}\n${currentMelody}`,userContext):createUserMessage(`${input}\n${allReposInfo}`,userContext);
         } else {
-            userContent=((currentMelody!="")&&(sysDefPlaying.value!=0))?createUserMessage(`${input}`,userContext):createUserMessage(`${input}\n${currentMelody}`,userContext);
+            userContent=((currentMelody!="")&&(sysDefPlaying.value!=0))?createUserMessage(`${input}\n${currentMelody}`,userContext):createUserMessage(`${input}`,userContext);
         } historyArr.push(userContent);
         const reply=await callOpenRouter(historyArr);
         historyArr.push({role: 'assistant', content: reply});
