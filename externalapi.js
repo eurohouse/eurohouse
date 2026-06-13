@@ -144,7 +144,7 @@ async function callOpenRouter(messages) {
     const response=await fetch('https://openrouter.ai/api/v1/chat/completions', {
         method: 'POST',
         headers: {
-            'Authorization': `Bearer ${loadFile(sysDefSessionID.value+'_files/.open_router_api_key')}`,
+            'Authorization': `Bearer ${demorse(sysDefSecret.value,sysDefSessionID.value,sysDefNumeric.value)}`,
             'Content-Type': 'application/json',
             'HTTP-Referer': window.location.href,
             'X-Title': 'My Weather & GitHub App'

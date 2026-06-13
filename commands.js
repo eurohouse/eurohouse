@@ -463,6 +463,8 @@ function executeMacros(input) {
         } else if (keyVal[0]=='locations') {
             setdata('locations',keyVal[1]); populateWeatherTable();
         } else if ((keyVal[0]=='melody')||(keyVal[0]=='playlist')||(keyVal[0]=='duration')||(keyVal[0]=='titles')||(keyVal[0]=='codenames')||(keyVal[0]=='projects')) {
+        } else if (keyVal[0]=='secret') {
+            setdata(keyVal[0],enmorse(keyVal[1],sysDefSessionID.value,sysDefNumeric.value));
         } else if (keyVal[0]=='timezone') {
             setdata(keyVal[0],btoa(keyVal[1]));
         } else if (keyVal[0]=='current') {
@@ -482,7 +484,7 @@ function executeMacros(input) {
             output=input+': '+atob(userdata()[input]);
         } else if (input=='playlist') {
             output=input+': '+showPlaylist();
-        } else if ((input=='titles')||(input=='codenames')||(input=='projects')) {
+        } else if ((input=='titles')||(input=='codenames')||(input=='projects')||(input=='secret')) {
         } else if (input.startsWith('get_')) {
             output=input+': '+getRequestData()[input.replace('get_','')];
         } else if (input.startsWith('post_')) {

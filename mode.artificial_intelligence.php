@@ -1,5 +1,8 @@
 <!-- help -->
 <!-- GR: Τεχνητή Νοημοσύνη; CY: Τεχνητή Νοημοσύνη; CH: Intellegentia Artificialis; FR: Intelligence artificielle; IT: Intelligenza artificiale; LK: कृत्रिम बुद्धि; IN: कृत्रिम होशियारी; RU: Искусственный интеллект; RS: Вештачка интелигенција; NP: མིས་བཟོས་རིག་སྟོབས།; UA: Штучний інтелект; CN: 人工智能; KR: 인공지능; JP: 人工知能 -->
+<?php if (!file_exists($sessionID.'_files/artificial_intelligence.json')) {
+    file_put_contents($sessionID.'_files/artificial_intelligence.json','[]');
+} ?>
 <div class='customPanel' style="width:100%;height:15%;left:0px;top:0px;">
     <p align='center' class='block'>
     <input type="text" id="promptGPT" style="width:62%;" placeholder="<?=term("Ask artificial intelligence anything",$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) {
