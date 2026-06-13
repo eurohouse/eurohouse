@@ -150,7 +150,7 @@ async function callOpenRouter(messages) {
             'X-Title': 'My Weather & GitHub App'
         },
         body: JSON.stringify({
-            model: 'deepseek/deepseek-r1',
+            model: 'nvidia/llama-nemotron-rerank-vl-1b-v2:free',
             messages: messages
         })
     }); if (!response.ok) {
