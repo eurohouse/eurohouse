@@ -21,6 +21,7 @@
         }
     }).catch(error=>{ console.error(error); });">
     <input type="image" class="power" id="buttonBackspace" onmouseover="soundButton();" src="<?=$prefix[3].'backspace.png';?>" onclick="soundClick(); promptGPT.value=''; promptGPT.focus();">
+    <input type="image" class="power" id="buttonTrash" onmouseover="soundButton();" src="<?=$prefix[3].'trash.png';?>" onclick="soundClick(); set(sysDefSessionID.value+'_files/artificial_intelligence.json','[]','rw');">
     </p>
 </div>
 <div class='customPanel' id='markdown_disp' style="width:100%;height:80%;left:0px;top:0px;overflow-y:scroll;">
