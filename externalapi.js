@@ -135,10 +135,52 @@ async function analyzeMultipleRepositories(repoUrls) {
         return null;
     }
 }
+function isValidUrl(string) {
+    try {
+        new URL(string);
+        return true;
+    } catch (_) {
+        return false;
+    }
+}
+function getBackgroundImageUrl() {
+    const body=document.body;
+    const style=window.getComputedStyle(body);
+    const backgroundImage=style.backgroundImage;
+    if (backgroundImage&&backgroundImage!=='none') {
+        return backgroundImage
+            .replace(/^url\(["']?)(.*?)\1\)$/i,'$2')
+            .trim();
+    } return '';
+}
+async function getAudioAsBase64(audioSrc) {
+    try {
+        const response = await fetch(audioSrc);
+        const blob = await response.blob();
+        return await new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => {
+                // Убираем префикс data:audio/...;base64,
+                const base64String = reader.result.split(',')[1];
+                resolve(base64String);
+            };
+            reader.onerror = reject;
+            reader.readAsDataURL(blob);
+        });
+    } catch (error) {
+        console.error('Error fetching audio:', error);
+        return null;
+    }
+}
 async function collectContextData() {
-    return {
-        imgUrl: (!isLocalhost())?($('body').css('background-image')).replace(/^url\(['"]?(.*?)['"]?\)$/i,'$1'):'',
-        audioUrl: (!isLocalhost())?(audioPlayer.src).replace(/^url\(['"]?(.*?)['"]?\)$/i,'$1'):sysDefMelody.value
+    const audioPlayer=document.querySelector('audio')||document.getElementById('audioPlayer');
+    let audioUrl=''; if (audioPlayer&&audioPlayer.src) {
+        if (isValidUrl(audioPlayer.src)) {
+            audioUrl=audioPlayer.src;
+        }
+    } return {
+        imgUrl: (!isLocalhost())?getBackgroundImageUrl():'',
+        audio: (!isLocalhost())?getAudioAsBase64(audioUrl):''
     }
 }
 function createUserMessage(input,options={}) {
@@ -155,22 +197,22 @@ function createUserMessage(input,options={}) {
             image: options.imageData
         });
     }
-    if (notNull(options.documentUrl)) {
+    if (notNull(options.document)) {
         content.push({
             type: 'document',
-            document_url: { url: options.documentUrl }
+            document_url: { url: options.document }
         });
     }
-    if (notBlank(options.audioUrl)) {
+    if (notBlank(options.audio)) {
         content.push({
             type: 'audio',
-            audio_url: { url: options.audioUrl }
+            audio_url: { url: options.audio }
         });
     }
-    if (notNull(options.videoUrl)) {
+    if (notNull(options.video)) {
         content.push({
             type: 'video',
-            video_url: { url: options.videoUrl }
+            video_url: { url: options.video }
         });
     } return { role: 'user', content };
 }
