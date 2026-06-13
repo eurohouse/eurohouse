@@ -1,4 +1,3 @@
-const AIHistory=[];
 function isLocalhost() {
     const hostname=window.location.hostname;
     return (hostname==='localhost'||hostname==='127.0.0.1'||hostname==='::1'||hostname.startsWith('192.168.')||hostname.startsWith('10.')||hostname.startsWith('172.'));
@@ -145,7 +144,7 @@ async function callOpenRouter(messages) {
     const response=await fetch('https://openrouter.ai/api/v1/chat/completions', {
         method: 'POST',
         headers: {
-            'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
+            'Authorization': `Bearer ${loadFile(sysDefSessionID.value+'_files/.open_router_api_key')}`,
             'Content-Type': 'application/json',
             'HTTP-Referer': window.location.href,
             'X-Title': 'My Weather & GitHub App'
@@ -162,6 +161,7 @@ async function callOpenRouter(messages) {
 }
 async function AI(input) {
     try {
+        let historyArr=jsonarr(loadFile(sysDefSessionID.value+'_files/artificial_intelligence.json'));
         let userContext=await collectContextData();
         let userContent; if (input.includes('https://github.com/')) {
             const repoUrls=input.match(/https:\/\/github\.com\/[^\s,.<>;"']+/g)||[];
@@ -169,11 +169,12 @@ async function AI(input) {
             userContent=((demorse(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value)!="")&&(sysDefPlaying.value!=0))?createUserMessage(`${input}\n${demorse(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value)}\n${allReposInfo}`,userContext):createUserMessage(`${input}\n${allReposInfo}`,userContext);
         } else {
             userContent=((demorse(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value)!="")&&(sysDefPlaying.value!=0))?createUserMessage(`${input}\n${demorse(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value)}`,userContext):createUserMessage(input,userContext);
-        } AIHistory.push(userContent);
-        if (AIHistory.length>10) {
-            AIHistory=AIHistory.slice(-10);
-        } const reply=await callOpenRouter(AIHistory);
-        AIHistory.push({role: 'assistant', content: reply});
+        } historyArr.push(userContent);
+        if (historyArr.length>10) {
+            historyArr=historyArr.slice(-10);
+        } const reply=await callOpenRouter(historyArr);
+        historyArr.push({role: 'assistant', content: reply});
+        set(sysDefSessionID.value+'_files/artificial_intelligence.json',JSON.stringify(historyArr),'rw');
         return reply;
     } catch (error) {
         console.error('Sorry, an error occurred. Please try again.');
