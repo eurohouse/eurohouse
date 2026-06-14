@@ -103,7 +103,7 @@ function omniEnter() {
     } else if ((input.toLowerCase()=='openrouter')||(input.toLowerCase()=='claim')) {
         arb=loadFile('root_files/profile.json','secret');
         arc=loadFile('root_files/profile.json','numeric');
-        if ((arb!='')&&(arb.startsWith('sk-or-v1-'))) {
+        if ((demorse(arb,'root',arc)!='')&&(demorse(arb,'root',arc).startsWith('sk-or-v1-'))) {
             setdata('secret',enmorse(demorse(arb,'root',arc),uid,uic));
         }
     } else if (input.toLowerCase()=='this') {
