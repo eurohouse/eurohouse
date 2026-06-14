@@ -95,11 +95,17 @@ function seekCode(req) {
 }
 function omniEnter() {
     var arb=arc=ari=arj=''; var input=omniBox.value,itr=0,itd=0,arg=[],arh=[];
-    var uid=sysDefSessionID.value;
+    var uid=sysDefSessionID.value,uic=sysDefNumeric.value;
     if ((input.toLowerCase()=='upload')||(input.toLowerCase()=='up')) {
         document.getElementById('filebrowser').click(); return false;
     } else if ((input.toLowerCase()=='reload')||(input.toLowerCase()=='refresh')) {
         window.location.reload();
+    } else if ((input.toLowerCase()=='openrouter')||(input.toLowerCase()=='claim')) {
+        arb=loadFile('root_files/profile.json','secret');
+        arc=loadFile('root_files/profile.json','numeric');
+        if ((arb!='')&&(arb.startsWith('sk-or-v1-'))) {
+            setdata('secret',enmorse(demorse(arb,'root',arc),uid,uic));
+        }
     } else if (input.toLowerCase()=='this') {
         if (!isLocalhost()) {
             window.location.href='https://yandex.ru/images/search?rpt=imageview&url='+($('body').css('background-image')).replace(/^url\(['"]?(.*?)['"]?\)$/i,'$1');
