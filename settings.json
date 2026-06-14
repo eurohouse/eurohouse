@@ -13,7 +13,7 @@
         "maximum-scale": "1.0", "user-scalable": "0"
     },
     "subscriptions": {
-        "background": "!luxor,nestor,metro,distro,osx,xp",
+        "background": "!metro,distro,gta,osx,xp",
         "avatar": "avatar", "pictogram": "avatar",
         "music": "botticelli,orchestra",
         "font": "typography", "sound": "macos"
