@@ -245,7 +245,7 @@ async function callOpenRouter(messages, maxRetries = 3) {
   let retries = 0;
   while (retries < maxRetries) {
     try {
-      const response = await fetch('/api/openrouter.php', {
+      const response = await fetch('openrouter.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
