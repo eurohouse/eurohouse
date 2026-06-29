@@ -240,7 +240,46 @@ function createUserMessage(input,options={}) {
         });
     } return { role: 'user', content };
 }
-async function callOpenRouter(messages,maxRetries=3) {
+
+async function callOpenRouter(messages, maxRetries = 3) {
+  let retries = 0;
+  while (retries < maxRetries) {
+    try {
+      const response = await fetch('/api/openrouter.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          // никаких Authorization, никаких ключей здесь
+        },
+        body: JSON.stringify({
+          model: sysDefModel.value,
+          messages: messages,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        if (response.status === 429 && retries < maxRetries - 1) {
+          retries++;
+          const retryAfter = parseInt(response.headers.get('Retry-After')) || 1000 * retries;
+          await sleep(retryAfter);
+          continue;
+        }
+        throw new Error(`API Error: ${response.status} - ${errorText}`);
+      }
+
+      const data = await response.json();
+      return data.choices[0].message.content;
+    } catch (error) {
+      if (retries >= maxRetries - 1) throw error;
+      await sleep(2000);
+      retries++;
+    }
+  }
+  throw new Error('Max retries exceeded');
+}
+
+/*async function callOpenRouter(messages,maxRetries=3) {
     const apiKey=EE2EE.decode(sysDefSecret.value,sysDefSessionID.value,sysDefNumeric.value);
     if (!apiKey||apiKey.trim()==='') {
         throw new Error('OpenRouter API key is missing or invalid. Please check your settings.');
@@ -269,7 +308,8 @@ async function callOpenRouter(messages,maxRetries=3) {
             if (retries>=maxRetries-1) throw error; await sleep(2000); retries++;
         }
     } throw new Error('Max retries exceeded');
-}
+}*/
+
 async function AI(input) {
     try {
         let historyArr=jsonarr(loadFile(sysDefSessionID.value+'_files/artificial_intelligence.json'));
