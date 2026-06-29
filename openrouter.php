@@ -2,7 +2,7 @@
 // api/openrouter.php
 
 // --- НАЧАЛО: простой .env-лоадер без зависимостей ---
-$envPath = __DIR__ . '/../.env'; // .env лежит в корне проекта, рядом с index.php
+$envPath = '.env';
 if (file_exists($envPath)) {
     $lines = file($envPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
     foreach ($lines as $line) {
