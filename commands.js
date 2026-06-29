@@ -100,12 +100,6 @@ function omniEnter() {
         document.getElementById('filebrowser').click(); return false;
     } else if ((input.toLowerCase()=='reload')||(input.toLowerCase()=='refresh')) {
         window.location.reload();
-    } else if ((input.toLowerCase()=='openrouter')||(input.toLowerCase()=='claim')) {
-        arb=loadFile('root_files/profile.json','secret');
-        arc=loadFile('root_files/profile.json','numeric');
-        if ((EE2EE.decode(arb,'root',arc)!='')&&(EE2EE.decode(arb,'root',arc).startsWith('sk-or-v1-'))) {
-            setdata('secret',EE2EE.encode(EE2EE.decode(arb,'root',arc),uid,uic));
-        }
     } else if (input.toLowerCase()=='this') {
         if (!isLocalhost()) {
             window.location.href='https://yandex.ru/images/search?rpt=imageview&url='+($('body').css('background-image')).replace(/^url\(['"]?(.*?)['"]?\)$/i,'$1');
@@ -469,8 +463,6 @@ function executeMacros(input) {
         } else if (keyVal[0]=='locations') {
             setdata('locations',keyVal[1]); populateWeatherTable();
         } else if ((keyVal[0]=='melody')||(keyVal[0]=='playlist')||(keyVal[0]=='duration')||(keyVal[0]=='titles')||(keyVal[0]=='codenames')||(keyVal[0]=='projects')) {
-        } else if (keyVal[0]=='secret') {
-            setdata(keyVal[0],EE2EE.encode(keyVal[1],sysDefSessionID.value,sysDefNumeric.value));
         } else if (keyVal[0]=='timezone') {
             setdata(keyVal[0],btoa(keyVal[1]));
         } else if (keyVal[0]=='current') {
@@ -490,7 +482,7 @@ function executeMacros(input) {
             output=input+': '+atob(userdata()[input]);
         } else if (input=='playlist') {
             output=input+': '+showPlaylist();
-        } else if ((input=='titles')||(input=='codenames')||(input=='projects')||(input=='secret')) {
+        } else if ((input=='titles')||(input=='codenames')||(input=='projects')) {
         } else if (input.startsWith('get_')) {
             output=input+': '+getRequestData()[input.replace('get_','')];
         } else if (input.startsWith('post_')) {
