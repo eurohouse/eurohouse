@@ -2,7 +2,7 @@
 // api/openrouter.php
 
 // --- НАЧАЛО: простой .env-лоадер без зависимостей ---
-$envPath = '.env';
+$envPath = __DIR__ . '/../.env'; // .env лежит в корне проекта, рядом с index.php
 if (file_exists($envPath)) {
     $lines = file($envPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
     foreach ($lines as $line) {
@@ -32,7 +32,7 @@ if (file_exists($envPath)) {
 // --- КОНЕЦ: простой .env-лоадер ---
 
 header('Content-Type: application/json');
-header('Access-Control-Allow-Origin: *'); // лучше заменить на конкретный домен
+header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Content-Type');
 
@@ -49,7 +49,7 @@ if (json_last_error() !== JSON_ERROR_NONE || !isset($input['messages'])) {
     exit;
 }
 
-// Читаем ключ из переменной окружения
+// Теперь getenv() увидит переменные из .env
 $apiKey = getenv('OPENROUTER_API_KEY');
 if (!$apiKey) {
     http_response_code(500);
@@ -78,7 +78,7 @@ $options = [
             'Content-Length: ' . strlen($payload),
         ],
         'content' => $payload,
-        'ignore_errors' => true, // чтобы получить реальный HTTP‑код из заголовков
+        'ignore_errors' => true,
         'protocol_version' => '1.1',
     ],
 ];
@@ -86,15 +86,10 @@ $options = [
 $context = stream_context_create($options);
 $result = @file_get_contents('https://openrouter.ai/api/v1/chat/completions', false, $context);
 
-// Получаем HTTP‑статус из метаданных потока
-$meta = stream_get_meta_data($context);
-// В метаданных нет прямого HTTP‑кода, поэтому смотрим заголовки ответа
 $headers = $http_response_header ?? [];
-
-$httpCode = 500; // дефолт при ошибке
+$httpCode = 500;
 foreach ($headers as $header) {
     if (stripos($header, 'HTTP/') === 0) {
-        // Пример строки: "HTTP/1.1 200 OK"
         $parts = explode(' ', $header, 3);
         if (count($parts) >= 2 && is_numeric($parts[1])) {
             $httpCode = (int)$parts[1];
@@ -115,7 +110,6 @@ if ($result === false) {
 }
 
 if ($httpCode !== 200) {
-    // Пробрасываем статус и тело ошибки от OpenRouter
     http_response_code($httpCode);
     echo $result;
     exit;
