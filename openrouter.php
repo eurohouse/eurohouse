@@ -1,5 +1,36 @@
 <?php
 // api/openrouter.php
+
+// --- НАЧАЛО: простой .env-лоадер без зависимостей ---
+$envPath = __DIR__ . '/../.env'; // .env лежит в корне проекта, рядом с index.php
+if (file_exists($envPath)) {
+    $lines = file($envPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($lines as $line) {
+        // Пропускаем комментарии и пустые строки
+        if (strpos(trim($line), '#') === 0 || strpos($line, '=') === false) {
+            continue;
+        }
+
+        list($name, $value) = explode('=', $line, 2);
+        $name = trim($name);
+        $value = trim($value);
+
+        // Удаляем кавычки по краям, если они есть (поддерживает "value", 'value')
+        if ((substr($value, 0, 1) === '"' && substr($value, -1) === '"')
+            || (substr($value, 0, 1) === "'" && substr($value, -1) === "'")) {
+            $value = substr($value, 1, -1);
+        }
+
+        putenv("$name=$value");
+        $_ENV[$name] = $value;       // чтобы работало $_ENV['KEY']
+        $_SERVER[$name] = $value;   // чтобы работало getenv() и иногда $_SERVER
+    }
+} else {
+    // Можно залогировать, если хочешь, но не выводи ошибку клиенту
+    error_log('Warning: .env file not found at ' . $envPath);
+}
+// --- КОНЕЦ: простой .env-лоадер ---
+
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *'); // лучше заменить на конкретный домен
 header('Access-Control-Allow-Methods: POST');
