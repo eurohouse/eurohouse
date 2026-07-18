@@ -136,7 +136,6 @@ function world_clock() {
             $('#buttonUpdate').attr('src',sysDefPrefix.value+'world.png');
             $('#buttonRequestLock').attr('src',sysDefPrefix.value+((requestLock.value!='false')?'lock.png':'key.png'));
             $('#buttonMorseLock').attr('src',sysDefPrefix.value+((sysDefMorse.value!=0)?'key.png':'lock.png'));
-            $('#buttonCipherLock').attr('src',sysDefPrefix.value+((sysDefCipher.value!=0)?'key.png':'lock.png'));
             $('#buttonAutoplay').attr('src',sysDefPrefix.value+((sysDefAutoplay.value!=0)?'autopause.png':'autoplay.png'));
             $('#buttonSlideshow').attr('src',sysDefPrefix.value+((sysDefBackground.value!='')?'image.png':((sysDefSlideshow.value!=0)?'speed.png':'time.png')));
             $('#buttonShuffle').attr('src',sysDefPrefix.value+((sysDefShuffle.value!=0)?'shuffle.png':'update.png'));
