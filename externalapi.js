@@ -141,12 +141,11 @@ function currentPlaying(playerObj) {
 }
 function audioSourceURL(playerObj) {
     const audioElem=(isObject(playerObj))?playerObj:document.getElementById(playerObj);
-    let audioUrl=''; if (audioElem) {
+    let audioUrl=''; if ((audioElem)&&(!isLocalhost())) {
         audioUrl=((audioElem.currentSrc!='')&&(!audioElem.paused))?audioElem.currentSrc:'';
     } else { audioUrl=''; } return audioUrl;
 }
 function environmentInfo() {
-    console.log(audioSourceURL(audioPlayer));
     return `Now Playing: ${currentPlaying(audioPlayer)},
 Audio Source URL: ${audioSourceURL(audioPlayer)},
 User Personal Title: ${localizedTitle(sysDefSessionID.value,'title')}`;
@@ -166,12 +165,8 @@ async function getBackgroundImageAsBase64() {
             } const blob=await response.blob();
             const base64String=await convertBlobToBase64(blob);
             result=(sysDefBase64.value!=0)?base64String:imgUrl;
-	} else {
-	    result=null;
-	} return result;
-    } catch (error) {
-        return null;
-    }
+	} else { result=null; } return result;
+    } catch (error) { return null; }
 }
 async function getAudioFromPlayerAsBase64(playerId='audioPlayer') {
     try {
