@@ -86,7 +86,7 @@ function world_clock() {
         success: function(data) {
             $('#currentTime').val(pager(data,sysDefTimedisp.value));
             $('#alarmTime').val((pager(data,2)!='00:00')?pager(data,2):((sysDefPlayBackwards.value!=0)?hhmmss((sysDefDuration.value-audioPlayer.currentTime),true):hhmmss(audioPlayer.currentTime,true)));
-            showUsCurrentMusic.innerText=(sysDefCipher.value!=0)?sysDefMelody.value:('"'+EE2EE.decode(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value)+'" <'+hhmmss(sysDefCurrent.value,true)+'/'+hhmmss(sysDefDuration.value,true)+'>');
+            showUsCurrentMusic.innerText=`"${EE2EE.decode(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value)}" <${hhmmss(sysDefCurrent.value,true)}/${hhmmss(sysDefDuration.value,true)}> [${showPlaylist}]`;
             if ((pager(data,2)!='00:00')&&(pager(data,2)!='--:--')&&(sysDefMemo.value!='')) {
                 playAudio(tickerPlayer,sysDefTickingSound.value);
             } else { pauseAudio(tickerPlayer); }
