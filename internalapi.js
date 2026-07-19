@@ -274,6 +274,10 @@ function populateCommandIO() {
             row.insertCell().textContent=`${error.message}`;
         } promptExec.focus();
     }
+}
+function clearCommandIO() {
+    const tableBody=document.getElementById('commandData');
+    if (!tableBody) return; tableBody.innerHTML='';
 } let __loopProtection=true;
 function disableLoopProtection() {
     __loopProtection=false;
