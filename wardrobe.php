@@ -24,7 +24,6 @@
     --bicolor: <?=alphaChannel($session['back_color'],$session['opacity']);?>;
     --qucolor: <?=alphaChannel($session['back_color'],'IF');?>;
     --marquee-animation: scrollMarquee <?=$session['marquee'].'s';?> linear infinite;
-    --mediainfo-animation: scrollMarquee <?=$session['mediainfo'].'s';?> linear infinite;
     --grad-line: <?=$session['gradient_fore'].'deg';?>;
     --grad-button: <?=$session['gradient_button'].'deg';?>;
     --border-radius: <?=$session['border_radius'];?>;
@@ -187,10 +186,6 @@ body {
 .marquee {
     overflow: hidden; white-space: nowrap; cursor: pointer;
     display: inline-block; animation: var(--marquee-animation);
-}
-.mediainfo {
-    overflow: hidden; white-space: nowrap; cursor: pointer;
-    display: inline-block; animation: var(--mediainfo-animation);
 }
 .panel {
     border: none; border-radius: 0px; position: relative;

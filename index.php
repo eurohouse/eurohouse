@@ -89,7 +89,7 @@
         <?php include 'dashboard.php'; ?>
         </div>
         <div class='upperGap'>
-            <span id='showUsCurrentMusic' class="mediainfo" onclick="soundClick(true); clip(this.innerText);"></span><br>
+            <span id='showUsCurrentMusic' class="marquee" onclick="soundClick(true); clip(this.innerText);"></span><br>
             <span id='showUsUrgent' class="urgent" onclick="soundClick(true); (sysDefMorse.value!=0)?((sequentialPlayer.isPlaying!=false)?sequentialPlayer.stop():sequentialPlayer.playFullSequence(this.innerText)):clip(this.innerText);"></span>
             <audio id="audioPlayer" style="width:80%;position:relative;" preservesPitch="<?=boolval($session['preserves_pitch']);?>" volume="<?=$session['audio_volume'];?>" playbackRate="<?=$session['audio_speed'];?>" onended="if (sysDefAutoplay.value!=0) { omniPlaylist(sysDefShuffle.value); }" ontimeupdate="savePlayState();" onpause="setdata('playing',0); $('#buttonPlay').attr('src',sysDefPrefix.value+'play.png');" onplay="setdata('playing',1); $('#buttonPlay').attr('src',sysDefPrefix.value+'pause.png');" onvolumechange="setdata('audio_volume',this.volume);" onratechange="setdata('audio_speed',this.playbackRate);" onloadedmetadata="setdata('duration',this.duration);">
         </div>

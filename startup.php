@@ -169,7 +169,6 @@ function world_clock() {
                     $('.lowerGap').show(); $('.topbar').show();
                 }
             } document.querySelector(':root').style.setProperty('--marquee-animation','scrollMarquee '+sysDefMarquee.value+'s linear infinite');
-            document.querySelector(':root').style.setProperty('--mediainfo-animation','scrollMarquee '+sysDefMediainfo.value+'s linear infinite');
             document.querySelector(':root').style.setProperty('--backdrop-filter',jsonarr(sysDefEffects.value)[0]);
             document.querySelector(':root').style.setProperty('--backdrop-opacity',jsonarr(sysDefEffects.value)[1]);
             document.querySelector(':root').style.setProperty('--overlay-before-bg',jsonarr(sysDefEffects.value)[2]);
