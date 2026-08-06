@@ -1,0 +1,5 @@
+<!-- music -->
+<!-- GR: Πολυμέσα; DE: Medienplayer; AT: Medienplayer; CY: Πολυμέσα; ES: Reproductor multimedia; MX: Reproductor multimedia; FR: Lecteur multimédia; CH: Lusor Medialis; BE: Lecteur multimédia; IT: Lettore multimediale; RO: Player media; MD: Player media; LK: मीडिया प्लेयर; TR: Medya Oynatıcısı; IN: मीडिया प्लेयर; PT: Reprodutor de multimédia; BR: Reprodutor de mídia; UA: Медіаплеєр; NP: སྨྱན་བྱད་གཏོང་མཁན།; RU: Медиаплеер; CN: 媒体播放器; KR: 미디어 플레이어; JP: メディアプレーヤー -->
+<!-- <ref> -->
+<!-- true -->
+<p align="center" class="block"><video style="width:92%;height:90%;" id="video" preservesPitch="<?=boolval($session['preserves_pitch']);?>" volume="<?=$session['video_volume'];?>" playbackRate="<?=$session['video_speed'];?>" src="<?=$request['input'];?>" controls autoplay="yes" onended="if (sysDefAutoplay.value!=0) { replayVideo(this); }" onvolumechange="setdata('video_volume',this.volume);" onratechange="setdata('video_speed',this.playbackRate);"></p>
