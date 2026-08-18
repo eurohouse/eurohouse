@@ -149,7 +149,7 @@ function world_clock() {
             $('#buttonAutoplay').attr('src',sysDefPrefix.value+((sysDefAutoplay.value!=0)?'autopause.png':'autoplay.png'));
             $('#buttonSlideshow').attr('src',sysDefPrefix.value+((sysDefBackground.value!='')?'image.png':((sysDefSlideshow.value!=0)?'speed.png':'time.png')));
             $('#buttonShuffle').attr('src',sysDefPrefix.value+((sysDefShuffle.value!=0)?'shuffle.png':'update.png'));
-            $('#buttonPlay').attr('src',sysDefPrefix.value+((audioPlayer.paused!=true)?'pause.png':'play.png'));
+            $('#buttonPlay').attr('src',sysDefPrefix.value+((audioPlayer.paused!=true)?'pause.png':((sysDefPlayBackwards.value!=0)?'playback.png':'play.png')));
             $('#buttonPrev').attr('src',sysDefPrefix.value+'rew.png');
             $('#buttonNext').attr('src',sysDefPrefix.value+'ff.png');
             $('#buttonSearch').attr('src',sysDefPrefix.value+'search.png');
