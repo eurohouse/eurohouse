@@ -9,6 +9,7 @@
         AI(this.value).then(reply=>{
             if (notNull(reply)) {
                 markdown_disp.innerHTML=marked.parse(reply);
+		sysDefUserAIMaxNum.value=Math.max(...Object.keys(jsonarr(sysDefUserAIData.value)).map(Number));
 		sysDefUserAICurNum.value=parseInt(sysDefUserAIMaxNum.value);
             }
         }).catch(error=>{ console.error(error); });
@@ -21,6 +22,7 @@
     <input type="image" class="power" id="buttonKeyboard" onmouseover="soundButton();" src="<?=$prefix[3].'keyboard.png';?>" onclick="soundClick(); AI(this.value).then(reply=>{
     if (notNull(reply)) {
             markdown_disp.innerHTML=marked.parse(reply);
+	    sysDefUserAIMaxNum.value=Math.max(...Object.keys(jsonarr(sysDefUserAIData.value)).map(Number));
 	    sysDefUserAICurNum.value=parseInt(sysDefUserAIMaxNum.value);
         }
     }).catch(error=>{ console.error(error); }); promptGPT.focus();">
