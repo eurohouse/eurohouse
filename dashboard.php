@@ -47,8 +47,8 @@
     <p align='center' class='block'>
     <input type="image" onmouseover="soundButton();" id="buttonAutoplay" class="power" onclick="soundClick(); setdata('autoplay',flip(sysDefAutoplay.value));" src="<?=$prefix[3].(($session['autoplay'])?'autopause.png':'autoplay.png');?>" title="<?=term('Enable Autoplay',$settings,$session);?>">
     <input type='button' id="currentTime" style="width:62%;" onclick="soundClick(); setdata('timedisp',flip(sysDefTimedisp.value));" value="<?=date(($session['timedisp']!=0)?$session['date_format']:$session['time_format']);?>">
-    <input type="image" id="buttonRewind" onmouseover="soundButton();" class="power" onclick="soundClick(); omniPlaylist(-2);" src="<?=$prefix[3].'rew.png';?>" title="<?=term('Previous Track',$settings,$session);?>">
-    <input type="image" id="buttonFastForward" onmouseover="soundButton();" class="power" onclick="soundClick(); omniPlaylist(-1);" src="<?=$prefix[3].'ff.png';?>" title="<?=term('Next Track',$settings,$session);?>">
+    <input type="image" id="buttonRewind" onmouseover="soundButton();" class="power" onclick="soundClick(); omniPlaylist(-2);" src="<?=$prefix[3].'prev.png';?>" title="<?=term('Previous Track',$settings,$session);?>">
+    <input type="image" id="buttonFastForward" onmouseover="soundButton();" class="power" onclick="soundClick(); omniPlaylist(-1);" src="<?=$prefix[3].'next.png';?>" title="<?=term('Next Track',$settings,$session);?>">
     </p>
 </div>
 <div class='topBarItem'>
