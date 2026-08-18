@@ -9,9 +9,10 @@
         AI(this.value).then(reply=>{
             if (notNull(reply)) {
                 markdown_disp.innerHTML=marked.parse(reply);
+		sysDefUserAICurNum.value=parseInt(sysDefUserAIMaxNum.value);
             }
         }).catch(error=>{ console.error(error); });
-    } else if (event.keyCode==27) { this.value=''; markdown_disp.innerHTML=''; this.focus(); set(sysDefSessionID.value+'_files/artificial_intelligence.json','[]','rw');
+    } else if (event.keyCode==27) { this.value=''; markdown_disp.innerHTML=''; this.focus(); set(sysDefSessionID.value+'_files/artificial_intelligence.json','[]','rw'); sysDefUserAICurNum.value=0;
     } else if (event.keyCode==8) { handleInput(this.value);
     } else if (event.keyCode==46) { handleInput(this.value);
     }" oninput="handleInput(this.value,true);">
@@ -20,9 +21,10 @@
     <input type="image" class="power" id="buttonKeyboard" onmouseover="soundButton();" src="<?=$prefix[3].'keyboard.png';?>" onclick="soundClick(); AI(this.value).then(reply=>{
     if (notNull(reply)) {
             markdown_disp.innerHTML=marked.parse(reply);
+	    sysDefUserAICurNum.value=parseInt(sysDefUserAIMaxNum.value);
         }
     }).catch(error=>{ console.error(error); }); promptGPT.focus();">
-    <input type="image" class="power" id="buttonBackspace" onmouseover="soundButton();" src="<?=$prefix[3].'backspace.png';?>" onclick="soundClick(); promptGPT.value=''; markdown_disp.innerHTML=''; promptGPT.focus(); set(sysDefSessionID.value+'_files/artificial_intelligence.json','[]','rw');">
+    <input type="image" class="power" id="buttonBackspace" onmouseover="soundButton();" src="<?=$prefix[3].'backspace.png';?>" onclick="soundClick(); promptGPT.value=''; markdown_disp.innerHTML=''; promptGPT.focus(); set(sysDefSessionID.value+'_files/artificial_intelligence.json','[]','rw'); sysDefUserAICurNum.value=0;">
     </p>
 </div>
 <div class='customPanel' id='markdown_disp' style="width:100%;height:70%;left:0px;top:0px;overflow-y:scroll;">
