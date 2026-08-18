@@ -16,8 +16,8 @@
     } else if (event.keyCode==8) { handleInput(this.value);
     } else if (event.keyCode==46) { handleInput(this.value);
     }" oninput="handleInput(this.value,true);">
-    <input type="image" class="power" id="buttonPrev" onmouseover="soundButton();" src="<?=$prefix[3].'rew.png';?>" onclick="soundClick(); var cur=parseInt(sysDefUserAICurNum.value); var max=parseInt(sysDefUserAIMaxNum.value); cur=(cur<=0)?max:(cur-1); sysDefUserAICurNum.value=cur; markdown_disp.innerHTML=marked.parse(getAIRecordContent(sysDefUserAICurNum.value)); promptGPT.focus();">
-    <input type="image" class="power" id="buttonNext" onmouseover="soundButton();" src="<?=$prefix[3].'ff.png';?>" onclick="soundClick(); var cur=parseInt(sysDefUserAICurNum.value); var max=parseInt(sysDefUserAIMaxNum.value); cur=(cur>=max)?0:(cur+1); sysDefUserAICurNum.value=cur; markdown_disp.innerHTML=marked.parse(getAIRecordContent(sysDefUserAICurNum.value)); promptGPT.focus();">
+    <input type="image" class="power" id="buttonPrev" onmouseover="soundButton();" src="<?=$prefix[3].'prev.png';?>" onclick="soundClick(); var cur=parseInt(sysDefUserAICurNum.value); var max=parseInt(sysDefUserAIMaxNum.value); cur=(cur<=0)?max:(cur-1); sysDefUserAICurNum.value=cur; markdown_disp.innerHTML=marked.parse(getAIRecordContent(sysDefUserAICurNum.value)); promptGPT.focus();">
+    <input type="image" class="power" id="buttonNext" onmouseover="soundButton();" src="<?=$prefix[3].'next.png';?>" onclick="soundClick(); var cur=parseInt(sysDefUserAICurNum.value); var max=parseInt(sysDefUserAIMaxNum.value); cur=(cur>=max)?0:(cur+1); sysDefUserAICurNum.value=cur; markdown_disp.innerHTML=marked.parse(getAIRecordContent(sysDefUserAICurNum.value)); promptGPT.focus();">
     <input type="image" class="power" id="buttonKeyboard" onmouseover="soundButton();" src="<?=$prefix[3].'keyboard.png';?>" onclick="soundClick(); AI(this.value).then(reply=>{
     if (notNull(reply)) {
             markdown_disp.innerHTML=marked.parse(reply);
