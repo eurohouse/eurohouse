@@ -150,8 +150,10 @@ function world_clock() {
             $('#buttonSlideshow').attr('src',sysDefPrefix.value+((sysDefBackground.value!='')?'image.png':((sysDefSlideshow.value!=0)?'speed.png':'time.png')));
             $('#buttonShuffle').attr('src',sysDefPrefix.value+((sysDefShuffle.value!=0)?'shuffle.png':'update.png'));
             $('#buttonPlay').attr('src',sysDefPrefix.value+((audioPlayer.paused!=true)?'pause.png':((sysDefPlayBackwards.value!=0)?'playback.png':'play.png')));
-            $('#buttonPrev').attr('src',sysDefPrefix.value+'rew.png');
-            $('#buttonNext').attr('src',sysDefPrefix.value+'ff.png');
+            $('#buttonPrev').attr('src',sysDefPrefix.value+'prev.png');
+            $('#buttonNext').attr('src',sysDefPrefix.value+'next.png');
+	    $('#buttonRewind').attr('src',sysDefPrefix.value+'rew.png');
+            $('#buttonFastForward').attr('src',sysDefPrefix.value+'ff.png');
             $('#buttonSearch').attr('src',sysDefPrefix.value+'search.png');
             $('#buttonReplace').attr('src',sysDefPrefix.value+'text.png');
             $('#buttonReplaceAll').attr('src',sysDefPrefix.value+'copy.png');
