@@ -82,7 +82,10 @@ function subscribe(ent,val) {
 function setdata(ent,val) {
     var obj=userdata(); obj[ent]=val;
     if ((ent=='numeric')&&(obj[ent].length<2)) { obj[ent]='01'; }
-    set(sysDefSessionID.value+'_files/profile.json',JSON.stringify(obj),'rw'); <?php foreach ($settings['defaults'] as $key=>$value) {
+    const sortedObj=Object.fromEntries(
+        Object.entries(obj).sort(([keyA],[keyB])=>keyA.localeCompare(keyB))
+    ); set(sysDefSessionID.value+'_files/profile.json',JSON.stringify(sortedObj),'rw');
+    <?php foreach ($settings['defaults'] as $key=>$value) {
         echo "sysDef".snakeToCamel($key).".value=obj['".$key."'];";
     } ?> if (ent=='font_ascii') { registerFont('euro',val,'U+0000-007F'); }
     if (ent=='font_latin') { registerFont('euro',val,'U+0080-00FF'); }
