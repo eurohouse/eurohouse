@@ -13,19 +13,20 @@
 		sysDefUserAICurNum.value=parseInt(sysDefUserAIMaxNum.value);
             }
         }).catch(error=>{ console.error(error); });
-    } else if (event.keyCode==27) { this.value=''; markdown_disp.innerHTML=''; this.focus(); set(sysDefSessionID.value+'_files/artificial_intelligence.json','[]','rw'); sysDefUserAICurNum.value=0;
+    } else if (event.keyCode==27) {
+	this.value=''; markdown_disp.innerHTML=''; this.focus(); 	set(sysDefSessionID.value+'_files/artificial_intelligence.json','[]','rw'); 	sysDefUserAICurNum.value=0;
     } else if (event.keyCode==8) { handleInput(this.value);
     } else if (event.keyCode==46) { handleInput(this.value);
     }" oninput="handleInput(this.value,true);">
     <input type="image" class="power" id="buttonPrev" onmouseover="soundButton();" src="<?=$prefix[3].'prev.png';?>" onclick="soundClick(); var cur=parseInt(sysDefUserAICurNum.value); var max=parseInt(sysDefUserAIMaxNum.value); cur=(cur<=0)?max:(cur-1); sysDefUserAICurNum.value=cur; markdown_disp.innerHTML=marked.parse(getAIRecordContent(sysDefUserAICurNum.value));">
     <input type="image" class="power" id="buttonNext" onmouseover="soundButton();" src="<?=$prefix[3].'next.png';?>" onclick="soundClick(); var cur=parseInt(sysDefUserAICurNum.value); var max=parseInt(sysDefUserAIMaxNum.value); cur=(cur>=max)?0:(cur+1); sysDefUserAICurNum.value=cur; markdown_disp.innerHTML=marked.parse(getAIRecordContent(sysDefUserAICurNum.value));">
-    <input type="image" class="power" id="buttonKeyboard" onmouseover="soundButton();" src="<?=$prefix[3].'keyboard.png';?>" onclick="soundClick(); AI(this.value).then(reply=>{
+    <input type="image" class="power" id="buttonKeyboard" onmouseover="soundButton();" src="<?=$prefix[3].'keyboard.png';?>" onclick="soundClick(); AI(promptGPT.value).then(reply=>{
     if (notNull(reply)) {
             markdown_disp.innerHTML=marked.parse(reply);
 	    sysDefUserAIMaxNum.value=Math.max(...Object.keys(jsonarr(sysDefUserAIData.value)).map(Number));
 	    sysDefUserAICurNum.value=parseInt(sysDefUserAIMaxNum.value);
         }
-    }).catch(error=>{ console.error(error); }); promptGPT.focus();">
+    }).catch(error=>{ console.error(error); });">
     <input type="image" class="power" id="buttonBackspace" onmouseover="soundButton();" src="<?=$prefix[3].'backspace.png';?>" onclick="soundClick(); promptGPT.value=''; markdown_disp.innerHTML=''; promptGPT.focus(); set(sysDefSessionID.value+'_files/artificial_intelligence.json','[]','rw'); sysDefUserAICurNum.value=0;">
     </p>
 </div>
