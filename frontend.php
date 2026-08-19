@@ -59,6 +59,20 @@ function postRequestData() {
         } $iter=0; ?>
     }; return obj;
 }
+function setupSubscrData() {
+    var obj={
+        <?php $iter=0; foreach ($settings['subscriptions'] as $key=>$value) {
+            echo "'".$key."': sysDefSetupSubscr".snakeToCamel($key).".value".((count($settings['subscriptions'])==($iter-1))?'':','); $iter++;
+        } $iter=0; ?>
+    }; return obj;
+}
+function setupUserData() {
+    var obj = {
+        <?php $iter=0; foreach ($settings['defaults'] as $key=>$value) {
+            echo "'".$key."': sysDefSetup".snakeToCamel($key).".value".((count($settings['defaults'])==($iter-1))?'':','); $iter++;
+        } $iter=0; ?>
+    }; return obj;
+}
 function subscrData() {
     var obj={
         <?php $iter=0; foreach ($subscr as $key=>$value) {
@@ -74,15 +88,21 @@ function userdata() {
     }; return obj;
 }
 function subscribe(ent,val) {
-    var obj=subscrData(); obj[ent]=val;
-    set(sysDefSessionID.value+'_files/subscription.json',JSON.stringify(obj),'rw'); <?php foreach ($subscr as $key=>$value) {
+    var obj=subscrData(); const setup=setupSubscrData();
+    if (notNull(setup[ent])) { obj[ent]=val; }
+    const sortedObj=Object.fromEntries(
+        Object.entries(obj).sort(([keyA],[keyB])=>keyA.localeCompare(keyB))
+    ); set(sysDefSessionID.value+'_files/subscription.json',JSON.stringify(sortedObj),'rw');
+    <?php foreach ($subscr as $key=>$value) {
         echo "sysDefSubscription".snakeToCamel($key).".value = obj['".$key."'];";
     } ?>
 }
 function setdata(ent,val) {
-    var obj=userdata(); obj[ent]=val;
-    if ((ent=='numeric')&&(obj[ent].length<2)) { obj[ent]='01'; }
-    const sortedObj=Object.fromEntries(
+    var obj=userdata(); const setup=setupUserData();
+    if (notNull(setup[ent])) {
+        obj[ent]=val;
+        if ((ent=='numeric')&&(obj[ent].length<2)) { obj[ent]='01'; }
+    } const sortedObj=Object.fromEntries(
         Object.entries(obj).sort(([keyA],[keyB])=>keyA.localeCompare(keyB))
     ); set(sysDefSessionID.value+'_files/profile.json',JSON.stringify(sortedObj),'rw');
     <?php foreach ($settings['defaults'] as $key=>$value) {

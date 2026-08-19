@@ -29,6 +29,12 @@
         foreach ($postRequest as $key=>$value) { ?>
             <input type='hidden' id="<?='postRequest'.snakeToCamel($key);?>" value="<?=$value;?>">
         <?php }
+	foreach ($settings['defaults'] as $key=>$value) { ?>
+            <input type='hidden' id="<?='sysDefSetup'.snakeToCamel($key);?>" value="<?=$value;?>">
+        <?php }
+	foreach ($settings['subscriptions'] as $key=>$value) { ?>
+            <input type='hidden' id="<?='sysDefSetupSubscr'.snakeToCamel($key);?>" value="<?=$value;?>">
+        <?php }
         foreach ($session as $key=>$value) { ?>
             <input type='hidden' id="<?='sysDef'.snakeToCamel($key);?>" value="<?=$value;?>">
         <?php }

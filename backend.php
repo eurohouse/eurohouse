@@ -27,7 +27,7 @@ $prefix=prefixes($session); $themePrefix=(file_exists($session['theme'].'.packag
 $ersatzPrefix=(($themePrefix=='iec')||($themePrefix=='iso'))?'org.':((themed($themePrefix,'head0,head1'))?$themePrefix:'org.');
 $portfolioPrefix=(($themePrefix=='iec')||($themePrefix=='iso'))?'org.':((themed($themePrefix,'torso0,torso1,left0,left90,left180,left270,right0,right90,right180,right270'))?$themePrefix:'org.');
 $background=dailyWallpaper($session);
-$subscr=fileopen($sessionID.'_files/subscription.json',json_encode($settings['subscriptions']),'create backup restore');
+$subscr=fileopen($sessionID.'_files/subscription.json',json_encode($settings['subscriptions']),'create backup restore fallback');
 $userSubscr=userSubscr($subscr,$settings['collections'],$prefix);
 $usersList=str_replace('_files','',str_replace('./','',(glob('./*_files',GLOB_ONLYDIR)))); natcasesort($usersList); deleteMarkedUsers(); $visitors=visitor($sessionID,true);
 $userAIData=fileopen($sessionID.'_files/artificial_intelligence.json','{}');
