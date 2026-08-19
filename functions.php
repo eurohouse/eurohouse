@@ -74,7 +74,7 @@ function selectedLines($name,$opt=[]): array {
     } return $obj;
 }
 function fileopen($name,$default='',$options='') {
-    if (preg_match('/create/i',$options)) {
+    if (preg_match('/create|make|exist/i',$options)) {
         if (!file_exists($name)) {
             file_put_contents($name,$default);
             chmod($name,0777);
@@ -101,7 +101,7 @@ function fileopen($name,$default='',$options='') {
     } if (@unserialize($content)!==false) {
         $result=(preg_match('/raw|text/i',$options))?$content:unserialize($content);
     } elseif (@json_decode($content,true)!=null) {
-        if (preg_match('/union|fallback/i',$options)) {
+        if (preg_match('/union|mirror|fallback/i',$options)) {
             if (@json_decode($default,true)!=null) {
                 $result=(preg_match('/raw|text/i',$options))?json_encode(mirrorArrays(json_decode($default,true),json_decode($content,true)),JSON_UNESCAPED_UNICODE):mirrorArrays(json_decode($default,true),json_decode($content,true));
             } else {
@@ -122,16 +122,20 @@ function fileopen($name,$default='',$options='') {
         }
     } return $result;
 }
-function mirrorArrays($arr1,$arr2) {
-    foreach ($arr1 as $key=>$val) {
-        if (!isset($arr2[$key])) {
-            $arr2[$key]=$val;
+function mirrorArrays($srcArr,$destArr) {
+    foreach ($srcArr as $v) {
+        if (is_array($v)) return false;
+    } foreach ($destArr as $v) {
+        if (is_array($v)) return false;
+    } foreach ($srcArr as $key=>$val) {
+        if (!isset($destArr[$key])) {
+            $destArr[$key]=$val;
         }
-    } foreach ($arr2 as $key=>$val) {
-        if (!isset($arr1[$key])) {
-            unset($arr2[$key]);
+    } foreach (array_keys($destArr) as $key) {
+        if (!isset($srcArr[$key])) {
+            unset($destArr[$key]);
         }
-    } return $arr2;
+    } ksort($destArr); return $destArr;
 }
 function dir_size($path): int {
     $bytestotal=0;$path=realpath($path);
