@@ -273,7 +273,7 @@ async function callAI(messages,maxRetries=3) {
 }
 async function AI(input) {
     try {
-        let historyArr=jsonarr(loadFile(sysDefSessionID.value+'_files/artificial_intelligence.json'));
+        let historyArr=(authstate())?jsonarr(loadFile(sysDefSessionID.value+'_files/artificial_intelligence.json')):[];
         let userContext=await collectContextData();
         let userContent; const envInfo=environmentInfo();
         if (input.includes('https://github.com/')) {
@@ -285,7 +285,8 @@ async function AI(input) {
         } historyArr.push(userContent);
         const reply=await callAI(historyArr);
         historyArr.push({role: 'assistant', content: reply});
-        set(sysDefSessionID.value+'_files/artificial_intelligence.json',JSON.stringify(historyArr),'rw');
-        return reply;
+        if (authstate()) {
+	    set(sysDefSessionID.value+'_files/artificial_intelligence.json',JSON.stringify(historyArr),'rw');
+	} return reply;
     } catch (error) { return input; }
 }

@@ -163,6 +163,7 @@ function world_clock() {
             $('#buttonEnter').attr('src',sysDefPrefix.value+'return.png');
             $('#buttonKeyboard').attr('src',sysDefPrefix.value+'keyboard.png');
             $('#buttonBackspace').attr('src',sysDefPrefix.value+'backspace.png');
+	    $('#buttonTrashBackspace').attr('src',sysDefPrefix.value+((authstate())?'trash.png':'backspace.png'));
             $('#buttonEscape').attr('src',sysDefPrefix.value+((sysDefIsModeNull.value!=0)?'forward.png':'escape.png'));
             $('#buttonBackward').attr('src',sysDefPrefix.value+'escape.png');
 	    $('#buttonForward').attr('src',sysDefPrefix.value+'forward.png');
