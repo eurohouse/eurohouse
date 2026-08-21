@@ -102,6 +102,7 @@ function setdata(ent,val) {
     if (notNull(setup[ent])) {
         obj[ent]=val;
         if ((ent=='numeric')&&(obj[ent].length<2)) { obj[ent]='01'; }
+	if ((ent=='separator')&&(obj[ent].length<1)) { obj[ent]=' '; }
     } const sortedObj=Object.fromEntries(
         Object.entries(obj).sort(([keyA],[keyB])=>keyA.localeCompare(keyB))
     ); set(sysDefSessionID.value+'_files/profile.json',JSON.stringify(sortedObj),'rw');
