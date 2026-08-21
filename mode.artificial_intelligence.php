@@ -16,7 +16,7 @@
             }
         }).catch(error=>{ console.error(error); });
     } else if (event.keyCode==27) {
-	this.value=''; markdown_disp.innerHTML=''; this.focus();
+	this.value=''; markdown_disp.innerHTML='';
 	if (authstate()) {
  	    set(sysDefSessionID.value+'_files/artificial_intelligence.json','[]','rw');
  	    sysDefUserAICurNum.value=0;
@@ -37,7 +37,7 @@
 	    }
         }
     }).catch(error=>{ console.error(error); });">
-    <input type="image" class="power" id="buttonTrashBackspace" onmouseover="soundButton();" src="<?=$prefix[3].((isAuthorized())?'trash.png':'backspace.png');?>" onclick="soundClick(); promptGPT.value=''; markdown_disp.innerHTML=''; promptGPT.focus();
+    <input type="image" class="power" id="buttonTrashBackspace" onmouseover="soundButton();" src="<?=$prefix[3].((isAuthorized())?'trash.png':'backspace.png');?>" onclick="soundClick(); promptGPT.value=''; markdown_disp.innerHTML='';
 if (authstate()) {
     set(sysDefSessionID.value+'_files/artificial_intelligence.json','[]','rw');
     sysDefUserAICurNum.value=0;
