@@ -17,24 +17,8 @@ window.onload=function() {
 	if (authstate()) { countNote(); }
     } else if (requestMode.value=='album_tracklist') {
         playlistCollectionHTML();
-    } else if (requestMode.value=='weather') {
-        promptWeather.focus();
     } else if (requestMode.value=='statistics') {
-        promptStats.focus(); populateIpStats();
-    } else if ((requestMode.value=='file_manager')||(requestMode.value=='picture_gallery')) {
-        searchBox.focus();
-    } else if (requestMode.value=='terminal') {
-        promptExec.focus();
-    } else if (requestMode.value=='artificial_intelligence') {
-        promptGPT.focus();
-	markdown_disp.innerHTML=marked.parse(getAIRecordContent(sysDefUserAICurNum.value));
-    } else if (requestMode.value=='calculator') {
-        calcExpr.focus();
-    } else if (requestMode.value=='messenger') {
-        composeMessage.focus();
-    } else {
-        if (authstate()) { omniBox.focus();
-        } else { omniBoxAuthLogin.focus(); }
+        populateIpStats();
     }
 };
 $(document).ready(function() {
