@@ -3,14 +3,14 @@
 <div class='customPanel' style="width:100%;height:15%;left:0px;top:0px;">
     <p align='center' class='block'>
     <input type="text" id="promptExec" style="width:62%;" placeholder="<?=term("Type anything and press ENTER",$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) {
-	populateCommandIO();
+		populateCommandIO();
     } else if (event.keyCode==27) {
-	promptExec.value=''; clearCommandIO(); promptExec.focus();
+		promptExec.value=''; clearCommandIO();
     } else if (event.keyCode==8) { handleInput(this.value);
     } else if (event.keyCode==46) { handleInput(this.value);
     }" oninput="handleInput(this.value,true);">
     <input type="image" class="power" id="buttonEnter" onmouseover="soundButton();" src="<?=$prefix[3].'return.png';?>" onclick="soundClick(); populateCommandIO();">
-    <input type="image" class="power" id="buttonBackspace" onmouseover="soundButton();" src="<?=$prefix[3].'backspace.png';?>" onclick="soundClick(); promptExec.value=''; clearCommandIO(); promptExec.focus();">
+    <input type="image" class="power" id="buttonBackspace" onmouseover="soundButton();" src="<?=$prefix[3].'backspace.png';?>" onclick="soundClick(); promptExec.value=''; clearCommandIO();">
     </p>
 </div>
 <div class='customPanel' id='commandPrompt' style="width:100%;height:80%;left:0px;top:0px;overflow-y:scroll;">
