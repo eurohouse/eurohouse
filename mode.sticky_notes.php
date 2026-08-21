@@ -4,37 +4,33 @@
 <script>
 function newNote() { myNotesDoc.value=''; countNote(); }
 function openNote(id) {
-    myNotesEnt.value=id; var ci=obfstr(CryptoJS.SHA256(myNotesEnc.value));
-    var cd=sysDefNumeric.value; myNotesDoc.value=caesar.decode(metadata()[caesar.encode(id,'',cd)],ci,cd); countNote();
+    myNotesEnt.value=id; var obf=obfstr(CryptoJS.SHA256(myNotesEnc.value));
+    var num=sysDefNumeric.value; var sep=sysDefSeparator.value;
+    myNotesDoc.value=caesar.decode(metadata()[caesar.encode(id,'',num,sep)],obf,num,sep); countNote();
 }
 function saveNote(id) {
-    var ci=obfstr(CryptoJS.SHA256(myNotesEnc.value));
-    var cd=myNotesRad.value; setmeta(caesar.encode(id,'',cd),caesar.encode(myNotesDoc.value,ci,cd));
+    var obf=obfstr(CryptoJS.SHA256(myNotesEnc.value));
+    var num=myNotesRad.value; var sep=sysDefSeparator.value;
+    setmeta(caesar.encode(id,'',num,sep),caesar.encode(myNotesDoc.value,obf,num,sep));
 }
 function deleteNote(id) {
-    var cd=sysDefNumeric.value; delmeta(caesar.encode(id,'',cd));
+    var num=sysDefNumeric.value; var sep=sysDefSeparator.value;
+    delmeta(caesar.encode(id,'',num,sep));
 }
 function replaceNote() {
-    var str=myNotesDoc.value;
-    var stri=findbox.value;
-    var stro=replacebox.value;
-    var strp=str.toString().replace(stri,stro);
+    var str=myNotesDoc.value; var stri=findbox.value;
+    var stro=replacebox.value; var strp=str.toString().replace(stri,stro);
     myNotesDoc.value=strp; countText();
 }
 function replaceNoteAll() {
-    var str=myNotesDoc.value;
-    var stri=findbox.value;
-    var stro=replacebox.value;
-    var strp=str.toString().replaceAll(stri,stro);
+    var str=myNotesDoc.value; var stri=findbox.value;
+    var stro=replacebox.value; var strp=str.toString().replaceAll(stri,stro);
     myNotesDoc.value=strp; countText();
 }
 function countNote() {
-    var sourceChars=myNotesRad.value;
-    var sourceText=myNotesDoc.value;
-    var bitsCount=sourceChars.length;
-    var charsCount=sourceText.length;
-    var linesCount=sourceText.split(/\r?\n/).length;
-    var wordsCount=sourceText.split(/ /).length;
+    var sourceChars=myNotesRad.value; var sourceText=myNotesDoc.value;
+    var bitsCount=sourceChars.length; var charsCount=sourceText.length;
+    var linesCount=sourceText.split(/\r?\n/).length; var wordsCount=sourceText.split(/ /).length;
     var statusBar='BITS = '+bitsCount+'; CHARS = '+charsCount+'; LINES = '+linesCount+'; WORDS = '+wordsCount; numBits.innerHTML=statusBar;
 }
 </script>

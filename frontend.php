@@ -301,19 +301,8 @@ class EurohouseEndToEndEncryption {
     }
 }
 const EE2EE=new EurohouseEndToEndEncryption();
-class StandardEndToEndEncryption {
-    encode(msg,pass='') {
-        return CryptoJS.AES.encrypt(msg,pass).toString();
-    }
-    decode(msg,pass='') {
-        const decryptedBytes=CryptoJS.AES.decrypt(msg,pass);
-        const decryptedText=decryptedBytes.toString(CryptoJS.enc.Utf8);
-        return decryptedText;
-    }
-}
-const SE2EE=new StandardEndToEndEncryption();
 function readPlaylist() {
-    var text=EE2EE.decode(sysDefPlaylist.value,sysDefSessionID.value,sysDefNumeric.value);
+    var text=EE2EE.decode(sysDefPlaylist.value,sysDefSessionID.value,sysDefNumeric.value,sysDefSeparator.value);
     var arr=art=[]; var trim='';
     if ((text.includes('<'))&&(text.includes('>'))) {
         if (text.includes('|')) {
@@ -339,7 +328,7 @@ function playlistNext(name) {
     } if (arr.indexOf(name)>-1) {
         arr.splice(arr.indexOf(name),1);
     } else { arr.push(name); }
-    return EE2EE.encode((arr.map(item=>`<${item}>`).join('|')),sysDefSessionID.value,sysDefNumeric.value);
+    return EE2EE.encode((arr.map(item=>`<${item}>`).join('|')),sysDefSessionID.value,sysDefNumeric.value,sysDefSeparator.value);
 }
 function populateIpStats(req='') {
     if (requestMode.value=='statistics') {
@@ -448,13 +437,12 @@ function albumCollectionHTML() {
 }
 function filterMessages(rawJSONData) {
     var arr=jsonarr(rawJSONData),uid=sysDefSessionID.value;
-    var arf={},hbin=hkin=hfin='',hbio={};
+    var newArr=hbio={},hbin=hkin='';
     if ((sysDefFind.value=='#')||(sysDefFind.value=='')) {
         for (el in arr) {
-            hbin=EE2EE.decode(arr[el],uid);
-            hkin=EE2EE.decode(el,uid);
-            hfin=arr[el].replaceAll(' ',' / ');
-            arf[hkin]=(sysDefMorse.value!=0)?hfin:hbin;
+            hbin=EE2EE.decode(arr[el],uid,'.-',' / ');
+            hkin=EE2EE.decode(el,uid,'.-',' / ');
+            newArr[hkin]=(sysDefMorse.value!=0)?arr[el]:hbin;
         }
     } else {
         var arrRegex=XRegExp('(\\#(\\@|\\p{L}|\\p{N}|\\:)+)','g');
@@ -463,32 +451,32 @@ function filterMessages(rawJSONData) {
         for (el in arr) {
             if (wordArr!==null) {
                 for (item in wordArr) {
-                    hbin=EE2EE.decode(arr[el],uid);
-                    hkin=EE2EE.decode(el,uid);
-                    hfin=arr[el].replaceAll(' ',' / ');
+                    hbin=EE2EE.decode(arr[el],uid,'.-',' / ');
+                    hkin=EE2EE.decode(el,uid,'.-',' / ');
                     hbio=XRegExp.replace(wordArr[item],repRegex,'');
                     if (hbin.toLowerCase().includes(hbio.toLowerCase())) {
-                        arf[hkin]=(sysDefMorse.value!=0)?hfin:hbin;
+                        newArr[hkin]=(sysDefMorse.value!=0)?arr[el]:hbin;
                     }
                 }
             }
         }
-    } return arf;
+    } return newArr;
 }
 function messengerHTML(rawJSONData) {
     var arr=filterMessages(rawJSONData),ard=fu0=fu1=fu2='';
     var usr=sysDefSessionID.value,epr=sysDefPrefix.value;
     for (el in arr) {
-        fu0="clearJournal(&#39;"+EE2EE.encode(el,usr)+"&#39;,&#39;"+sysDefMyMessengerData.value+"&#39;,&#39;messenger&#39;);";
+        fu0="clearJournal(&#39;"+EE2EE.encode(el,usr,'.-',' / ')+"&#39;,&#39;"+sysDefMyMessengerData.value+"&#39;,&#39;messenger&#39;);";
         fu1="clip(&#39;"+arr[el]+"&#39;);";
         fu2="(sequentialPlayer.isPlaying!=false)?sequentialPlayer.stop():sequentialPlayer.playFullSequence(&#39;"+arr[el]+"&#39;);";
         ard="<p><input type='image' class='power' onmouseover='soundButton();' src='"+epr+"trash.png"+"' onclick='soundClick(true); "+fu0+"'> "+el+((sysDefMorse.value!=0)?" <input type='image' class='power' onmouseover='soundButton();' src='"+epr+"play.png"+"' onclick='soundClick(true); "+fu2+"'>":" <input type='image' class='power' onmouseover='soundButton();' src='"+epr+"copy.png"+"' onclick='soundClick(true); "+fu1+"'>")+"<br>"+arr[el]+"</p>"+ard;
     } return ard;
 }
 function notebookHTML(str) {
-    var arr=str.split(' | '),ard=arl=eld=elt=eln='';
+    var arr=str.split(' | '),ard=arl=eld=elt='';
+    var eln=sysDefNumeric.value,els=sysDefSeparator.value;
     var epr=sysDefPrefix.value; for (el in arr) {
-        eld=arr[el],eln=sysDefNumeric.value,elt=caesar.decode(eld,'',eln);
+        eld=arr[el],elt=caesar.decode(eld,'',eln,els);
         arl="<input type='button' onmouseover='soundButton();' style='width:80%;' onclick='openNote(&#34;"+elt+"&#34;,&#34;&#34;,&#34;"+eln+"&#34;);' value='"+elt+"'>";
         arl+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"trash.png"+"' onclick='deleteNote(&#34;"+elt+"&#34;,&#34;&#34;,&#34;"+eln+"&#34;);'>";
         ard=ard+arl+'<br>';
@@ -533,7 +521,7 @@ function localizedTitle(id,ent='title') {
     return (tranStep.includes(' | '))?tranStep.split(' | ')[0]:tranStep;
 }
 function processMessage(arr,sen,rec,msg='',index=0) {
-    arr[EE2EE.encode(localizedTitle(sen)+' (@'+sen+') · '+toIso8601(Date.now()+index*1000)+' UTC',rec)]=EE2EE.encode(replaceLineBreaks(msg),rec); return arr;
+    arr[EE2EE.encode(localizedTitle(sen)+' (@'+sen+') · '+toIso8601(Date.now()+index*1000)+' UTC',rec,'.-',' / ')]=EE2EE.encode(replaceLineBreaks(msg),rec,'.-',' / '); return arr;
 }
 function compose(usr,msg) {
     var addr=(msg!=null)?msg.match(/(@\w*)/g):'';
@@ -575,16 +563,16 @@ function omniListen(input,scratch=false,pos=false) {
     } else {
         if (scratch) { audioPlayer.currentTime=0;
         } else { audioPlayer.currentTime=parseFloat(sysDefCurrent.value); }
-    } setdata('melody',EE2EE.encode(input,sysDefSessionID.value,sysDefNumeric.value));
+    } setdata('melody',EE2EE.encode(input,sysDefSessionID.value,sysDefNumeric.value,sysDefSeparator.value));
     setdata('preserves_pitch',sysDefPreservesPitch.value);
     setdata('audio_volume',sysDefAudioVolume.value);
     setdata('audio_speed',sysDefAudioSpeed.value);
 }
 function omniPlaylist(mode=0) {
     var music=subscription('music');
-    var playlist=EE2EE.decode(sysDefPlaylist.value,sysDefSessionID.value,sysDefNumeric.value);
+    var playlist=EE2EE.decode(sysDefPlaylist.value,sysDefSessionID.value,sysDefNumeric.value,sysDefSeparator.value);
     var next=readPlaylist();
-    var melody=EE2EE.decode(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value);
+    var melody=EE2EE.decode(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value,sysDefSeparator.value);
     var index=arraySearch(((melody.startsWith(requestPath.value+'/'))?melody.replace(requestPath.value+'/',''):melody),music);
     if (playlist!='') {
         if (next[0]!='') {

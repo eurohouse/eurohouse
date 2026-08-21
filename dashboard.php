@@ -61,7 +61,7 @@
         <option id="<?=$selID;?>" <?php if ($session['units']==$selID) { ?> selected <?php } ?>><?=$selID;?></option>
     <?php } ?>
     </select>
-    <input type="image" id="buttonPlay" onmouseover="soundButton();" class="power" onclick="soundClick(); if (sysDefPlaying.value!=0) { omniPause(); } else { omniListen(EE2EE.decode(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value),false,sysDefCurrent.value); } setdata('playing',flip(sysDefPlaying.value));" src="<?=$prefix[3].(($session['playing']!=0)?'pause.png':(($session['play_backwards']!=0)?'playback.png':'play.png'));?>" title="<?=term('Audio Play/Pause',$settings,$session);?>">
+    <input type="image" id="buttonPlay" onmouseover="soundButton();" class="power" onclick="soundClick(); if (sysDefPlaying.value!=0) { omniPause(); } else { omniListen(EE2EE.decode(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value,sysDefSeparator.value),false,sysDefCurrent.value); } setdata('playing',flip(sysDefPlaying.value));" src="<?=$prefix[3].(($session['playing']!=0)?'pause.png':(($session['play_backwards']!=0)?'playback.png':'play.png'));?>" title="<?=term('Audio Play/Pause',$settings,$session);?>">
     <input type="image" onmouseover="soundButton();" id="buttonSpectate" class="power" onclick="soundClick(); setdata('spectate',flip(sysDefSpectate.value));" src="<?=$prefix[3].'unpower.png';?>" title="<?=term('Spectate Mode',$settings,$session);?>">
     </p>
 </div>

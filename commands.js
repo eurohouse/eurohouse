@@ -483,7 +483,7 @@ function executeMacros(input) {
         } else if (keyVal[0]=='timezone') {
             setdata(keyVal[0],btoa(keyVal[1]));
         } else if (keyVal[0]=='current') {
-		    omniListen(EE2EE.decode(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value),false,parseFloat(keyVal[1]));
+		    omniListen(EE2EE.decode(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value,,sysDefSeparator.value),false,parseFloat(keyVal[1]));
         } else if (keyVal[0].startsWith('_')) {
             subscribe(keyVal[0].replace('_',''),keyVal[1]);
         } else if (keyVal[1].includes('?rev=')) {
@@ -494,7 +494,7 @@ function executeMacros(input) {
         if (input=='reload') {
             window.location.reload();
         } else if (input=='melody') {
-            output=input+': '+EE2EE.decode(userdata()[input],sysDefSessionID.value,sysDefNumeric.value);
+            output=input+': '+EE2EE.decode(userdata()[input],sysDefSessionID.value,sysDefNumeric.value,sysDefSeparator.value);
         } else if (input=='timezone') {
             output=input+': '+atob(userdata()[input]);
         } else if (input=='playlist') {

@@ -163,7 +163,7 @@ async function analyzeMultipleRepositories(repoUrls) {
 }
 function currentPlaying(playerObj) {
     const audioElement=(isObject(playerObj))?playerObj:document.getElementById(playerObj);
-    return EE2EE.decode(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value);
+    return EE2EE.decode(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value,sysDefSeparator.value);
 }
 function audioSourceURL(playerObj) {
     const audioElem=(isObject(playerObj))?playerObj:document.getElementById(playerObj);
