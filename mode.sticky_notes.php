@@ -41,7 +41,7 @@ function countNote() {
     } else if (event.keyCode==8) { handleInput(this.value);
     } else if (event.keyCode==46) { handleInput(this.value);
     }" oninput="handleInput(this.value,true); countNote();">
-    <input class="text" id="myNotesSep" style="width:12%;" type="text" placeholder="<?=term('Separator',$settings,$session);?>" value="<?=$session['separator'];?>" onkeydown="if (event.keyCode==13) {
+    <input class="text" id="myNotesSep" style="width:16%;" type="text" placeholder="<?=term('Separator',$settings,$session);?>" value="<?=$session['separator'];?>" onkeydown="if (event.keyCode==13) {
         setdata('separator',this.value);
     } else if (event.keyCode==27) { this.value=''; countNote();
     } else if (event.keyCode==8) { handleInput(this.value);
