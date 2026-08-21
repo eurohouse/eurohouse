@@ -57,35 +57,36 @@ $homeDocumentIcon=$themePrefix.'home.png'; ?>
 </p>
 <p align='center' class='block'>
 <input class="text" id="filename" name="<?=$request['mode'];?>" style="width:45%;" type="text" placeholder="<?=term('Name',$settings,$session);?>" value="<?=$request['input'];?>" onkeydown="if (event.keyCode==13) {
-    omniRead(requestMode.value,filename.value,'false');
+    omniRead(requestMode.value,this.value,'false');
 } else if (event.keyCode==27) { this.value='';
 } else if (event.keyCode==113) {
-    set(filename.value,encodeURIComponent(content.value),sysDefSessionID.value); omniRead(requestMode.value,filename.value,'false');
+    set(this.value,encodeURIComponent(content.value),sysDefSessionID.value); omniRead(requestMode.value,this.value,'false');
 }">
 <input class="text" id="doto" name="<?=$request['mode'];?>" style="width:45%;" type="text" placeholder="<?=term('Name',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) {
-    copy(filename.value,doto.value,sysDefSessionID.value);
-    omniRead(requestMode.value,doto.value,'false');
+    copy(filename.value,this.value,sysDefSessionID.value);
+    omniRead(requestMode.value,this.value,'false');
 } else if (event.keyCode==27) { this.value='';
 } else if (event.keyCode==113) {
-    move(filename.value,doto.value,sysDefSessionID.value);
-    omniRead(requestMode.value,doto.value,'false');
+    move(filename.value,this.value,sysDefSessionID.value);
+    omniRead(requestMode.value,this.value,'false');
 }">
 </p>
 <p align='center' class='block'>
-<textarea class="text" id="content" style="width:100%;height:50%;" onkeydown="if (event.keyCode==27) { this.value='';
+<textarea class="text" id="content" style="width:100%;height:50%;" onkeydown="if (event.keyCode==27) {
+	this.value='';
 } else if (event.keyCode==8) { handleInput(this.value);
 } else if (event.keyCode==46) { handleInput(this.value); }" oninput="handleInput(this.value,true); countText();">
 <?=$content;?>
 </textarea>
 <br>
 <input class="text" id="findbox" style="width:36%;" type="text" value="" onkeydown="if (event.keyCode==13) {
-    replacebox.focus();
+    replaceText(); countText();
 } else if (event.keyCode==27) { this.value='';
 } else if (event.keyCode==8) { handleInput(this.value);
 } else if (event.keyCode==46) { handleInput(this.value); }" oninput="handleInput(this.value,true);">
 <input class="text" id="replacebox" style="width:36%;" type="text" value="" onkeydown="if (event.keyCode==13) {
     replaceText(); countText();
-} else if (event.keyCode==27) { findbox.focus(); this.value='';
+} else if (event.keyCode==27) { this.value='';
 } else if (event.keyCode==8) { handleInput(this.value);
 } else if (event.keyCode==46) { handleInput(this.value); }" oninput="handleInput(this.value,true);">
 <input type="image" id="textEditRepOne" onmouseover="soundButton();" id="buttonReplace" class="power" onclick="soundClick(); replaceText(); countText();" src="<?=$prefix[3].'text.png';?>">
