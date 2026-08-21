@@ -10,7 +10,7 @@ function openNote(id) {
 }
 function saveNote(id) {
     var obf=obfstr(CryptoJS.SHA256(myNotesEnc.value));
-    var num=myNotesRad.value; var sep=sysDefSeparator.value;
+    var num=myNotesRad.value; var sep=myNotesSep.value;
     setmeta(caesar.encode(id,'',num,sep),caesar.encode(myNotesDoc.value,obf,num,sep));
 }
 function deleteNote(id) {
@@ -35,14 +35,20 @@ function countNote() {
 }
 </script>
 <p align='center' class='block'>
-    <input class="text" id="myNotesRad" style="width:68%;" type="text" placeholder="<?=term('Symbolic Digits',$settings,$session);?>" value="<?=$session['numeric'];?>" onkeydown="if (event.keyCode==13) {
-        setdata('numeric',myNotesRad.value);
-    } else if (event.keyCode==27) { myNotesRad.value=''; countNote();
+    <input class="text" id="myNotesRad" style="width:58%;" type="text" placeholder="<?=term('Symbolic Digits',$settings,$session);?>" value="<?=$session['numeric'];?>" onkeydown="if (event.keyCode==13) {
+        setdata('numeric',this.value);
+    } else if (event.keyCode==27) { this.value=''; countNote();
     } else if (event.keyCode==8) { handleInput(this.value);
     } else if (event.keyCode==46) { handleInput(this.value);
     }" oninput="handleInput(this.value,true); countNote();">
-    <input type="image" id="buttonEnter" onmouseover="soundButton();" class="power" onclick="soundClick(); setdata('numeric',myNotesRad.value);" src="<?=$prefix[3].'return.png';?>">
-    <input type="image" id="buttonBackspace" onmouseover="soundButton();" class="power" onclick="soundClick(); myNotesRad.value=''; myNotesRad.focus(); countNote();" src="<?=$prefix[3].'backspace.png';?>">
+    <input class="text" id="myNotesSep" style="width:12%;" type="text" placeholder="<?=term('Separator',$settings,$session);?>" value="<?=$session['separator'];?>" onkeydown="if (event.keyCode==13) {
+        setdata('separator',this.value);
+    } else if (event.keyCode==27) { this.value=''; countNote();
+    } else if (event.keyCode==8) { handleInput(this.value);
+    } else if (event.keyCode==46) { handleInput(this.value);
+    }" oninput="handleInput(this.value,true); countNote();">
+    <input type="image" id="buttonEnter" onmouseover="soundButton();" class="power" onclick="soundClick(); setdata('numeric',myNotesRad.value); setdata('separator',myNotesSep.value);" src="<?=$prefix[3].'return.png';?>">
+    <input type="image" id="buttonBackspace" onmouseover="soundButton();" class="power" onclick="soundClick(); myNotesRad.value=''; myNotesSep.value=''; countNote();" src="<?=$prefix[3].'backspace.png';?>">
 </p>
 <p align='center' class='block'>
 <input class="text" id="myNotesEnt" style="width:34%;" type="text" placeholder="<?=term('Title',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) { myNotesEnc.focus();
