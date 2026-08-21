@@ -6,13 +6,15 @@
         setdata('locations',promptWeather.value);
         populateWeatherTable();
     } else if (event.keyCode==27) {
-        document.getElementById('promptWeather').value='';
+        promptWeather.value='';
     } else if (event.keyCode==8) {
         handleInput(this.value);
     } else if (event.keyCode==46) {
         handleInput(this.value);
     }" oninput="handleInput(this.value,true);">
-    <input type="image" class="power" id="buttonSearch" onmouseover="soundButton();" src="<?=$prefix[3].'search.png';?>" onclick="soundClick(); setdata('locations',promptWeather.value); populateWeatherTable();"><input type="image" class="power" id="buttonBackspace" onmouseover="soundButton();" src="<?=$prefix[3].'backspace.png';?>" onclick="soundClick(); promptWeather.value=''; promptWeather.focus();"></p>
+    <input type="image" class="power" id="buttonSearch" onmouseover="soundButton();" src="<?=$prefix[3].'search.png';?>" onclick="soundClick(); setdata('locations',promptWeather.value); populateWeatherTable();">
+    <input type="image" class="power" id="buttonBackspace" onmouseover="soundButton();" src="<?=$prefix[3].'backspace.png';?>" onclick="soundClick(); promptWeather.value='';">
+    </p>
 </div>
 <div class='customPanel' id='weatherWidget' style="width:100%;height:80%;left:0px;top:0px;overflow-y:scroll;">
     <table id="weatherTable" style="width:100%;" class="wrapper">
