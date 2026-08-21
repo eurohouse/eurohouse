@@ -51,13 +51,15 @@ function countNote() {
     <input type="image" id="buttonBackspace" onmouseover="soundButton();" class="power" onclick="soundClick(); myNotesRad.value=''; myNotesSep.value=''; countNote();" src="<?=$prefix[3].'backspace.png';?>">
 </p>
 <p align='center' class='block'>
-<input class="text" id="myNotesEnt" style="width:34%;" type="text" placeholder="<?=term('Title',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) { myNotesEnc.focus();
+<input class="text" id="myNotesEnt" style="width:34%;" type="text" placeholder="<?=term('Title',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) {
+    openNote(myNotesEnt.value);
 } else if (event.keyCode==27) { this.value='';
 } else if (event.keyCode==8) { handleInput(this.value);
 } else if (event.keyCode==46) { handleInput(this.value);
 }" oninput="handleInput(this.value,true);">
-<input class="text" id="myNotesEnc" style="width:32%;" type="password" placeholder="<?=term('Password',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) { openNote(myNotesEnt.value);
-} else if (event.keyCode==27) { this.value=''; myNotesEnt.focus();
+<input class="text" id="myNotesEnc" style="width:32%;" type="password" placeholder="<?=term('Password',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) {
+    openNote(myNotesEnt.value);
+} else if (event.keyCode==27) { this.value='';
 } else if (event.keyCode==8) { handleInput(this.value);
 } else if (event.keyCode==46) { handleInput(this.value);
 }" oninput="handleInput(this.value,true);">
@@ -74,12 +76,14 @@ function countNote() {
 } else if (event.keyCode==8) { handleInput(this.value);
 } else if (event.keyCode==46) { handleInput(this.value);
 }" oninput="handleInput(this.value,true); countNote();" onchange="countNote();"></textarea><br>
-<input class="text" id="findbox" style="width:26%;" type="text" value="" onkeydown="if (event.keyCode==13) { replacebox.focus();
+<input class="text" id="findbox" style="width:26%;" type="text" value="" onkeydown="if (event.keyCode==13) {
+    replaceNote(); countText();
 } else if (event.keyCode==27) { this.value='';
 } else if (event.keyCode==8) { handleInput(this.value);
 } else if (event.keyCode==46) { handleInput(this.value); }">
-<input class="text" id="replacebox" style="width:26%;" type="text" value="" onkeydown="if (event.keyCode==13) { replaceNote(); countText();
-} else if (event.keyCode==27) { findbox.focus(); this.value='';
+<input class="text" id="replacebox" style="width:26%;" type="text" value="" onkeydown="if (event.keyCode==13) {
+    replaceNote(); countText();
+} else if (event.keyCode==27) { this.value='';
 } else if (event.keyCode==8) { handleInput(this.value);
 } else if (event.keyCode==46) { handleInput(this.value); }">
 <input type="image" id="buttonReplace" onmouseover="soundButton();" class="power" onclick="soundClick(); replaceNote(); countText();" oninput="handleInput(this.value,true);" src="<?=$prefix[3].'text.png';?>">
