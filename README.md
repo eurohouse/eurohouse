@@ -1,7 +1,5 @@
 # Eurohouse
 
-## Preamble
-
 ## Web Desktop Environment & Cultural Archive
 
 An elegant *web desktop* environment that blends classical European cultural codes with modern web technologies. With Eurohouse, you carry your curated workspace everywhere: all files, user data, and personal settings remain under your control. The app features high‑quality *dynamic wallpaper* collections and is designed to be a refined addition to any workspace.
