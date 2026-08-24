@@ -426,11 +426,11 @@ function albumCollectionHTML() {
             }
         } else if (sysDefAlbum.value=='avatar') {
             prefix=sysDefAvaPrefix.value; for (idx in avatars) {
-                line+="<input type='image' class='power' src='"+prefix+avatars[idx]+".svg' title='"+avatars[idx]+"' onclick='setdata(&#34;avatar&#34;,&#34;"+avatars[idx]+"&#34;);'>";
+                line+="<input type='image' class='power' src='"+prefix+avatars[idx]+".webp' title='"+avatars[idx]+"' onclick='setdata(&#34;avatar&#34;,&#34;"+avatars[idx]+"&#34;);'>";
             }
         } else if (sysDefAlbum.value=='pictogram') {
             prefix=sysDefPrefix.value; for (idx in avatars) {
-                line+="<input type='image' class='power' src='"+prefix+avatars[idx]+".svg' title='"+(avatars[idx].toUpperCase())+"' onclick='setdata(&#34;mode&#34;,&#34;"+avatars[idx]+"&#34;);'>";
+                line+="<input type='image' class='power' src='"+prefix+avatars[idx]+".webp' title='"+(avatars[idx].toUpperCase())+"' onclick='setdata(&#34;mode&#34;,&#34;"+avatars[idx]+"&#34;);'>";
             }
         } currentAlbumList.innerHTML=line;
         currentAlbumList.setAttribute('style','-webkit-columns:'+albCol+';-moz-columns:'+albCol+';columns:'+albCol+';text-align:'+(((sysDefAlbum.value=='avatar')||(sysDefAlbum.value=='pictogram'))?'center':'left')+';');
@@ -470,7 +470,7 @@ function messengerHTML(rawJSONData) {
         fu0="clearJournal(&#39;"+EE2EE.encode(el,usr,'.-',' / ')+"&#39;,&#39;"+sysDefMyMessengerData.value+"&#39;,&#39;messenger&#39;);";
         fu1="clip(&#39;"+arr[el]+"&#39;);";
         fu2="(sequentialPlayer.isPlaying!=false)?sequentialPlayer.stop():sequentialPlayer.playFullSequence(&#39;"+arr[el]+"&#39;);";
-        ard="<p><input type='image' class='power' onmouseover='soundButton();' src='"+epr+"trash.png"+"' onclick='soundClick(true); "+fu0+"'> "+el+((sysDefMorse.value!=0)?" <input type='image' class='power' onmouseover='soundButton();' src='"+epr+"play.png"+"' onclick='soundClick(true); "+fu2+"'>":" <input type='image' class='power' onmouseover='soundButton();' src='"+epr+"copy.png"+"' onclick='soundClick(true); "+fu1+"'>")+"<br>"+arr[el]+"</p>"+ard;
+        ard="<p><input type='image' class='power' onmouseover='soundButton();' src='"+epr+"trash.webp"+"' onclick='soundClick(true); "+fu0+"'> "+el+((sysDefMorse.value!=0)?" <input type='image' class='power' onmouseover='soundButton();' src='"+epr+"play.webp"+"' onclick='soundClick(true); "+fu2+"'>":" <input type='image' class='power' onmouseover='soundButton();' src='"+epr+"copy.webp"+"' onclick='soundClick(true); "+fu1+"'>")+"<br>"+arr[el]+"</p>"+ard;
     } return ard;
 }
 function notebookHTML(str) {
@@ -479,7 +479,7 @@ function notebookHTML(str) {
     var epr=sysDefPrefix.value; for (el in arr) {
         eld=arr[el],elt=caesar.decode(eld,'',eln,els);
         arl="<input type='button' onmouseover='soundButton();' style='width:80%;' onclick='openNote(&#34;"+elt+"&#34;,&#34;&#34;,&#34;"+eln+"&#34;);' value='"+elt+"'>";
-        arl+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"trash.png"+"' onclick='deleteNote(&#34;"+elt+"&#34;,&#34;&#34;,&#34;"+eln+"&#34;);'>";
+        arl+="<input type='image' class='power' onmouseover='soundButton();' src='"+epr+"trash.webp"+"' onclick='deleteNote(&#34;"+elt+"&#34;,&#34;&#34;,&#34;"+eln+"&#34;);'>";
         ard=ard+arl+'<br>';
     } return ard;
 }

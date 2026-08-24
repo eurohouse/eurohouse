@@ -4,7 +4,7 @@
     <meta name="viewport" content="<?=$viewportParam;?>">
     <meta charset="UTF-8">
     <title><?=$session['title'].' (@'.$sessionID.') · Eurohouse UX/UI';?></title>
-    <link rel="shortcut icon" href="<?=$prefix[3].'.'.$session['avatar'].'.png';?>" type="image/x-icon">
+    <link rel="shortcut icon" href="<?=$prefix[3].'.'.$session['avatar'].'.webp';?>" type="image/x-icon">
     <?php include 'wardrobe.php';
     foreach ($settings['libraries']['domestic'] as $key=>$val) { ?>
         <script src="<?=$key;?>" <?=$val;?>></script>
@@ -76,12 +76,12 @@
         <input type='hidden' id="sysDefMessengerJSONs" value="">
         <input type='hidden' id="sysDefMyMessengerData" value="">
         <input type='hidden' id="sysDefPostMyMessengerData" value="">
-        <input type='hidden' id='sysDefAvatarIcons' value="<?=implode(';',(str_replace('./','',(glob('./'.$prefix[0].'*.png')))));?>">
+        <input type='hidden' id='sysDefAvatarIcons' value="<?=implode(';',(str_replace('./','',(glob('./'.$prefix[0].'*.webp')))));?>">
         <form id="upload" method="POST" style="display:none;">
             <input type="file" name="file" id="filebrowser" onchange='uploadFile();'>
         </form>
         <p align='center' class='block'>
-            <input type="image" onmouseover="soundButton();" class="power" style="display:none;" id="powerButton" onclick="soundClick(); setdata('observe',flip(sysDefObserve.value));" src="<?=$prefix[3].'power.png';?>">
+            <input type="image" onmouseover="soundButton();" class="power" style="display:none;" id="powerButton" onclick="soundClick(); setdata('observe',flip(sysDefObserve.value));" src="<?=$prefix[3].'power.webp';?>">
         </p>
         <div class='topbar'><?php
         if (file_exists('mode.'.$request['mode'].'.php')) {
@@ -101,7 +101,7 @@
         <div class='upperGap'>
             <span id='showUsCurrentMusic' class="marquee" onclick="soundClick(true); clip(this.innerText);"></span><br>
             <span id='showUsUrgent' class="urgent" onclick="soundClick(true); (sysDefMorse.value!=0)?((sequentialPlayer.isPlaying!=false)?sequentialPlayer.stop():sequentialPlayer.playFullSequence(this.innerText)):clip(this.innerText);"></span>
-            <audio id="audioPlayer" style="width:80%;position:relative;" preservesPitch="<?=boolval($session['preserves_pitch']);?>" volume="<?=$session['audio_volume'];?>" playbackRate="<?=$session['audio_speed'];?>" onended="if (sysDefAutoplay.value!=0) { omniPlaylist(sysDefShuffle.value); }" ontimeupdate="savePlayState();" onpause="setdata('playing',0); $('#buttonPlay').attr('src',sysDefPrefix.value+((sysDefPlayBackwards.value!=0)?'playback.png':'play.png'));" onplay="setdata('playing',1); $('#buttonPlay').attr('src',sysDefPrefix.value+'pause.png');" onvolumechange="setdata('audio_volume',this.volume);" onratechange="setdata('audio_speed',this.playbackRate);" onloadedmetadata="setdata('duration',this.duration);">
+            <audio id="audioPlayer" style="width:80%;position:relative;" preservesPitch="<?=boolval($session['preserves_pitch']);?>" volume="<?=$session['audio_volume'];?>" playbackRate="<?=$session['audio_speed'];?>" onended="if (sysDefAutoplay.value!=0) { omniPlaylist(sysDefShuffle.value); }" ontimeupdate="savePlayState();" onpause="setdata('playing',0); $('#buttonPlay').attr('src',sysDefPrefix.value+((sysDefPlayBackwards.value!=0)?'playback.webp':'play.webp'));" onplay="setdata('playing',1); $('#buttonPlay').attr('src',sysDefPrefix.value+'pause.webp');" onvolumechange="setdata('audio_volume',this.volume);" onratechange="setdata('audio_speed',this.playbackRate);" onloadedmetadata="setdata('duration',this.duration);">
         </div>
         <div class='panel'>
             <?php include (file_exists('mode.'.$request['mode'].'.php'))?'mode.'.$request['mode'].'.php':'welcome_screen.php'; ?>
@@ -111,7 +111,7 @@
         </div>
         <audio id="backgroundPlayer" src="<?=$session['background_sound'];?>" onended="playAudio(this,this.src);">
         <audio id="tickerPlayer" src="<?=$session['ticking_sound'];?>" onended="playAudio(this,this.src);">
-        <audio id="alarmPlayer" src="<?=$session['alarm_sound'];?>" onended="$('#buttonAlarm').attr('src',sysDefPrefix.value+'call.png');" onplay="$('#buttonAlarm').attr('src',sysDefPrefix.value+'dial.png');" onpause="$('#buttonAlarm').attr('src',sysDefPrefix.value+'call.png');">
+        <audio id="alarmPlayer" src="<?=$session['alarm_sound'];?>">
         <audio id="soundPlayer"><audio id="typePlayer">
         <audio id="errorPlayer"><audio id="notifyPlayer">
     </div>

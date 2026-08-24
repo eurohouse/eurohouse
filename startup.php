@@ -114,45 +114,45 @@ function world_clock() {
                     playAudio(backgroundPlayer,sysDefBackgroundSound.value);
                 } else { pauseAudio(backgroundPlayer); }
             } sysDefPostBackEff.value=sysDefLoop.value;
-            document.querySelector(':root').style.setProperty('--bicolor',alphaHex(sysDefBackColor.value,sysDefOpacity.value)); $('#powerButton').attr('src',sysDefPrefix.value+'power.svg');
-            $('#buttonObserve').attr('src',sysDefPrefix.value+'power.svg');
-            $('#buttonSpectate').attr('src',sysDefPrefix.value+'unpower.svg');
-	    $('#buttonAdd').attr('src',sysDefPrefix.value+'plus.svg');
-            $('#buttonRemove').attr('src',sysDefPrefix.value+'min.svg');
-	    $('#buttonTrash').attr('src',sysDefPrefix.value+'trash.svg');
-            $('#buttonDelete').attr('src',sysDefPrefix.value+'error.svg');
+            document.querySelector(':root').style.setProperty('--bicolor',alphaHex(sysDefBackColor.value,sysDefOpacity.value)); $('#powerButton').attr('src',sysDefPrefix.value+'power.webp');
+            $('#buttonObserve').attr('src',sysDefPrefix.value+'power.webp');
+            $('#buttonSpectate').attr('src',sysDefPrefix.value+'unpower.webp');
+	    $('#buttonAdd').attr('src',sysDefPrefix.value+'plus.webp');
+            $('#buttonRemove').attr('src',sysDefPrefix.value+'min.webp');
+	    $('#buttonTrash').attr('src',sysDefPrefix.value+'trash.webp');
+            $('#buttonDelete').attr('src',sysDefPrefix.value+'error.webp');
 	    if ((sysDefMenuView.value=='thumb')||(sysDefMenuView.value=='thumbnail')||(sysDefMenuView.value=='thumbs')||(sysDefMenuView.value=='thumbnails')) {
-		$('#buttonMenu').attr('src',sysDefPrefix.value+'thumb.svg');
+		$('#buttonMenu').attr('src',sysDefPrefix.value+'thumb.webp');
 	    } else if ((sysDefMenuView.value=='icon')||(sysDefMenuView.value=='icons')||(sysDefMenuView.value=='menu')||(sysDefMenuView.value=='grid')) {
-		$('#buttonMenu').attr('src',sysDefPrefix.value+'menu.svg');
+		$('#buttonMenu').attr('src',sysDefPrefix.value+'menu.webp');
 	    } else {
-		$('#buttonMenu').attr('src',sysDefPrefix.value+'list.svg');
-	    } $('#buttonUpdate').attr('src',sysDefPrefix.value+'world.svg');
-            $('#buttonRequestLock').attr('src',sysDefPrefix.value+((requestLock.value!='false')?'lock.svg':'key.svg'));
-            $('#buttonMorseLock').attr('src',sysDefPrefix.value+((sysDefMorse.value!=0)?'key.svg':'lock.svg'));
-            $('#buttonAutoplay').attr('src',sysDefPrefix.value+((sysDefAutoplay.value!=0)?'autopause.svg':'autoplay.svg'));
-            $('#buttonSlideshow').attr('src',sysDefPrefix.value+((sysDefBackground.value!='')?'image.svg':((sysDefSlideshow.value!=0)?'speed.svg':'time.svg')));
-            $('#buttonShuffle').attr('src',sysDefPrefix.value+((sysDefShuffle.value!=0)?'shuffle.svg':'update.svg'));
-            $('#buttonPlay').attr('src',sysDefPrefix.value+((audioPlayer.paused!=true)?'pause.svg':((sysDefPlayBackwards.value!=0)?'playback.svg':'play.svg')));
-            $('#buttonPrev').attr('src',sysDefPrefix.value+'prev.svg');
-            $('#buttonNext').attr('src',sysDefPrefix.value+'next.svg');
-	    $('#buttonRewind').attr('src',sysDefPrefix.value+'rew.svg');
-            $('#buttonFastForward').attr('src',sysDefPrefix.value+'ff.svg');
-            $('#buttonSearch').attr('src',sysDefPrefix.value+'search.svg');
-            $('#buttonReplace').attr('src',sysDefPrefix.value+'text.svg');
-            $('#buttonReplaceAll').attr('src',sysDefPrefix.value+'copy.svg');
-            $('#buttonNew').attr('src',sysDefPrefix.value+'new.svg');
-            $('#buttonOpen').attr('src',sysDefPrefix.value+'open.svg');
-            $('#buttonSave').attr('src',sysDefPrefix.value+'save.svg');
-            $('#buttonEnter').attr('src',sysDefPrefix.value+'return.svg');
-            $('#buttonKeyboard').attr('src',sysDefPrefix.value+'keyboard.svg');
-            $('#buttonBackspace').attr('src',sysDefPrefix.value+'backspace.svg');
-	    $('#buttonTrashBackspace').attr('src',sysDefPrefix.value+((authstate())?'trash.svg':'backspace.svg'));
-            $('#buttonEscape').attr('src',sysDefPrefix.value+((sysDefIsModeNull.value!=0)?'forward.svg':'escape.svg'));
-            $('#buttonBackward').attr('src',sysDefPrefix.value+'escape.svg');
-	    $('#buttonForward').attr('src',sysDefPrefix.value+'forward.svg');
-	    $('#buttonAuthState').attr('src',sysDefPrefix.value+((authstate())?'user.svg':'anonym.svg'));
-            $('#buttonAuth').attr('src',sysDefPrefix.value+'user.svg');
+		$('#buttonMenu').attr('src',sysDefPrefix.value+'list.webp');
+	    } $('#buttonUpdate').attr('src',sysDefPrefix.value+'world.webp');
+            $('#buttonRequestLock').attr('src',sysDefPrefix.value+((requestLock.value!='false')?'lock.webp':'key.webp'));
+            $('#buttonMorseLock').attr('src',sysDefPrefix.value+((sysDefMorse.value!=0)?'key.webp':'lock.webp'));
+            $('#buttonAutoplay').attr('src',sysDefPrefix.value+((sysDefAutoplay.value!=0)?'autopause.webp':'autoplay.webp'));
+            $('#buttonSlideshow').attr('src',sysDefPrefix.value+((sysDefBackground.value!='')?'image.webp':((sysDefSlideshow.value!=0)?'speed.webp':'time.webp')));
+            $('#buttonShuffle').attr('src',sysDefPrefix.value+((sysDefShuffle.value!=0)?'shuffle.webp':'update.webp'));
+            $('#buttonPlay').attr('src',sysDefPrefix.value+((audioPlayer.paused!=true)?'pause.webp':((sysDefPlayBackwards.value!=0)?'playback.webp':'play.webp')));
+            $('#buttonPrev').attr('src',sysDefPrefix.value+'prev.webp');
+            $('#buttonNext').attr('src',sysDefPrefix.value+'next.webp');
+	    $('#buttonRewind').attr('src',sysDefPrefix.value+'rew.webp');
+            $('#buttonFastForward').attr('src',sysDefPrefix.value+'ff.webp');
+            $('#buttonSearch').attr('src',sysDefPrefix.value+'search.webp');
+            $('#buttonReplace').attr('src',sysDefPrefix.value+'text.webp');
+            $('#buttonReplaceAll').attr('src',sysDefPrefix.value+'copy.webp');
+            $('#buttonNew').attr('src',sysDefPrefix.value+'new.webp');
+            $('#buttonOpen').attr('src',sysDefPrefix.value+'open.webp');
+            $('#buttonSave').attr('src',sysDefPrefix.value+'save.webp');
+            $('#buttonEnter').attr('src',sysDefPrefix.value+'return.webp');
+            $('#buttonKeyboard').attr('src',sysDefPrefix.value+'keyboard.webp');
+            $('#buttonBackspace').attr('src',sysDefPrefix.value+'backspace.webp');
+	    $('#buttonTrashBackspace').attr('src',sysDefPrefix.value+((authstate())?'trash.webp':'backspace.webp'));
+            $('#buttonEscape').attr('src',sysDefPrefix.value+((sysDefIsModeNull.value!=0)?'forward.webp':'escape.webp'));
+            $('#buttonBackward').attr('src',sysDefPrefix.value+'escape.webp');
+	    $('#buttonForward').attr('src',sysDefPrefix.value+'forward.webp');
+	    $('#buttonAuthState').attr('src',sysDefPrefix.value+((authstate())?'user.webp':'anonym.webp'));
+            $('#buttonAuth').attr('src',sysDefPrefix.value+'user.webp');
             if (((sysDefObserve.value!=0)&&(sysDefSpectate.value!=0))||((sysDefObserve.value!=0)&&(sysDefSpectate.value==0))) {
                 $('#powerButton').show(); $('.panel').hide();
                 $('.customPanel').hide(); $('.upperGap').hide();
@@ -247,7 +247,7 @@ function wallpaper_engine() {
             document.title=pager(data,0)+' (@'+sysDefSessionID.value+') · Eurohouse UX/UI';
             var faviconList=document.querySelectorAll('link[rel="icon"], link[rel="shortcut icon"]'); faviconList.forEach(function(element) {
 	        element.setAttribute('href',pager(data,4));
-            }); $('#showUserAvatarBadgeTop').attr('src',pager(data,4)); $('#showUserAvatarBadgeBottom').attr('src',pager(data,4)); $('#showUserTypeBadge').attr('src',sysDefPrefix.value+((sysDefType.value=='entity')?'home.svg':'user.svg')); var headPageNum=(sysDefFace.value!=0)?0:6;
+            }); $('#showUserAvatarBadgeTop').attr('src',pager(data,4)); $('#showUserAvatarBadgeBottom').attr('src',pager(data,4)); $('#showUserTypeBadge').attr('src',sysDefPrefix.value+((sysDefType.value=='entity')?'home.webp':'user.webp')); var headPageNum=(sysDefFace.value!=0)?0:6;
             var bodyPageNum=(sysDefFace.value!=0)?1:7;
 	    var avatarPageNum=(sysDefFace.value!=0)?3:5;
             if (sysDefIsModeNull.value!=0) {
