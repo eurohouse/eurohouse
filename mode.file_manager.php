@@ -135,57 +135,57 @@ foreach ($index as $key=>$value) {
     $mediaFileSize=(is_dir($mediaFilename)&&path_rel($mediaFilename))?dir_size($mediaFilename):filesize($mediaFilename);
     $mediaFileSizeStr=sizestr($mediaFileSize,$settings['locale']['size'],$session['units']);
     if (is_dir($mediaFilename)) {
-        $themedIcon=$themePrefix.'directory.png'; $themedLink='javascript:soundClick();omniDir(%22'.$mediaFilename.'/%22);';
+        $themedIcon=$themePrefix.'directory.webp'; $themedLink='javascript:soundClick();omniDir(%22'.$mediaFilename.'/%22);';
     } elseif (is_link($mediaFilename)) {
-        $themedIcon=$themePrefix.'link.png'; $themedLink='javascript:soundClick();omniDir(%22'.$mediaFilename.'/%22);';
+        $themedIcon=$themePrefix.'link.webp'; $themedLink='javascript:soundClick();omniDir(%22'.$mediaFilename.'/%22);';
     } else {
         if (in_array($mediaFileExtension,fileExt($settings['collections']['music']))) {
-            $themedIcon=$themePrefix.'music.png';
+            $themedIcon=$themePrefix.'music.webp';
             $themedLink="javascript:soundClick();omniListen(%22".$mediaFilename."%22,true);";
         } elseif (in_array($mediaFileExtension,fileExt($settings['collections']['sound']))) {
-            $themedIcon=$themePrefix.'audio.png';
+            $themedIcon=$themePrefix.'audio.webp';
             $themedLink="javascript:soundClick();omniListen(%22".$mediaFilename."%22,true);";
         } elseif (in_array($mediaFileExtension,fileExt($settings['collections']['movie']))) {
-            $themedIcon=$themePrefix.'movie.png';
+            $themedIcon=$themePrefix.'movie.webp';
             $themedLink="javascript:soundClick();omniRead('media_player',%22".$mediaFilename."%22,'true');";
         } elseif (in_array($mediaFileExtension,fileExt($settings['collections']['video']))) {
-            $themedIcon=$themePrefix.'video.png';
+            $themedIcon=$themePrefix.'video.webp';
             $themedLink="javascript:soundClick();omniRead('media_player',%22".$mediaFilename."%22,'true');";
         } elseif (in_array($mediaFileExtension,fileExt($settings['collections']['midi']))) {
-            $themedIcon=$themePrefix.'midi.png';
+            $themedIcon=$themePrefix.'midi.webp';
             $themedLink="javascript:soundClick();playMIDI(%22".$mediaFilename."%22);";
         } elseif (in_array($mediaFileExtension,fileExt($settings['collections']['image']))) {
-            $themedIcon=(path_rel($mediaFilename))?$mediaFilename:$themePrefix.'image.png';
+            $themedIcon=(path_rel($mediaFilename))?$mediaFilename:$themePrefix.'image.webp';
             $themedLink=$themedIcon;
         } elseif (in_array($mediaFileExtension,fileExt($settings['collections']['font']))) {
-            $themedIcon=$themePrefix.'font.png';
+            $themedIcon=$themePrefix.'font.webp';
             $themedLink="javascript:soundClick();omniRead('font_book',%22".$mediaFilename."%22,'true');";
         } elseif (in_array($mediaFileExtension,fileExt($settings['collections']['data']))) {
-            $themedIcon=$themePrefix.'database.png';
+            $themedIcon=$themePrefix.'database.webp';
             $themedLink="javascript:soundClick();omniPath(%22".$mediaFilename."%22,'','false');";
         } elseif (in_array($mediaFileExtension,fileExt($settings['collections']['script']))) {
-            $themedIcon=$themePrefix.'script.png';
+            $themedIcon=$themePrefix.'script.webp';
             $themedLink="javascript:soundClick();omniRead('text_editor',%22".$mediaFilename."%22,'false');";
         } elseif (in_array($mediaFileExtension,fileExt($settings['collections']['markdown']))) {
-            $themedIcon=$themePrefix.'help.png';
+            $themedIcon=$themePrefix.'help.webp';
             $themedLink="javascript:soundClick();omniRead('text_editor',%22".$mediaFilename."%22,'false');";
         } elseif (in_array($mediaFileExtension,fileExt($settings['collections']['archive']))) {
-            $themedIcon=$themePrefix.'archive.png';
+            $themedIcon=$themePrefix.'archive.webp';
             $themedLink="javascript:soundClick();omniRead('text_editor',%22".$mediaFilename."%22,'true');";
         } elseif (in_array($mediaFileExtension,fileExt($settings['collections']['disk_image']))) {
-            $themedIcon=$themePrefix.'disk.png';
+            $themedIcon=$themePrefix.'disk.webp';
             $themedLink="javascript:soundClick();omniRead('text_editor',%22".$mediaFilename."%22,'true');";
         } elseif (in_array($mediaFileExtension,fileExt($settings['collections']['book']))) {
-            $themedIcon=$themePrefix.'book.png';
+            $themedIcon=$themePrefix.'book.webp';
             $themedLink="javascript:soundClick();omniRead('text_editor',%22".$mediaFilename."%22,'true');";
         } elseif (in_array($mediaFileExtension,fileExt($settings['collections']['briefcase']))) {
-            $themedIcon=$themePrefix.'briefcase.png';
+            $themedIcon=$themePrefix.'briefcase.webp';
             $themedLink="javascript:soundClick();omniRead('text_editor',%22".$mediaFilename."%22,'true');";
         } elseif (in_array($mediaFileExtension,fileExt($settings['collections']['cabinet']))) {
-            $themedIcon=$themePrefix.'cabinet.png';
+            $themedIcon=$themePrefix.'cabinet.webp';
             $themedLink="javascript:soundClick();omniRead('text_editor',%22".$mediaFilename."%22,'true');";
         } else {
-            $themedIcon=$themePrefix.'text.png';
+            $themedIcon=$themePrefix.'text.webp';
             $themedLink="javascript:soundClick();omniRead('text_editor',%22".$mediaFilename."%22,'false');";
         }
     } ?><tr>

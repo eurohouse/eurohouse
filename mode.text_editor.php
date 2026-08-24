@@ -34,17 +34,17 @@ function countText() {
 	    $content=file_get_contents($request['input']);
 	}
     }
-} $newDocumentIcon=$themePrefix.'new.png';
-$openDocumentIcon=$themePrefix.'open.png';
-$saveDocumentIcon=$themePrefix.'save.png';
-$filmDocumentIcon=$themePrefix.'video.png';
-$mkdirDocumentIcon=$themePrefix.'mkdir.png';
-$moveDocumentIcon=$themePrefix.'move.png';
-$dbDocumentIcon=$themePrefix.'database.png';
-$copyDocumentIcon=$themePrefix.'copy.png';
-$deleteDocumentIcon=$themePrefix.'trash.png';
-$infoDocumentIcon=$themePrefix.'info.png';
-$homeDocumentIcon=$themePrefix.'home.png'; ?>
+} $newDocumentIcon=$themePrefix.'new.webp';
+$openDocumentIcon=$themePrefix.'open.webp';
+$saveDocumentIcon=$themePrefix.'save.webp';
+$filmDocumentIcon=$themePrefix.'video.webp';
+$mkdirDocumentIcon=$themePrefix.'mkdir.webp';
+$moveDocumentIcon=$themePrefix.'move.webp';
+$dbDocumentIcon=$themePrefix.'database.webp';
+$copyDocumentIcon=$themePrefix.'copy.webp';
+$deleteDocumentIcon=$themePrefix.'trash.webp';
+$infoDocumentIcon=$themePrefix.'info.webp';
+$homeDocumentIcon=$themePrefix.'home.webp'; ?>
 <p align='center' class='block'>
 <img style="width:10%;position:relative;" loading="lazy" src="<?=$newDocumentIcon;?>" onmouseover="soundButton();" id="newButton" onclick="soundClick(); content.value=''; countText();">
 <img style="width:10%;position:relative;" loading="lazy" src="<?=$openDocumentIcon;?>" onmouseover="soundButton();" id="openButton" onclick="soundClick(); omniRead(requestMode.value,filename.value,'false');">

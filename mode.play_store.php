@@ -18,7 +18,7 @@
 </thead>
 <tbody>
 <?php $iconSize=30;
-$entryIcon=$themePrefix.'playstore.png';
+$entryIcon=$themePrefix.'playstore.webp';
 foreach ($settings['payload'][$request['mode']] as $key=>$channel) { ?>
     <tr>
         <td>
@@ -32,7 +32,7 @@ foreach ($settings['payload'][$request['mode']] as $key=>$channel) { ?>
     <tr>
     <?php foreach ($channel as $uri=>$uris) {
         $uriPart=parse_url($uri);
-	    $pkgID=array_reverse(explode('/',$uriPart['path']))[0]; $uriLink='javascript:clip(%22'.$uri.'%22);'; $themedIcon=$themePrefix.'package.png'; ?>
+	    $pkgID=array_reverse(explode('/',$uriPart['path']))[0]; $uriLink='javascript:clip(%22'.$uri.'%22);'; $themedIcon=$themePrefix.'package.webp'; ?>
         <td>
             <a href="<?=$themedIcon;?>">
                 <img style="width:<?=$iconSize;?>%;" src="<?=$themedIcon;?>" loading="lazy" onmouseover="soundButton();">
@@ -50,7 +50,7 @@ foreach ($settings['payload'][$request['mode']] as $key=>$channel) { ?>
     </tr>
     <?php foreach ($uris as $mirror) {
         $mirrorUriPart=parse_url($mirror);
-	    $mirrorID=array_reverse(explode('/',$mirrorUriPart['path']))[0]; $mirrorLink='javascript:clip(%22'.$mirror.'%22);'; $themedIcon=$themePrefix.'link.png'; ?>
+	    $mirrorID=array_reverse(explode('/',$mirrorUriPart['path']))[0]; $mirrorLink='javascript:clip(%22'.$mirror.'%22);'; $themedIcon=$themePrefix.'link.webp'; ?>
         <tr>
         <td>
             <a href="<?=$themedIcon;?>">

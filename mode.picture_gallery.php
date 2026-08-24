@@ -98,7 +98,7 @@ if ($request['group']!='') {
 </thead>
 <tbody>
 <?php foreach ($exemplarArr as $key=>$value) {
-    $flag=(file_exists('Flag.'.$value['country'].'.png'))?'Flag.'.$value['country'].'.png':'Flag.UN.png'; $mod=modelcard($key,$contentsArr,$exemplarArr,$session,$settings); ?>
+    $flag=(file_exists('Flag.'.$value['country'].'.webp'))?'Flag.'.$value['country'].'.webp':'Flag.UN.webp'; $mod=modelcard($key,$contentsArr,$exemplarArr,$session,$settings); ?>
     <tr>
         <td>
             <img style="width:60%;position:relative;" src="<?=$flag;?>" loading="lazy" onmouseover="soundButton();">

@@ -12,7 +12,7 @@ if ($request['lock']=='true') {
             if (file_exists('mode.'.$value.'.php')) {
                 $menuItemFile=selectedLines('mode.'.$value.'.php',[0,1]);
                 $menuItemIcon=annotationString($menuItemFile[0]);
-                $elementIcon=(themed($themePrefix,$menuItemIcon))?$themePrefix.$menuItemIcon.'.png':$ersatzPrefix.$menuItemIcon.'.png';
+                $elementIcon=(themed($themePrefix,$menuItemIcon))?$themePrefix.$menuItemIcon.'.webp':$ersatzPrefix.$menuItemIcon.'.webp';
                 $menuItemLangPack=annotationString($menuItemFile[1]);
                 $menuItemLangArr=explode('; ',$menuItemLangPack);
                 $menuItemLangNew=[]; foreach ($menuItemLangArr as $menuItemLangStr) {
@@ -37,7 +37,7 @@ if ($request['lock']=='true') {
                 }
             } foreach ($appIndex as $key=>$value) {
                 $eurArrPkg=fileopen($value);
-                $eurArrFavicon=(isset($eurArrPkg['favicon']))?((file_exists($eurArrPkg['favicon']))?$eurArrPkg['favicon']:$themePrefix.'package.png'):$themePrefix.'package.png';
+                $eurArrFavicon=(isset($eurArrPkg['favicon']))?((file_exists($eurArrPkg['favicon']))?$eurArrPkg['favicon']:$themePrefix.'package.webp'):$themePrefix.'package.webp';
             ?>
             <div class='grid-item'>
                 <div class='grid-label'>
@@ -56,7 +56,7 @@ if ($request['lock']=='true') {
             if (file_exists('mode.'.$value.'.php')) {
                 $menuItemFile=selectedLines('mode.'.$value.'.php',[0,1]);
                 $menuItemIcon=annotationString($menuItemFile[0]);
-                $elementIcon=(themed($themePrefix, $menuItemIcon))?$themePrefix.$menuItemIcon.'.png':$ersatzPrefix.$menuItemIcon.'.png';
+                $elementIcon=(themed($themePrefix, $menuItemIcon))?$themePrefix.$menuItemIcon.'.webp':$ersatzPrefix.$menuItemIcon.'.webp';
                 $menuItemLangPack=annotationString($menuItemFile[1]);
                 $menuItemLangArr=explode('; ',$menuItemLangPack);
                 $menuItemLangNew=[]; foreach ($menuItemLangArr as $menuItemLangStr) {
@@ -72,7 +72,7 @@ if ($request['lock']=='true') {
                 }
             } foreach ($appIndex as $key=>$value) {
                 $eurArrPkg=fileopen($value);
-                $eurArrFavicon=(isset($eurArrPkg['favicon']))?((file_exists($eurArrPkg['favicon']))?$eurArrPkg['favicon']:$themePrefix.'package.png'):$themePrefix.'package.png';
+                $eurArrFavicon=(isset($eurArrPkg['favicon']))?((file_exists($eurArrPkg['favicon']))?$eurArrPkg['favicon']:$themePrefix.'package.webp'):$themePrefix.'package.webp';
                 ?>
                 <img onmouseover="soundButton();" loading="lazy" name="<?=$eurArrPkg['run'];?>" style="height:20%;" onclick="soundClick(); window.location.href=this.name;" src="<?=$eurArrFavicon;?>" title="<?=titlePkgEnt($value,'package',$settings,$session);?>">
         <?php }} ?></p>
@@ -111,7 +111,7 @@ if ($request['lock']=='true') {
             $statusFound=(array_search($menuElementName,$currentMenuItems)!==false)?'min':'plus';
             $menuItemFile=selectedLines('mode.'.$menuElementName.'.php',[0,1]);
             $menuItemIcon=annotationString($menuItemFile[0]);
-            $elementIcon=(themed($themePrefix,$menuItemIcon))?$themePrefix.$menuItemIcon.'.png':$ersatzPrefix.$menuItemIcon.'.png';
+            $elementIcon=(themed($themePrefix,$menuItemIcon))?$themePrefix.$menuItemIcon.'.webp':$ersatzPrefix.$menuItemIcon.'.webp';
             $menuItemLangPack=annotationString($menuItemFile[1]);
             $menuItemLangArr=explode('; ',$menuItemLangPack);
             $menuItemLangNew=[];
@@ -137,7 +137,7 @@ if ($request['lock']=='true') {
             $statusFound=(array_search($menuElementName,$currentMenuItems)!==false)?'min':'plus';
             $menuItemFile=selectedLines('mode.'.$menuElementName.'.php',[0,1]);
             $menuItemIcon=annotationString($menuItemFile[0]);
-            $elementIcon=(themed($themePrefix,$menuItemIcon))?$themePrefix.$menuItemIcon.'.png':$ersatzPrefix.$menuItemIcon.'.png';
+            $elementIcon=(themed($themePrefix,$menuItemIcon))?$themePrefix.$menuItemIcon.'.webp':$ersatzPrefix.$menuItemIcon.'.webp';
             $menuItemLangPack=annotationString($menuItemFile[1]);
             $menuItemLangArr=explode('; ',$menuItemLangPack);
             $menuItemLangNew=[];

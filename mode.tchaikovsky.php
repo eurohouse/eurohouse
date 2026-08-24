@@ -9,7 +9,7 @@
     }" oninput="handleInput(this.value,true); omniRotate(parseInt(this.value));">
 </p>
 <p align="center">
-    <a href="<?=$portfolioPrefix.'torso1.png';?>">
-        <img style="width:13%;" src="<?=$portfolioPrefix.'torso1.png';?>">
+    <a href="<?=$portfolioPrefix.'torso1.webp';?>">
+        <img style="width:13%;" src="<?=$portfolioPrefix.'torso1.webp';?>">
     </a>
 </p>
