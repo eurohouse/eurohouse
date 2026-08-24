@@ -64,18 +64,18 @@ if ($request['lock']!='false') {
         } else if (event.keyCode==8) { handleInput(this.value);
         } else if (event.keyCode==46) { handleInput(this.value);
         }" oninput="handleInput(this.value,true);">
-        <input type="image" onmouseover="soundButton();" class="power" id="buttonOpen" onclick="soundClick(); omniPath(objDataFile.value,objDataPath.value,'false');" src="<?=$prefix[3].'open.png';?>">
-        <input type="image" onmouseover="soundButton();" class="power" id="buttonSave" onclick="soundClick(); data(objDataFile.value,'add',objDataPath.value,objDataValue.value,((superuser())?'rw':sysDefSessionID.value),'r');" src="<?=$prefix[3].'save.png';?>">
-	 <input type="image" onmouseover="soundButton();" class="power" id="buttonTrash" onclick="soundClick(); recycleBin.move(objDataFile.value); window.location.reload();" src="<?=$prefix[3].'trash.png';?>"><br>
+        <input type="image" onmouseover="soundButton();" class="power" id="buttonOpen" onclick="soundClick(); omniPath(objDataFile.value,objDataPath.value,'false');" src="<?=$prefix[3].'open.webp';?>">
+        <input type="image" onmouseover="soundButton();" class="power" id="buttonSave" onclick="soundClick(); data(objDataFile.value,'add',objDataPath.value,objDataValue.value,((superuser())?'rw':sysDefSessionID.value),'r');" src="<?=$prefix[3].'save.webp';?>">
+	 <input type="image" onmouseover="soundButton();" class="power" id="buttonTrash" onclick="soundClick(); recycleBin.move(objDataFile.value); window.location.reload();" src="<?=$prefix[3].'trash.webp';?>"><br>
         <input class="text" id="objDataValue" style="width:60%;" type="text" placeholder="<?=term('Value',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) {
             data(objDataFile.value,'add',objDataPath.value,objDataValue.value,((superuser())?'rw':sysDefSessionID.value),'r');
         } else if (event.keyCode==27) { this.value='';
         } else if (event.keyCode==8) { handleInput(this.value);
         } else if (event.keyCode==46) { handleInput(this.value);
         }" oninput="handleInput(this.value,true);">
-        <input type="image" onmouseover="soundButton();" class="power" id="buttonAdd" onclick="soundClick(); data(objDataFile.value,'pack',objDataPath.value,objDataValue.value,((superuser())?'rw':sysDefSessionID.value),'r');" src="<?=$prefix[3].'plus.png';?>">
-        <input type="image" onmouseover="soundButton();" class="power" id="buttonRemove" onclick="soundClick(); data(objDataFile.value,'unpack',objDataPath.value,objDataValue.value,((superuser())?'rw':sysDefSessionID.value),'r');" src="<?=$prefix[3].'min.png';?>">
-        <input type="image" onmouseover="soundButton();" class="power" id="buttonDelete" onclick="soundClick(); del(objDataFile.value,((superuser())?'rw':sysDefSessionID.value),'r'); window.location.reload();" src="<?=$prefix[3].'error.png';?>">
+        <input type="image" onmouseover="soundButton();" class="power" id="buttonAdd" onclick="soundClick(); data(objDataFile.value,'pack',objDataPath.value,objDataValue.value,((superuser())?'rw':sysDefSessionID.value),'r');" src="<?=$prefix[3].'plus.webp';?>">
+        <input type="image" onmouseover="soundButton();" class="power" id="buttonRemove" onclick="soundClick(); data(objDataFile.value,'unpack',objDataPath.value,objDataValue.value,((superuser())?'rw':sysDefSessionID.value),'r');" src="<?=$prefix[3].'min.webp';?>">
+        <input type="image" onmouseover="soundButton();" class="power" id="buttonDelete" onclick="soundClick(); del(objDataFile.value,((superuser())?'rw':sysDefSessionID.value),'r'); window.location.reload();" src="<?=$prefix[3].'error.webp';?>">
     </p><?php
     foreach ($objReadyData as $key=>$value) {
         $goArg=($request['args']!='')?$request['args'].'/'.$key:$key;
@@ -83,7 +83,7 @@ if ($request['lock']!='false') {
     <input type="button" name="<?=$goArg;?>" value="<?=$key;?>" style="width:30%;" onmouseover="soundButton();" onclick="soundClick(); omniPath(requestInput.value,this.name,requestLock.value);">
     <input type="button" name="<?=$goArg;?>" value="<?=$value;?>" style="width:50%;" onmouseover="soundButton();" onclick="soundClick(); omniPath(requestInput.value,this.name,requestLock.value);">
     <?php if ($request['lock']=='false') { ?>
-    <input type="image" name="<?=$goArg;?>" onmouseover="soundButton();" class="power" onclick="soundClick(); data(objDataFile.value,'drop',this.name,objDataValue.value,((superuser())?'rw':sysDefSessionID.value),'r');" src="<?=$prefix[3].'trash.png';?>">
+    <input type="image" name="<?=$goArg;?>" onmouseover="soundButton();" class="power" onclick="soundClick(); data(objDataFile.value,'drop',this.name,objDataValue.value,((superuser())?'rw':sysDefSessionID.value),'r');" src="<?=$prefix[3].'trash.webp';?>">
     <?php } ?>
 </p><?php }
 } else { ?>

@@ -17,8 +17,8 @@
         } else if (event.keyCode==8) { handleInput(this.value);
         } else if (event.keyCode==46) { handleInput(this.value);
         }" oninput="handleInput(this.value,true);">
-        <input type='image' onmouseover="soundButton();" class="power" onclick="setdata('specimen',encodeURIComponent(setSpecimen.value));" src="<?=$prefix[3].'return.png';?>" title="<?=term('Update',$settings,$session);?>">
-        <input type='image' onmouseover="soundButton();" class="power" onclick="setSpecimen.value='QfSzGh ÆøÐñÇê ʒʊʎɸʃŋ ΣφΩθΞψ ЭшГжУя عليخالد 인방학적괴굠 のあぱオヰカ 中英რՖטभो 🍷☕️🍾🍫🍍🌴';" src="<?=$prefix[3].'backspace.png';?>" title="<?=term('Clear',$settings,$session);?>"></span><br>
+        <input type='image' onmouseover="soundButton();" class="power" onclick="setdata('specimen',encodeURIComponent(setSpecimen.value));" src="<?=$prefix[3].'return.webp';?>" title="<?=term('Update',$settings,$session);?>">
+        <input type='image' onmouseover="soundButton();" class="power" onclick="setSpecimen.value='QfSzGh ÆøÐñÇê ʒʊʎɸʃŋ ΣφΩθΞψ ЭшГжУя عليخالد 인방학적괴굠 のあぱオヰカ 中英რՖטभो 🍷☕️🍾🍫🍍🌴';" src="<?=$prefix[3].'backspace.webp';?>" title="<?=term('Clear',$settings,$session);?>"></span><br>
         <label><?=term('Font Configuration:',$settings,$session);?></label><br>
         <select id="setUTF0" style="width:15%;" onchange="setdata('font_ascii',setUTF0.options[setUTF0.selectedIndex].id);">
         <?php foreach ($userSubscr['font'] as $key=>$value) { ?>

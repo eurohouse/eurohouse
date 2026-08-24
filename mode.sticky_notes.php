@@ -47,8 +47,8 @@ function countNote() {
     } else if (event.keyCode==8) { handleInput(this.value);
     } else if (event.keyCode==46) { handleInput(this.value);
     }" oninput="handleInput(this.value,true); countNote();">
-    <input type="image" id="buttonEnter" onmouseover="soundButton();" class="power" onclick="soundClick(); setdata('numeric',myNotesRad.value); setdata('separator',myNotesSep.value);" src="<?=$prefix[3].'return.png';?>">
-    <input type="image" id="buttonBackspace" onmouseover="soundButton();" class="power" onclick="soundClick(); myNotesRad.value=''; myNotesSep.value=''; countNote();" src="<?=$prefix[3].'backspace.png';?>">
+    <input type="image" id="buttonEnter" onmouseover="soundButton();" class="power" onclick="soundClick(); setdata('numeric',myNotesRad.value); setdata('separator',myNotesSep.value);" src="<?=$prefix[3].'return.webp';?>">
+    <input type="image" id="buttonBackspace" onmouseover="soundButton();" class="power" onclick="soundClick(); myNotesRad.value=''; myNotesSep.value=''; countNote();" src="<?=$prefix[3].'backspace.webp';?>">
 </p>
 <p align='center' class='block'>
 <input class="text" id="myNotesEnt" style="width:34%;" type="text" placeholder="<?=term('Title',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) {
@@ -63,9 +63,9 @@ function countNote() {
 } else if (event.keyCode==8) { handleInput(this.value);
 } else if (event.keyCode==46) { handleInput(this.value);
 }" oninput="handleInput(this.value,true);">
-<input type="image" id="buttonNew" onmouseover="soundButton();" class="power" onclick="soundClick(); newNote();" src="<?=$prefix[3].'new.png';?>">
-<input type="image" id="buttonOpen" onmouseover="soundButton();" class="power" onclick="soundClick(); openNote(myNotesEnt.value);" src="<?=$prefix[3].'open.png';?>">
-<input type="image" id="buttonSave" onmouseover="soundButton();" class="power" onclick="soundClick(); saveNote(myNotesEnt.value);" src="<?=$prefix[3].'save.png';?>">
+<input type="image" id="buttonNew" onmouseover="soundButton();" class="power" onclick="soundClick(); newNote();" src="<?=$prefix[3].'new.webp';?>">
+<input type="image" id="buttonOpen" onmouseover="soundButton();" class="power" onclick="soundClick(); openNote(myNotesEnt.value);" src="<?=$prefix[3].'open.webp';?>">
+<input type="image" id="buttonSave" onmouseover="soundButton();" class="power" onclick="soundClick(); saveNote(myNotesEnt.value);" src="<?=$prefix[3].'save.webp';?>">
 </p>
 <div class="bivalviaRow">
 <div class="bivalviaLeft" id="notesMenu"></div>
@@ -86,8 +86,8 @@ function countNote() {
 } else if (event.keyCode==27) { this.value='';
 } else if (event.keyCode==8) { handleInput(this.value);
 } else if (event.keyCode==46) { handleInput(this.value); }">
-<input type="image" id="buttonReplace" onmouseover="soundButton();" class="power" onclick="soundClick(); replaceNote(); countText();" oninput="handleInput(this.value,true);" src="<?=$prefix[3].'text.png';?>">
-<input type="image" id="buttonReplaceAll" onmouseover="soundButton();" class="power" onclick="soundClick(); replaceNoteAll(); countText();" oninput="handleInput(this.value,true);" src="<?=$prefix[3].'copy.png';?>">
+<input type="image" id="buttonReplace" onmouseover="soundButton();" class="power" onclick="soundClick(); replaceNote(); countText();" oninput="handleInput(this.value,true);" src="<?=$prefix[3].'text.webp';?>">
+<input type="image" id="buttonReplaceAll" onmouseover="soundButton();" class="power" onclick="soundClick(); replaceNoteAll(); countText();" oninput="handleInput(this.value,true);" src="<?=$prefix[3].'copy.webp';?>">
 </p></div>
 </div><br>
 <label id='numBits' style="width:98%;"></label>

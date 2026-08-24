@@ -100,8 +100,8 @@ $searchFilesSize=sizestr($bytes,$settings['locale']['size'],$session['units']); 
     } else if (event.keyCode==46) {
         handleInput(this.value);
     }" oninput="handleInput(this.value,true);">
-    <input type="image" class="power" id="buttonSearch" onmouseover="soundButton();" src="<?=$prefix[3].'search.png';?>" onclick="soundClick(); omniDisp(searchBox.value);">
-    <input type="image" class="power" id="buttonBackspace" onmouseover="soundButton();" src="<?=$prefix[3].'backspace.png';?>" onclick="soundClick(); searchBox.value=''; searchBox.focus();"></p>
+    <input type="image" class="power" id="buttonSearch" onmouseover="soundButton();" src="<?=$prefix[3].'search.webp';?>" onclick="soundClick(); omniDisp(searchBox.value);">
+    <input type="image" class="power" id="buttonBackspace" onmouseover="soundButton();" src="<?=$prefix[3].'backspace.webp';?>" onclick="soundClick(); searchBox.value=''; searchBox.focus();"></p>
 </div>
 <div class='customPanel' id='searchResults' style="width:100%;height:80%;left:0px;top:0px;overflow-y:scroll;">
 <table style="width:100%;" id="table" class="wrapper">
@@ -201,15 +201,15 @@ foreach ($index as $key=>$value) {
         <td>
             <p align='center' class='block'>
                 <?php if ((is_dir($mediaFilename))&&(is_link($mediaFilename))) { ?>
-                    <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="soundClick(); omniPath(this.name,'','true');" src="<?=$prefix[3].'info.png';?>">
-                    <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="soundClick(); omniDir(this.name);" src="<?=$prefix[3].'directory.png';?>">
+                    <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="soundClick(); omniPath(this.name,'','true');" src="<?=$prefix[3].'info.webp';?>">
+                    <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="soundClick(); omniDir(this.name);" src="<?=$prefix[3].'directory.webp';?>">
                 <?php } else {
                     if (in_array($mediaFileExtension,fileExt($settings['collections']['music'].','.$settings['collections']['sound']))) { ?>
-                        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="soundClick(); omniListen(this.name);" src="<?=$prefix[3].'play.png';?>">
-                        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="soundClick(); omniPause();" src="<?=$prefix[3].'pause.png';?>">
+                        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="soundClick(); omniListen(this.name);" src="<?=$prefix[3].'play.webp';?>">
+                        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="soundClick(); omniPause();" src="<?=$prefix[3].'pause.webp';?>">
                     <?php } else { ?>
-                        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="soundClick(); omniPath(this.name,'','true');" src="<?=$prefix[3].'info.png';?>">
-                        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="soundClick(); downloadFile(this.name,this.name);" src="<?=$prefix[3].'package.png';?>">
+                        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="soundClick(); omniPath(this.name,'','true');" src="<?=$prefix[3].'info.webp';?>">
+                        <input type="image" name="<?=$mediaFilename;?>" onmouseover="soundButton();" class="power" onclick="soundClick(); downloadFile(this.name,this.name);" src="<?=$prefix[3].'package.webp';?>">
                     <?php }
                 } ?>
             </p>

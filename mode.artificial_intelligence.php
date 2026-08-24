@@ -25,10 +25,10 @@
     } else if (event.keyCode==46) { handleInput(this.value);
     }" oninput="handleInput(this.value,true);">
     <?php if (isAuthorized()) { ?>
-        <input type="image" class="power" id="buttonPrev" onmouseover="soundButton();" src="<?=$prefix[3].'prev.png';?>" onclick="soundClick(); var cur=parseInt(sysDefUserAICurNum.value); var max=parseInt(sysDefUserAIMaxNum.value); cur=(cur<=0)?max:(cur-1); sysDefUserAICurNum.value=cur; markdown_disp.innerHTML=marked.parse(getAIRecordContent(sysDefUserAICurNum.value));">
-        <input type="image" class="power" id="buttonNext" onmouseover="soundButton();" src="<?=$prefix[3].'next.png';?>" onclick="soundClick(); var cur=parseInt(sysDefUserAICurNum.value); var max=parseInt(sysDefUserAIMaxNum.value); cur=(cur>=max)?0:(cur+1); sysDefUserAICurNum.value=cur; markdown_disp.innerHTML=marked.parse(getAIRecordContent(sysDefUserAICurNum.value));">
+        <input type="image" class="power" id="buttonPrev" onmouseover="soundButton();" src="<?=$prefix[3].'prev.webp';?>" onclick="soundClick(); var cur=parseInt(sysDefUserAICurNum.value); var max=parseInt(sysDefUserAIMaxNum.value); cur=(cur<=0)?max:(cur-1); sysDefUserAICurNum.value=cur; markdown_disp.innerHTML=marked.parse(getAIRecordContent(sysDefUserAICurNum.value));">
+        <input type="image" class="power" id="buttonNext" onmouseover="soundButton();" src="<?=$prefix[3].'next.webp';?>" onclick="soundClick(); var cur=parseInt(sysDefUserAICurNum.value); var max=parseInt(sysDefUserAIMaxNum.value); cur=(cur>=max)?0:(cur+1); sysDefUserAICurNum.value=cur; markdown_disp.innerHTML=marked.parse(getAIRecordContent(sysDefUserAICurNum.value));">
     <?php } ?>
-    <input type="image" class="power" id="buttonKeyboard" onmouseover="soundButton();" src="<?=$prefix[3].'keyboard.png';?>" onclick="soundClick(); AI(promptGPT.value).then(reply=>{
+    <input type="image" class="power" id="buttonKeyboard" onmouseover="soundButton();" src="<?=$prefix[3].'keyboard.webp';?>" onclick="soundClick(); AI(promptGPT.value).then(reply=>{
     if (notNull(reply)) {
             markdown_disp.innerHTML=marked.parse(reply);
 	    if (authstate()) {
@@ -37,7 +37,7 @@
 	    }
         }
     }).catch(error=>{ console.error(error); });">
-    <input type="image" class="power" id="buttonTrashBackspace" onmouseover="soundButton();" src="<?=$prefix[3].((isAuthorized())?'trash.png':'backspace.png');?>" onclick="soundClick(); promptGPT.value=''; markdown_disp.innerHTML='';
+    <input type="image" class="power" id="buttonTrashBackspace" onmouseover="soundButton();" src="<?=$prefix[3].((isAuthorized())?'trash.webp':'backspace.webp');?>" onclick="soundClick(); promptGPT.value=''; markdown_disp.innerHTML='';
 if (authstate()) {
     set(sysDefSessionID.value+'_files/artificial_intelligence.json','[]','rw');
     sysDefUserAICurNum.value=0;

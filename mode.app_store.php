@@ -27,7 +27,7 @@ foreach ($settings['payload'][$request['mode']] as $key=>$channel) { ?>
             </a>
         </td>
         <td><a href="javascript:getPkgSequence('get -i '+updateChannel<?=md5($key);?>.value,'get ',0);"><?=$key;?></a></td>
-        <td><input type="image" onmouseover="soundButton();" class="power" onclick="getPkgSequence('get -i '+updateChannel<?=md5($key);?>.value,'get ',0);" src="<?=$prefix[3].'world.png';?>"></td>
+        <td><input type="image" onmouseover="soundButton();" class="power" onclick="getPkgSequence('get -i '+updateChannel<?=md5($key);?>.value,'get ',0);" src="<?=$prefix[3].'world.webp';?>"></td>
     </tr>
     <tr>
     <?php foreach ($channel as $uri=>$uris) {
@@ -40,11 +40,11 @@ foreach ($settings['payload'][$request['mode']] as $key=>$channel) { ?>
         </td>
         <td><a href="<?=$uriLink;?>"><?=$uri;?></a></td>
         <td>
-            <input type="image" name="<?=$uri;?>" onmouseover="soundButton();" class="power" onclick="getPkgSequence('get -i '+this.name,'get ');" src="<?=$prefix[3].'world.png';?>">
+            <input type="image" name="<?=$uri;?>" onmouseover="soundButton();" class="power" onclick="getPkgSequence('get -i '+this.name,'get ');" src="<?=$prefix[3].'world.webp';?>">
         <?php if (file_exists($pkgID.'.package.json')) { ?>
-            <input type="image" name="<?=$pkgID;?>" onmouseover="soundButton();" class="power" onclick="getPkgSequence('get -d '+this.name,'get ');" src="<?=$prefix[3].'trash.png';?>">
+            <input type="image" name="<?=$pkgID;?>" onmouseover="soundButton();" class="power" onclick="getPkgSequence('get -d '+this.name,'get ');" src="<?=$prefix[3].'trash.webp';?>">
         <?php } else { ?>
-            <input type="image" name="<?=$uri;?>" onmouseover="soundButton();" class="power" onclick="getPkgSequence('get -i '+this.name,'get ');" src="<?=$prefix[3].'update.png';?>">
+            <input type="image" name="<?=$uri;?>" onmouseover="soundButton();" class="power" onclick="getPkgSequence('get -i '+this.name,'get ');" src="<?=$prefix[3].'update.webp';?>">
         <?php } ?>
         </td>
     </tr>
@@ -61,11 +61,11 @@ foreach ($settings['payload'][$request['mode']] as $key=>$channel) { ?>
             <a href="<?=$mirrorLink;?>"><?=$mirror;?></a>
         </td>
         <td>
-        <input type="image" name="<?=$mirror;?>" onmouseover="soundButton();" class="power" onclick="getPkgSequence('get -i '+this.name,'get ');" src="<?=$prefix[3].'world.png';?>">
+        <input type="image" name="<?=$mirror;?>" onmouseover="soundButton();" class="power" onclick="getPkgSequence('get -i '+this.name,'get ');" src="<?=$prefix[3].'world.webp';?>">
         <?php if (file_exists($mirrorID.'.package.json')) { ?>
-            <input type="image" name="<?=$mirrorID;?>" onmouseover="soundButton();" class="power" onclick="getPkgSequence('get -d '+this.name,'get ');" src="<?=$prefix[3].'trash.png';?>">
+            <input type="image" name="<?=$mirrorID;?>" onmouseover="soundButton();" class="power" onclick="getPkgSequence('get -d '+this.name,'get ');" src="<?=$prefix[3].'trash.webp';?>">
         <?php } else { ?>
-            <input type="image" name="<?=$mirror;?>" onmouseover="soundButton();" class="power" onclick="getPkgSequence('get -i '+this.name,'get ');" src="<?=$prefix[3].'update.png';?>">
+            <input type="image" name="<?=$mirror;?>" onmouseover="soundButton();" class="power" onclick="getPkgSequence('get -i '+this.name,'get ');" src="<?=$prefix[3].'update.webp';?>">
         <?php } ?>
         </td>
         </tr>

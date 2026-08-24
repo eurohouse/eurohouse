@@ -23,8 +23,8 @@ if ($request['group']!='') {
             <img style="width:<?=$iconSize;?>%;" src="<?=$key;?>" loading="lazy" onmouseover="soundButton();">
         </a></td>
         <td><p align='center' class='block'>
-            <input type="image" name="<?=$key;?>" onmouseover="soundButton();" class="power" onclick="soundClick(); setdata('background',this.name);" src="<?=$prefix[3].'image.png';?>">
-            <input type="image" onmouseover="soundButton();" class="power" onclick="soundClick(); setdata('background','');" src="<?=$prefix[3].'backspace.png';?>">
+            <input type="image" name="<?=$key;?>" onmouseover="soundButton();" class="power" onclick="soundClick(); setdata('background',this.name);" src="<?=$prefix[3].'image.webp';?>">
+            <input type="image" onmouseover="soundButton();" class="power" onclick="soundClick(); setdata('background','');" src="<?=$prefix[3].'backspace.webp';?>">
         </p></td>
     </tr><?php } ?>
 </tbody>
@@ -48,8 +48,8 @@ if ($request['group']!='') {
     } else if (event.keyCode==46) {
         handleInput(this.value);
     }" oninput="handleInput(this.value,true);">
-    <input type="image" class="power" id="buttonSearch" onmouseover="soundButton();" src="<?=$prefix[3].'search.png';?>" onclick="soundClick(); omniSort(searchBox.value);">
-    <input type="image" class="power" id="buttonBackspace" onmouseover="soundButton();" src="<?=$prefix[3].'backspace.png';?>" onclick="soundClick(); searchBox.value=''; searchBox.focus();">
+    <input type="image" class="power" id="buttonSearch" onmouseover="soundButton();" src="<?=$prefix[3].'search.webp';?>" onclick="soundClick(); omniSort(searchBox.value);">
+    <input type="image" class="power" id="buttonBackspace" onmouseover="soundButton();" src="<?=$prefix[3].'backspace.webp';?>" onclick="soundClick(); searchBox.value=''; searchBox.focus();">
     </p>
 </div>
 <div class='customPanel' id='searchResults' style="width:100%;height:80%;left:0px;top:0px;overflow-y:scroll;">

@@ -89,7 +89,7 @@ $homeDocumentIcon=$themePrefix.'home.png'; ?>
 } else if (event.keyCode==27) { this.value='';
 } else if (event.keyCode==8) { handleInput(this.value);
 } else if (event.keyCode==46) { handleInput(this.value); }" oninput="handleInput(this.value,true);">
-<input type="image" id="textEditRepOne" onmouseover="soundButton();" id="buttonReplace" class="power" onclick="soundClick(); replaceText(); countText();" src="<?=$prefix[3].'text.png';?>">
-<input type="image" id="textEditRepAll" onmouseover="soundButton();" id="buttonReplaceAll" class="power" onclick="soundClick(); replaceTextAll(); countText();" src="<?=$prefix[3].'copy.png';?>"><br>
+<input type="image" id="textEditRepOne" onmouseover="soundButton();" id="buttonReplace" class="power" onclick="soundClick(); replaceText(); countText();" src="<?=$prefix[3].'text.webp';?>">
+<input type="image" id="textEditRepAll" onmouseover="soundButton();" id="buttonReplaceAll" class="power" onclick="soundClick(); replaceTextAll(); countText();" src="<?=$prefix[3].'copy.webp';?>"><br>
 <label id="statusBar" style="width:98%;"></label>
 </p><?php } ?>

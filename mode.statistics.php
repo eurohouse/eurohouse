@@ -11,8 +11,8 @@
     } else if (event.keyCode==46) {
         handleInput(this.value);
     }" oninput="handleInput(this.value,true);">
-    <input type="image" class="power" id="buttonSearch" onmouseover="soundButton();" src="<?=$prefix[3].'search.png';?>" onclick="populateIpStats(promptStats.value);">
-    <input type="image" class="power" id="buttonBackspace" onmouseover="soundButton();" src="<?=$prefix[3].'backspace.png';?>" onclick="promptStats.value='';">
+    <input type="image" class="power" id="buttonSearch" onmouseover="soundButton();" src="<?=$prefix[3].'search.webp';?>" onclick="populateIpStats(promptStats.value);">
+    <input type="image" class="power" id="buttonBackspace" onmouseover="soundButton();" src="<?=$prefix[3].'backspace.webp';?>" onclick="promptStats.value='';">
     </p>
 </div>
 <div class='customPanel' id='ipDiv' style="width:100%;height:80%;left:0px;top:0px;overflow-y:scroll;">

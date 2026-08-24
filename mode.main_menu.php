@@ -123,7 +123,7 @@ if ($request['lock']=='true') {
                     <a href="javascript:omniGo(%22<?=$menuElementName;?>%22);">
                         <?=(isset($menuItemLangNew[$session['units']]))?$menuItemLangNew[$session['units']]:snakeToSpaces($menuElementName);?>
                     </a><br>
-                    <input type="image" name="<?=$menuElementName;?>" onmouseover="soundButton();" class="power" onclick="this.src=(isInMenu(sysDefMenu.value,this.name))?sysDefPrefix.value+'plus.png':sysDefPrefix.value+'min.png';setdata('menu',arrangeMenu(sysDefMenu.value,this.name));" src="<?=$prefix[3].$statusFound.'.png';?>">
+                    <input type="image" name="<?=$menuElementName;?>" onmouseover="soundButton();" class="power" onclick="this.src=(isInMenu(sysDefMenu.value,this.name))?sysDefPrefix.value+'plus.webp':sysDefPrefix.value+'min.webp';setdata('menu',arrangeMenu(sysDefMenu.value,this.name));" src="<?=$prefix[3].$statusFound.'.webp';?>">
                 </div>
                 <div class='grid-icon'>
                     <img onmouseover="soundButton();" loading="lazy" name="<?=$menuElementName;?>" style="height:20%;" onclick="omniGo(this.name);" src="<?=$elementIcon;?>" title="<?=(isset($menuItemLangNew[$session['units']]))?$menuItemLangNew[$session['units']]:snakeToSpaces($menuElementName);?>">
@@ -145,7 +145,7 @@ if ($request['lock']=='true') {
                 $menuItemLangKey=explode(': ',$menuItemLangStr)[0];$menuItemLangVal=explode(': ',$menuItemLangStr)[1];$menuItemLangNew[$menuItemLangKey]=$menuItemLangVal;
             } ?>
             <img onmouseover="soundButton();" loading="lazy" name="<?=$menuElementName;?>" style="height:20%;" onclick="omniGo(this.name);" src="<?=$elementIcon;?>" title="<?=(isset($menuItemLangNew[$session['units']]))?$menuItemLangNew[$session['units']]:snakeToSpaces($menuElementName);?>">
-            <input type="image" name="<?=$menuElementName;?>" onmouseover="soundButton();" class="power" onclick="this.src=(isInMenu(sysDefMenu.value,this.name))?sysDefPrefix.value+'plus.png':sysDefPrefix.value+'min.png';setdata('menu',arrangeMenu(sysDefMenu.value,this.name));" src="<?=$prefix[3].$statusFound.'.png';?>">
+            <input type="image" name="<?=$menuElementName;?>" onmouseover="soundButton();" class="power" onclick="this.src=(isInMenu(sysDefMenu.value,this.name))?sysDefPrefix.value+'plus.webp':sysDefPrefix.value+'min.webp';setdata('menu',arrangeMenu(sysDefMenu.value,this.name));" src="<?=$prefix[3].$statusFound.'.webp';?>">
         <?php } ?></p>
     <?php } else {
         foreach ($index as $key=>$value) {
@@ -154,7 +154,7 @@ if ($request['lock']=='true') {
                 $menuItemLangKey=explode(': ',$menuItemLangStr)[0];$menuItemLangVal=explode(': ',$menuItemLangStr)[1];$menuItemLangNew[$menuItemLangKey] = $menuItemLangVal;
             } ?>
             <p align='center' class='block'>
-                <input type="button" class="button" name="<?=$menuElementName;?>" onmouseover="soundButton();" style="width:70%;" value="<?=(isset($menuItemLangNew[$session['units']]))?$menuItemLangNew[$session['units']]:snakeToSpaces($menuElementName);?>" onclick="omniGo(this.name);"><input type="image" name="<?=$menuElementName;?>" onmouseover="soundButton();" class="power" onclick="this.src=(isInMenu(sysDefMenu.value,this.name))?sysDefPrefix.value+'plus.png':sysDefPrefix.value+'min.png';setdata('menu',arrangeMenu(sysDefMenu.value,this.name));" src="<?=$prefix[3].$statusFound.'.png';?>">
+                <input type="button" class="button" name="<?=$menuElementName;?>" onmouseover="soundButton();" style="width:70%;" value="<?=(isset($menuItemLangNew[$session['units']]))?$menuItemLangNew[$session['units']]:snakeToSpaces($menuElementName);?>" onclick="omniGo(this.name);"><input type="image" name="<?=$menuElementName;?>" onmouseover="soundButton();" class="power" onclick="this.src=(isInMenu(sysDefMenu.value,this.name))?sysDefPrefix.value+'plus.webp':sysDefPrefix.value+'min.webp';setdata('menu',arrangeMenu(sysDefMenu.value,this.name));" src="<?=$prefix[3].$statusFound.'.webp';?>">
             </p>
         <?php }
     }

@@ -11,8 +11,8 @@
     } else if (event.keyCode==46) {
         handleInput(this.value);
     }" oninput="handleInput(this.value,true);">
-    <input type="image" class="power" id="buttonEnter" onmouseover="soundButton();" src="<?=$prefix[3].'return.png';?>" onclick="soundClick(); calcExpr.value=calculate(calcExpr.value);">
-    <input type="image" class="power" id="buttonBackspace" onmouseover="soundButton();" src="<?=$prefix[3].'backspace.png';?>" onclick="soundClick(); calcExpr.value='';"></p>
+    <input type="image" class="power" id="buttonEnter" onmouseover="soundButton();" src="<?=$prefix[3].'return.webp';?>" onclick="soundClick(); calcExpr.value=calculate(calcExpr.value);">
+    <input type="image" class="power" id="buttonBackspace" onmouseover="soundButton();" src="<?=$prefix[3].'backspace.webp';?>" onclick="soundClick(); calcExpr.value='';"></p>
 </div>
 <div class='customPanel' style="width:100%;height:80%;left:0px;top:0px;overflow-y:scroll;">
 <p align='center'>
@@ -52,7 +52,7 @@
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='!=';" value="!=">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='2.718281828459045';" value="e">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='3.141592653589793';" value="π">
-<input type="image" class="power" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value='';" src="<?=$prefix[3].'backspace.png';?>">
+<input type="image" class="power" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value='';" src="<?=$prefix[3].'backspace.webp';?>">
 <br>
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='1';" value="1">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='2';" value="2">
@@ -61,7 +61,7 @@
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='x';" value="x">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='A';" value="A">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='B';" value="B">
-<input type="image" class="power" onmouseover="soundButton();" onclick="soundClick(); calcExpr.focus();" src="<?=$prefix[3].'keyboard.png';?>">
+<input type="image" class="power" onmouseover="soundButton();" onclick="soundClick(); calcExpr.focus();" src="<?=$prefix[3].'keyboard.webp';?>">
 <br>
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='0';" value="0">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='.';" value=".">
@@ -70,5 +70,5 @@
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='y';" value="y">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='C';" value="C">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='D';" value="D">
-<input type="image" class="power" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value=calculate(calcExpr.value);" src="<?=$prefix[3].'return.png';?>">
+<input type="image" class="power" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value=calculate(calcExpr.value);" src="<?=$prefix[3].'return.webp';?>">
 </p></div>

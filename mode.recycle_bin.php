@@ -16,7 +16,7 @@ $diskSpace=term('Free disk space:',$settings,$session).' '.sizestr(disk_free_spa
     <p align="center" class="block">
     <input type="button" name="<?=$recycleBinFile;?>" value="<?=$val;?>" style="width:<?=$line1Size;?>%;" onmouseover="soundButton();" onclick="omniPath(this.name,this.value,'false');">
     <?php if (isAuthorized()) { ?>
-        <input type="image" name="<?=$val;?>" onmouseover="soundButton();" class="power" onclick="recycleBin.restore(this.name);" src="<?=$prefix[3].'update.png';?>">
-        <input type="image" name="<?=$val;?>" onmouseover="soundButton();" class="power" onclick="recycleBin.destroy(this.name);" src="<?=$prefix[3].'trash.png';?>">
+        <input type="image" name="<?=$val;?>" onmouseover="soundButton();" class="power" onclick="recycleBin.restore(this.name);" src="<?=$prefix[3].'update.webp';?>">
+        <input type="image" name="<?=$val;?>" onmouseover="soundButton();" class="power" onclick="recycleBin.destroy(this.name);" src="<?=$prefix[3].'trash.webp';?>">
     <?php } ?></p>
 <?php } ?>

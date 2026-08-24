@@ -27,10 +27,10 @@
 foreach ($indexUsers as $value) {
     if (file_exists($value.'_files/profile.json')) {
         $profData=fileopen($value.'_files/profile.json',$settings['defaults']);
-        $profIcon=(file_exists($prefix[0].$profData['avatar'].'.png'))?$prefix[0].$profData['avatar'].'.png':$prefix[0].$settings['defaults']['avatar'].'.png';
+        $profIcon=(file_exists($prefix[0].$profData['avatar'].'.webp'))?$prefix[0].$profData['avatar'].'.webp':$prefix[0].$settings['defaults']['avatar'].'.webp';
     } else {
         $profData=$settings['defaults'];
-        $profIcon=$profData['avatar'].'.png';
+        $profIcon=$profData['avatar'].'.webp';
     }
     ?>
     <tr>
@@ -45,16 +45,16 @@ foreach ($indexUsers as $value) {
         <p align='center' class='block'>
             <?php if (isAuthorized()) {
                 if (isUserRoot($superuser)) { ?>
-                    <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="del(this.name+'_files','rw'); window.location.reload();" src="<?=$prefix[3].'trash.png';?>">
+                    <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="del(this.name+'_files','rw'); window.location.reload();" src="<?=$prefix[3].'trash.webp';?>">
                 <?php } else {
                     if ($value==$sessionID) { ?>
-                        <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="userArchiveManager.markForDeletion(sysDefSessionID.value); omniAuthRequest();" src="<?=$prefix[3].'trash.png';?>">
+                        <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="userArchiveManager.markForDeletion(sysDefSessionID.value); omniAuthRequest();" src="<?=$prefix[3].'trash.webp';?>">
                     <?php } else { ?>
-                        <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name+'_files/profile.json','','false');" src="<?=$prefix[3].'info.png';?>">
+                        <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name+'_files/profile.json','','false');" src="<?=$prefix[3].'info.webp';?>">
                     <?php }
                 }
             } else { ?>
-                <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name+'_files/profile.json','','false');" src="<?=$prefix[3].'info.png';?>">
+                <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name+'_files/profile.json','','false');" src="<?=$prefix[3].'info.webp';?>">
         <?php } ?>
         </p>
         </td>
