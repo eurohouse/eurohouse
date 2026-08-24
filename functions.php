@@ -220,9 +220,9 @@ function limitPkg(array $arr,$cat,$exc=''): array {
 function userSubscr($arr,$col,array $pic) {
     $res=[]; foreach ($arr as $key=>$val) {
         if ($key=='avatar') {
-            $lib=str_replace('./','',(glob('./'.$pic[0].'*.png')));
+            $lib=str_replace('./','',(glob('./'.$pic[0].'*.{png,webp}',GLOB_BRACE)));
         } elseif ($key=='pictogram') {
-            $lib=str_replace('./','',(glob('./'.$pic[3].'*.png')));
+            $lib=str_replace('./','',(glob('./'.$pic[3].'*.{png,webp}',GLOB_BRACE)));
         } elseif ($key=='background') {
             $lib=str_replace('./','',(glob('./*.*.00.{png,webp}',GLOB_BRACE)));
         } else {
@@ -512,7 +512,7 @@ function alphaChannel($hex='#000000',$opa='IF') {
 function themed(string $theme,string $assets='head'): bool {
     $arr=explode(',',$assets);$basket=true;
     foreach ($arr as $val) {
-        $basket=$basket&&file_exists($theme.$val.'.png');
+        $basket=$basket&&file_exists($theme.$val.'.webp');
     } return $basket;
 }
 function dailyWallpaper(array $ses) {
