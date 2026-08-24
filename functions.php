@@ -224,7 +224,7 @@ function userSubscr($arr,$col,array $pic) {
         } elseif ($key=='pictogram') {
             $lib=str_replace('./','',(glob('./'.$pic[3].'*.png')));
         } elseif ($key=='background') {
-            $lib=str_replace('./','',(glob('./*.*.00.png')));
+            $lib=str_replace('./','',(glob('./*.*.00.{png,webp}',GLOB_BRACE)));
         } else {
             $lib=str_replace('./','',(glob('./*.{'.fileExt($col[$key],true).'}',GLOB_BRACE)));
         } $res[$key]=limitPkg($lib,$key,$arr[$key]);
