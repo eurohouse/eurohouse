@@ -13,11 +13,11 @@
     <a href="<?=$portfolioPrefix.'left0.webp';?>">
         <img style="width:7%;" src="<?=$portfolioPrefix.'left0.webp';?>">
     </a>
-    <a href="<?=$portfolioPrefix.'torso0.png';?>">
-        <img style="width:13%;" src="<?=$portfolioPrefix.'torso0.png';?>">
+    <a href="<?=$portfolioPrefix.'torso0.webp';?>">
+        <img style="width:13%;" src="<?=$portfolioPrefix.'torso0.webp';?>">
     </a>
-    <a href="<?=$portfolioPrefix.'right0.png';?>">
-        <img style="width:7%;" src="<?=$portfolioPrefix.'right0.png';?>">
+    <a href="<?=$portfolioPrefix.'right0.webp';?>">
+        <img style="width:7%;" src="<?=$portfolioPrefix.'right0.webp';?>">
     </a>
 <?php } elseif (circleDirection($request['angle'],360)==3) { ?>
     <a href="<?=$portfolioPrefix.'right270.webp';?>">
