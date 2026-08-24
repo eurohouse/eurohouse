@@ -426,11 +426,11 @@ function albumCollectionHTML() {
             }
         } else if (sysDefAlbum.value=='avatar') {
             prefix=sysDefAvaPrefix.value; for (idx in avatars) {
-                line+="<input type='image' class='power' src='"+prefix+avatars[idx]+".png' title='"+avatars[idx]+"' onclick='setdata(&#34;avatar&#34;,&#34;"+avatars[idx]+"&#34;);'>";
+                line+="<input type='image' class='power' src='"+prefix+avatars[idx]+".svg' title='"+avatars[idx]+"' onclick='setdata(&#34;avatar&#34;,&#34;"+avatars[idx]+"&#34;);'>";
             }
         } else if (sysDefAlbum.value=='pictogram') {
             prefix=sysDefPrefix.value; for (idx in avatars) {
-                line+="<input type='image' class='power' src='"+prefix+avatars[idx]+".png' title='"+(avatars[idx].toUpperCase())+"' onclick='setdata(&#34;mode&#34;,&#34;"+avatars[idx]+"&#34;);'>";
+                line+="<input type='image' class='power' src='"+prefix+avatars[idx]+".svg' title='"+(avatars[idx].toUpperCase())+"' onclick='setdata(&#34;mode&#34;,&#34;"+avatars[idx]+"&#34;);'>";
             }
         } currentAlbumList.innerHTML=line;
         currentAlbumList.setAttribute('style','-webkit-columns:'+albCol+';-moz-columns:'+albCol+';columns:'+albCol+';text-align:'+(((sysDefAlbum.value=='avatar')||(sysDefAlbum.value=='pictogram'))?'center':'left')+';');
