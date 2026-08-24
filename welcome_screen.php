@@ -3,7 +3,7 @@
 <!-- main_menu -->
 <div class='customPanel' style="width:100%;">
     <p align="center">
-        <img onmouseover="soundButton();" id="showArticleAvatar" name="main_menu" style="height:24%;" onclick="omniGo(this.name);" src="<?=$prefix[0].$session['avatar'].'.png';?>">
+        <img onmouseover="soundButton();" id="showArticleAvatar" name="main_menu" style="height:24%;" onclick="omniGo(this.name);" src="<?=$prefix[0].$session['avatar'].'.webp';?>">
         <h1 id="showArticleHead" align='center' style="cursor:pointer;" onclick="clip(this.innerText);"></h1>
     </p>
 </div>
