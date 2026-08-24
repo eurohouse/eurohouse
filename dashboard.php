@@ -3,7 +3,7 @@
     <select id="wallpaperCollection" style="width:70%;text-align:<?=$session['dropdown_align'];?>;" onchange="setdata('background_buffer',this.options[this.selectedIndex].id);">
     <?php foreach ($userSubscr['background'] as $key=>$val) { ?>
     <option disabled><?=titlePkgEnt($val,'collection',$settings,$session);?></option>
-    <?php foreach (str_replace('./','',(glob('./'.$key.'.*.00.*'))) as $value) { ?>
+    <?php foreach (str_replace('./','',(glob('./'.$key.'.*.00.webp'))) as $value) { ?>
         <option id="<?=$value;?>" <?php if ((explode('.',$value)[0]==explode('.',$session['background_buffer'])[0])&&(explode('.',$value)[1]==explode('.',$session['background_buffer'])[1])) { ?> selected="selected" <?php } ?>>
             <?=titlePkgEnt($value,'series',$settings,$session);?>
         </option>
