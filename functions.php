@@ -523,7 +523,7 @@ function dailyWallpaper(array $ses) {
             if (count(explode('.',$ses['background_buffer']))==4) {
                 $backPart=explode('.',$ses['background_buffer']);
                 $backBaseName=$backPart[0].'.'.$backPart[1];
-		$listHours=(file_exists($backBaseName.'00.png'))?str_replace('./','',(glob('./'.$backBaseName.'.{00,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23}.png',GLOB_BRACE))):str_replace('./','',(glob('./'.$backBaseName.'.{00,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23}.webp',GLOB_BRACE))); if (($ses['slideshow']!=0)&&($ses['slideshow']>0)&&($ses['slideshow']!='')) {
+		$listHours=str_replace('./','',(glob('./'.$backBaseName.'.{00,01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23}.{png,webp}',GLOB_BRACE))); if (($ses['slideshow']!=0)&&($ses['slideshow']>0)&&($ses['slideshow']!='')) {
                     $secSince00H=date('H')*3600+date('i')*60+date('s');
                     $imageIndex=sprintf("%02d",(floor($secSince00H/$ses['slideshow'])%count($listHours)));
                 } else {
