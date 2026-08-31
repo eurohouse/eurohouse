@@ -118,17 +118,17 @@ body {
 }
 .grid-container {
     display: grid; grid-template-columns: repeat(8,1fr);
-    grid-template-rows: auto auto;
-    align-items: center; position: relative;
+    grid-auto-rows: min-content;
+    align-items: start; position: relative;
 }
 .grid-item {
     display: flex; flex-direction: column;
     align-items: center; position: relative;
-    justify-content: center; text-align: center;
-    width: 100%; height: 100%;
+    justify-content: flex-start; text-align: center;
+    width: 100%;
 }
 .grid-icon {
-    position: relative; width: 100%; height: 100%;
+    position: relative; max-width: 100%; height: auto;
 }
 .grid-label {
     margin: 0; padding: 0; position: relative;
