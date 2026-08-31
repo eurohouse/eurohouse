@@ -437,12 +437,11 @@ function albumCollectionHTML() {
     }
 }
 function showCurrentMusicTableau() {
-    var melodyTableau=[EE2EE.decode(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value,sysDefSeparator.value),sysDefMelody.value];
-    var timecodeTableau=[hhmmss(sysDefCurrent.value,true),baseN.decbase(parseInt(sysDefCurrent.value),sysDefNumeric.value)];
-    var durationTableau=[hhmmss(sysDefDuration.value,true),baseN.decbase(parseInt(sysDefDuration.value),sysDefNumeric.value)];
+    var melodyTableau=['"'+EE2EE.decode(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value,sysDefSeparator.value)+'"',sysDefMelody.value];
+    var timecodeTableau=['<'+hhmmss(sysDefCurrent.value,true)+'/'+hhmmss(sysDefDuration.value,true)+'>',baseN.decbase(parseInt(sysDefCurrent.value),sysDefNumeric.value)+sysDefSeparator.value+baseN.decbase(parseInt(sysDefDuration.value),sysDefNumeric.value)];
     var playlistTableau=[showPlaylist(),sysDefPlaylist.value];
     var cipherNum=(isBit(sysDefCipher.value))?parseInt(sysDefCipher.value):0;
-    return '"'+melodyTableau[cipherNum]+'" <'+timecodeTableau[cipherNum]+'/'+durationTableau[cipherNum]+'> ['+playlistTableau[cipherNum]+']';
+    return timecodeTableau[cipherNum];
 }
 function filterMessages(rawJSONData) {
     var arr=jsonarr(rawJSONData),uid=sysDefSessionID.value;
