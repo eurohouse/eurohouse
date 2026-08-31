@@ -31,16 +31,6 @@
     </div>
     <div class='customPanel'>
     <p align='center'>
-        <input type='button' id="audioVolInd" value="<?=round(100*$session['audio_volume']).'%';?>"><br><?=term('Audio Volume',$settings,$session);?><br>
-        <input type="range" min="0" max="1" step="0.05" value="<?=$session['audio_volume'];?>" id="audioVolRange" onchange="setdata('audio_volume',this.value);">
-    </p>
-    <p align='center'>
-        <input type='button' id="videoVolInd" value="<?=round(100*$session['video_volume']).'%';?>"><br><?=term('Video Volume',$settings,$session);?><br>
-        <input type="range" min="0" max="1" step="0.05" value="<?=$session['video_volume'];?>" id="videoVolRange" onchange="setdata('video_volume',this.value);">
-    </p>
-    </div>
-    <div class='customPanel'>
-    <p align='center'>
         <input type='button' id="audioRatInd" value="<?=round(100*$session['audio_speed']).'%';?>"><br><?=term('Audio Speed',$settings,$session);?><br>
         <input type="range" min="0.5" max="1.5" step="0.05" value="<?=$session['audio_speed'];?>" id="audioRatRange" onchange="setdata('audio_speed',this.value);">
     </p>
