@@ -128,7 +128,7 @@ body {
     width: 100%; height: 100%;
 }
 .grid-icon {
-    position: relative; width: auto; height: 100%;
+    position: relative; width: 100%; height: 100%;
 }
 .grid-label {
     margin: 0; padding: 0; position: relative;
