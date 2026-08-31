@@ -437,7 +437,7 @@ function albumCollectionHTML() {
     }
 }
 function showCurrentMusicTableau() {
-    var tableau=['"'+EE2EE.decode(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value,sysDefSeparator.value)+'" <'+hhmmss(sysDefCurrent.value,true)+'/'+hhmmss(sysDefDuration.value,true)+'> ['+showPlaylist()+']',sysDefMelody.value+sysDefSeparator.value+baseN.decbase(parseInt(sysDefCurrent.value),sysDefNumeric.value)+sysDefSeparator.value+baseN.decbase(parseInt(sysDefDuration.value),sysDefNumeric.value)+sysDefSeparator.value];
+    var tableau=['"'+EE2EE.decode(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value,sysDefSeparator.value)+'" <'+hhmmss(sysDefCurrent.value,true)+'/'+hhmmss(sysDefDuration.value,true)+'> ['+showPlaylist()+']',sysDefMelody.value+sysDefSeparator.value+baseN.decbase(parseInt(sysDefCurrent.value),sysDefNumeric.value)+sysDefSeparator.value+baseN.decbase(parseInt(sysDefDuration.value),sysDefNumeric.value)+sysDefSeparator.value+sysDefPlaylist.value];
     return tableau[((isBit(sysDefCipher.value))?parseInt(sysDefCipher.value):0)];
 }
 function filterMessages(rawJSONData) {
