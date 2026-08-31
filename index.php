@@ -64,6 +64,7 @@
         <input type='hidden' id="sysDefPostTickEff" value="0">
         <input type='hidden' id="sysDefUsersList" value="<?=implode(',',$usersList)?>">
 	<input type='hidden' id="sysDefUserAIData" value="<?=(isAuthorized())?json_encode($userAIData,JSON_UNESCAPED_UNICODE):'[]';?>">
+	<input type='hidden' id="sysDefPostUserAIData" value="<?=(isAuthorized())?json_encode($userAIData,JSON_UNESCAPED_UNICODE):'[]';?>">
 	<input type='hidden' id="sysDefUserAICurNum" value="<?=(isAuthorized())?max(array_keys($userAIData)):0;?>">
 	<input type='hidden' id="sysDefUserAIMaxNum" value="<?=(isAuthorized())?max(array_keys($userAIData)):0;?>">
         <input type='hidden' id="sysDefMetaData" value="<?=json_encode($metadata,JSON_UNESCAPED_UNICODE);?>">
@@ -74,8 +75,8 @@
         <input type='hidden' id="sysDefCodexBox" value="<?=implode(';',(str_replace('./','',(glob('./*.macros.txt')))));?>">
         <input type='hidden' id="sysDefSpeechBox" value="<?=implode(';',(str_replace('./','',(glob('./*.dialogue.txt')))));?>">
         <input type='hidden' id="sysDefMessengerJSONs" value="">
-        <input type='hidden' id="sysDefMyMessengerData" value="">
-        <input type='hidden' id="sysDefPostMyMessengerData" value="">
+        <input type='hidden' id="sysDefMyMessengerData" value="<?=(isAuthorized())?json_encode($userMsgData,JSON_UNESCAPED_UNICODE):'[]';?>">
+        <input type='hidden' id="sysDefPostMyMessengerData" value="<?=(isAuthorized())?json_encode($userMsgData,JSON_UNESCAPED_UNICODE):'[]';?>">
         <input type='hidden' id='sysDefAvatarIcons' value="<?=implode(';',(str_replace('./','',(glob('./'.$prefix[0].'*.webp')))));?>">
         <form id="upload" method="POST" style="display:none;">
             <input type="file" name="file" id="filebrowser" onchange='uploadFile();'>

@@ -36,6 +36,9 @@ function subscriptions() {
             $('#sysDefSubscriptions').val(pager(data,1));
             $('#sysDefMyVisitorsData').val(pager(data,2));
 	    $('#sysDefUserAIData').val((authstate())?pager(data,3):[]);
+	    if (sysDefUserAIData.value!=sysDefPostUserAIData.value) {
+                playAudio(notifyPlayer,sysDefNotifySound.value);
+            } sysDefPostUserAIData.value=sysDefUserAIData.value;
 	    $('#sysDefUserAIMaxNum').val((authstate())?Math.max(...Object.keys(jsonarr(sysDefUserAIData.value)).map(Number)):0);
 	}
     });
