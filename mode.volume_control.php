@@ -20,7 +20,7 @@
     </p>
     </div>
 </div>
-<div class="customPanel" style="width:100%;display:grid;grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(2,1fr);">
+<div class="customPanel" style="width:100%;display:grid;grid-template-columns:repeat(2,1fr);grid-template-rows:auto auto;">
     <div class='customPanel'>
     <p align='center'>
         <input type='button' id="audioVolInd" value="<?=round(100*$session['audio_volume']).'%';?>"><br><?=term('Audio Volume',$settings,$session);?><br>
