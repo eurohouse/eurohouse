@@ -4,18 +4,18 @@
     <div class='customPanel'>
     <p align='center'>
         <label class="custom-checkbox-wrapper">
-        <input type="checkbox" id="preservesPitchTumblr" class="custom-checkbox-input" value="<?=$session['preserves_pitch'];?>" <?=($session['preserves_pitch']!=0)?'checked':'';?> onchange="setdata('preserves_pitch',flip(sysDefPreservesPitch.value));">
+        <input type="checkbox" id="muteTumblr" class="custom-checkbox-input" value="<?=$session['mute'];?>" <?=($session['mute']!=0)?'checked':'';?> onchange="setdata('mute',flip(sysDefMute.value));">
         <span class="custom-checkbox-box"></span>
-        <span class="custom-checkbox-label"><?=term('Preserves Pitch',$settings,$session);?></span>
+        <span class="custom-checkbox-label"><?=term('Mute Audio',$settings,$session);?></span>
         </label>
     </p>
     </div>
     <div class='customPanel'>
     <p align='center'>
         <label class="custom-checkbox-wrapper">
-        <input type="checkbox" id="muteTumblr" class="custom-checkbox-input" value="<?=$session['mute'];?>" <?=($session['mute']!=0)?'checked':'';?> onchange="setdata('mute',flip(sysDefMute.value));">
+        <input type="checkbox" id="preservesPitchTumblr" class="custom-checkbox-input" value="<?=$session['preserves_pitch'];?>" <?=($session['preserves_pitch']!=0)?'checked':'';?> onchange="setdata('preserves_pitch',flip(sysDefPreservesPitch.value));">
         <span class="custom-checkbox-box"></span>
-        <span class="custom-checkbox-label"><?=term('Mute',$settings,$session);?></span>
+        <span class="custom-checkbox-label"><?=term('Preserves Pitch',$settings,$session);?></span>
         </label>
     </p>
     </div>
