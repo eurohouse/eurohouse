@@ -78,7 +78,7 @@ function world_clock() {
         success: function(data) {
             $('#currentTime').val(pager(data,sysDefTimedisp.value));
             $('#alarmTime').val((pager(data,2)!='00:00')?pager(data,2):((sysDefPlayBackwards.value!=0)?hhmmss((sysDefDuration.value-audioPlayer.currentTime),true):hhmmss(audioPlayer.currentTime,true)));
-            showUsCurrentMusic.innerText=`"${EE2EE.decode(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value,sysDefSeparator.value)}" <${hhmmss(sysDefCurrent.value,true)}/${hhmmss(sysDefDuration.value,true)}> [${showPlaylist()}]`;
+            showUsCurrentMusic.innerText=showCurrentMusicTableau();
             if ((pager(data,2)!='00:00')&&(pager(data,2)!='--:--')&&(sysDefMemo.value!='')) {
                 playAudio(tickerPlayer,sysDefTickingSound.value);
             } else { pauseAudio(tickerPlayer); }
@@ -133,6 +133,7 @@ function world_clock() {
 	    } $('#buttonUpdate').attr('src',sysDefPrefix.value+'world.webp');
             $('#buttonRequestLock').attr('src',sysDefPrefix.value+((requestLock.value!='false')?'lock.webp':'key.webp'));
             $('#buttonMorseLock').attr('src',sysDefPrefix.value+((sysDefMorse.value!=0)?'key.webp':'lock.webp'));
+	    $('#buttonCipherLock').attr('src',sysDefPrefix.value+((sysDefCipher.value!=0)?'key.webp':'lock.webp'));
             $('#buttonAutoplay').attr('src',sysDefPrefix.value+((sysDefAutoplay.value!=0)?'autopause.webp':'autoplay.webp'));
             $('#buttonSlideshow').attr('src',sysDefPrefix.value+((sysDefBackground.value!='')?'image.webp':((sysDefSlideshow.value!=0)?'speed.webp':'time.webp')));
             $('#buttonShuffle').attr('src',sysDefPrefix.value+((sysDefShuffle.value!=0)?'shuffle.webp':'update.webp'));

@@ -178,14 +178,14 @@ function omniEnter() {
     } else if (input.startsWith('encode ')) {
         arj=input.replace('encode ','');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
-        if (arg.length==2) {
-            omniBox.value="decode \""+SE2EE.encode(quote(arg[0]),quote(arg[1]))+"\" \""+quote(arg[1])+"\"";
+        if (arg.length==4) {
+            omniBox.value="decode \""+EE2EE.encode(quote(arg[0]),quote(arg[1]),quote(arg[2]),quote(arg[3]))+"\" \""+quote(arg[1])+"\" \""+quote(arg[2])+"\" \""+quote(arg[3])+"\"";
         }
     } else if (input.startsWith('decode ')) {
         arj=input.replace('decode ','');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
-        if (arg.length==2) {
-            omniBox.value="encode \""+SE2EE.decode(quote(arg[0]),quote(arg[1]))+"\" \""+quote(arg[1])+"\"";
+        if (arg.length==4) {
+            omniBox.value="encode \""+EE2EE.decode(quote(arg[0]),quote(arg[1]),quote(arg[2]),quote(arg[3]))+"\" \""+quote(arg[1])+"\" \""+quote(arg[2])+"\" \""+quote(arg[3])+"\"";
         }
     } else if (input.startsWith('decbase ')) {
         arj=input.replace('decbase ','');

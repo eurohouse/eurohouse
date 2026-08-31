@@ -35,7 +35,8 @@ function countNote() {
 }
 </script>
 <p align='center' class='block'>
-    <input class="text" id="myNotesRad" style="width:58%;" type="text" placeholder="<?=term('Symbolic Digits',$settings,$session);?>" value="<?=$session['numeric'];?>" onkeydown="if (event.keyCode==13) {
+    <input type="image" class="power" id="buttonCipherLock" onmouseover="soundButton();" src="<?=$prefix[3].(($session['cipher']!=0)?'key.webp':'lock.webp');?>" onclick="soundClick(); setdata('cipher',flip(sysDefCipher.value));">
+    <input class="text" id="myNotesRad" style="width:50%;" type="text" placeholder="<?=term('Symbolic Digits',$settings,$session);?>" value="<?=$session['numeric'];?>" onkeydown="if (event.keyCode==13) {
         setdata('numeric',this.value);
     } else if (event.keyCode==27) { this.value=''; countNote();
     } else if (event.keyCode==8) { handleInput(this.value);

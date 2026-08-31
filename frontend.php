@@ -436,6 +436,14 @@ function albumCollectionHTML() {
         currentAlbumList.setAttribute('style','-webkit-columns:'+albCol+';-moz-columns:'+albCol+';columns:'+albCol+';text-align:'+(((sysDefAlbum.value=='avatar')||(sysDefAlbum.value=='pictogram'))?'center':'left')+';');
     }
 }
+function showCurrentMusicTableau() {
+    var melodyTableau=[EE2EE.decode(sysDefMelody.value,sysDefSessionID.value,sysDefNumeric.value,sysDefSeparator.value),sysDefMelody.value];
+    var timecodeTableau=[hhmmss(sysDefCurrent.value,true),baseN.decbase(parseInt(sysDefCurrent.value),sysDefNumeric.value)];
+    var durationTableau=[hhmmss(sysDefDuration.value,true),baseN.decbase(parseInt(sysDefDuration.value),sysDefNumeric.value)];
+    var playlistTableau=[showPlaylist(),sysDefPlaylist.value];
+    var cipherNum=(isBit(sysDefCipher.value))?parseInt(sysDefCipher.value):0;
+    return '"'+melodyTableau[cipherNum]+'" <'+timecodeTableau[cipherNum]+'/'+durationTableau[cipherNum]+'> ['+playlistTableau[cipherNum]+']';
+}
 function filterMessages(rawJSONData) {
     var arr=jsonarr(rawJSONData),uid=sysDefSessionID.value;
     var newArr=hbio={},hbin=hkin='';
