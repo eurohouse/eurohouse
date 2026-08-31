@@ -119,7 +119,7 @@ body {
 .grid-container {
     display: grid; grid-template-columns: repeat(8,1fr);
     grid-gap: 0.1rem; align-items: center;
-    position: relative;
+    grid-template-rows: auto auto; position: relative;
 }
 .grid-item {
     display: flex; flex-direction: column;
