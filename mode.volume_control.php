@@ -17,6 +17,7 @@
         </label>
     </p>
     </div>
+    <div class='customPanel'>
     <p align='center'>
         <input type='button' id="audioVolInd" value="<?=round(100*$session['audio_volume']).'%';?>"><br><?=term('Audio Volume',$settings,$session);?><br>
         <input type="range" min="0" max="1" step="0.05" value="<?=$session['audio_volume'];?>" id="audioVolRange" onchange="setdata('audio_volume',this.value);">
