@@ -125,7 +125,7 @@ body {
     display: flex; flex-direction: column;
     align-items: center; position: relative;
     justify-content: flex-start; text-align: center;
-    width: auto; height: 50%;
+    width: auto; height: 100%;
 }
 .grid-icon {
     position: relative; max-width: 100%; max-height: 100%;
