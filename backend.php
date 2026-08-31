@@ -30,4 +30,5 @@ $background=dailyWallpaper($session);
 $subscr=fileopen($sessionID.'_files/subscription.json',json_encode($settings['subscriptions']),'create backup restore fallback');
 $userSubscr=userSubscr($subscr,$settings['collections'],$prefix);
 $usersList=str_replace('_files','',str_replace('./','',(glob('./*_files',GLOB_ONLYDIR)))); natcasesort($usersList); deleteMarkedUsers(); $visitors=visitor($sessionID,true);
+$userMsgData=fileopen($sessionID.'_files/messenger.json','{}');
 $userAIData=fileopen($sessionID.'_files/artificial_intelligence.json','{}');
