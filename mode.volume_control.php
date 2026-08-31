@@ -9,6 +9,8 @@
         <span class="custom-checkbox-label"><?=term('Preserves Pitch',$settings,$session);?></span>
         </label>
     </p>
+    </div>
+    <div class='customPanel'>
     <p align='center'>
         <label class="custom-checkbox-wrapper">
         <input type="checkbox" id="muteTumblr" class="custom-checkbox-input" value="<?=$session['mute'];?>" <?=($session['mute']!=0)?'checked':'';?> onchange="setdata('mute',flip(sysDefMute.value));">
