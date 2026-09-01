@@ -24,7 +24,7 @@ if ($request['group']!='') {
         </a></td>
         <td><p align='center' class='block'>
             <input type="image" name="<?=$key;?>" onmouseover="soundButton();" class="power" onclick="soundClick(); setdata('background',this.name);" src="<?=$prefix[3].'image.webp';?>">
-            <input type="image" name="<?=$key;?>" onmouseover="soundButton();" class="power" onclick="soundClick(); if (!isLocalhost()) { window.location.href='https://yandex.ru/images/search?rpt=imageview&url='+this.name.replace(/^url\(['"]?(.*?)['"]?\)$/i,'$1'); }" src="<?=$prefix[3].'world.webp';?>">
+            <input type="image" name="<?=$key;?>" onmouseover="soundButton();" class="power" onclick="soundClick(); if (!isLocalhost()) { window.location.href='https://yandex.ru/images/search?rpt=imageview&url='+this.name; }" src="<?=$prefix[3].'world.webp';?>">
 	    <input type="image" onmouseover="soundButton();" class="power" onclick="soundClick(); setdata('background','');" src="<?=$prefix[3].'backspace.webp';?>">
         </p></td>
     </tr><?php } ?>
