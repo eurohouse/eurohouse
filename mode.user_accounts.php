@@ -1,5 +1,5 @@
 <!-- user -->
-<!-- AD: Usuarios; AG: Usuarios; AT: Benutzerkonten; BE: Utilisateurs; BR: Usuários; CH: Usoribus; CL: Usuarios; CN: 用户; CO: Usuarios; CU: Usuarios; CY: Δημογραφία; DD: Benutzerkonten; DE: Benutzerkonten; DR: Benutzerkonten; ES: Usuarios; FR: Utilisateurs; GR: Δημογραφία; IN: उपयोगकर्ताओं; IT: Utenti; JP: ユーザー; KP: 사용자; KR: 사용자; LK: उपयोक्तारः; MC: Utilisateurs; MD: Utilizatori; MX: Usuarios; NP: སྤྱོད་མཁན།; PT: Usuários; RO: Utilizatori; RS: Корисници; RU: Пользователи; SM: Utenti; SP: Usoribus; TR: Kullanıcılar; UA: Користувачі; VA: Usoribus -->
+<!-- AD: Usuarios; AG: Usuarios; AR: Usuarios; AT: Benutzerkonten; BE: Utilisateurs; BR: Usuários; CH: Usoribus; CL: Usuarios; CN: 用户; CO: Usuarios; CU: Usuarios; CY: Δημογραφία; DD: Benutzerkonten; DE: Benutzerkonten; DR: Benutzerkonten; ES: Usuarios; FR: Utilisateurs; GR: Δημογραφία; IN: उपयोगकर्ताओं; IT: Utenti; JP: ユーザー; KP: 사용자; KR: 사용자; LK: उपयोक्तारः; MC: Utilisateurs; MD: Utilizatori; MX: Usuarios; NP: སྤྱོད་མཁན།; PT: Usuários; RO: Utilizatori; RS: Корисници; RU: Пользователи; SM: Utenti; SP: Usoribus; TR: Kullanıcılar; UA: Користувачі; VA: Usoribus -->
 <?php $indexUsers=str_replace('_files','',str_replace('./','',(glob('./*_files',GLOB_ONLYDIR)))); ?>
 <table style="width:100%;" id="table" class="wrapper">
 <thead>
