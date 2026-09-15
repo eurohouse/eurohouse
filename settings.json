@@ -187,7 +187,7 @@
         },
         "exceptions": {
             "meter": {
-                "space_forward": [ "RU", "RR", "UA", "BG", "BY", "KZ", "KG", "ES", "MX", "AR", "FR", "BE", "TR", "PT", "BR", "RO", "MD", "IT", "MK", "RS", "SE", "NO", "DE", "AT", "DR", "LI", "LU", "ZA", "HU", "LT", "LV", "DK", "GE", "AM", "AZ", "AL", "IL", "CZ", "EE", "IS", "FI", "IE", "HR", "MY", "ID", "NL", "GR", "CY", "PH", "PL", "TH" ],
+                "space_forward": [ "RU", "RR", "UA", "BG", "BY", "KZ", "KG", "ES", "MX", "AR", "CL", "CO", "CU", "AD", "AG", "FR", "BE", "MC", "TR", "PT", "BR", "RO", "MD", "IT", "SM", "MK", "RS", "SE", "NO", "DE", "AT", "DR", "LI", "LU", "ZA", "HU", "LT", "LV", "DK", "GE", "AM", "AZ", "AL", "IL", "CZ", "EE", "IS", "FI", "IE", "HR", "MY", "ID", "NL", "GR", "CY", "PH", "PL", "TH" ],
                 "concatenate_backward": [ "CN", "JP", "KR", "AE", "SA", "IQ", "IR", "KW", "QA", "LA", "MM", "KH" ]
             },
             "days_concatenate_reverse": [ "CN", "JP", "KR", "AE", "SA", "IQ", "IR", "KW", "QA", "LA", "MM", "KH" ],
@@ -217,11 +217,18 @@
         "french": {
             "default": [ "Vendémiaire", "Brumaire", "Frimaire", "Nivôse", "Pluviôse", "Ventôse", "Germinal", "Floréal", "Prairial", "Messidor", "Thermidor", "Fructidor", "Les jours complémentaires" ],
             "DE": [ "Vendémiaire", "Brumaire", "Frimaire", "Nivôse", "Pluviôse", "Ventôse", "Germinal", "Floréal", "Prairial", "Messidor", "Thermidor", "Fructidor", "Die Komplementärtage" ],
-            "AT": [ "Vendémiaire", "Brumaire", "Frimaire", "Nivôse", "Pluviôse", "Ventôse", "Germinal", "Floréal", "Prairial", "Messidor", "Thermidor", "Fructidor", "Die Komplementärtage" ],
             "DR": [ "Vendémiaire", "Brumaire", "Frimaire", "Nivôse", "Pluviôse", "Ventôse", "Germinal", "Floréal", "Prairial", "Messidor", "Thermidor", "Fructidor", "Die Komplementärtage" ],
+	    "DD": [ "Vendémiaire", "Brumaire", "Frimaire", "Nivôse", "Pluviôse", "Ventôse", "Germinal", "Floréal", "Prairial", "Messidor", "Thermidor", "Fructidor", "Die Komplementärtage" ],
+            "AT": [ "Vendémiaire", "Brumaire", "Frimaire", "Nivôse", "Pluviôse", "Ventôse", "Germinal", "Floréal", "Prairial", "Messidor", "Thermidor", "Fructidor", "Die Komplementärtage" ],
             "IT": [ "Vendémiaire", "Brumaire", "Frimaire", "Nivôse", "Pluviôse", "Ventôse", "Germinal", "Floréal", "Prairial", "Messidor", "Thermidor", "Fructidor", "I giorni complementari" ],
             "ES": [ "Vendémiaire", "Brumaire", "Frimaire", "Nivôse", "Pluviôse", "Ventôse", "Germinal", "Floréal", "Prairial", "Messidor", "Thermidor", "Fructidor", "Los días complementarios" ],
             "MX": [ "Vendémiaire", "Brumaire", "Frimaire", "Nivôse", "Pluviôse", "Ventôse", "Germinal", "Floréal", "Prairial", "Messidor", "Thermidor", "Fructidor", "Los días complementarios" ],
+	    "AR": [ "Vendémiaire", "Brumaire", "Frimaire", "Nivôse", "Pluviôse", "Ventôse", "Germinal", "Floréal", "Prairial", "Messidor", "Thermidor", "Fructidor", "Los días complementarios" ],
+	    "CL": [ "Vendémiaire", "Brumaire", "Frimaire", "Nivôse", "Pluviôse", "Ventôse", "Germinal", "Floréal", "Prairial", "Messidor", "Thermidor", "Fructidor", "Los días complementarios" ],
+            "CO": [ "Vendémiaire", "Brumaire", "Frimaire", "Nivôse", "Pluviôse", "Ventôse", "Germinal", "Floréal", "Prairial", "Messidor", "Thermidor", "Fructidor", "Los días complementarios" ],
+	    "CU": [ "Vendémiaire", "Brumaire", "Frimaire", "Nivôse", "Pluviôse", "Ventôse", "Germinal", "Floréal", "Prairial", "Messidor", "Thermidor", "Fructidor", "Los días complementarios" ],
+            "AD": [ "Vendémiaire", "Brumaire", "Frimaire", "Nivôse", "Pluviôse", "Ventôse", "Germinal", "Floréal", "Prairial", "Messidor", "Thermidor", "Fructidor", "Los días complementarios" ],
+	    "AG": [ "Vendémiaire", "Brumaire", "Frimaire", "Nivôse", "Pluviôse", "Ventôse", "Germinal", "Floréal", "Prairial", "Messidor", "Thermidor", "Fructidor", "Los días complementarios" ],
             "PT": [ "Vendémiaire", "Brumaire", "Frimaire", "Nivôse", "Pluviôse", "Ventôse", "Germinal", "Floréal", "Prairial", "Messidor", "Thermidor", "Fructidor", "Os dias complementares" ],
             "BR": [ "Vendémiaire", "Brumaire", "Frimaire", "Nivôse", "Pluviôse", "Ventôse", "Germinal", "Floréal", "Prairial", "Messidor", "Thermidor", "Fructidor", "Os dias complementares" ],
             "RO": [ "Vendémiaire", "Brumaire", "Frimaire", "Nivôse", "Pluviôse", "Ventôse", "Germinal", "Floréal", "Prairial", "Messidor", "Thermidor", "Fructidor", "Zilele complementare" ],
@@ -248,13 +255,22 @@
             "GR": [ "Ιανουάριος", "Φεβρουάριος", "Μάρτιος", "Απρίλιος", "Ενδέχεται", "Ιούνιος", "Ιούλιος", "Αύγουστος", "Σεπτέμβριος", "Οκτώβριος", "Νοέμβριος", "Δεκέμβριος" ],
             "CY": [ "Ιανουάριος", "Φεβρουάριος", "Μάρτιος", "Απρίλιος", "Ενδέχεται", "Ιούνιος", "Ιούλιος", "Αύγουστος", "Σεπτέμβριος", "Οκτώβριος", "Νοέμβριος", "Δεκέμβριος" ],
             "DE": [ "Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember" ],
-            "AT": [ "Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember" ],
             "DR": [ "Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember" ],
+	    "DD": [ "Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember" ],
+            "AT": [ "Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember" ],
             "FR": [ "Janvier", "Février", "Mars", "Avril", "Peut", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre" ],
             "BE": [ "Janvier", "Février", "Mars", "Avril", "Peut", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre" ],
+	    "MC": [ "Janvier", "Février", "Mars", "Avril", "Peut", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre" ],
             "IT": [ "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre" ],
+	    "SM": [ "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre" ],
             "ES": [ "enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre" ],
             "MX": [ "enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre" ],
+	    "AR": [ "enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre" ],
+	    "CL": [ "enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre" ],
+            "CO": [ "enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre" ],
+	    "CU": [ "enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre" ],
+            "AD": [ "enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre" ],
+	    "AG": [ "enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre" ],
             "PT": [ "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" ],
             "BR": [ "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" ],
             "RO": [ "ianuarie", "februarie", "martie", "aprilie", "mai", "iunie", "iulie", "august", "septembrie", "octombrie", "noiembrie", "decembrie" ],
@@ -283,17 +299,23 @@
             "BE": [ "Hiver", "Printemps", "Été", "Automne" ],
             "MC": [ "Hiver", "Printemps", "Été", "Automne" ],
             "DE": [ "Winter", "Frühling", "Sommer", "Herbst" ],
-            "AT": [ "Winter", "Frühling", "Sommer", "Herbst" ],
-            "DD": [ "Winter", "Frühling", "Sommer", "Herbst" ],
             "DR": [ "Winter", "Frühling", "Sommer", "Herbst" ],
+            "DD": [ "Winter", "Frühling", "Sommer", "Herbst" ],
+            "AT": [ "Winter", "Frühling", "Sommer", "Herbst" ],
             "IT": [ "Inverno", "Primavera", "Estate", "Autunno" ],
             "SM": [ "Inverno", "Primavera", "Estate", "Autunno" ],
             "RO": [ "Iarna", "Primăvara", "Vara", "Toamna" ],
             "MD": [ "Iarna", "Primăvara", "Vara", "Toamna" ],
             "PT": [ "Inverno", "Primavera", "Verão", "Outono" ],
             "BR": [ "Inverno", "Primavera", "Verão", "Outono" ],
-            "ES": [ "Otoño", "invierno", "Primavera", "Verano" ],
-            "MX": [ "Otoño", "invierno", "Primavera", "Verano" ],
+            "ES": [ "Invierno", "Primavera", "Verano", "Otoño" ],
+            "MX": [ "Invierno", "Primavera", "Verano", "Otoño" ],
+            "AR": [ "Invierno", "Primavera", "Verano", "Otoño" ],
+	    "CL": [ "Invierno", "Primavera", "Verano", "Otoño" ],
+            "CO": [ "Invierno", "Primavera", "Verano", "Otoño" ],
+	    "CU": [ "Invierno", "Primavera", "Verano", "Otoño" ],
+            "AD": [ "Invierno", "Primavera", "Verano", "Otoño" ],
+	    "AG": [ "Invierno", "Primavera", "Verano", "Otoño" ],
             "RU": [ "Зима", "Весна", "Лето", "Осень" ],
             "RR": [ "Зима", "Весна", "Лѣто", "Осень" ],
             "UA": [ "Зима", "Весна", "Літо", "Осінь" ],
@@ -324,9 +346,9 @@
             "BE": [ "Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi" ],
             "MC": [ "Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi" ],
             "DE": [ "Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag" ],
-            "AT": [ "Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag" ],
-            "DD": [ "Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag" ],
             "DR": [ "Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag" ],
+            "DD": [ "Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag" ],
+            "AT": [ "Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag" ],
             "IT": [ "Domenica", "Lunedi", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato" ],
             "SM": [ "Domenica", "Lunedi", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato" ],
             "RO": [ "duminică", "luni", "marţi", "miercuri", "joi", "vineri", "sâmbătă" ],
@@ -335,8 +357,12 @@
             "BR": [ "Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado" ],
             "ES": [ "Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado" ],
             "MX": [ "Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado" ],
+            "AR": [ "Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado" ],
             "CL": [ "Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado" ],
+            "CO": [ "Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado" ],
+            "CU": [ "Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado" ],
             "AD": [ "Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado" ],
+            "AG": [ "Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado" ],
             "RU": [ "Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота" ],
             "RR": [ "Недѣля", "Понедельникъ", "Вторникъ", "Среда", "Четвертокъ", "Пятокъ", "Суббота" ],
             "UA": [ "Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота" ],
@@ -364,18 +390,15 @@
         "app_store": {
             "backward": {
                 "https://github.com/infofintech/system": [
-                    "https://gitlab.com/openwebstd/infofintech/system",
-                    "https://gitverse.ru/infofintech/system"
+                    "https://gitlab.com/openwebstd/infofintech/system"
                 ],
                 "https://github.com/eurohouse/eurohouse": [
-                    "https://gitlab.com/openwebstd/eurohouse/eurohouse",
-                    "https://gitverse.ru/eurohouse/eurohouse"
+                    "https://gitlab.com/openwebstd/eurohouse/eurohouse"
                 ]
             },
             "forward": {
                 "https://github.com/infofintech/system": [
-                    "https://gitlab.com/openwebstd/infofintech/system",
-                    "https://gitverse.ru/infofintech/system"
+                    "https://gitlab.com/openwebstd/infofintech/system"
                 ],
                 "https://github.com/infofintech/typography": [
                     "https://gitlab.com/openwebstd/infofintech/typography"
@@ -393,16 +416,13 @@
                     "https://gitlab.com/openwebstd/infofintech/midi"
                 ],
                 "https://github.com/infofintech/avatar": [
-                    "https://gitlab.com/openwebstd/infofintech/avatar",
-                    "https://gitverse.ru/infofintech/avatar"
+                    "https://gitlab.com/openwebstd/infofintech/avatar"
                 ],
                 "https://github.com/infofintech/i18n": [
-                    "https://gitlab.com/openwebstd/infofintech/i18n",
-                    "https://gitverse.ru/infofintech/i18n"
+                    "https://gitlab.com/openwebstd/infofintech/i18n"
                 ],
                 "https://github.com/eurohouse/eurohouse": [
-                    "https://gitlab.com/openwebstd/eurohouse/eurohouse",
-                    "https://gitverse.ru/eurohouse/eurohouse"
+                    "https://gitlab.com/openwebstd/eurohouse/eurohouse"
                 ]
             },
             "iconpack": {
@@ -430,11 +450,21 @@
                 "https://github.com/infofintech/spore": []
             },
             "eurohouse": {
-                "https://github.com/eurohouse/baron": [],
-                "https://github.com/eurohouse/cappuccino": [],
-                "https://github.com/eurohouse/epoque": [],
-                "https://github.com/eurohouse/mascarpone": [],
-                "https://github.com/eurohouse/nestor": []
+                "https://github.com/eurohouse/baron": [
+                    "https://gitlab.com/openwebstd/eurohouse/baron"
+                ],
+                "https://github.com/eurohouse/cappuccino": [
+                    "https://gitlab.com/openwebstd/eurohouse/cappuccino"
+                ],
+                "https://github.com/eurohouse/epoque": [
+                    "https://gitlab.com/openwebstd/eurohouse/epoque"
+                ],
+                "https://github.com/eurohouse/mascarpone": [
+                    "https://gitlab.com/openwebstd/eurohouse/mascarpone"
+                ],
+                "https://github.com/eurohouse/nestor": [
+                    "https://gitlab.com/openwebstd/eurohouse/nestor"
+                ],
             },
             "global": {
                 "https://github.com/infofintech/boutique": [],
@@ -487,12 +517,10 @@
         "play_store": {
             "starter": {
                 "https://github.com/infofintech/aisleriot": [
-                    "https://gitlab.com/openwebstd/infofintech/aisleriot",
-                    "https://gitverse.ru/infofintech/aisleriot"
+                    "https://gitlab.com/openwebstd/infofintech/aisleriot"
                 ],
                 "https://github.com/infofintech/chess": [
-                    "https://gitlab.com/openwebstd/infofintech/chess",
-                    "https://gitverse.ru/infofintech/chess"
+                    "https://gitlab.com/openwebstd/infofintech/chess"
                 ]
             },
 	    "gamble": {
@@ -519,7 +547,7 @@
                     "https://gitlab.com/openwebstd/infofintech/monopoly"
                 ]
             },
-	    "vr": {
+	    "reality": {
                 "https://github.com/infofintech/rollercoaster": [
                     "https://gitlab.com/openwebstd/infofintech/rollercoaster"
                 ]
@@ -535,28 +563,7 @@
             },
             "utility": {
                 "https://github.com/infofintech/flicker": [
-                    "https://gitlab.com/openwebstd/infofintech/flicker",
-                    "https://gitverse.ru/infofintech/flicker"
-                ]
-            },
-	    "photopea": {
-		"https://github.com/infofintech/photopea": [
-                    "https://gitlab.com/openwebstd/infofintech/photopea",
-                    "https://gitverse.ru/infofintech/photopea"
-                ],
-                "https://github.com/infofintech/vectorpea": [
-                    "https://gitlab.com/openwebstd/infofintech/vectorpea",
-                    "https://gitverse.ru/infofintech/vectorpea"
-                ]
-	    },
-	    "external": {
-                "https://github.com/infofintech/ipgeolocation": [
-                    "https://gitlab.com/openwebstd/infofintech/ipgeolocation",
-                    "https://gitverse.ru/infofintech/ipgeolocation"
-                ],
-                "https://github.com/infofintech/bible": [
-                    "https://gitlab.com/openwebstd/infofintech/bible",
-                    "https://gitverse.ru/infofintech/bible"
+                    "https://gitlab.com/openwebstd/infofintech/flicker"
                 ]
             }
         }
