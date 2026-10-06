@@ -24,8 +24,7 @@
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='>';" value=">">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+=':';" value=":">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+=';';" value=";">
-</p>
-<p align='center'>
+<br>
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='%';" value="%">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='**';" value="**">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='(';" value="(">
@@ -34,8 +33,7 @@
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='}';" value="}">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='[';" value="[">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+=']';" value="]">
-</p>
-<p align='center'>
+<br>
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='7';" value="7">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='8';" value="8">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='9';" value="9">
