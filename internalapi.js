@@ -203,18 +203,15 @@ function calculate(expr) {
     } else { result=solveSystem(expr); }
     return result;
 }
-function basicCommand(input) {
+function basicCommand(input,outputMacros=false) {
     if ((input.match(/^([\w\s\!\#\$\%\&\'\(\)\^\`\{\}\[\]\~\.\,\-\+\u0391-\u03A9\u03B1-\u03C9\u0400-\u04FF]{2,})(?:\:\:)$/gi))||(input.match(/^([\w\s\u0391-\u03A9\u03B1-\u03C9\u0410-\u044F]{2,})(?:\:\:)([\d|\*]{1,})$/gi))) {
-	result=seekImage(input);
+	result=(outputMacros)?('background: '+seekImage(input)+';'):input;
     } else if ((input.match(/([\w\s\!\#\$\%\&\'\(\)\^\`\{\}\[\]\~\.\,\-\+\u0391-\u03A9\u03B1-\u03C9\u0400-\u04FF]{2,})(?:\:)$/gi))||(input.match(/([\w\s\!\#\$\%\&\'\(\)\^\`\{\}\[\]\~\.\,\-\+\u0391-\u03A9\u03B1-\u03C9\u0400-\u04FF]{2,})(?:\:)([\w|\s|\*|\w\s\!\#\$\%\&\'\(\)\^\`\{\}\[\]\~\.\,\-\+\u0391-\u03A9\u03B1-\u03C9\u0400-\u04FF]{2,})$/gi))) {
-        result=seekCode(input);
+        result=(outputMacros)?(seekCode(input)+':'):input;
     } else if ((input.match(/^([\w\s\!\#\$\%\&\'\(\)\^\`\{\}\[\]\~\.\,\-\+\u0391-\u03A9\u03B1-\u03C9\u0400-\u04FF]{2,})(?:\?)$/gi))||(input.match(/^([\w\s\!\#\$\%\&\'\(\)\^\`\{\}\[\]\~\.\,\-\+\u0391-\u03A9\u03B1-\u03C9\u0400-\u04FF]{2,})(?:\?)([\d|\*|\+]{1,})$/gi))||(input.match(/^([\w\s\!\#\$\%\&\'\(\)\^\`\{\}\[\]\~\.\,\-\+\u0391-\u03A9\u03B1-\u03C9\u0400-\u04FF]{2,})(?:\?)([\d|\*|\+]{1,})(?:\:)([-?\d(\.\d)?|\*|\+]{1,})$/gi))) {
-        result=seekMusic(input);
-    } else if ((input).endsWith(';')) {
-        result=executeCode(input);
-    } else {
-        result=calculate(input);
-    } return result;
+        result=(outputMacros)?('melody: '+seekMusic(input)+';'):input;
+    } else if ((input).endsWith(';')) { result=executeCode(input);
+    } else { result=calculate(input); } return result;
 }
 function populateCommandIO() {
     if (requestMode.value==='terminal') {
@@ -226,7 +223,7 @@ function populateCommandIO() {
         link.textContent=promptExec.value;
 	link.style.cursor='pointer'; cell.appendChild(link);
 	let result=''; try {
-	    result=basicCommand(input);
+	    result=basicCommand(promptExec.value,true);
         } catch (error) {
 	    result=`${error.message}`;
         } cell=row.insertCell(); func='clip("'+result+'");';

@@ -3,9 +3,9 @@
 <div class='customPanel' style="width:100%;height:15%;left:0px;top:0px;">
     <p align='center' class='block'>
     <input type="text" id="promptExec" style="width:62%;" placeholder="<?=term("Type anything and press ENTER",$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) {
-		populateCommandIO();
+        populateCommandIO();
     } else if (event.keyCode==27) {
-		promptExec.value=''; clearCommandIO();
+        promptExec.value=''; clearCommandIO();
     } else if (event.keyCode==8) { handleInput(this.value);
     } else if (event.keyCode==46) { handleInput(this.value);
     }" oninput="handleInput(this.value,true);">
