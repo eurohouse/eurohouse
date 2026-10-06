@@ -24,7 +24,8 @@
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='>';" value=">">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+=':';" value=":">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+=';';" value=";">
-<br>
+</p>
+<p align='center'>
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='%';" value="%">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='**';" value="**">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='(';" value="(">
@@ -33,7 +34,8 @@
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='}';" value="}">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='[';" value="[">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+=']';" value="]">
-<br>
+</p>
+<p align='center'>
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='7';" value="7">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='8';" value="8">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='9';" value="9">
@@ -42,7 +44,8 @@
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='!';" value="!">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='true';" value="t">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='false';" value="f">
-<br>
+</p>
+<p align='center'>
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='4';" value="4">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='5';" value="5">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='6';" value="6">
@@ -51,7 +54,8 @@
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='2.718281828459045';" value="e">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='3.141592653589793';" value="π">
 <input type="image" class="power" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value='';" src="<?=$prefix[3].'backspace.webp';?>">
-<br>
+</p>
+<p align='center'>
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='1';" value="1">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='2';" value="2">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='3';" value="3">
@@ -60,7 +64,8 @@
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='A';" value="A">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='B';" value="B">
 <input type="image" class="power" onmouseover="soundButton();" onclick="soundClick(); calcExpr.focus();" src="<?=$prefix[3].'keyboard.webp';?>">
-<br>
+</p>
+<p align='center'>
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='0';" value="0">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='.';" value=".">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+=',';" value=",">
