@@ -44,8 +44,7 @@
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='!';" value="!">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='true';" value="t">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='false';" value="f">
-</p>
-<p align='center'>
+<br>
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='4';" value="4">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='5';" value="5">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='6';" value="6">
