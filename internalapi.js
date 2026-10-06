@@ -203,6 +203,19 @@ function calculate(expr) {
     } else { result=solveSystem(expr); }
     return result;
 }
+function basicCommand(input) {
+    if ((input.match(/^([\w\s\!\#\$\%\&\'\(\)\^\`\{\}\[\]\~\.\,\-\+\u0391-\u03A9\u03B1-\u03C9\u0400-\u04FF]{2,})(?:\:\:)$/gi))||(input.match(/^([\w\s\u0391-\u03A9\u03B1-\u03C9\u0410-\u044F]{2,})(?:\:\:)([\d|\*]{1,})$/gi))) {
+	result=seekImage(input);
+    } else if ((input.match(/([\w\s\!\#\$\%\&\'\(\)\^\`\{\}\[\]\~\.\,\-\+\u0391-\u03A9\u03B1-\u03C9\u0400-\u04FF]{2,})(?:\:)$/gi))||(input.match(/([\w\s\!\#\$\%\&\'\(\)\^\`\{\}\[\]\~\.\,\-\+\u0391-\u03A9\u03B1-\u03C9\u0400-\u04FF]{2,})(?:\:)([\w|\s|\*|\w\s\!\#\$\%\&\'\(\)\^\`\{\}\[\]\~\.\,\-\+\u0391-\u03A9\u03B1-\u03C9\u0400-\u04FF]{2,})$/gi))) {
+        result=seekCode(input);
+    } else if ((input.match(/^([\w\s\!\#\$\%\&\'\(\)\^\`\{\}\[\]\~\.\,\-\+\u0391-\u03A9\u03B1-\u03C9\u0400-\u04FF]{2,})(?:\?)$/gi))||(input.match(/^([\w\s\!\#\$\%\&\'\(\)\^\`\{\}\[\]\~\.\,\-\+\u0391-\u03A9\u03B1-\u03C9\u0400-\u04FF]{2,})(?:\?)([\d|\*|\+]{1,})$/gi))||(input.match(/^([\w\s\!\#\$\%\&\'\(\)\^\`\{\}\[\]\~\.\,\-\+\u0391-\u03A9\u03B1-\u03C9\u0400-\u04FF]{2,})(?:\?)([\d|\*|\+]{1,})(?:\:)([-?\d(\.\d)?|\*|\+]{1,})$/gi))) {
+        result=seekMusic(input);
+    } else if ((input).endsWith(';')) {
+        result=executeCode(input);
+    } else {
+        result=calculate(input);
+    } return result;
+}
 function populateCommandIO() {
     if (requestMode.value==='terminal') {
         const tableBody=document.getElementById('commandData');
@@ -213,17 +226,7 @@ function populateCommandIO() {
         link.textContent=promptExec.value;
 	link.style.cursor='pointer'; cell.appendChild(link);
 	let result=''; try {
-            if (((promptExec.value).match(/^([\w\s\!\#\$\%\&\'\(\)\^\`\{\}\[\]\~\.\,\-\+\u0391-\u03A9\u03B1-\u03C9\u0400-\u04FF]{2,})(?:\:\:)$/gi))||((promptExec.value).match(/^([\w\s\u0391-\u03A9\u03B1-\u03C9\u0410-\u044F]{2,})(?:\:\:)([\d|\*]{1,})$/gi))) {
-		result=seekImage(promptExec.value);
-            } else if (((promptExec.value).match(/([\w\s\!\#\$\%\&\'\(\)\^\`\{\}\[\]\~\.\,\-\+\u0391-\u03A9\u03B1-\u03C9\u0400-\u04FF]{2,})(?:\:)$/gi))||((promptExec.value).match(/([\w\s\!\#\$\%\&\'\(\)\^\`\{\}\[\]\~\.\,\-\+\u0391-\u03A9\u03B1-\u03C9\u0400-\u04FF]{2,})(?:\:)([\w|\s|\*|\w\s\!\#\$\%\&\'\(\)\^\`\{\}\[\]\~\.\,\-\+\u0391-\u03A9\u03B1-\u03C9\u0400-\u04FF]{2,})$/gi))) {
-                result=seekCode(promptExec.value);
-            } else if (((promptExec.value).match(/^([\w\s\!\#\$\%\&\'\(\)\^\`\{\}\[\]\~\.\,\-\+\u0391-\u03A9\u03B1-\u03C9\u0400-\u04FF]{2,})(?:\?)$/gi))||((promptExec.value).match(/^([\w\s\!\#\$\%\&\'\(\)\^\`\{\}\[\]\~\.\,\-\+\u0391-\u03A9\u03B1-\u03C9\u0400-\u04FF]{2,})(?:\?)([\d|\*|\+]{1,})$/gi))||((promptExec.value).match(/^([\w\s\!\#\$\%\&\'\(\)\^\`\{\}\[\]\~\.\,\-\+\u0391-\u03A9\u03B1-\u03C9\u0400-\u04FF]{2,})(?:\?)([\d|\*|\+]{1,})(?:\:)([-?\d(\.\d)?|\*|\+]{1,})$/gi))) {
-                result=seekMusic(promptExec.value);
-            } else if ((promptExec.value).endsWith(';')) {
-                result=executeCode(promptExec.value);
-            } else {
-                result=calculate(promptExec.value);
-            }
+	    result=basicCommand(input);
         } catch (error) {
 	    result=`${error.message}`;
         } cell=row.insertCell(); func='clip("'+result+'");';

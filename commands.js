@@ -421,16 +421,7 @@ function omniEnter() {
                 }
             }
         }
-    } else if ((input.match(/^([\w\s\!\#\$\%\&\'\(\)\^\`\{\}\[\]\~\.\,\-\+\u0391-\u03A9\u03B1-\u03C9\u0400-\u04FF]{2,})(?:\:\:)$/gi))||(input.match(/^([\w\s\u0391-\u03A9\u03B1-\u03C9\u0400-\u04FF]{2,})(?:\:\:)([\d|\*]{1,})$/gi))) {
-        seekImage(input);
-    } else if ((input.match(/([\w\s\!\#\$\%\&\'\(\)\^\`\{\}\[\]\~\.\,\-\+\u0391-\u03A9\u03B1-\u03C9\u0400-\u04FF]{2,})(?:\:)$/gi))||(input.match(/([\w\s\!\#\$\%\&\'\(\)\^\`\{\}\[\]\~\.\,\-\+\u0391-\u03A9\u03B1-\u03C9\u0400-\u04FF]{2,})(?:\:)([\w|\s|\*|\w\s\!\#\$\%\&\'\(\)\^\`\{\}\[\]\~\.\,\-\+\u0391-\u03A9\u03B1-\u03C9\u0400-\u04FF]{2,})$/gi))) {
-        seekCode(input);
-    } else if ((input.match(/^([\w\s\!\#\$\%\&\'\(\)\^\`\{\}\[\]\~\.\,\-\+\u0391-\u03A9\u03B1-\u03C9\u0400-\u04FF]{2,})(?:\?)$/gi))||(input.match(/^([\w\s\!\#\$\%\&\'\(\)\^\`\{\}\[\]\~\.\,\-\+\u0391-\u03A9\u03B1-\u03C9\u0400-\u04FF]{2,})(?:\?)([\d|\*|\+]{1,})$/gi))||(input.match(/^([\w\s\!\#\$\%\&\'\(\)\^\`\{\}\[\]\~\.\,\-\+\u0391-\u03A9\u03B1-\u03C9\u0400-\u04FF]{2,})(?:\?)([\d|\*|\+]{1,})(?:\:)([-?\d(\.\d)?|\*|\+]{1,})$/gi))) {
-        seekMusic(input);
-    } else if (input.endsWith(';')) {
-        omniBox.value=executeCode(input);
-    } else { omniBox.value=calculate(input); }
-    omniBox.focus();
+    } else { omniBox.value=basicCommand(input); } omniBox.focus();
 }
 function getPkgSequence(input,cmdword,isRepo=0,isDbg=0) {
     var preQuery=input.replace(cmdword,'');
