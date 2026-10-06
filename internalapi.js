@@ -204,12 +204,18 @@ function calculate(expr) {
     return result;
 }
 function basicCommand(input,outputMacros=false) {
-    if ((input.match(/^([\w\s\!\#\$\%\&\'\(\)\^\`\{\}\[\]\~\.\,\-\+\u0391-\u03A9\u03B1-\u03C9\u0400-\u04FF]{2,})(?:\:\:)$/gi))||(input.match(/^([\w\s\u0391-\u03A9\u03B1-\u03C9\u0410-\u044F]{2,})(?:\:\:)([\d|\*]{1,})$/gi))) {
-	result=(outputMacros)?('background: '+seekImage(input)+';'):input;
+    var result=''; if ((input.match(/^([\w\s\!\#\$\%\&\'\(\)\^\`\{\}\[\]\~\.\,\-\+\u0391-\u03A9\u03B1-\u03C9\u0400-\u04FF]{2,})(?:\:\:)$/gi))||(input.match(/^([\w\s\u0391-\u03A9\u03B1-\u03C9\u0410-\u044F]{2,})(?:\:\:)([\d|\*]{1,})$/gi))) {
+	if (outputMacros) {
+	    result='background: '+seekImage(input)+';';
+	} else { result=input; }
     } else if ((input.match(/([\w\s\!\#\$\%\&\'\(\)\^\`\{\}\[\]\~\.\,\-\+\u0391-\u03A9\u03B1-\u03C9\u0400-\u04FF]{2,})(?:\:)$/gi))||(input.match(/([\w\s\!\#\$\%\&\'\(\)\^\`\{\}\[\]\~\.\,\-\+\u0391-\u03A9\u03B1-\u03C9\u0400-\u04FF]{2,})(?:\:)([\w|\s|\*|\w\s\!\#\$\%\&\'\(\)\^\`\{\}\[\]\~\.\,\-\+\u0391-\u03A9\u03B1-\u03C9\u0400-\u04FF]{2,})$/gi))) {
-        result=(outputMacros)?(seekCode(input)+':'):input;
+	if (outputMacros) {
+	    result=seekCode(input)+':';
+	} else { result=input; }
     } else if ((input.match(/^([\w\s\!\#\$\%\&\'\(\)\^\`\{\}\[\]\~\.\,\-\+\u0391-\u03A9\u03B1-\u03C9\u0400-\u04FF]{2,})(?:\?)$/gi))||(input.match(/^([\w\s\!\#\$\%\&\'\(\)\^\`\{\}\[\]\~\.\,\-\+\u0391-\u03A9\u03B1-\u03C9\u0400-\u04FF]{2,})(?:\?)([\d|\*|\+]{1,})$/gi))||(input.match(/^([\w\s\!\#\$\%\&\'\(\)\^\`\{\}\[\]\~\.\,\-\+\u0391-\u03A9\u03B1-\u03C9\u0400-\u04FF]{2,})(?:\?)([\d|\*|\+]{1,})(?:\:)([-?\d(\.\d)?|\*|\+]{1,})$/gi))) {
-        result=(outputMacros)?('melody: '+seekMusic(input)+';'):input;
+        if (outputMacros) {
+	    result='melody: '+seekMusic(input)+';';
+	} else { result=input; }
     } else if ((input).endsWith(';')) { result=executeCode(input);
     } else { result=calculate(input); } return result;
 }
