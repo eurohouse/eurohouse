@@ -54,8 +54,7 @@
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='2.718281828459045';" value="e">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='3.141592653589793';" value="π">
 <input type="image" class="power" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value='';" src="<?=$prefix[3].'backspace.webp';?>">
-</p>
-<p align='center'>
+<br>
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='1';" value="1">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='2';" value="2">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='3';" value="3">
@@ -64,8 +63,7 @@
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='A';" value="A">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='B';" value="B">
 <input type="image" class="power" onmouseover="soundButton();" onclick="soundClick(); calcExpr.focus();" src="<?=$prefix[3].'keyboard.webp';?>">
-</p>
-<p align='center'>
+<br>
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='0';" value="0">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+='.';" value=".">
 <input type="button" class="calcButton" onmouseover="soundButton();" onclick="soundClick(); calcExpr.value+=',';" value=",">
