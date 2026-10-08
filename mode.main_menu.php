@@ -14,18 +14,16 @@ if ($request['lock']=='true') {
                 $menuItemIcon=annotationString($menuItemFile[0]);
                 $elementIcon=(themed($themePrefix,$menuItemIcon))?$themePrefix.$menuItemIcon.'.webp':$ersatzPrefix.$menuItemIcon.'.webp';
                 $menuItemLangPack=annotationString($menuItemFile[1]);
-                $menuItemLangArr=explode('; ',$menuItemLangPack);
-                $menuItemLangNew=[]; foreach ($menuItemLangArr as $menuItemLangStr) {
-                    $menuItemLangKey=explode(': ',$menuItemLangStr)[0];$menuItemLangVal=explode(': ',$menuItemLangStr)[1];$menuItemLangNew[$menuItemLangKey]=$menuItemLangVal;
-                } ?>
+                $menuItemLangArr=valarr($menuItemLangPack,'; ',': ');
+                ?>
                 <div class='grid-item'>
                     <div class='grid-label'>
                         <a href="javascript:omniGo(%22<?=$value;?>%22);">
-                            <?=(isset($menuItemLangNew[$session['units']]))?$menuItemLangNew[$session['units']]:snakeToSpaces($value);?>
+                            <?=(isset($menuItemLangArr[$session['units']]))?$menuItemLangArr[$session['units']]:snakeToSpaces($value);?>
                         </a>
                     </div>
                     <div class='grid-icon'>
-                        <img onmouseover="soundButton();" loading="lazy" name="<?=$value;?>" style="height:20%;" onclick="soundClick(); omniGo(this.name);" src="<?=$elementIcon;?>" title="<?=(isset($menuItemLangNew[$session['units']]))?$menuItemLangNew[$session['units']]:snakeToSpaces($value);?>">
+                        <img onmouseover="soundButton();" loading="lazy" name="<?=$value;?>" style="height:20%;" onclick="soundClick(); omniGo(this.name);" src="<?=$elementIcon;?>" title="<?=(isset($menuItemLangArr[$session['units']]))?$menuItemLangArr[$session['units']]:snakeToSpaces($value);?>">
                     </div>
                 </div>
             <?php }
@@ -58,11 +56,9 @@ if ($request['lock']=='true') {
                 $menuItemIcon=annotationString($menuItemFile[0]);
                 $elementIcon=(themed($themePrefix, $menuItemIcon))?$themePrefix.$menuItemIcon.'.webp':$ersatzPrefix.$menuItemIcon.'.webp';
                 $menuItemLangPack=annotationString($menuItemFile[1]);
-                $menuItemLangArr=explode('; ',$menuItemLangPack);
-                $menuItemLangNew=[]; foreach ($menuItemLangArr as $menuItemLangStr) {
-                    $menuItemLangKey=explode(': ',$menuItemLangStr)[0];$menuItemLangVal=explode(': ',$menuItemLangStr)[1];$menuItemLangNew[$menuItemLangKey]=$menuItemLangVal;
-                } ?>
-                <img onmouseover="soundButton();" loading="lazy" name="<?=$value;?>" style="height:20%;" onclick="soundClick(); omniGo(this.name);" src="<?=$elementIcon;?>" title="<?=(isset($menuItemLangNew[$session['units']]))?$menuItemLangNew[$session['units']]:snakeToSpaces($value);?>">
+                $menuItemLangArr=valarr($menuItemLangPack,'; ',': ');
+                ?>
+                <img onmouseover="soundButton();" loading="lazy" name="<?=$value;?>" style="height:20%;" onclick="soundClick(); omniGo(this.name);" src="<?=$elementIcon;?>" title="<?=(isset($menuItemLangArr[$session['units']]))?$menuItemLangArr[$session['units']]:snakeToSpaces($value);?>">
             <?php }
         } if ($session['apps']!=0) {
             foreach ($appIndex as $key=>$value) {
@@ -81,12 +77,10 @@ if ($request['lock']=='true') {
             if (file_exists('mode.'.$value.'.php')) {
                 $menuItemFile=selectedLines('mode.'.$value.'.php',[1]);
                 $menuItemLangPack=annotationString($menuItemFile[1]);
-                $menuItemLangArr=explode('; ',$menuItemLangPack); $menuItemLangNew=[];
-                foreach ($menuItemLangArr as $menuItemLangStr) {
-                    $menuItemLangKey=explode(': ',$menuItemLangStr)[0];$menuItemLangVal=explode(': ',$menuItemLangStr)[1];$menuItemLangNew[$menuItemLangKey]=$menuItemLangVal;
-                } ?>
+                $menuItemLangArr=valarr($menuItemLangPack,'; ',': ');
+                ?>
                 <p align='center'>
-                    <input type="button" class="button" name="<?=$value;?>" onmouseover="soundButton();" style="width:80%;" value="<?=(isset($menuItemLangNew[$session['units']]))?$menuItemLangNew[$session['units']]:snakeToSpaces($value);?>" onclick="soundClick(); omniGo(this.name);">
+                    <input type="button" class="button" name="<?=$value;?>" onmouseover="soundButton();" style="width:80%;" value="<?=(isset($menuItemLangArr[$session['units']]))?$menuItemLangArr[$session['units']]:snakeToSpaces($value);?>" onclick="soundClick(); omniGo(this.name);">
                 </p>
             <?php }
         } if ($session['apps']!=0) {
@@ -113,15 +107,12 @@ if ($request['lock']=='true') {
             $menuItemIcon=annotationString($menuItemFile[0]);
             $elementIcon=(themed($themePrefix,$menuItemIcon))?$themePrefix.$menuItemIcon.'.webp':$ersatzPrefix.$menuItemIcon.'.webp';
             $menuItemLangPack=annotationString($menuItemFile[1]);
-            $menuItemLangArr=explode('; ',$menuItemLangPack);
-            $menuItemLangNew=[];
-            foreach ($menuItemLangArr as $menuItemLangStr) {
-                $menuItemLangKey=explode(': ',$menuItemLangStr)[0];$menuItemLangVal=explode(': ',$menuItemLangStr)[1];$menuItemLangNew[$menuItemLangKey]=$menuItemLangVal;
-            } ?>
+            $menuItemLangArr=valarr($menuItemLangPack,'; ',': ');
+            ?>
             <div class='grid-item'>
                 <div class='grid-label'>
                     <a href="javascript:omniGo(%22<?=$menuElementName;?>%22);">
-                        <?=(isset($menuItemLangNew[$session['units']]))?$menuItemLangNew[$session['units']]:snakeToSpaces($menuElementName);?>
+                        <?=(isset($menuItemLangArr[$session['units']]))?$menuItemLangArr[$session['units']]:snakeToSpaces($menuElementName);?>
                     </a><br>
                     <input type="image" name="<?=$menuElementName;?>" onmouseover="soundButton();" class="power" onclick="this.src=(isInMenu(sysDefMenu.value,this.name))?sysDefPrefix.value+'plus.webp':sysDefPrefix.value+'min.webp';setdata('menu',arrangeMenu(sysDefMenu.value,this.name));" src="<?=$prefix[3].$statusFound.'.webp';?>">
                 </div>
@@ -139,22 +130,21 @@ if ($request['lock']=='true') {
             $menuItemIcon=annotationString($menuItemFile[0]);
             $elementIcon=(themed($themePrefix,$menuItemIcon))?$themePrefix.$menuItemIcon.'.webp':$ersatzPrefix.$menuItemIcon.'.webp';
             $menuItemLangPack=annotationString($menuItemFile[1]);
-            $menuItemLangArr=explode('; ',$menuItemLangPack);
-            $menuItemLangNew=[];
-            foreach ($menuItemLangArr as $menuItemLangStr) {
-                $menuItemLangKey=explode(': ',$menuItemLangStr)[0];$menuItemLangVal=explode(': ',$menuItemLangStr)[1];$menuItemLangNew[$menuItemLangKey]=$menuItemLangVal;
-            } ?>
-            <img onmouseover="soundButton();" loading="lazy" name="<?=$menuElementName;?>" style="height:20%;" onclick="omniGo(this.name);" src="<?=$elementIcon;?>" title="<?=(isset($menuItemLangNew[$session['units']]))?$menuItemLangNew[$session['units']]:snakeToSpaces($menuElementName);?>">
+            $menuItemLangArr=valarr($menuItemLangPack,'; ',': ');
+            ?>
+            <img onmouseover="soundButton();" loading="lazy" name="<?=$menuElementName;?>" style="height:20%;" onclick="omniGo(this.name);" src="<?=$elementIcon;?>" title="<?=(isset($menuItemLangArr[$session['units']]))?$menuItemLangArr[$session['units']]:snakeToSpaces($menuElementName);?>">
             <input type="image" name="<?=$menuElementName;?>" onmouseover="soundButton();" class="power" onclick="this.src=(isInMenu(sysDefMenu.value,this.name))?sysDefPrefix.value+'plus.webp':sysDefPrefix.value+'min.webp';setdata('menu',arrangeMenu(sysDefMenu.value,this.name));" src="<?=$prefix[3].$statusFound.'.webp';?>">
         <?php } ?></p>
     <?php } else {
         foreach ($index as $key=>$value) {
-            $menuElementName=str_replace('mode.','',basename($value,'.php'));$currentMenuItems=explode(',',$session['menu']);$statusFound=(array_search($menuElementName,$currentMenuItems)!==false)?'min':'plus';$menuItemFile=selectedLines('mode.'.$menuElementName.'.php',[1]);$menuItemLangPack=annotationString($menuItemFile[1]);$menuItemLangArr=explode('; ',$menuItemLangPack);$menuItemLangNew=[];
-            foreach ($menuItemLangArr as $menuItemLangStr) {
-                $menuItemLangKey=explode(': ',$menuItemLangStr)[0];$menuItemLangVal=explode(': ',$menuItemLangStr)[1];$menuItemLangNew[$menuItemLangKey] = $menuItemLangVal;
-            } ?>
+            $menuElementName=str_replace('mode.','',basename($value,'.php'));
+            $currentMenuItems=explode(',',$session['menu']);
+            $statusFound=(array_search($menuElementName,$currentMenuItems)!==false)?'min':'plus';$menuItemFile=selectedLines('mode.'.$menuElementName.'.php',[1]);
+            $menuItemLangPack=annotationString($menuItemFile[1]);
+            $menuItemLangArr=valarr($menuItemLangPack,'; ',': ');
+            ?>
             <p align='center' class='block'>
-                <input type="button" class="button" name="<?=$menuElementName;?>" onmouseover="soundButton();" style="width:70%;" value="<?=(isset($menuItemLangNew[$session['units']]))?$menuItemLangNew[$session['units']]:snakeToSpaces($menuElementName);?>" onclick="omniGo(this.name);"><input type="image" name="<?=$menuElementName;?>" onmouseover="soundButton();" class="power" onclick="this.src=(isInMenu(sysDefMenu.value,this.name))?sysDefPrefix.value+'plus.webp':sysDefPrefix.value+'min.webp';setdata('menu',arrangeMenu(sysDefMenu.value,this.name));" src="<?=$prefix[3].$statusFound.'.webp';?>">
+                <input type="button" class="button" name="<?=$menuElementName;?>" onmouseover="soundButton();" style="width:70%;" value="<?=(isset($menuItemLangArr[$session['units']]))?$menuItemLangArr[$session['units']]:snakeToSpaces($menuElementName);?>" onclick="omniGo(this.name);"><input type="image" name="<?=$menuElementName;?>" onmouseover="soundButton();" class="power" onclick="this.src=(isInMenu(sysDefMenu.value,this.name))?sysDefPrefix.value+'plus.webp':sysDefPrefix.value+'min.webp';setdata('menu',arrangeMenu(sysDefMenu.value,this.name));" src="<?=$prefix[3].$statusFound.'.webp';?>">
             </p>
         <?php }
     }

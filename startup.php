@@ -248,7 +248,7 @@ function wallpaper_engine() {
         success: function(data) {
             $('body').css('background-image','url('+pager(data,2)+')');
             document.querySelector(':root').style.setProperty('--position',sysDefPosition.value);
-            document.title=pager(data,0)+' (@'+sysDefSessionID.value+') · '+localizedPkg('eurohouse','title');
+            document.title=sysDefLocalizedPageName.value+' - '+pager(data,0)+' (@'+sysDefSessionID.value+') · '+localizedPkg('eurohouse','title');
             var faviconList=document.querySelectorAll('link[rel="icon"], link[rel="shortcut icon"]'); faviconList.forEach(function(element) {
 	        element.setAttribute('href',pager(data,4));
             }); $('#showUserAvatarBadgeTop').attr('src',pager(data,4)); $('#showUserAvatarBadgeBottom').attr('src',pager(data,4)); $('#showUserTypeBadge').attr('src',sysDefPrefix.value+((sysDefType.value=='entity')?'home.webp':'user.webp')); var headPageNum=(sysDefFace.value!=0)?0:6;

@@ -65,7 +65,7 @@ function visitor($username,$rewrite=false) {
         return null;
     }
 }
-function selectedLines($name,$opt=[]): array {
+function selectedLines($name,array $opt=[]): array {
     $arr=preg_split("/\r\n|\n|\r/",(file_get_contents($name)));
     $obj=[]; if (!empty($opt)) {
         foreach ($opt as $num) { $obj[$num]=$arr[$num]; }

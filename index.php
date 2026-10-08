@@ -3,7 +3,13 @@
 <head>
     <meta name="viewport" content="<?=$viewportParam;?>">
     <meta charset="UTF-8">
-    <title><?=$session['title'].' (@'.$sessionID.') · '.titlePkgEnt('eurohouse','title',$settings,$session);?></title>
+    <?php
+    $curModeFile=(file_exists('mode.'.$request['mode'].'.php'))?selectedLines('mode.'.$request['mode'].'.php',[1]):selectedLines('welcome_screen.php',[1]);
+    $curModeLangPack=annotationString($curModeFile[1]);
+    $curModeLangArr=valarr($curModeLangPack,'; ',': ');
+    $curModeLangName=(isset($curModeLangArr[$session['units']]))?$curModeLangArr[$session['units']]:snakeToSpaces((file_exists('mode.'.$request['mode'].'.php'))?$request['mode']:'welcome_screen');
+    ?>
+    <title><?=$curModeLangName.' - '.$session['title'].' (@'.$sessionID.') · '.titlePkgEnt('eurohouse','title',$settings,$session);?></title>
     <meta name="description" content="<?=titlePkgEnt('eurohouse','description',$settings,$session);?>">
     <link rel="shortcut icon" href="<?=$prefix[3].'.'.$session['avatar'].'.webp';?>" type="image/x-icon">
     <?php include 'wardrobe.php';
@@ -49,6 +55,7 @@
             <input type='hidden' id='<?='downloadChannel'.md5($key);?>' value="<?=$value;?>">
         <?php } ?>
         <input type='hidden' id='sysDefPangram' value="<?=$session['pangram_'.(($settings['pangram'][$session['units']])?$settings['pangram'][$session['units']]:$settings['pangram']['default'])];?>">
+        <input type='hidden' id='sysDefLocalizedPageName' value="<?=$curModePageName;?>">
         <input type='hidden' id='sysDefEffects' value="">
         <input type='hidden' id='sysDefBackload' value="<?=$backloadString;?>">
         <input type='hidden' id='sysDefPrefData' value="<?=valstr($prefix,';',':');?>">
