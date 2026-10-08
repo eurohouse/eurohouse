@@ -245,6 +245,8 @@ function visual_effects() {
 function wallpaper_engine() {
     $.ajax({
         url: 'wallpaper_engine.php',
+        type: 'GET',
+        data: { mode: requestMode.value },
         success: function(data) {
             $('body').css('background-image','url('+pager(data,2)+')');
             document.querySelector(':root').style.setProperty('--position',sysDefPosition.value);
