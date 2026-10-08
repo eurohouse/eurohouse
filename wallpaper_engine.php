@@ -1,9 +1,15 @@
 <?php include 'functions.php';
 $userSettings=fileopen('settings.json');
+$userRequest=[];
+foreach ($userSettings['initialize']['GET'] as $requestID=>$requestValue) { $userRequest[$requestID]=($_GET[$requestID])?$_GET[$requestID]:$requestValue; }
 $appTitle=fileopen('eurohouse.package.json')['title'];
 $cookie=whichCookie($userSettings['reserve']['unauthorized']);
 $userData=fileopen($cookie.'_files/profile.json',json_encode($userSettings['defaults'])); date_default_timezone_set(base64_decode($userData['timezone']));
 $showFilename=dailyWallpaper($userData); $uni=$userData['units'];
+$curModeFile=(file_exists('mode.'.$userRequest['mode'].'.php'))?selectedLines('mode.'.$userRequest['mode'].'.php',[1]):selectedLines('welcome_screen.php',[1]);
+$curModeLangPack=annotationString($curModeFile[1]);
+$curModeLangArr=valarr($curModeLangPack,'; ',': ');
+$curModeLangName=(isset($curModeLangArr[$uni]))?$curModeLangArr[$uni]:snakeToSpaces((file_exists('mode.'.$userRequest['mode'].'.php'))?$userRequest['mode']:'welcome_screen');
 $cont=exemplar(str_replace('./','',(glob('./*.contents.json'))));
 $exem=exemplar(str_replace('./','',(glob('./*.models.json'))));
 $assignUserAvatar=prefixes($userData)[0].$userData['avatar'].'.webp';
@@ -24,4 +30,5 @@ if (isset($cont[$showFilename])) {
 /* ¶ 5 */ $assignAvatar."\r\n\r\n".
 /* ¶ 6 */ $showHead."\r\n\r\n".
 /* ¶ 7 */ $showBody."\r\n\r\n".
-/* ¶ 8 */ $showURL;
+/* ¶ 8 */ $showURL."\r\n\r\n".
+/* ¶ 9 */ $curModeLangName;
