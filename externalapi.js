@@ -330,7 +330,7 @@ async function AI(input) {
             userContent=createUserMessage(`${input}\n${envInfo}`,userContext);
         } historyArr.push(userContent);
         const reply=await callAI(historyArr);
-        historyArr.push({role: 'assistant', content: reply});
+        historyArr.push({role: 'assistant', content: escapeHtmlForPrompt(reply)});
         if (authstate()) {
 	    set(sysDefSessionID.value+'_files/artificial_intelligence.json',encodeURIComponent(JSON.stringify(historyArr)),'rw');
 	} return reply;
