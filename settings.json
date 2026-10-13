@@ -23,7 +23,7 @@
             "backend.js": "", "frontend.js": "",
             "jquery.js": "", "Crypto.js": "",
             "XRegExp.js": "", "purify.js": "",
-	    "marked.esm.js": "", "marked.umd.js": "",
+	    "marked.umd.js": "",
             "commands.js": "", "requests.js": "",
             "html2canvas.js": "", "nerdamer.js": "",
             "internalapi.js": "async",
