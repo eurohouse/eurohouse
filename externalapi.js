@@ -8,10 +8,6 @@ function isMobileUserAgent() {
 function isTouchDevice() {
     return (('ontouchstart' in window)||(navigator.maxTouchPoints>0));
 }
-function escapeHtmlForPrompt(unsafeString) {
-    if (typeof unsafeString!=='string') { return ''; }
-    return unsafeString.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
-}
 function sleep(ms=1000) {
     return new Promise(resolve=>setTimeout(resolve,ms));
 }
