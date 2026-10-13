@@ -8,7 +8,7 @@
     <input type="text" id="promptGPT" style="width:<?=(isAuthorized())?52:69;?>%;" placeholder="<?=term("Ask artificial intelligence anything",$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) {
         AI(this.value).then(reply=>{
             if (notNull(reply)) {
-                markdown_disp.innerHTML=await renderAIOutput(marked.parse(reply));
+                markdown_disp.innerHTML=renderAIOutput(marked.parse(reply));
 		if (authstate()) {
 		    sysDefUserAIMaxNum.value=Math.max(...Object.keys(jsonarr(sysDefUserAIData.value)).map(Number));
 		    sysDefUserAICurNum.value=parseInt(sysDefUserAIMaxNum.value);
@@ -30,7 +30,7 @@
     <?php } ?>
     <input type="image" class="power" id="buttonKeyboard" onmouseover="soundButton();" src="<?=$prefix[3].'keyboard.webp';?>" onclick="soundClick(); AI(promptGPT.value).then(reply=>{
     if (notNull(reply)) {
-            markdown_disp.innerHTML=await renderAIOutput(marked.parse(reply));
+            markdown_disp.innerHTML=renderAIOutput(marked.parse(reply));
 	    if (authstate()) {
 		sysDefUserAIMaxNum.value=Math.max(...Object.keys(jsonarr(sysDefUserAIData.value)).map(Number));
 	        sysDefUserAICurNum.value=parseInt(sysDefUserAIMaxNum.value);
