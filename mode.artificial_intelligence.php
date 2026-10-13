@@ -44,5 +44,5 @@ if (authstate()) {
 }">
     </p>
 </div>
-<div class='customPanel' id='markdown_disp' style="width:100%;height:70%;left:0px;top:0px;overflow-y:scroll;">
-</div>
+<iframe id='ai-output' style="width:100%;height:70%;left:0px;top:0px;overflow-y:scroll;">
+</iframe>

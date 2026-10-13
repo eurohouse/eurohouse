@@ -37,31 +37,33 @@ function unescapeHtml(encodedString) {
     return encodedString.replace(/&#039;/g,"'").replace(/&quot;/g,'"').replace(/&gt;/g,'>').replace(/&lt;/g,'<').replace(/&amp;/g,'&');
 }
 async function renderAIOutput(rawHtml) {
-  const sanitized = DOMPurify.sanitize(rawHtml, {
-    ALLOWED_TAGS: ['p', 'br', 'b', 'strong', 'i', 'em', 'u', 's', 'a', 'ul', 'ol', 'li', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'pre', 'code', 'hr', 'img'],
-    ALLOWED_ATTR: ['href', 'src', 'alt', 'title', 'class', 'id', 'style'],
-    FORBID_TAGS: ['script', 'iframe', 'object', 'embed', 'form', 'input', 'button', 'textarea'],
-    FORBID_ATTR: ['onerror', 'onload', 'onclick', 'onmouseover', 'onfocus', 'javascript']
-  });
-
-  const iframe = document.getElementById('ai-output');
-  const doc = iframe.contentDocument || iframe.contentWindow.document;
-  doc.open();
-  doc.write(`
-    <!DOCTYPE html>
-    <html>
-      <head><meta charset="utf-8"><title>AI Output</title></head>
-      <body style="margin:0;padding:0;font-family:system-ui,sans-serif;color:#111;line-height:1.5;">
-        <style>
-          code { background:#f5f5f5; padding:2px 4px; border-radius:3px; }
-          pre { background:#f9f9f9; padding:12px; overflow-x:auto; border-radius:6px; }
-          img { max-width:100%; height:auto; }
-        </style>
-        \${sanitized}
-      </body>
-    </html>
-  `);
-  doc.close(); return sanitized;
+    const sanitized=DOMPurify.sanitize(rawHtml,{
+        ALLOWED_TAGS: ['p','br','b','strong','i','em','u','s','a','ul','ol','li','h1','h2','h3','h4','h5','h6','blockquote','pre','code','hr','img'],
+        ALLOWED_ATTR: ['href','src','alt','title','class','id','style'],
+        FORBID_TAGS: ['script','iframe','object','embed','form','input','button','textarea'],
+        FORBID_ATTR: ['onerror','onload','onclick','onmouseover','onfocus','javascript']
+    }); const iframe=document.getElementById('ai-output');
+    if (iframe) {
+        try {
+            const doc=iframe.contentDocument||iframe.contentWindow.document;
+            doc.open(); doc.write(`<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><title>AI Output</title></head>
+<body style="margin:0;padding:0;font-family:system-ui,sans-serif;color:#111;line-height:1.5;">
+<style>
+code { background:#f5f5f5; padding:2px 4px; border-radius:3px; }
+pre { background:#f9f9f9; padding:12px; overflow-x:auto; border-radius:6px; }
+img { max-width:100%; height:auto; }
+</style>
+${sanitized}
+</body>
+</html>`); doc.close();
+        } catch (e) {
+            console.error('Cannot render to iframe:',e);
+        }
+    } else {
+        console.warn('Said iframe not found.');
+    } return sanitized;
 }
 class RecycleBin {
     move(name) {
