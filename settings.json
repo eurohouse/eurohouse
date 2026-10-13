@@ -21,16 +21,13 @@
     "libraries": {
         "domestic": {
             "backend.js": "", "frontend.js": "",
-            "jquery.js": "", "Crypto.js": "",
-            "XRegExp.js": "", "marked.umd.js": "async",
-            "commands.js": "", "requests.js": "",
-            "html2canvas.js": "", "nerdamer.js": "",
-            "internalapi.js": "async",
-            "externalapi.js": "async",
-            "algebra.js": "", "calculus.js": "",
-            "solve.js": "", "lodash.js": "async",
-            "HTMLSortTable.js": "async"
-            
+            "jquery.js": "", "crypto.js": "",
+            "xregexp.js": "async", "marked.js": "async",
+            "commands.js": "async", "requests.js": "async",
+            "internalapi.js": "async", "externalapi.js": "async",
+            "nerdamer.js": "", "algebra.js": "",
+            "calculus.js": "", "solve.js": "",
+            "custom-user-tablesort.js": "async"
         }, "foreign": {
             "https://www.midijs.net/lib/midi.js": "async"
         }
