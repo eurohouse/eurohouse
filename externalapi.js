@@ -314,28 +314,77 @@ async function callAI(messages,maxRetries=3) {
     } throw new Error('Max retries exceeded');
 }
 async function AI(input) {
+    // ВАЖНО: этот лог должен появиться первым всегда, если функция вызвана
+    console.log('>>> AI START, input length:', input ? input.length : 0, 'auth:', authstate());
+
     try {
-        let historyArr=(authstate())?jsonarr(loadFile(sysDefSessionID.value+'_files/artificial_intelligence.json')):[];
-        let userContext=await collectContextData();
-        let userContent; const envInfo=environmentInfo();
-        if (input.includes('https://github.com/')) {
-            const repoUrls=input.match(/https:\/\/github\.com\/[^\s,.<>;"']+/g)||[];
-            const allReposInfo=await analyzeMultipleGitHubRepositories(repoUrls);
-            userContent=createUserMessage(`${input}\n${allReposInfo}\n${envInfo}`,userContext);
-	} else if (input.includes('https://gitlab.com/')) {
-            const repoUrls=input.match(/https:\/\/gitlab\.com\/[^\s,.<>;"']+/g)||[];
-            const allReposInfo=await analyzeMultipleGitLabRepositories(repoUrls);
-            userContent=createUserMessage(`${input}\n${allReposInfo}\n${envInfo}`,userContext);
-        } else {
-            userContent=createUserMessage(`${input}\n${envInfo}`,userContext);
-        } historyArr.push(userContent);
-        const reply=await callAI(historyArr);
-	const htmlFromMarkdown=marked.parse(reply);
-	const cleanedHtml=DOMPurify.sanitize(htmlFromMarkdown,{FORBID_TAGS: ['script','style','iframe'],KEEP_CONTENT: false});
-	const safeMarkdown=turndown(cleanedHtml);
-        historyArr.push({role: 'assistant', content: safeMarkdown});
+        let historyArr = [];
+
+        // Выносим чтение в отдельный блок с явным логом
         if (authstate()) {
-	    set(sysDefSessionID.value+'_files/artificial_intelligence.json',encodeURIComponent(JSON.stringify(historyArr)),'rw');
-	} return reply;
-    } catch (error) { return input; }
+            const filePath = sysDefSessionID.value + '_files/artificial_intelligence.json';
+            console.log('Reading history from:', filePath);
+            const raw = loadFile(filePath);
+            if (raw) {
+                try {
+                    historyArr = jsonarr(decodeURIComponent(raw)); // если ты кодировал — декодируй
+                    console.log('History loaded, length:', historyArr.length);
+                } catch (e) {
+                    console.error('Failed to parse history JSON:', e);
+                    historyArr = [];
+                }
+            } else {
+                console.warn('No history file found or empty');
+            }
+        } else {
+            console.warn('authstate() is false — skipping history load');
+        }
+
+        const userContext = await collectContextData();
+        const envInfo = environmentInfo();
+        let userContent;
+
+        if (input && input.includes('https://github.com/')) {
+            const repoUrls = input.match(/https:\/\/github\.com\/[^\s,.<>;"']+/g) || [];
+            const allReposInfo = await analyzeMultipleGitHubRepositories(repoUrls);
+            userContent = createUserMessage(`${input}\n${allReposInfo}\n${envInfo}`, userContext);
+        } else if (input && input.includes('https://gitlab.com/')) {
+            const repoUrls = input.match(/https:\/\/gitlab\.com\/[^\s,.<>;"']+/g) || [];
+            const allReposInfo = await analyzeMultipleGitLabRepositories(repoUrls);
+            userContent = createUserMessage(`${input}\n${allReposInfo}\n${envInfo}`, userContext);
+        } else {
+            userContent = createUserMessage(`${input || ''}\n${envInfo}`, userContext);
+        }
+
+        historyArr.push(userContent);
+        console.log('Pushed user message, new length:', historyArr.length);
+
+        const reply = await callAI(historyArr);
+        console.log('callAI returned, reply length:', reply ? reply.length : 0);
+
+        const htmlFromMarkdown = marked.parse(reply);
+        const cleanedHtml = DOMPurify.sanitize(htmlFromMarkdown, {
+            FORBID_TAGS: ['script', 'style', 'iframe'],
+            KEEP_CONTENT: false
+        });
+        const safeMarkdown = turndown(cleanedHtml);
+
+        historyArr.push({ role: 'assistant', content: safeMarkdown });
+        console.log('Pushed assistant message, final length:', historyArr.length);
+
+        if (authstate()) {
+            const filePath = sysDefSessionID.value + '_files/artificial_intelligence.json';
+            const dataToWrite = encodeURIComponent(JSON.stringify(historyArr));
+            console.log('Will write to:', filePath, 'data length:', dataToWrite.length);
+            set(filePath, dataToWrite, 'rw');
+            console.log('set() called');
+        } else {
+            console.warn('Not writing: authstate() is false');
+        }
+
+        return reply;
+    } catch (error) {
+        console.error('!!! AI CATCHED ERROR:', error);
+        throw error; // чтобы ошибка всплыла и точно была видна в консоли
+    }
 }
