@@ -11,6 +11,7 @@
     ?>
     <title><?=$curModeLangName.' - '.$session['title'].' (@'.$sessionID.') · '.titlePkgEnt('eurohouse','title',$settings,$session);?></title>
     <meta name="description" content="<?=titlePkgEnt('eurohouse','description',$settings,$session);?>">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; object-src 'none';">
     <link rel="shortcut icon" href="<?=$prefix[3].'.'.$session['avatar'].'.webp';?>" type="image/x-icon">
     <?php include 'wardrobe.php';
     foreach ($settings['libraries']['domestic'] as $key=>$val) { ?>
