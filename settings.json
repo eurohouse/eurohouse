@@ -22,8 +22,8 @@
         "domestic": {
             "backend.js": "", "frontend.js": "",
             "jquery.js": "", "crypto.js": "",
-            "xregexp.js": "async", "marked.js": "async",
-            "commands.js": "async", "requests.js": "async",
+            "xregexp.js": "", "marked.js": "async",
+            "commands.js": "", "requests.js": "",
             "internalapi.js": "async", "externalapi.js": "async",
             "nerdamer.js": "", "algebra.js": "",
             "calculus.js": "", "solve.js": "",
