@@ -61,7 +61,7 @@ async function renderAIOutput(rawHtml) {
       </body>
     </html>
   `);
-  doc.close();
+  doc.close(); return sanitized;
 }
 class RecycleBin {
     move(name) {
