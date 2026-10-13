@@ -22,8 +22,7 @@
         "domestic": {
             "backend.js": "", "frontend.js": "",
             "jquery.js": "", "Crypto.js": "",
-            "XRegExp.js": "", "purify.js": "",
-	    "marked.umd.js": "async", "turndown.js": "async",
+            "XRegExp.js": "", "marked.umd.js": "async",
             "commands.js": "", "requests.js": "",
             "html2canvas.js": "", "nerdamer.js": "",
             "internalapi.js": "async",
