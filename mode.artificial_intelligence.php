@@ -44,5 +44,5 @@ if (authstate()) {
 }">
     </p>
 </div>
-<iframe id='markdown_disp' class='customPanel' style="width:100%;height:70%;left:0px;top:0px;overflow-y:scroll;">
-</iframe>
+<div id='markdown_disp' class='customPanel' style="width:100%;height:70%;left:0px;top:0px;overflow-y:scroll;">
+</div>
