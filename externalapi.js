@@ -8,6 +8,10 @@ function isMobileUserAgent() {
 function isTouchDevice() {
     return (('ontouchstart' in window)||(navigator.maxTouchPoints>0));
 }
+function escapeHtmlForPrompt(unsafeString) {
+    if (typeof unsafeString!=='string') { return ''; }
+    return unsafeString.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
+}
 function sleep(ms=1000) {
     return new Promise(resolve=>setTimeout(resolve,ms));
 }
@@ -330,20 +334,7 @@ async function AI(input) {
             userContent=createUserMessage(`${input}\n${envInfo}`,userContext);
         } historyArr.push(userContent);
         const reply=await callAI(historyArr);
-	const htmlFromMarkdown=marked.parse(reply);
-	const cleanedHtml=DOMPurify.sanitize(htmlFromMarkdown,{FORBID_TAGS: ['script','style','iframe'],KEEP_CONTENT: false});
-	let safeMarkdown; let ConverterClass;
-	if (typeof window.TurndownService!=='undefined') {
-    	    ConverterClass=window.TurndownService;
-	} else if (typeof TurndownService!=='undefined') { 
-            ConverterClass=TurndownService;
-	} if (ConverterClass) {
-    	    const converter=new ConverterClass();
-            safeMarkdown=converter.turndown(cleanedHtml);
-    	    console.log('✅ Markdown converted via Turndown');
-	} else {
-    	    console.warn('⚠️ Turndown not found globally or locally. Saving raw sanitized HTML.'); safeMarkdown=cleanedHtml; 
-	} historyArr.push({role: 'assistant', content: safeMarkdown});
+		historyArr.push({role: 'assistant', content: escapeHtmlForPrompt(reply)});
         if (authstate()) {
 	    set(sysDefSessionID.value+'_files/artificial_intelligence.json',encodeURIComponent(JSON.stringify(historyArr)),'rw');
 	} return reply;
