@@ -21,10 +21,6 @@ function obtainRepo(query) {
         get(parts[i],'i','','raw');
     }
 }
-function escapeHtmlForPrompt(unsafeString) {
-    if (typeof unsafeString!=='string') { return ''; }
-    return unsafeString.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
-}
 class RecycleBin {
     move(name) {
         var itd=(superuser())?'rw':sysDefSessionID.value;
