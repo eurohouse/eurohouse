@@ -28,6 +28,10 @@ const PURIFY_CONFIG={
     FORBID_CONTENTS: ['script'], KEEP_CONTENT: false,
     ALLOWED_URI_REGEXP: /^(?:(?:(?:f|ht)tps?|mailto|tel|callto|cid|xmpp):|[^a-z]|[a-z+\\-\\.]+[^\\s`!\\(\\)\\[\\]\\{\\};\':"<>,\\u0000-\\u0020]*)$/i
 };
+function escapeHtmlForPrompt(unsafeString) {
+    if (typeof unsafeString!=='string') { return ''; }
+    return unsafeString.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
+}
 class RecycleBin {
     move(name) {
         var itd=(superuser())?'rw':sysDefSessionID.value;
