@@ -330,7 +330,10 @@ async function AI(input) {
             userContent=createUserMessage(`${input}\n${envInfo}`,userContext);
         } historyArr.push(userContent);
         const reply=await callAI(historyArr);
-        historyArr.push({role: 'assistant', content: reply});
+	const htmlFromMarkdown=marked.parse(reply);
+	const cleanedHtml=DOMPurify.sanitize(htmlFromMarkdown,{FORBID_TAGS: ['script','style','iframe'],KEEP_CONTENT: false});
+	const safeMarkdown=turndown(cleanedHtml);
+        historyArr.push({role: 'assistant', content: safeMarkdown});
         if (authstate()) {
 	    set(sysDefSessionID.value+'_files/artificial_intelligence.json',encodeURIComponent(JSON.stringify(historyArr)),'rw');
 	} return reply;
