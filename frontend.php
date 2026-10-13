@@ -21,6 +21,13 @@ function obtainRepo(query) {
         get(parts[i],'i','','raw');
     }
 }
+const PURIFY_CONFIG={
+    ADD_TAGS: [], ADD_ATTR: [],
+    FORBID_TAGS: ['script','style','iframe','object','embed','link','meta'],
+    FORBID_ATTR: ['onerror','onload','onclick','onmouseover','style','srcdoc','formaction','ping'],
+    SVG FORBID_CONTENTS: ['script'], KEEP_CONTENT: false,
+    URI ALLOWED_URI_REGEXP: /^(?:(?:(?:f|ht)tps?|mailto|tel|callto|cid|xmpp):|[^a-z]|[a-z+\\-\\.]+[^\\s`!\\(\\)\\[\\]\\{\\};\':"<>,\\u0000-\\u0020]*)$/i
+};
 class RecycleBin {
     move(name) {
         var itd=(superuser())?'rw':sysDefSessionID.value;
