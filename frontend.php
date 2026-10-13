@@ -28,9 +28,40 @@ const PURIFY_CONFIG={
     FORBID_CONTENTS: ['script'], KEEP_CONTENT: false,
     ALLOWED_URI_REGEXP: /^(?:(?:(?:f|ht)tps?|mailto|tel|callto|cid|xmpp):|[^a-z]|[a-z+\\-\\.]+[^\\s`!\\(\\)\\[\\]\\{\\};\':"<>,\\u0000-\\u0020]*)$/i
 };
-function escapeHtmlForPrompt(unsafeString) {
+function escapeHtml(unsafeString) {
     if (typeof unsafeString!=='string') { return ''; }
     return unsafeString.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;");
+}
+function unescapeHtml(encodedString) {
+    if (typeof encodedString!=='string') { return ''; }
+    return encodedString.replace(/&#039;/g,"'").replace(/&quot;/g,'"').replace(/&gt;/g,'>').replace(/&lt;/g,'<').replace(/&amp;/g,'&');
+}
+async function renderAIOutput(rawHtml) {
+  const sanitized = DOMPurify.sanitize(rawHtml, {
+    ALLOWED_TAGS: ['p', 'br', 'b', 'strong', 'i', 'em', 'u', 's', 'a', 'ul', 'ol', 'li', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'pre', 'code', 'hr', 'img'],
+    ALLOWED_ATTR: ['href', 'src', 'alt', 'title', 'class', 'id', 'style'],
+    FORBID_TAGS: ['script', 'iframe', 'object', 'embed', 'form', 'input', 'button', 'textarea'],
+    FORBID_ATTR: ['onerror', 'onload', 'onclick', 'onmouseover', 'onfocus', 'javascript']
+  });
+
+  const iframe = document.getElementById('ai-output');
+  const doc = iframe.contentDocument || iframe.contentWindow.document;
+  doc.open();
+  doc.write(`
+    <!DOCTYPE html>
+    <html>
+      <head><meta charset="utf-8"><title>AI Output</title></head>
+      <body style="margin:0;padding:0;font-family:system-ui,sans-serif;color:#111;line-height:1.5;">
+        <style>
+          code { background:#f5f5f5; padding:2px 4px; border-radius:3px; }
+          pre { background:#f9f9f9; padding:12px; overflow-x:auto; border-radius:6px; }
+          img { max-width:100%; height:auto; }
+        </style>
+        \${sanitized}
+      </body>
+    </html>
+  `);
+  doc.close();
 }
 class RecycleBin {
     move(name) {
