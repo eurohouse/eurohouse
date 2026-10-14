@@ -1,87 +1,81 @@
-function seekImage(req) {
-    var all=jsonarr(sysDefContentData.value);
-    var rqs=res=rqt=md='',rqd=arr=mt=[];
-    if ((req.includes('::'))&&(req.split('::').length==2)) {
-        rqd=req.split('::'); rqs=rqd[0]; for (idx in all) {
-            if (all[idx].toLowerCase().includes(rqs.toLowerCase())) { arr.push(idx); }
-        } rqt=((!isInt(rqd[1]))&&((rqd[1]=='*')||(rqd[1]=='')))?rand(0,arr.length):rqd[1];
+function seekImage(command) {
+    var content=jsonarr(sysDefContentData.value);
+    var result=''; var timecode=''; var arr=[];
+    if ((command.includes('::'))&&(command.split('::').length==2)) {
+        var commandParts=command.split('::'); for (idx in content) {
+            if (content[idx].toLowerCase().includes(commandParts[0].toLowerCase())) { arr.push(idx); }
+        } timecode=((!isInt(commandParts[1]))&&((commandParts[1]=='*')||(commandParts[1]=='')))?rand(0,arr.length):commandParts[1];
     } else {
-        rqs=req; for (idx in all) {
-            if (all[idx].toLowerCase().includes(rqs.toLowerCase())) { arr.push(idx); }
-        } rqt=rand(0,arr.length);
-    } res=((notEmpty(arr))?arr[rqt]:all[rand(0,all.length)]);
-    setdata('background',res); return res;
+        for (idx in content) {
+            if (content[idx].toLowerCase().includes(command.toLowerCase())) { arr.push(idx); }
+        } timecode=rand(0,arr.length);
+    } result=((notEmpty(arr))?arr[timecode]:content[rand(0,content.length)]);
+    setdata('background',result); return result;
 }
-function seekMusic(req) {
-    var mls=subscription('music'),pls=arg=[];
+function seekMusic(command) {
+    var subscribedMusic=subscription('music');
+    var arg=[]; var playlist=[];
+    var searchIndex=0; var timecode=0;
     var arj=ari=arc=itm=res='',sec=0;
-    if (req.includes('://')) {
-        var urlObj=new URL(req);
-        var urlParam=urlObj.searchParams.get('sec');
-        var urlSec=(urlParam!==null)?urlParam:0;
-        omniListen(req,true,urlSec); res=req;
-    } else {
-        if ((req.includes('?'))&&(req.includes(':'))) {
-            fln=req.split('?')[0],atr=req.split('?')[1];
-            fli=atr.split(':')[0],fle=atr.split(':')[1];
-            for (i=0; i<mls.length; i++) {
-                if (mls[i].toLowerCase().includes(fln.toLowerCase())) {
-                    pls.push(mls[i]);
-                }
-            } if ((!isInt(fli))&&((fli=='*')||(fli==''))) {
-                fli=rand(0,pls.length);
+    if ((command.includes('?'))&&(command.includes(':'))) {
+        searchIndex=command.split('?')[1].split(':')[0];
+        timecode=command.split('?')[1].split(':')[1];
+        for (i=0; i<subscribedMusic.length; i++) {
+            if (subscribedMusic[i].toLowerCase().includes(command.split('?')[0].toLowerCase())) {
+                playlist.push(subscribedMusic[i]);
             }
-        } else if (req.includes('?')) {
-            fln=req.split('?')[0],fli=req.split('?')[1],fle=0;
-            for (i=0; i<mls.length; i++) {
-                if (mls[i].toLowerCase().includes(fln.toLowerCase())) {
-                    pls.push(mls[i]);
-                }
-            } if ((!isInt(fli))&&((fli=='*')||(fli==''))) {
-                fli=rand(0,pls.length);
-            }
-        } else if (req.includes(':')) {
-            fln=req.split(':')[0],fle=req.split(':')[1];
-            for (i=0; i<mls.length; i++) {
-                if (mls[i].toLowerCase().includes(fln.toLowerCase())) {
-                    pls.push(mls[i]);
-                }
-            } fli=rand(0,pls.length);
-        } else {
-            fln=req,fle=0; for (i=0; i<mls.length; i++) {
-                if (mls[i].toLowerCase().includes(fln.toLowerCase())) {
-                    pls.push(mls[i]);
-                }
-            } fli=rand(0,pls.length);
-        } if (notEmpty(pls)) {
-            if ((fle=='+')&&(fli=='+')) {
-		res=pls[rand(0,pls.length)];
-                setdata('playlist',playlistNext(res));
-            } else if (fle=='+') {
-		res=pls[fli];
-                setdata('playlist',playlistNext(res));
-            } else if (fli=='+') {
-		res=pls[rand(0,pls.length)];
-                setdata('playlist',playlistNext(res)); 
-            } else {
-		res=pls[fli]; omniListen(res,true,parseInt(fle));
-            }
-        } else {
-            if ((fle=='+')&&(fli=='+')) {
-		res=mls[rand(0,mls.length)];
-                setdata('playlist',playlistNext(res));
-            } else if (fle=='+') {
-		res=mls[rand(0,mls.length)];
-                setdata('playlist',playlistNext(res));
-            } else if (fli=='+') {
-		res=mls[rand(0,mls.length)];
-                setdata('playlist',playlistNext(res));
-            } else {
-		res=mls[rand(0,mls.length)];
-                omniListen(res,true,parseInt(fle));
-            }
+        } if ((!isInt(searchIndex))&&((searchIndex=='*')||(searchIndex==''))) {
+            searchIndex=rand(0,playlist.length);
         }
-    } return res;
+    } else if (command.includes('?')) {
+        for (i=0; i<subscribedMusic.length; i++) {
+            if (subscribedMusic[i].toLowerCase().includes(command.split('?')[0].toLowerCase())) {
+                playlist.push(subscribedMusic[i]);
+            }
+        } if ((!isInt(command.split('?')[1]))&&((command.split('?')[1]=='*')||(command.split('?')[1]==''))) {
+            searchIndex=rand(0,playlist.length);
+        } timecode=0;
+    } else if (command.includes(':')) {
+        timecode=command.split(':')[1];
+        for (i=0; i<subscribedMusic.length; i++) {
+            if (subscribedMusic[i].toLowerCase().includes(command.split('?')[0].toLowerCase())) {
+                playlist.push(subscribedMusic[i]);
+            }
+        } searchIndex=rand(0,playlist.length);
+    } else {
+        for (i=0; i<subscribedMusic.length; i++) {
+            if (subscribedMusic[i].toLowerCase().includes(command.toLowerCase())) {
+                playlist.push(subscribedMusic[i]);
+            }
+        } searchIndex=rand(0,playlist.length); timecode=0;
+    } if (notEmpty(pls)) {
+        if ((timecode=='+')&&(searchIndex=='+')) {
+            result=playlist[rand(0,playlist.length)];
+            setdata('playlist',playlistNext(result));
+        } else if (timecode=='+') {
+            result=playlist[searchIndex];
+            setdata('playlist',playlistNext(result));
+        } else if (searchIndex=='+') {
+            result=playlist[rand(0,playlist.length)];
+            setdata('playlist',playlistNext(result)); 
+        } else {
+            result=playlist[searchIndex]; omniListen(result,true,parseInt(timecode));
+        }
+    } else {
+        if ((timecode=='+')&&(searchIndex=='+')) {
+            result=subscribedMusic[rand(0,subscribedMusic.length)];
+            setdata('playlist',playlistNext(result));
+        } else if (timecode=='+') {
+            result=subscribedMusic[rand(0,subscribedMusic.length)];
+            setdata('playlist',playlistNext(result));
+        } else if (searchIndex=='+') {
+            result=subscribedMusic[rand(0,subscribedMusic.length)];
+            setdata('playlist',playlistNext(result));
+        } else {
+            result=subscribedMusic[rand(0,subscribedMusic.length)];
+            omniListen(result,true,parseInt(timecode));
+        }
+    } return result;
 }
 function seekCode(req) {
     var macroses=(sysDefCodexBox.value).split(';');
@@ -103,12 +97,10 @@ function seekCode(req) {
     } return res;
 }
 function omniEnter() {
-    var arb=arc=ari=arj=''; var input=omniBox.value,itr=0,itd=0,arg=[],arh=[];
-    var uid=sysDefSessionID.value,uic=sysDefNumeric.value;
+    var arj=''; var arg=[]; var input=(omniBox.value).trim();
+    var owner=''; var uid=sysDefSessionID.value;
     if ((input.toLowerCase()=='upload')||(input.toLowerCase()=='up')) {
         document.getElementById('filebrowser').click(); return false;
-    } else if ((input.toLowerCase()=='reload')||(input.toLowerCase()=='refresh')) {
-        window.location.reload();
     } else if (input.toLowerCase()=='this') {
         if (!isLocalhost()) {
             window.location.href='https://yandex.ru/images/search?rpt=imageview&url='+($('body').css('background-image')).replace(/^url\(['"]?(.*?)['"]?\)$/i,'$1');
@@ -119,132 +111,68 @@ function omniEnter() {
     } else if (input.toLowerCase()=='restore') { websiteBackupManager.restore();
     } else if (input.toLowerCase()=='purge') {
         recycleBin.clear();
-    } else if ((input.toLowerCase()=='louder')||(input.toLowerCase()=='la+')) {
-        arb=superRound((parseFloat(sysDefAudioVolume.value)+0.05),2);
-        arc=(arb>1)?1:arb; setdata('audio_volume',arc);
-    } else if ((input.toLowerCase()=='decibel')||(input.toLowerCase()=='la++')) {
-        arb=superRound((parseFloat(sysDefAudioVolume.value)+0.1),2);
-        arc=(arb>1)?1:arb; setdata('audio_volume',arc);
-    } else if (input.toLowerCase()=='la-') {
-        arb=superRound((parseFloat(sysDefAudioVolume.value)-0.05),2);
-        arc=(arb<0)?0:arb; setdata('audio_volume',arc);
-    } else if (input.toLowerCase()=='la--') {
-        arb=superRound((parseFloat(sysDefAudioVolume.value)-0.1),2);
-        arc=(arb<0)?0:arb; setdata('audio_volume',arc);
-    } else if (input.toLowerCase()=='lv+') {
-        arb=superRound((parseFloat(sysDefVideoVolume.value)+0.05),2);
-        arc=(arb>1)?1:arb; setdata('video_volume',arc);
-    } else if (input.toLowerCase()=='lv++') {
-        arb=superRound((parseFloat(sysDefVideoVolume.value)+0.1),2);
-        arc=(arb>1)?1:arb; setdata('video_volume',arc);
-    } else if (input.toLowerCase()=='lv-') {
-        arb=superRound((parseFloat(sysDefVideoVolume.value)-0.05),2);
-        arc=(arb<0)?0:arb; setdata('video_volume',arc);
-    } else if (input.toLowerCase()=='lv--') {
-        arb=superRound((parseFloat(sysDefVideoVolume.value)-0.1),2);
-        arc=(arb<0)?0:arb; setdata('video_volume',arc);
-    } else if ((input.toLowerCase()=='nightcore')||(input.toLowerCase()=='ra+')) {
-        arb=superRound((parseFloat(sysDefAudioSpeed.value)+0.05),2);
-        arc=(arb>1.5)?1.5:arb; setdata('audio_speed',arc);
-    } else if ((input.toLowerCase()=='nightcore++')||(input.toLowerCase()=='ra++')) {
-        arb=superRound((parseFloat(sysDefAudioSpeed.value)+0.1),2);
-        arc=(arb>1.5)?1.5:arb; setdata('audio_speed',arc);
-    } else if ((input.toLowerCase()=='daycore')||(input.toLowerCase()=='ra-')) {
-        arb=superRound((parseFloat(sysDefAudioSpeed.value)-0.05),2);
-        arc=(arb<0.5)?0.5:arb; setdata('audio_speed',arc);
-    } else if ((input.toLowerCase()=='daycore++')||(input.toLowerCase()=='ra--')) {
-        arb=superRound((parseFloat(sysDefAudioSpeed.value)-0.1),2);
-        arc=(arb<0.5)?0.5:arb; setdata('audio_speed',arc);
-    } else if ((input.toLowerCase()=='spedup')||(input.toLowerCase()=='rv+')) {
-        arb=superRound((parseFloat(sysDefVideoSpeed.value)+0.05),2);
-        arc=(arb>1.5)?1.5:arb; setdata('video_speed',arc);
-    } else if ((input.toLowerCase()=='spedup++')||(input.toLowerCase()=='rv++')) {
-        arb=superRound((parseFloat(sysDefVideoSpeed.value)+0.1),2);
-        arc=(arb>1.5)?1.5:arb; setdata('video_speed',arc);
-    } else if ((input.toLowerCase()=='slowmo')||(input.toLowerCase()=='rv-')) {
-        arb=superRound((parseFloat(sysDefVideoSpeed.value)-0.05),2);
-        arc=(arb<0.5)?0.5:arb; setdata('video_speed',arc);
-    } else if ((input.toLowerCase()=='slowmo++')||(input.toLowerCase()=='rv--')) {
-        arb=superRound((parseFloat(sysDefVideoSpeed.value)-0.1),2);
-        arc=(arb<0.5)?0.5:arb; setdata('video_speed',arc);
     } else if (input.startsWith('download ')) {
-        arb=input.replace('download ','');
-        arg=arb.match(/\"([^\"]+)\"|(\S+)/g);
+        arj=input.replace('download ','');
+        arg=arj.match(/\"([^\"]+)\"|(\S+)/g);
         downloadFile(quote(arg[0]),((arg.length>1)?quote(arg[1]):quote(arg[0])));
     } else if (input.startsWith('down ')) {
-        arb=input.replace('down ','');
-        arg=arb.match(/\"([^\"]+)\"|(\w+)/g);
+        arj=input.replace('down ','');
+        arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
         downloadFile(quote(arg[0]),((arg.length>1)?quote(arg[1]):quote(arg[0])));
-    } else if (input.startsWith('encode ')) {
-        arj=input.replace('encode ','');
-        arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
-        if (arg.length==4) {
-            omniBox.value="decode \""+EE2EE.encode(quote(arg[0]),quote(arg[1]),quote(arg[2]),quote(arg[3]))+"\" \""+quote(arg[1])+"\" \""+quote(arg[2])+"\" \""+quote(arg[3])+"\"";
-        }
-    } else if (input.startsWith('decode ')) {
-        arj=input.replace('decode ','');
-        arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
-        if (arg.length==4) {
-            omniBox.value="encode \""+EE2EE.decode(quote(arg[0]),quote(arg[1]),quote(arg[2]),quote(arg[3]))+"\" \""+quote(arg[1])+"\" \""+quote(arg[2])+"\" \""+quote(arg[3])+"\"";
-        }
-    } else if (input.startsWith('decbase ')) {
-        arj=input.replace('decbase ','');
-        arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
-        if (arg.length==2) {
-            omniBox.value="basedec \""+baseN.decbase(quote(arg[0]),quote(arg[1]))+"\" \""+quote(arg[1])+"\"";
-        }
-    } else if (input.startsWith('basedec ')) {
-        arj=input.replace('basedec ','');
-        arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
-        if (arg.length==2) {
-            omniBox.value="decbase \""+baseN.basedec(quote(arg[0]),quote(arg[1]))+"\" \""+quote(arg[1])+"\"";
-        }
     } else if (input.startsWith('mkdir ')) {
-        itd=(superuser())?'rw':uid; arj=input.replace('mkdir ','');
+        owner=(superuser())?'rw':uid; arj=input.replace('mkdir ','');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
         if (arg.length>0) {
             for (i=0; i<arg.length; i++) {
-                mkdir(quote(arg[i]),itd);
+                mkdir(quote(arg[i]),owner);
             } window.location.reload();
         }
     } else if (input.startsWith('set ')) {
-        itd=(superuser())?'rw':uid; arj=input.replace('set ','');
+        owner=(superuser())?'rw':uid; arj=input.replace('set ','');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
         if (arg.length==2) {
-            set(quote(arg[0]),quote(arg[1]),itd,'re');
+            set(quote(arg[0]),quote(arg[1]),owner,'re');
         } else if (arg.length==1) {
-            set(quote(arg[0]),'',itd,'re');
+            set(quote(arg[0]),'',owner,'re');
+        }
+    } else if (input.startsWith('write ')) {
+        owner=(superuser())?'rw':uid; arj=input.replace('write ','');
+        arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
+        if (arg.length==2) {
+            set(quote(arg[0]),quote(arg[1]),owner,'re');
+        } else if (arg.length==1) {
+            set(quote(arg[0]),'',owner,'re');
         }
     } else if (input.startsWith('env ')) {
-        itd=(superuser())?'rw':uid; arj=input.replace('env ','');
+        owner=(superuser())?'rw':uid; arj=input.replace('env ','');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
         if (arg.length==3) {
-            env(quote(arg[0]),quote(arg[1]),quote(arg[2]),itd,'re');
+            env(quote(arg[0]),quote(arg[1]),quote(arg[2]),owner,'re');
         } else if (arg.length==2) {
-            env(quote(arg[0]),quote(arg[1]),'',itd,'re');
+            env(quote(arg[0]),quote(arg[1]),'',owner,'re');
         }
     } else if (input.startsWith('touch ')) {
-        itd=(superuser())?'rw':uid; arj=input.replace('touch ','');
+        owner=(superuser())?'rw':uid; arj=input.replace('touch ','');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
         if (arg.length==2) {
-            set(quote(arg[0]),quote(arg[1]),itd,'re');
+            set(quote(arg[0]),quote(arg[1]),owner,'re');
         } else if (arg.length==1) {
-            set(quote(arg[0]),'',itd,'re');
+            set(quote(arg[0]),'',owner,'re');
         }
     } else if (input.startsWith('rm ')) {
-        itd=(superuser())?'rw':uid; arj=input.replace('rm ','');
+        owner=(superuser())?'rw':uid; arj=input.replace('rm ','');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
         if (arg.length>0) {
             for (i=0; i<arg.length; i++) {
-                del(quote(arg[i]),itd);
+                del(quote(arg[i]),owner);
             } window.location.reload();
         }
     } else if (input.startsWith('del ')) {
-        itd=(superuser())?'rw':uid; arj=input.replace('del ','');
+        owner=(superuser())?'rw':uid; arj=input.replace('del ','');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
         if (arg.length>0) {
             for (i=0; i<arg.length; i++) {
-                del(quote(arg[i]),itd);
+                del(quote(arg[i]),owner);
             } window.location.reload();
         }
     } else if (input.startsWith('trash ')) {
@@ -272,31 +200,31 @@ function omniEnter() {
             } window.location.reload();
         }
     } else if (input.startsWith('mv ')) {
-        itd=(superuser())?'rw':uid; arj=input.replace('mv ', '');
+        owner=(superuser())?'rw':uid; arj=input.replace('mv ', '');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
         if (arg.length==2) {
-            move(quote(arg[0]),quote(arg[1]),itd,'re');
+            move(quote(arg[0]),quote(arg[1]),owner,'re');
         }
     } else if (input.startsWith('move ')) {
-        itd=(superuser())?'rw':uid; arj=input.replace('move ', '');
+        owner=(superuser())?'rw':uid; arj=input.replace('move ', '');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
         if (arg.length==2) {
-            move(quote(arg[0]),quote(arg[1]),itd,'re');
+            move(quote(arg[0]),quote(arg[1]),owner,'re');
         }
     } else if (input.startsWith('cp ')) {
-        itd=(superuser())?'rw':uid; arj=input.replace('cp ', '');
+        owner=(superuser())?'rw':uid; arj=input.replace('cp ', '');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
         if (arg.length>1) {
             for (i=1; i<arg.length; i++) {
-                copy(quote(arg[0]),quote(arg[i]),itd,'re');
+                copy(quote(arg[0]),quote(arg[i]),owner,'re');
             } window.location.reload();
         }
     } else if (input.startsWith('copy ')) {
-        itd=(superuser())?'rw':uid; arj=input.replace('copy ', '');
+        owner=(superuser())?'rw':uid; arj=input.replace('copy ', '');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
         if (arg.length>1) {
             for (i=1; i<arg.length; i++) {
-                copy(quote(arg[0]),quote(arg[i]),itd,'re');
+                copy(quote(arg[0]),quote(arg[i]),owner,'re');
             } window.location.reload();
         }
     } else if (input.startsWith('dir ')) {
@@ -324,23 +252,19 @@ function omniEnter() {
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
         omniBox.value=(arg.length==2)?loadFile(quote(arg[0]),quote(arg[1])):loadFile(quote(arg[0]));
     } else if (input.startsWith('data ')) {
-        itd=(superuser())?'rw':uid; arj=input.replace('data ', '');
+        owner=(superuser())?'rw':uid; arj=input.replace('data ', '');
         arg=arj.match(/\"([^\"]+)\"|(\w+)/g);
         if (arg.length==4) {
-            data(quote(arg[0]),quote(arg[1]),quote(arg[2]),quote(arg[3]),itd,'r');
+            data(quote(arg[0]),quote(arg[1]),quote(arg[2]),quote(arg[3]),owner,'r');
         } else if (arg.length==3) {
-            data(quote(arg[0]),quote(arg[1]),quote(arg[2]),'',itd,'r');
+            data(quote(arg[0]),quote(arg[1]),quote(arg[2]),'',owner,'r');
         } else {
-            data(quote(arg[0]),quote(arg[1]),'','',itd,'r');
+            data(quote(arg[0]),quote(arg[1]),'','',owner,'r');
         }
-    } else if (input.startsWith('appstore ')) {
-        getPkgSequence('get -i '+document.getElementById('updateChannel'+CryptoJS.MD5(input.replace('appstore ','')).toString()).value,'get ',0);
-    } else if (input.startsWith('as ')) {
-        getPkgSequence('get -i '+document.getElementById('updateChannel'+CryptoJS.MD5(input.replace('as ','')).toString()).value,'get ',0);
-    } else if (input.startsWith('playstore ')) {
-        getPkgSequence('get -i '+document.getElementById('downloadChannel'+CryptoJS.MD5(input.replace('playstore ','')).toString()).value,'get ',0);
-    } else if (input.startsWith('ps ')) {
-        getPkgSequence('get -i '+document.getElementById('downloadChannel'+CryptoJS.MD5(input.replace('ps ','')).toString()).value,'get ',0);
+    } else if (input.startsWith('app ')) {
+        getPkgSequence('get -i '+document.getElementById('updateChannel'+CryptoJS.MD5(input.replace('app ','')).toString()).value,'get ',0);
+    } else if (input.startsWith('game ')) {
+        getPkgSequence('get -i '+document.getElementById('downloadChannel'+CryptoJS.MD5(input.replace('game ','')).toString()).value,'get ',0);
     } else if (input.startsWith('clear ')) {
         clearJournal(input.replace('clear ',''),sysDefMyMessengerData,'messenger');
     } else if (input.startsWith('erase ')) {
@@ -349,78 +273,6 @@ function omniEnter() {
         getPkgSequence(input,'get ',0);
     } else if (input.startsWith('git ')) {
         getPkgSequence(input,'git ',1);
-    } else if (input.includes('@')) {
-        if (input.startsWith('@')) {
-            arb=input.replace('@',''); if (arb.includes(':')) {
-                arg=arb.split(':');
-                arc=CryptoJS.SHA256(arg[1]).toString();
-                omniAuthRequest('signin',arg[0],arc);
-            } else {
-                arc=CryptoJS.SHA256('').toString();
-                omniAuthRequest('signin',arb,arc);
-            }
-        } else {
-            arg=input.split('@'); if (arg[0].includes(':')) {
-                arh=arg[0].split(':');
-                arc=CryptoJS.SHA256(arh[1]).toString();
-                if (arg[1].includes('signin')) {
-                    omniAuthRequest('signin',arh[0],arc);
-                } else if (arg[1].includes('signup')) {
-                    omniAuthRequest('signup',arh[0],arc);
-                } else if (arg[1].includes('rename')) {
-                    rename_user(uid,arh[0],arh[1]);
-                    omniAuthRequest('signin',arh[0],arc);
-                } else if (arg[1].includes('reset')) {
-                    if (superuser()) {
-                        rename_user(arh[0],arh[0],arh[1]);
-                        omniAuthRequest('signin',arh[0],arc);
-                    }
-                }
-            } else {
-                arc=CryptoJS.SHA256('').toString();
-                if (arg[1].includes('signin')) {
-                    omniAuthRequest('signin',arg[0],arc);
-                } else if (arg[1].includes('signup')) {
-                    omniAuthRequest('signup',arg[0],arc);
-                } else if (arg[1].includes('rename')) {
-                    rename_user(uid,arg[0],'');
-                    omniAuthRequest('signin',arg[0],arc);
-                } else if (arg[1].includes('reset')) {
-                    if (superuser()) {
-                        rename_user(arg[0],arg[0],'');
-                        omniAuthRequest('signin',arg[0],arc);
-                    }
-                } else if (arg[1].includes('delete')) {
-                    itr=0; if (arg[0].includes(',')) {
-                        arj=arg[0].split(','); for (idx in arj) {
-                            if (superuser()) {
-                                del(arj[idx]+'_files','rw');
-                            } else {
-                                if (arj[idx]==uid) {
-                                    itr++; userArchiveManager.markForDeletion(arj[idx]);
-                                }
-                            }
-                        }
-                    } else {
-                        if (superuser()) {
-                            del(arg[0]+'_files','rw');
-                        } else {
-                            if (arg[0]==uid) {
-                                itr++; userArchiveManager.markForDeletion(arg[0]);
-                            }
-                        }
-                    } if (itr>0) { omniAuthRequest(); }
-                } else if (arg[1].includes('create')) {
-                    if (arg[0].includes(',')) {
-                        arj=arg[0].split(','); for (idx in arj) {
-                            if (superuser()) { init_user(arj[idx]); }
-                        }
-                    } else {
-                        if (superuser()) { init_user(arg[0]); }
-                    }
-                }
-            }
-        }
     } else { omniBox.value=basicCommand(input); } omniBox.focus();
 }
 function getPkgSequence(input,cmdword,isRepo=0,isDbg=0) {
