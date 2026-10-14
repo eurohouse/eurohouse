@@ -48,7 +48,7 @@ function seekMusic(command) {
                 playlist.push(subscribedMusic[i]);
             }
         } searchIndex=rand(0,playlist.length); timecode=0;
-    } if (notEmpty(pls)) {
+    } if (notEmpty(playlist)) {
         if ((timecode=='+')&&(searchIndex=='+')) {
             result=playlist[rand(0,playlist.length)];
             setdata('playlist',playlistNext(result));
