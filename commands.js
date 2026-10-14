@@ -14,61 +14,57 @@ function seekImage(command) {
 }
 function seekMusic(command) {
     var subscribedMusic=subscription('music');
-    var arg=[]; var playlist=[];
+    var playlist=[]; var result=''; var title='';
     var searchIndex=0; var timecode=0;
-    var arj=ari=arc=itm=res='',sec=0;
     if ((command.includes('?'))&&(command.includes(':'))) {
         searchIndex=command.split('?')[1].split(':')[0];
         timecode=command.split('?')[1].split(':')[1];
-        for (i=0; i<subscribedMusic.length; i++) {
-            if (subscribedMusic[i].toLowerCase().includes(command.split('?')[0].toLowerCase())) {
+	title=command.split('?')[0];
+	for (i=0; i<subscribedMusic.length; i++) {
+            if (subscribedMusic[i].toLowerCase().includes(title.toLowerCase())) {
                 playlist.push(subscribedMusic[i]);
             }
         } if ((!isInt(searchIndex))&&((searchIndex=='*')||(searchIndex==''))) {
             searchIndex=rand(0,playlist.length);
         }
     } else if (command.includes('?')) {
-        for (i=0; i<subscribedMusic.length; i++) {
-            if (subscribedMusic[i].toLowerCase().includes(command.split('?')[0].toLowerCase())) {
+	title=command.split('?')[0]; searchIndex=command.split('?')[1];
+        timecode=0; for (i=0; i<subscribedMusic.length; i++) {
+            if (subscribedMusic[i].toLowerCase().includes(title.toLowerCase())) {
                 playlist.push(subscribedMusic[i]);
             }
-        } if ((!isInt(command.split('?')[1]))&&((command.split('?')[1]=='*')||(command.split('?')[1]==''))) {
+        } if ((!isInt(searchIndex))&&((searchIndex=='*')||(searchIndex==''))) {
             searchIndex=rand(0,playlist.length);
-        } timecode=0;
+        }
     } else if (command.includes(':')) {
-        timecode=command.split(':')[1];
+	title=command.split(':')[0]; timecode=command.split(':')[1];
         for (i=0; i<subscribedMusic.length; i++) {
-            if (subscribedMusic[i].toLowerCase().includes(command.split('?')[0].toLowerCase())) {
+            if (subscribedMusic[i].toLowerCase().includes(title.toLowerCase())) {
                 playlist.push(subscribedMusic[i]);
             }
         } searchIndex=rand(0,playlist.length);
     } else {
-        for (i=0; i<subscribedMusic.length; i++) {
+        timecode=0; for (i=0; i<subscribedMusic.length; i++) {
             if (subscribedMusic[i].toLowerCase().includes(command.toLowerCase())) {
                 playlist.push(subscribedMusic[i]);
             }
-        } searchIndex=rand(0,playlist.length); timecode=0;
+        } searchIndex=rand(0,playlist.length);
     } if (notEmpty(playlist)) {
-        if ((timecode=='+')&&(searchIndex=='+')) {
+        if (((timecode=='+')&&(searchIndex=='+'))||(searchIndex=='+')) {
             result=playlist[rand(0,playlist.length)];
-            setdata('playlist',playlistNext(result));
+	    setdata('playlist',playlistNext(result));
         } else if (timecode=='+') {
             result=playlist[searchIndex];
-            setdata('playlist',playlistNext(result));
-        } else if (searchIndex=='+') {
-            result=playlist[rand(0,playlist.length)];
-            setdata('playlist',playlistNext(result)); 
+	    setdata('playlist',playlistNext(result));
         } else {
-            result=playlist[searchIndex]; omniListen(result,true,parseInt(timecode));
+            result=playlist[searchIndex];
+	    omniListen(result,true,parseInt(timecode));
         }
     } else {
-        if ((timecode=='+')&&(searchIndex=='+')) {
+        if (((timecode=='+')&&(searchIndex=='+'))||(searchIndex=='+')) {
             result=subscribedMusic[rand(0,subscribedMusic.length)];
             setdata('playlist',playlistNext(result));
         } else if (timecode=='+') {
-            result=subscribedMusic[rand(0,subscribedMusic.length)];
-            setdata('playlist',playlistNext(result));
-        } else if (searchIndex=='+') {
             result=subscribedMusic[rand(0,subscribedMusic.length)];
             setdata('playlist',playlistNext(result));
         } else {
