@@ -17,39 +17,39 @@ An elegant *web desktop* environment that blends classical European cultural cod
 
 The app provides curated collections (wallpapers, digital music albums) and supports integration of third‑party content (e.g., backgrounds, music) placed in the server’s working directory via Git.
 
-Conceptually, Eurohouse synthesizes two complementary layers of human experience: the rational‑structural layer (neocortex) and the affective‑instinctive layer (limbic system). It is a bridge between the measured breath of reason and the wild pulse of the heart.
+Conceptually, Eurohouse synthesizes two complementary layers of human experience: the rational‑structural layer (neocortex) and the affective‑instinctive layer (limbic system). This dual‑layer model ensures both methodological rigor and alignment with fundamental human needs.
 
-### Neocortex‑driven tenets (the measured breath of reason)
+### Neocortex‑driven tenets (rational, structural, civilizational)
 
-These elements reflect classical European cultural code and are associated with higher cognitive functions of the neocortex — the voice of order and light:
+These elements reflect the classical European cultural code and are associated with higher cognitive functions of the neocortex:
 
-- **Scientific method** (*methodus scientifica*) — structured reasoning and reproducible workflows, like stars charted in a clear night sky.
-- **Academic rigor** (*accuratio academica*) — clear taxonomy, metadata, and versioned content, a library where every book knows its place.
-- **Historical accuracy** (*veritas historica*) — curated sources and contextual annotations, the quiet witness of time.
-- **Evidence‑based approach** (*medicina testimoniis probata* as a broader principle of evidence) — reliance on verifiable data and transparent provenance, the compass that never lies.
-- **Christian values** (*fides, spes, caritas*) — ethical framing and human‑centered design, the gentle hand that guides without force.
-- **Free will** (*liberum arbitrium*) — maximum user control over data, appearance, and behavior, the right to choose one’s own horizon.
-- **High culture** (*cultura sublimis*) — aesthetic coherence, language precision, and curated cultural references, the quiet elegance of a timeless hall.
+- **Scientific method** (*methodus scientifica*) — structured reasoning and reproducible workflows, ensuring systematic approach to problem solving.
+- **Academic rigor** (*accuratio academica*) — clear taxonomy, metadata, and versioned content, supporting traceability and classification standards.
+- **Historical accuracy** (*veritas historica*) — curated sources and contextual annotations, preserving factual integrity and chronological coherence.
+- **Evidence‑based approach** (*medicina testimoniis probata* as a broader principle of evidence) — reliance on verifiable data and transparent provenance, reinforcing objectivity in content curation.
+- **Christian values** (*fides, spes, caritas*) — ethical framing and human‑centered design, emphasizing moral responsibility and user dignity.
+- **Free will** (*liberum arbitrium*) — maximum user control over data, appearance, and behavior, guaranteeing autonomy in personalization and data management.
+- **High culture** (*cultura sublimis*) — aesthetic coherence, language precision, and curated cultural references, maintaining a consistent standard of cultural quality.
 
 Together, these form a cultural code reflecting classical Europe and its civilizational branches—including Russia, the United States, Latin America, and others.
 
-### Limbic‑system‑driven tenets (the wild pulse of the heart)
+### Limbic‑system‑driven tenets (universal, instinctive, nature‑rooted)
 
-These seven qualities are universal to humans, deeply rooted in nature and prehistory, and expressed through the limbic system — the voice of blood and earth. They extend beyond any single civilization and resonate with the rest of the world and nature:
+These seven qualities are universal to humans, deeply rooted in nature and prehistory, and expressed through the limbic system. They extend beyond any single civilization and correspond to fundamental biological and social imperatives:
 
-- **Vitality** (*vigor vitae*) — the fire of survival, the care for health, the longing for longevity; the sun rising in the chest each morning.
-- **Nutrition** (*nutritio*) — the sacred rhythm of eating and drinking, the earth’s bounty turned into strength; the table where life is renewed.
-- **Comfort** (*commoditas*) — the softness of sleep, the grace of leisure, the quiet relief from pain; the hush of a warm room after a long road.
-- **Eroticism** (*amor et voluptas*) — the dance of desire, the joy of touch, the stories of love told in whispers and in art; the flame that kindles both creation and tenderness.
-- **Economy** (*oeconomia*) — the tide of trade, the balance of exchange, the invisible thread that ties community to community; the rhythm of giving and receiving that keeps the world turning.
-- **Challenge** (*certamen*) — the thrill of competition, the beauty of sport, the games that test our mettle; the wind that asks us to stand tall and not break.
-- **Soulfulness** (*anima*) — the stillness of mindfulness, the refuge of hobbies, the quiet ways we mend our hearts; the secret garden where the soul finds its voice again.
+- **Vitality** (*vigor vitae*) — survival, healthcare, longevity, and the maintenance of physiological integrity as a primary life imperative.
+- **Nutrition** (*nutritio*) — eating, drinking, sustaining life, and the regulation of metabolic needs as a basic requirement for human existence.
+- **Comfort** (*commoditas*) — sleeping, leisure, rest, and the mitigation of physical and psychological distress, contributing to homeostasis and well‑being.
+- **Eroticism** (*amor et voluptas*) — sexual behavior for both pleasure and reproduction, as well as the cultural expression of desire, reflecting innate reproductive and bonding drives.
+- **Economy** (*oeconomia*) — trading, markets, exchange, and the organization of resource distribution, enabling collective survival and social coordination.
+- **Challenge** (*certamen*) — competition, sports, games, and the testing of personal limits, serving as mechanisms for skill development, social hierarchy formation, and resilience training.
+- **Soulfulness** (*anima*) — mindfulness, hobbies, stress relief, and the pursuit of meaning, addressing psychological equilibrium and the need for personal fulfillment.
 
-Together, these two sets of tenets frame Eurohouse as a holistic environment that bridges the intellect and the heart, the civilized and the natural, the historical and the timeless.
+Together, these two sets of tenets frame Eurohouse as a holistic environment that integrates cognitive discipline with fundamental human drives, combining civilizational achievements with innate biological imperatives.
 
 Technically, Eurohouse functions as an *online reference*, *digital archive*, and *micro‑museum*, accessible from any internet‑connected device. It is not a feature film or video game, but a tool for managing and personalizing content subscriptions within a structured, desktop‑like interface.
 
-![Magnificent Gardens of Versailles](https://github.com/eurohouse/baron/blob/main/baron.000.13.png?raw=true)
+![Magnificent Gardens of Versailles](https://github.com/eurohouse/baron/blob/main/baron.000.13.webp?raw=true)
 
 ## Key Features
 
@@ -66,7 +66,7 @@ Technically, Eurohouse functions as an *online reference*, *digital archive*, an
 - Multiple view modes: thumbnails, icons, and list.
 - Configurable menu entries as dynamic sets of actions.
 
-![Photorealistic English Village](https://github.com/eurohouse/baron/blob/main/baron.000.16.png?raw=true)
+![Photorealistic English Village](https://github.com/eurohouse/baron/blob/main/baron.000.16.webp?raw=true)
 
 ### Wallpaper Engine with Time‑Based Logic
 
@@ -90,7 +90,7 @@ Each background links to an attached article stored in JSON files within the wal
 - **Messenger**: Twitter‑like messaging between users.
 - **Artificial Intelligence**: integrated AI functions within the app.
 
-![Vintage Parisian Vibe](https://github.com/eurohouse/baron/blob/main/baron.000.14.png?raw=true)
+![Vintage Parisian Vibe](https://github.com/eurohouse/baron/blob/main/baron.000.14.webp?raw=true)
 
 ## Deployment & Access
 
