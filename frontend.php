@@ -135,9 +135,11 @@ function setdata(ent,val) {
     } if (requestMode.value=='sticky_notes') {
         if (ent=='numeric') { myNotesRad.value=val; }
     } if (requestMode.value=='album_tracklist') {
-        if ((ent=='album')||(ent=='playlist')||(ent=='units')) {
-            playlistCollectionHTML(); albumCollectionHTML();
-        }
+        if ((ent=='album')||(ent=='album_columns')||(ent=='units')) {
+            albumCollectionHTML();
+        } else if ((ent=='playlist')||(ent=='playlist_columns')) {
+	    playlistCollectionHTML();
+	}
     } if (requestMode.value=='media_player') {
         if (ent=='video_volume') { video.volume=val; }
         if (ent=='video_speed') { video.playbackRate=val; }
