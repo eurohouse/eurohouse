@@ -134,6 +134,10 @@ function setdata(ent,val) {
         audioPlayer.preservesPitch=(val!=0)?true:false;
     } if (requestMode.value=='sticky_notes') {
         if (ent=='numeric') { myNotesRad.value=val; }
+    } if (requestMode.value=='album_tracklist') {
+        if ((ent=='album')||(ent=='playlist')||(ent=='units')) {
+            playlistCollectionHTML(); albumCollectionHTML();
+        }
     } if (requestMode.value=='media_player') {
         if (ent=='video_volume') { video.volume=val; }
         if (ent=='video_speed') { video.playbackRate=val; }
