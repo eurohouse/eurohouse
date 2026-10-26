@@ -75,7 +75,7 @@ function setupSubscrData() {
     }; return obj;
 }
 function setupUserData() {
-    var obj = {
+    var obj={
         <?php $iter=0; foreach ($settings['defaults'] as $key=>$value) {
             echo "'".$key."': sysDefSetup".snakeToCamel($key).".value".((count($settings['defaults'])==($iter-1))?'':','); $iter++;
         } $iter=0; ?>
@@ -89,7 +89,7 @@ function subscrData() {
     }; return obj;
 }
 function userdata() {
-    var obj = {
+    var obj={
         <?php $iter=0; foreach ($settings['defaults'] as $key=>$value) {
             echo "'".$key."': sysDef".snakeToCamel($key).".value".((count($settings['defaults'])==($iter-1))?'':','); $iter++;
         } $iter=0; ?>
@@ -134,10 +134,6 @@ function setdata(ent,val) {
         audioPlayer.preservesPitch=(val!=0)?true:false;
     } if (requestMode.value=='sticky_notes') {
         if (ent=='numeric') { myNotesRad.value=val; }
-    } if (requestMode.value=='album_tracklist') {
-        if ((ent=='album')||(ent=='album_columns')||(ent=='playlist')||(ent=='playlist_columns')||(ent=='units')) {
-            playlistCollectionHTML(); albumCollectionHTML();
-        }
     } if (requestMode.value=='media_player') {
         if (ent=='video_volume') { video.volume=val; }
         if (ent=='video_speed') { video.playbackRate=val; }

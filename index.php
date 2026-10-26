@@ -9,7 +9,7 @@
     $curModeLangArr=valarr($curModeLangPack,'; ',': ');
     $curModeLangName=(isset($curModeLangArr[$session['units']]))?$curModeLangArr[$session['units']]:snakeToSpaces((file_exists('mode.'.$request['mode'].'.php'))?$request['mode']:'welcome_screen');
     ?>
-    <title><?=$curModeLangName.' - '.$session['title'].' (@'.$sessionID.') · '.titlePkgEnt('eurohouse','title',$settings,$session);?></title>
+    <title><?=$curModeLangName.' · '.$session['title'].' (@'.$sessionID.') · '.titlePkgEnt('eurohouse','title',$settings,$session);?></title>
     <meta name="description" content="<?=titlePkgEnt('eurohouse','description',$settings,$session);?>">
     <link rel="shortcut icon" href="<?=$prefix[3].'.'.$session['avatar'].'.webp';?>" type="image/x-icon">
     <?php include 'wardrobe.php';
