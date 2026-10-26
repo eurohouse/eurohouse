@@ -19,6 +19,8 @@ The app provides curated collections (wallpapers, digital music albums) and supp
 
 Conceptually, Eurohouse synthesizes two complementary layers of human experience: the rational‑structural layer (neocortex) and the affective‑instinctive layer (limbic system). This dual‑layer model ensures both methodological rigor and alignment with fundamental human needs.
 
+![Eurohouse Imperial Banner](https://github.com/eurohouse/nestor/blob/main/nestor.000.20.webp?raw=true)
+
 ### Neocortex‑driven tenets (rational, structural, civilizational)
 
 These elements reflect the classical European cultural code and are associated with higher cognitive functions of the neocortex:
@@ -32,6 +34,8 @@ These elements reflect the classical European cultural code and are associated w
 - **High culture** (*cultura sublimis*) — aesthetic coherence, language precision, and curated cultural references, maintaining a consistent standard of cultural quality.
 
 Together, these form a cultural code reflecting classical Europe and its civilizational branches—including Russia, the United States, Latin America, and others.
+
+![Abstract Wallpaper](https://github.com/eurohouse/nestor/blob/main/nestor.000.21.webp?raw=true)
 
 ### Limbic‑system‑driven tenets (universal, instinctive, nature‑rooted)
 
