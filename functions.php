@@ -335,12 +335,8 @@ function wasFileRequest() {
     }
 }
 function urlStatusCode($url,$timeout=5) {
-    $context=stream_context_create([
-        'http'=>[
-            'method'=>'HEAD',
-            'timeout'=>$timeout,
-        ]
-    ]); $headers=@get_headers($url,0,$context);
+    $context=stream_context_create(['http'=>['method'=>'HEAD','timeout'=>$timeout]]);
+    $headers=@get_headers($url,0,$context);
     if ((!$headers)||(!is_array($headers))||(empty($headers))) {
         return false;
     } preg_match('#^HTTP/\d\.\d\s+(\d+)#',$headers[0],$matches);
