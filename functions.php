@@ -12,9 +12,10 @@ function valarr(string $str,$y='; ',$x=': '): array {
         $newArr[$newStr[0]]=$newStr[1];
     } return $newArr;
 }
-function getCurrentWebAddr(string $mode='client',string $output='address',string $proto='any'): ?string {
+function getCurrentWebAddr(string $mode='client',string $output='address',string $proto='any'): string {
     $defaultAddr=($proto==='ipv4')?'127.0.0.1':'::1';
-    $defaultPort='80'; $addr=($mode==='server')
+    $defaultPort='80';
+    $addr=($mode==='server')
         ?($_SERVER['SERVER_ADDR']??$defaultAddr)
         :($_SERVER['REMOTE_ADDR']??$defaultAddr);
     $port=($mode==='server')
@@ -22,13 +23,22 @@ function getCurrentWebAddr(string $mode='client',string $output='address',string
         :($_SERVER['REMOTE_PORT']??$defaultPort);
     $isIpv4=filter_var($addr,FILTER_VALIDATE_IP,FILTER_FLAG_IPV4);
     $isIpv6=filter_var($addr,FILTER_VALIDATE_IP,FILTER_FLAG_IPV6);
-    if ($isIpv6) {
+    if (!$isIpv4&&!$isIpv6) {
+        $addr=$defaultAddr;
+        $isIpv4=($proto==='ipv4');
+        $isIpv6=!$isIpv4;
+    } if ($proto==='ipv4'&&!$isIpv4) {
+        if (strpos($addr,'::ffff:')===0) {
+            $addr=substr($addr,7);
+        } else {
+            $addr='127.0.0.1';
+        } $isIpv4=true; $isIpv6=false;
+    } if ($proto==='ipv6'&&!$isIpv4) {
         $addr=inet_ntop(inet_pton($addr));
-    } elseif (!$isIpv4) {
-        return null;
-    } if ($proto==='ipv4'&&!$isIpv4) return null;
-    if ($proto==='ipv6'&&!$isIpv6) return null;
-    if ($output==='socket') {
+    } if ($proto==='ipv6'&&$isIpv4) {
+        $addr='::ffff:'.$addr;
+        $isIpv4=false; $isIpv6=true;
+    } if ($output==='socket') {
         $addr=$isIpv6?('['.$addr.']:'.$port):($addr.':'.$port);
     } return $addr;
 }
