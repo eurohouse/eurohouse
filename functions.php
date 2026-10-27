@@ -303,24 +303,21 @@ function cutstring($text,$offs=0,$end=0) {
 }
 /* REQUESTS TO SERVER */
 function wasAuthRequest() {
-    if ((isset($_POST['auth']))&&(isset($_POST['login']))&&(isset($_POST['password']))) {
-        $auth=$_POST['auth']; $login=$_POST['login']; $pass=$_POST['password'];
-        if (($auth=='signin')||($auth=='signup')) {
-            if ($login!='') {
-                if (!file_exists($login.'_files')) {
-                    mkdir($login.'_files'); chmod($login.'_files',0777);
-                } if (file_exists($login.'_files/password')) {
-                    $passFile=file_get_contents($login.'_files/password');
-                    if (($pass==$passFile)&&(preg_match('/^[a-f0-9]{64}$/i',$passFile))) {
-                        $_SESSION['user']=$login;
-                    }
-                } else {
-                    file_put_contents($login.'_files/password',$pass);
-                    chmod($login.'_files/password',0777);
-                    $passFile=file_get_contents($login.'_files/password');
-                    if (($pass==$passFile)&&(preg_match('/^[a-f0-9]{64}$/i',$passFile))) {
-                        $_SESSION['user']=$login;
-                    }
+    if ((isset($_POST['login']))&&(isset($_POST['password']))) {
+        $login=$_POST['login']; $pass=$_POST['password']; if ($login!='') {
+            if (!file_exists($login.'_files')) {
+                mkdir($login.'_files'); chmod($login.'_files',0777);
+            } if (file_exists($login.'_files/password')) {
+                $passFile=file_get_contents($login.'_files/password');
+                if (($pass==$passFile)&&(preg_match('/^[a-f0-9]{64}$/i',$passFile))) {
+                    $_SESSION['user']=$login;
+                }
+            } else {
+                file_put_contents($login.'_files/password',$pass);
+                chmod($login.'_files/password',0777);
+                $passFile=file_get_contents($login.'_files/password');
+                if (($pass==$passFile)&&(preg_match('/^[a-f0-9]{64}$/i',$passFile))) {
+                    $_SESSION['user']=$login;
                 }
             }
         } else {

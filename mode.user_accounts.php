@@ -48,7 +48,7 @@ foreach ($indexUsers as $value) {
                     <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="del(this.name+'_files','rw'); window.location.reload();" src="<?=$prefix[3].'trash.webp';?>">
                 <?php } else {
                     if ($value==$sessionID) { ?>
-                        <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="userArchiveManager.markForDeletion(sysDefSessionID.value); omniAuthRequest();" src="<?=$prefix[3].'trash.webp';?>">
+                        <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="userArchiveManager.markForDeletion(sysDefSessionID.value); omniAuthRequest('','');" src="<?=$prefix[3].'trash.webp';?>">
                     <?php } else { ?>
                         <input type="image" name="<?=$value;?>" onmouseover="soundButton();" class="power" onclick="omniPath(this.name+'_files/profile.json','','false');" src="<?=$prefix[3].'info.webp';?>">
                     <?php }

@@ -148,13 +148,13 @@
         } else if (event.keyCode==46) { handleInput(this.value);
         }" oninput="handleInput(this.value,true);">
         <input type="password" placeholder="<?=term('Password',$settings,$session);?>" id="setPassword" style="width:32%;" value="" onkeydown="if (event.keyCode==13) {
-            rename_user(sysDefSessionID.value,setUsername.value,setPassword.value); omniAuthRequest('signin',setUsername.value,CryptoJS.SHA256(setPassword.value).toString());
+            rename_user(sysDefSessionID.value,setUsername.value,setPassword.value); omniAuthRequest(setUsername.value,CryptoJS.SHA256(setPassword.value).toString());
         } else if (event.keyCode==27) {
             setPassword.value=''; setUsername.focus();
         } else if (event.keyCode==8) { handleInput(this.value);
         } else if (event.keyCode==46) { handleInput(this.value);
         }" oninput="handleInput(this.value,true);">
-        <input type='image' onmouseover="soundButton();" class="power" onclick="rename_user(sysDefSessionID.value,setUsername.value,setPassword.value); omniAuthRequest('signin',setUsername.value, CryptoJS.SHA256(setPassword.value).toString());" src="<?=$prefix[3].'return.webp';?>" title="<?=term('Update Password',$settings,$session);?>">
+        <input type='image' onmouseover="soundButton();" class="power" onclick="rename_user(sysDefSessionID.value,setUsername.value,setPassword.value); omniAuthRequest(setUsername.value,CryptoJS.SHA256(setPassword.value).toString());" src="<?=$prefix[3].'return.webp';?>" title="<?=term('Update Password',$settings,$session);?>">
         <input type='image' onmouseover="soundButton();" class="power" onclick="setPassword.value=''; setUsername.value=''; setUsername.focus();" src="<?=$prefix[3].'backspace.webp';?>" title="<?=term('Clear Sign In Form',$settings,$session);?>"></span>
         <?php } ?>
     </p>

@@ -30,7 +30,7 @@
         } else if (event.keyCode==46) { handleInput(this.value);
         }" oninput="handleInput(this.value,true);">
         <input type='password' id="omniBoxAuthPass" style="width:35%;" placeholder="<?=term('Password',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) {
-            omniAuthRequest('signin',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString());
+            omniAuthRequest(omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString());
         } else if (event.keyCode==27) {
             omniBoxAuthPass.value=''; omniBoxAuthLogin.focus();
         } else if (event.keyCode==8) { handleInput(this.value);
@@ -38,7 +38,7 @@
         } else if (event.keyCode==113) { seekMusic(omniBoxAuthPass.value);
         } else if (event.keyCode==115) { seekImage(omniBoxAuthPass.value);
         }" oninput="handleInput(this.value,true);">
-        <input type="image" onmouseover="soundButton();" id="buttonAuth" class="power" onclick="soundClick(); if (authstate()) { omniAuthRequest('signout','',''); } else { omniAuthRequest('signin',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString()); }" src="<?=$prefix[3].'user.webp';?>" title="<?=term('Sign In/Out',$settings,$session);?>">
+        <input type="image" onmouseover="soundButton();" id="buttonAuth" class="power" onclick="soundClick(); if (authstate()) { omniAuthRequest('',''); } else { omniAuthRequest(omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString()); }" src="<?=$prefix[3].'user.webp';?>" title="<?=term('Sign In/Out',$settings,$session);?>">
         <input type="image" onmouseover="soundButton();" id="buttonBackspace" class="power" onclick="soundClick(); omniBoxAuthPass.value=''; omniBoxAuthLogin.value=''; omniBoxAuthLogin.focus();" src="<?=$prefix[3].'backspace.webp';?>" title="<?=term('Clear Sign In Form',$settings,$session);?>">
     <?php } ?>
     </p>
@@ -67,7 +67,7 @@
 </div>
 <div class='topBarItem'>
     <p align='center' class='block'>
-    <input type="image" onmouseover="soundButton();" id="buttonAuthState" class="power" onclick="soundClick(); if (authstate()) { omniAuthRequest(); } else { omniAuthRequest('signin',omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString()); }" src="<?=$prefix[3].((isAuthorized())?'user.webp':'anonym.webp');?>" title="<?=term('Sign In/Out',$settings,$session);?>">
+    <input type="image" onmouseover="soundButton();" id="buttonAuthState" class="power" onclick="soundClick(); if (authstate()) { omniAuthRequest('',''); } else { omniAuthRequest(omniBoxAuthLogin.value,CryptoJS.SHA256(omniBoxAuthPass.value).toString()); }" src="<?=$prefix[3].((isAuthorized())?'user.webp':'anonym.webp');?>" title="<?=term('Sign In/Out',$settings,$session);?>">
     <input type='button' id="usernameBanner" style="width:43%;" onclick="soundClick(); clip(this.value);" value="<?=$sessionID;?>">
     <input type="image" onmouseover="soundButton();" id="buttonRequestLock" class="power" onclick="soundClick(); invertLockRequest();" src="<?=$prefix[3].(($request['lock']!='false')?'lock.webp':'key.webp');?>" title="<?=term('Expand/Collapse Enhanced View',$settings,$session);?>">
     <input type="image" onmouseover="soundButton();" id="buttonMenu" class="power" onclick="soundClick(); setdata('menu_view',nextImage('thumb;menu;list',sysDefMenuView.value)); window.location.reload();" src="<?php if (($session['menu_view']=='thumb')||($session['menu_view']=='thumbnail')||($session['menu_view']=='thumbs')||($session['menu_view']=='thumbnails')) {
