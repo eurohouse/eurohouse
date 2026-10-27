@@ -69,7 +69,7 @@ function visitor($username,$rewrite=false) {
             elseif (preg_match('/Safari\/([\d.]+)/i',$userAgent)&&!preg_match('/Chrome|Edg/i',$userAgent)) $browser='Safari '.$version[1];
             elseif (preg_match('/OPR\/([\d.]+)/i',$userAgent,$version)) $browser='Opera '.$version[1];
             elseif (preg_match('/MSIE ([\d.]+)/i',$userAgent,$version)) $browser='Internet Explorer '.$version[1];
-            $visitors[$remoteSocket]=[
+            $visitors[$remoteAddr]=[
                 'remote_addr'=>$remoteAddr,'server_addr'=>$serverAddr,
                 'remote_sock'=>$remoteSocket,'server_sock'=>$serverSocket,
                 'system'=>$system,'browser'=>$browser
