@@ -37,9 +37,10 @@ function visitor($username,$rewrite=false) {
             mkdir($username.'_files'); chmod($username.'_files',0777);
         } $visitors=fileopen($username.'_files/visitors.json','{}','create');
         if ($rewrite) {
-            $remoteAddr=getCurrentWebAddr(); $serverAddr=getCurrentWebAddr('server');
-            $remoteSocket=getCurrentWebAddr('client','socket');
-            $serverSocket=getCurrentWebAddr('server','socket');
+            $remoteAddr=getCurrentWebAddr('client','address','ipv6');
+            $serverAddr=getCurrentWebAddr('server','address','ipv6');
+            $remoteSocket=getCurrentWebAddr('client','socket','ipv6');
+            $serverSocket=getCurrentWebAddr('server','socket','ipv6');
             $userAgent=$_SERVER['HTTP_USER_AGENT']??''; $system='Unknown';
             if (preg_match('/Windows NT 10.0/i',$userAgent)) $system='Windows 10';
             elseif (preg_match('/Windows NT 6.3/i',$userAgent)) $system='Windows 8.1';
