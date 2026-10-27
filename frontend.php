@@ -387,7 +387,7 @@ function populateIpStats(req='') {
             }
         } Object.keys(ipTab).forEach(ipElem=>{
             const row=tableBody.insertRow();
-            row.insertCell().textContent=ipTab[ipElem]['remote_addr'];
+            row.insertCell().textContent=ipElem;
             row.insertCell().textContent=ipTab[ipElem]['system'];
 	    row.insertCell().textContent=ipTab[ipElem]['browser'];
         }); const tfoot=document.createElement('tfoot');
