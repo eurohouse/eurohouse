@@ -21,7 +21,7 @@
     <tr>
         <th style="width:20%;">
             <a href="javascript:SortTable(0,'T','','ipTable');">
-                <?=term('Remote Address',$settings,$session);?>
+                <?=term('Address',$settings,$session);?>
             </a>
         </th>
         <th style="width:20%;">
