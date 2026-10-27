@@ -275,25 +275,29 @@ class UserArchiveManager {
 }
 const userArchiveManager=new UserArchiveManager();
 function rename_user(id,to,pass=null) {
-    if (id!=to) {
-	init_user(to,pass);
-        copy(id+'_files/profile.json',to+'_files/profile.json','rw');
-        copy(id+'_files/subscription.json',to+'_files/subscription.json','rw');
-        copy(id+'_files/metadata.json',to+'_files/metadata.json','rw');
-        copy(id+'_files/recycle_bin.json',to+'_files/recycle_bin.json','rw');
-        copy(id+'_files/visitors.json',to+'_files/visitors.json','rw');
+    if (to!='') {
+        if (id!=to) {
+	    init_user(to,pass);
+            copy(id+'_files/profile.json',to+'_files/profile.json','rw');
+            copy(id+'_files/subscription.json',to+'_files/subscription.json','rw');
+            copy(id+'_files/metadata.json',to+'_files/metadata.json','rw');
+            copy(id+'_files/recycle_bin.json',to+'_files/recycle_bin.json','rw');
+            copy(id+'_files/visitors.json',to+'_files/visitors.json','rw');
 copy(id+'_files/artificial_intelligence.json',to+'_files/artificial_intelligence.json','rw');
-        userArchiveManager.markForDeletion(id);
-    } else { init_user(id,pass); }
+            userArchiveManager.markForDeletion(id);
+        } else { init_user(id,pass); }
+    }
 }
 function init_user(id,pass=null) {
-    if (isLine(pass)) {
-        mkdir('./'+id+'_files','rw');
-        set(id+'_files/password',CryptoJS.SHA256(pass).toString(),'rw');
-    } var msgData=jsonarr(openJournal(id,sysDefMessengerJSONs));
-    if (!notNull(msgData)) {
-        mkdir('./'+id+'_files','rw');
-        set('./'+id+'_files/messenger.json',JSON.stringify({}),'rw');
+    if (id!='') {
+        if (isLine(pass)) {
+            mkdir('./'+id+'_files','rw');
+            set(id+'_files/password',CryptoJS.SHA256(pass).toString(),'rw');
+        } var msgData=jsonarr(openJournal(id,sysDefMessengerJSONs));
+        if (!notNull(msgData)) {
+            mkdir('./'+id+'_files','rw');
+            set('./'+id+'_files/messenger.json',JSON.stringify({}),'rw');
+        }
     }
 }
 function indexAvatars(id) {
