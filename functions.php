@@ -99,19 +99,42 @@ function getSystemFromUserAgent($userAgent) {
     return 'Unknown';
 }
 function getBrowserFromUserAgent($userAgent) {
+    if (preg_match('/TorBrowser\/([\d.]+)/i',$userAgent,$version))
+        return 'Tor Browser '.$version[1];
+    if (preg_match('/YaBrowser\/([\d.]+)/i',$userAgent,$version))
+        return 'Yandex Browser '.$version[1];
     if (preg_match('/Edg\/([\d.]+)/i',$userAgent,$version))
         return 'Edge '.$version[1];
     if (preg_match('/OPR\/([\d.]+)/i',$userAgent,$version))
         return 'Opera '.$version[1];
+    if (preg_match('/Vivaldi\/([\d.]+)/i',$userAgent,$version))
+        return 'Vivaldi '.$version[1];
+    if (preg_match('/Brave\/([\d.]+)/i',$userAgent,$version)
+    ||preg_match('/Brave/i',$userAgent)) {
+        return 'Brave'.((isset($version[1])?' '.$version[1]):'');
+    } if (preg_match('/SamsungBrowser\/([\d.]+)/i',$userAgent,$version))
+        return 'Samsung Internet '.$version[1];
+    if (preg_match('/UCBrowser\/([\d.]+)/i',$userAgent,$version))
+        return 'UC Browser '.$version[1];
+    if (preg_match('/MicroMessenger\/([\d.]+)/i',$userAgent,$version))
+        return 'WeChat '.$version[1];
+    if (preg_match('/CriOS\/([\d.]+)/i',$userAgent,$version))
+        return 'Chrome (iOS) ' . $version[1];
+    if (preg_match('/FxiOS\/([\d.]+)/i',$userAgent,$version))
+        return 'Firefox (iOS) '.$version[1];
     if (preg_match('/Chrome\/([\d.]+)/i',$userAgent,$version))
         return 'Chrome '.$version[1];
     if (preg_match('/Firefox\/([\d.]+)/i',$userAgent,$version))
         return 'Firefox '.$version[1];
     if (preg_match('/Safari\/([\d.]+)/i',$userAgent,$version)
-    &&!preg_match('/Chrome|Edg|OPR/i',$userAgent))
+    &&!preg_match('/Chrome|Edg|OPR|YaBrowser|Vivaldi/i',$userAgent)) {
         return 'Safari '.$version[1];
-    if (preg_match('/MSIE ([\d.]+)/i',$userAgent,$version))
+    } if (preg_match('/MSIE ([\d.]+)/i',$userAgent,$version))
         return 'Internet Explorer '.$version[1];
+    if (preg_match('/Trident\/.*rv:([\d.]+)/i',$userAgent,$version))
+        return 'Internet Explorer '.$version[1];
+    if (preg_match('/WebView|wv/i',$userAgent))
+        return 'Generic WebView';
     return 'Unknown';
 }
 function visitor($username,$rewrite=false) {
