@@ -88,8 +88,8 @@ function getCurrentWebAddr(string $mode='client',string $output='address',string
     return '';
 }*/
 function getSystemFromUserAgent($userAgent) {
-    $bot=getBotFromUserAgent($userAgent);
-    if ($bot!==null) { return ''; }
+    /*$bot=getBotFromUserAgent($userAgent);
+    if ($bot!==null) { return ''; }*/
     if (preg_match('/Windows/i',$userAgent)) {
         if (preg_match('/Windows NT 10.0/i',$userAgent))
             return 'Windows 10/11';
@@ -146,8 +146,8 @@ function getSystemFromUserAgent($userAgent) {
     return '';
 }
 function getBrowserFromUserAgent($userAgent) {
-    $bot=getBotFromUserAgent($userAgent);
-    if ($bot!==null) { return $bot; }
+    /*$bot=getBotFromUserAgent($userAgent);
+    if ($bot!==null) { return $bot; }*/
     if (preg_match('/TorBrowser\/([\d.]+)/i',$userAgent,$version))
         return 'Tor Browser '.$version[1];
     if (preg_match('/YaBrowser\/([\d.]+)/i',$userAgent,$version))
