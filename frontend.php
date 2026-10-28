@@ -365,8 +365,8 @@ function populateIpStats(request='') {
         } Object.keys(ipTab).forEach(ipElem=>{
             const row=tableBody.insertRow();
             row.insertCell().textContent=ipElem;
-            row.insertCell().textContent=ipTab[ipElem]['user_agent'];
-	    row.insertCell().textContent=ipTab[ipElem]['bot_reason'];
+            row.insertCell().textContent=ipTab[ipElem]['system'];
+	    row.insertCell().textContent=ipTab[ipElem]['browser'];
         }); const tfoot=document.createElement('tfoot');
         tfoot.id='ipFoot'; const footerRow=tfoot.insertRow();
         const footerCell=footerRow.insertCell(); footerCell.colSpan=3;

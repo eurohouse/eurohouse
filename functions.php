@@ -42,7 +42,55 @@ function getCurrentWebAddr(string $mode='client',string $output='address',string
         $addr=$isIpv6?('['.$addr.']:'.$port):($addr.':'.$port);
     } return $addr;
 }
+function getBotFromUserAgent(string $userAgent): ?string {
+    $ua=$userAgent;
+    if (preg_match('/Googlebot\/([\d.]+)/i',$ua,$m))
+        return 'Googlebot '.$m[1];
+    if (preg_match('/bingbot\/([\d.]+)/i',$ua,$m))
+        return 'Bingbot '.$m[1];
+    if (preg_match('/YandexBot\/([\d.]+)/i',$ua,$m))
+        return 'YandexBot '.$m[1];
+    if (preg_match('/Slurp\/([\d.]+)/i',$ua,$m))
+        return 'DuckDuckBot '.$m[1];
+    if (preg_match('/DuckDuckBot\/([\d.]+)/i',$ua,$m))
+        return 'DuckDuckBot '.$m[1];
+    if (preg_match('/Baiduspider\/([\d.]+)/i',$ua,$m))
+        return 'Baiduspider '.$m[1];
+    if (preg_match('/Exabot\/([\d.]+)/i',$ua,$m))
+        return 'Exabot '.$m[1];
+    if (preg_match('/facebookexternalhit\/([\d.]+)/i',$ua,$m))
+        return 'Facebook External Hit '.$m[1];
+    if (preg_match('/twitterbot\/([\d.]+)/i',$ua,$m))
+        return 'Twitter Bot '.$m[1];
+    if (preg_match('/linkedinbot\/([\d.]+)/i',$ua,$m))
+        return 'LinkedIn Bot '.$m[1];
+    if (preg_match('/Applebot\/([\d.]+)/i',$ua,$m))
+        return 'Applebot '.$m[1];
+    if (preg_match('/\bcurl\/([\d.]+)/i',$ua,$m))
+        return 'curl '.$m[1];
+    if (preg_match('/\bwget\/([\d.]+)/i',$ua,$m))
+        return 'wget '.$m[1];
+    if (preg_match('/python-requests\/([\d.]+)/i',$ua,$m))
+        return 'python-requests '.$m[1];
+    if (preg_match('/requests\/([\d.]+)/i',$ua,$m))
+        return 'requests '.$m[1];
+    if (preg_match('/go-http-client\/([\d.]+)/i',$ua,$m))
+        return 'go-http-client '.$m[1];
+    if (preg_match('/okhttp\/([\d.]+)/i',$ua,$m))
+        return 'okhttp '.$m[1];
+    if (preg_match('/postmanruntime\/([\d.]+)/i',$ua,$m))
+        return 'Postman Runtime '.$m[1];
+    if (preg_match('/axios\/([\d.]+)/i',$ua,$m))
+        return 'axios '.$m[1];
+    if (preg_match('/java\/([\d.]+)/i',$ua,$m))
+        return 'Java HTTP '.$m[1];
+    if (preg_match('/\b(bot|crawler|spider)\b/i',$ua))
+        return 'Bot/Crawler (generic)';
+    return null;
+}
 function getSystemFromUserAgent($userAgent) {
+    $bot=getBotFromUserAgent($userAgent);
+    if ($bot!==null) { return ''; }
     if (preg_match('/Windows/i',$userAgent)) {
         if (preg_match('/Windows NT 10.0/i',$userAgent))
             return 'Windows 10/11';
@@ -96,9 +144,11 @@ function getSystemFromUserAgent($userAgent) {
         return 'Android';
     if (preg_match('/Linux/i',$userAgent))
         return 'Linux';
-    return 'Unknown';
+    return '';
 }
 function getBrowserFromUserAgent($userAgent) {
+    $bot=getBotFromUserAgent($userAgent);
+    if ($bot!==null) { return $bot; }
     if (preg_match('/TorBrowser\/([\d.]+)/i',$userAgent,$version))
         return 'Tor Browser '.$version[1];
     if (preg_match('/YaBrowser\/([\d.]+)/i',$userAgent,$version))
@@ -135,37 +185,7 @@ function getBrowserFromUserAgent($userAgent) {
         return 'Internet Explorer '.$version[1];
     if (preg_match('/WebView|wv/i',$userAgent))
         return 'Generic WebView';
-    return 'Unknown';
-}
-function detectBot(array $server): array {
-    $ua=strtolower($server['HTTP_USER_AGENT']??'');
-    $accept=strtolower($server['HTTP_ACCEPT']??'');
-    $acceptLang=strtolower($server['HTTP_ACCEPT_LANGUAGE']??'');
-    $hasCookie=!empty($_COOKIE);
-    $patterns=[
-        'googlebot'=>'/googlebot|google-structured-data-testing-tool/',
-        'bingbot'=>'/bingbot/',
-        'yandexbot'=>'/yandexbot/',
-        'slurp'=>'/slurp/',
-        'duckduckbot'=>'/duckduckbot/',
-        'twitter'=>'/twitterbot|twitter/',
-        'facebook'=>'/facebookexternalhit/',
-        'curl'=>'/curl\//',
-        'wget'=>'/wget\//',
-        'python-requests'=>'/python.*requests|requests\//',
-        'php-curl'=>'/php.*curl/',
-        'go-http-client'=>'/go-http-client/',
-        'postman'=>'/postmanruntime|postman/',
-        'axios'=>'/axios/'
-    ]; foreach ($patterns as $reason=>$re) {
-        if (preg_match($re,$ua)) {
-            return ['is_bot'=>true,'reason'=>$reason];
-        }
-    } if ($ua===''||!str_contains($ua,'mozilla')) {
-        return ['is_bot'=>true,'reason'=>'non_browser_ua'];
-    } if ($accept!==''&&!str_contains($accept,'text/html')&&!$hasCookie) {
-        return ['is_bot'=>true,'reason'=>'no_cookie_and_non_html_accept'];
-    } return ['is_bot'=>false,'reason'=>''];
+    return '';
 }
 function visitor($username,$rewrite=false) {
     if ($username!='') {
