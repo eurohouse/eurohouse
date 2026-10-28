@@ -42,7 +42,7 @@ function getCurrentWebAddr(string $mode='client',string $output='address',string
         $addr=$isIpv6?('['.$addr.']:'.$port):($addr.':'.$port);
     } return $addr;
 }
-function getBotFromUserAgent(string $userAgent): string {
+function getBotFromUserAgent($userAgent) {
     $ua=$userAgent; if (preg_match('/Googlebot\/([\d.]+)/i',$ua,$m))
         return 'Googlebot '.$m[1];
     if (preg_match('/bingbot\/([\d.]+)/i',$ua,$m))
