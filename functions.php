@@ -200,12 +200,9 @@ function visitor($username,$rewrite=false) {
             $system=getSystemFromUserAgent($userAgent);
             $browser=getBrowserFromUserAgent($userAgent);
 	    $visitors[$remoteAddr]=[
-                'remote_addr'=>$remoteAddr,
-                'server_addr'=>$serverAddr,
-                'remote_sock'=>$remoteSocket,
-                'server_sock'=>$serverSocket,
-                'system'=>$system,'browser'=>$browser,
-		'user_agent'=>$userAgent
+                'socket'=>$remoteSocket,
+                'platform'=>$system,
+		'browser'=>$browser
             ]; if (isset($visitors[0])) { unset($visitors[0]); }
             file_put_contents($username.'_files/visitors.json',
             json_encode($visitors,JSON_UNESCAPED_UNICODE));

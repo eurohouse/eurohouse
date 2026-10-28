@@ -357,15 +357,15 @@ function populateIpStats(request='') {
         let count=Object.keys(ipTab).length;
         if (request!='') {
             for (const ipElem in ipTab) {
-                if (!ipTab[ipElem]['user_agent'].toString().toLowerCase()
+                if (!(ipTab[ipElem]['platform']+' '+ipTab[ipElem]['browser']).toString().toLowerCase()
 		.includes(request.toString().toLowerCase())) {
                     delete ipTab[ipElem];
                 }
 	    }
         } Object.keys(ipTab).forEach(ipElem=>{
             const row=tableBody.insertRow();
-            row.insertCell().textContent=ipElem;
-            row.insertCell().textContent=ipTab[ipElem]['system'];
+            row.insertCell().textContent=ipTab[ipElem]['socket'];
+            row.insertCell().textContent=ipTab[ipElem]['platform'];
 	    row.insertCell().textContent=ipTab[ipElem]['browser'];
         }); const tfoot=document.createElement('tfoot');
         tfoot.id='ipFoot'; const footerRow=tfoot.insertRow();
