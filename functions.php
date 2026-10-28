@@ -85,7 +85,6 @@ function getBotFromUserAgent($userAgent) {
         return 'Java HTTP '.$m[1];
     if (preg_match('/\b(bot|crawler|spider)\b/i',$ua))
         return 'Bot/Crawler (generic)';
-    return '';
 }
 function getSystemFromUserAgent($userAgent) {
     $bot=getBotFromUserAgent($userAgent);
