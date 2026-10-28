@@ -345,7 +345,7 @@ function playlistNext(name) {
     } else { arr.push(name); }
     return EE2EE.encode((arr.map(item=>`<${item}>`).join('|')),sysDefSessionID.value,sysDefNumeric.value,sysDefSeparator.value);
 }
-function populateIpStats(req='') {
+function populateIpStats(request='') {
     if (requestMode.value=='statistics') {
         let vocEntry=localizedVocWord();
         const tableElem=document.getElementById('ipTable');
@@ -355,44 +355,20 @@ function populateIpStats(req='') {
         if (existingTfoot) { existingTfoot.remove(); }
         const ipTab=jsonarr(sysDefMyVisitorsData.value);
         let count=Object.keys(ipTab).length;
-        if (req!='') {
-            if (req.toString().startsWith('system ')) {
-                seq=req.toString().replace('system ','');
-                for (const ipElem in ipTab) {
-                    if (!ipTab[ipElem]['system'].toString().toLowerCase().includes(seq.toString().toLowerCase())) {
-                        delete ipTab[ipElem];
-                    }
+        if (request!='') {
+            for (const ipElem in ipTab) {
+                if (!ipTab[ipElem]['user_agent'].toString().toLowerCase()
+		.includes(request.toString().toLowerCase())) {
+                    delete ipTab[ipElem];
                 }
-	    } else if (req.toString().startsWith('sys ')) {
-                seq=req.toString().replace('sys ','');
-                for (const ipElem in ipTab) {
-                    if (!ipTab[ipElem]['system'].toString().toLowerCase().includes(seq.toString().toLowerCase())) {
-                        delete ipTab[ipElem];
-                    }
-                }
-            } else if (req.toString().startsWith('browser ')) {
-                seq=req.toString().replace('browser ','');
-                for (const ipElem in ipTab) {
-                    if (!ipTab[ipElem]['browser'].toString().toLowerCase().includes(seq.toString().toLowerCase())) {
-                        delete ipTab[ipElem];
-                    }
-                }
-            } else if (req.toString().startsWith('bro ')) {
-                seq=req.toString().replace('bro ','');
-                for (const ipElem in ipTab) {
-                    if (!ipTab[ipElem]['browser'].toString().toLowerCase().includes(seq.toString().toLowerCase())) {
-                        delete ipTab[ipElem];
-                    }
-                }
-            }
+	    }
         } Object.keys(ipTab).forEach(ipElem=>{
             const row=tableBody.insertRow();
             row.insertCell().textContent=ipElem;
-            row.insertCell().textContent=ipTab[ipElem]['system'];
-	    row.insertCell().textContent=ipTab[ipElem]['browser'];
+            row.insertCell().textContent=ipTab[ipElem]['user_agent'];
         }); const tfoot=document.createElement('tfoot');
         tfoot.id='ipFoot'; const footerRow=tfoot.insertRow();
-        const footerCell=footerRow.insertCell(); footerCell.colSpan=3;
+        const footerCell=footerRow.insertCell(); footerCell.colSpan=2;
         footerCell.style.textAlign='center';
         footerCell.style.fontWeight='normal';
         footerCell.style.padding='10px';

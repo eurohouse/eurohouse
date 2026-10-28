@@ -155,7 +155,8 @@ function visitor($username,$rewrite=false) {
                 'server_addr'=>$serverAddr,
                 'remote_sock'=>$remoteSocket,
                 'server_sock'=>$serverSocket,
-                'system'=>$system,'browser'=>$browser
+                'system'=>$system,'browser'=>$browser,
+		'user_agent'=>$userAgent
             ]; if (isset($visitors[0])) { unset($visitors[0]); }
             file_put_contents($username.'_files/visitors.json',
             json_encode($visitors,JSON_UNESCAPED_UNICODE));
