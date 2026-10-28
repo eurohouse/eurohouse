@@ -89,7 +89,7 @@ function getBotFromUserAgent($userAgent) {
 }
 function getSystemFromUserAgent($userAgent) {
     $bot=getBotFromUserAgent($userAgent);
-    if ($bot!==null) { return ''; }
+    if ($bot!==null) { return $bot; }
     if (preg_match('/Windows/i',$userAgent)) {
         if (preg_match('/Windows NT 10.0/i',$userAgent))
             return 'Windows 10/11';
@@ -143,7 +143,6 @@ function getSystemFromUserAgent($userAgent) {
         return 'Android';
     if (preg_match('/Linux/i',$userAgent))
         return 'Linux';
-    return '';
 }
 function getBrowserFromUserAgent($userAgent) {
     $bot=getBotFromUserAgent($userAgent);
@@ -184,7 +183,6 @@ function getBrowserFromUserAgent($userAgent) {
         return 'Internet Explorer '.$version[1];
     if (preg_match('/WebView|wv/i',$userAgent))
         return 'Generic WebView';
-    return '';
 }
 function visitor($username,$rewrite=false) {
     if ($username!='') {
