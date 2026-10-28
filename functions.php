@@ -42,7 +42,54 @@ function getCurrentWebAddr(string $mode='client',string $output='address',string
         $addr=$isIpv6?('['.$addr.']:'.$port):($addr.':'.$port);
     } return $addr;
 }
+function getBotFromUserAgent($userAgent) {
+    $ua=$userAgent; if (preg_match('/Googlebot\/([\d.]+)/i',$ua,$m))
+        return 'Googlebot '.$m[1];
+    if (preg_match('/bingbot\/([\d.]+)/i',$ua,$m))
+        return 'Bingbot '.$m[1];
+    if (preg_match('/YandexBot\/([\d.]+)/i',$ua,$m))
+        return 'YandexBot '.$m[1];
+    if (preg_match('/Slurp\/([\d.]+)/i',$ua,$m))
+        return 'DuckDuckBot '.$m[1];
+    if (preg_match('/DuckDuckBot\/([\d.]+)/i',$ua,$m))
+        return 'DuckDuckBot '.$m[1];
+    if (preg_match('/Baiduspider\/([\d.]+)/i',$ua,$m))
+        return 'Baiduspider '.$m[1];
+    if (preg_match('/Exabot\/([\d.]+)/i',$ua,$m))
+        return 'Exabot '.$m[1];
+    if (preg_match('/facebookexternalhit\/([\d.]+)/i',$ua,$m))
+        return 'Facebook External Hit '.$m[1];
+    if (preg_match('/twitterbot\/([\d.]+)/i',$ua,$m))
+        return 'Twitter Bot '.$m[1];
+    if (preg_match('/linkedinbot\/([\d.]+)/i',$ua,$m))
+        return 'LinkedIn Bot '.$m[1];
+    if (preg_match('/Applebot\/([\d.]+)/i',$ua,$m))
+        return 'Applebot '.$m[1];
+    if (preg_match('/\bcurl\/([\d.]+)/i',$ua,$m))
+        return 'curl '.$m[1];
+    if (preg_match('/\bwget\/([\d.]+)/i',$ua,$m))
+        return 'wget '.$m[1];
+    if (preg_match('/python-requests\/([\d.]+)/i',$ua,$m))
+        return 'python-requests '.$m[1];
+    if (preg_match('/requests\/([\d.]+)/i',$ua,$m))
+        return 'requests '.$m[1];
+    if (preg_match('/go-http-client\/([\d.]+)/i',$ua,$m))
+        return 'go-http-client '.$m[1];
+    if (preg_match('/okhttp\/([\d.]+)/i',$ua,$m))
+        return 'okhttp '.$m[1];
+    if (preg_match('/postmanruntime\/([\d.]+)/i',$ua,$m))
+        return 'Postman Runtime '.$m[1];
+    if (preg_match('/axios\/([\d.]+)/i',$ua,$m))
+        return 'axios '.$m[1];
+    if (preg_match('/java\/([\d.]+)/i',$ua,$m))
+        return 'Java HTTP '.$m[1];
+    if (preg_match('/\b(bot|crawler|spider)\b/i',$ua))
+        return 'Bot/Crawler (generic)';
+    return '';
+}
 function getSystemFromUserAgent($userAgent) {
+    $bot=getBotFromUserAgent($userAgent);
+    if ($bot!==null) { return ''; }
     if (preg_match('/Windows/i',$userAgent)) {
         if (preg_match('/Windows NT 10.0/i',$userAgent))
             return 'Windows 10/11';
@@ -99,6 +146,8 @@ function getSystemFromUserAgent($userAgent) {
     return '';
 }
 function getBrowserFromUserAgent($userAgent) {
+    $bot=getBotFromUserAgent($userAgent);
+    if ($bot!==null) { return $bot; }
     if (preg_match('/TorBrowser\/([\d.]+)/i',$userAgent,$version))
         return 'Tor Browser '.$version[1];
     if (preg_match('/YaBrowser\/([\d.]+)/i',$userAgent,$version))
@@ -150,15 +199,13 @@ function visitor($username,$rewrite=false) {
             $userAgent=$_SERVER['HTTP_USER_AGENT']??'';
             $system=getSystemFromUserAgent($userAgent);
             $browser=getBrowserFromUserAgent($userAgent);
-	    $bot=detectBot($_SERVER); $visitors[$remoteAddr]=[
+	    $visitors[$remoteAddr]=[
                 'remote_addr'=>$remoteAddr,
                 'server_addr'=>$serverAddr,
                 'remote_sock'=>$remoteSocket,
                 'server_sock'=>$serverSocket,
                 'system'=>$system,'browser'=>$browser,
-		'user_agent'=>$userAgent,
-		'is_bot'=>$bot['is_bot'],
-    		'bot_reason'=>$bot['reason']
+		'user_agent'=>$userAgent
             ]; if (isset($visitors[0])) { unset($visitors[0]); }
             file_put_contents($username.'_files/visitors.json',
             json_encode($visitors,JSON_UNESCAPED_UNICODE));
