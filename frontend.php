@@ -366,9 +366,10 @@ function populateIpStats(request='') {
             const row=tableBody.insertRow();
             row.insertCell().textContent=ipElem;
             row.insertCell().textContent=ipTab[ipElem]['user_agent'];
+	    row.insertCell().textContent=ipTab[ipElem]['bot_reason'];
         }); const tfoot=document.createElement('tfoot');
         tfoot.id='ipFoot'; const footerRow=tfoot.insertRow();
-        const footerCell=footerRow.insertCell(); footerCell.colSpan=2;
+        const footerCell=footerRow.insertCell(); footerCell.colSpan=3;
         footerCell.style.textAlign='center';
         footerCell.style.fontWeight='normal';
         footerCell.style.padding='10px';

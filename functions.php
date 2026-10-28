@@ -137,6 +137,36 @@ function getBrowserFromUserAgent($userAgent) {
         return 'Generic WebView';
     return 'Unknown';
 }
+function detectBot(array $server): array {
+    $ua=strtolower($server['HTTP_USER_AGENT']??'');
+    $accept=strtolower($server['HTTP_ACCEPT']??'');
+    $acceptLang=strtolower($server['HTTP_ACCEPT_LANGUAGE']??'');
+    $hasCookie=!empty($_COOKIE);
+    $patterns=[
+        'googlebot'=>'/googlebot|google-structured-data-testing-tool/',
+        'bingbot'=>'/bingbot/',
+        'yandexbot'=>'/yandexbot/',
+        'slurp'=>'/slurp/',
+        'duckduckbot'=>'/duckduckbot/',
+        'twitter'=>'/twitterbot|twitter/',
+        'facebook'=>'/facebookexternalhit/',
+        'curl'=>'/curl\//',
+        'wget'=>'/wget\//',
+        'python-requests'=>'/python.*requests|requests\//',
+        'php-curl'=>'/php.*curl/',
+        'go-http-client'=>'/go-http-client/',
+        'postman'=>'/postmanruntime|postman/',
+        'axios'=>'/axios/'
+    ]; foreach ($patterns as $reason=>$re) {
+        if (preg_match($re,$ua)) {
+            return ['is_bot'=>true,'reason'=>$reason];
+        }
+    } if ($ua===''||!str_contains($ua,'mozilla')) {
+        return ['is_bot'=>true,'reason'=>'non_browser_ua'];
+    } if ($accept!==''&&!str_contains($accept,'text/html')&&!$hasCookie) {
+        return ['is_bot'=>true,'reason'=>'no_cookie_and_non_html_accept'];
+    } return ['is_bot'=>false,'reason'=>''];
+}
 function visitor($username,$rewrite=false) {
     if ($username!='') {
         if (!file_exists($username.'_files')) {
@@ -150,13 +180,15 @@ function visitor($username,$rewrite=false) {
             $userAgent=$_SERVER['HTTP_USER_AGENT']??'';
             $system=getSystemFromUserAgent($userAgent);
             $browser=getBrowserFromUserAgent($userAgent);
-            $visitors[$remoteAddr]=[
+	    $bot=detectBot($_SERVER); $visitors[$remoteAddr]=[
                 'remote_addr'=>$remoteAddr,
                 'server_addr'=>$serverAddr,
                 'remote_sock'=>$remoteSocket,
                 'server_sock'=>$serverSocket,
                 'system'=>$system,'browser'=>$browser,
-		'user_agent'=>$userAgent
+		'user_agent'=>$userAgent,
+		'is_bot'=>$bot['is_bot'],
+    		'bot_reason'=>$bot['reason']
             ]; if (isset($visitors[0])) { unset($visitors[0]); }
             file_put_contents($username.'_files/visitors.json',
             json_encode($visitors,JSON_UNESCAPED_UNICODE));
