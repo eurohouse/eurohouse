@@ -42,9 +42,8 @@ function getCurrentWebAddr(string $mode='client',string $output='address',string
         $addr=$isIpv6?('['.$addr.']:'.$port):($addr.':'.$port);
     } return $addr;
 }
-function getBotFromUserAgent(string $userAgent): ?string {
-    $ua=$userAgent;
-    if (preg_match('/Googlebot\/([\d.]+)/i',$ua,$m))
+function getBotFromUserAgent(string $userAgent): string {
+    $ua=$userAgent; if (preg_match('/Googlebot\/([\d.]+)/i',$ua,$m))
         return 'Googlebot '.$m[1];
     if (preg_match('/bingbot\/([\d.]+)/i',$ua,$m))
         return 'Bingbot '.$m[1];
@@ -86,7 +85,7 @@ function getBotFromUserAgent(string $userAgent): ?string {
         return 'Java HTTP '.$m[1];
     if (preg_match('/\b(bot|crawler|spider)\b/i',$ua))
         return 'Bot/Crawler (generic)';
-    return null;
+    return '';
 }
 function getSystemFromUserAgent($userAgent) {
     $bot=getBotFromUserAgent($userAgent);
