@@ -42,44 +42,103 @@ function getCurrentWebAddr(string $mode='client',string $output='address',string
         $addr=$isIpv6?('['.$addr.']:'.$port):($addr.':'.$port);
     } return $addr;
 }
+function getSystemFromUserAgent($userAgent) {
+    if (preg_match('/Windows/i',$userAgent)) {
+        if (preg_match('/Windows NT 10.0/i',$userAgent))
+            return 'Windows 10/11';
+        if (preg_match('/Windows NT 6.3/i',$userAgent))
+            return 'Windows 8.1';
+        if (preg_match('/Windows NT 6.2/i',$userAgent))
+            return 'Windows 8';
+        if (preg_match('/Windows NT 6.1/i',$userAgent))
+            return 'Windows 7';
+        if (preg_match('/Windows NT 6.0/i',$userAgent))
+            return 'Windows Vista';
+        if (preg_match('/Windows NT 5.1/i',$userAgent))
+            return 'Windows XP';
+        return 'Windows';
+    } if (preg_match('/Xbox/i',$userAgent))
+        return 'Xbox';
+    if (preg_match('/PlayStation/i',$userAgent)) {
+        if (preg_match('/PlayStation 5/i',$userAgent))
+            return 'PlayStation 5';
+        if (preg_match('/PlayStation 4/i',$userAgent))
+            return 'PlayStation 4';
+        return 'PlayStation';
+    } if (preg_match('/Nintendo/i',$userAgent)) {
+        if (preg_match('/Nintendo Switch/i',$userAgent))
+            return 'Nintendo Switch';
+        return 'Nintendo';
+    } if (preg_match('/XROS|RealityOS/i',$userAgent))
+        return 'visionOS';
+    if (preg_match('/PicoVideo|PicoDiscover|PicoVR|PicoNeo/i',$userAgent))
+        return 'Pico OS';
+    if (preg_match('/BlackBerry|BB10|PlayBook/i',$userAgent))
+        return 'BlackBerry';
+    if (preg_match('/Fuchsia/i',$userAgent))
+        return 'Fuchsia';
+    if (preg_match('/AppleTV/i',$userAgent))
+        return 'tvOS';
+    if (preg_match('/AppleWatch/i',$userAgent))
+        return 'watchOS';
+    if (preg_match('/iPad/i',$userAgent))
+        return 'iPadOS';
+    if (preg_match('/iPhone|iPod/i',$userAgent))
+        return 'iOS';
+    if (preg_match('/Mac OS X/i',$userAgent))
+        return 'macOS';
+    if (preg_match('/FreeBSD|OpenBSD|NetBSD|DragonFly/i',$userAgent))
+        return 'BSD';
+    if (preg_match('/Solaris|SunOS|HP-UX|AIX|X11/i',$userAgent)
+    &&!preg_match('/Linux/i',$userAgent))
+        return 'Unix';
+    if (preg_match('/Android/i',$userAgent))
+        return 'Android';
+    if (preg_match('/Linux/i',$userAgent))
+        return 'Linux';
+    return 'Unknown';
+}
+function getBrowserFromUserAgent($userAgent) {
+    if (preg_match('/Edg\/([\d.]+)/i',$userAgent,$version))
+        return 'Edge '.$version[1];
+    if (preg_match('/OPR\/([\d.]+)/i',$userAgent,$version))
+        return 'Opera '.$version[1];
+    if (preg_match('/Chrome\/([\d.]+)/i',$userAgent,$version))
+        return 'Chrome '.$version[1];
+    if (preg_match('/Firefox\/([\d.]+)/i',$userAgent,$version))
+        return 'Firefox '.$version[1];
+    if (preg_match('/Safari\/([\d.]+)/i',$userAgent,$version)
+    &&!preg_match('/Chrome|Edg|OPR/i',$userAgent))
+        return 'Safari '.$version[1];
+    if (preg_match('/MSIE ([\d.]+)/i',$userAgent,$version))
+        return 'Internet Explorer '.$version[1];
+    return 'Unknown';
+}
 function visitor($username,$rewrite=false) {
     if ($username!='') {
         if (!file_exists($username.'_files')) {
             mkdir($username.'_files'); chmod($username.'_files',0777);
-        } $visitors=fileopen($username.'_files/visitors.json','{}','create');
+        } $visitors = fileopen($username.'_files/visitors.json','{}','create');
         if ($rewrite) {
             $remoteAddr=getCurrentWebAddr('client','address','any');
             $serverAddr=getCurrentWebAddr('server','address','any');
             $remoteSocket=getCurrentWebAddr('client','socket','any');
             $serverSocket=getCurrentWebAddr('server','socket','any');
-            $userAgent=$_SERVER['HTTP_USER_AGENT']??''; $system='Unknown';
-            if (preg_match('/Windows NT 10.0/i',$userAgent)) $system='Windows 10';
-            elseif (preg_match('/Windows NT 6.3/i',$userAgent)) $system='Windows 8.1';
-            elseif (preg_match('/Windows NT 6.2/i',$userAgent)) $system='Windows 8';
-            elseif (preg_match('/Windows NT 6.1/i',$userAgent)) $system='Windows 7';
-            elseif (preg_match('/Windows NT 6.0/i',$userAgent)) $system='Windows Vista';
-            elseif (preg_match('/Windows NT 5.1/i',$userAgent)) $system='Windows XP';
-            elseif (preg_match('/Mac OS X/i',$userAgent)) $system='macOS';
-            elseif (preg_match('/Linux/i',$userAgent)&&!preg_match('/Android/i',$userAgent)) $system='Linux';
-            elseif (preg_match('/Android/i',$userAgent)) $system='Android';
-            elseif (preg_match('/iPhone|iPad|iPod/i',$userAgent)) $system='iOS'; $browser='Unknown';
-            if (preg_match('/Edg\/([\d.]+)/i',$userAgent,$version)) $browser='Edge '.$version[1];
-            elseif (preg_match('/Chrome\/([\d.]+)/i',$userAgent,$version)) $browser='Chrome '.$version[1];
-            elseif (preg_match('/Firefox\/([\d.]+)/i',$userAgent,$version)) $browser='Firefox '.$version[1];
-            elseif (preg_match('/Safari\/([\d.]+)/i',$userAgent)&&!preg_match('/Chrome|Edg/i',$userAgent)) $browser='Safari '.$version[1];
-            elseif (preg_match('/OPR\/([\d.]+)/i',$userAgent,$version)) $browser='Opera '.$version[1];
-            elseif (preg_match('/MSIE ([\d.]+)/i',$userAgent,$version)) $browser='Internet Explorer '.$version[1];
+            $userAgent=$_SERVER['HTTP_USER_AGENT']??'';
+            $system=getSystemFromUserAgent($userAgent);
+            $browser=getBrowserFromUserAgent($userAgent);
             $visitors[$remoteAddr]=[
-                'remote_addr'=>$remoteAddr,'server_addr'=>$serverAddr,
-                'remote_sock'=>$remoteSocket,'server_sock'=>$serverSocket,
+                'remote_addr'=>$remoteAddr,
+                'server_addr'=>$serverAddr,
+                'remote_sock'=>$remoteSocket,
+                'server_sock'=>$serverSocket,
                 'system'=>$system,'browser'=>$browser
             ]; if (isset($visitors[0])) { unset($visitors[0]); }
-            file_put_contents($username.'_files/visitors.json',json_encode($visitors,JSON_UNESCAPED_UNICODE));
+            file_put_contents($username.'_files/visitors.json',
+            json_encode($visitors,JSON_UNESCAPED_UNICODE));
             chmod($username.'_files/visitors.json',0777);
         } return $visitors;
-    } else {
-        return null;
-    }
+    } else { return null; }
 }
 function selectedLines($name,array $opt=[]): array {
     $arr=preg_split("/\r\n|\n|\r/",(file_get_contents($name)));
