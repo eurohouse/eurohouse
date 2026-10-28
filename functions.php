@@ -111,7 +111,7 @@ function getBrowserFromUserAgent($userAgent) {
         return 'Vivaldi '.$version[1];
     if (preg_match('/Brave\/([\d.]+)/i',$userAgent,$version)
     ||preg_match('/Brave/i',$userAgent)) {
-        return 'Brave'.((isset($version[1])?' '.$version[1]):'');
+        return 'Brave '.(isset($version[1]))?(' '.$version[1]):'';
     } if (preg_match('/SamsungBrowser\/([\d.]+)/i',$userAgent,$version))
         return 'Samsung Internet '.$version[1];
     if (preg_match('/UCBrowser\/([\d.]+)/i',$userAgent,$version))
