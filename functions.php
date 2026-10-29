@@ -90,101 +90,65 @@ function getBotFromUserAgent($userAgent) {
         return 'Bot/Crawler (generic)';
 }
 function getSystemFromUserAgent($userAgent) {
-    $bot=getBotFromUserAgent($userAgent);
-    if ($bot!==null) { return $bot; }
+    $ua=$userAgent; $bot=getBotFromUserAgent($ua);
+    if ($bot!==null) return $bot;
     if (preg_match('/Windows/i',$userAgent)) {
-        if (preg_match('/Windows NT 10.0/i',$userAgent))
-            return 'Windows 10/11';
-        if (preg_match('/Windows NT 6.3/i',$userAgent))
-            return 'Windows 8.1';
-        if (preg_match('/Windows NT 6.2/i',$userAgent))
-            return 'Windows 8';
-        if (preg_match('/Windows NT 6.1/i',$userAgent))
-            return 'Windows 7';
-        if (preg_match('/Windows NT 6.0/i',$userAgent))
-            return 'Windows Vista';
-        if (preg_match('/Windows NT 5.1/i',$userAgent))
-            return 'Windows XP';
+        if (preg_match('/Windows NT 10\.0/i',$ua))
+	    return 'Windows 10/11';
+        if (preg_match('/Windows NT 6\.3/i',$ua))
+	    return 'Windows 8.1';
+        if (preg_match('/Windows NT 6\.2/i',$ua))
+	    return 'Windows 8';
+        if (preg_match('/Windows NT 6\.1/i',$ua))
+	    return 'Windows 7';
+        if (preg_match('/Windows NT 6\.0/i',$ua))
+	    return 'Windows Vista';
+        if (preg_match('/Windows NT 5\.1/i',$ua))
+	    return 'Windows XP';
         return 'Windows';
-    } if (preg_match('/Xbox/i',$userAgent))
-        return 'Xbox';
-    if (preg_match('/PlayStation/i',$userAgent)) {
-        if (preg_match('/PlayStation 5/i',$userAgent))
-            return 'PlayStation 5';
-        if (preg_match('/PlayStation 4/i',$userAgent))
-            return 'PlayStation 4';
-        return 'PlayStation';
-    } if (preg_match('/Nintendo/i',$userAgent)) {
-        if (preg_match('/Nintendo Switch/i',$userAgent))
-            return 'Nintendo Switch';
-        return 'Nintendo';
-    } if (preg_match('/XROS|RealityOS/i',$userAgent))
-        return 'visionOS';
-    if (preg_match('/PicoVideo|PicoDiscover|PicoVR|PicoNeo/i',$userAgent))
-        return 'Pico OS';
-    if (preg_match('/BlackBerry|BB10|PlayBook/i',$userAgent))
-        return 'BlackBerry';
-    if (preg_match('/Fuchsia/i',$userAgent))
-        return 'Fuchsia';
-    if (preg_match('/AppleTV/i',$userAgent))
-        return 'tvOS';
-    if (preg_match('/AppleWatch/i',$userAgent))
-        return 'watchOS';
-    if (preg_match('/iPad/i',$userAgent))
-        return 'iPadOS';
-    if (preg_match('/iPhone|iPod/i',$userAgent))
-        return 'iOS';
-    if (preg_match('/Mac OS X/i',$userAgent))
-        return 'macOS';
-    if (preg_match('/FreeBSD|OpenBSD|NetBSD|DragonFly/i',$userAgent))
-        return 'BSD';
-    if (preg_match('/Solaris|SunOS|HP-UX|AIX|X11/i',$userAgent)
-    &&!preg_match('/Linux/i',$userAgent))
+    }
+    if (preg_match('/Android/i', $ua))
+	return 'Android';
+    if (preg_match('/iPad/i', $ua))
+	return 'iPadOS';
+    if (preg_match('/iPhone|iPod/i', $ua))
+	return 'iOS';
+    if (preg_match('/Mac OS X/i', $ua))
+	return 'macOS';
+    if (preg_match('/Linux/i', $ua))
+	return 'Linux';
+    if (preg_match('/FreeBSD|OpenBSD|NetBSD|DragonFly/i',$ua))
+	return 'BSD';
+    if (preg_match('/Solaris|SunOS|HP-UX|AIX|X11/i',$ua)
+    &&!preg_match('/Linux/i',$ua))
         return 'Unix';
-    if (preg_match('/Android/i',$userAgent))
-        return 'Android';
-    if (preg_match('/Linux/i',$userAgent))
-        return 'Linux';
 }
 function getBrowserFromUserAgent($userAgent) {
-    $bot=getBotFromUserAgent($userAgent);
-    if ($bot!==null) { return $bot; }
-    if (preg_match('/TorBrowser\/([\d.]+)/i',$userAgent,$version))
-        return 'Tor Browser '.$version[1];
-    if (preg_match('/YaBrowser\/([\d.]+)/i',$userAgent,$version))
-        return 'Yandex Browser '.$version[1];
-    if (preg_match('/Edg\/([\d.]+)/i',$userAgent,$version))
-        return 'Edge '.$version[1];
-    if (preg_match('/OPR\/([\d.]+)/i',$userAgent,$version))
-        return 'Opera '.$version[1];
-    if (preg_match('/Vivaldi\/([\d.]+)/i',$userAgent,$version))
-        return 'Vivaldi '.$version[1];
-    if (preg_match('/Brave\/([\d.]+)/i',$userAgent,$version)
-    ||preg_match('/Brave/i',$userAgent)) {
-        return 'Brave '.(isset($version[1]))?(' '.$version[1]):'';
-    } if (preg_match('/SamsungBrowser\/([\d.]+)/i',$userAgent,$version))
-        return 'Samsung Internet '.$version[1];
-    if (preg_match('/UCBrowser\/([\d.]+)/i',$userAgent,$version))
-        return 'UC Browser '.$version[1];
-    if (preg_match('/MicroMessenger\/([\d.]+)/i',$userAgent,$version))
-        return 'WeChat '.$version[1];
-    if (preg_match('/CriOS\/([\d.]+)/i',$userAgent,$version))
-        return 'Chrome (iOS) ' . $version[1];
-    if (preg_match('/FxiOS\/([\d.]+)/i',$userAgent,$version))
-        return 'Firefox (iOS) '.$version[1];
-    if (preg_match('/Chrome\/([\d.]+)/i',$userAgent,$version))
-        return 'Chrome '.$version[1];
-    if (preg_match('/Firefox\/([\d.]+)/i',$userAgent,$version))
-        return 'Firefox '.$version[1];
-    if (preg_match('/Safari\/([\d.]+)/i',$userAgent,$version)
-    &&!preg_match('/Chrome|Edg|OPR|YaBrowser|Vivaldi/i',$userAgent)) {
-        return 'Safari '.$version[1];
-    } if (preg_match('/MSIE ([\d.]+)/i',$userAgent,$version))
-        return 'Internet Explorer '.$version[1];
-    if (preg_match('/Trident\/.*rv:([\d.]+)/i',$userAgent,$version))
-        return 'Internet Explorer '.$version[1];
-    if (preg_match('/WebView|wv/i',$userAgent))
-        return 'Generic WebView';
+    $ua=$userAgent; $bot=getBotFromUserAgent($ua);
+    if ($bot!==null) return $bot;
+    if (preg_match('/Edg\/([\d.]+)/i',$ua,$m))
+	return 'Edge '.$m[1];
+    if (preg_match('/OPR\/([\d.]+)/i',$ua,$m))
+	return 'Opera '.$m[1];
+    if (preg_match('/Firefox\/([\d.]+)/i',$ua,$m))
+	return 'Firefox '.$m[1];
+    if (preg_match('/Chrome\/([\d.]+)/i',$ua, $m))
+	return 'Chrome '.$m[1];
+    if (preg_match('/Version\/([\d.]+)/i',$ua,$m)
+        && preg_match('/Safari/i',$userAgent)
+        && !preg_match('/Chrome|Edg|OPR/i',$ua)) {
+        return 'Safari '.$m[1];
+    }
+    if (preg_match('/Safari/i', $ua)
+    &&!preg_match('/Chrome|Edg|OPR/i',$ua)) {
+        return 'Safari';
+    }
+    if (preg_match('/MSIE ([\d.]+)/i',$ua,$m))
+	return 'Internet Explorer '.$m[1];
+    if (preg_match('/Trident\/.*rv:([\d.]+)/i',$ua,$m))
+	return 'Internet Explorer '.$m[1];
+    if (preg_match('/WebView|wv/i',$ua))
+	return 'Generic WebView';
 }
 function visitor($username,$rewrite=false) {
     if ($username!='') {
