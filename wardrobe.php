@@ -268,7 +268,7 @@ table, tr, td, th {
     background-color: var(--fillcolor);
     color: var(--filltextcolor);
     font-family: "euro"; font-size: var(--backsize);
-    text-shadow: var(--text-box-shadow);
+    text-shadow: var(--text-shadow);
 }
 .wrapper {
     color: var(--backtextcolor);
