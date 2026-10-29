@@ -122,7 +122,7 @@ function getSystemFromUserAgent($userAgent) {
     } if (preg_match('/Solaris|SunOS|HP-UX|AIX|X11/i',$ua)
     &&!preg_match('/Linux/i',$ua)) {
         $result='Unix';
-    } $result='Unknown'; return $result;
+    } return $result;
 }
 function getBrowserFromUserAgent($userAgent) {
     $ua=$userAgent; $bot=getBotFromUserAgent($ua);
@@ -148,7 +148,7 @@ function getBrowserFromUserAgent($userAgent) {
 	$result='Internet Explorer '.$m[1];
     } if (preg_match('/WebView|wv/i',$ua)) {
 	$result='Generic WebView';
-    } $result='Unknown'; return $result;
+    } return $result;
 }
 function visitor($username,$rewrite=false) {
     if ($username!='') {
