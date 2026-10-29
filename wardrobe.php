@@ -13,9 +13,11 @@
     --backcolor: <?=$session['back_color'];?>;
     --forecolor: <?=$session['fore_color'];?>;
     --inputcolor: <?=$session['input_color'];?>;
+    --fillcolor: <?=$session['fill_color'];?>;
     --backtextcolor: <?=$session['back_text_color'];?>;
     --foretextcolor: <?=$session['fore_text_color'];?>;
     --inputtextcolor: <?=$session['input_text_color'];?>;
+    --filltextcolor: <?=$session['fill_text_color'];?>;
     --blankcolor: <?=$session['blank_color'];?>;
     --blanktextcolor: <?=$session['blank_text_color'];?>;
     --arcforecolor: <?=$session['arc_fore_color'];?>;
@@ -31,6 +33,7 @@
     --box-shadow: <?=$session['box_shadow'];?>;
     --text-box-shadow: <?=$session['text_box_shadow'];?>;
     --text-shadow: <?=$session['text_shadow'];?>;
+    --fill-text-shadow: <?=$session['fill_text_shadow'];?>;
     --position: <?=$session['position'];?>;
     --gradient-fore: linear-gradient(var(--grad-line), var(--forecolor) 0%, var(--arcforecolor) 100%);
     --gradient-input: linear-gradient(var(--grad-line), var(--inputcolor) 0%, var(--arcinputcolor) 100%);
@@ -263,10 +266,10 @@ table, tr, td, th {
     text-shadow: var(--text-shadow);
 }
 .current-text-item {
-    background-color: var(--backtextcolor);
-    color: var(--backcolor);
+    background-color: var(--fillcolor);
+    color: var(--filltextcolor);
     font-family: "euro"; font-size: var(--backsize);
-    text-shadow: var(--text-shadow);
+    text-shadow: var(--fill-text-shadow);
 }
 .wrapper {
     color: var(--backtextcolor);

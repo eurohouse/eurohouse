@@ -213,9 +213,11 @@ function visual_effects() {
     document.querySelector(':root').style.setProperty('--backcolor',sysDefBackColor.value);
     document.querySelector(':root').style.setProperty('--forecolor',sysDefForeColor.value);
     document.querySelector(':root').style.setProperty('--inputcolor',sysDefInputColor.value);
+    document.querySelector(':root').style.setProperty('--fillcolor',sysDefFillColor.value);
     document.querySelector(':root').style.setProperty('--backtextcolor',sysDefBackTextColor.value);
     document.querySelector(':root').style.setProperty('--foretextcolor',sysDefForeTextColor.value);
     document.querySelector(':root').style.setProperty('--inputtextcolor',sysDefInputTextColor.value);
+    document.querySelector(':root').style.setProperty('--filltextcolor',sysDefFillTextColor.value);
     document.querySelector(':root').style.setProperty('--blankcolor',sysDefBlankColor.value);
     document.querySelector(':root').style.setProperty('--blanktextcolor',sysDefBlankTextColor.value);
     document.querySelector(':root').style.setProperty('--arcforecolor',sysDefArcForeColor.value);
@@ -226,6 +228,7 @@ function visual_effects() {
     document.querySelector(':root').style.setProperty('--box-shadow',sysDefBoxShadow.value);
     document.querySelector(':root').style.setProperty('--text-box-shadow',sysDefTextBoxShadow.value);
     document.querySelector(':root').style.setProperty('--text-shadow',sysDefTextShadow.value);
+    document.querySelector(':root').style.setProperty('--fill-text-shadow',sysDefFillTextShadow.value);
     document.querySelector(':root').style.setProperty('--gradient-fore','linear-gradient('+sysDefGradientFore.value+'deg, '+sysDefForeColor.value+' 0%, '+sysDefArcForeColor.value+' 100%)');
     document.querySelector(':root').style.setProperty('--gradient-input','linear-gradient('+sysDefGradientInput.value+'deg, '+sysDefInputColor.value+' 0%, '+sysDefArcInputColor.value+' 100%)');
     $('.power').css('background','linear-gradient('+sysDefGradientButton.value+'deg, '+sysDefForeColor.value+' 0%, '+sysDefArcForeColor.value+' 100%)');
