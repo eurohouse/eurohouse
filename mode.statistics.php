@@ -3,7 +3,7 @@
 <div class='customPanel' style="width:100%;height:15%;left:0px;top:0px;">
     <p align='center' class='block'>
     <input type="text" id="promptStats" style="width:62%;" placeholder="<?=term("Search certain models or objects by keywords",$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) {
-        populateIpStats(sysDefCurrentIpSocket.value,this.value);
+        populateIpStats(sysDefCurrentIPSocket.value,this.value);
     } else if (event.keyCode==27) {
         this.value='';
     } else if (event.keyCode==8) {
@@ -11,7 +11,7 @@
     } else if (event.keyCode==46) {
         handleInput(this.value);
     }" oninput="handleInput(this.value,true);">
-    <input type="image" class="power" id="buttonSearch" onmouseover="soundButton();" src="<?=$prefix[3].'search.webp';?>" onclick="populateIpStats(sysDefCurrentIpSocket.value,promptStats.value);">
+    <input type="image" class="power" id="buttonSearch" onmouseover="soundButton();" src="<?=$prefix[3].'search.webp';?>" onclick="populateIpStats(sysDefCurrentIPSocket.value,promptStats.value);">
     <input type="image" class="power" id="buttonBackspace" onmouseover="soundButton();" src="<?=$prefix[3].'backspace.webp';?>" onclick="promptStats.value='';">
     </p>
 </div>
