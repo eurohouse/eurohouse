@@ -48,45 +48,45 @@ function getCurrentWebAddr($mode='socket',$output='address',$proto='any') {
 function getBotFromUserAgent($userAgent) {
     $ua=$userAgent; if (preg_match('/Googlebot\/([\d.]+)/i',$ua,$m)) {
         $result='Googlebot '.$m[1];
-    } if (preg_match('/bingbot\/([\d.]+)/i',$ua,$m)) {
+    } elseif (preg_match('/bingbot\/([\d.]+)/i',$ua,$m)) {
         $result='Bingbot '.$m[1];
-    } if (preg_match('/YandexBot\/([\d.]+)/i',$ua,$m)) {
+    } elseif (preg_match('/YandexBot\/([\d.]+)/i',$ua,$m)) {
         $result='YandexBot '.$m[1];
-    } if (preg_match('/Slurp\/([\d.]+)/i',$ua,$m)) {
+    } elseif (preg_match('/Slurp\/([\d.]+)/i',$ua,$m)) {
         $result='DuckDuckBot '.$m[1];
-    } if (preg_match('/DuckDuckBot\/([\d.]+)/i',$ua,$m)) {
+    } elseif (preg_match('/DuckDuckBot\/([\d.]+)/i',$ua,$m)) {
         $result='DuckDuckBot '.$m[1];
-    } if (preg_match('/Baiduspider\/([\d.]+)/i',$ua,$m)) {
+    } elseif (preg_match('/Baiduspider\/([\d.]+)/i',$ua,$m)) {
         $result='Baiduspider '.$m[1];
-    } if (preg_match('/Exabot\/([\d.]+)/i',$ua,$m)) {
+    } elseif (preg_match('/Exabot\/([\d.]+)/i',$ua,$m)) {
         $result='Exabot '.$m[1];
-    } if (preg_match('/facebookexternalhit\/([\d.]+)/i',$ua,$m)) {
+    } elseif (preg_match('/facebookexternalhit\/([\d.]+)/i',$ua,$m)) {
         $result='Facebook External Hit '.$m[1];
-    } if (preg_match('/twitterbot\/([\d.]+)/i',$ua,$m)) {
+    } elseif (preg_match('/twitterbot\/([\d.]+)/i',$ua,$m)) {
         $result='Twitter Bot '.$m[1];
-    } if (preg_match('/linkedinbot\/([\d.]+)/i',$ua,$m)) {
+    } elseif (preg_match('/linkedinbot\/([\d.]+)/i',$ua,$m)) {
         $result='LinkedIn Bot '.$m[1];
-    } if (preg_match('/Applebot\/([\d.]+)/i',$ua,$m)) {
+    } elseif (preg_match('/Applebot\/([\d.]+)/i',$ua,$m)) {
         $result='Applebot '.$m[1];
-    } if (preg_match('/\bcurl\/([\d.]+)/i',$ua,$m)) {
+    } elseif (preg_match('/\bcurl\/([\d.]+)/i',$ua,$m)) {
         $result='curl '.$m[1];
-    } if (preg_match('/\bwget\/([\d.]+)/i',$ua,$m)) {
+    } elseif (preg_match('/\bwget\/([\d.]+)/i',$ua,$m)) {
         $result='wget '.$m[1];
-    } if (preg_match('/python-requests\/([\d.]+)/i',$ua,$m)) {
+    } elseif (preg_match('/python-requests\/([\d.]+)/i',$ua,$m)) {
         $result='python-requests '.$m[1];
-    } if (preg_match('/requests\/([\d.]+)/i',$ua,$m)) {
+    } elseif (preg_match('/requests\/([\d.]+)/i',$ua,$m)) {
         $result= 'requests '.$m[1];
-    } if (preg_match('/go-http-client\/([\d.]+)/i',$ua,$m)) {
+    } elseif (preg_match('/go-http-client\/([\d.]+)/i',$ua,$m)) {
         $result='go-http-client '.$m[1];
-    } if (preg_match('/okhttp\/([\d.]+)/i',$ua,$m)) {
+    } elseif (preg_match('/okhttp\/([\d.]+)/i',$ua,$m)) {
         $result='okhttp '.$m[1];
-    } if (preg_match('/postmanruntime\/([\d.]+)/i',$ua,$m)) {
+    } elseif (preg_match('/postmanruntime\/([\d.]+)/i',$ua,$m)) {
         $result='Postman Runtime '.$m[1];
-    } if (preg_match('/axios\/([\d.]+)/i',$ua,$m)) {
+    } elseif (preg_match('/axios\/([\d.]+)/i',$ua,$m)) {
         $result='axios '.$m[1];
-    } if (preg_match('/java\/([\d.]+)/i',$ua,$m)) {
+    } elseif (preg_match('/java\/([\d.]+)/i',$ua,$m)) {
         $result='Java HTTP '.$m[1];
-    } if (preg_match('/\b(bot|crawler|spider)\b/i',$ua)) {
+    } elseif (preg_match('/\b(bot|crawler|spider)\b/i',$ua)) {
         $result='Bot/Crawler (generic)';
     } return $result;
 }
@@ -96,59 +96,57 @@ function getSystemFromUserAgent($userAgent) {
     if (preg_match('/Windows/i',$userAgent)) {
         if (preg_match('/Windows NT 10\.0/i',$ua)) {
 	    $result='Windows 10/11';
-        } if (preg_match('/Windows NT 6\.3/i',$ua)) {
+        } elseif (preg_match('/Windows NT 6\.3/i',$ua)) {
 	    $result='Windows 8.1';
-        } if (preg_match('/Windows NT 6\.2/i',$ua)) {
+        } elseif (preg_match('/Windows NT 6\.2/i',$ua)) {
 	    $result='Windows 8';
-        } if (preg_match('/Windows NT 6\.1/i',$ua)) {
+        } elseif (preg_match('/Windows NT 6\.1/i',$ua)) {
 	    $result='Windows 7';
-        } if (preg_match('/Windows NT 6\.0/i',$ua)) {
+        } elseif (preg_match('/Windows NT 6\.0/i',$ua)) {
 	    $result='Windows Vista';
-        } if (preg_match('/Windows NT 5\.1/i',$ua)) {
+        } elseif (preg_match('/Windows NT 5\.1/i',$ua)) {
 	    $result='Windows XP';
-	} $result='Windows';
-    } if (preg_match('/Android/i',$ua)) {
+	} else { $result='Windows'; }
+    } elseif (preg_match('/Android/i',$ua)) {
 	$result='Android';
-    } if (preg_match('/iPad/i',$ua)) {
+    } elseif (preg_match('/iPad/i',$ua)) {
 	$result='iPadOS';
-    } if (preg_match('/iPhone|iPod/i',$ua)) {
+    } elseif (preg_match('/iPhone|iPod/i',$ua)) {
 	$result='iOS';
-    } if (preg_match('/Mac OS X/i',$ua)) {
+    } elseif (preg_match('/Mac OS X/i',$ua)) {
 	$result='macOS';
-    } if (preg_match('/Linux/i',$ua)) {
+    } elseif (preg_match('/Linux/i',$ua)) {
 	$result='Linux';
-    } if (preg_match('/FreeBSD|OpenBSD|NetBSD|DragonFly/i',$ua)) {
+    } elseif (preg_match('/FreeBSD|OpenBSD|NetBSD|DragonFly/i',$ua)) {
 	$result='BSD';
-    } if (preg_match('/Solaris|SunOS|HP-UX|AIX|X11/i',$ua)
+    } elseif (preg_match('/Solaris|SunOS|HP-UX|AIX|X11/i',$ua)
     &&!preg_match('/Linux/i',$ua)) {
         $result='Unix';
-    } return $result;
+    } else { $result='Unknown'; } return $result;
 }
 function getBrowserFromUserAgent($userAgent) {
     $ua=$userAgent; $bot=getBotFromUserAgent($ua);
     if ($bot!==null) { $result=$bot; }
     if (preg_match('/Edg\/([\d.]+)/i',$ua,$m)) {
 	$result='Edge '.$m[1];
-    } if (preg_match('/OPR\/([\d.]+)/i',$ua,$m)) {
+    } elseif (preg_match('/OPR\/([\d.]+)/i',$ua,$m)) {
 	$result='Opera '.$m[1];
-    } if (preg_match('/Firefox\/([\d.]+)/i',$ua,$m)) {
+    } elseif (preg_match('/Firefox\/([\d.]+)/i',$ua,$m)) {
 	$result='Firefox '.$m[1];
-    } if (preg_match('/Chrome\/([\d.]+)/i',$ua, $m)) {
+    } elseif (preg_match('/Chrome\/([\d.]+)/i',$ua, $m)) {
 	$result='Chrome '.$m[1];
-    } if (preg_match('/Version\/([\d.]+)/i',$ua,$m)
-        && preg_match('/Safari/i',$userAgent)
-        && !preg_match('/Chrome|Edg|OPR/i',$ua)) {
+    } elseif (preg_match('/Version\/([\d.]+)/i',$ua,$m)
+    &&preg_match('/Safari/i',$userAgent)&&!preg_match('/Chrome|Edg|OPR/i',$ua)) {
         $result='Safari '.$m[1];
-    } if (preg_match('/Safari/i', $ua)
-    &&!preg_match('/Chrome|Edg|OPR/i',$ua)) {
+    } elseif (preg_match('/Safari/i', $ua)&&!preg_match('/Chrome|Edg|OPR/i',$ua)) {
         $result='Safari';
-    } if (preg_match('/MSIE ([\d.]+)/i',$ua,$m)) {
+    } elseif (preg_match('/MSIE ([\d.]+)/i',$ua,$m)) {
 	$result='Internet Explorer '.$m[1];
-    } if (preg_match('/Trident\/.*rv:([\d.]+)/i',$ua,$m)) {
+    } elseif (preg_match('/Trident\/.*rv:([\d.]+)/i',$ua,$m)) {
 	$result='Internet Explorer '.$m[1];
-    } if (preg_match('/WebView|wv/i',$ua)) {
+    } elseif (preg_match('/WebView|wv/i',$ua)) {
 	$result='Generic WebView';
-    } return $result;
+    } else { $result='Unknown'; } return $result;
 }
 function visitor($username,$rewrite=false) {
     if ($username!='') {
