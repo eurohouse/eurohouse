@@ -345,7 +345,7 @@ function playlistNext(name) {
     } else { arr.push(name); }
     return EE2EE.encode((arr.map(item=>`<${item}>`).join('|')),sysDefSessionID.value,sysDefNumeric.value,sysDefSeparator.value);
 }
-function populateIpStats(request='') {
+function populateIpStats(requestIp='::1',request='') {
     if (requestMode.value=='statistics') {
         let vocEntry=localizedVocWord();
         const tableElem=document.getElementById('ipTable');
@@ -364,8 +364,11 @@ function populateIpStats(request='') {
 	    }
         } Object.keys(ipTab).forEach(ipElem=>{
             const row=tableBody.insertRow();
-            row.insertCell().textContent=ipTab[ipElem]['socket'];
-            row.insertCell().textContent=ipTab[ipElem]['platform'];
+	    const socketCell=row.insertCell();
+            socketCell.textContent=ipTab[ipElem]['socket'];
+	    if (requestIp&&ipTab[ipElem]['socket']?.toString()===requestIp.toString()) {
+                socketCell.style.textDecoration='underline overline';
+            } row.insertCell().textContent=ipTab[ipElem]['platform'];
 	    row.insertCell().textContent=ipTab[ipElem]['browser'];
         }); const tfoot=document.createElement('tfoot');
         tfoot.id='ipFoot'; const footerRow=tfoot.insertRow();

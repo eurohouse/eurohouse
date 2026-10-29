@@ -56,6 +56,8 @@
         <?php } ?>
         <input type='hidden' id='sysDefPangram' value="<?=$session['pangram_'.(($settings['pangram'][$session['units']])?$settings['pangram'][$session['units']]:$settings['pangram']['default'])];?>">
         <input type='hidden' id='sysDefLocalizedPageName' value="<?=$curModeLangName;?>">
+	<input type='hidden' id='sysDefCurrentIPAddress' value="<?=getCurrentWebAddr('socket','address');?>">
+	<input type='hidden' id='sysDefCurrentIPSocket' value="<?=getCurrentWebAddr('socket','socket');?>">
         <input type='hidden' id='sysDefEffects' value="">
         <input type='hidden' id='sysDefBackload' value="<?=$backloadString;?>">
         <input type='hidden' id='sysDefPrefData' value="<?=valstr($prefix,';',':');?>">

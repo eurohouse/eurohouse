@@ -18,7 +18,7 @@ window.onload=function() {
     } else if (requestMode.value=='album_tracklist') {
         playlistCollectionHTML();
     } else if (requestMode.value=='statistics') {
-        populateIpStats();
+        populateIpStats(sysDefCurrentIpSocket.value);
     }
 };
 $(document).ready(function() {
