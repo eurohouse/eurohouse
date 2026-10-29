@@ -228,7 +228,6 @@ function visual_effects() {
     document.querySelector(':root').style.setProperty('--box-shadow',sysDefBoxShadow.value);
     document.querySelector(':root').style.setProperty('--text-box-shadow',sysDefTextBoxShadow.value);
     document.querySelector(':root').style.setProperty('--text-shadow',sysDefTextShadow.value);
-    document.querySelector(':root').style.setProperty('--fill-text-shadow',sysDefFillTextShadow.value);
     document.querySelector(':root').style.setProperty('--gradient-fore','linear-gradient('+sysDefGradientFore.value+'deg, '+sysDefForeColor.value+' 0%, '+sysDefArcForeColor.value+' 100%)');
     document.querySelector(':root').style.setProperty('--gradient-input','linear-gradient('+sysDefGradientInput.value+'deg, '+sysDefInputColor.value+' 0%, '+sysDefArcInputColor.value+' 100%)');
     $('.power').css('background','linear-gradient('+sysDefGradientButton.value+'deg, '+sysDefForeColor.value+' 0%, '+sysDefArcForeColor.value+' 100%)');

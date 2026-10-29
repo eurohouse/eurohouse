@@ -33,7 +33,6 @@
     --box-shadow: <?=$session['box_shadow'];?>;
     --text-box-shadow: <?=$session['text_box_shadow'];?>;
     --text-shadow: <?=$session['text_shadow'];?>;
-    --fill-text-shadow: <?=$session['fill_text_shadow'];?>;
     --position: <?=$session['position'];?>;
     --gradient-fore: linear-gradient(var(--grad-line), var(--forecolor) 0%, var(--arcforecolor) 100%);
     --gradient-input: linear-gradient(var(--grad-line), var(--inputcolor) 0%, var(--arcinputcolor) 100%);
@@ -269,7 +268,7 @@ table, tr, td, th {
     background-color: var(--fillcolor);
     color: var(--filltextcolor);
     font-family: "euro"; font-size: var(--backsize);
-    text-shadow: var(--fill-text-shadow);
+    text-shadow: var(--text-box-shadow);
 }
 .wrapper {
     color: var(--backtextcolor);
