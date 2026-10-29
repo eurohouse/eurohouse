@@ -345,7 +345,7 @@ function playlistNext(name) {
     } else { arr.push(name); }
     return EE2EE.encode((arr.map(item=>`<${item}>`).join('|')),sysDefSessionID.value,sysDefNumeric.value,sysDefSeparator.value);
 }
-function populateIpStats(requestIp='::1',request='') {
+function populateIpStats(requestIp='',request='') {
     if (requestMode.value=='statistics') {
         let vocEntry=localizedVocWord();
         const tableElem=document.getElementById('ipTable');
@@ -367,7 +367,7 @@ function populateIpStats(requestIp='::1',request='') {
 	    const socketCell=row.insertCell();
             socketCell.textContent=ipTab[ipElem]['socket'];
 	    if (requestIp&&ipTab[ipElem]['socket']?.toString()===requestIp.toString()) {
-                socketCell.classList.add('current-text-item');
+                socketCell.style.textDecoration='underline';
             } row.insertCell().textContent=ipTab[ipElem]['platform'];
 	    row.insertCell().textContent=ipTab[ipElem]['browser'];
         }); const tfoot=document.createElement('tfoot');

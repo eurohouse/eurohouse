@@ -216,11 +216,9 @@ function visual_effects() {
     document.querySelector(':root').style.setProperty('--backcolor',sysDefBackColor.value);
     document.querySelector(':root').style.setProperty('--forecolor',sysDefForeColor.value);
     document.querySelector(':root').style.setProperty('--inputcolor',sysDefInputColor.value);
-    document.querySelector(':root').style.setProperty('--fillcolor',sysDefFillColor.value);
     document.querySelector(':root').style.setProperty('--backtextcolor',sysDefBackTextColor.value);
     document.querySelector(':root').style.setProperty('--foretextcolor',sysDefForeTextColor.value);
     document.querySelector(':root').style.setProperty('--inputtextcolor',sysDefInputTextColor.value);
-    document.querySelector(':root').style.setProperty('--filltextcolor',sysDefFillTextColor.value);
     document.querySelector(':root').style.setProperty('--blankcolor',sysDefBlankColor.value);
     document.querySelector(':root').style.setProperty('--blanktextcolor',sysDefBlankTextColor.value);
     document.querySelector(':root').style.setProperty('--arcforecolor',sysDefArcForeColor.value);

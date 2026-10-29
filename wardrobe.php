@@ -13,11 +13,9 @@
     --backcolor: <?=$session['back_color'];?>;
     --forecolor: <?=$session['fore_color'];?>;
     --inputcolor: <?=$session['input_color'];?>;
-    --fillcolor: <?=$session['fill_color'];?>;
     --backtextcolor: <?=$session['back_text_color'];?>;
     --foretextcolor: <?=$session['fore_text_color'];?>;
     --inputtextcolor: <?=$session['input_text_color'];?>;
-    --filltextcolor: <?=$session['fill_text_color'];?>;
     --blankcolor: <?=$session['blank_color'];?>;
     --blanktextcolor: <?=$session['blank_text_color'];?>;
     --arcforecolor: <?=$session['arc_fore_color'];?>;
@@ -262,12 +260,6 @@ table, tr, td, th {
     font-family: "euro"; font-weight: normal;
     font-size: var(--backsize); text-align: center;
     border-collapse: separate; border-spacing: 0;
-    text-shadow: var(--text-shadow);
-}
-.current-text-item {
-    background-color: var(--fillcolor);
-    color: var(--filltextcolor);
-    font-family: "euro"; font-size: var(--backsize);
     text-shadow: var(--text-shadow);
 }
 .wrapper {
