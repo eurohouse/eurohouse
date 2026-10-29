@@ -101,7 +101,7 @@ $searchFilesSize=sizestr($bytes,$settings['locale']['size'],$session['units']); 
         handleInput(this.value);
     }" oninput="handleInput(this.value,true);">
     <input type="image" class="power" id="buttonSearch" onmouseover="soundButton();" src="<?=$prefix[3].'search.webp';?>" onclick="soundClick(); omniDisp(searchBox.value);">
-    <input type="image" class="power" id="buttonBackspace" onmouseover="soundButton();" src="<?=$prefix[3].'backspace.webp';?>" onclick="soundClick(); searchBox.value=''; searchBox.focus();"></p>
+    <input type="image" class="power" id="buttonFormBackspace" onmouseover="soundButton();" src="<?=$prefix[3].'backspace.webp';?>" onclick="soundClick(); searchBox.value=''; searchBox.focus();"></p>
 </div>
 <div class='customPanel' id='searchResults' style="width:100%;height:80%;left:0px;top:0px;overflow-y:scroll;">
 <table style="width:100%;" id="table" class="wrapper">

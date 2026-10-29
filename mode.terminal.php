@@ -9,8 +9,8 @@
     } else if (event.keyCode==8) { handleInput(this.value);
     } else if (event.keyCode==46) { handleInput(this.value);
     }" oninput="handleInput(this.value,true);">
-    <input type="image" class="power" id="buttonEnter" onmouseover="soundButton();" src="<?=$prefix[3].'return.webp';?>" onclick="soundClick(); populateCommandIO();">
-    <input type="image" class="power" id="buttonBackspace" onmouseover="soundButton();" src="<?=$prefix[3].'backspace.webp';?>" onclick="soundClick(); promptExec.value=''; clearCommandIO();">
+    <input type="image" class="power" id="buttonFormEnter" onmouseover="soundButton();" src="<?=$prefix[3].'return.webp';?>" onclick="soundClick(); populateCommandIO();">
+    <input type="image" class="power" id="buttonFormBackspace" onmouseover="soundButton();" src="<?=$prefix[3].'backspace.webp';?>" onclick="soundClick(); promptExec.value=''; clearCommandIO();">
     </p>
 </div>
 <div class='customPanel' id='commandPrompt' style="width:100%;height:80%;left:0px;top:0px;overflow-y:scroll;">

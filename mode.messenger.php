@@ -10,8 +10,8 @@
     } else if (event.keyCode==8) { handleInput(this.value);
     } else if (event.keyCode==46) { handleInput(this.value);
     }" oninput="handleInput(this.value,true);">
-    <input type="image" class="power" id="buttonKeyboard" onmouseover="soundButton();" src="<?=$prefix[3].'keyboard.webp';?>" onclick="soundClick(); compose(sysDefSessionID.value,composeMessage.value);">
-    <input type="image" class="power" id="buttonBackspace" onmouseover="soundButton();" src="<?=$prefix[3].'backspace.webp';?>" onclick="soundClick(); composeMessage.value='';">
+    <input type="image" class="power" id="buttonFormKeyboard" onmouseover="soundButton();" src="<?=$prefix[3].'keyboard.webp';?>" onclick="soundClick(); compose(sysDefSessionID.value,composeMessage.value);">
+    <input type="image" class="power" id="buttonFormBackspace" onmouseover="soundButton();" src="<?=$prefix[3].'backspace.webp';?>" onclick="soundClick(); composeMessage.value='';">
 </p>
 </div>
 <div class='customPanel' id='msgBox' style="width:100%;height:85%;left:0px;top:0px;overflow-y:scroll;">

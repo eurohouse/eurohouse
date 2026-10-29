@@ -149,8 +149,11 @@ function world_clock() {
             $('#buttonOpen').attr('src',sysDefPrefix.value+'open.webp');
             $('#buttonSave').attr('src',sysDefPrefix.value+'save.webp');
             $('#buttonEnter').attr('src',sysDefPrefix.value+'return.webp');
+	    $('#buttonFormEnter').attr('src',sysDefPrefix.value+'return.webp');
             $('#buttonKeyboard').attr('src',sysDefPrefix.value+'keyboard.webp');
+	    $('#buttonFormKeyboard').attr('src',sysDefPrefix.value+'keyboard.webp');
             $('#buttonBackspace').attr('src',sysDefPrefix.value+'backspace.webp');
+	    $('#buttonFormBackspace').attr('src',sysDefPrefix.value+'backspace.webp');
 	    $('#buttonTrashBackspace').attr('src',sysDefPrefix.value+((authstate())?'trash.webp':'backspace.webp'));
             $('#buttonEscape').attr('src',sysDefPrefix.value+((sysDefIsModeNull.value!=0)?'forward.webp':'escape.webp'));
             $('#buttonBackward').attr('src',sysDefPrefix.value+'escape.webp');

@@ -48,8 +48,8 @@ function countNote() {
     } else if (event.keyCode==8) { handleInput(this.value);
     } else if (event.keyCode==46) { handleInput(this.value);
     }" oninput="handleInput(this.value,true); countNote();">
-    <input type="image" id="buttonEnter" onmouseover="soundButton();" class="power" onclick="soundClick(); setdata('numeric',myNotesRad.value); setdata('separator',myNotesSep.value);" src="<?=$prefix[3].'return.webp';?>">
-    <input type="image" id="buttonBackspace" onmouseover="soundButton();" class="power" onclick="soundClick(); myNotesRad.value=''; myNotesSep.value=''; countNote();" src="<?=$prefix[3].'backspace.webp';?>">
+    <input type="image" id="buttonFormEnter" onmouseover="soundButton();" class="power" onclick="soundClick(); setdata('numeric',myNotesRad.value); setdata('separator',myNotesSep.value);" src="<?=$prefix[3].'return.webp';?>">
+    <input type="image" id="buttonFormBackspace" onmouseover="soundButton();" class="power" onclick="soundClick(); myNotesRad.value=''; myNotesSep.value=''; countNote();" src="<?=$prefix[3].'backspace.webp';?>">
 </p>
 <p align='center' class='block'>
 <input class="text" id="myNotesEnt" style="width:34%;" type="text" placeholder="<?=term('Title',$settings,$session);?>" value="" onkeydown="if (event.keyCode==13) {
