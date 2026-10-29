@@ -262,6 +262,11 @@ table, tr, td, th {
     border-collapse: separate; border-spacing: 0;
     text-shadow: var(--text-shadow);
 }
+.current-text-item {
+    background-color: var(--backtextcolor);
+    color: var(--backcolor);
+    font-family: "euro"; font-size: var(--backsize);
+}
 .wrapper {
     color: var(--backtextcolor);
     font-family: "euro"; font-weight: normal;

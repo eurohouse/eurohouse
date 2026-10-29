@@ -367,7 +367,7 @@ function populateIpStats(requestIp='::1',request='') {
 	    const socketCell=row.insertCell();
             socketCell.textContent=ipTab[ipElem]['socket'];
 	    if (requestIp&&ipTab[ipElem]['socket']?.toString()===requestIp.toString()) {
-                socketCell.style.textDecoration='underline overline';
+                socketCell.classList.add('current-text-item');
             } row.insertCell().textContent=ipTab[ipElem]['platform'];
 	    row.insertCell().textContent=ipTab[ipElem]['browser'];
         }); const tfoot=document.createElement('tfoot');
