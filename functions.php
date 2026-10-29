@@ -12,16 +12,19 @@ function valarr(string $str,$y='; ',$x=': '): array {
         $newArr[$newStr[0]]=$newStr[1];
     } return $newArr;
 }
-function getCurrentWebAddr(string $mode='client',string $output='address',string $proto='any'): string {
+function getCurrentWebAddr($mode='socket',$output='address',$proto='any') {
     $defaultAddr=($proto==='ipv4')?'127.0.0.1':'::1';
     $defaultPort='80';
-    $addr=($mode==='server')
-        ?($_SERVER['SERVER_ADDR']??$defaultAddr)
-        :($_SERVER['REMOTE_ADDR']??$defaultAddr);
-    $port=($mode==='server')
-        ?($_SERVER['SERVER_PORT']??$defaultPort)
-        :($_SERVER['REMOTE_PORT']??$defaultPort);
-    $isIpv4=filter_var($addr,FILTER_VALIDATE_IP,FILTER_FLAG_IPV4);
+    if ($mode==='server') {
+	$addr=$_SERVER['SERVER_ADDR']??$defaultAddr;
+	$port=$_SERVER['SERVER_PORT']??$defaultPort;
+    } elseif ($mode==='client') {
+	$addr=$_SERVER['REMOTE_ADDR']??$defaultAddr;
+	$port=$_SERVER['REMOTE_PORT']??$defaultPort;
+    } else {
+	$addr=$_SERVER['REMOTE_ADDR']??$defaultAddr;
+	$port=$_SERVER['SERVER_PORT']??$defaultPort;
+    } $isIpv4=filter_var($addr,FILTER_VALIDATE_IP,FILTER_FLAG_IPV4);
     $isIpv6=filter_var($addr,FILTER_VALIDATE_IP,FILTER_FLAG_IPV6);
     if (!$isIpv4&&!$isIpv6) {
         $addr=$defaultAddr;
@@ -189,14 +192,12 @@ function visitor($username,$rewrite=false) {
             mkdir($username.'_files'); chmod($username.'_files',0777);
         } $visitors = fileopen($username.'_files/visitors.json','{}','create');
         if ($rewrite) {
-            $remoteAddr=getCurrentWebAddr('client','address','any');
-            $serverAddr=getCurrentWebAddr('server','address','any');
-            $remoteSocket=getCurrentWebAddr('client','socket','any');
-            $serverSocket=getCurrentWebAddr('server','socket','any');
+            $remoteAddress=getCurrentWebAddr('socket','address');
+            $remoteSocket=getCurrentWebAddr('socket','socket');
             $userAgent=$_SERVER['HTTP_USER_AGENT']??'';
             $system=getSystemFromUserAgent($userAgent);
             $browser=getBrowserFromUserAgent($userAgent);
-	    $visitors[$remoteAddr]=[
+	    $visitors[$remoteAddress]=[
                 'socket'=>$remoteSocket,
                 'platform'=>$system,
 		'browser'=>$browser
