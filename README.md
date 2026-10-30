@@ -39,6 +39,8 @@ These principles reflect the classical European cultural code and the demand for
 
 Together, these tenets form a civilizational code that reflects classical Europe and its global branches, including Russia, the United States, Latin America, and others.
 
+![Eurohouse Abstract Wallpaper](https://github.com/eurohouse/nestor/blob/main/nestor.000.21.webp?raw=true)
+
 ### Limbic‑System‑Driven Tenets (Universal, Instinctive, Nature‑Rooted)
 
 These seven imperatives are universal to humans and rooted in biology and prehistory. They extend beyond any single civilization and correspond to fundamental biological and social drives — including the deep‑seated need to own and manage resources:
