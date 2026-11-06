@@ -54,11 +54,10 @@ if (json_last_error()!==JSON_ERROR_NONE||!isset($input['messages'])) {
     'messages'=>$input['messages'],
     'temperature'=>($input['temperature']??0),
 ]; $apiToolsPath=__DIR__.'/ai-api-tools.json';
-$decodedTools=null;
-if (is_readable($apiToolsPath)) {
-    $raw=file_get_contents($apiToolsPath);
-    $raw=preg_replace('/^\xEF\xBB\xBF/','',$raw);
-    $decodedTools=json_decode($raw,true);
+$decodedTools=null; if (is_readable($apiToolsPath)) {
+    $rawFile=file_get_contents($apiToolsPath);
+    $rawFile=preg_replace('/^\xEF\xBB\xBF/','',$rawFile);
+    $decodedTools=json_decode($rawFile,true);
     if (json_last_error()!==JSON_ERROR_NONE) {
         error_log('ai-api-tools.json is invalid: '.json_last_error_msg());
     }
@@ -66,7 +65,8 @@ if (is_readable($apiToolsPath)) {
     $payloadArr['tools']=$decodedTools; $payloadArr['tool_choice']='auto';
 } else {
     error_log('ai-api-tools.json missing, empty or invalid — tools not sent');
-} $referer=$_SERVER['HTTP_REFERER']??''; $options=[
+} $payload=json_encode($payloadArr,JSON_UNESCAPED_UNICODE);
+$referer=$_SERVER['HTTP_REFERER']??''; $options=[
     'http'=>[
         'method'=>'POST','header'=>[
             'Authorization: Bearer '.$apiKey,
