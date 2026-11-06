@@ -49,13 +49,14 @@ if (json_last_error()!==JSON_ERROR_NONE||!isset($input['messages'])) {
     http_response_code(500);
     echo json_encode(['error'=>'Server misconfigured: missing AI_API_URL']);
     error_log('AI_API_URL not set'); exit;
-} $apiTools=(isset($allEnvVars['AI_API_TOOLS']))?$allEnvVars['AI_API_TOOLS']:'';
+} $apiTools=(file_exists('ai-api-tools.json'))?file_get_contents('ai-api-tools.json'):'';
 $payloadArr=[
     'model'=>($input['model']??''),
     'messages'=>$input['messages'],
     'temperature'=>($input['temperature']??0),
-]; if ($apiTools!='') { $payloadArr['tools']=json_decode($apiTools,true); }
-$payload=json_encode($payloadArr,JSON_UNESCAPED_UNICODE);
+]; if (($apiTools!='')&&(@json_decode($apiTools,true)!=null)) {
+    $payloadArr['tools']=json_decode($apiTools,true);
+} $payload=json_encode($payloadArr,JSON_UNESCAPED_UNICODE);
 $referer=$_SERVER['HTTP_REFERER']??''; $options=[
     'http'=>[
         'method'=>'POST','header'=>[
