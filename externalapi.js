@@ -299,7 +299,7 @@ async function callAI(messages,maxRetries=3) {
                 body: JSON.stringify({
                     model: sysDefModel.value,
                     messages: messages,
-		    temperature: parseInt(sysDefTemperature.value)
+		    temperature: parseFloat(sysDefTemperature.value)
                 }),
             }); if (!response.ok) {
                 const errorText=await response.text();
