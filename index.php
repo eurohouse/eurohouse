@@ -12,7 +12,7 @@
     <title><?=$curModeLangName.' · '.$session['title'].' (@'.$sessionID.') · '.titlePkgEnt('eurohouse','title',$settings,$session);?></title>
     <meta name="description" content="<?=titlePkgEnt('eurohouse','description',$settings,$session);?>">
     <link rel="shortcut icon" href="<?=$prefix[3].'.'.$session['avatar'].'.webp';?>" type="image/x-icon">
-    <?php include 'wardrobe.php';
+    <?php include 'dynamic_styles.php';
     foreach ($settings['libraries']['domestic'] as $key=>$val) { ?>
         <script src="<?=$key;?>" <?=$val;?>></script>
     <?php }

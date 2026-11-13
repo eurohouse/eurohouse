@@ -39,6 +39,8 @@
     --filter: none; --backdrop-filter: none; --backdrop-opacity: none;
     --overlay-before-bg: none; --overlay-before-ani: none;
     --overlay-after-bg: none; --overlay-after-ani: none;
+    --image-opacity: <?=$session['image_opacity'];?>;
+    --image-opacity-hover: <?=$session['image_opacity_hover'];?>;
     --thumb-opacity: <?=$session['thumb_opacity'];?>;
     --thumb-opacity-hover: <?=$session['thumb_opacity_hover'];?>;
 }
@@ -307,7 +309,8 @@ table tfoot {
     0% { background-position: -100% 0; }
     100% { background-position: 100% 0; }
 }
-img { position: relative; }
+img { position: relative; opacity: var(--image-opacity); }
+img:hover { position: relative; opacity: var(--image-opacity-hover); }
 .thumb { position: relative; opacity: var(--thumb-opacity); }
 .thumb:hover { position: relative; opacity: var(--thumb-opacity-hover); }
 input[type=text], input[type=password], input[type=number], select, textarea {

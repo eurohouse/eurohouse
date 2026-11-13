@@ -191,7 +191,7 @@ foreach ($index as $key=>$value) {
     } ?><tr>
         <td>
             <a href="<?=$themedIcon;?>">
-                <img style="width:<?=$iconSize;?>%;" src="<?=$themedIcon;?>" loading="lazy" onmouseover="soundButton();">
+                <img style="width:<?=$iconSize;?>%;" class="thumb" src="<?=$themedIcon;?>" loading="lazy" onmouseover="soundButton();">
             </a>
         </td>
         <td>

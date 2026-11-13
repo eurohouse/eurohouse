@@ -46,14 +46,14 @@ $deleteDocumentIcon=$themePrefix.'trash.webp';
 $infoDocumentIcon=$themePrefix.'info.webp';
 $homeDocumentIcon=$themePrefix.'home.webp'; ?>
 <p align='center' class='block'>
-<img style="width:10%;position:relative;" loading="lazy" src="<?=$newDocumentIcon;?>" onmouseover="soundButton();" id="newButton" onclick="soundClick(); content.value=''; countText();">
-<img style="width:10%;position:relative;" loading="lazy" src="<?=$openDocumentIcon;?>" onmouseover="soundButton();" id="openButton" onclick="soundClick(); omniRead(requestMode.value,filename.value,'false');">
-<img style="width:10%;position:relative;" loading="lazy" src="<?=$saveDocumentIcon;?>" onmouseover="soundButton();" id="saveButton" onclick="soundClick(); set(filename.value,encodeURIComponent(content.value),sysDefSessionID.value); omniRead(requestMode.value,filename.value,'false');">
-<img style="width:10%;position:relative;" loading="lazy" src="<?=$mkdirDocumentIcon;?>" onmouseover="soundButton();" id="mkdirButton" onclick="soundClick(); mkdir(filename.value,sysDefSessionID.value); omniRead(requestMode.value,filename.value,'false');">
-<img style="width:10%;position:relative;" loading="lazy" src="<?=$moveDocumentIcon;?>" onmouseover="soundButton();" id="moveButton" onclick="soundClick(); move(filename.value,doto.value,sysDefSessionID.value); omniRead(requestMode.value,doto.value,'false');">
-<img style="width:10%;position:relative;" loading="lazy" src="<?=$copyDocumentIcon;?>" onmouseover="soundButton();" id="copyButton" onclick="soundClick(); copy(filename.value,doto.value,sysDefSessionID.value); omniRead(requestMode.value,doto.value,'false');">
-<img style="width:10%;position:relative;" loading="lazy" src="<?=$deleteDocumentIcon;?>" onmouseover="soundButton();" id="deleteButton" onclick="soundClick(); del(filename.value,sysDefSessionID.value); omniRead(requestMode.value,filename.value,'false');">
-<img style="width:10%;position:relative;" loading="lazy" src="<?=$homeDocumentIcon;?>" onmouseover="soundButton();" id="homeButton" onclick="soundClick(); omniBack(sysDefParent.value);">
+<img style="width:10%;position:relative;" class="thumb" loading="lazy" src="<?=$newDocumentIcon;?>" onmouseover="soundButton();" id="newButton" onclick="soundClick(); content.value=''; countText();">
+<img style="width:10%;position:relative;" class="thumb" loading="lazy" src="<?=$openDocumentIcon;?>" onmouseover="soundButton();" id="openButton" onclick="soundClick(); omniRead(requestMode.value,filename.value,'false');">
+<img style="width:10%;position:relative;" class="thumb" loading="lazy" src="<?=$saveDocumentIcon;?>" onmouseover="soundButton();" id="saveButton" onclick="soundClick(); set(filename.value,encodeURIComponent(content.value),sysDefSessionID.value); omniRead(requestMode.value,filename.value,'false');">
+<img style="width:10%;position:relative;" class="thumb" loading="lazy" src="<?=$mkdirDocumentIcon;?>" onmouseover="soundButton();" id="mkdirButton" onclick="soundClick(); mkdir(filename.value,sysDefSessionID.value); omniRead(requestMode.value,filename.value,'false');">
+<img style="width:10%;position:relative;" class="thumb" loading="lazy" src="<?=$moveDocumentIcon;?>" onmouseover="soundButton();" id="moveButton" onclick="soundClick(); move(filename.value,doto.value,sysDefSessionID.value); omniRead(requestMode.value,doto.value,'false');">
+<img style="width:10%;position:relative;" class="thumb" loading="lazy" src="<?=$copyDocumentIcon;?>" onmouseover="soundButton();" id="copyButton" onclick="soundClick(); copy(filename.value,doto.value,sysDefSessionID.value); omniRead(requestMode.value,doto.value,'false');">
+<img style="width:10%;position:relative;" class="thumb" loading="lazy" src="<?=$deleteDocumentIcon;?>" onmouseover="soundButton();" id="deleteButton" onclick="soundClick(); del(filename.value,sysDefSessionID.value); omniRead(requestMode.value,filename.value,'false');">
+<img style="width:10%;position:relative;" class="thumb" loading="lazy" src="<?=$homeDocumentIcon;?>" onmouseover="soundButton();" id="homeButton" onclick="soundClick(); omniBack(sysDefParent.value);">
 </p>
 <p align='center' class='block'>
 <input class="text" id="filename" name="<?=$request['mode'];?>" style="width:45%;" type="text" placeholder="<?=term('Name',$settings,$session);?>" value="<?=$request['input'];?>" onkeydown="if (event.keyCode==13) {
