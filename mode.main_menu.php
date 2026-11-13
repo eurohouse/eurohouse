@@ -23,7 +23,7 @@ if ($request['lock']=='true') {
                         </a>
                     </div>
                     <div class='grid-icon'>
-                        <img onmouseover="soundButton();" loading="lazy" name="<?=$value;?>" style="height:20%;" onclick="soundClick(); omniGo(this.name);" src="<?=$elementIcon;?>" title="<?=(isset($menuItemLangArr[$session['units']]))?$menuItemLangArr[$session['units']]:snakeToSpaces($value);?>">
+                        <img onmouseover="soundButton();" class="thumb" loading="lazy" name="<?=$value;?>" style="height:20%;" onclick="soundClick(); omniGo(this.name);" src="<?=$elementIcon;?>" title="<?=(isset($menuItemLangArr[$session['units']]))?$menuItemLangArr[$session['units']]:snakeToSpaces($value);?>">
                     </div>
                 </div>
             <?php }
@@ -44,7 +44,7 @@ if ($request['lock']=='true') {
                     </a>
                 </div>
                 <div class='grid-icon'>
-                    <img onmouseover="soundButton();" loading="lazy" name="<?=$eurArrPkg['run'];?>" style="height:20%;" onclick="soundClick(); window.location.href=this.name;" src="<?=$eurArrFavicon;?>" title="<?=titlePkgEnt($value,'title',$settings,$session);?>">
+                    <img onmouseover="soundButton();" class="thumb" loading="lazy" name="<?=$eurArrPkg['run'];?>" style="height:20%;" onclick="soundClick(); window.location.href=this.name;" src="<?=$eurArrFavicon;?>" title="<?=titlePkgEnt($value,'title',$settings,$session);?>">
                 </div>
             </div><?php }} ?>
         </div>
@@ -58,7 +58,7 @@ if ($request['lock']=='true') {
                 $menuItemLangPack=annotationString($menuItemFile[1]);
                 $menuItemLangArr=valarr($menuItemLangPack,'; ',': ');
                 ?>
-                <img onmouseover="soundButton();" loading="lazy" name="<?=$value;?>" style="height:20%;" onclick="soundClick(); omniGo(this.name);" src="<?=$elementIcon;?>" title="<?=(isset($menuItemLangArr[$session['units']]))?$menuItemLangArr[$session['units']]:snakeToSpaces($value);?>">
+                <img onmouseover="soundButton();" class="thumb" loading="lazy" name="<?=$value;?>" style="height:20%;" onclick="soundClick(); omniGo(this.name);" src="<?=$elementIcon;?>" title="<?=(isset($menuItemLangArr[$session['units']]))?$menuItemLangArr[$session['units']]:snakeToSpaces($value);?>">
             <?php }
         } if ($session['apps']!=0) {
             foreach ($appIndex as $key=>$value) {
@@ -70,7 +70,7 @@ if ($request['lock']=='true') {
                 $eurArrPkg=fileopen($value);
                 $eurArrFavicon=(isset($eurArrPkg['favicon']))?((file_exists($eurArrPkg['favicon']))?$eurArrPkg['favicon']:$themePrefix.'package.webp'):$themePrefix.'package.webp';
                 ?>
-                <img onmouseover="soundButton();" loading="lazy" name="<?=$eurArrPkg['run'];?>" style="height:20%;" onclick="soundClick(); window.location.href=this.name;" src="<?=$eurArrFavicon;?>" title="<?=titlePkgEnt($value,'title',$settings,$session);?>">
+                <img onmouseover="soundButton();" class="thumb" loading="lazy" name="<?=$eurArrPkg['run'];?>" style="height:20%;" onclick="soundClick(); window.location.href=this.name;" src="<?=$eurArrFavicon;?>" title="<?=titlePkgEnt($value,'title',$settings,$session);?>">
         <?php }} ?></p>
     <?php } else {
         foreach ($index as $key=>$value) {
@@ -117,7 +117,7 @@ if ($request['lock']=='true') {
                     <input type="image" name="<?=$menuElementName;?>" onmouseover="soundButton();" class="power" onclick="this.src=(isInMenu(sysDefMenu.value,this.name))?sysDefPrefix.value+'plus.webp':sysDefPrefix.value+'min.webp';setdata('menu',arrangeMenu(sysDefMenu.value,this.name));" src="<?=$prefix[3].$statusFound.'.webp';?>">
                 </div>
                 <div class='grid-icon'>
-                    <img onmouseover="soundButton();" loading="lazy" name="<?=$menuElementName;?>" style="height:20%;" onclick="omniGo(this.name);" src="<?=$elementIcon;?>" title="<?=(isset($menuItemLangNew[$session['units']]))?$menuItemLangNew[$session['units']]:snakeToSpaces($menuElementName);?>">
+                    <img onmouseover="soundButton();" class="thumb" loading="lazy" name="<?=$menuElementName;?>" style="height:20%;" onclick="omniGo(this.name);" src="<?=$elementIcon;?>" title="<?=(isset($menuItemLangNew[$session['units']]))?$menuItemLangNew[$session['units']]:snakeToSpaces($menuElementName);?>">
                 </div>
             </div>
         <?php } ?></div>
@@ -132,7 +132,7 @@ if ($request['lock']=='true') {
             $menuItemLangPack=annotationString($menuItemFile[1]);
             $menuItemLangArr=valarr($menuItemLangPack,'; ',': ');
             ?>
-            <img onmouseover="soundButton();" loading="lazy" name="<?=$menuElementName;?>" style="height:20%;" onclick="omniGo(this.name);" src="<?=$elementIcon;?>" title="<?=(isset($menuItemLangArr[$session['units']]))?$menuItemLangArr[$session['units']]:snakeToSpaces($menuElementName);?>">
+            <img onmouseover="soundButton();" class="thumb" loading="lazy" name="<?=$menuElementName;?>" style="height:20%;" onclick="omniGo(this.name);" src="<?=$elementIcon;?>" title="<?=(isset($menuItemLangArr[$session['units']]))?$menuItemLangArr[$session['units']]:snakeToSpaces($menuElementName);?>">
             <input type="image" name="<?=$menuElementName;?>" onmouseover="soundButton();" class="power" onclick="this.src=(isInMenu(sysDefMenu.value,this.name))?sysDefPrefix.value+'plus.webp':sysDefPrefix.value+'min.webp';setdata('menu',arrangeMenu(sysDefMenu.value,this.name));" src="<?=$prefix[3].$statusFound.'.webp';?>">
         <?php } ?></p>
     <?php } else {
