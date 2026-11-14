@@ -166,7 +166,7 @@ body {
 }
 .panel {
     border: none; border-radius: 0px; position: relative;
-    background-color: var(--qucolor); color: var(--backtextcolor);
+    background-color: var(--bicolor); color: var(--backtextcolor);
     overflow-y: scroll; width: 100%; height: 54%; left: 0%; top: -2px;
 }
 .customPanel {
