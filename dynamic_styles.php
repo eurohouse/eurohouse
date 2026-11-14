@@ -97,24 +97,24 @@ body {
 }
 .topBarItem {
     border: none; border-radius: 0px; position: relative;
-    background-color: var(--qucolor); color: var(--backtextcolor);
+    background-color: var(--bicolor); color: var(--backtextcolor);
     width: 100%; height: 40px; left: 0%; top: 0px;
 }
 .topbar {
     border: none; border-radius: 0px; position: relative;
-    background-color: var(--qucolor); color: var(--backtextcolor);
+    background-color: var(--bicolor); color: var(--backtextcolor);
     width: 100%; height: 220px; left: 0%; top: -2px;
     display: flex; flex-direction: column; flex-wrap: nowrap;
 }
 .upperGap {
     border: none; border-radius: 0px; position: relative;
-    background-color: var(--qucolor); color: var(--backtextcolor);
+    background-color: var(--bicolor); color: var(--backtextcolor);
     width: 100%; height: 2.6em; left: 0%; top: -2px;
     text-align: center; overflow: hidden;
 }
 .lowerGap {
     border: none; border-radius: 0px; position: relative;
-    background-color: var(--qucolor); color: var(--backtextcolor);
+    background-color: var(--bicolor); color: var(--backtextcolor);
     width: 100%; height: 1.6em; left: 0%; top: -5px;
     text-align: center; overflow: hidden;
 }
