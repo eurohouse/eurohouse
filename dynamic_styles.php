@@ -171,7 +171,7 @@ body {
 }
 .customPanel {
     border: none; border-radius: 0px; position: relative;
-    background-color: var(--qucolor); color: var(--backtextcolor);
+    background-color: var(--bicolor); color: var(--backtextcolor);
 }
 .bivalviaLeft { float: left; overflow-y: scroll; width: 20%; flex: 0%; }
 .bivalviaRight { float: right; width: 80%; flex: 0%; }
